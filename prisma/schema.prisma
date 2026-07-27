@@ -1,0 +1,397 @@
+// ---------------------------------------------------------------
+// SCHEMA DATABASE — CRM Carrozzerie (multi-tenant)
+//
+// Strategia multi-tenant scelta: "shared database, shared schema"
+// con colonna tenantId su ogni tabella + Row Level Security (RLS)
+// a livello Postgres come seconda barriera oltre all'app layer.
+// È la strategia più economica da operare per un SaaS con molti
+// tenant piccoli/medi (una carrozzeria = poche decine di utenti),
+// e scala facilmente a centinaia di tenant senza gestire N database
+// separati. Se in futuro un cliente enterprise richiede isolamento
+// fisico dei dati, si può migrare selettivamente quel tenant verso
+// uno schema/database dedicato senza toccare il resto.
+// ---------------------------------------------------------------
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL") // pooler (porta 6543) — usato dall'app a runtime
+  directUrl = env("DIRECT_URL")   // connessione diretta (porta 5432) — usata solo dalle migrazioni
+}
+
+// -----------------------------
+// TENANCY
+// -----------------------------
+
+model Tenant {
+  id          String   @id @default(cuid())
+  ragioneSociale String
+  partitaIva  String?  @unique
+  piano       Plan     @default(TRIAL)
+  trialEndsAt DateTime?
+  createdAt   DateTime @default(now())
+
+  users       User[]
+  clients     Client[]
+  vehicles    Vehicle[]
+  quotes      Quote[]
+  appointments Appointment[]
+  parts       Part[]
+  loanerCars  LoanerCar[]
+
+  @@map("tenants")
+}
+
+enum Plan {
+  TRIAL
+  STARTER
+  PROFESSIONAL
+  ENTERPRISE
+}
+
+// -----------------------------
+// UTENTI / RUOLI
+// -----------------------------
+
+model User {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+
+  nome      String
+  cognome   String
+  email     String   @unique
+  passwordHash String
+  ruolo     Role     @default(TECNICO)
+  attivo    Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  vehiclesAssegnati Vehicle[] @relation("TecnicoAssegnato")
+  stageChanges      StageHistory[]
+  timeEntries       TimeEntry[]
+
+  @@index([tenantId])
+  @@map("users")
+}
+
+enum Role {
+  ADMIN
+  ACCETTATORE
+  TECNICO
+  AMMINISTRAZIONE
+}
+
+// -----------------------------
+// CLIENTI
+// -----------------------------
+
+model Client {
+  id          String   @id @default(cuid())
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+
+  nome        String
+  cognome     String
+  telefono    String?
+  email       String?
+  codiceFiscale String?
+  partitaIva  String?
+  indirizzo   String?
+  noteInterne String?
+  createdAt   DateTime @default(now())
+
+  vehicles    Vehicle[]
+  quotes      Quote[]
+  documents   Document[]
+  appointments Appointment[]
+
+  @@index([tenantId])
+  @@index([tenantId, telefono])
+  @@map("clients")
+}
+
+// -----------------------------
+// VEICOLI + WORKFLOW
+// -----------------------------
+
+model Vehicle {
+  id          String   @id @default(cuid())
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+
+  clientId    String
+  client      Client   @relation(fields: [clientId], references: [id])
+
+  marca       String
+  modello     String
+  targa       String
+  vin         String?
+  colore      String?
+  km          Int?
+
+  compagniaAssicurativa String?
+  numeroSinistro        String?
+  perito                String?
+
+  stage       WorkflowStage @default(ACCETTAZIONE)
+  tecnicoId   String?
+  tecnico     User?    @relation("TecnicoAssegnato", fields: [tecnicoId], references: [id])
+
+  dataIngresso          DateTime @default(now())
+  dataPrevistaConsegna  DateTime?
+  dataConsegnaEffettiva DateTime?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  photos      Photo[]
+  quotes      Quote[]
+  stageHistory StageHistory[]
+
+  @@index([tenantId])
+  @@index([tenantId, targa])
+  @@index([tenantId, stage])
+  @@map("vehicles")
+}
+
+enum WorkflowStage {
+  ACCETTAZIONE
+  PREVENTIVO
+  ATTESA_APPROVAZIONE
+  ORDINE_RICAMBI
+  IN_LAVORAZIONE
+  PREPARAZIONE
+  VERNICIATURA
+  LUCIDATURA
+  CONTROLLO_QUALITA
+  LAVAGGIO
+  PRONTA_CONSEGNA
+  CONSEGNATA
+}
+
+// Log immutabile di ogni cambio stato: alimenta i KPI (tempo medio
+// per stadio, tempo fermo auto, produttività tecnico) e la timeline
+// mostrata al cliente nel portale.
+model StageHistory {
+  id        String   @id @default(cuid())
+  vehicleId String
+  vehicle   Vehicle  @relation(fields: [vehicleId], references: [id])
+
+  fromStage WorkflowStage?
+  toStage   WorkflowStage
+
+  changedById String?
+  changedBy   User?  @relation(fields: [changedById], references: [id])
+
+  changedAt DateTime @default(now())
+
+  @@index([vehicleId])
+  @@map("stage_history")
+}
+
+// -----------------------------
+// FOTOGRAFIE
+// -----------------------------
+
+model Photo {
+  id        String   @id @default(cuid())
+  vehicleId String
+  vehicle   Vehicle  @relation(fields: [vehicleId], references: [id])
+
+  fase      FasePhoto
+  url       String   // path su object storage (S3-compatibile)
+  createdAt DateTime @default(now())
+
+  @@index([vehicleId])
+  @@map("photos")
+}
+
+enum FasePhoto {
+  PRIMA
+  DURANTE
+  DOPO
+}
+
+// -----------------------------
+// PREVENTIVI
+// -----------------------------
+
+model Quote {
+  id          String   @id @default(cuid())
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+
+  clientId    String
+  client      Client   @relation(fields: [clientId], references: [id])
+
+  vehicleId   String
+  vehicle     Vehicle  @relation(fields: [vehicleId], references: [id])
+
+  stato       QuoteStatus @default(BOZZA)
+  imponibile  Decimal  @db.Decimal(10, 2)
+  aliquotaIva Decimal  @db.Decimal(4, 2) @default(22.00)
+  totale      Decimal  @db.Decimal(10, 2)
+
+  pdfUrl      String?
+  firmatoAt   DateTime?
+  inviatoAt   DateTime?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  items       QuoteItem[]
+
+  @@index([tenantId])
+  @@index([tenantId, stato])
+  @@map("quotes")
+}
+
+enum QuoteStatus {
+  BOZZA
+  INVIATO
+  ACCETTATO
+  RIFIUTATO
+}
+
+model QuoteItem {
+  id          String   @id @default(cuid())
+  quoteId     String
+  quote       Quote    @relation(fields: [quoteId], references: [id])
+
+  tipo        QuoteItemType
+  descrizione String
+  quantita    Decimal  @db.Decimal(10, 2) @default(1)
+  prezzoUnitario Decimal @db.Decimal(10, 2)
+
+  @@map("quote_items")
+}
+
+enum QuoteItemType {
+  MANODOPERA
+  RICAMBIO
+  VERNICE
+  ALTRO
+}
+
+// -----------------------------
+// MAGAZZINO RICAMBI
+// -----------------------------
+
+model Part {
+  id          String   @id @default(cuid())
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+
+  codice      String
+  descrizione String
+  giacenza    Int      @default(0)
+  scortaMinima Int     @default(0)
+  prezzoAcquisto Decimal @db.Decimal(10, 2)
+  fornitore   String?
+
+  movements   PartMovement[]
+
+  @@index([tenantId])
+  @@unique([tenantId, codice])
+  @@map("parts")
+}
+
+model PartMovement {
+  id        String   @id @default(cuid())
+  partId    String
+  part      Part     @relation(fields: [partId], references: [id])
+
+  tipo      MovementType
+  quantita  Int
+  createdAt DateTime @default(now())
+
+  @@map("part_movements")
+}
+
+enum MovementType {
+  CARICO
+  SCARICO
+}
+
+// -----------------------------
+// AUTO SOSTITUTIVE
+// -----------------------------
+
+model LoanerCar {
+  id          String   @id @default(cuid())
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+
+  targa       String
+  marca       String
+  modello     String
+  disponibile Boolean  @default(true)
+
+  bookings    LoanerBooking[]
+
+  @@index([tenantId])
+  @@map("loaner_cars")
+}
+
+model LoanerBooking {
+  id          String   @id @default(cuid())
+  loanerCarId String
+  loanerCar   LoanerCar @relation(fields: [loanerCarId], references: [id])
+
+  clientId    String
+  dataInizio  DateTime
+  dataFine    DateTime?
+
+  @@map("loaner_bookings")
+}
+
+// -----------------------------
+// CALENDARIO / APPUNTAMENTI
+// -----------------------------
+
+model Appointment {
+  id          String   @id @default(cuid())
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+
+  clientId    String?
+  client      Client?  @relation(fields: [clientId], references: [id])
+
+  titolo      String
+  inizio      DateTime
+  fine        DateTime
+  note        String?
+
+  @@index([tenantId])
+  @@map("appointments")
+}
+
+// -----------------------------
+// DOCUMENTI / ORE LAVORATE
+// -----------------------------
+
+model Document {
+  id        String   @id @default(cuid())
+  clientId  String
+  client    Client   @relation(fields: [clientId], references: [id])
+
+  nome      String
+  url       String
+  createdAt DateTime @default(now())
+
+  @@map("documents")
+}
+
+model TimeEntry {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+
+  inizio    DateTime
+  fine      DateTime?
+
+  @@map("time_entries")
+}
