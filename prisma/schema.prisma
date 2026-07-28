@@ -72,6 +72,7 @@ model User {
   vehiclesAssegnati Vehicle[] @relation("TecnicoAssegnato")
   stageChanges      StageHistory[]
   timeEntries       TimeEntry[]
+  appuntamenti     Appointment[]
 
   @@index([tenantId])
   @@map("users")
@@ -150,6 +151,7 @@ model Vehicle {
   photos      Photo[]
   quotes      Quote[]
   stageHistory StageHistory[]
+  appointments Appointment[]
 
   @@index([tenantId])
   @@index([tenantId, targa])
@@ -353,13 +355,22 @@ model LoanerBooking {
 // -----------------------------
 
 model Appointment {
-  id          String   @id @default(cuid())
+  
+  id          String      @id @default(cuid())
   tenantId    String
-  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  tenant      Tenant      @relation(fields: [tenantId], references: [id])
 
   clientId    String?
-  client      Client?  @relation(fields: [clientId], references: [id])
+  client      Client?     @relation(fields: [clientId], references: [id])
 
+  vehicleId   String?
+  vehicle     Vehicle?    @relation(fields: [vehicleId], references: [id])
+
+  tecnicoId   String?
+  tecnico     User?       @relation(fields: [tecnicoId], references: [id])
+
+  
+  tipo        String      @default("CLIENTE")
   titolo      String
   inizio      DateTime
   fine        DateTime
