@@ -9,6 +9,7 @@ import { quotesRouter } from "./routes/quotes.js";
 import { dashboardRouter } from "./routes/dashboard.js";
 import { photosRouter } from "./routes/photos.js";
 import { appointmentsRouter } from "./routes/appointments.js";
+import { usersRouter } from "./routes/users.js";
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use("/api/quotes", quotesRouter);
 app.use("/api/dashboard", dashboardRouter);
 app.use("/api", photosRouter);
 app.use("/api/appointments", appointmentsRouter);
+app.use("/api/users", usersRouter);
 
 // Gestione errori centralizzata: qualsiasi errore non gestito nelle
 // route arriva qui invece di far crashare il processo.
