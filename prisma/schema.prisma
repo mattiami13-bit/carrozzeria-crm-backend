@@ -19,7 +19,7 @@ generator client {
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL") // pooler (porta 6543) — usato dall'app a runtime
-  directUrl = env("DIRECT_URL")   // connessione diretta (porta 5432) — usata solo dalle migrazioni
+  directUrl = env("DIRECT_URL") // connessione diretta (porta 5432) — usata solo dalle migrazioni
 }
 
 // -----------------------------
@@ -27,20 +27,20 @@ datasource db {
 // -----------------------------
 
 model Tenant {
-  id          String   @id @default(cuid())
+  id             String    @id @default(cuid())
   ragioneSociale String
-  partitaIva  String?  @unique
-  piano       Plan     @default(TRIAL)
-  trialEndsAt DateTime?
-  createdAt   DateTime @default(now())
+  partitaIva     String?   @unique
+  piano          Plan      @default(TRIAL)
+  trialEndsAt    DateTime?
+  createdAt      DateTime  @default(now())
 
-  users       User[]
-  clients     Client[]
-  vehicles    Vehicle[]
-  quotes      Quote[]
-  appointments Appointment[]
-  parts       Part[]
-  loanerCars  LoanerCar[]
+  users          User[]
+  clients        Client[]
+  vehicles       Vehicle[]
+  quotes         Quote[]
+  appointments   Appointment[]
+  parts          Part[]
+  loanerCars     LoanerCar[]
   supplierOrders SupplierOrder[]
 
   @@map("tenants")
@@ -58,21 +58,22 @@ enum Plan {
 // -----------------------------
 
 model User {
-  id        String   @id @default(cuid())
-  tenantId  String
-  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
 
-  nome      String
-  cognome   String
-  email     String   @unique
+  nome         String
+  cognome      String
+  email        String   @unique
   passwordHash String
-  ruolo     Role     @default(TECNICO)
-  attivo    Boolean  @default(true)
-  createdAt DateTime @default(now())
+  ruolo        Role     @default(TECNICO)
+  attivo       Boolean  @default(true)
+  createdAt    DateTime @default(now())
 
-  vehiclesAssegnati Vehicle[] @relation("TecnicoAssegnato")
-  stageChanges      StageHistory[]
-  timeEntries       TimeEntry[]
+  vehiclesAssegnati   Vehicle[]      @relation("TecnicoAssegnato")
+  stageChanges        StageHistory[]
+  timeEntries         TimeEntry[]
+  appuntamentiTecnico Appointment[]  @relation("TecnicoAppuntamento")
 
   @@index([tenantId])
   @@map("users")
@@ -90,23 +91,23 @@ enum Role {
 // -----------------------------
 
 model Client {
-  id          String   @id @default(cuid())
-  tenantId    String
-  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
 
-  nome        String
-  cognome     String
-  telefono    String?
-  email       String?
+  nome          String
+  cognome       String
+  telefono      String?
+  email         String?
   codiceFiscale String?
-  partitaIva  String?
-  indirizzo   String?
-  noteInterne String?
-  createdAt   DateTime @default(now())
+  partitaIva    String?
+  indirizzo     String?
+  noteInterne   String?
+  createdAt     DateTime @default(now())
 
-  vehicles    Vehicle[]
-  quotes      Quote[]
-  documents   Document[]
+  vehicles     Vehicle[]
+  quotes       Quote[]
+  documents    Document[]
   appointments Appointment[]
 
   @@index([tenantId])
@@ -119,37 +120,38 @@ model Client {
 // -----------------------------
 
 model Vehicle {
-  id          String   @id @default(cuid())
-  tenantId    String
-  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
 
-  clientId    String
-  client      Client   @relation(fields: [clientId], references: [id])
+  clientId     String
+  client       Client        @relation(fields: [clientId], references: [id])
+  appointments Appointment[]
 
-  marca       String
-  modello     String
-  targa       String
-  vin         String?
-  colore      String?
-  km          Int?
+  marca   String
+  modello String
+  targa   String
+  vin     String?
+  colore  String?
+  km      Int?
 
   compagniaAssicurativa String?
   numeroSinistro        String?
   perito                String?
 
-  stage       WorkflowStage @default(ACCETTAZIONE)
-  tecnicoId   String?
-  tecnico     User?    @relation("TecnicoAssegnato", fields: [tecnicoId], references: [id])
+  stage     WorkflowStage @default(ACCETTAZIONE)
+  tecnicoId String?
+  tecnico   User?         @relation("TecnicoAssegnato", fields: [tecnicoId], references: [id])
 
-  dataIngresso          DateTime @default(now())
+  dataIngresso          DateTime  @default(now())
   dataPrevistaConsegna  DateTime?
   dataConsegnaEffettiva DateTime?
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  photos      Photo[]
-  quotes      Quote[]
+  photos       Photo[]
+  quotes       Quote[]
   stageHistory StageHistory[]
 
   @@index([tenantId])
@@ -177,15 +179,15 @@ enum WorkflowStage {
 // per stadio, tempo fermo auto, produttività tecnico) e la timeline
 // mostrata al cliente nel portale.
 model StageHistory {
-  id        String   @id @default(cuid())
+  id        String  @id @default(cuid())
   vehicleId String
-  vehicle   Vehicle  @relation(fields: [vehicleId], references: [id])
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
 
   fromStage WorkflowStage?
   toStage   WorkflowStage
 
   changedById String?
-  changedBy   User?  @relation(fields: [changedById], references: [id])
+  changedBy   User?   @relation(fields: [changedById], references: [id])
 
   changedAt DateTime @default(now())
 
@@ -198,13 +200,13 @@ model StageHistory {
 // -----------------------------
 
 model Photo {
-  id        String   @id @default(cuid())
+  id        String  @id @default(cuid())
   vehicleId String
-  vehicle   Vehicle  @relation(fields: [vehicleId], references: [id])
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
 
   fase      FasePhoto
-  url       String   // path su object storage (S3-compatibile)
-  createdAt DateTime @default(now())
+  url       String // path su object storage (S3-compatibile)
+  createdAt DateTime  @default(now())
 
   @@index([vehicleId])
   @@map("photos")
@@ -221,29 +223,29 @@ enum FasePhoto {
 // -----------------------------
 
 model Quote {
-  id          String   @id @default(cuid())
-  tenantId    String
-  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
 
-  clientId    String
-  client      Client   @relation(fields: [clientId], references: [id])
+  clientId String
+  client   Client @relation(fields: [clientId], references: [id])
 
-  vehicleId   String
-  vehicle     Vehicle  @relation(fields: [vehicleId], references: [id])
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
 
   stato       QuoteStatus @default(BOZZA)
-  imponibile  Decimal  @db.Decimal(10, 2)
-  aliquotaIva Decimal  @db.Decimal(4, 2) @default(22.00)
-  totale      Decimal  @db.Decimal(10, 2)
+  imponibile  Decimal     @db.Decimal(10, 2)
+  aliquotaIva Decimal     @default(22.00) @db.Decimal(4, 2)
+  totale      Decimal     @db.Decimal(10, 2)
 
-  pdfUrl      String?
-  firmatoAt   DateTime?
-  inviatoAt   DateTime?
+  pdfUrl    String?
+  firmatoAt DateTime?
+  inviatoAt DateTime?
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  items       QuoteItem[]
+  items QuoteItem[]
 
   @@index([tenantId])
   @@index([tenantId, stato])
@@ -258,14 +260,14 @@ enum QuoteStatus {
 }
 
 model QuoteItem {
-  id          String   @id @default(cuid())
-  quoteId     String
-  quote       Quote    @relation(fields: [quoteId], references: [id])
+  id      String @id @default(cuid())
+  quoteId String
+  quote   Quote  @relation(fields: [quoteId], references: [id])
 
-  tipo        QuoteItemType
-  descrizione String
-  quantita    Decimal  @db.Decimal(10, 2) @default(1)
-  prezzoUnitario Decimal @db.Decimal(10, 2)
+  tipo           QuoteItemType
+  descrizione    String
+  quantita       Decimal       @default(1) @db.Decimal(10, 2)
+  prezzoUnitario Decimal       @db.Decimal(10, 2)
 
   @@map("quote_items")
 }
@@ -282,33 +284,33 @@ enum QuoteItemType {
 // -----------------------------
 
 model Part {
-  id          String   @id @default(cuid())
-  tenantId    String
-  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
 
-  codice      String
-  descrizione String
-  giacenza    Int      @default(0)
-  scortaMinima Int     @default(0)
-  prezzoAcquisto Decimal @db.Decimal(10, 2)
+  codice         String
+  descrizione    String
+  giacenza       Int      @default(0)
+  scortaMinima   Int      @default(0)
+  prezzoAcquisto Decimal  @db.Decimal(10, 2)
   prezzoVendita  Decimal? @db.Decimal(10, 2)
-  fornitore   String?
+  fornitore      String?
 
-  movements   PartMovement[]
+  movements PartMovement[]
 
-  @@index([tenantId])
   @@unique([tenantId, codice])
+  @@index([tenantId])
   @@map("parts")
 }
 
 model PartMovement {
-  id        String   @id @default(cuid())
-  partId    String
-  part      Part     @relation(fields: [partId], references: [id])
+  id     String @id @default(cuid())
+  partId String
+  part   Part   @relation(fields: [partId], references: [id])
 
   tipo      MovementType
   quantita  Int
-  createdAt DateTime @default(now())
+  createdAt DateTime     @default(now())
 
   @@map("part_movements")
 }
@@ -323,35 +325,35 @@ enum MovementType {
 // -----------------------------
 
 model SupplierOrder {
-  id          String   @id @default(cuid())
-  tenantId    String
-  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
 
-  fornitore   String
-  stato       OrderStatus @default(IN_ATTESA)
-  dataOrdine  DateTime @default(now())
+  fornitore            String
+  stato                OrderStatus @default(IN_ATTESA)
+  dataOrdine           DateTime    @default(now())
   dataConsegnaPrevista DateTime?
-  note        String?
+  note                 String?
 
-  items       SupplierOrderItem[]
+  items SupplierOrderItem[]
 
   @@index([tenantId])
   @@map("supplier_orders")
 }
 
 model SupplierOrderItem {
-  id              String   @id @default(cuid())
+  id              String        @id @default(cuid())
   supplierOrderId String
   supplierOrder   SupplierOrder @relation(fields: [supplierOrderId], references: [id])
 
   // partId non è collegato con una relation esplicita a Part (come già
   // fatto per LoanerBooking.clientId): la voce d'ordine deve poter
   // esistere anche per ricambi non ancora presenti a magazzino.
-  partId          String?
-  descrizione     String
+  partId           String?
+  descrizione      String
   quantitaOrdinata Int
-  quantitaRicevuta Int  @default(0)
-  prezzoUnitario  Decimal? @db.Decimal(10, 2)
+  quantitaRicevuta Int      @default(0)
+  prezzoUnitario   Decimal? @db.Decimal(10, 2)
 
   @@map("supplier_order_items")
 }
@@ -367,29 +369,29 @@ enum OrderStatus {
 // -----------------------------
 
 model LoanerCar {
-  id          String   @id @default(cuid())
-  tenantId    String
-  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
 
   targa       String
   marca       String
   modello     String
-  disponibile Boolean  @default(true)
+  disponibile Boolean @default(true)
 
-  bookings    LoanerBooking[]
+  bookings LoanerBooking[]
 
   @@index([tenantId])
   @@map("loaner_cars")
 }
 
 model LoanerBooking {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   loanerCarId String
   loanerCar   LoanerCar @relation(fields: [loanerCarId], references: [id])
 
-  clientId    String
-  dataInizio  DateTime
-  dataFine    DateTime?
+  clientId   String
+  dataInizio DateTime
+  dataFine   DateTime?
 
   @@map("loaner_bookings")
 }
@@ -399,20 +401,22 @@ model LoanerBooking {
 // -----------------------------
 
 model Appointment {
-  id          String   @id @default(cuid())
-  tenantId    String
-  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
 
-  clientId    String?
-  client      Client?  @relation(fields: [clientId], references: [id])
+  clientId String?
+  client   Client? @relation(fields: [clientId], references: [id])
 
-  titolo      String
-  inizio      DateTime
-  fine        DateTime
-  note        String?
-  tipo        String?
-  vehicleId   String?
-  tecnicoId   String?
+  titolo    String
+  inizio    DateTime
+  fine      DateTime
+  note      String?
+  tipo      String?
+  vehicleId String?
+  vehicle   Vehicle? @relation(fields: [vehicleId], references: [id])
+  tecnicoId String?
+  tecnico   User?    @relation("TecnicoAppuntamento", fields: [tecnicoId], references: [id])
 
   @@index([tenantId])
   @@map("appointments")
@@ -423,9 +427,9 @@ model Appointment {
 // -----------------------------
 
 model Document {
-  id        String   @id @default(cuid())
-  clientId  String
-  client    Client   @relation(fields: [clientId], references: [id])
+  id       String @id @default(cuid())
+  clientId String
+  client   Client @relation(fields: [clientId], references: [id])
 
   nome      String
   url       String
@@ -435,12 +439,12 @@ model Document {
 }
 
 model TimeEntry {
-  id        String   @id @default(cuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
 
-  inizio    DateTime
-  fine      DateTime?
+  inizio DateTime
+  fine   DateTime?
 
   @@map("time_entries")
 }
