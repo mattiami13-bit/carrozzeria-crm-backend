@@ -410,6 +410,9 @@ model Appointment {
   inizio      DateTime
   fine        DateTime
   note        String?
+  tipo        String?
+  vehicleId   String?
+  tecnicoId   String?
 
   @@index([tenantId])
   @@map("appointments")
