@@ -122,13 +122,13 @@ vehiclesRouter.patch("/:id/stage", async (req, res) => {
   });
   if (!current) return res.status(404).json({ error: "Veicolo non trovato" });
 
-  const updated = await prisma.$transaction(async (tx) => {
-    const vehicle = await tx.vehicle.update({
+  const vehicle = await tx.vehicle.update({
       where: { id: current.id },
       data: {
         stage: parsed.data.stage,
         dataConsegnaEffettiva: parsed.data.stage === "CONSEGNATA" ? new Date() : undefined,
       },
+      include: { client: true },
     });
     await tx.stageHistory.create({
       data: {
