@@ -2,6 +2,7 @@ import { Router } from "express";
 import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
+import { enqueueNotification } from "../lib/notifiche.js";
 
 export const vehiclesRouter = Router();
 vehiclesRouter.use(requireAuth);
@@ -117,6 +118,7 @@ vehiclesRouter.patch("/:id/stage", async (req, res) => {
 
   const current = await prisma.vehicle.findFirst({
     where: { id: req.params.id, ...tenantScope(req) },
+    include: { client: true },
   });
   if (!current) return res.status(404).json({ error: "Veicolo non trovato" });
 
@@ -139,7 +141,7 @@ vehiclesRouter.patch("/:id/stage", async (req, res) => {
     return vehicle;
   });
 
-  // TODO: enqueueNotification(updated, parsed.data.stage) — invio WhatsApp/email automatico
+  await enqueueNotification(updated, parsed.data.stage);
 
   res.json(updated);
 });
