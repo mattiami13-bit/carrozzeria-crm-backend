@@ -41,6 +41,7 @@ model Tenant {
   appointments Appointment[]
   parts       Part[]
   loanerCars  LoanerCar[]
+  supplierOrders SupplierOrder[]
 
   @@map("tenants")
 }
@@ -72,7 +73,6 @@ model User {
   vehiclesAssegnati Vehicle[] @relation("TecnicoAssegnato")
   stageChanges      StageHistory[]
   timeEntries       TimeEntry[]
-  appuntamenti     Appointment[]
 
   @@index([tenantId])
   @@map("users")
@@ -151,7 +151,6 @@ model Vehicle {
   photos      Photo[]
   quotes      Quote[]
   stageHistory StageHistory[]
-  appointments Appointment[]
 
   @@index([tenantId])
   @@index([tenantId, targa])
@@ -292,6 +291,7 @@ model Part {
   giacenza    Int      @default(0)
   scortaMinima Int     @default(0)
   prezzoAcquisto Decimal @db.Decimal(10, 2)
+  prezzoVendita  Decimal? @db.Decimal(10, 2)
   fornitore   String?
 
   movements   PartMovement[]
@@ -316,6 +316,50 @@ model PartMovement {
 enum MovementType {
   CARICO
   SCARICO
+}
+
+// -----------------------------
+// ORDINI FORNITORI
+// -----------------------------
+
+model SupplierOrder {
+  id          String   @id @default(cuid())
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+
+  fornitore   String
+  stato       OrderStatus @default(IN_ATTESA)
+  dataOrdine  DateTime @default(now())
+  dataConsegnaPrevista DateTime?
+  note        String?
+
+  items       SupplierOrderItem[]
+
+  @@index([tenantId])
+  @@map("supplier_orders")
+}
+
+model SupplierOrderItem {
+  id              String   @id @default(cuid())
+  supplierOrderId String
+  supplierOrder   SupplierOrder @relation(fields: [supplierOrderId], references: [id])
+
+  // partId non è collegato con una relation esplicita a Part (come già
+  // fatto per LoanerBooking.clientId): la voce d'ordine deve poter
+  // esistere anche per ricambi non ancora presenti a magazzino.
+  partId          String?
+  descrizione     String
+  quantitaOrdinata Int
+  quantitaRicevuta Int  @default(0)
+  prezzoUnitario  Decimal? @db.Decimal(10, 2)
+
+  @@map("supplier_order_items")
+}
+
+enum OrderStatus {
+  IN_ATTESA
+  PARZIALE
+  CONSEGNATO
 }
 
 // -----------------------------
@@ -355,22 +399,13 @@ model LoanerBooking {
 // -----------------------------
 
 model Appointment {
-  
-  id          String      @id @default(cuid())
+  id          String   @id @default(cuid())
   tenantId    String
-  tenant      Tenant      @relation(fields: [tenantId], references: [id])
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
 
   clientId    String?
-  client      Client?     @relation(fields: [clientId], references: [id])
+  client      Client?  @relation(fields: [clientId], references: [id])
 
-  vehicleId   String?
-  vehicle     Vehicle?    @relation(fields: [vehicleId], references: [id])
-
-  tecnicoId   String?
-  tecnico     User?       @relation(fields: [tecnicoId], references: [id])
-
-  
-  tipo        String      @default("CLIENTE")
   titolo      String
   inizio      DateTime
   fine        DateTime
