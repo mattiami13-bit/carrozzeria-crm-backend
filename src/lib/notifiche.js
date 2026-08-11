@@ -77,11 +77,12 @@ export async function enqueueNotification(vehicle, newStage) {
     try {
       // Normalizza il numero: deve essere in formato internazionale (es. +393331234567)
       const numero = client.telefono.startsWith("+") ? client.telefono : `+39${client.telefono.replace(/\D/g, "")}`;
-      await twilioClient.messages.create({
-        from: process.env.TWILIO_WHATSAPP_NUMBER,
-        to: `whatsapp:${numero}`,
-        body: testo,
-      });
+  await twilioClient.messages.create({
+  from: process.env.TWILIO_WHATSAPP_NUMBER,
+  to: `whatsapp:${numero}`,
+  contentSid: "HXd35dced652dac1e2a55e7838bed5aff0",
+  contentVariables: JSON.stringify({ "1": testo }),
+});
       console.log(`[notifiche] WhatsApp inviato a ${numero} (stage ${newStage})`);
     } catch (err) {
       console.error(`[notifiche] Errore invio WhatsApp a ${client.telefono}:`, err.message);
