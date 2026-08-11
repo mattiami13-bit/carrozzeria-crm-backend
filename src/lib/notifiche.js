@@ -56,16 +56,20 @@ export async function enqueueNotification(vehicle, newStage) {
   // --- EMAIL ---
   if (client.email && resend) {
     try {
-      await resend.emails.send({
-        from: "Ombra CRM <onboarding@resend.dev>", // da sostituire con dominio verificato quando disponibile
-        to: client.email,
-        subject: OGGETTO_EMAIL[newStage] || "Aggiornamento veicolo",
-        text: testo,
-      });
-      console.log(`[notifiche] Email inviata a ${client.email} (stage ${newStage})`);
-    } catch (err) {
-      console.error(`[notifiche] Errore invio email a ${client.email}:`, err.message);
-    }
+  const { data, error } = await resend.emails.send({
+    from: "Ombra CRM <onboarding@resend.dev>", // da sostituire con dominio verificato quando disponibile
+    to: client.email,
+    subject: OGGETTO_EMAIL[newStage] || "Aggiornamento veicolo",
+    text: testo,
+  });
+  if (error) {
+    console.error(`[notifiche] Errore invio email a ${client.email}:`, JSON.stringify(error));
+  } else {
+    console.log(`[notifiche] Email inviata a ${client.email} (stage ${newStage}), id: ${data?.id}`);
+  }
+} catch (err) {
+  console.error(`[notifiche] Errore invio email a ${client.email}:`, err.message);
+}
   }
 
   // --- WHATSAPP ---
