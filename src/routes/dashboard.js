@@ -61,3 +61,83 @@ dashboardRouter.get("/fatturato-mensile", async (req, res) => {
       .map(([mese, totale]) => ({ mese, totale }))
   );
 });
+
+// GET /api/dashboard/margini-ricambi
+// Margine potenziale generato dai ricambi usciti da magazzino (movimenti
+// SCARICO). Nota: le voci di preventivo (QuoteItem) non sono collegate
+// a un ricambio specifico, quindi il margine non è calcolabile per singola
+// commessa/preventivo — questa è una stima aggregata a livello di magazzino,
+// basata su prezzoVendita - prezzoAcquisto per unità venduta.
+dashboardRouter.get("/margini-ricambi", async (req, res) => {
+  const scope = tenantScope(req);
+
+  const parts = await prisma.part.findMany({
+    where: scope,
+    select: {
+      codice: true,
+      descrizione: true,
+      prezzoAcquisto: true,
+      prezzoVendita: true,
+      movements: { where: { tipo: "SCARICO" }, select: { quantita: true } },
+    },
+  });
+
+  const dettaglio = parts
+    .filter((p) => p.prezzoVendita != null)
+    .map((p) => {
+      const quantitaVenduta = p.movements.reduce((sum, m) => sum + m.quantita, 0);
+      const margineUnitario = Number(p.prezzoVendita) - Number(p.prezzoAcquisto);
+      return {
+        codice: p.codice,
+        descrizione: p.descrizione,
+        quantitaVenduta,
+        margineUnitario,
+        margineTotale: margineUnitario * quantitaVenduta,
+      };
+    })
+    .filter((p) => p.quantitaVenduta > 0)
+    .sort((a, b) => b.margineTotale - a.margineTotale);
+
+  const margineComplessivo = dettaglio.reduce((sum, p) => sum + p.margineTotale, 0);
+
+  res.json({ margineComplessivo, dettaglio });
+});
+
+// GET /api/dashboard/tempi-lavorazione
+// Tempo medio (in ore) trascorso in ciascuno stage del workflow, calcolato
+// dalla cronologia StageHistory: per ogni veicolo, la durata di uno stage
+// è la differenza tra il momento in cui vi è entrato e il cambio successivo
+// (o "adesso" se il veicolo è ancora in quello stage).
+dashboardRouter.get("/tempi-lavorazione", async (req, res) => {
+  const scope = tenantScope(req);
+
+  const vehicles = await prisma.vehicle.findMany({
+    where: scope,
+    select: {
+      id: true,
+      stageHistory: { orderBy: { changedAt: "asc" }, select: { toStage: true, changedAt: true } },
+    },
+  });
+
+  const durate = {}; // { STAGE: [oreStadio1, oreStadio2, ...] }
+  for (const v of vehicles) {
+    const history = v.stageHistory;
+    for (let i = 0; i < history.length; i++) {
+      const stage = history[i].toStage;
+      const inizio = history[i].changedAt;
+      const fine = history[i + 1] ? history[i + 1].changedAt : new Date();
+      const ore = (fine - inizio) / (1000 * 60 * 60);
+      if (!durate[stage]) durate[stage] = [];
+      durate[stage].push(ore);
+    }
+  }
+
+  const medie = Object.entries(durate).map(([stage, valori]) => ({
+    stage,
+    oreMedie: valori.reduce((a, b) => a + b, 0) / valori.length,
+    veicoli: valori.length,
+  }));
+
+  res.json(medie);
+});
+
