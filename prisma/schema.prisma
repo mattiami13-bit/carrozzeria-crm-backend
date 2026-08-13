@@ -32,6 +32,7 @@ model Tenant {
   partitaIva     String?   @unique
   piano          Plan      @default(TRIAL)
   trialEndsAt    DateTime?
+  limiteAnalisiIAMensile Int?
   createdAt      DateTime  @default(now())
 
   users          User[]
@@ -43,6 +44,7 @@ model Tenant {
   loanerCars     LoanerCar[]
   supplierOrders SupplierOrder[]
   sinistri       Sinistro[]
+  aiAnalyses  AiAnalysisLog[]
 
   @@map("tenants")
 }
@@ -152,6 +154,8 @@ model Vehicle {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  stimaIA     Json?
+  stimaIAAt   DateTime?
 
   photos       Photo[]
   quotes       Quote[]
@@ -502,4 +506,22 @@ enum SinistroStatus {
   LAVORAZIONE
   COMPLETATO
   LIQUIDATO
+}
+
+// -----------------------------
+// UTILIZZO IA (quote/abbonamento)
+// -----------------------------
+
+// Log immutabile di ogni analisi IA completata con successo: alimenta il
+// conteggio mensile usato per applicare i limiti del piano di abbonamento.
+model AiAnalysisLog {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+
+  vehicleId String
+  createdAt DateTime @default(now())
+
+  @@index([tenantId, createdAt])
+  @@map("ai_analysis_logs")
 }

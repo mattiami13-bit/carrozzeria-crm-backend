@@ -141,3 +141,24 @@ dashboardRouter.get("/tempi-lavorazione", async (req, res) => {
   res.json(medie);
 });
 
+// GET /api/dashboard/utilizzo-ia
+// Quante analisi danni IA sono state fatte questo mese e quante ne sono
+// incluse nel piano — alimenta l'indicatore in dashboard.
+dashboardRouter.get("/utilizzo-ia", async (req, res) => {
+  const { tenantId } = tenantScope(req);
+
+  const tenant = await prisma.tenant.findUnique({ where: { id: tenantId } });
+
+  const LIMITE_ANALISI_IA_DEFAULT = { TRIAL: 5, STARTER: 20, PROFESSIONAL: 100, ENTERPRISE: 500 };
+  const limite = tenant.limiteAnalisiIAMensile ?? LIMITE_ANALISI_IA_DEFAULT[tenant.piano] ?? 0;
+
+  const inizioMese = new Date();
+  inizioMese.setDate(1);
+  inizioMese.setHours(0, 0, 0, 0);
+  const usate = await prisma.aiAnalysisLog.count({
+    where: { tenantId, createdAt: { gte: inizioMese } },
+  });
+
+  res.json({ usate, limite, piano: tenant.piano });
+});
+
