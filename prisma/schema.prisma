@@ -33,6 +33,7 @@ model Tenant {
   piano          Plan      @default(TRIAL)
   trialEndsAt    DateTime?
   limiteAnalisiIAMensile Int?
+  limiteAssistenteIAMensile Int?
   createdAt      DateTime  @default(now())
 
   users          User[]
@@ -45,6 +46,7 @@ model Tenant {
   supplierOrders SupplierOrder[]
   sinistri       Sinistro[]
   aiAnalyses  AiAnalysisLog[]
+  assistantLogs AiAssistantLog[]
 
   @@map("tenants")
 }
@@ -524,4 +526,19 @@ model AiAnalysisLog {
 
   @@index([tenantId, createdAt])
   @@map("ai_analysis_logs")
+}
+
+// Log di ogni domanda fatta all'assistente conversazionale: alimenta il
+// conteggio mensile usato per applicare i limiti del piano di abbonamento.
+// "domanda" è salvata solo per un eventuale controllo/debug futuro.
+model AiAssistantLog {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+
+  domanda   String?
+  createdAt DateTime @default(now())
+
+  @@index([tenantId, createdAt])
+  @@map("ai_assistant_logs")
 }

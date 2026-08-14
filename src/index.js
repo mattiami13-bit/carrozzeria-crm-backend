@@ -14,6 +14,7 @@ import { photosRouter } from "./routes/photos.js";
 import { appointmentsRouter } from "./routes/appointments.js";
 import { usersRouter } from "./routes/users.js";
 import { sinistriRouter } from "./routes/sinistri.js";
+import { assistenteRouter } from "./routes/assistente.js";
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use("/api/vehicles", vehiclesRouter);
 app.use("/api/quotes", quotesRouter);
 app.use("/api/parts", partsRouter);
 app.use("/api/sinistri", sinistriRouter);
+app.use("/api/assistente", assistenteRouter);
 app.use("/api/loaner-cars", loanerCarsRouter);
 app.use("/api/supplier-orders", supplierOrdersRouter);
 app.use("/api/dashboard", dashboardRouter);
