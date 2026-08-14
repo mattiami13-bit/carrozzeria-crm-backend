@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { prisma } from "../lib/prisma.js";
-import { requireAuth, tenantScope } from "../middleware/auth.js";
+import { requireAuth, tenantScope, requireRole } from "../middleware/auth.js";
 
 export const dashboardRouter = Router();
 dashboardRouter.use(requireAuth);
@@ -21,6 +21,7 @@ dashboardRouter.get("/summary", async (req, res) => {
       prisma.quote.findMany({ where: { ...scope, stato: "ACCETTATO" }, select: { totale: true } }),
     ]);
 
+  const puoVedereFatturato = ["ADMIN", "AMMINISTRAZIONE"].includes(req.auth.role);
   const fatturatoStimato = quotesAccettati.reduce((sum, q) => sum + Number(q.totale), 0);
   const ticketMedio = quotesAccettati.length > 0 ? fatturatoStimato / quotesAccettati.length : 0;
 
@@ -30,16 +31,14 @@ dashboardRouter.get("/summary", async (req, res) => {
     attesaRicambi,
     preventiviInviati,
     preventiviAccettati,
-    fatturatoStimato,
-    ticketMedio,
-  });
+    ...(puoVedereFatturato ? { fatturatoStimato, ticketMedio } : {}),  });
 });
 
 // GET /api/dashboard/fatturato-mensile
 // Fatturato basato sui preventivi ACCETTATO raggruppati per mese,
 // ultimi 6 mesi. Da sostituire con le fatture reali quando il modulo
 // di fatturazione elettronica sarà collegato.
-dashboardRouter.get("/fatturato-mensile", async (req, res) => {
+dashboardRouter.get("/fatturato-mensile", requireRole("ADMIN", "AMMINISTRAZIONE"), async (req, res) => {
   const scope = tenantScope(req);
   const sixMonthsAgo = new Date();
   sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
@@ -68,7 +67,7 @@ dashboardRouter.get("/fatturato-mensile", async (req, res) => {
 // a un ricambio specifico, quindi il margine non è calcolabile per singola
 // commessa/preventivo — questa è una stima aggregata a livello di magazzino,
 // basata su prezzoVendita - prezzoAcquisto per unità venduta.
-dashboardRouter.get("/margini-ricambi", async (req, res) => {
+dashboardRouter.get("/margini-ricambi", requireRole("ADMIN", "AMMINISTRAZIONE"), async (req, res) => {
   const scope = tenantScope(req);
 
   const parts = await prisma.part.findMany({
@@ -162,3 +161,26 @@ dashboardRouter.get("/utilizzo-ia", async (req, res) => {
   res.json({ usate, limite, piano: tenant.piano });
 });
 
+// GET /api/dashboard/registro-attivita
+// Ultime 100 azioni registrate per questo tenant (creazioni, modifiche,
+// cancellazioni, e tentativi di accesso respinti). Solo ADMIN.
+dashboardRouter.get("/registro-attivita", requireRole("ADMIN"), async (req, res) => {
+  const { tenantId } = tenantScope(req);
+
+  const log = await prisma.auditLog.findMany({
+    where: { tenantId },
+    orderBy: { createdAt: "desc" },
+    take: 100,
+    include: { user: { select: { nome: true, cognome: true, ruolo: true } } },
+  });
+
+  res.json(
+    log.map((l) => ({
+      quando: l.createdAt,
+      utente: l.user ? `${l.user.nome} ${l.user.cognome} (${l.user.ruolo})` : "Sconosciuto/non autenticato",
+      metodo: l.metodo,
+      percorso: l.percorso,
+      esito: l.statusCode,
+    }))
+  );
+});

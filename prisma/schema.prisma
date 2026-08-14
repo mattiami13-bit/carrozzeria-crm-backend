@@ -48,6 +48,10 @@ model Tenant {
   aiAnalyses  AiAnalysisLog[]
   assistantLogs AiAssistantLog[]
 
+  
+
+
+
   @@map("tenants")
 }
 
@@ -78,6 +82,7 @@ model User {
   vehiclesAssegnati   Vehicle[]      @relation("TecnicoAssegnato")
   stageChanges        StageHistory[]
   timeEntries         TimeEntry[]
+  auditLogs         AuditLog[]
   appuntamentiTecnico Appointment[]  @relation("TecnicoAppuntamento")
 
   @@index([tenantId])
@@ -541,4 +546,25 @@ model AiAssistantLog {
 
   @@index([tenantId, createdAt])
   @@map("ai_assistant_logs")
+}
+
+// Registro attività: chi ha fatto cosa e quando. Scritto automaticamente
+// da un middleware globale (vedi audit.js) per ogni azione che modifica
+// dati e per ogni tentativo respinto per permessi insufficienti.
+// tenantId/userId sono nullable perché un tentativo con token mancante o
+// non valido non ha un utente/tenant associato, ma vogliamo comunque
+// tracciare il tentativo.
+model AuditLog {
+  id         String   @id @default(cuid())
+  tenantId   String?
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id])
+
+  metodo     String
+  percorso   String
+  statusCode Int
+  createdAt  DateTime @default(now())
+
+  @@index([tenantId, createdAt])
+  @@map("audit_logs")
 }

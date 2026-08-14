@@ -30,7 +30,7 @@ async function contaDomandeQuestoMese(tenantId) {
 // tenant corrente, quindi il modello non può in alcun modo vedere dati
 // di un'altra carrozzeria.
 // -----------------------------
-function creaStrumenti(tenantId) {
+function creaStrumenti(tenantId, ruolo) {
   return {
     riepilogo_dashboard: async () => {
       const [inOfficina, prontaConsegna, attesaRicambi, preventiviInviati, preventiviAccettati, quotesAccettati] =
@@ -42,8 +42,13 @@ function creaStrumenti(tenantId) {
           prisma.quote.count({ where: { tenantId, stato: "ACCETTATO" } }),
           prisma.quote.findMany({ where: { tenantId, stato: "ACCETTATO" }, select: { totale: true } }),
         ]);
-      const fatturatoStimato = quotesAccettati.reduce((sum, q) => sum + Number(q.totale), 0);
-      return { inOfficina, prontaConsegna, attesaRicambi, preventiviInviati, preventiviAccettati, fatturatoStimato };
+      const risultato = { inOfficina, prontaConsegna, attesaRicambi, preventiviInviati, preventiviAccettati };
+      // Il fatturato è un dato finanziario: lo includiamo solo se il ruolo
+      // di chi ha fatto la domanda è autorizzato a vederlo.
+      if (RUOLI_CON_ACCESSO_FINANZIARIO.has(ruolo)) {
+        risultato.fatturatoStimato = quotesAccettati.reduce((sum, q) => sum + Number(q.totale), 0);
+      }
+      return risultato;
     },
 
     conta_veicoli_per_stage: async () => {
@@ -212,12 +217,28 @@ const STRUMENTI_ANTHROPIC = [
   { name: "appuntamenti_prossimi", description: "Appuntamenti in calendario nei prossimi N giorni (default 7).", input_schema: { type: "object", properties: { giorni: { type: "number" } } } },
 ];
 
-const SYSTEM_PROMPT = `Sei l'assistente dati di Ombra CRM, un gestionale per carrozzerie. Rispondi in italiano, in modo diretto e conciso.
+const STRUMENTI_FINANZIARI = new Set(["fatturato_mensile", "margini_ricambi"]);
+const RUOLI_CON_ACCESSO_FINANZIARIO = new Set(["ADMIN", "AMMINISTRAZIONE"]);
+
+// Filtra gli strumenti disponibili in base al ruolo di chi fa la domanda:
+// TECNICO e ACCETTATORE non vedono fatturato e margini, per coerenza con
+// le stesse restrizioni già applicate alla dashboard. "riepilogo_dashboard"
+// resta disponibile a tutti ma viene "ripulito" del fatturato in
+// creaStrumenti quando il ruolo non è autorizzato.
+function strumentiPerRuolo(ruolo) {
+  if (RUOLI_CON_ACCESSO_FINANZIARIO.has(ruolo)) return STRUMENTI_ANTHROPIC;
+  return STRUMENTI_ANTHROPIC.filter((s) => !STRUMENTI_FINANZIARI.has(s.name));
+}
+
+const SYSTEM_PROMPT_BASE = `Sei l'assistente dati di Ombra CRM, un gestionale per carrozzerie. Rispondi in italiano, in modo diretto e conciso.
 Usa SEMPRE gli strumenti disponibili per recuperare i dati reali prima di rispondere: non inventare mai numeri, nomi o stati.
 Se una domanda richiede più strumenti (es. confrontare due cose), chiamali entrambi prima di rispondere.
 Se ti viene chiesto di compiere un'azione (cambiare uno stato, creare o modificare un record, inviare messaggi), spiega gentilmente che al momento puoi solo rispondere a domande sui dati, non eseguire modifiche.
 Se non trovi risultati per una ricerca, dillo chiaramente invece di inventare.
 Rispondi in modo colloquiale, come faresti parlando con il titolare dell'officina — evita elenchi puntati per risposte brevi.`;
+
+const SYSTEM_PROMPT_RESTRIZIONE_FINANZIARIA = `
+Il ruolo di chi ti sta parlando non ha accesso ai dati finanziari (fatturato, margini). Non hai a disposizione strumenti per recuperarli: se te li chiedono, spiega gentilmente che questi dati sono visibili solo a chi ha un ruolo amministrativo, senza inventare o stimare cifre.`;
 
 const chiediSchema = z.object({ domanda: z.string().min(1).max(500) });
 
@@ -241,7 +262,11 @@ assistenteRouter.post("/chiedi", async (req, res) => {
     });
   }
 
-  const strumenti = creaStrumenti(tenantId);
+  const strumenti = creaStrumenti(tenantId, req.auth.role);
+  const strumentiDisponibili = strumentiPerRuolo(req.auth.role);
+  const systemPrompt = RUOLI_CON_ACCESSO_FINANZIARIO.has(req.auth.role)
+    ? SYSTEM_PROMPT_BASE
+    : SYSTEM_PROMPT_BASE + SYSTEM_PROMPT_RESTRIZIONE_FINANZIARIA;
   const messages = [{ role: "user", content: parsed.data.domanda }];
 
   try {
@@ -257,8 +282,8 @@ assistenteRouter.post("/chiedi", async (req, res) => {
         body: JSON.stringify({
           model: "claude-sonnet-5",
           max_tokens: 1024,
-          system: SYSTEM_PROMPT,
-          tools: STRUMENTI_ANTHROPIC,
+          system: systemPrompt,
+          tools: strumentiDisponibili,
           messages,
         }),
       });

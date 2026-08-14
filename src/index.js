@@ -15,11 +15,13 @@ import { appointmentsRouter } from "./routes/appointments.js";
 import { usersRouter } from "./routes/users.js";
 import { sinistriRouter } from "./routes/sinistri.js";
 import { assistenteRouter } from "./routes/assistente.js";
+import { auditLogger } from "./middleware/audit.js";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(auditLogger);
 
 app.get("/health", (req, res) => res.json({ ok: true }));
 
