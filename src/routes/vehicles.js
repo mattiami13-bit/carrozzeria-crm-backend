@@ -300,3 +300,52 @@ Sii prudente: è una stima preliminare da foto, non una perizia definitiva. Se l
   res.json(updated);
 });
 
+const firmaConsegnaSchema = z.object({
+  firmaDataUrl: z.string().min(1),
+  firmatarioNome: z.string().min(1),
+});
+
+// POST /api/vehicles/:id/firma-consegna
+// Registra la firma di ritiro del cliente: salva l'immagine della firma
+// e il nome di chi firma, e porta il veicolo allo stadio CONSEGNATA con
+// la stessa logica della PATCH /:id/stage (cronologia + notifica) —
+// firmare la consegna *è* consegnare il veicolo, sono lo stesso gesto.
+vehiclesRouter.post("/:id/firma-consegna", async (req, res) => {
+  const parsed = firmaConsegnaSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: "Firma o nome mancante." });
+
+  const current = await prisma.vehicle.findFirst({
+    where: { id: req.params.id, ...tenantScope(req) },
+    include: { client: true },
+  });
+  if (!current) return res.status(404).json({ error: "Veicolo non trovato" });
+
+  const updated = await prisma.$transaction(async (tx) => {
+    const vehicle = await tx.vehicle.update({
+      where: { id: current.id },
+      data: {
+        stage: "CONSEGNATA",
+        dataConsegnaEffettiva: new Date(),
+        firmaConsegnaDataUrl: parsed.data.firmaDataUrl,
+        firmatarioConsegna: parsed.data.firmatarioNome,
+        dataFirmaConsegna: new Date(),
+      },
+      include: { client: true },
+    });
+    await tx.stageHistory.create({
+      data: {
+        vehicleId: vehicle.id,
+        fromStage: current.stage,
+        toStage: "CONSEGNATA",
+        changedById: req.auth.userId,
+      },
+    });
+    return vehicle;
+  });
+
+  await enqueueNotification(updated, "CONSEGNATA");
+
+  res.json(updated);
+});
+
+

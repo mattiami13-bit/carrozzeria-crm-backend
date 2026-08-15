@@ -158,6 +158,9 @@ model Vehicle {
   dataIngresso          DateTime  @default(now())
   dataPrevistaConsegna  DateTime?
   dataConsegnaEffettiva DateTime?
+  firmaConsegnaDataUrl String?   @db.Text
+  firmatarioConsegna   String?
+  dataFirmaConsegna    DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -253,8 +256,10 @@ model Quote {
   totale      Decimal     @db.Decimal(10, 2)
 
   pdfUrl    String?
-  firmatoAt DateTime?
   inviatoAt DateTime?
+  firmaDataUrl    String?   @db.Text
+  firmatarioNome  String?
+  firmatoAt       DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

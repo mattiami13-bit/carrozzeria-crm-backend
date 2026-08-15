@@ -82,6 +82,35 @@ quotesRouter.patch("/:id/stato", async (req, res) => {
   res.json(quote);
 });
 
+const firmaSchema = z.object({
+  firmaDataUrl: z.string().min(1),
+  firmatarioNome: z.string().min(1),
+});
+
+// POST /api/quotes/:id/firma
+// Registra la firma di accettazione del cliente: salva l'immagine della
+// firma (data URL PNG disegnata su schermo) e il nome di chi firma, e
+// porta automaticamente il preventivo allo stato ACCETTATO — firmare un
+// preventivo *è* accettarlo, sono lo stesso gesto.
+quotesRouter.post("/:id/firma", async (req, res) => {
+  const parsed = firmaSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: "Firma o nome mancante." });
+
+  const { count } = await prisma.quote.updateMany({
+    where: { id: req.params.id, ...tenantScope(req) },
+    data: {
+      firmaDataUrl: parsed.data.firmaDataUrl,
+      firmatarioNome: parsed.data.firmatarioNome,
+      firmatoAt: new Date(),
+      stato: "ACCETTATO",
+    },
+  });
+  if (count === 0) return res.status(404).json({ error: "Preventivo non trovato" });
+
+  const quote = await prisma.quote.findUnique({ where: { id: req.params.id } });
+  res.json(quote);
+});
+
 const TIPO_LABEL = {
   MANODOPERA: "Manodopera",
   RICAMBIO: "Ricambio",
@@ -188,6 +217,23 @@ quotesRouter.get("/:id/pdf", async (req, res) => {
   y += 18;
   doc.font("Helvetica-Bold").fontSize(12).fillColor("#E4572E")
     .text("Totale", totalsX, y).text(euro(quote.totale), 470, y);
+
+if (quote.firmaDataUrl) {
+    y += 40;
+    doc.font("Helvetica-Bold").fontSize(9.5).fillColor("#1B1A17").text("Firma per accettazione", 50, y);
+    y += 14;
+    try {
+      const base64 = quote.firmaDataUrl.split(",")[1];
+      const buffer = Buffer.from(base64, "base64");
+      doc.image(buffer, 50, y, { width: 160 });
+      y += 55;
+    } catch (e) {
+      // Se l'immagine non è decodificabile per qualche motivo, si prosegue
+      // senza bloccare la generazione del resto del PDF.
+    }
+    doc.font("Helvetica").fontSize(8.5).fillColor("#6B6963")
+      .text(`Firmato da ${quote.firmatarioNome} il ${new Date(quote.firmatoAt).toLocaleString("it-IT")}`, 50, y);
+  }
 
   doc.end();
 });
