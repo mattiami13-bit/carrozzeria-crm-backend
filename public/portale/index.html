@@ -58,7 +58,7 @@ async function init() {
 }
 
 function render(data) {
-  const { veicolo, cliente, foto, storicoStage, preventivo } = data;
+ const { veicolo, cliente, foto, storicoStage, preventivo, sinistro } = data;
 
   const STAGE_LABELS = {
     ACCETTAZIONE: "Accettazione", PREVENTIVO: "Preventivo", ATTESA_APPROVAZIONE: "In attesa di approvazione",
@@ -107,7 +107,49 @@ function render(data) {
       </div>
     `;
   }
+if (sinistro) {
+  const SINISTRO_LABELS = {
+    APERTO: "Aperto", INVIATO_ASSICURAZIONE: "Inviato all'assicurazione", PERIZIA_FISSATA: "Perizia fissata",
+    PERIZIA_COMPLETATA: "Perizia completata", APPROVATO: "Approvato", LAVORAZIONE: "In lavorazione",
+    COMPLETATO: "Completato", LIQUIDATO: "Liquidato",
+  };
+  const euro = (v) => v != null ? `€ ${Number(v).toFixed(2)}` : "—";
 
+  html += `
+    <div class="card">
+      <h2>Sinistro</h2>
+      ${sinistro.numeroPratica ? `<div style="font-size:13px;color:#8A867C;margin-bottom:6px;">Pratica n. ${sinistro.numeroPratica}</div>` : ""}
+      <div style="font-size:13px;margin-bottom:4px;"><strong>Compagnia:</strong> ${sinistro.compagniaAssicurativa}</div>
+      ${sinistro.perito ? `<div style="font-size:13px;margin-bottom:4px;"><strong>Perito:</strong> ${sinistro.perito}</div>` : ""}
+      <div style="font-size:13px;margin-bottom:10px;">Stato: ${SINISTRO_LABELS[sinistro.stato] || sinistro.stato}</div>
+
+      <div style="border-top:1px solid #F1EFE8;padding-top:10px;">
+        <div class="timeline-item" style="border:none;padding:4px 0;">
+          <div>Importo totale danno</div>
+          <div style="margin-left:auto;font-weight:600;">${euro(sinistro.importoTotale)}</div>
+        </div>
+        ${sinistro.percentualeFranchigia != null ? `
+        <div class="timeline-item" style="border:none;padding:4px 0;">
+          <div>Franchigia</div>
+          <div style="margin-left:auto;font-weight:600;">${sinistro.percentualeFranchigia}% (${euro(sinistro.importoFranchigia)})</div>
+        </div>` : ""}
+        <div class="timeline-item" style="border:none;padding:4px 0;">
+          <div>Pagato dall'assicurazione</div>
+          <div style="margin-left:auto;font-weight:600;">${euro(sinistro.importoPagatoAssicurazione)}</div>
+        </div>
+        <div class="timeline-item" style="border:none;padding:4px 0;">
+          <div>Pagato da te</div>
+          <div style="margin-left:auto;font-weight:600;">${euro(sinistro.importoPagatoCliente)}</div>
+        </div>
+      </div>
+
+      <div style="font-size:12px;color:#8A867C;margin-top:10px;">
+        Apertura: ${new Date(sinistro.dataApertura).toLocaleDateString("it-IT")}
+        ${sinistro.dataChiusura ? ` — Chiusura: ${new Date(sinistro.dataChiusura).toLocaleDateString("it-IT")}` : ""}
+      </div>
+    </div>
+  `;
+}
   document.getElementById("app").className = "";
   document.getElementById("app").innerHTML = html;
 }
