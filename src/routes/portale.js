@@ -70,3 +70,42 @@ portaleRouter.get("/:token", async (req, res) => {
     sinistro: vehicle.sinistri[0] ?? null,
   });
 });
+
+// CLIENTE (pubblico, nessun login): firma il preventivo collegato al
+// proprio veicolo. Il preventivo deve appartenere ESATTAMENTE al veicolo
+// di questo token — impedisce di firmare preventivi di altri veicoli
+// anche riusando un token valido ma diverso.
+portaleRouter.post("/:token/firma-preventivo", async (req, res) => {
+  const { firmaDataUrl, firmatarioNome } = req.body;
+  if (!firmaDataUrl || !firmatarioNome) {
+    return res.status(400).json({ error: "Firma o nome mancante." });
+  }
+
+  const access = await prisma.portalAccess.findUnique({
+    where: { token: req.params.token },
+  });
+  if (!access || !access.attivo) {
+    return res.status(404).json({ error: "Link non valido o scaduto" });
+  }
+
+  const quote = await prisma.quote.findFirst({
+    where: { vehicleId: access.vehicleId, tenantId: access.tenantId },
+    orderBy: { createdAt: "desc" },
+  });
+  if (!quote) return res.status(404).json({ error: "Nessun preventivo da firmare per questo veicolo." });
+  if (quote.stato !== "INVIATO") {
+    return res.status(400).json({ error: "Questo preventivo non è firmabile in questo momento." });
+  }
+
+  const updated = await prisma.quote.update({
+    where: { id: quote.id },
+    data: {
+      firmaDataUrl,
+      firmatarioNome,
+      firmatoAt: new Date(),
+      stato: "ACCETTATO",
+    },
+  });
+
+  res.json(updated);
+});

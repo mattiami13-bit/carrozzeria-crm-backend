@@ -25,11 +25,31 @@
   .foto-grid img { width: 100%; height: 110px; object-fit: cover; border-radius: 8px; border: 1px solid #E7E4DC; }
   .stato-msg { text-align: center; color: #8A867C; font-size: 14px; padding: 40px 20px; }
   .errore { background: #FBEAE5; color: #B4472E; padding: 14px; border-radius: 10px; font-size: 14px; }
+.btn-primario { padding: 10px 16px; border-radius: 8px; border: none; background: #1B1A17; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .btn-secondario { padding: 10px 16px; border-radius: 8px; border: 1px solid #E7E4DC; background: #fff; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .firma-overlay { position: fixed; inset: 0; background: rgba(27,26,23,0.6); display: flex; align-items: center; justify-content: center; z-index: 50; padding: 16px; }
+  .firma-box { background: #fff; border-radius: 14px; padding: 20px; width: 100%; max-width: 420px; }
+  #firmaCanvas { width: 100%; height: 160px; border: 1.5px dashed #D9D5CA; border-radius: 8px; touch-action: none; background: #fff; }
+  .firma-input { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #E7E4DC; font-size: 14px; margin: 10px 0; box-sizing: border-box; }
 </style>
 </head>
 <body>
 
 <div id="app" class="stato-msg">Caricamento…</div>
+<div id="firmaOverlay" class="firma-overlay" style="display:none;">
+  <div class="firma-box">
+    <h2 style="margin:0 0 4px;">Firma per accettazione</h2>
+    <div style="font-size:12px;color:#8A867C;margin-bottom:10px;">Disegna la tua firma qui sotto</div>
+    <canvas id="firmaCanvas"></canvas>
+    <button class="btn-secondario" onclick="pulisciFirma()" style="margin-top:8px;">Cancella</button>
+    <input id="firmaNome" class="firma-input" type="text" placeholder="Il tuo nome e cognome" />
+    <div id="firmaErrore" style="color:#B4472E;font-size:13px;margin-bottom:8px;display:none;"></div>
+    <div style="display:flex;gap:10px;">
+      <button class="btn-secondario" style="flex:1;" onclick="chiudiFirma()">Annulla</button>
+      <button class="btn-primario" style="flex:1;" onclick="confermaFirma()">Conferma firma</button>
+    </div>
+  </div>
+</div>
 
 <script>
 async function init() {
@@ -99,11 +119,14 @@ function render(data) {
   }
 
   if (preventivo) {
+    const STATO_PREVENTIVO = { BOZZA: "Bozza", INVIATO: "In attesa della tua firma", ACCETTATO: "Accettato e firmato", RIFIUTATO: "Rifiutato" };
     html += `
       <div class="card">
         <h2>Preventivo</h2>
         <div style="font-size:20px;font-weight:700;">€ ${Number(preventivo.totale).toFixed(2)}</div>
-        <div style="font-size:12px;color:#8A867C;margin-top:4px;">Stato: ${preventivo.stato}</div>
+        <div style="font-size:12px;color:#8A867C;margin-top:4px;margin-bottom:12px;">Stato: ${STATO_PREVENTIVO[preventivo.stato] || preventivo.stato}</div>
+        ${preventivo.stato === "INVIATO" ? `<button class="btn-primario" onclick="apriFirma()">Firma e accetta preventivo</button>` : ""}
+        ${preventivo.stato === "ACCETTATO" ? `<div style="font-size:13px;color:#2F8F5B;font-weight:600;">✓ Firmato da ${preventivo.firmatarioNome}</div>` : ""}
       </div>
     `;
   }
@@ -155,6 +178,87 @@ if (sinistro) {
 }
 
 init();
+let disegnando = false;
+let canvasEl, ctx;
+
+function apriFirma() {
+  document.getElementById("firmaOverlay").style.display = "flex";
+  document.getElementById("firmaErrore").style.display = "none";
+  document.getElementById("firmaNome").value = "";
+
+  canvasEl = document.getElementById("firmaCanvas");
+  canvasEl.width = canvasEl.offsetWidth;
+  canvasEl.height = canvasEl.offsetHeight;
+  ctx = canvasEl.getContext("2d");
+  ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+  ctx.strokeStyle = "#1B1A17";
+  ctx.lineWidth = 2;
+  ctx.lineCap = "round";
+
+  const getPos = (e) => {
+    const rect = canvasEl.getBoundingClientRect();
+    const point = e.touches ? e.touches[0] : e;
+    return { x: point.clientX - rect.left, y: point.clientY - rect.top };
+  };
+
+  const start = (e) => { disegnando = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); };
+  const move = (e) => {
+    if (!disegnando) return;
+    e.preventDefault();
+    const p = getPos(e);
+    ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+  };
+  const end = () => { disegnando = false; };
+
+  canvasEl.onmousedown = start;
+  canvasEl.onmousemove = move;
+  canvasEl.onmouseup = end;
+  canvasEl.onmouseleave = end;
+  canvasEl.ontouchstart = start;
+  canvasEl.ontouchmove = move;
+  canvasEl.ontouchend = end;
+}
+
+function pulisciFirma() {
+  ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+}
+
+function chiudiFirma() {
+  document.getElementById("firmaOverlay").style.display = "none";
+}
+
+async function confermaFirma() {
+  const nome = document.getElementById("firmaNome").value.trim();
+  const erroreEl = document.getElementById("firmaErrore");
+
+  if (!nome) {
+    erroreEl.textContent = "Inserisci il tuo nome e cognome.";
+    erroreEl.style.display = "block";
+    return;
+  }
+
+  const firmaDataUrl = canvasEl.toDataURL("image/png");
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get("t");
+
+  try {
+    const res = await fetch(`/api/portale/${token}/firma-preventivo`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ firmaDataUrl, firmatarioNome: nome }),
+    });
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}));
+      throw new Error(body.error || "Errore durante l'invio della firma.");
+    }
+    chiudiFirma();
+    init();
+  } catch (e) {
+    erroreEl.textContent = e.message;
+    erroreEl.style.display = "block";
+  }
+}
 </script>
 </body>
 </html>
