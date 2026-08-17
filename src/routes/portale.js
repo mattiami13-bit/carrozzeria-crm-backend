@@ -1,6 +1,7 @@
 import { Router } from "express";
 import crypto from "crypto";
 import { prisma } from "../lib/prisma.js";
+import { inviaLinkPortale } from "../lib/notifiche.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
 
 export const portaleRouter = Router();
@@ -18,11 +19,22 @@ portaleRouter.post("/genera/:vehicleId", requireAuth, async (req, res) => {
     where: { vehicleId: vehicle.id, attivo: true },
   });
 
+let appenaCreato = false;
   if (!access) {
     const token = crypto.randomBytes(32).toString("hex");
     access = await prisma.portalAccess.create({
       data: { tenantId: req.auth.tenantId, vehicleId: vehicle.id, token },
     });
+    appenaCreato = true;
+  }
+
+  if (appenaCreato) {
+    const vehicleConCliente = await prisma.vehicle.findUnique({
+      where: { id: vehicle.id },
+      include: { client: true },
+    });
+    const link = `${req.protocol}://${req.get("host")}/portale/?t=${access.token}`;
+    inviaLinkPortale(vehicleConCliente, link); // non blocca la risposta: invio in background
   }
 
   res.status(201).json({ token: access.token });
@@ -96,7 +108,8 @@ portaleRouter.post("/:token/firma-preventivo", async (req, res) => {
   if (quote.stato !== "INVIATO") {
     return res.status(400).json({ error: "Questo preventivo non è firmabile in questo momento." });
   }
-
+import { prisma } from "../lib/prisma.js";
+import { inviaLinkPortale } from "../lib/notifiche.js";
   const updated = await prisma.quote.update({
     where: { id: quote.id },
     data: {

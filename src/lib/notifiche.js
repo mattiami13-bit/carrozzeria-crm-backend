@@ -89,3 +89,34 @@ export async function enqueueNotification(vehicle, newStage) {
     }
   }
 }
+
+/**
+ * Invia al cliente il link di accesso al portale (stato veicolo, foto,
+ * preventivo, sinistro). Chiamata quando lo staff genera il link dalla
+ * scheda veicolo.
+ *
+ * @param {object} vehicle - il veicolo, con relazione client inclusa
+ * @param {string} link - URL completo del portale già pronto all'uso
+ */
+export async function inviaLinkPortale(vehicle, link) {
+  const client = vehicle.client;
+  if (!client?.email || !resend) return;
+
+  const testo = `Ciao ${client.nome}, puoi seguire lo stato della tua ${vehicle.marca} ${vehicle.modello} (targa ${vehicle.targa}) a questo link:\n\n${link}\n\nTroverai stato di lavorazione, foto e, se presente, il preventivo da firmare.`;
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: "Ombra CRM <onboarding@resend.dev>",
+      to: client.email,
+      subject: "Segui la tua auto in tempo reale",
+      text: testo,
+    });
+    if (error) {
+      console.error(`[notifiche] Errore invio link portale a ${client.email}:`, JSON.stringify(error));
+    } else {
+      console.log(`[notifiche] Link portale inviato a ${client.email}, id: ${data?.id}`);
+    }
+  } catch (err) {
+    console.error(`[notifiche] Errore invio link portale a ${client.email}:`, err.message);
+  }
+}
