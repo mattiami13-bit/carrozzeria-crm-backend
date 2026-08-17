@@ -108,8 +108,7 @@ portaleRouter.post("/:token/firma-preventivo", async (req, res) => {
   if (quote.stato !== "INVIATO") {
     return res.status(400).json({ error: "Questo preventivo non è firmabile in questo momento." });
   }
-import { prisma } from "../lib/prisma.js";
-import { inviaLinkPortale } from "../lib/notifiche.js";
+
   const updated = await prisma.quote.update({
     where: { id: quote.id },
     data: {
