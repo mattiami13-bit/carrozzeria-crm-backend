@@ -1,0 +1,5 @@
+<!DOCTYPE html>
+<html lang="it">
+<head><meta charset="UTF-8"><title>Portale cliente — test</title></head>
+<body><h1>Il portale funziona!</h1></body>
+</html>
