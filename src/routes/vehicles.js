@@ -144,7 +144,8 @@ vehiclesRouter.patch("/:id/stage", async (req, res) => {
     return vehicle;
   });
 
-  await enqueueNotification(updated, parsed.data.stage);
+  const baseUrl = `${req.protocol}://${req.get("host")}`;
+  await enqueueNotification(updated, parsed.data.stage, baseUrl);
 
   res.json(updated);
 });
@@ -343,7 +344,8 @@ vehiclesRouter.post("/:id/firma-consegna", async (req, res) => {
     return vehicle;
   });
 
-  await enqueueNotification(updated, "CONSEGNATA");
+  const baseUrl = `${req.protocol}://${req.get("host")}`;
+  await enqueueNotification(updated, "CONSEGNATA", baseUrl);
 
   res.json(updated);
 });

@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import twilio from "twilio";
+import { getPortalLink } from "./portaleHelper.js";
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
@@ -13,15 +14,14 @@ const twilioClient =
 // puramente interni come ORDINE_RICAMBI, LUCIDATURA, ecc.)
 const MESSAGGI_STAGE = {
   ATTESA_APPROVAZIONE: (v) =>
-    `Ciao ${v.clientNome}, il preventivo per la tua ${v.marca} ${v.modello} (targa ${v.targa}) è pronto. Ti contatteremo a breve per l'approvazione.`,
+    `Ciao ${v.clientNome}, il preventivo per la tua ${v.marca} ${v.modello} (targa ${v.targa}) è pronto. Ti contatteremo a breve per l'approvazione.\n\nSegui l'avanzamento qui: ${v.link}`,
   IN_LAVORAZIONE: (v) =>
-    `Ciao ${v.clientNome}, la lavorazione della tua ${v.marca} ${v.modello} (targa ${v.targa}) è iniziata.`,
+    `Ciao ${v.clientNome}, la lavorazione della tua ${v.marca} ${v.modello} (targa ${v.targa}) è iniziata.\n\nSegui l'avanzamento qui: ${v.link}`,
   PRONTA_CONSEGNA: (v) =>
-    `Ciao ${v.clientNome}, la tua ${v.marca} ${v.modello} (targa ${v.targa}) è pronta per il ritiro!`,
+    `Ciao ${v.clientNome}, la tua ${v.marca} ${v.modello} (targa ${v.targa}) è pronta per il ritiro!\n\nDettagli qui: ${v.link}`,
   CONSEGNATA: (v) =>
-    `Ciao ${v.clientNome}, grazie per aver scelto la nostra carrozzeria per la tua ${v.marca} ${v.modello}. Alla prossima!`,
+    `Ciao ${v.clientNome}, grazie per aver scelto la nostra carrozzeria per la tua ${v.marca} ${v.modello}. Alla prossima!\n\nRivedi tutto qui: ${v.link}`,
 };
-
 const OGGETTO_EMAIL = {
   ATTESA_APPROVAZIONE: "Preventivo pronto",
   IN_LAVORAZIONE: "Lavorazione iniziata",
@@ -36,7 +36,7 @@ const OGGETTO_EMAIL = {
  * @param {object} vehicle - il veicolo aggiornato, con relazione client inclusa
  * @param {string} newStage - il nuovo stato (es. "PRONTA_CONSEGNA")
  */
-export async function enqueueNotification(vehicle, newStage) {
+export async function enqueueNotification(vehicle, newStage, baseUrl) {
   const template = MESSAGGI_STAGE[newStage];
   if (!template) return; // stato non "comunicabile" al cliente, nessuna notifica
 
@@ -46,13 +46,15 @@ export async function enqueueNotification(vehicle, newStage) {
     return;
   }
 
+  const link = await getPortalLink(baseUrl, vehicle.tenantId, vehicle.id);
+
   const testo = template({
     clientNome: client.nome,
     marca: vehicle.marca,
     modello: vehicle.modello,
     targa: vehicle.targa,
+    link,
   });
-
   // --- EMAIL ---
   if (client.email && resend) {
     try {
