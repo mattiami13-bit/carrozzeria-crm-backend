@@ -10,10 +10,26 @@ const twilioClient =
     : null;
 
 // Messaggi personalizzati per ogni stato che vogliamo comunicare al cliente.
-// Gli stati non presenti in questa mappa NON generano notifiche (es. passaggi
-// puramente interni come ORDINE_RICAMBI, LUCIDATURA, ecc.)
+// Tutti gli stage del ciclo di lavorazione sono presenti in questa mappa:
+// ogni cambio di stato genera una notifica email/WhatsApp al cliente.
 const MESSAGGI_STAGE = {
-  ATTESA_APPROVAZIONE: (v) =>
+    ACCETTAZIONE: (v) =>
+    `Ciao ${v.clientNome}, abbiamo accettato la tua ${v.marca} ${v.modello} (targa ${v.targa}) in carrozzeria. Seguirà a breve un preventivo.\n\nSegui l'avanzamento qui: ${v.link}`,
+  PREVENTIVO: (v) =>
+    `Ciao ${v.clientNome}, stiamo preparando il preventivo per la tua ${v.marca} ${v.modello} (targa ${v.targa}). Ti contatteremo appena pronto.\n\nSegui l'avanzamento qui: ${v.link}`,
+  ORDINE_RICAMBI: (v) =>
+    `Ciao ${v.clientNome}, stiamo ordinando i ricambi necessari per la tua ${v.marca} ${v.modello} (targa ${v.targa}).\n\nSegui l'avanzamento qui: ${v.link}`,
+  PREPARAZIONE: (v) =>
+    `Ciao ${v.clientNome}, la tua ${v.marca} ${v.modello} (targa ${v.targa}) è in fase di preparazione.\n\nSegui l'avanzamento qui: ${v.link}`,
+  VERNICIATURA: (v) =>
+    `Ciao ${v.clientNome}, la tua ${v.marca} ${v.modello} (targa ${v.targa}) è in verniciatura.\n\nSegui l'avanzamento qui: ${v.link}`,
+  LUCIDATURA: (v) =>
+    `Ciao ${v.clientNome}, la tua ${v.marca} ${v.modello} (targa ${v.targa}) è in fase di lucidatura.\n\nSegui l'avanzamento qui: ${v.link}`,
+  CONTROLLO_QUALITA: (v) =>
+    `Ciao ${v.clientNome}, la tua ${v.marca} ${v.modello} (targa ${v.targa}) è in controllo qualità finale.\n\nSegui l'avanzamento qui: ${v.link}`,
+  LAVAGGIO: (v) =>
+    `Ciao ${v.clientNome}, la tua ${v.marca} ${v.modello} (targa ${v.targa}) è in fase di lavaggio, quasi pronta!\n\nSegui l'avanzamento qui: ${v.link}`,
+ATTESA_APPROVAZIONE: (v) =>
     `Ciao ${v.clientNome}, il preventivo per la tua ${v.marca} ${v.modello} (targa ${v.targa}) è pronto. Ti contatteremo a breve per l'approvazione.\n\nSegui l'avanzamento qui: ${v.link}`,
   IN_LAVORAZIONE: (v) =>
     `Ciao ${v.clientNome}, la lavorazione della tua ${v.marca} ${v.modello} (targa ${v.targa}) è iniziata.\n\nSegui l'avanzamento qui: ${v.link}`,
@@ -23,6 +39,14 @@ const MESSAGGI_STAGE = {
     `Ciao ${v.clientNome}, grazie per aver scelto la nostra carrozzeria per la tua ${v.marca} ${v.modello}. Alla prossima!\n\nRivedi tutto qui: ${v.link}`,
 };
 const OGGETTO_EMAIL = {
+    ACCETTAZIONE: "Veicolo accettato in carrozzeria",
+  PREVENTIVO: "Preventivo in preparazione",
+  ORDINE_RICAMBI: "Ricambi in ordinazione",
+  PREPARAZIONE: "Veicolo in preparazione",
+  VERNICIATURA: "Veicolo in verniciatura",
+  LUCIDATURA: "Veicolo in lucidatura",
+  CONTROLLO_QUALITA: "Controllo qualità in corso",
+  LAVAGGIO: "Veicolo in fase di lavaggio",
   ATTESA_APPROVAZIONE: "Preventivo pronto",
   IN_LAVORAZIONE: "Lavorazione iniziata",
   PRONTA_CONSEGNA: "Auto pronta per il ritiro",
