@@ -83,7 +83,7 @@ export async function enqueueNotification(vehicle, newStage, baseUrl) {
   if (client.email && resend) {
     try {
   const { data, error } = await resend.emails.send({
-    from: "Ombra CRM <onboarding@resend.dev>", // da sostituire con dominio verificato quando disponibile
+    from: "Rifless <notifiche@rifless.it>",
     to: client.email,
     subject: OGGETTO_EMAIL[newStage] || "Aggiornamento veicolo",
     text: testo,
