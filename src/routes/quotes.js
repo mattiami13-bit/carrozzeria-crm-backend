@@ -3,6 +3,7 @@ import { z } from "zod";
 import PDFDocument from "pdfkit";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
+import { enqueueNotification } from "../lib/notifiche.js";
 
 export const quotesRouter = Router();
 quotesRouter.use(requireAuth);
@@ -79,9 +80,20 @@ quotesRouter.patch("/:id/stato", async (req, res) => {
   if (count === 0) return res.status(404).json({ error: "Preventivo non trovato" });
 
   const quote = await prisma.quote.findUnique({ where: { id: req.params.id } });
+
+  if (parsed.data.stato === "INVIATO" && quote.vehicleId) {
+    const vehicle = await prisma.vehicle.findUnique({
+      where: { id: quote.vehicleId },
+      include: { client: true },
+    });
+    if (vehicle) {
+      const baseUrl = `${req.protocol}://${req.get("host")}`;
+      await enqueueNotification(vehicle, "ATTESA_APPROVAZIONE", baseUrl);
+    }
+  }
+
   res.json(quote);
 });
-
 const firmaSchema = z.object({
   firmaDataUrl: z.string().min(1),
   firmatarioNome: z.string().min(1),
