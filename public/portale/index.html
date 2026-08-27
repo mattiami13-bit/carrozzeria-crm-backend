@@ -8,29 +8,29 @@
   * { box-sizing: border-box; }
   body {
     margin: 0; padding: 20px; font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
-    background: #FAF9F6; color: #1B1A17;
+    background: #15171B; color: #F3F1EC;
   }
   .card {
-    background: #fff; border: 1px solid #E7E4DC; border-radius: 14px; padding: 18px; margin-bottom: 16px;
+    background: #1B1E23; border: 1px solid #2A2E34; border-radius: 14px; padding: 18px; margin-bottom: 16px;
   }
   h1 { font-size: 18px; margin: 0 0 4px; }
-  .targa { font-family: monospace; font-size: 12px; background: #F1EFE8; display: inline-block; padding: 3px 8px; border-radius: 6px; margin-bottom: 8px; }
-  .cliente { font-size: 13px; color: #8A867C; margin-bottom: 20px; }
+  .targa { font-family: monospace; font-size: 12px; background: #1B1E23; color: #C9A24B; border: 1px solid #2A2E34; display: inline-block; padding: 3px 8px; border-radius: 6px; margin-bottom: 8px; }
+  .cliente { font-size: 13px; color: #A8A29B; margin-bottom: 20px.cliente { font-size: 13px; color: #A8A29B; margin-bottom: 20px; }
   h2 { font-size: 13px; font-weight: 700; margin: 0 0 12px; }
-  .stage-badge { display: inline-block; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 20px; background: #1B1A1722; }
-  .timeline-item { display: flex; gap: 10px; font-size: 13px; padding: 8px 0; border-bottom: 1px solid #F1EFE8; }
+  .stage-badge { display: inline-block; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 20px; background: #1B1E23; color: #C9A24B; border: 1px solid #2A2E34; }
+  .timeline-item { display: flex; gap: 10px; font-size: 13px; padding: 8px 0; border-bottom: 1px solid #2A2E34; }
   .timeline-item:last-child { border-bottom: none; }
-  .timeline-data { color: #8A867C; font-size: 12px; white-space: nowrap; }
+  .timeline-data { color: #A8A29B; font-size: 12px; white-space: nowrap; }
   .foto-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  .foto-grid img { width: 100%; height: 110px; object-fit: cover; border-radius: 8px; border: 1px solid #E7E4DC; }
-  .stato-msg { text-align: center; color: #8A867C; font-size: 14px; padding: 40px 20px; }
-  .errore { background: #FBEAE5; color: #B4472E; padding: 14px; border-radius: 10px; font-size: 14px; }
-.btn-primario { padding: 10px 16px; border-radius: 8px; border: none; background: #1B1A17; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; }
-  .btn-secondario { padding: 10px 16px; border-radius: 8px; border: 1px solid #E7E4DC; background: #fff; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .foto-grid img { width: 100%; height: 110px; object-fit: cover; border-radius: 8px; border: 1px solid #2A2E34; }
+  .stato-msg { text-align: center; color: #A8A29B; font-size: 14px; padding: 40px 20px; }
+  .errore { background: #2A1A1A; color: #E5806B; padding: 14px; border-radius: 10px; font-size: 14px; border: 1px solid #4A2A2A; }
+.btn-primario { padding: 10px 16px; border-radius: 8px; border: none; background: #C9A24B; color: #15171B; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .btn-secondario { padding: 10px 16px; border-radius: 8px; border: 1px solid #2A2E34; background: #1B1E23; color: #F3F1EC; font-size: 14px; font-weight: 600; cursor: pointer; }
   .firma-overlay { position: fixed; inset: 0; background: rgba(27,26,23,0.6); display: flex; align-items: center; justify-content: center; z-index: 50; padding: 16px; }
-  .firma-box { background: #fff; border-radius: 14px; padding: 20px; width: 100%; max-width: 420px; }
-  #firmaCanvas { width: 100%; height: 160px; border: 1.5px dashed #D9D5CA; border-radius: 8px; touch-action: none; background: #fff; }
-  .firma-input { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #E7E4DC; font-size: 14px; margin: 10px 0; box-sizing: border-box; }
+  .firma-box { background: #1B1E23; color: #F3F1EC; border-radius: 14px; padding: 20px; width: 100%; max-width: 420px; }
+  #firmaCanvas { width: 100%; height: 160px; border: 1.5px dashed #4A4E56; border-radius: 8px; background: #F3F1EC; touch-action: none; }
+  .firma-input { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #2A2E34; background: #F3F1EC; color: #15171B; font-size: 14px; margin: 10px 0; box-sizing: border-box; }
 </style>
 </head>
 <body>
@@ -39,7 +39,7 @@
 <div id="firmaOverlay" class="firma-overlay" style="display:none;">
   <div class="firma-box">
     <h2 style="margin:0 0 4px;">Firma per accettazione</h2>
-    <div style="font-size:12px;color:#8A867C;margin-bottom:10px;">Disegna la tua firma qui sotto</div>
+    <div style="font-size:12px;color:#A8A29B;margin-bottom:10px;">Disegna la tua firma qui sotto</div>
     <canvas id="firmaCanvas"></canvas>
     <button class="btn-secondario" onclick="pulisciFirma()" style="margin-top:8px;">Cancella</button>
     <input id="firmaNome" class="firma-input" type="text" placeholder="Il tuo nome e cognome" />
@@ -93,7 +93,7 @@ function render(data) {
       <h1>${veicolo.marca} ${veicolo.modello}</h1>
       <div class="cliente">${cliente?.nome || ""} ${cliente?.cognome || ""}</div>
       <span class="stage-badge">${STAGE_LABELS[veicolo.stage] || veicolo.stage}</span>
-      ${veicolo.dataPrevistaConsegna ? `<div style="margin-top:10px;font-size:13px;color:#8A867C;">Consegna prevista: ${new Date(veicolo.dataPrevistaConsegna).toLocaleDateString("it-IT")}</div>` : ""}
+      ${veicolo.dataPrevistaConsegna ? `<div style="margin-top:10px;font-size:13px;color:#A8A29B;">Consegna prevista: ${new Date(veicolo.dataPrevistaConsegna).toLocaleDateString("it-IT")}</div>` : ""}
     </div>
   `;
 
@@ -124,7 +124,7 @@ function render(data) {
       <div class="card">
         <h2>Preventivo</h2>
         <div style="font-size:20px;font-weight:700;">€ ${Number(preventivo.totale).toFixed(2)}</div>
-        <div style="font-size:12px;color:#8A867C;margin-top:4px;margin-bottom:12px;">Stato: ${STATO_PREVENTIVO[preventivo.stato] || preventivo.stato}</div>
+        <div style="font-size:12px;color:#A8A29B;margin-top:4px;margin-bottom:12px;">Stato: ${STATO_PREVENTIVO[preventivo.stato] || preventivo.stato}</div>
         ${preventivo.stato === "INVIATO" ? `<button class="btn-primario" onclick="apriFirma()">Firma e accetta preventivo</button>` : ""}
         ${preventivo.stato === "ACCETTATO" ? `<div style="font-size:13px;color:#2F8F5B;font-weight:600;">✓ Firmato da ${preventivo.firmatarioNome}</div>` : ""}
       </div>
@@ -141,7 +141,7 @@ if (sinistro) {
   html += `
     <div class="card">
       <h2>Sinistro</h2>
-      ${sinistro.numeroPratica ? `<div style="font-size:13px;color:#8A867C;margin-bottom:6px;">Pratica n. ${sinistro.numeroPratica}</div>` : ""}
+      ${sinistro.numeroPratica ? `<div style="font-size:13px;color:#A8A29B;margin-bottom:6px;">Pratica n. ${sinistro.numeroPratica}</div>` : ""}
       <div style="font-size:13px;margin-bottom:4px;"><strong>Compagnia:</strong> ${sinistro.compagniaAssicurativa}</div>
       ${sinistro.perito ? `<div style="font-size:13px;margin-bottom:4px;"><strong>Perito:</strong> ${sinistro.perito}</div>` : ""}
       <div style="font-size:13px;margin-bottom:10px;">Stato: ${SINISTRO_LABELS[sinistro.stato] || sinistro.stato}</div>
@@ -166,7 +166,7 @@ if (sinistro) {
         </div>
       </div>
 
-      <div style="font-size:12px;color:#8A867C;margin-top:10px;">
+      <div style="font-size:12px;color:#A8A29B;margin-top:10px;">
         Apertura: ${new Date(sinistro.dataApertura).toLocaleDateString("it-IT")}
         ${sinistro.dataChiusura ? ` — Chiusura: ${new Date(sinistro.dataChiusura).toLocaleDateString("it-IT")}` : ""}
       </div>
