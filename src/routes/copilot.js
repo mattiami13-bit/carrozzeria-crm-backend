@@ -63,6 +63,27 @@ async function giorniInStadioCorrente(vehicleId) {
   return Math.floor((Date.now() - new Date(ultimo.changedAt).getTime()) / (1000 * 60 * 60 * 24));
 }
 
+// Filtro di ricerca veicolo "a parole": "Volkswagen Golf" deve trovare un
+// veicolo con marca="Volkswagen" e modello="Golf" separatamente, non
+// cercare l'intera frase come sottostringa di un singolo campo (che non
+// troverebbe mai nulla, perché nessun campo contiene "marca + modello"
+// insieme). Ogni parola deve comparire in ALMENO UNO dei campi (AND tra le
+// parole, OR tra i campi).
+function filtroRicercaVeicolo(ricerca) {
+  const parole = String(ricerca || "").trim().split(/\s+/).filter(Boolean);
+  if (parole.length === 0) return {};
+  return {
+    AND: parole.map((parola) => ({
+      OR: [
+        { targa: { contains: parola, mode: "insensitive" } },
+        { marca: { contains: parola, mode: "insensitive" } },
+        { modello: { contains: parola, mode: "insensitive" } },
+        { vin: { contains: parola, mode: "insensitive" } },
+      ],
+    })),
+  };
+}
+
 const veicoloRif = (v) => ({
   tipo: "veicolo",
   id: v.id,
@@ -123,9 +144,7 @@ function creaStrumenti(tenantId, ruolo, raccogli) {
         where: {
           tenantId,
           ...(stage ? { stage } : {}),
-          ...(ricerca
-            ? { OR: [{ targa: { contains: ricerca, mode: "insensitive" } }, { marca: { contains: ricerca, mode: "insensitive" } }, { modello: { contains: ricerca, mode: "insensitive" } }, { vin: { contains: ricerca, mode: "insensitive" } }] }
-            : {}),
+          ...(ricerca ? filtroRicercaVeicolo(ricerca) : {}),
         },
         include: { client: true },
         orderBy: { updatedAt: "desc" },
@@ -196,14 +215,7 @@ function creaStrumenti(tenantId, ruolo, raccogli) {
     margine_veicolo: async ({ ricerca }) => {
       if (!ricerca) return { errore: "Specifica targa, marca o modello del veicolo." };
       const veicoli = await prisma.vehicle.findMany({
-        where: {
-          tenantId,
-          OR: [
-            { targa: { contains: ricerca, mode: "insensitive" } },
-            { marca: { contains: ricerca, mode: "insensitive" } },
-            { modello: { contains: ricerca, mode: "insensitive" } },
-          ],
-        },
+        where: { tenantId, ...filtroRicercaVeicolo(ricerca) },
         include: { client: true, quotes: { include: { items: true } } },
         take: 5,
       });
