@@ -373,6 +373,7 @@ export type VehicleWhereInput = {
   photos?: Prisma.PhotoListRelationFilter
   quotes?: Prisma.QuoteListRelationFilter
   stageHistory?: Prisma.StageHistoryListRelationFilter
+  damageAnalyses?: Prisma.DamageAnalysisListRelationFilter
 }
 
 export type VehicleOrderByWithRelationInput = {
@@ -409,6 +410,7 @@ export type VehicleOrderByWithRelationInput = {
   photos?: Prisma.PhotoOrderByRelationAggregateInput
   quotes?: Prisma.QuoteOrderByRelationAggregateInput
   stageHistory?: Prisma.StageHistoryOrderByRelationAggregateInput
+  damageAnalyses?: Prisma.DamageAnalysisOrderByRelationAggregateInput
 }
 
 export type VehicleWhereUniqueInput = Prisma.AtLeast<{
@@ -448,6 +450,7 @@ export type VehicleWhereUniqueInput = Prisma.AtLeast<{
   photos?: Prisma.PhotoListRelationFilter
   quotes?: Prisma.QuoteListRelationFilter
   stageHistory?: Prisma.StageHistoryListRelationFilter
+  damageAnalyses?: Prisma.DamageAnalysisListRelationFilter
 }, "id">
 
 export type VehicleOrderByWithAggregationInput = {
@@ -543,6 +546,7 @@ export type VehicleCreateInput = {
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateInput = {
@@ -576,6 +580,7 @@ export type VehicleUncheckedCreateInput = {
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUpdateInput = {
@@ -609,6 +614,7 @@ export type VehicleUpdateInput = {
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateInput = {
@@ -642,6 +648,7 @@ export type VehicleUncheckedUpdateInput = {
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateManyInput = {
@@ -1001,6 +1008,20 @@ export type VehicleUpdateOneRequiredWithoutQuotesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.VehicleUpdateToOneWithWhereWithoutQuotesInput, Prisma.VehicleUpdateWithoutQuotesInput>, Prisma.VehicleUncheckedUpdateWithoutQuotesInput>
 }
 
+export type VehicleCreateNestedOneWithoutDamageAnalysesInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutDamageAnalysesInput, Prisma.VehicleUncheckedCreateWithoutDamageAnalysesInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutDamageAnalysesInput
+  connect?: Prisma.VehicleWhereUniqueInput
+}
+
+export type VehicleUpdateOneRequiredWithoutDamageAnalysesNestedInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutDamageAnalysesInput, Prisma.VehicleUncheckedCreateWithoutDamageAnalysesInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutDamageAnalysesInput
+  upsert?: Prisma.VehicleUpsertWithoutDamageAnalysesInput
+  connect?: Prisma.VehicleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VehicleUpdateToOneWithWhereWithoutDamageAnalysesInput, Prisma.VehicleUpdateWithoutDamageAnalysesInput>, Prisma.VehicleUncheckedUpdateWithoutDamageAnalysesInput>
+}
+
 export type VehicleCreateNestedOneWithoutAppointmentsInput = {
   create?: Prisma.XOR<Prisma.VehicleCreateWithoutAppointmentsInput, Prisma.VehicleUncheckedCreateWithoutAppointmentsInput>
   connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutAppointmentsInput
@@ -1077,6 +1098,7 @@ export type VehicleCreateWithoutTenantInput = {
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutTenantInput = {
@@ -1109,6 +1131,7 @@ export type VehicleUncheckedCreateWithoutTenantInput = {
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutTenantInput = {
@@ -1197,6 +1220,7 @@ export type VehicleCreateWithoutTecnicoInput = {
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutTecnicoInput = {
@@ -1229,6 +1253,7 @@ export type VehicleUncheckedCreateWithoutTecnicoInput = {
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutTecnicoInput = {
@@ -1287,6 +1312,7 @@ export type VehicleCreateWithoutClientInput = {
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutClientInput = {
@@ -1319,6 +1345,7 @@ export type VehicleUncheckedCreateWithoutClientInput = {
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutClientInput = {
@@ -1377,6 +1404,7 @@ export type VehicleCreateWithoutStageHistoryInput = {
   tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutStageHistoryInput = {
@@ -1409,6 +1437,7 @@ export type VehicleUncheckedCreateWithoutStageHistoryInput = {
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutStageHistoryInput = {
@@ -1457,6 +1486,7 @@ export type VehicleUpdateWithoutStageHistoryInput = {
   tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutStageHistoryInput = {
@@ -1489,6 +1519,7 @@ export type VehicleUncheckedUpdateWithoutStageHistoryInput = {
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutPhotosInput = {
@@ -1521,6 +1552,7 @@ export type VehicleCreateWithoutPhotosInput = {
   tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutPhotosInput = {
@@ -1553,6 +1585,7 @@ export type VehicleUncheckedCreateWithoutPhotosInput = {
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutPhotosInput = {
@@ -1601,6 +1634,7 @@ export type VehicleUpdateWithoutPhotosInput = {
   tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutPhotosInput = {
@@ -1633,6 +1667,7 @@ export type VehicleUncheckedUpdateWithoutPhotosInput = {
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutQuotesInput = {
@@ -1665,6 +1700,7 @@ export type VehicleCreateWithoutQuotesInput = {
   tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutQuotesInput = {
@@ -1697,6 +1733,7 @@ export type VehicleUncheckedCreateWithoutQuotesInput = {
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutQuotesInput = {
@@ -1745,6 +1782,7 @@ export type VehicleUpdateWithoutQuotesInput = {
   tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutQuotesInput = {
@@ -1776,6 +1814,155 @@ export type VehicleUncheckedUpdateWithoutQuotesInput = {
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleCreateWithoutDamageAnalysesInput = {
+  id?: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  tenant: Prisma.TenantCreateNestedOneWithoutVehiclesInput
+  client: Prisma.ClientCreateNestedOneWithoutVehiclesInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
+  tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleUncheckedCreateWithoutDamageAnalysesInput = {
+  id?: string
+  tenantId: string
+  clientId: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  tecnicoId?: string | null
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleCreateOrConnectWithoutDamageAnalysesInput = {
+  where: Prisma.VehicleWhereUniqueInput
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutDamageAnalysesInput, Prisma.VehicleUncheckedCreateWithoutDamageAnalysesInput>
+}
+
+export type VehicleUpsertWithoutDamageAnalysesInput = {
+  update: Prisma.XOR<Prisma.VehicleUpdateWithoutDamageAnalysesInput, Prisma.VehicleUncheckedUpdateWithoutDamageAnalysesInput>
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutDamageAnalysesInput, Prisma.VehicleUncheckedCreateWithoutDamageAnalysesInput>
+  where?: Prisma.VehicleWhereInput
+}
+
+export type VehicleUpdateToOneWithWhereWithoutDamageAnalysesInput = {
+  where?: Prisma.VehicleWhereInput
+  data: Prisma.XOR<Prisma.VehicleUpdateWithoutDamageAnalysesInput, Prisma.VehicleUncheckedUpdateWithoutDamageAnalysesInput>
+}
+
+export type VehicleUpdateWithoutDamageAnalysesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutVehiclesNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutVehiclesNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
+  tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleUncheckedUpdateWithoutDamageAnalysesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  tecnicoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
@@ -1809,6 +1996,7 @@ export type VehicleCreateWithoutAppointmentsInput = {
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutAppointmentsInput = {
@@ -1841,6 +2029,7 @@ export type VehicleUncheckedCreateWithoutAppointmentsInput = {
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutAppointmentsInput = {
@@ -1889,6 +2078,7 @@ export type VehicleUpdateWithoutAppointmentsInput = {
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutAppointmentsInput = {
@@ -1921,6 +2111,7 @@ export type VehicleUncheckedUpdateWithoutAppointmentsInput = {
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutSinistriInput = {
@@ -1953,6 +2144,7 @@ export type VehicleCreateWithoutSinistriInput = {
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutSinistriInput = {
@@ -1985,6 +2177,7 @@ export type VehicleUncheckedCreateWithoutSinistriInput = {
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutSinistriInput = {
@@ -2033,6 +2226,7 @@ export type VehicleUpdateWithoutSinistriInput = {
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutSinistriInput = {
@@ -2065,6 +2259,7 @@ export type VehicleUncheckedUpdateWithoutSinistriInput = {
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutPortalAccessesInput = {
@@ -2097,6 +2292,7 @@ export type VehicleCreateWithoutPortalAccessesInput = {
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutPortalAccessesInput = {
@@ -2129,6 +2325,7 @@ export type VehicleUncheckedCreateWithoutPortalAccessesInput = {
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutPortalAccessesInput = {
@@ -2177,6 +2374,7 @@ export type VehicleUpdateWithoutPortalAccessesInput = {
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutPortalAccessesInput = {
@@ -2209,6 +2407,7 @@ export type VehicleUncheckedUpdateWithoutPortalAccessesInput = {
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateManyTenantInput = {
@@ -2267,6 +2466,7 @@ export type VehicleUpdateWithoutTenantInput = {
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutTenantInput = {
@@ -2299,6 +2499,7 @@ export type VehicleUncheckedUpdateWithoutTenantInput = {
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateManyWithoutTenantInput = {
@@ -2383,6 +2584,7 @@ export type VehicleUpdateWithoutTecnicoInput = {
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutTecnicoInput = {
@@ -2415,6 +2617,7 @@ export type VehicleUncheckedUpdateWithoutTecnicoInput = {
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateManyWithoutTecnicoInput = {
@@ -2499,6 +2702,7 @@ export type VehicleUpdateWithoutClientInput = {
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutClientInput = {
@@ -2531,6 +2735,7 @@ export type VehicleUncheckedUpdateWithoutClientInput = {
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateManyWithoutClientInput = {
@@ -2571,6 +2776,7 @@ export type VehicleCountOutputType = {
   photos: number
   quotes: number
   stageHistory: number
+  damageAnalyses: number
 }
 
 export type VehicleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2580,6 +2786,7 @@ export type VehicleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   photos?: boolean | VehicleCountOutputTypeCountPhotosArgs
   quotes?: boolean | VehicleCountOutputTypeCountQuotesArgs
   stageHistory?: boolean | VehicleCountOutputTypeCountStageHistoryArgs
+  damageAnalyses?: boolean | VehicleCountOutputTypeCountDamageAnalysesArgs
 }
 
 /**
@@ -2634,6 +2841,13 @@ export type VehicleCountOutputTypeCountStageHistoryArgs<ExtArgs extends runtime.
   where?: Prisma.StageHistoryWhereInput
 }
 
+/**
+ * VehicleCountOutputType without action
+ */
+export type VehicleCountOutputTypeCountDamageAnalysesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DamageAnalysisWhereInput
+}
+
 
 export type VehicleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2669,6 +2883,7 @@ export type VehicleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   photos?: boolean | Prisma.Vehicle$photosArgs<ExtArgs>
   quotes?: boolean | Prisma.Vehicle$quotesArgs<ExtArgs>
   stageHistory?: boolean | Prisma.Vehicle$stageHistoryArgs<ExtArgs>
+  damageAnalyses?: boolean | Prisma.Vehicle$damageAnalysesArgs<ExtArgs>
   _count?: boolean | Prisma.VehicleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["vehicle"]>
 
@@ -2770,6 +2985,7 @@ export type VehicleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   photos?: boolean | Prisma.Vehicle$photosArgs<ExtArgs>
   quotes?: boolean | Prisma.Vehicle$quotesArgs<ExtArgs>
   stageHistory?: boolean | Prisma.Vehicle$stageHistoryArgs<ExtArgs>
+  damageAnalyses?: boolean | Prisma.Vehicle$damageAnalysesArgs<ExtArgs>
   _count?: boolean | Prisma.VehicleCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type VehicleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2795,6 +3011,7 @@ export type $VehiclePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     photos: Prisma.$PhotoPayload<ExtArgs>[]
     quotes: Prisma.$QuotePayload<ExtArgs>[]
     stageHistory: Prisma.$StageHistoryPayload<ExtArgs>[]
+    damageAnalyses: Prisma.$DamageAnalysisPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3224,6 +3441,7 @@ export interface Prisma__VehicleClient<T, Null = never, ExtArgs extends runtime.
   photos<T extends Prisma.Vehicle$photosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$photosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PhotoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quotes<T extends Prisma.Vehicle$quotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$quotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   stageHistory<T extends Prisma.Vehicle$stageHistoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$stageHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StageHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  damageAnalyses<T extends Prisma.Vehicle$damageAnalysesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$damageAnalysesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DamageAnalysisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3838,6 +4056,30 @@ export type Vehicle$stageHistoryArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.StageHistoryScalarFieldEnum | Prisma.StageHistoryScalarFieldEnum[]
+}
+
+/**
+ * Vehicle.damageAnalyses
+ */
+export type Vehicle$damageAnalysesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DamageAnalysis
+   */
+  select?: Prisma.DamageAnalysisSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DamageAnalysis
+   */
+  omit?: Prisma.DamageAnalysisOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DamageAnalysisInclude<ExtArgs> | null
+  where?: Prisma.DamageAnalysisWhereInput
+  orderBy?: Prisma.DamageAnalysisOrderByWithRelationInput | Prisma.DamageAnalysisOrderByWithRelationInput[]
+  cursor?: Prisma.DamageAnalysisWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DamageAnalysisScalarFieldEnum | Prisma.DamageAnalysisScalarFieldEnum[]
 }
 
 /**

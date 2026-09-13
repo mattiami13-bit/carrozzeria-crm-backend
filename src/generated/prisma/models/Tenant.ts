@@ -256,6 +256,8 @@ export type TenantWhereInput = {
   aiAnalyses?: Prisma.AiAnalysisLogListRelationFilter
   assistantLogs?: Prisma.AiAssistantLogListRelationFilter
   portalAccesses?: Prisma.PortalAccessListRelationFilter
+  damageAnalyses?: Prisma.DamageAnalysisListRelationFilter
+  damageItems?: Prisma.DamageItemListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -279,6 +281,8 @@ export type TenantOrderByWithRelationInput = {
   aiAnalyses?: Prisma.AiAnalysisLogOrderByRelationAggregateInput
   assistantLogs?: Prisma.AiAssistantLogOrderByRelationAggregateInput
   portalAccesses?: Prisma.PortalAccessOrderByRelationAggregateInput
+  damageAnalyses?: Prisma.DamageAnalysisOrderByRelationAggregateInput
+  damageItems?: Prisma.DamageItemOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -305,6 +309,8 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   aiAnalyses?: Prisma.AiAnalysisLogListRelationFilter
   assistantLogs?: Prisma.AiAssistantLogListRelationFilter
   portalAccesses?: Prisma.PortalAccessListRelationFilter
+  damageAnalyses?: Prisma.DamageAnalysisListRelationFilter
+  damageItems?: Prisma.DamageItemListRelationFilter
 }, "id" | "partitaIva">
 
 export type TenantOrderByWithAggregationInput = {
@@ -358,6 +364,8 @@ export type TenantCreateInput = {
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -381,6 +389,8 @@ export type TenantUncheckedCreateInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -404,6 +414,8 @@ export type TenantUpdateInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -427,6 +439,8 @@ export type TenantUncheckedUpdateInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -594,6 +608,34 @@ export type TenantUpdateOneRequiredWithoutQuotesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutQuotesInput, Prisma.TenantUpdateWithoutQuotesInput>, Prisma.TenantUncheckedUpdateWithoutQuotesInput>
 }
 
+export type TenantCreateNestedOneWithoutDamageAnalysesInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutDamageAnalysesInput, Prisma.TenantUncheckedCreateWithoutDamageAnalysesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutDamageAnalysesInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutDamageAnalysesNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutDamageAnalysesInput, Prisma.TenantUncheckedCreateWithoutDamageAnalysesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutDamageAnalysesInput
+  upsert?: Prisma.TenantUpsertWithoutDamageAnalysesInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutDamageAnalysesInput, Prisma.TenantUpdateWithoutDamageAnalysesInput>, Prisma.TenantUncheckedUpdateWithoutDamageAnalysesInput>
+}
+
+export type TenantCreateNestedOneWithoutDamageItemsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutDamageItemsInput, Prisma.TenantUncheckedCreateWithoutDamageItemsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutDamageItemsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutDamageItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutDamageItemsInput, Prisma.TenantUncheckedCreateWithoutDamageItemsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutDamageItemsInput
+  upsert?: Prisma.TenantUpsertWithoutDamageItemsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutDamageItemsInput, Prisma.TenantUpdateWithoutDamageItemsInput>, Prisma.TenantUncheckedUpdateWithoutDamageItemsInput>
+}
+
 export type TenantCreateNestedOneWithoutPartsInput = {
   create?: Prisma.XOR<Prisma.TenantCreateWithoutPartsInput, Prisma.TenantUncheckedCreateWithoutPartsInput>
   connectOrCreate?: Prisma.TenantCreateOrConnectWithoutPartsInput
@@ -726,6 +768,8 @@ export type TenantCreateWithoutUsersInput = {
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutUsersInput = {
@@ -748,6 +792,8 @@ export type TenantUncheckedCreateWithoutUsersInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutUsersInput = {
@@ -786,6 +832,8 @@ export type TenantUpdateWithoutUsersInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutUsersInput = {
@@ -808,6 +856,8 @@ export type TenantUncheckedUpdateWithoutUsersInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutClientsInput = {
@@ -830,6 +880,8 @@ export type TenantCreateWithoutClientsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutClientsInput = {
@@ -852,6 +904,8 @@ export type TenantUncheckedCreateWithoutClientsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutClientsInput = {
@@ -890,6 +944,8 @@ export type TenantUpdateWithoutClientsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutClientsInput = {
@@ -912,6 +968,8 @@ export type TenantUncheckedUpdateWithoutClientsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutVehiclesInput = {
@@ -934,6 +992,8 @@ export type TenantCreateWithoutVehiclesInput = {
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutVehiclesInput = {
@@ -956,6 +1016,8 @@ export type TenantUncheckedCreateWithoutVehiclesInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutVehiclesInput = {
@@ -994,6 +1056,8 @@ export type TenantUpdateWithoutVehiclesInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutVehiclesInput = {
@@ -1016,6 +1080,8 @@ export type TenantUncheckedUpdateWithoutVehiclesInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQuotesInput = {
@@ -1038,6 +1104,8 @@ export type TenantCreateWithoutQuotesInput = {
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQuotesInput = {
@@ -1060,6 +1128,8 @@ export type TenantUncheckedCreateWithoutQuotesInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQuotesInput = {
@@ -1098,6 +1168,8 @@ export type TenantUpdateWithoutQuotesInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQuotesInput = {
@@ -1120,6 +1192,232 @@ export type TenantUncheckedUpdateWithoutQuotesInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutDamageAnalysesInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutDamageAnalysesInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutDamageAnalysesInput, Prisma.TenantUncheckedCreateWithoutDamageAnalysesInput>
+}
+
+export type TenantUpsertWithoutDamageAnalysesInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutDamageAnalysesInput, Prisma.TenantUncheckedUpdateWithoutDamageAnalysesInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutDamageAnalysesInput, Prisma.TenantUncheckedCreateWithoutDamageAnalysesInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutDamageAnalysesInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutDamageAnalysesInput, Prisma.TenantUncheckedUpdateWithoutDamageAnalysesInput>
+}
+
+export type TenantUpdateWithoutDamageAnalysesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutDamageItemsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutDamageItemsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutDamageItemsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutDamageItemsInput, Prisma.TenantUncheckedCreateWithoutDamageItemsInput>
+}
+
+export type TenantUpsertWithoutDamageItemsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutDamageItemsInput, Prisma.TenantUncheckedUpdateWithoutDamageItemsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutDamageItemsInput, Prisma.TenantUncheckedCreateWithoutDamageItemsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutDamageItemsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutDamageItemsInput, Prisma.TenantUncheckedUpdateWithoutDamageItemsInput>
+}
+
+export type TenantUpdateWithoutDamageItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutDamageItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartsInput = {
@@ -1142,6 +1440,8 @@ export type TenantCreateWithoutPartsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartsInput = {
@@ -1164,6 +1464,8 @@ export type TenantUncheckedCreateWithoutPartsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartsInput = {
@@ -1202,6 +1504,8 @@ export type TenantUpdateWithoutPartsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartsInput = {
@@ -1224,6 +1528,8 @@ export type TenantUncheckedUpdateWithoutPartsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSupplierOrdersInput = {
@@ -1246,6 +1552,8 @@ export type TenantCreateWithoutSupplierOrdersInput = {
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
@@ -1268,6 +1576,8 @@ export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSupplierOrdersInput = {
@@ -1306,6 +1616,8 @@ export type TenantUpdateWithoutSupplierOrdersInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
@@ -1328,6 +1640,8 @@ export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutLoanerCarsInput = {
@@ -1350,6 +1664,8 @@ export type TenantCreateWithoutLoanerCarsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutLoanerCarsInput = {
@@ -1372,6 +1688,8 @@ export type TenantUncheckedCreateWithoutLoanerCarsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutLoanerCarsInput = {
@@ -1410,6 +1728,8 @@ export type TenantUpdateWithoutLoanerCarsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
@@ -1432,6 +1752,8 @@ export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAppointmentsInput = {
@@ -1454,6 +1776,8 @@ export type TenantCreateWithoutAppointmentsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAppointmentsInput = {
@@ -1476,6 +1800,8 @@ export type TenantUncheckedCreateWithoutAppointmentsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAppointmentsInput = {
@@ -1514,6 +1840,8 @@ export type TenantUpdateWithoutAppointmentsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAppointmentsInput = {
@@ -1536,6 +1864,8 @@ export type TenantUncheckedUpdateWithoutAppointmentsInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSinistriInput = {
@@ -1558,6 +1888,8 @@ export type TenantCreateWithoutSinistriInput = {
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSinistriInput = {
@@ -1580,6 +1912,8 @@ export type TenantUncheckedCreateWithoutSinistriInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSinistriInput = {
@@ -1618,6 +1952,8 @@ export type TenantUpdateWithoutSinistriInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSinistriInput = {
@@ -1640,6 +1976,8 @@ export type TenantUncheckedUpdateWithoutSinistriInput = {
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPortalAccessesInput = {
@@ -1662,6 +2000,8 @@ export type TenantCreateWithoutPortalAccessesInput = {
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPortalAccessesInput = {
@@ -1684,6 +2024,8 @@ export type TenantUncheckedCreateWithoutPortalAccessesInput = {
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPortalAccessesInput = {
@@ -1722,6 +2064,8 @@ export type TenantUpdateWithoutPortalAccessesInput = {
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
@@ -1744,6 +2088,8 @@ export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAiAnalysesInput = {
@@ -1766,6 +2112,8 @@ export type TenantCreateWithoutAiAnalysesInput = {
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAiAnalysesInput = {
@@ -1788,6 +2136,8 @@ export type TenantUncheckedCreateWithoutAiAnalysesInput = {
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAiAnalysesInput = {
@@ -1826,6 +2176,8 @@ export type TenantUpdateWithoutAiAnalysesInput = {
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
@@ -1848,6 +2200,8 @@ export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAssistantLogsInput = {
@@ -1870,6 +2224,8 @@ export type TenantCreateWithoutAssistantLogsInput = {
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAssistantLogsInput = {
@@ -1892,6 +2248,8 @@ export type TenantUncheckedCreateWithoutAssistantLogsInput = {
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAssistantLogsInput = {
@@ -1930,6 +2288,8 @@ export type TenantUpdateWithoutAssistantLogsInput = {
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
@@ -1952,6 +2312,8 @@ export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 
@@ -1972,6 +2334,8 @@ export type TenantCountOutputType = {
   aiAnalyses: number
   assistantLogs: number
   portalAccesses: number
+  damageAnalyses: number
+  damageItems: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1987,6 +2351,8 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   aiAnalyses?: boolean | TenantCountOutputTypeCountAiAnalysesArgs
   assistantLogs?: boolean | TenantCountOutputTypeCountAssistantLogsArgs
   portalAccesses?: boolean | TenantCountOutputTypeCountPortalAccessesArgs
+  damageAnalyses?: boolean | TenantCountOutputTypeCountDamageAnalysesArgs
+  damageItems?: boolean | TenantCountOutputTypeCountDamageItemsArgs
 }
 
 /**
@@ -2083,6 +2449,20 @@ export type TenantCountOutputTypeCountPortalAccessesArgs<ExtArgs extends runtime
   where?: Prisma.PortalAccessWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountDamageAnalysesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DamageAnalysisWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountDamageItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DamageItemWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2105,6 +2485,8 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   aiAnalyses?: boolean | Prisma.Tenant$aiAnalysesArgs<ExtArgs>
   assistantLogs?: boolean | Prisma.Tenant$assistantLogsArgs<ExtArgs>
   portalAccesses?: boolean | Prisma.Tenant$portalAccessesArgs<ExtArgs>
+  damageAnalyses?: boolean | Prisma.Tenant$damageAnalysesArgs<ExtArgs>
+  damageItems?: boolean | Prisma.Tenant$damageItemsArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -2155,6 +2537,8 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   aiAnalyses?: boolean | Prisma.Tenant$aiAnalysesArgs<ExtArgs>
   assistantLogs?: boolean | Prisma.Tenant$assistantLogsArgs<ExtArgs>
   portalAccesses?: boolean | Prisma.Tenant$portalAccessesArgs<ExtArgs>
+  damageAnalyses?: boolean | Prisma.Tenant$damageAnalysesArgs<ExtArgs>
+  damageItems?: boolean | Prisma.Tenant$damageItemsArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2175,6 +2559,8 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     aiAnalyses: Prisma.$AiAnalysisLogPayload<ExtArgs>[]
     assistantLogs: Prisma.$AiAssistantLogPayload<ExtArgs>[]
     portalAccesses: Prisma.$PortalAccessPayload<ExtArgs>[]
+    damageAnalyses: Prisma.$DamageAnalysisPayload<ExtArgs>[]
+    damageItems: Prisma.$DamageItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2591,6 +2977,8 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   aiAnalyses<T extends Prisma.Tenant$aiAnalysesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$aiAnalysesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AiAnalysisLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assistantLogs<T extends Prisma.Tenant$assistantLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$assistantLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AiAssistantLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   portalAccesses<T extends Prisma.Tenant$portalAccessesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$portalAccessesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PortalAccessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  damageAnalyses<T extends Prisma.Tenant$damageAnalysesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$damageAnalysesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DamageAnalysisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  damageItems<T extends Prisma.Tenant$damageItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$damageItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DamageItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3306,6 +3694,54 @@ export type Tenant$portalAccessesArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.PortalAccessScalarFieldEnum | Prisma.PortalAccessScalarFieldEnum[]
+}
+
+/**
+ * Tenant.damageAnalyses
+ */
+export type Tenant$damageAnalysesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DamageAnalysis
+   */
+  select?: Prisma.DamageAnalysisSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DamageAnalysis
+   */
+  omit?: Prisma.DamageAnalysisOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DamageAnalysisInclude<ExtArgs> | null
+  where?: Prisma.DamageAnalysisWhereInput
+  orderBy?: Prisma.DamageAnalysisOrderByWithRelationInput | Prisma.DamageAnalysisOrderByWithRelationInput[]
+  cursor?: Prisma.DamageAnalysisWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DamageAnalysisScalarFieldEnum | Prisma.DamageAnalysisScalarFieldEnum[]
+}
+
+/**
+ * Tenant.damageItems
+ */
+export type Tenant$damageItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DamageItem
+   */
+  select?: Prisma.DamageItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DamageItem
+   */
+  omit?: Prisma.DamageItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DamageItemInclude<ExtArgs> | null
+  where?: Prisma.DamageItemWhereInput
+  orderBy?: Prisma.DamageItemOrderByWithRelationInput | Prisma.DamageItemOrderByWithRelationInput[]
+  cursor?: Prisma.DamageItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DamageItemScalarFieldEnum | Prisma.DamageItemScalarFieldEnum[]
 }
 
 /**

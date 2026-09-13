@@ -59,6 +59,8 @@ export const ModelName = {
   Photo: 'Photo',
   Quote: 'Quote',
   QuoteItem: 'QuoteItem',
+  DamageAnalysis: 'DamageAnalysis',
+  DamageItem: 'DamageItem',
   Part: 'Part',
   PartMovement: 'PartMovement',
   SupplierOrder: 'SupplierOrder',
@@ -221,6 +223,49 @@ export const QuoteItemScalarFieldEnum = {
 } as const
 
 export type QuoteItemScalarFieldEnum = (typeof QuoteItemScalarFieldEnum)[keyof typeof QuoteItemScalarFieldEnum]
+
+
+export const DamageAnalysisScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  creatoDaId: 'creatoDaId',
+  photoIds: 'photoIds',
+  rispostaGrezza: 'rispostaGrezza',
+  createdAt: 'createdAt'
+} as const
+
+export type DamageAnalysisScalarFieldEnum = (typeof DamageAnalysisScalarFieldEnum)[keyof typeof DamageAnalysisScalarFieldEnum]
+
+
+export const DamageItemScalarFieldEnum = {
+  id: 'id',
+  damageAnalysisId: 'damageAnalysisId',
+  tenantId: 'tenantId',
+  parteAI: 'parteAI',
+  posizioneAI: 'posizioneAI',
+  tipologiaDannoAI: 'tipologiaDannoAI',
+  gravitaAI: 'gravitaAI',
+  lavorazioneAI: 'lavorazioneAI',
+  necessitaSostituzioneAI: 'necessitaSostituzioneAI',
+  confidenzaPercento: 'confidenzaPercento',
+  vociPreventivoAI: 'vociPreventivoAI',
+  parte: 'parte',
+  posizione: 'posizione',
+  tipologiaDanno: 'tipologiaDanno',
+  gravita: 'gravita',
+  lavorazioneSuggerita: 'lavorazioneSuggerita',
+  necessitaSostituzione: 'necessitaSostituzione',
+  vociPreventivo: 'vociPreventivo',
+  noteOperatore: 'noteOperatore',
+  modificatoManualmente: 'modificatoManualmente',
+  modificatoDaId: 'modificatoDaId',
+  modificatoAt: 'modificatoAt',
+  quoteId: 'quoteId',
+  createdAt: 'createdAt'
+} as const
+
+export type DamageItemScalarFieldEnum = (typeof DamageItemScalarFieldEnum)[keyof typeof DamageItemScalarFieldEnum]
 
 
 export const PartScalarFieldEnum = {
@@ -420,6 +465,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {

@@ -76,6 +76,15 @@ export const QuoteItemType = {
 export type QuoteItemType = (typeof QuoteItemType)[keyof typeof QuoteItemType]
 
 
+export const DamageSeverity = {
+  LIEVE: 'LIEVE',
+  MEDIA: 'MEDIA',
+  GRAVE: 'GRAVE'
+} as const
+
+export type DamageSeverity = (typeof DamageSeverity)[keyof typeof DamageSeverity]
+
+
 export const MovementType = {
   CARICO: 'CARICO',
   SCARICO: 'SCARICO'

@@ -52,6 +52,8 @@ model Tenant {
   aiAnalyses  AiAnalysisLog[]
   assistantLogs AiAssistantLog[]
   portalAccesses PortalAccess[]
+  damageAnalyses DamageAnalysis[]
+  damageItems    DamageItem[]
 
   
 
@@ -89,6 +91,8 @@ model User {
   timeEntries         TimeEntry[]
   auditLogs         AuditLog[]
   appuntamentiTecnico Appointment[]  @relation("TecnicoAppuntamento")
+  analisiDanniCreate  DamageAnalysis[]
+  correzioniDanni     DamageItem[]
 
   @@index([tenantId])
   @@map("users")
@@ -176,6 +180,7 @@ model Vehicle {
   photos       Photo[]
   quotes       Quote[]
   stageHistory StageHistory[]
+  damageAnalyses DamageAnalysis[]
 
   @@index([tenantId])
   @@index([tenantId, targa])
@@ -271,6 +276,7 @@ model Quote {
   updatedAt DateTime @updatedAt
 
   items QuoteItem[]
+  damageItems DamageItem[]
 
   @@index([tenantId])
   @@index([tenantId, stato])
@@ -302,6 +308,94 @@ enum QuoteItemType {
   RICAMBIO
   VERNICE
   ALTRO
+}
+
+// -----------------------------
+// AI DAMAGE ASSISTANT
+// -----------------------------
+// Modulo nuovo e separato dalla vecchia "Stima danni IA" (Vehicle.stimaIA,
+// vedi POST /api/vehicles/:id/analizza-danni): quella resta invariata e
+// continua a funzionare com'è. Questo modulo è più strutturato — un danno
+// per riga invece di una stima unica testuale — pensato per generare voci
+// di preventivo riga per riga, sempre con conferma umana obbligatoria.
+
+// Una "sessione" di analisi: un gruppo di foto mandate insieme all'IA, che
+// genera N DamageItem (uno per ogni danno individuato separatamente).
+model DamageAnalysis {
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+
+  creatoDaId String?
+  creatoDa   User?   @relation(fields: [creatoDaId], references: [id])
+
+  photoIds       Json // array di Photo.id analizzati in questa sessione
+  rispostaGrezza Json? // risposta testuale grezza dell'IA: debug e miglioramento futuro del prompt
+
+  createdAt DateTime @default(now())
+
+  items DamageItem[]
+
+  @@index([tenantId])
+  @@index([vehicleId])
+  @@map("damage_analyses")
+}
+
+// Un singolo danno individuato dall'IA. I campi "*AI" sono il risultato
+// originale del modello e non vengono mai sovrascritti: restano come
+// confronto con i campi correnti (modificabili dall'operatore) per capire
+// dove l'IA sbaglia più spesso — base per migliorare il prompt in futuro.
+model DamageItem {
+  id               String         @id @default(cuid())
+  damageAnalysisId String
+  damageAnalysis   DamageAnalysis @relation(fields: [damageAnalysisId], references: [id])
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  // Valori originali suggeriti dall'IA — immutabili.
+  parteAI                 String
+  posizioneAI             String?
+  tipologiaDannoAI        String
+  gravitaAI               DamageSeverity
+  lavorazioneAI           String?
+  necessitaSostituzioneAI Boolean @default(false)
+  confidenzaPercento      Int? // 0-100: quanto l'IA è sicura di questo rilevamento
+  vociPreventivoAI        Json // voci suggerite: array di {tipo, descrizione, quantita, prezzoUnitario}
+
+  // Valori correnti: partono identici a quelli AI, l'operatore li corregge liberamente.
+  parte                 String
+  posizione             String?
+  tipologiaDanno        String
+  gravita               DamageSeverity
+  lavorazioneSuggerita  String?
+  necessitaSostituzione Boolean @default(false)
+  vociPreventivo        Json
+  noteOperatore         String?
+
+  modificatoManualmente Boolean   @default(false)
+  modificatoDaId        String?
+  modificatoDa          User?     @relation(fields: [modificatoDaId], references: [id])
+  modificatoAt          DateTime?
+
+  // Preventivo bozza in cui questo danno è stato eventualmente incluso.
+  quoteId String?
+  quote   Quote?  @relation(fields: [quoteId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@index([tenantId])
+  @@index([damageAnalysisId])
+  @@map("damage_items")
+}
+
+enum DamageSeverity {
+  LIEVE
+  MEDIA
+  GRAVE
 }
 
 // -----------------------------

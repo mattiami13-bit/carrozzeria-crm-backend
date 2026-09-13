@@ -405,6 +405,8 @@ export const ModelName = {
   Photo: 'Photo',
   Quote: 'Quote',
   QuoteItem: 'QuoteItem',
+  DamageAnalysis: 'DamageAnalysis',
+  DamageItem: 'DamageItem',
   Part: 'Part',
   PartMovement: 'PartMovement',
   SupplierOrder: 'SupplierOrder',
@@ -434,7 +436,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerBooking" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog"
+    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerBooking" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1027,6 +1029,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.QuoteItemCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.QuoteItemCountAggregateOutputType> | number
+        }
+      }
+    }
+    DamageAnalysis: {
+      payload: Prisma.$DamageAnalysisPayload<ExtArgs>
+      fields: Prisma.DamageAnalysisFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DamageAnalysisFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageAnalysisPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DamageAnalysisFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageAnalysisPayload>
+        }
+        findFirst: {
+          args: Prisma.DamageAnalysisFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageAnalysisPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DamageAnalysisFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageAnalysisPayload>
+        }
+        findMany: {
+          args: Prisma.DamageAnalysisFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageAnalysisPayload>[]
+        }
+        create: {
+          args: Prisma.DamageAnalysisCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageAnalysisPayload>
+        }
+        createMany: {
+          args: Prisma.DamageAnalysisCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DamageAnalysisCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageAnalysisPayload>[]
+        }
+        delete: {
+          args: Prisma.DamageAnalysisDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageAnalysisPayload>
+        }
+        update: {
+          args: Prisma.DamageAnalysisUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageAnalysisPayload>
+        }
+        deleteMany: {
+          args: Prisma.DamageAnalysisDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DamageAnalysisUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DamageAnalysisUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageAnalysisPayload>[]
+        }
+        upsert: {
+          args: Prisma.DamageAnalysisUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageAnalysisPayload>
+        }
+        aggregate: {
+          args: Prisma.DamageAnalysisAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDamageAnalysis>
+        }
+        groupBy: {
+          args: Prisma.DamageAnalysisGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DamageAnalysisGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DamageAnalysisCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DamageAnalysisCountAggregateOutputType> | number
+        }
+      }
+    }
+    DamageItem: {
+      payload: Prisma.$DamageItemPayload<ExtArgs>
+      fields: Prisma.DamageItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DamageItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DamageItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageItemPayload>
+        }
+        findFirst: {
+          args: Prisma.DamageItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DamageItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageItemPayload>
+        }
+        findMany: {
+          args: Prisma.DamageItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageItemPayload>[]
+        }
+        create: {
+          args: Prisma.DamageItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageItemPayload>
+        }
+        createMany: {
+          args: Prisma.DamageItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DamageItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageItemPayload>[]
+        }
+        delete: {
+          args: Prisma.DamageItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageItemPayload>
+        }
+        update: {
+          args: Prisma.DamageItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.DamageItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DamageItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DamageItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.DamageItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DamageItemPayload>
+        }
+        aggregate: {
+          args: Prisma.DamageItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDamageItem>
+        }
+        groupBy: {
+          args: Prisma.DamageItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DamageItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DamageItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DamageItemCountAggregateOutputType> | number
         }
       }
     }
@@ -2237,6 +2387,49 @@ export const QuoteItemScalarFieldEnum = {
 export type QuoteItemScalarFieldEnum = (typeof QuoteItemScalarFieldEnum)[keyof typeof QuoteItemScalarFieldEnum]
 
 
+export const DamageAnalysisScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  creatoDaId: 'creatoDaId',
+  photoIds: 'photoIds',
+  rispostaGrezza: 'rispostaGrezza',
+  createdAt: 'createdAt'
+} as const
+
+export type DamageAnalysisScalarFieldEnum = (typeof DamageAnalysisScalarFieldEnum)[keyof typeof DamageAnalysisScalarFieldEnum]
+
+
+export const DamageItemScalarFieldEnum = {
+  id: 'id',
+  damageAnalysisId: 'damageAnalysisId',
+  tenantId: 'tenantId',
+  parteAI: 'parteAI',
+  posizioneAI: 'posizioneAI',
+  tipologiaDannoAI: 'tipologiaDannoAI',
+  gravitaAI: 'gravitaAI',
+  lavorazioneAI: 'lavorazioneAI',
+  necessitaSostituzioneAI: 'necessitaSostituzioneAI',
+  confidenzaPercento: 'confidenzaPercento',
+  vociPreventivoAI: 'vociPreventivoAI',
+  parte: 'parte',
+  posizione: 'posizione',
+  tipologiaDanno: 'tipologiaDanno',
+  gravita: 'gravita',
+  lavorazioneSuggerita: 'lavorazioneSuggerita',
+  necessitaSostituzione: 'necessitaSostituzione',
+  vociPreventivo: 'vociPreventivo',
+  noteOperatore: 'noteOperatore',
+  modificatoManualmente: 'modificatoManualmente',
+  modificatoDaId: 'modificatoDaId',
+  modificatoAt: 'modificatoAt',
+  quoteId: 'quoteId',
+  createdAt: 'createdAt'
+} as const
+
+export type DamageItemScalarFieldEnum = (typeof DamageItemScalarFieldEnum)[keyof typeof DamageItemScalarFieldEnum]
+
+
 export const PartScalarFieldEnum = {
   id: 'id',
   tenantId: 'tenantId',
@@ -2436,6 +2629,13 @@ export const NullableJsonNullValueInput = {
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -2625,6 +2825,20 @@ export type EnumQuoteItemTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
  * Reference to a field of type 'QuoteItemType[]'
  */
 export type ListEnumQuoteItemTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QuoteItemType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DamageSeverity'
+ */
+export type EnumDamageSeverityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DamageSeverity'>
+    
+
+
+/**
+ * Reference to a field of type 'DamageSeverity[]'
+ */
+export type ListEnumDamageSeverityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DamageSeverity[]'>
     
 
 
@@ -2842,6 +3056,8 @@ export type GlobalOmitConfig = {
   photo?: Prisma.PhotoOmit
   quote?: Prisma.QuoteOmit
   quoteItem?: Prisma.QuoteItemOmit
+  damageAnalysis?: Prisma.DamageAnalysisOmit
+  damageItem?: Prisma.DamageItemOmit
   part?: Prisma.PartOmit
   partMovement?: Prisma.PartMovementOmit
   supplierOrder?: Prisma.SupplierOrderOmit

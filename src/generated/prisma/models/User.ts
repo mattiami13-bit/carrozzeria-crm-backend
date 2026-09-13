@@ -220,6 +220,8 @@ export type UserWhereInput = {
   timeEntries?: Prisma.TimeEntryListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
   appuntamentiTecnico?: Prisma.AppointmentListRelationFilter
+  analisiDanniCreate?: Prisma.DamageAnalysisListRelationFilter
+  correzioniDanni?: Prisma.DamageItemListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -238,6 +240,8 @@ export type UserOrderByWithRelationInput = {
   timeEntries?: Prisma.TimeEntryOrderByRelationAggregateInput
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
   appuntamentiTecnico?: Prisma.AppointmentOrderByRelationAggregateInput
+  analisiDanniCreate?: Prisma.DamageAnalysisOrderByRelationAggregateInput
+  correzioniDanni?: Prisma.DamageItemOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -259,6 +263,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   timeEntries?: Prisma.TimeEntryListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
   appuntamentiTecnico?: Prisma.AppointmentListRelationFilter
+  analisiDanniCreate?: Prisma.DamageAnalysisListRelationFilter
+  correzioniDanni?: Prisma.DamageItemListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -306,6 +312,8 @@ export type UserCreateInput = {
   timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -323,6 +331,8 @@ export type UserUncheckedCreateInput = {
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUpdateInput = {
@@ -340,6 +350,8 @@ export type UserUpdateInput = {
   timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -357,6 +369,8 @@ export type UserUncheckedUpdateInput = {
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -532,6 +546,38 @@ export type UserUpdateOneWithoutStageChangesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutStageChangesInput, Prisma.UserUpdateWithoutStageChangesInput>, Prisma.UserUncheckedUpdateWithoutStageChangesInput>
 }
 
+export type UserCreateNestedOneWithoutAnalisiDanniCreateInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAnalisiDanniCreateInput, Prisma.UserUncheckedCreateWithoutAnalisiDanniCreateInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAnalisiDanniCreateInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutAnalisiDanniCreateNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAnalisiDanniCreateInput, Prisma.UserUncheckedCreateWithoutAnalisiDanniCreateInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAnalisiDanniCreateInput
+  upsert?: Prisma.UserUpsertWithoutAnalisiDanniCreateInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAnalisiDanniCreateInput, Prisma.UserUpdateWithoutAnalisiDanniCreateInput>, Prisma.UserUncheckedUpdateWithoutAnalisiDanniCreateInput>
+}
+
+export type UserCreateNestedOneWithoutCorrezioniDanniInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCorrezioniDanniInput, Prisma.UserUncheckedCreateWithoutCorrezioniDanniInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCorrezioniDanniInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCorrezioniDanniNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCorrezioniDanniInput, Prisma.UserUncheckedCreateWithoutCorrezioniDanniInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCorrezioniDanniInput
+  upsert?: Prisma.UserUpsertWithoutCorrezioniDanniInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCorrezioniDanniInput, Prisma.UserUpdateWithoutCorrezioniDanniInput>, Prisma.UserUncheckedUpdateWithoutCorrezioniDanniInput>
+}
+
 export type UserCreateNestedOneWithoutAppuntamentiTecnicoInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutAppuntamentiTecnicoInput, Prisma.UserUncheckedCreateWithoutAppuntamentiTecnicoInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutAppuntamentiTecnicoInput
@@ -592,6 +638,8 @@ export type UserCreateWithoutTenantInput = {
   timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateWithoutTenantInput = {
@@ -608,6 +656,8 @@ export type UserUncheckedCreateWithoutTenantInput = {
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserCreateOrConnectWithoutTenantInput = {
@@ -665,6 +715,8 @@ export type UserCreateWithoutVehiclesAssegnatiInput = {
   timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateWithoutVehiclesAssegnatiInput = {
@@ -681,6 +733,8 @@ export type UserUncheckedCreateWithoutVehiclesAssegnatiInput = {
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserCreateOrConnectWithoutVehiclesAssegnatiInput = {
@@ -713,6 +767,8 @@ export type UserUpdateWithoutVehiclesAssegnatiInput = {
   timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVehiclesAssegnatiInput = {
@@ -729,6 +785,8 @@ export type UserUncheckedUpdateWithoutVehiclesAssegnatiInput = {
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserCreateWithoutStageChangesInput = {
@@ -745,6 +803,8 @@ export type UserCreateWithoutStageChangesInput = {
   timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateWithoutStageChangesInput = {
@@ -761,6 +821,8 @@ export type UserUncheckedCreateWithoutStageChangesInput = {
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserCreateOrConnectWithoutStageChangesInput = {
@@ -793,6 +855,8 @@ export type UserUpdateWithoutStageChangesInput = {
   timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStageChangesInput = {
@@ -809,6 +873,184 @@ export type UserUncheckedUpdateWithoutStageChangesInput = {
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+}
+
+export type UserCreateWithoutAnalisiDanniCreateInput = {
+  id?: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+}
+
+export type UserUncheckedCreateWithoutAnalisiDanniCreateInput = {
+  id?: string
+  tenantId: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+}
+
+export type UserCreateOrConnectWithoutAnalisiDanniCreateInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAnalisiDanniCreateInput, Prisma.UserUncheckedCreateWithoutAnalisiDanniCreateInput>
+}
+
+export type UserUpsertWithoutAnalisiDanniCreateInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAnalisiDanniCreateInput, Prisma.UserUncheckedUpdateWithoutAnalisiDanniCreateInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAnalisiDanniCreateInput, Prisma.UserUncheckedCreateWithoutAnalisiDanniCreateInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAnalisiDanniCreateInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAnalisiDanniCreateInput, Prisma.UserUncheckedUpdateWithoutAnalisiDanniCreateInput>
+}
+
+export type UserUpdateWithoutAnalisiDanniCreateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
+  vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAnalisiDanniCreateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+}
+
+export type UserCreateWithoutCorrezioniDanniInput = {
+  id?: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+}
+
+export type UserUncheckedCreateWithoutCorrezioniDanniInput = {
+  id?: string
+  tenantId: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+}
+
+export type UserCreateOrConnectWithoutCorrezioniDanniInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCorrezioniDanniInput, Prisma.UserUncheckedCreateWithoutCorrezioniDanniInput>
+}
+
+export type UserUpsertWithoutCorrezioniDanniInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCorrezioniDanniInput, Prisma.UserUncheckedUpdateWithoutCorrezioniDanniInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCorrezioniDanniInput, Prisma.UserUncheckedCreateWithoutCorrezioniDanniInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCorrezioniDanniInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCorrezioniDanniInput, Prisma.UserUncheckedUpdateWithoutCorrezioniDanniInput>
+}
+
+export type UserUpdateWithoutCorrezioniDanniInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
+  vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCorrezioniDanniInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
 }
 
 export type UserCreateWithoutAppuntamentiTecnicoInput = {
@@ -825,6 +1067,8 @@ export type UserCreateWithoutAppuntamentiTecnicoInput = {
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateWithoutAppuntamentiTecnicoInput = {
@@ -841,6 +1085,8 @@ export type UserUncheckedCreateWithoutAppuntamentiTecnicoInput = {
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserCreateOrConnectWithoutAppuntamentiTecnicoInput = {
@@ -873,6 +1119,8 @@ export type UserUpdateWithoutAppuntamentiTecnicoInput = {
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAppuntamentiTecnicoInput = {
@@ -889,6 +1137,8 @@ export type UserUncheckedUpdateWithoutAppuntamentiTecnicoInput = {
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserCreateWithoutTimeEntriesInput = {
@@ -905,6 +1155,8 @@ export type UserCreateWithoutTimeEntriesInput = {
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateWithoutTimeEntriesInput = {
@@ -921,6 +1173,8 @@ export type UserUncheckedCreateWithoutTimeEntriesInput = {
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserCreateOrConnectWithoutTimeEntriesInput = {
@@ -953,6 +1207,8 @@ export type UserUpdateWithoutTimeEntriesInput = {
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTimeEntriesInput = {
@@ -969,6 +1225,8 @@ export type UserUncheckedUpdateWithoutTimeEntriesInput = {
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -985,6 +1243,8 @@ export type UserCreateWithoutAuditLogsInput = {
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1001,6 +1261,8 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1033,6 +1295,8 @@ export type UserUpdateWithoutAuditLogsInput = {
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1049,6 +1313,8 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserCreateManyTenantInput = {
@@ -1076,6 +1342,8 @@ export type UserUpdateWithoutTenantInput = {
   timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTenantInput = {
@@ -1092,6 +1360,8 @@ export type UserUncheckedUpdateWithoutTenantInput = {
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutTenantInput = {
@@ -1116,6 +1386,8 @@ export type UserCountOutputType = {
   timeEntries: number
   auditLogs: number
   appuntamentiTecnico: number
+  analisiDanniCreate: number
+  correzioniDanni: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1124,6 +1396,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   timeEntries?: boolean | UserCountOutputTypeCountTimeEntriesArgs
   auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
   appuntamentiTecnico?: boolean | UserCountOutputTypeCountAppuntamentiTecnicoArgs
+  analisiDanniCreate?: boolean | UserCountOutputTypeCountAnalisiDanniCreateArgs
+  correzioniDanni?: boolean | UserCountOutputTypeCountCorrezioniDanniArgs
 }
 
 /**
@@ -1171,6 +1445,20 @@ export type UserCountOutputTypeCountAppuntamentiTecnicoArgs<ExtArgs extends runt
   where?: Prisma.AppointmentWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAnalisiDanniCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DamageAnalysisWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCorrezioniDanniArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DamageItemWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1188,6 +1476,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   timeEntries?: boolean | Prisma.User$timeEntriesArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   appuntamentiTecnico?: boolean | Prisma.User$appuntamentiTecnicoArgs<ExtArgs>
+  analisiDanniCreate?: boolean | Prisma.User$analisiDanniCreateArgs<ExtArgs>
+  correzioniDanni?: boolean | Prisma.User$correzioniDanniArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1237,6 +1527,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   timeEntries?: boolean | Prisma.User$timeEntriesArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   appuntamentiTecnico?: boolean | Prisma.User$appuntamentiTecnicoArgs<ExtArgs>
+  analisiDanniCreate?: boolean | Prisma.User$analisiDanniCreateArgs<ExtArgs>
+  correzioniDanni?: boolean | Prisma.User$correzioniDanniArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1255,6 +1547,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     timeEntries: Prisma.$TimeEntryPayload<ExtArgs>[]
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
     appuntamentiTecnico: Prisma.$AppointmentPayload<ExtArgs>[]
+    analisiDanniCreate: Prisma.$DamageAnalysisPayload<ExtArgs>[]
+    correzioniDanni: Prisma.$DamageItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1666,6 +1960,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   timeEntries<T extends Prisma.User$timeEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$timeEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   appuntamentiTecnico<T extends Prisma.User$appuntamentiTecnicoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$appuntamentiTecnicoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  analisiDanniCreate<T extends Prisma.User$analisiDanniCreateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$analisiDanniCreateArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DamageAnalysisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  correzioniDanni<T extends Prisma.User$correzioniDanniArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$correzioniDanniArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DamageItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2222,6 +2518,54 @@ export type User$appuntamentiTecnicoArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.AppointmentScalarFieldEnum | Prisma.AppointmentScalarFieldEnum[]
+}
+
+/**
+ * User.analisiDanniCreate
+ */
+export type User$analisiDanniCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DamageAnalysis
+   */
+  select?: Prisma.DamageAnalysisSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DamageAnalysis
+   */
+  omit?: Prisma.DamageAnalysisOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DamageAnalysisInclude<ExtArgs> | null
+  where?: Prisma.DamageAnalysisWhereInput
+  orderBy?: Prisma.DamageAnalysisOrderByWithRelationInput | Prisma.DamageAnalysisOrderByWithRelationInput[]
+  cursor?: Prisma.DamageAnalysisWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DamageAnalysisScalarFieldEnum | Prisma.DamageAnalysisScalarFieldEnum[]
+}
+
+/**
+ * User.correzioniDanni
+ */
+export type User$correzioniDanniArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DamageItem
+   */
+  select?: Prisma.DamageItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DamageItem
+   */
+  omit?: Prisma.DamageItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DamageItemInclude<ExtArgs> | null
+  where?: Prisma.DamageItemWhereInput
+  orderBy?: Prisma.DamageItemOrderByWithRelationInput | Prisma.DamageItemOrderByWithRelationInput[]
+  cursor?: Prisma.DamageItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DamageItemScalarFieldEnum | Prisma.DamageItemScalarFieldEnum[]
 }
 
 /**

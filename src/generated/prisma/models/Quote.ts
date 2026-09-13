@@ -308,6 +308,7 @@ export type QuoteWhereInput = {
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
   items?: Prisma.QuoteItemListRelationFilter
+  damageItems?: Prisma.DamageItemListRelationFilter
 }
 
 export type QuoteOrderByWithRelationInput = {
@@ -330,6 +331,7 @@ export type QuoteOrderByWithRelationInput = {
   client?: Prisma.ClientOrderByWithRelationInput
   vehicle?: Prisma.VehicleOrderByWithRelationInput
   items?: Prisma.QuoteItemOrderByRelationAggregateInput
+  damageItems?: Prisma.DamageItemOrderByRelationAggregateInput
 }
 
 export type QuoteWhereUniqueInput = Prisma.AtLeast<{
@@ -355,6 +357,7 @@ export type QuoteWhereUniqueInput = Prisma.AtLeast<{
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
   items?: Prisma.QuoteItemListRelationFilter
+  damageItems?: Prisma.DamageItemListRelationFilter
 }, "id">
 
 export type QuoteOrderByWithAggregationInput = {
@@ -418,6 +421,7 @@ export type QuoteCreateInput = {
   client: Prisma.ClientCreateNestedOneWithoutQuotesInput
   vehicle: Prisma.VehicleCreateNestedOneWithoutQuotesInput
   items?: Prisma.QuoteItemCreateNestedManyWithoutQuoteInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteUncheckedCreateInput = {
@@ -437,6 +441,7 @@ export type QuoteUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuoteItemUncheckedCreateNestedManyWithoutQuoteInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteUpdateInput = {
@@ -456,6 +461,7 @@ export type QuoteUpdateInput = {
   client?: Prisma.ClientUpdateOneRequiredWithoutQuotesNestedInput
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutQuotesNestedInput
   items?: Prisma.QuoteItemUpdateManyWithoutQuoteNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateInput = {
@@ -475,6 +481,7 @@ export type QuoteUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuoteItemUncheckedUpdateManyWithoutQuoteNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteCreateManyInput = {
@@ -607,6 +614,11 @@ export type QuoteSumOrderByAggregateInput = {
 export type QuoteScalarRelationFilter = {
   is?: Prisma.QuoteWhereInput
   isNot?: Prisma.QuoteWhereInput
+}
+
+export type QuoteNullableScalarRelationFilter = {
+  is?: Prisma.QuoteWhereInput | null
+  isNot?: Prisma.QuoteWhereInput | null
 }
 
 export type QuoteCreateNestedManyWithoutTenantInput = {
@@ -761,6 +773,22 @@ export type QuoteUpdateOneRequiredWithoutItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.QuoteUpdateToOneWithWhereWithoutItemsInput, Prisma.QuoteUpdateWithoutItemsInput>, Prisma.QuoteUncheckedUpdateWithoutItemsInput>
 }
 
+export type QuoteCreateNestedOneWithoutDamageItemsInput = {
+  create?: Prisma.XOR<Prisma.QuoteCreateWithoutDamageItemsInput, Prisma.QuoteUncheckedCreateWithoutDamageItemsInput>
+  connectOrCreate?: Prisma.QuoteCreateOrConnectWithoutDamageItemsInput
+  connect?: Prisma.QuoteWhereUniqueInput
+}
+
+export type QuoteUpdateOneWithoutDamageItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.QuoteCreateWithoutDamageItemsInput, Prisma.QuoteUncheckedCreateWithoutDamageItemsInput>
+  connectOrCreate?: Prisma.QuoteCreateOrConnectWithoutDamageItemsInput
+  upsert?: Prisma.QuoteUpsertWithoutDamageItemsInput
+  disconnect?: Prisma.QuoteWhereInput | boolean
+  delete?: Prisma.QuoteWhereInput | boolean
+  connect?: Prisma.QuoteWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.QuoteUpdateToOneWithWhereWithoutDamageItemsInput, Prisma.QuoteUpdateWithoutDamageItemsInput>, Prisma.QuoteUncheckedUpdateWithoutDamageItemsInput>
+}
+
 export type QuoteCreateWithoutTenantInput = {
   id?: string
   stato?: $Enums.QuoteStatus
@@ -777,6 +805,7 @@ export type QuoteCreateWithoutTenantInput = {
   client: Prisma.ClientCreateNestedOneWithoutQuotesInput
   vehicle: Prisma.VehicleCreateNestedOneWithoutQuotesInput
   items?: Prisma.QuoteItemCreateNestedManyWithoutQuoteInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteUncheckedCreateWithoutTenantInput = {
@@ -795,6 +824,7 @@ export type QuoteUncheckedCreateWithoutTenantInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuoteItemUncheckedCreateNestedManyWithoutQuoteInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteCreateOrConnectWithoutTenantInput = {
@@ -860,6 +890,7 @@ export type QuoteCreateWithoutClientInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutQuotesInput
   vehicle: Prisma.VehicleCreateNestedOneWithoutQuotesInput
   items?: Prisma.QuoteItemCreateNestedManyWithoutQuoteInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteUncheckedCreateWithoutClientInput = {
@@ -878,6 +909,7 @@ export type QuoteUncheckedCreateWithoutClientInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuoteItemUncheckedCreateNestedManyWithoutQuoteInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteCreateOrConnectWithoutClientInput = {
@@ -922,6 +954,7 @@ export type QuoteCreateWithoutVehicleInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutQuotesInput
   client: Prisma.ClientCreateNestedOneWithoutQuotesInput
   items?: Prisma.QuoteItemCreateNestedManyWithoutQuoteInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteUncheckedCreateWithoutVehicleInput = {
@@ -940,6 +973,7 @@ export type QuoteUncheckedCreateWithoutVehicleInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuoteItemUncheckedCreateNestedManyWithoutQuoteInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteCreateOrConnectWithoutVehicleInput = {
@@ -984,6 +1018,7 @@ export type QuoteCreateWithoutItemsInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutQuotesInput
   client: Prisma.ClientCreateNestedOneWithoutQuotesInput
   vehicle: Prisma.VehicleCreateNestedOneWithoutQuotesInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteUncheckedCreateWithoutItemsInput = {
@@ -1002,6 +1037,7 @@ export type QuoteUncheckedCreateWithoutItemsInput = {
   firmatoAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteCreateOrConnectWithoutItemsInput = {
@@ -1036,6 +1072,7 @@ export type QuoteUpdateWithoutItemsInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutQuotesNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutQuotesNestedInput
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutQuotesNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateWithoutItemsInput = {
@@ -1054,6 +1091,99 @@ export type QuoteUncheckedUpdateWithoutItemsInput = {
   firmatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutQuoteNestedInput
+}
+
+export type QuoteCreateWithoutDamageItemsInput = {
+  id?: string
+  stato?: $Enums.QuoteStatus
+  imponibile: runtime.Decimal | runtime.DecimalJsLike | number | string
+  aliquotaIva?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totale: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdfUrl?: string | null
+  inviatoAt?: Date | string | null
+  firmaDataUrl?: string | null
+  firmatarioNome?: string | null
+  firmatoAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutQuotesInput
+  client: Prisma.ClientCreateNestedOneWithoutQuotesInput
+  vehicle: Prisma.VehicleCreateNestedOneWithoutQuotesInput
+  items?: Prisma.QuoteItemCreateNestedManyWithoutQuoteInput
+}
+
+export type QuoteUncheckedCreateWithoutDamageItemsInput = {
+  id?: string
+  tenantId: string
+  clientId: string
+  vehicleId: string
+  stato?: $Enums.QuoteStatus
+  imponibile: runtime.Decimal | runtime.DecimalJsLike | number | string
+  aliquotaIva?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totale: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdfUrl?: string | null
+  inviatoAt?: Date | string | null
+  firmaDataUrl?: string | null
+  firmatarioNome?: string | null
+  firmatoAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.QuoteItemUncheckedCreateNestedManyWithoutQuoteInput
+}
+
+export type QuoteCreateOrConnectWithoutDamageItemsInput = {
+  where: Prisma.QuoteWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuoteCreateWithoutDamageItemsInput, Prisma.QuoteUncheckedCreateWithoutDamageItemsInput>
+}
+
+export type QuoteUpsertWithoutDamageItemsInput = {
+  update: Prisma.XOR<Prisma.QuoteUpdateWithoutDamageItemsInput, Prisma.QuoteUncheckedUpdateWithoutDamageItemsInput>
+  create: Prisma.XOR<Prisma.QuoteCreateWithoutDamageItemsInput, Prisma.QuoteUncheckedCreateWithoutDamageItemsInput>
+  where?: Prisma.QuoteWhereInput
+}
+
+export type QuoteUpdateToOneWithWhereWithoutDamageItemsInput = {
+  where?: Prisma.QuoteWhereInput
+  data: Prisma.XOR<Prisma.QuoteUpdateWithoutDamageItemsInput, Prisma.QuoteUncheckedUpdateWithoutDamageItemsInput>
+}
+
+export type QuoteUpdateWithoutDamageItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  stato?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  imponibile?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aliquotaIva?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totale?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutQuotesNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutQuotesNestedInput
+  vehicle?: Prisma.VehicleUpdateOneRequiredWithoutQuotesNestedInput
+  items?: Prisma.QuoteItemUpdateManyWithoutQuoteNestedInput
+}
+
+export type QuoteUncheckedUpdateWithoutDamageItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.StringFieldUpdateOperationsInput | string
+  stato?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  imponibile?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aliquotaIva?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totale?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.QuoteItemUncheckedUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteCreateManyTenantInput = {
@@ -1089,6 +1219,7 @@ export type QuoteUpdateWithoutTenantInput = {
   client?: Prisma.ClientUpdateOneRequiredWithoutQuotesNestedInput
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutQuotesNestedInput
   items?: Prisma.QuoteItemUpdateManyWithoutQuoteNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateWithoutTenantInput = {
@@ -1107,6 +1238,7 @@ export type QuoteUncheckedUpdateWithoutTenantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuoteItemUncheckedUpdateManyWithoutQuoteNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateManyWithoutTenantInput = {
@@ -1159,6 +1291,7 @@ export type QuoteUpdateWithoutClientInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutQuotesNestedInput
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutQuotesNestedInput
   items?: Prisma.QuoteItemUpdateManyWithoutQuoteNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateWithoutClientInput = {
@@ -1177,6 +1310,7 @@ export type QuoteUncheckedUpdateWithoutClientInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuoteItemUncheckedUpdateManyWithoutQuoteNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateManyWithoutClientInput = {
@@ -1229,6 +1363,7 @@ export type QuoteUpdateWithoutVehicleInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutQuotesNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutQuotesNestedInput
   items?: Prisma.QuoteItemUpdateManyWithoutQuoteNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateWithoutVehicleInput = {
@@ -1247,6 +1382,7 @@ export type QuoteUncheckedUpdateWithoutVehicleInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuoteItemUncheckedUpdateManyWithoutQuoteNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateManyWithoutVehicleInput = {
@@ -1273,10 +1409,12 @@ export type QuoteUncheckedUpdateManyWithoutVehicleInput = {
 
 export type QuoteCountOutputType = {
   items: number
+  damageItems: number
 }
 
 export type QuoteCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | QuoteCountOutputTypeCountItemsArgs
+  damageItems?: boolean | QuoteCountOutputTypeCountDamageItemsArgs
 }
 
 /**
@@ -1294,6 +1432,13 @@ export type QuoteCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
  */
 export type QuoteCountOutputTypeCountItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.QuoteItemWhereInput
+}
+
+/**
+ * QuoteCountOutputType without action
+ */
+export type QuoteCountOutputTypeCountDamageItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DamageItemWhereInput
 }
 
 
@@ -1317,6 +1462,7 @@ export type QuoteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Quote$itemsArgs<ExtArgs>
+  damageItems?: boolean | Prisma.Quote$damageItemsArgs<ExtArgs>
   _count?: boolean | Prisma.QuoteCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quote"]>
 
@@ -1386,6 +1532,7 @@ export type QuoteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Quote$itemsArgs<ExtArgs>
+  damageItems?: boolean | Prisma.Quote$damageItemsArgs<ExtArgs>
   _count?: boolean | Prisma.QuoteCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type QuoteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1406,6 +1553,7 @@ export type $QuotePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     client: Prisma.$ClientPayload<ExtArgs>
     vehicle: Prisma.$VehiclePayload<ExtArgs>
     items: Prisma.$QuoteItemPayload<ExtArgs>[]
+    damageItems: Prisma.$DamageItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1821,6 +1969,7 @@ export interface Prisma__QuoteClient<T, Null = never, ExtArgs extends runtime.Ty
   client<T extends Prisma.ClientDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientDefaultArgs<ExtArgs>>): Prisma.Prisma__ClientClient<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   vehicle<T extends Prisma.VehicleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VehicleDefaultArgs<ExtArgs>>): Prisma.Prisma__VehicleClient<runtime.Types.Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.Quote$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quote$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuoteItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  damageItems<T extends Prisma.Quote$damageItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quote$damageItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DamageItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2287,6 +2436,30 @@ export type Quote$itemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   distinct?: Prisma.QuoteItemScalarFieldEnum | Prisma.QuoteItemScalarFieldEnum[]
+}
+
+/**
+ * Quote.damageItems
+ */
+export type Quote$damageItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DamageItem
+   */
+  select?: Prisma.DamageItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DamageItem
+   */
+  omit?: Prisma.DamageItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DamageItemInclude<ExtArgs> | null
+  where?: Prisma.DamageItemWhereInput
+  orderBy?: Prisma.DamageItemOrderByWithRelationInput | Prisma.DamageItemOrderByWithRelationInput[]
+  cursor?: Prisma.DamageItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DamageItemScalarFieldEnum | Prisma.DamageItemScalarFieldEnum[]
 }
 
 /**

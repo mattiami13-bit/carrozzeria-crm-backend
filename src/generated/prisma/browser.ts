@@ -58,6 +58,16 @@ export type Quote = Prisma.QuoteModel
  */
 export type QuoteItem = Prisma.QuoteItemModel
 /**
+ * Model DamageAnalysis
+ * 
+ */
+export type DamageAnalysis = Prisma.DamageAnalysisModel
+/**
+ * Model DamageItem
+ * 
+ */
+export type DamageItem = Prisma.DamageItemModel
+/**
  * Model Part
  * 
  */
