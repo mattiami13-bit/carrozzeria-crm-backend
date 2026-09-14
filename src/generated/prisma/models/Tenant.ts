@@ -260,6 +260,7 @@ export type TenantWhereInput = {
   appointments?: Prisma.AppointmentListRelationFilter
   parts?: Prisma.PartListRelationFilter
   loanerCars?: Prisma.LoanerCarListRelationFilter
+  loanerBookings?: Prisma.LoanerBookingListRelationFilter
   supplierOrders?: Prisma.SupplierOrderListRelationFilter
   sinistri?: Prisma.SinistroListRelationFilter
   aiAnalyses?: Prisma.AiAnalysisLogListRelationFilter
@@ -297,6 +298,7 @@ export type TenantOrderByWithRelationInput = {
   appointments?: Prisma.AppointmentOrderByRelationAggregateInput
   parts?: Prisma.PartOrderByRelationAggregateInput
   loanerCars?: Prisma.LoanerCarOrderByRelationAggregateInput
+  loanerBookings?: Prisma.LoanerBookingOrderByRelationAggregateInput
   supplierOrders?: Prisma.SupplierOrderOrderByRelationAggregateInput
   sinistri?: Prisma.SinistroOrderByRelationAggregateInput
   aiAnalyses?: Prisma.AiAnalysisLogOrderByRelationAggregateInput
@@ -337,6 +339,7 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   appointments?: Prisma.AppointmentListRelationFilter
   parts?: Prisma.PartListRelationFilter
   loanerCars?: Prisma.LoanerCarListRelationFilter
+  loanerBookings?: Prisma.LoanerBookingListRelationFilter
   supplierOrders?: Prisma.SupplierOrderListRelationFilter
   sinistri?: Prisma.SinistroListRelationFilter
   aiAnalyses?: Prisma.AiAnalysisLogListRelationFilter
@@ -404,6 +407,7 @@ export type TenantCreateInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -441,6 +445,7 @@ export type TenantUncheckedCreateInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -478,6 +483,7 @@ export type TenantUpdateInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -515,6 +521,7 @@ export type TenantUncheckedUpdateInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -804,6 +811,20 @@ export type TenantUpdateOneRequiredWithoutLoanerCarsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutLoanerCarsInput, Prisma.TenantUpdateWithoutLoanerCarsInput>, Prisma.TenantUncheckedUpdateWithoutLoanerCarsInput>
 }
 
+export type TenantCreateNestedOneWithoutLoanerBookingsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutLoanerBookingsInput, Prisma.TenantUncheckedCreateWithoutLoanerBookingsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutLoanerBookingsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutLoanerBookingsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutLoanerBookingsInput, Prisma.TenantUncheckedCreateWithoutLoanerBookingsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutLoanerBookingsInput
+  upsert?: Prisma.TenantUpsertWithoutLoanerBookingsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutLoanerBookingsInput, Prisma.TenantUpdateWithoutLoanerBookingsInput>, Prisma.TenantUncheckedUpdateWithoutLoanerBookingsInput>
+}
+
 export type TenantCreateNestedOneWithoutAppointmentsInput = {
   create?: Prisma.XOR<Prisma.TenantCreateWithoutAppointmentsInput, Prisma.TenantUncheckedCreateWithoutAppointmentsInput>
   connectOrCreate?: Prisma.TenantCreateOrConnectWithoutAppointmentsInput
@@ -1024,6 +1045,7 @@ export type TenantCreateWithoutUsersInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -1060,6 +1082,7 @@ export type TenantUncheckedCreateWithoutUsersInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -1112,6 +1135,7 @@ export type TenantUpdateWithoutUsersInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -1148,6 +1172,7 @@ export type TenantUncheckedUpdateWithoutUsersInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -1184,6 +1209,7 @@ export type TenantCreateWithoutClientsInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -1220,6 +1246,7 @@ export type TenantUncheckedCreateWithoutClientsInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -1272,6 +1299,7 @@ export type TenantUpdateWithoutClientsInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -1308,6 +1336,7 @@ export type TenantUncheckedUpdateWithoutClientsInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -1344,6 +1373,7 @@ export type TenantCreateWithoutVehiclesInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -1380,6 +1410,7 @@ export type TenantUncheckedCreateWithoutVehiclesInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -1432,6 +1463,7 @@ export type TenantUpdateWithoutVehiclesInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -1468,6 +1500,7 @@ export type TenantUncheckedUpdateWithoutVehiclesInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -1504,6 +1537,7 @@ export type TenantCreateWithoutQuotesInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -1540,6 +1574,7 @@ export type TenantUncheckedCreateWithoutQuotesInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -1592,6 +1627,7 @@ export type TenantUpdateWithoutQuotesInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -1628,6 +1664,7 @@ export type TenantUncheckedUpdateWithoutQuotesInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -1665,6 +1702,7 @@ export type TenantCreateWithoutDamageAnalysesInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -1701,6 +1739,7 @@ export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -1753,6 +1792,7 @@ export type TenantUpdateWithoutDamageAnalysesInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -1789,6 +1829,7 @@ export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -1825,6 +1866,7 @@ export type TenantCreateWithoutDamageItemsInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -1861,6 +1903,7 @@ export type TenantUncheckedCreateWithoutDamageItemsInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -1913,6 +1956,7 @@ export type TenantUpdateWithoutDamageItemsInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -1949,6 +1993,7 @@ export type TenantUncheckedUpdateWithoutDamageItemsInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -1985,6 +2030,7 @@ export type TenantCreateWithoutInsuranceGapAnalysesInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -2021,6 +2067,7 @@ export type TenantUncheckedCreateWithoutInsuranceGapAnalysesInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -2073,6 +2120,7 @@ export type TenantUpdateWithoutInsuranceGapAnalysesInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -2109,6 +2157,7 @@ export type TenantUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -2145,6 +2194,7 @@ export type TenantCreateWithoutInsuranceGapItemsInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -2181,6 +2231,7 @@ export type TenantUncheckedCreateWithoutInsuranceGapItemsInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -2233,6 +2284,7 @@ export type TenantUpdateWithoutInsuranceGapItemsInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -2269,6 +2321,7 @@ export type TenantUncheckedUpdateWithoutInsuranceGapItemsInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -2305,6 +2358,7 @@ export type TenantCreateWithoutInsuranceGapSuggestionsInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -2341,6 +2395,7 @@ export type TenantUncheckedCreateWithoutInsuranceGapSuggestionsInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -2393,6 +2448,7 @@ export type TenantUpdateWithoutInsuranceGapSuggestionsInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -2429,6 +2485,7 @@ export type TenantUncheckedUpdateWithoutInsuranceGapSuggestionsInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -2464,6 +2521,7 @@ export type TenantCreateWithoutPartsInput = {
   quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -2500,6 +2558,7 @@ export type TenantUncheckedCreateWithoutPartsInput = {
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -2552,6 +2611,7 @@ export type TenantUpdateWithoutPartsInput = {
   quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -2588,6 +2648,7 @@ export type TenantUncheckedUpdateWithoutPartsInput = {
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -2625,6 +2686,7 @@ export type TenantCreateWithoutSupplierOrdersInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
@@ -2661,6 +2723,7 @@ export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
@@ -2713,6 +2776,7 @@ export type TenantUpdateWithoutSupplierOrdersInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
@@ -2749,6 +2813,7 @@ export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -2784,6 +2849,7 @@ export type TenantCreateWithoutLoanerCarsInput = {
   quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -2820,6 +2886,7 @@ export type TenantUncheckedCreateWithoutLoanerCarsInput = {
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -2872,6 +2939,7 @@ export type TenantUpdateWithoutLoanerCarsInput = {
   quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -2908,6 +2976,171 @@ export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutLoanerBookingsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutLoanerBookingsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutLoanerBookingsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutLoanerBookingsInput, Prisma.TenantUncheckedCreateWithoutLoanerBookingsInput>
+}
+
+export type TenantUpsertWithoutLoanerBookingsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutLoanerBookingsInput, Prisma.TenantUncheckedUpdateWithoutLoanerBookingsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutLoanerBookingsInput, Prisma.TenantUncheckedCreateWithoutLoanerBookingsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutLoanerBookingsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutLoanerBookingsInput, Prisma.TenantUncheckedUpdateWithoutLoanerBookingsInput>
+}
+
+export type TenantUpdateWithoutLoanerBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutLoanerBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -2944,6 +3177,7 @@ export type TenantCreateWithoutAppointmentsInput = {
   quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -2980,6 +3214,7 @@ export type TenantUncheckedCreateWithoutAppointmentsInput = {
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -3032,6 +3267,7 @@ export type TenantUpdateWithoutAppointmentsInput = {
   quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -3068,6 +3304,7 @@ export type TenantUncheckedUpdateWithoutAppointmentsInput = {
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -3105,6 +3342,7 @@ export type TenantCreateWithoutSinistriInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
@@ -3141,6 +3379,7 @@ export type TenantUncheckedCreateWithoutSinistriInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
@@ -3193,6 +3432,7 @@ export type TenantUpdateWithoutSinistriInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
@@ -3229,6 +3469,7 @@ export type TenantUncheckedUpdateWithoutSinistriInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -3265,6 +3506,7 @@ export type TenantCreateWithoutPortalAccessesInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -3301,6 +3543,7 @@ export type TenantUncheckedCreateWithoutPortalAccessesInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -3353,6 +3596,7 @@ export type TenantUpdateWithoutPortalAccessesInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -3389,6 +3633,7 @@ export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -3425,6 +3670,7 @@ export type TenantCreateWithoutAiAnalysesInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
@@ -3461,6 +3707,7 @@ export type TenantUncheckedCreateWithoutAiAnalysesInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
@@ -3513,6 +3760,7 @@ export type TenantUpdateWithoutAiAnalysesInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
@@ -3549,6 +3797,7 @@ export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -3585,6 +3834,7 @@ export type TenantCreateWithoutAssistantLogsInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -3621,6 +3871,7 @@ export type TenantUncheckedCreateWithoutAssistantLogsInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -3673,6 +3924,7 @@ export type TenantUpdateWithoutAssistantLogsInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -3709,6 +3961,7 @@ export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -3744,6 +3997,7 @@ export type TenantCreateWithoutProfitRecordsInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -3780,6 +4034,7 @@ export type TenantUncheckedCreateWithoutProfitRecordsInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -3832,6 +4087,7 @@ export type TenantUpdateWithoutProfitRecordsInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -3868,6 +4124,7 @@ export type TenantUncheckedUpdateWithoutProfitRecordsInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -3904,6 +4161,7 @@ export type TenantCreateWithoutProfitSettingsInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -3940,6 +4198,7 @@ export type TenantUncheckedCreateWithoutProfitSettingsInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -3992,6 +4251,7 @@ export type TenantUpdateWithoutProfitSettingsInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -4028,6 +4288,7 @@ export type TenantUncheckedUpdateWithoutProfitSettingsInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -4064,6 +4325,7 @@ export type TenantCreateWithoutDelaySettingsInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -4100,6 +4362,7 @@ export type TenantUncheckedCreateWithoutDelaySettingsInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -4152,6 +4415,7 @@ export type TenantUpdateWithoutDelaySettingsInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -4188,6 +4452,7 @@ export type TenantUncheckedUpdateWithoutDelaySettingsInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -4224,6 +4489,7 @@ export type TenantCreateWithoutDelayPlansInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -4260,6 +4526,7 @@ export type TenantUncheckedCreateWithoutDelayPlansInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -4312,6 +4579,7 @@ export type TenantUpdateWithoutDelayPlansInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -4348,6 +4616,7 @@ export type TenantUncheckedUpdateWithoutDelayPlansInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -4384,6 +4653,7 @@ export type TenantCreateWithoutDelayForecastsInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -4420,6 +4690,7 @@ export type TenantUncheckedCreateWithoutDelayForecastsInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -4472,6 +4743,7 @@ export type TenantUpdateWithoutDelayForecastsInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -4508,6 +4780,7 @@ export type TenantUncheckedUpdateWithoutDelayForecastsInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -4544,6 +4817,7 @@ export type TenantCreateWithoutDelayDecisionsInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -4580,6 +4854,7 @@ export type TenantUncheckedCreateWithoutDelayDecisionsInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -4632,6 +4907,7 @@ export type TenantUpdateWithoutDelayDecisionsInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -4668,6 +4944,7 @@ export type TenantUncheckedUpdateWithoutDelayDecisionsInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -4704,6 +4981,7 @@ export type TenantCreateWithoutTrackedPartsInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -4740,6 +5018,7 @@ export type TenantUncheckedCreateWithoutTrackedPartsInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -4792,6 +5071,7 @@ export type TenantUpdateWithoutTrackedPartsInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -4828,6 +5108,7 @@ export type TenantUncheckedUpdateWithoutTrackedPartsInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -4864,6 +5145,7 @@ export type TenantCreateWithoutPartBlocksInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -4900,6 +5182,7 @@ export type TenantUncheckedCreateWithoutPartBlocksInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -4952,6 +5235,7 @@ export type TenantUpdateWithoutPartBlocksInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -4988,6 +5272,7 @@ export type TenantUncheckedUpdateWithoutPartBlocksInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -5024,6 +5309,7 @@ export type TenantCreateWithoutPartDocumentsInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
@@ -5060,6 +5346,7 @@ export type TenantUncheckedCreateWithoutPartDocumentsInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
   loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
@@ -5112,6 +5399,7 @@ export type TenantUpdateWithoutPartDocumentsInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
@@ -5148,6 +5436,7 @@ export type TenantUncheckedUpdateWithoutPartDocumentsInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
   loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
   aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
@@ -5180,6 +5469,7 @@ export type TenantCountOutputType = {
   appointments: number
   parts: number
   loanerCars: number
+  loanerBookings: number
   supplierOrders: number
   sinistri: number
   aiAnalyses: number
@@ -5207,6 +5497,7 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   appointments?: boolean | TenantCountOutputTypeCountAppointmentsArgs
   parts?: boolean | TenantCountOutputTypeCountPartsArgs
   loanerCars?: boolean | TenantCountOutputTypeCountLoanerCarsArgs
+  loanerBookings?: boolean | TenantCountOutputTypeCountLoanerBookingsArgs
   supplierOrders?: boolean | TenantCountOutputTypeCountSupplierOrdersArgs
   sinistri?: boolean | TenantCountOutputTypeCountSinistriArgs
   aiAnalyses?: boolean | TenantCountOutputTypeCountAiAnalysesArgs
@@ -5330,6 +5621,13 @@ export type TenantCountOutputTypeCountLoanerCarsArgs<ExtArgs extends runtime.Typ
 /**
  * TenantCountOutputType without action
  */
+export type TenantCountOutputTypeCountLoanerBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LoanerBookingWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
 export type TenantCountOutputTypeCountSupplierOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.SupplierOrderWhereInput
 }
@@ -5423,6 +5721,7 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   appointments?: boolean | Prisma.Tenant$appointmentsArgs<ExtArgs>
   parts?: boolean | Prisma.Tenant$partsArgs<ExtArgs>
   loanerCars?: boolean | Prisma.Tenant$loanerCarsArgs<ExtArgs>
+  loanerBookings?: boolean | Prisma.Tenant$loanerBookingsArgs<ExtArgs>
   supplierOrders?: boolean | Prisma.Tenant$supplierOrdersArgs<ExtArgs>
   sinistri?: boolean | Prisma.Tenant$sinistriArgs<ExtArgs>
   aiAnalyses?: boolean | Prisma.Tenant$aiAnalysesArgs<ExtArgs>
@@ -5487,6 +5786,7 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   appointments?: boolean | Prisma.Tenant$appointmentsArgs<ExtArgs>
   parts?: boolean | Prisma.Tenant$partsArgs<ExtArgs>
   loanerCars?: boolean | Prisma.Tenant$loanerCarsArgs<ExtArgs>
+  loanerBookings?: boolean | Prisma.Tenant$loanerBookingsArgs<ExtArgs>
   supplierOrders?: boolean | Prisma.Tenant$supplierOrdersArgs<ExtArgs>
   sinistri?: boolean | Prisma.Tenant$sinistriArgs<ExtArgs>
   aiAnalyses?: boolean | Prisma.Tenant$aiAnalysesArgs<ExtArgs>
@@ -5521,6 +5821,7 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     appointments: Prisma.$AppointmentPayload<ExtArgs>[]
     parts: Prisma.$PartPayload<ExtArgs>[]
     loanerCars: Prisma.$LoanerCarPayload<ExtArgs>[]
+    loanerBookings: Prisma.$LoanerBookingPayload<ExtArgs>[]
     supplierOrders: Prisma.$SupplierOrderPayload<ExtArgs>[]
     sinistri: Prisma.$SinistroPayload<ExtArgs>[]
     aiAnalyses: Prisma.$AiAnalysisLogPayload<ExtArgs>[]
@@ -5951,6 +6252,7 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   appointments<T extends Prisma.Tenant$appointmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$appointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   parts<T extends Prisma.Tenant$partsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$partsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   loanerCars<T extends Prisma.Tenant$loanerCarsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$loanerCarsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoanerCarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  loanerBookings<T extends Prisma.Tenant$loanerBookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$loanerBookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoanerBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   supplierOrders<T extends Prisma.Tenant$supplierOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$supplierOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupplierOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sinistri<T extends Prisma.Tenant$sinistriArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$sinistriArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SinistroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   aiAnalyses<T extends Prisma.Tenant$aiAnalysesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$aiAnalysesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AiAnalysisLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -6762,6 +7064,30 @@ export type Tenant$loanerCarsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.LoanerCarScalarFieldEnum | Prisma.LoanerCarScalarFieldEnum[]
+}
+
+/**
+ * Tenant.loanerBookings
+ */
+export type Tenant$loanerBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LoanerBooking
+   */
+  select?: Prisma.LoanerBookingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LoanerBooking
+   */
+  omit?: Prisma.LoanerBookingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LoanerBookingInclude<ExtArgs> | null
+  where?: Prisma.LoanerBookingWhereInput
+  orderBy?: Prisma.LoanerBookingOrderByWithRelationInput | Prisma.LoanerBookingOrderByWithRelationInput[]
+  cursor?: Prisma.LoanerBookingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LoanerBookingScalarFieldEnum | Prisma.LoanerBookingScalarFieldEnum[]
 }
 
 /**

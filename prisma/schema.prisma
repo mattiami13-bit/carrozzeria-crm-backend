@@ -56,6 +56,7 @@ model Tenant {
   appointments   Appointment[]
   parts          Part[]
   loanerCars     LoanerCar[]
+  loanerBookings LoanerBooking[]
   supplierOrders SupplierOrder[]
   sinistri       Sinistro[]
   aiAnalyses  AiAnalysisLog[]
@@ -143,6 +144,7 @@ model Client {
   documents    Document[]
   appointments Appointment[]
   sinistri     Sinistro[]
+  loanerBookings LoanerBooking[]
 
   @@index([tenantId])
   @@index([tenantId, telefono])
@@ -202,6 +204,7 @@ model Vehicle {
   stageHistory StageHistory[]
   damageAnalyses DamageAnalysis[]
   insuranceGapAnalyses InsuranceGapAnalysis[]
+  loanerBookings LoanerBooking[]
 
   @@index([tenantId])
   @@index([tenantId, targa])
@@ -637,31 +640,119 @@ enum OrderStatus {
 // AUTO SOSTITUTIVE
 // -----------------------------
 
+enum LoanerStatus {
+  DISPONIBILE
+  PRENOTATA
+  ASSEGNATA
+  MANUTENZIONE
+  NON_DISPONIBILE
+}
+
+enum FuelType {
+  BENZINA
+  DIESEL
+  GPL
+  METANO
+  ELETTRICO
+  IBRIDA
+}
+
+enum LoanerBookingStatus {
+  PRENOTATA
+  ASSEGNATA
+  RESTITUITA
+  ANNULLATA
+}
+
 model LoanerCar {
   id       String @id @default(cuid())
   tenantId String
   tenant   Tenant @relation(fields: [tenantId], references: [id])
 
-  targa       String
-  marca       String
-  modello     String
-  disponibile Boolean @default(true)
+  targa      String
+  marca      String
+  modello    String
+  km         Int?
+  carburante FuelType?
+
+  stato LoanerStatus @default(DISPONIBILE)
+
+  // Scadenze documenti/interventi: alimentano gli alert della flotta.
+  assicurazioneCompagnia String?
+  assicurazioneScadenza  DateTime?
+  revisioneScadenza      DateTime?
+  manutenzioneNote       String?
+  manutenzioneScadenza   DateTime?
+  manutenzioneKm         Int? // prossima manutenzione programmata a questo chilometraggio
+
+  // Costo interno giornaliero (in centesimi) usato per calcolare il costo
+  // di ogni assegnazione e attribuirlo alla pratica nel Profit Tracker.
+  costoGiornalieroCents Int @default(0)
+
+  note   String?
+  foto   Json    @default("[]") // array di {url, caption}
+  attiva Boolean @default(true) // dismissione flotta (soft delete logico)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   bookings LoanerBooking[]
 
   @@index([tenantId])
+  @@index([tenantId, stato])
   @@map("loaner_cars")
 }
 
 model LoanerBooking {
-  id          String    @id @default(cuid())
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
   loanerCarId String
   loanerCar   LoanerCar @relation(fields: [loanerCarId], references: [id])
 
-  clientId   String
-  dataInizio DateTime
-  dataFine   DateTime?
+  // Cliente e pratica (veicolo del cliente) collegati all'assegnazione.
+  clientId String?
+  client   Client?  @relation(fields: [clientId], references: [id])
 
+  vehicleId String?
+  vehicle   Vehicle? @relation(fields: [vehicleId], references: [id])
+
+  stato LoanerBookingStatus @default(PRENOTATA)
+
+  // Finestra di prenotazione / utilizzo.
+  dataInizio       DateTime // inizio prenotazione o consegna prevista
+  dataFinePrevista DateTime?
+  dataConsegna     DateTime? // consegna effettiva al cliente
+  dataRestituzione DateTime? // rientro effettivo
+
+  kmIniziali         Int?
+  kmFinali           Int?
+  carburanteIniziale Int? // livello 0-100%
+  carburanteFinale   Int?
+
+  firmaClienteDataUrl String?   @db.Text
+  firmatarioNome      String?
+  firmaAt             DateTime?
+
+  fotoConsegna     Json    @default("[]") // array di {url, caption}
+  fotoRestituzione Json    @default("[]")
+  danni            Json    @default("[]") // array di {descrizione, gravita, note}
+  note             String?
+
+  // Snapshot del costo/giorno al momento dell'assegnazione + totale calcolato
+  // al rientro. attribuitaAllaPratica abilita l'inserimento del costo nel
+  // Profit Tracker della pratica collegata.
+  costoGiornalieroCents  Int     @default(0)
+  costoTotaleCents       Int?
+  attribuitaAllaPratica  Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([tenantId])
+  @@index([loanerCarId])
+  @@index([tenantId, vehicleId])
   @@map("loaner_bookings")
 }
 

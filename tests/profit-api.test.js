@@ -7,6 +7,7 @@ import {profitRouter} from '../src/routes/profit.js';
 import {emptyLedger} from '../src/lib/profit.js';
 // Fully isolated database doubles: no connection or external notifications.
 prisma.trackedPart.findMany=async()=>[];
+prisma.loanerBooking.findMany=async()=>[];
 process.env.JWT_SECRET='isolated-profit-test';
 let role='ADMIN',record=null, conflict=false;
 prisma.user.findFirst=async({where})=>where.tenantId==='tenant-a'?{ruolo:role}:null;

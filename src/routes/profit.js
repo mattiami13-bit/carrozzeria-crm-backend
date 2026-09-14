@@ -1,4 +1,5 @@
 import { partsProfitData } from "../lib/parts-tracking.js";
+import { loanerProfitData } from "../lib/loaner.js";
 import { Router } from "express";
 import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
@@ -29,7 +30,9 @@ profitRouter.get("/dashboard",wrap(async(req,res)=>{
  const tenantId=req.auth.tenantId, settings=await settingsFor(tenantId);
  const all=await prisma.profitRecord.findMany({where:{tenantId,vehicle:{tenantId}},include:{vehicle:{include:vehicleInclude(tenantId)}}});
  const tracked=await prisma.trackedPart.findMany({where:{tenantId}});
- const records=all.map(r=>({...r,data:partsProfitData(r.data,tracked.filter(p=>p.vehicleId===r.vehicleId)).data})).filter(r=>(!p.data.from || r.data.date>=p.data.from)&&(!p.data.to || r.data.date<=p.data.to));
+ const loanerBookings=await prisma.loanerBooking.findMany({where:{tenantId,attribuitaAllaPratica:true,costoTotaleCents:{not:null}},include:{loanerCar:{select:{marca:true,modello:true,targa:true}}}});
+ const loanerByVehicle={};for(const b of loanerBookings)(loanerByVehicle[b.vehicleId]||=[]).push(b);
+ const records=all.map(r=>{const withParts=partsProfitData(r.data,tracked.filter(p=>p.vehicleId===r.vehicleId)).data;const withLoaner=loanerProfitData(withParts,loanerByVehicle[r.vehicleId]||[]).data;return {...r,data:withLoaner};}).filter(r=>(!p.data.from || r.data.date>=p.data.from)&&(!p.data.to || r.data.date<=p.data.to));
  const count=await prisma.vehicle.count({where:{tenantId}});
  res.json({settings,untracked:count-all.length,groups:aggregate(records,p.data.group,settings),
   totals:aggregate(records.map(r=>({...r,data:{...r.data,workType:"Totale"}})),"workType",settings)[0]??null,
@@ -43,7 +46,9 @@ profitRouter.get("/vehicles/:id",wrap(async(req,res)=>{
  const data=record?.data??emptyLedger(new Intl.DateTimeFormat("sv-SE",{timeZone:"Europe/Rome"}).format(vehicle.dataIngresso));
  const tracked=await prisma.trackedPart.findMany({where:{tenantId,vehicleId:vehicle.id}});
  const merged=partsProfitData(data,tracked);
- res.json({data,version:record?.version??0,updatedAt:record?.updatedAt??null,settings,quotes:vehicle.quotes,automaticCosts:merged.automaticCosts,replacedCostIds:merged.replacedCostIds,partsPlannedMissing:merged.plannedMissing,partsActualMissing:merged.actualMissing,summary:calculate(merged.data,vehicle.quotes,settings)});
+ const loanerBookings=await prisma.loanerBooking.findMany({where:{tenantId,vehicleId:vehicle.id,attribuitaAllaPratica:true,costoTotaleCents:{not:null}},include:{loanerCar:{select:{marca:true,modello:true,targa:true}}}});
+ const loaner=loanerProfitData(merged.data,loanerBookings);
+ res.json({data,version:record?.version??0,updatedAt:record?.updatedAt??null,settings,quotes:vehicle.quotes,automaticCosts:[...merged.automaticCosts,...loaner.automaticCosts],replacedCostIds:merged.replacedCostIds,partsPlannedMissing:merged.plannedMissing,partsActualMissing:merged.actualMissing,loanerCosts:loaner.automaticCosts,summary:calculate(loaner.data,vehicle.quotes,settings)});
 }));
 profitRouter.put("/vehicles/:id",wrap(async(req,res)=>{
  const p=z.object({version:z.number().int().min(0),data:ledgerSchema}).strict().safeParse(req.body);

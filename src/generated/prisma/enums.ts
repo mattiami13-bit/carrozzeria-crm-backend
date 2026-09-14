@@ -111,6 +111,39 @@ export const OrderStatus = {
 export type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus]
 
 
+export const LoanerStatus = {
+  DISPONIBILE: 'DISPONIBILE',
+  PRENOTATA: 'PRENOTATA',
+  ASSEGNATA: 'ASSEGNATA',
+  MANUTENZIONE: 'MANUTENZIONE',
+  NON_DISPONIBILE: 'NON_DISPONIBILE'
+} as const
+
+export type LoanerStatus = (typeof LoanerStatus)[keyof typeof LoanerStatus]
+
+
+export const FuelType = {
+  BENZINA: 'BENZINA',
+  DIESEL: 'DIESEL',
+  GPL: 'GPL',
+  METANO: 'METANO',
+  ELETTRICO: 'ELETTRICO',
+  IBRIDA: 'IBRIDA'
+} as const
+
+export type FuelType = (typeof FuelType)[keyof typeof FuelType]
+
+
+export const LoanerBookingStatus = {
+  PRENOTATA: 'PRENOTATA',
+  ASSEGNATA: 'ASSEGNATA',
+  RESTITUITA: 'RESTITUITA',
+  ANNULLATA: 'ANNULLATA'
+} as const
+
+export type LoanerBookingStatus = (typeof LoanerBookingStatus)[keyof typeof LoanerBookingStatus]
+
+
 export const SinistroStatus = {
   APERTO: 'APERTO',
   INVIATO_ASSICURAZIONE: 'INVIATO_ASSICURAZIONE',

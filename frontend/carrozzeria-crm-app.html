@@ -2404,253 +2404,528 @@ function PartDetailModal({ partId, api, onClose, onChanged }) {
   );
 }
 
-/* ---------------- AUTO SOSTITUTIVE VIEW ---------------- */
+/* ---------------- AUTO SOSTITUTIVE (LOANER) ---------------- */
+const FUEL_LABELS = { BENZINA: "Benzina", DIESEL: "Diesel", GPL: "GPL", METANO: "Metano", ELETTRICO: "Elettrico", IBRIDA: "Ibrida" };
+const FUEL_TYPES_FE = Object.keys(FUEL_LABELS);
+const LOANER_STATO_META = {
+  DISPONIBILE: { label: "Disponibile", bg: "#E6F4EC", fg: "#2F8F5B" },
+  PRENOTATA: { label: "Prenotata", bg: "#FCF3DD", fg: "#9A7B27" },
+  ASSEGNATA: { label: "Assegnata", bg: "#FBEAE5", fg: "#B4472E" },
+  MANUTENZIONE: { label: "Manutenzione", bg: "#E7ECF5", fg: "#3B5BA5" },
+  NON_DISPONIBILE: { label: "Non disponibile", bg: "#ECECEC", fg: "#6B6B6B" },
+};
+const DAMAGE_META = { LIEVE: "Lieve", MEDIA: "Media", GRAVE: "Grave" };
+const loanerEuro = (c) => (c == null ? "—" : (c / 100).toLocaleString("it-IT", { style: "currency", currency: "EUR" }));
+const euroToCents = (s) => { const n = parseFloat(String(s).replace(",", ".")); return Number.isFinite(n) ? Math.round(n * 100) : 0; };
+const loanerDate = (d) => (d ? new Date(d).toLocaleDateString("it-IT") : "—");
+const dateInputVal = (d) => (d ? new Date(d).toISOString().slice(0, 10) : "");
+const dateToInstant = (d) => (d ? new Date(d + "T12:00:00").toISOString() : null);
+const numOrNull = (v) => (v === "" || v == null ? null : Number(v));
+
+function LoanerStatoBadge({ stato }) {
+  const m = LOANER_STATO_META[stato] || LOANER_STATO_META.DISPONIBILE;
+  return <span style={{ fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 20, background: m.bg, color: m.fg }}>{m.label}</span>;
+}
+
+function LoanerAlertBadge({ alerts }) {
+  if (!alerts || alerts.length === 0) return null;
+  const critical = alerts.some((a) => a.level === "critical");
+  return <span title={alerts.map((a) => a.message).join("\n")} style={{ fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 20, background: critical ? "#FBEAE5" : "#FCF3DD", color: critical ? "#B4472E" : "#9A7B27" }}>⚠ {alerts.length}</span>;
+}
+
+// Elenco foto (url + didascalia). Caricamento binario su storage non disponibile
+// in locale: qui si registra il riferimento (URL) della foto.
+function LoanerPhotoList({ photos, onChange }) {
+  const [url, setUrl] = useState("");
+  const [caption, setCaption] = useState("");
+  const add = () => { if (!url.trim()) return; onChange([...(photos || []), { url: url.trim(), caption: caption.trim() }]); setUrl(""); setCaption(""); };
+  return (
+    <div>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 8 }}>
+        {(photos || []).map((p, i) => (
+          <div key={i} style={{ width: 96, fontSize: 10, color: "#8D9099" }}>
+            <img src={p.url} alt={p.caption || "foto"} style={{ width: 96, height: 66, objectFit: "cover", borderRadius: 6, border: "1px solid #2A2E34", background: "#0A0B0D" }} onError={(e) => { e.target.style.opacity = 0.3; }} />
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 4 }}>
+              <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.caption || "—"}</span>
+              <button onClick={() => onChange(photos.filter((_, j) => j !== i))} style={{ border: "none", background: "transparent", color: "#B4472E", cursor: "pointer" }}>✕</button>
+            </div>
+          </div>
+        ))}
+        {(!photos || photos.length === 0) && <span style={{ fontSize: 12, color: "#8D9099" }}>Nessuna foto.</span>}
+      </div>
+      <div style={{ display: "flex", gap: 6 }}>
+        <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="URL foto" style={{ flex: 2, padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 12 }} />
+        <input value={caption} onChange={(e) => setCaption(e.target.value)} placeholder="Didascalia" style={{ flex: 1, padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 12 }} />
+        <button onClick={add} style={{ padding: "7px 12px", borderRadius: 7, border: "none", background: "#2A2E34", color: "#F3F1EC", fontSize: 12 }}>+ Foto</button>
+      </div>
+    </div>
+  );
+}
+
+// Elenco danni rilevati alla restituzione.
+function LoanerDamageList({ danni, onChange }) {
+  const [descrizione, setDescrizione] = useState("");
+  const [gravita, setGravita] = useState("LIEVE");
+  const add = () => { if (!descrizione.trim()) return; onChange([...(danni || []), { descrizione: descrizione.trim(), gravita, note: "" }]); setDescrizione(""); setGravita("LIEVE"); };
+  return (
+    <div>
+      {(danni || []).map((d, i) => (
+        <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 12, padding: "4px 0", borderBottom: "1px solid #2A2E34" }}>
+          <span>{d.descrizione} <em style={{ color: "#8D9099" }}>· {DAMAGE_META[d.gravita] || d.gravita}</em></span>
+          <button onClick={() => onChange(danni.filter((_, j) => j !== i))} style={{ border: "none", background: "transparent", color: "#B4472E", cursor: "pointer" }}>✕</button>
+        </div>
+      ))}
+      <div style={{ display: "flex", gap: 6, marginTop: 6 }}>
+        <input value={descrizione} onChange={(e) => setDescrizione(e.target.value)} placeholder="Descrizione danno" style={{ flex: 2, padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 12 }} />
+        <select value={gravita} onChange={(e) => setGravita(e.target.value)} style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 12 }}>
+          {Object.entries(DAMAGE_META).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+        </select>
+        <button onClick={add} style={{ padding: "7px 12px", borderRadius: 7, border: "none", background: "#2A2E34", color: "#F3F1EC", fontSize: 12 }}>+ Danno</button>
+      </div>
+    </div>
+  );
+}
+
+// Calendario disponibilità: griglia auto × giorni.
+function AvailabilityCalendar({ api }) {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const today = new Date().toISOString().slice(0, 10);
+  const [from, setFrom] = useState(today);
+
+  const load = useCallback(() => {
+    const start = from;
+    const end = new Date(new Date(from + "T12:00:00").getTime() + 13 * 86400000).toISOString().slice(0, 10);
+    api(`/api/loaner-cars/calendar?from=${start}&to=${end}`).then(setData).catch((e) => setError(e.message));
+  }, [api, from]);
+  useEffect(load, [load]);
+
+  if (error) return <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 13, padding: 10, borderRadius: 8 }}>{error}</div>;
+  if (!data) return <Loading />;
+
+  return (
+    <div>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+        <label style={{ fontSize: 12, color: "#8D9099" }}>Dal</label>
+        <input type="date" value={from} onChange={(e) => setFrom(e.target.value)} style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13 }} />
+        <span style={{ fontSize: 12, color: "#8D9099" }}>· 14 giorni</span>
+      </div>
+      {data.rows.length === 0 && <div style={{ fontSize: 13, color: "#8D9099" }}>Nessuna auto in flotta.</div>}
+      {data.rows.length > 0 && (
+        <div style={{ overflowX: "auto", border: "1px solid #2A2E34", borderRadius: 10 }}>
+          <table style={{ borderCollapse: "collapse", fontSize: 11, width: "100%" }}>
+            <thead>
+              <tr>
+                <th style={{ position: "sticky", left: 0, background: "#15171B", padding: "8px 10px", textAlign: "left", minWidth: 150 }}>Auto</th>
+                {data.days.map((d) => <th key={d} style={{ padding: "6px 4px", color: "#8D9099", fontWeight: 600 }}>{d.slice(8, 10)}/{d.slice(5, 7)}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {data.rows.map((row) => (
+                <tr key={row.carId} style={{ borderTop: "1px solid #2A2E34" }}>
+                  <td style={{ position: "sticky", left: 0, background: "#15171B", padding: "8px 10px" }}>
+                    <div style={{ fontWeight: 600 }}>{row.marca} {row.modello}</div>
+                    <div style={{ fontFamily: "monospace", color: "#8D9099" }}>{row.targa}</div>
+                  </td>
+                  {row.cells.map((cell) => {
+                    const meta = cell.stato ? LOANER_STATO_META[cell.stato] : null;
+                    return <td key={cell.day} title={cell.stato || "Libera"} style={{ padding: 0, textAlign: "center" }}>
+                      <div style={{ height: 26, margin: 2, borderRadius: 4, background: meta ? meta.bg : "#0A0B0D", color: meta ? meta.fg : "transparent", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700 }}>{cell.occupata ? "•" : ""}</div>
+                    </td>;
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <div style={{ display: "flex", gap: 14, marginTop: 10, fontSize: 11, color: "#8D9099" }}>
+        {Object.entries(LOANER_STATO_META).filter(([k]) => ["PRENOTATA", "ASSEGNATA"].includes(k)).map(([k, m]) => (
+          <span key={k}><span style={{ display: "inline-block", width: 12, height: 12, borderRadius: 3, background: m.bg, marginRight: 4, verticalAlign: "middle" }} />{m.label}</span>
+        ))}
+        <span><span style={{ display: "inline-block", width: 12, height: 12, borderRadius: 3, background: "#0A0B0D", border: "1px solid #2A2E34", marginRight: 4, verticalAlign: "middle" }} />Libera</span>
+      </div>
+    </div>
+  );
+}
+
 function AutoSostitutiveView({ api }) {
   const [cars, setCars] = useState([]);
   const [clients, setClients] = useState([]);
+  const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
+  const [view, setView] = useState("flotta");
   const [error, setError] = useState(null);
 
   const load = useCallback(() => {
     setLoading(true);
-    Promise.all([api("/api/loaner-cars"), api("/api/clients")])
-      .then(([c, cl]) => { setCars(c); setClients(cl); })
+    Promise.all([api("/api/loaner-cars"), api("/api/clients"), api("/api/vehicles")])
+      .then(([c, cl, v]) => { setCars(c); setClients(cl); setVehicles(v); })
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
   }, [api]);
-
   useEffect(load, [load]);
 
   if (loading) return <Loading />;
+
+  const alertCars = cars.filter((c) => c.alerts && c.alerts.length > 0);
 
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
         <h1 style={{ fontSize: 20, fontWeight: 700 }}>Auto sostitutive</h1>
-        <button onClick={() => setShowForm(true)} style={{
-          padding: "8px 14px", borderRadius: 8, border: "none", background: "#C9A24B", color: "#15171B", fontSize: 13, fontWeight: 600,
-        }}>+ Nuova auto</button>
+        <button onClick={() => setShowForm(true)} style={{ padding: "8px 14px", borderRadius: 8, border: "none", background: "#C9A24B", color: "#15171B", fontSize: 13, fontWeight: 600 }}>+ Nuova auto</button>
+      </div>
+
+      <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
+        {[["flotta", "Flotta"], ["calendario", "Calendario"]].map(([k, l]) => (
+          <button key={k} onClick={() => setView(k)} style={{ padding: "7px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: view === k ? "#F3F1EC" : "transparent", color: view === k ? "#15171B" : "#8D9099", fontSize: 13, fontWeight: 600 }}>{l}</button>
+        ))}
       </div>
 
       {error && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 13, padding: 10, borderRadius: 8, marginBottom: 16 }}>{error}</div>}
 
-      {showForm && (
-        <NewLoanerCarForm api={api} onDone={() => { setShowForm(false); load(); }} onCancel={() => setShowForm(false)} />
+      {alertCars.length > 0 && (
+        <div style={{ background: "#211A12", border: "1px solid #7A5B22", borderRadius: 10, padding: 12, marginBottom: 16 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#E7B24C", marginBottom: 6 }}>⚠️ Avvisi flotta</div>
+          {alertCars.map((c) => (
+            <div key={c.id} style={{ fontSize: 12, color: "#D9D5CA", marginBottom: 2 }}>
+              <strong>{c.targa}</strong> {c.marca} {c.modello}: {c.alerts.map((a) => a.message.replace(/^⚠️\s*/, "")).join(" · ")}
+            </div>
+          ))}
+        </div>
       )}
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 12 }}>
-        {cars.length === 0 && <div style={{ fontSize: 13, color: "#8D9099" }}>Nessuna auto sostitutiva ancora.</div>}
-        {cars.map((c) => {
-          const attiva = c.bookings && c.bookings[0];
-          const client = attiva ? clients.find((cl) => cl.id === attiva.clientId) : null;
-          return (
-            <div key={c.id} onClick={() => setSelectedId(c.id)} style={{
-              background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 14, cursor: "pointer",
-            }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                <div style={{ fontFamily: "monospace", fontSize: 11, background: "#F1EFE8", display: "inline-block", padding: "2px 6px", borderRadius: 4 }}>{c.targa}</div>
-                <span style={{
-                  fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 20,
-                  background: c.disponibile ? "#E6F4EC" : "#FBEAE5", color: c.disponibile ? "#2F8F5B" : "#B4472E",
-                }}>{c.disponibile ? "Disponibile" : "In uso"}</span>
-              </div>
-              <div style={{ fontSize: 14, fontWeight: 600, marginTop: 8 }}>{c.marca} {c.modello}</div>
-              {attiva && (
-                <div style={{ fontSize: 12, color: "#8D9099", marginTop: 4 }}>
-                  Da {client ? `${client.nome} ${client.cognome}` : "cliente"} · dal {new Date(attiva.dataInizio).toLocaleDateString("it-IT")}
+      {showForm && <NewLoanerCarForm api={api} onDone={() => { setShowForm(false); load(); }} onCancel={() => setShowForm(false)} />}
+
+      {view === "calendario" ? (
+        <AvailabilityCalendar api={api} />
+      ) : (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(230px, 1fr))", gap: 12 }}>
+          {cars.length === 0 && <div style={{ fontSize: 13, color: "#8D9099" }}>Nessuna auto sostitutiva ancora.</div>}
+          {cars.map((c) => {
+            const attiva = c.prenotazioneAttiva;
+            const client = attiva && attiva.client ? attiva.client : null;
+            return (
+              <div key={c.id} onClick={() => setSelectedId(c.id)} style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 14, cursor: "pointer" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 6 }}>
+                  <div style={{ fontFamily: "monospace", fontSize: 11, background: "#F1EFE8", color: "#15171B", display: "inline-block", padding: "2px 6px", borderRadius: 4 }}>{c.targa}</div>
+                  <div style={{ display: "flex", gap: 4, flexWrap: "wrap", justifyContent: "flex-end" }}>
+                    <LoanerAlertBadge alerts={c.alerts} />
+                    <LoanerStatoBadge stato={c.stato} />
+                  </div>
                 </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
+                <div style={{ fontSize: 14, fontWeight: 600, marginTop: 8 }}>{c.marca} {c.modello}</div>
+                <div style={{ fontSize: 11, color: "#8D9099", marginTop: 2 }}>
+                  {c.km != null ? `${c.km.toLocaleString("it-IT")} km` : "km n/d"}{c.carburante ? ` · ${FUEL_LABELS[c.carburante]}` : ""}{c.costoGiornalieroCents ? ` · ${loanerEuro(c.costoGiornalieroCents)}/g` : ""}
+                </div>
+                {attiva && (
+                  <div style={{ fontSize: 12, color: "#B4472E", marginTop: 6 }}>
+                    A {client ? `${client.nome} ${client.cognome}` : "cliente"}{attiva.vehicle ? ` · ${attiva.vehicle.targa}` : ""} · dal {loanerDate(attiva.dataConsegna || attiva.dataInizio)}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       {selectedId && (
-        <LoanerCarDetailModal
-          carId={selectedId}
-          api={api}
-          clients={clients}
-          onClose={() => setSelectedId(null)}
-          onChanged={load}
-        />
+        <LoanerCarDetailModal carId={selectedId} api={api} clients={clients} vehicles={vehicles} onClose={() => setSelectedId(null)} onChanged={load} />
       )}
     </div>
   );
 }
 
 function NewLoanerCarForm({ api, onDone, onCancel }) {
-  const [form, setForm] = useState({ targa: "", marca: "", modello: "" });
+  const [form, setForm] = useState({ targa: "", marca: "", modello: "", km: "", carburante: "", costoGiornaliero: "", assicurazioneCompagnia: "", assicurazioneScadenza: "", revisioneScadenza: "", manutenzioneScadenza: "", manutenzioneKm: "" });
   const [error, setError] = useState(null);
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
   const submit = async () => {
     setError(null);
     try {
-      await api("/api/loaner-cars", { method: "POST", body: JSON.stringify(form) });
+      await api("/api/loaner-cars", { method: "POST", body: JSON.stringify({
+        targa: form.targa, marca: form.marca, modello: form.modello,
+        km: numOrNull(form.km), carburante: form.carburante || null,
+        costoGiornalieroCents: form.costoGiornaliero ? euroToCents(form.costoGiornaliero) : 0,
+        assicurazioneCompagnia: form.assicurazioneCompagnia || null,
+        assicurazioneScadenza: dateToInstant(form.assicurazioneScadenza),
+        revisioneScadenza: dateToInstant(form.revisioneScadenza),
+        manutenzioneScadenza: dateToInstant(form.manutenzioneScadenza),
+        manutenzioneKm: numOrNull(form.manutenzioneKm),
+      }) });
       onDone();
-    } catch (e) {
-      setError(e.message);
-    }
+    } catch (e) { setError(e.message); }
   };
 
   return (
     <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 16, marginBottom: 16 }}>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
         <Field label="Targa" value={form.targa} onChange={set("targa")} />
         <Field label="Marca" value={form.marca} onChange={set("marca")} />
         <Field label="Modello" value={form.modello} onChange={set("modello")} />
+        <Field label="Km" type="number" value={form.km} onChange={set("km")} />
+        <div style={{ marginBottom: 12 }}>
+          <label style={{ display: "block", fontSize: 11, color: "#8D9099", marginBottom: 4 }}>Carburante</label>
+          <select value={form.carburante} onChange={set("carburante")} style={{ width: "100%", padding: "9px 10px", borderRadius: 8, border: "1px solid #2A2E34", fontSize: 14 }}>
+            <option value="">—</option>
+            {FUEL_TYPES_FE.map((f) => <option key={f} value={f}>{FUEL_LABELS[f]}</option>)}
+          </select>
+        </div>
+        <Field label="Costo interno €/giorno" value={form.costoGiornaliero} onChange={set("costoGiornaliero")} />
+        <Field label="Assicurazione (compagnia)" value={form.assicurazioneCompagnia} onChange={set("assicurazioneCompagnia")} />
+        <Field label="Scadenza assicurazione" type="date" value={form.assicurazioneScadenza} onChange={set("assicurazioneScadenza")} />
+        <Field label="Scadenza revisione" type="date" value={form.revisioneScadenza} onChange={set("revisioneScadenza")} />
+        <Field label="Prossima manutenzione (data)" type="date" value={form.manutenzioneScadenza} onChange={set("manutenzioneScadenza")} />
+        <Field label="Manutenzione a (km)" type="number" value={form.manutenzioneKm} onChange={set("manutenzioneKm")} />
       </div>
       {error && <div style={{ color: "#B4472E", fontSize: 12, marginBottom: 8 }}>{error}</div>}
       <div style={{ display: "flex", gap: 8 }}>
         <button onClick={submit} style={{ padding: "7px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 13 }}>Salva</button>
-        <button onClick={onCancel} style={{ padding: "7px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", fontSize: 13 }}>Annulla</button>
+        <button onClick={onCancel} style={{ padding: "7px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 13 }}>Annulla</button>
       </div>
     </div>
   );
 }
 
-function LoanerCarDetailModal({ carId, api, clients, onClose, onChanged }) {
+function LoanerCarDetailModal({ carId, api, clients, vehicles, onClose, onChanged }) {
   const [car, setCar] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [clientId, setClientId] = useState("");
   const [saving, setSaving] = useState(false);
+  const [edit, setEdit] = useState(null); // campi anagrafica/scadenze in modifica
+  const [foto, setFoto] = useState([]);
+
+  // Form assegnazione / prenotazione (quando l'auto è libera).
+  const [assign, setAssign] = useState({ clientId: "", vehicleId: "", dataInizio: new Date().toISOString().slice(0, 10), dataFinePrevista: "", kmIniziali: "", carburanteIniziale: "", attribuita: true });
+  const [firma, setFirma] = useState(null); // {dataUrl, nome}
+  const [showFirma, setShowFirma] = useState(false);
+
+  // Form rientro.
+  const [ret, setRet] = useState({ kmFinali: "", carburanteFinale: "", note: "", attribuita: true });
+  const [fotoRestituzione, setFotoRestituzione] = useState([]);
+  const [danni, setDanni] = useState([]);
 
   const load = useCallback(() => {
     setLoading(true);
-    api(`/api/loaner-cars/${carId}`).then(setCar).catch((e) => setError(e.message)).finally(() => setLoading(false));
+    api(`/api/loaner-cars/${carId}`).then((c) => {
+      setCar(c);
+      setEdit({ km: c.km ?? "", carburante: c.carburante ?? "", costoGiornaliero: c.costoGiornalieroCents ? (c.costoGiornalieroCents / 100).toString() : "", stato: c.stato, assicurazioneCompagnia: c.assicurazioneCompagnia ?? "", assicurazioneScadenza: dateInputVal(c.assicurazioneScadenza), revisioneScadenza: dateInputVal(c.revisioneScadenza), manutenzioneScadenza: dateInputVal(c.manutenzioneScadenza), manutenzioneKm: c.manutenzioneKm ?? "", manutenzioneNote: c.manutenzioneNote ?? "", note: c.note ?? "" });
+      setFoto(c.foto || []);
+    }).catch((e) => setError(e.message)).finally(() => setLoading(false));
   }, [api, carId]);
-
   useEffect(load, [load]);
 
-  const prenotazioneAttiva = car?.bookings?.find((b) => !b.dataFine);
+  const active = car && car.bookings ? car.bookings.find((b) => b.stato === "ASSEGNATA") : null;
+  const prenotata = car && car.bookings ? car.bookings.find((b) => b.stato === "PRENOTATA") : null;
+  const corrente = active || prenotata;
 
-  const assegna = async () => {
-    if (!clientId) return;
-    setError(null);
-    setSaving(true);
+  const salvaAnagrafica = async () => {
+    setSaving(true); setError(null);
     try {
-      await api(`/api/loaner-cars/${carId}/bookings`, { method: "POST", body: JSON.stringify({ clientId }) });
-      await load();
-      onChanged();
-    } catch (e) {
-      setError(e.message);
-    } finally {
-      setSaving(false);
-    }
+      await api(`/api/loaner-cars/${carId}`, { method: "PATCH", body: JSON.stringify({
+        km: numOrNull(edit.km), carburante: edit.carburante || null, stato: edit.stato,
+        costoGiornalieroCents: edit.costoGiornaliero ? euroToCents(edit.costoGiornaliero) : 0,
+        assicurazioneCompagnia: edit.assicurazioneCompagnia || null,
+        assicurazioneScadenza: dateToInstant(edit.assicurazioneScadenza),
+        revisioneScadenza: dateToInstant(edit.revisioneScadenza),
+        manutenzioneScadenza: dateToInstant(edit.manutenzioneScadenza),
+        manutenzioneKm: numOrNull(edit.manutenzioneKm), manutenzioneNote: edit.manutenzioneNote || null,
+        note: edit.note || null, foto,
+      }) });
+      await load(); onChanged();
+    } catch (e) { setError(e.message); } finally { setSaving(false); }
+  };
+
+  const creaPrenotazione = async (poiAssegna) => {
+    setSaving(true); setError(null);
+    try {
+      if (poiAssegna && !assign.clientId) throw new Error("Seleziona un cliente per assegnare");
+      const booking = await api(`/api/loaner-cars/${carId}/bookings`, { method: "POST", body: JSON.stringify({
+        dataInizio: dateToInstant(assign.dataInizio) || new Date().toISOString(),
+        dataFinePrevista: dateToInstant(assign.dataFinePrevista),
+        clientId: assign.clientId || null, vehicleId: assign.vehicleId || null,
+      }) });
+      if (poiAssegna) {
+        await api(`/api/loaner-cars/${carId}/bookings/${booking.id}/assegna`, { method: "PATCH", body: JSON.stringify({
+          clientId: assign.clientId, vehicleId: assign.vehicleId || null,
+          dataConsegna: dateToInstant(assign.dataInizio) || new Date().toISOString(),
+          kmIniziali: numOrNull(assign.kmIniziali), carburanteIniziale: numOrNull(assign.carburanteIniziale),
+          firmaClienteDataUrl: firma ? firma.dataUrl : null, firmatarioNome: firma ? firma.nome : null,
+          attribuitaAllaPratica: assign.attribuita,
+        }) });
+      }
+      setFirma(null);
+      await load(); onChanged();
+    } catch (e) { setError(e.message); } finally { setSaving(false); }
+  };
+
+  const assegnaPrenotazione = async () => {
+    setSaving(true); setError(null);
+    try {
+      const clientId = assign.clientId || (corrente && corrente.clientId);
+      if (!clientId) throw new Error("Seleziona un cliente per assegnare");
+      await api(`/api/loaner-cars/${carId}/bookings/${corrente.id}/assegna`, { method: "PATCH", body: JSON.stringify({
+        clientId, vehicleId: assign.vehicleId || (corrente && corrente.vehicleId) || null,
+        dataConsegna: new Date().toISOString(),
+        kmIniziali: numOrNull(assign.kmIniziali), carburanteIniziale: numOrNull(assign.carburanteIniziale),
+        firmaClienteDataUrl: firma ? firma.dataUrl : null, firmatarioNome: firma ? firma.nome : null,
+        attribuitaAllaPratica: assign.attribuita,
+      }) });
+      setFirma(null);
+      await load(); onChanged();
+    } catch (e) { setError(e.message); } finally { setSaving(false); }
   };
 
   const registraRientro = async () => {
-    setError(null);
-    setSaving(true);
+    setSaving(true); setError(null);
     try {
-      await api(`/api/loaner-cars/${carId}/rientro`, { method: "PATCH" });
-      await load();
-      onChanged();
-    } catch (e) {
-      setError(e.message);
-    } finally {
-      setSaving(false);
-    }
+      await api(`/api/loaner-cars/${carId}/bookings/${active.id}/restituzione`, { method: "PATCH", body: JSON.stringify({
+        dataRestituzione: new Date().toISOString(),
+        kmFinali: numOrNull(ret.kmFinali), carburanteFinale: numOrNull(ret.carburanteFinale),
+        fotoRestituzione, danni, note: ret.note || null, attribuitaAllaPratica: ret.attribuita,
+      }) });
+      setFotoRestituzione([]); setDanni([]); setRet({ kmFinali: "", carburanteFinale: "", note: "", attribuita: true });
+      await load(); onChanged();
+    } catch (e) { setError(e.message); } finally { setSaving(false); }
+  };
+
+  const annulla = async (bookingId) => {
+    setSaving(true); setError(null);
+    try { await api(`/api/loaner-cars/${carId}/bookings/${bookingId}/annulla`, { method: "PATCH" }); await load(); onChanged(); }
+    catch (e) { setError(e.message); } finally { setSaving(false); }
   };
 
   const elimina = async () => {
     if (!confirm("Eliminare definitivamente questa auto sostitutiva?")) return;
-    try {
-      await api(`/api/loaner-cars/${carId}`, { method: "DELETE" });
-      onChanged();
-      onClose();
-    } catch (e) {
-      setError(e.message);
-    }
+    try { await api(`/api/loaner-cars/${carId}`, { method: "DELETE" }); onChanged(); onClose(); }
+    catch (e) { setError(e.message); }
+  };
+  const dismetti = async () => {
+    try { await api(`/api/loaner-cars/${carId}`, { method: "PATCH", body: JSON.stringify({ attiva: false }) }); onChanged(); onClose(); }
+    catch (e) { setError(e.message); }
   };
 
+  const lbl = { display: "block", fontSize: 11, color: "#8D9099", marginBottom: 4 };
+  const inp = { width: "100%", padding: "8px 9px", borderRadius: 8, border: "1px solid #2A2E34", fontSize: 13, boxSizing: "border-box", background: "#0A0B0D", color: "#F3F1EC" };
+
   return (
-    <div onClick={onClose} style={{
-      position: "fixed", inset: 0, background: "rgba(27,26,23,0.5)", display: "flex",
-      alignItems: "center", justifyContent: "center", zIndex: 50,
-    }}>
-      <div onClick={(e) => e.stopPropagation()} style={{
-        background: "#15171B", borderRadius: 16, width: 480, maxHeight: "85vh", overflowY: "auto", padding: 24,
-      }}>
+    <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(27,26,23,0.5)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 50, padding: 16 }}>
+      <div onClick={(e) => e.stopPropagation()} style={{ background: "#15171B", borderRadius: 16, width: 560, maxWidth: "100%", maxHeight: "88vh", overflowY: "auto", padding: 24 }}>
         {loading || !car ? <Loading /> : (
           <>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 4 }}>
               <div>
-                <div style={{ fontFamily: "monospace", fontSize: 12, background: "#F1EFE8", display: "inline-block", padding: "2px 7px", borderRadius: 5 }}>{car.targa}</div>
-                <h2 style={{ fontSize: 18, fontWeight: 700, margin: "8px 0 2px" }}>{car.marca} {car.modello}</h2>
+                <div style={{ fontFamily: "monospace", fontSize: 12, background: "#F1EFE8", color: "#15171B", display: "inline-block", padding: "2px 7px", borderRadius: 5 }}>{car.targa}</div>
+                <h2 style={{ fontSize: 18, fontWeight: 700, margin: "8px 0 4px" }}>{car.marca} {car.modello} <LoanerStatoBadge stato={car.stato} /></h2>
               </div>
-              <button onClick={onClose} style={{
-                border: "none", background: "#F1EFE8", width: 28, height: 28, borderRadius: 8, fontSize: 15, color: "#4A4842",
-              }}>✕</button>
+              <button onClick={onClose} style={{ border: "none", background: "#F1EFE8", width: 28, height: 28, borderRadius: 8, fontSize: 15, color: "#4A4842" }}>✕</button>
             </div>
 
             {error && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 13, padding: 10, borderRadius: 8, marginTop: 12 }}>{error}</div>}
 
-            <div style={{ marginTop: 20 }}>
-              {prenotazioneAttiva ? (
-                <div style={{ background: "#FBEAE5", borderRadius: 10, padding: 12 }}>
-                  <div style={{ fontSize: 12, color: "#8D9099", marginBottom: 4 }}>Attualmente assegnata a</div>
-                  <div style={{ fontSize: 14, fontWeight: 700 }}>
-                    {(() => {
-                      const cl = clients.find((c) => c.id === prenotazioneAttiva.clientId);
-                      return cl ? `${cl.nome} ${cl.cognome}` : "Cliente";
-                    })()}
+            {car.alerts && car.alerts.length > 0 && (
+              <div style={{ background: "#211A12", border: "1px solid #7A5B22", borderRadius: 10, padding: 10, marginTop: 12 }}>
+                {car.alerts.map((a, i) => <div key={i} style={{ fontSize: 12, color: a.level === "critical" ? "#FF9D92" : "#E7B24C" }}>{a.message}</div>)}
+              </div>
+            )}
+
+            {/* Anagrafica e scadenze */}
+            {edit && (
+              <div style={{ marginTop: 16 }}>
+                <h3 style={{ fontSize: 13, fontWeight: 700, marginBottom: 10 }}>Dati e scadenze</h3>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10 }}>
+                  <div><label style={lbl}>Km</label><input type="number" value={edit.km} onChange={(e) => setEdit({ ...edit, km: e.target.value })} style={inp} /></div>
+                  <div><label style={lbl}>Carburante</label><select value={edit.carburante} onChange={(e) => setEdit({ ...edit, carburante: e.target.value })} style={inp}><option value="">—</option>{FUEL_TYPES_FE.map((f) => <option key={f} value={f}>{FUEL_LABELS[f]}</option>)}</select></div>
+                  <div><label style={lbl}>Stato</label><select value={edit.stato} onChange={(e) => setEdit({ ...edit, stato: e.target.value })} style={inp}>{Object.entries(LOANER_STATO_META).map(([k, m]) => <option key={k} value={k}>{m.label}</option>)}</select></div>
+                  <div><label style={lbl}>Costo €/giorno</label><input value={edit.costoGiornaliero} onChange={(e) => setEdit({ ...edit, costoGiornaliero: e.target.value })} style={inp} /></div>
+                  <div><label style={lbl}>Assicurazione</label><input value={edit.assicurazioneCompagnia} onChange={(e) => setEdit({ ...edit, assicurazioneCompagnia: e.target.value })} style={inp} /></div>
+                  <div><label style={lbl}>Scad. assicurazione</label><input type="date" value={edit.assicurazioneScadenza} onChange={(e) => setEdit({ ...edit, assicurazioneScadenza: e.target.value })} style={inp} /></div>
+                  <div><label style={lbl}>Scad. revisione</label><input type="date" value={edit.revisioneScadenza} onChange={(e) => setEdit({ ...edit, revisioneScadenza: e.target.value })} style={inp} /></div>
+                  <div><label style={lbl}>Manutenzione (data)</label><input type="date" value={edit.manutenzioneScadenza} onChange={(e) => setEdit({ ...edit, manutenzioneScadenza: e.target.value })} style={inp} /></div>
+                  <div><label style={lbl}>Manutenzione (km)</label><input type="number" value={edit.manutenzioneKm} onChange={(e) => setEdit({ ...edit, manutenzioneKm: e.target.value })} style={inp} /></div>
+                </div>
+                <div style={{ marginTop: 10 }}><label style={lbl}>Note manutenzione</label><input value={edit.manutenzioneNote} onChange={(e) => setEdit({ ...edit, manutenzioneNote: e.target.value })} style={inp} /></div>
+                <div style={{ marginTop: 10 }}><label style={lbl}>Foto veicolo</label><LoanerPhotoList photos={foto} onChange={setFoto} /></div>
+                <button disabled={saving} onClick={salvaAnagrafica} style={{ marginTop: 10, padding: "7px 14px", borderRadius: 8, border: "none", background: "#C9A24B", color: "#15171B", fontSize: 13, fontWeight: 600 }}>Salva modifiche</button>
+              </div>
+            )}
+
+            {/* Assegnazione corrente / rientro */}
+            <div style={{ marginTop: 22 }}>
+              <h3 style={{ fontSize: 13, fontWeight: 700, marginBottom: 10 }}>Assegnazione</h3>
+              {active ? (
+                <div style={{ background: "#1B120F", border: "1px solid #7A3A2A", borderRadius: 10, padding: 14 }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: "#F3F1EC" }}>{active.client ? `${active.client.nome} ${active.client.cognome}` : "Cliente"}{active.vehicle ? ` · pratica ${active.vehicle.marca} ${active.vehicle.modello} (${active.vehicle.targa})` : ""}</div>
+                  <div style={{ fontSize: 12, color: "#8D9099", margin: "3px 0 10px" }}>Consegnata il {loanerDate(active.dataConsegna || active.dataInizio)} · km iniziali {active.kmIniziali ?? "n/d"} · carburante {active.carburanteIniziale != null ? active.carburanteIniziale + "%" : "n/d"}{active.firmaAt ? " · firma acquisita ✍️" : ""}</div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+                    <div><label style={lbl}>Km finali</label><input type="number" value={ret.kmFinali} onChange={(e) => setRet({ ...ret, kmFinali: e.target.value })} style={inp} /></div>
+                    <div><label style={lbl}>Carburante finale (%)</label><input type="number" value={ret.carburanteFinale} onChange={(e) => setRet({ ...ret, carburanteFinale: e.target.value })} style={inp} /></div>
                   </div>
-                  <div style={{ fontSize: 12, color: "#8D9099" }}>dal {new Date(prenotazioneAttiva.dataInizio).toLocaleDateString("it-IT")}</div>
-                  <button disabled={saving} onClick={registraRientro} style={{
-                    marginTop: 10, padding: "8px 14px", borderRadius: 8, border: "none", background: "#2F8F5B", color: "#15171B", fontSize: 13, fontWeight: 600,
-                  }}>Registra rientro</button>
+                  <div style={{ marginTop: 10 }}><label style={lbl}>Danni rilevati</label><LoanerDamageList danni={danni} onChange={setDanni} /></div>
+                  <div style={{ marginTop: 10 }}><label style={lbl}>Foto restituzione</label><LoanerPhotoList photos={fotoRestituzione} onChange={setFotoRestituzione} /></div>
+                  <div style={{ marginTop: 10 }}><label style={lbl}>Note</label><input value={ret.note} onChange={(e) => setRet({ ...ret, note: e.target.value })} style={inp} /></div>
+                  <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12, color: "#D9D5CA", marginTop: 10 }}><input type="checkbox" checked={ret.attribuita} onChange={(e) => setRet({ ...ret, attribuita: e.target.checked })} /> Attribuisci il costo alla pratica nel Profit Tracker</label>
+                  <button disabled={saving} onClick={registraRientro} style={{ marginTop: 12, padding: "8px 14px", borderRadius: 8, border: "none", background: "#2F8F5B", color: "#15171B", fontSize: 13, fontWeight: 600 }}>Registra rientro</button>
                 </div>
               ) : (
-                <div style={{ background: "#0A0B0D", borderRadius: 10, padding: 12 }}>
-                  <div style={{ fontSize: 12, color: "#8D9099", marginBottom: 8 }}>Assegna a un cliente</div>
-                  <div style={{ display: "flex", gap: 8 }}>
-                    <select value={clientId} onChange={(e) => setClientId(e.target.value)} style={{
-                      flex: 1, padding: 8, borderRadius: 8, border: "1px solid #2A2E34", fontSize: 13,
-                    }}>
-                      <option value="">Seleziona cliente…</option>
-                      {clients.map((c) => <option key={c.id} value={c.id}>{c.nome} {c.cognome}</option>)}
-                    </select>
-                    <button disabled={saving || !clientId} onClick={assegna} style={{
-                      padding: "8px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 13, fontWeight: 600,
-                    }}>Assegna</button>
+                <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 10, padding: 14 }}>
+                  {prenotata && <div style={{ fontSize: 12, color: "#9A7B27", marginBottom: 10 }}>Prenotazione esistente dal {loanerDate(prenotata.dataInizio)}{prenotata.dataFinePrevista ? ` al ${loanerDate(prenotata.dataFinePrevista)}` : ""}. Compila e assegna, oppure <button onClick={() => annulla(prenotata.id)} style={{ border: "none", background: "transparent", color: "#B4472E", cursor: "pointer", textDecoration: "underline" }}>annulla</button>.</div>}
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+                    <div><label style={lbl}>Cliente</label><select value={assign.clientId} onChange={(e) => setAssign({ ...assign, clientId: e.target.value })} style={inp}><option value="">Seleziona…</option>{clients.map((c) => <option key={c.id} value={c.id}>{c.nome} {c.cognome}</option>)}</select></div>
+                    <div><label style={lbl}>Pratica (veicolo)</label><select value={assign.vehicleId} onChange={(e) => setAssign({ ...assign, vehicleId: e.target.value })} style={inp}><option value="">Nessuna</option>{vehicles.map((v) => <option key={v.id} value={v.id}>{v.marca} {v.modello} · {v.targa}</option>)}</select></div>
+                    <div><label style={lbl}>Data consegna / inizio</label><input type="date" value={assign.dataInizio} onChange={(e) => setAssign({ ...assign, dataInizio: e.target.value })} style={inp} /></div>
+                    <div><label style={lbl}>Fine prevista</label><input type="date" value={assign.dataFinePrevista} onChange={(e) => setAssign({ ...assign, dataFinePrevista: e.target.value })} style={inp} /></div>
+                    <div><label style={lbl}>Km iniziali</label><input type="number" value={assign.kmIniziali} onChange={(e) => setAssign({ ...assign, kmIniziali: e.target.value })} style={inp} /></div>
+                    <div><label style={lbl}>Carburante iniziale (%)</label><input type="number" value={assign.carburanteIniziale} onChange={(e) => setAssign({ ...assign, carburanteIniziale: e.target.value })} style={inp} /></div>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 10, flexWrap: "wrap" }}>
+                    <button onClick={() => setShowFirma(true)} style={{ padding: "7px 12px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12 }}>{firma ? "✍️ Firma acquisita" : "Acquisisci firma cliente"}</button>
+                    <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12, color: "#D9D5CA" }}><input type="checkbox" checked={assign.attribuita} onChange={(e) => setAssign({ ...assign, attribuita: e.target.checked })} /> Attribuisci costo alla pratica</label>
+                  </div>
+                  <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+                    {prenotata ? (
+                      <button disabled={saving} onClick={assegnaPrenotazione} style={{ padding: "8px 14px", borderRadius: 8, border: "none", background: "#C9A24B", color: "#15171B", fontSize: 13, fontWeight: 600 }}>Assegna e consegna</button>
+                    ) : (
+                      <>
+                        <button disabled={saving} onClick={() => creaPrenotazione(true)} style={{ padding: "8px 14px", borderRadius: 8, border: "none", background: "#C9A24B", color: "#15171B", fontSize: 13, fontWeight: 600 }}>Assegna e consegna</button>
+                        <button disabled={saving} onClick={() => creaPrenotazione(false)} style={{ padding: "8px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 13 }}>Solo prenota</button>
+                      </>
+                    )}
                   </div>
                 </div>
               )}
             </div>
 
+            {/* Storico */}
             {car.bookings && car.bookings.length > 0 && (
               <>
                 <h3 style={{ fontSize: 13, fontWeight: 700, marginTop: 24, marginBottom: 10 }}>Storico utilizzi</h3>
                 <div style={{ border: "1px solid #2A2E34", borderRadius: 10, overflow: "hidden" }}>
-                  {car.bookings.map((b, i) => {
-                    const cl = clients.find((c) => c.id === b.clientId);
-                    return (
-                      <div key={b.id} style={{
-                        display: "flex", justifyContent: "space-between", padding: "8px 12px", fontSize: 12,
-                        borderTop: i === 0 ? "none" : "1px solid #F1EFE8",
-                      }}>
-                        <span>{cl ? `${cl.nome} ${cl.cognome}` : "Cliente"}</span>
-                        <span style={{ color: "#8D9099" }}>
-                          {new Date(b.dataInizio).toLocaleDateString("it-IT")}
-                          {b.dataFine ? ` → ${new Date(b.dataFine).toLocaleDateString("it-IT")}` : " (in corso)"}
-                        </span>
-                      </div>
-                    );
-                  })}
+                  {car.bookings.map((b, i) => (
+                    <div key={b.id} style={{ display: "flex", justifyContent: "space-between", gap: 8, padding: "8px 12px", fontSize: 12, borderTop: i === 0 ? "none" : "1px solid #2A2E34" }}>
+                      <span>{b.client ? `${b.client.nome} ${b.client.cognome}` : "—"}{b.vehicle ? ` · ${b.vehicle.targa}` : ""} <em style={{ color: "#8D9099" }}>({LOANER_STATO_META[b.stato] ? LOANER_STATO_META[b.stato].label : b.stato})</em></span>
+                      <span style={{ color: "#8D9099", textAlign: "right" }}>
+                        {loanerDate(b.dataConsegna || b.dataInizio)}{b.dataRestituzione ? ` → ${loanerDate(b.dataRestituzione)}` : ""}
+                        {b.costoTotaleCents != null ? ` · ${loanerEuro(b.costoTotaleCents)}${b.attribuitaAllaPratica ? " (pratica)" : ""}` : ""}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </>
             )}
 
-            <button onClick={elimina} style={{
-              marginTop: 20, padding: "7px 14px", borderRadius: 8, border: "1px solid #FBEAE5", background: "#15171B", color: "#B4472E", fontSize: 12,
-            }}>Elimina auto</button>
+            <div style={{ display: "flex", gap: 8, marginTop: 20 }}>
+              <button onClick={dismetti} style={{ padding: "7px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#8D9099", fontSize: 12 }}>Dismetti dalla flotta</button>
+              <button onClick={elimina} style={{ padding: "7px 14px", borderRadius: 8, border: "1px solid #FBEAE5", background: "#15171B", color: "#B4472E", fontSize: 12 }}>Elimina auto</button>
+            </div>
           </>
         )}
       </div>
+      {showFirma && <FirmaModal titolo="Firma cliente" sottotitolo="Il cliente firma per la presa in consegna dell'auto sostitutiva" salvando={false} onSalva={(dataUrl, nome) => { setFirma({ dataUrl, nome }); setShowFirma(false); }} onAnnulla={() => setShowFirma(false)} />}
     </div>
   );
 }
