@@ -1,3 +1,4 @@
+import { publicPhoto,legacyPhotoSelect } from '../lib/photo-timeline.js';
 import { Router } from "express";
 import crypto from "crypto";
 import { prisma } from "../lib/prisma.js";
@@ -55,7 +56,7 @@ portaleRouter.get("/:token", async (req, res) => {
     where: { id: access.vehicleId },
     include: {
       client: { select: { nome: true, cognome: true } },
-      photos: { orderBy: { createdAt: "asc" } },
+      photos: { select:legacyPhotoSelect, orderBy: { createdAt: "asc" } },
       stageHistory: { orderBy: { changedAt: "asc" } },
       quotes: { orderBy: { createdAt: "desc" }, take: 1, include: { items: true } },
       sinistri: true,
@@ -76,7 +77,7 @@ portaleRouter.get("/:token", async (req, res) => {
       dataPrevistaConsegna: vehicle.dataPrevistaConsegna,
     },
     cliente: vehicle.client,
-    foto: vehicle.photos,
+    foto: vehicle.photos.map(publicPhoto),
     storicoStage: vehicle.stageHistory,
     preventivo: vehicle.quotes[0] ?? null,
     sinistro: vehicle.sinistri[0] ?? null,

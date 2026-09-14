@@ -1,3 +1,6 @@
+import { partsProfitData, isBlocking, blockedDuration } from "../lib/parts-tracking.js";
+import { delayContext, forecastVehicle } from "../lib/delay-service.js";
+import { calculate as calculateProfit, DEFAULT_SETTINGS as PROFIT_DEFAULTS } from "../lib/profit.js";
 import { Router } from "express";
 import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
@@ -15,6 +18,12 @@ import { requireAuth, tenantScope } from "../middleware/auth.js";
 
 export const copilotRouter = Router();
 copilotRouter.use(requireAuth);
+copilotRouter.use((req,res,next)=>{
+ prisma.user.findFirst({where:{id:req.auth.userId,tenantId:req.auth.tenantId,attivo:true},select:{ruolo:true}}).then(user=>{
+  if(!user) return res.status(403).json({error:"Account non attivo"});
+  req.auth.role=user.ruolo; next();
+ }).catch(next);
+});
 
 // Stessa quota/piano del vecchio Assistente: stessa risorsa concettuale
 // ("fai una domanda in linguaggio naturale sui tuoi dati"), quindi condivide
@@ -31,31 +40,6 @@ async function contaDomandeQuestoMese(tenantId) {
 
 const RUOLI_CON_ACCESSO_FINANZIARIO = new Set(["ADMIN", "AMMINISTRAZIONE"]);
 const STRUMENTI_FINANZIARI = new Set(["margine_veicolo", "preventivi_marginalita_bassa", "fatturato_mensile"]);
-
-// Margine di un preventivo: manodopera/vernice/altro sono considerate
-// margine pieno (il gestionale non traccia un costo per la manodopera).
-// Per i ricambi, il costo è reale SOLO se troviamo un Part con la stessa
-// descrizione esatta a magazzino: se non lo troviamo, quella voce non
-// entra nel margine stimato (mai inventare un costo) e viene segnalata
-// tramite "vociSenzaCosto" così il modello può dichiarare il dato parziale.
-async function calcolaMargineQuote(tenantId, quote) {
-  let ricavo = 0, margineStimato = 0, vociSenzaCosto = 0;
-  for (const item of quote.items) {
-    const riga = Number(item.quantita) * Number(item.prezzoUnitario);
-    ricavo += riga;
-    if (item.tipo === "RICAMBIO") {
-      const part = await prisma.part.findFirst({
-        where: { tenantId, descrizione: { equals: item.descrizione, mode: "insensitive" } },
-      });
-      if (part) margineStimato += riga - Number(item.quantita) * Number(part.prezzoAcquisto);
-      else vociSenzaCosto++;
-    } else {
-      margineStimato += riga;
-    }
-  }
-  const marginePercento = ricavo > 0 ? Number(((margineStimato / ricavo) * 100).toFixed(1)) : null;
-  return { ricavo, margineStimato, marginePercento, vociSenzaCosto, datiIncompleti: vociSenzaCosto > 0 };
-}
 
 async function giorniInStadioCorrente(vehicleId) {
   const ultimo = await prisma.stageHistory.findFirst({ where: { vehicleId }, orderBy: { changedAt: "desc" } });
@@ -120,7 +104,7 @@ const clienteRif = (c) => ({
 // il Copilot non può creare, modificare o cancellare nulla, né vedere dati
 // di un'altra carrozzeria. `raccogli` registra i record realmente
 // consultati (chiave tipo:id) per costruire i "riferimenti" in risposta.
-function creaStrumenti(tenantId, ruolo, raccogli) {
+function creaStrumenti(tenantId, ruolo, raccogli, userId) {
   return {
     riepilogo_dashboard: async () => {
       const [inOfficina, prontaConsegna, attesaRicambi, preventiviInviati, preventiviAccettati, quotesAccettati] =
@@ -156,46 +140,21 @@ function creaStrumenti(tenantId, ruolo, raccogli) {
     },
 
     veicoli_a_rischio_ritardo: async () => {
-      const ora = new Date();
-      const veicoli = await prisma.vehicle.findMany({
-        where: { tenantId, NOT: { stage: "CONSEGNATA" }, dataPrevistaConsegna: { not: null } },
-        include: { client: true },
-        orderBy: { dataPrevistaConsegna: "asc" },
-        take: 20,
-      });
-      const risultato = [];
-      for (const v of veicoli) {
-        const scaduta = v.dataPrevistaConsegna < ora;
-        const traDueGiorni = !scaduta && (v.dataPrevistaConsegna.getTime() - ora.getTime()) < 2 * 24 * 60 * 60 * 1000;
-        if (!scaduta && !traDueGiorni) continue;
-        const giorni = await giorniInStadioCorrente(v.id);
-        const riga = {
-          ...veicoloRif(v),
-          dataPrevistaConsegna: v.dataPrevistaConsegna,
-          motivo: scaduta ? "consegna prevista già superata" : "consegna prevista entro 48 ore",
-          giorniInStadioCorrente: giorni,
-        };
-        raccogli(riga);
-        risultato.push(riga);
+      const ctx=await delayContext(tenantId),risultato=[];
+      let nonValutabili=0;
+      for(const v of ctx.records.filter(v=>v.stage!=="CONSEGNATA"&&!v.dataConsegnaEffettiva&&(ruolo!=="TECNICO"||v.tecnicoId===userId))){
+        const f=await forecastVehicle(ctx,v.id);
+        if(f?.risk==null){nonValutabili++;continue;}
+        if(f.risk>30){const ref=veicoloRif(v);raccogli(ref);risultato.push({...ref,previsione:f.result});}
       }
-      return risultato;
+      return {pratiche:risultato.sort((a,b)=>b.previsione.risk-a.previsione.risk),nonValutabili,nota:"Rischio indicativo dal Predictive Delay AI, non probabilità validata. Dichiara i dati mancanti. Non modificare date e non inviare messaggi."};
     },
 
     veicoli_fermi_per_ricambi: async () => {
-      const veicoli = await prisma.vehicle.findMany({
-        where: { tenantId, stage: "ORDINE_RICAMBI" },
-        include: { client: true },
-        orderBy: { updatedAt: "asc" },
-        take: 20,
+      const veicoli=await prisma.vehicle.findMany({where:{tenantId,stage:{not:"CONSEGNATA"},...(ruolo==="TECNICO"?{tecnicoId:userId}:{})},include:{client:true,trackedParts:{where:{tenantId}},partBlocks:{where:{tenantId}}},orderBy:{updatedAt:"asc"}});
+      return veicoli.filter(v=>v.trackedParts.some(isBlocking)||v.stage==="ORDINE_RICAMBI").map(v=>{
+        const durata=blockedDuration(v.partBlocks),riga={...veicoloRif(v),fermoConfermato:v.trackedParts.some(isBlocking),giorniFermoRegistrati:durata.days,oreFermoRegistrate:durata.hours,ricambiBloccanti:v.trackedParts.filter(isBlocking).map(p=>({codice:p.data.code,descrizione:p.data.description,stato:p.status,eta:p.data.eta})),nota:"Durata dei periodi registrati in Parts Tracking. Il solo stato Ordine ricambi richiede verifica del fermo fisico; non stimare periodi precedenti."};raccogli(riga);return riga;
       });
-      const risultato = [];
-      for (const v of veicoli) {
-        const giorni = await giorniInStadioCorrente(v.id);
-        const riga = { ...veicoloRif(v), giorniInStadioCorrente: giorni };
-        raccogli(riga);
-        risultato.push(riga);
-      }
-      return risultato;
     },
 
     consegne_settimana: async () => {
@@ -224,35 +183,28 @@ function creaStrumenti(tenantId, ruolo, raccogli) {
       const risultato = [];
       for (const v of veicoli) {
         raccogli(veicoloRif(v));
-        const preventivi = [];
-        for (const q of v.quotes) {
-          const margine = await calcolaMargineQuote(tenantId, q);
-          preventivi.push({ preventivoId: q.id, stato: q.stato, totale: Number(q.totale), ...margine });
-          raccogli({ ...preventivoRif({ ...q, vehicle: v, client: v.client }) });
-        }
-        risultato.push({ veicolo: `${v.marca} ${v.modello} (${v.targa})`, preventivi });
+        const record = await prisma.profitRecord.findFirst({where:{tenantId,vehicleId:v.id}});
+        const settings = await prisma.profitSettings.findUnique({where:{tenantId}}) ?? PROFIT_DEFAULTS;
+        const tracked=await prisma.trackedPart.findMany({where:{tenantId,vehicleId:v.id}});
+        risultato.push({veicolo:`${v.marca} ${v.modello} (${v.targa})`, profitTracker:record ? calculateProfit(partsProfitData(record.data,tracked).data,v.quotes,settings) : null,
+          nota:record ? "Importi in centesimi di euro; dichiarare se provvisorio. Ricavo previsto, non incassi." : "Profit Tracker non compilato: margine non disponibile."});
       }
       return risultato;
     },
 
     preventivi_marginalita_bassa: async ({ sogliaPercento = 20 } = {}) => {
-      const quotes = await prisma.quote.findMany({
-        where: { tenantId },
-        include: { client: true, vehicle: true, items: true },
-        orderBy: { createdAt: "desc" },
-        take: 50,
-      });
+      const settings = await prisma.profitSettings.findUnique({where:{tenantId}}) ?? PROFIT_DEFAULTS;
+      const records = await prisma.profitRecord.findMany({where:{tenantId,vehicle:{tenantId}},include:{vehicle:{include:{quotes:true,client:true}}}});
       const risultato = [];
-      for (const q of quotes) {
-        const margine = await calcolaMargineQuote(tenantId, q);
-        if (margine.marginePercento !== null && margine.marginePercento < sogliaPercento) {
-          const riga = { ...preventivoRif(q), ...margine };
-          raccogli(riga);
-          risultato.push(riga);
-          if (risultato.length >= 20) break;
+      for(const record of records) {
+        const tracked=await prisma.trackedPart.findMany({where:{tenantId,vehicleId:record.vehicleId}});
+        const m = calculateProfit(partsProfitData(record.data,tracked).data,record.vehicle.quotes,settings);
+        if(m.actualPercent !== null && m.actualPercent < sogliaPercento) {
+          const ref = veicoloRif(record.vehicle); raccogli(ref);
+          risultato.push({...ref,profitTracker:m});
         }
       }
-      return risultato;
+      return {pratiche:risultato,nota:"Importi in centesimi di euro, margine reale sui ricavi previsti. Dichiarare i dati provvisori. Escluse pratiche senza Profit Tracker o ricavi."};
     },
 
     cerca_preventivi: async ({ stato, nonApprovati } = {}) => {
@@ -350,11 +302,11 @@ const STRUMENTI_ANTHROPIC = [
   { name: "cerca_veicoli", description: "Cerca veicoli per targa/marca/modello/VIN e/o filtra per stadio del workflow. Max 20 risultati, con dati cliente per contattarlo.", input_schema: { type: "object", properties: {
     ricerca: { type: "string" }, stage: { type: "string", description: "ACCETTAZIONE, PREVENTIVO, ATTESA_APPROVAZIONE, ORDINE_RICAMBI, IN_LAVORAZIONE, PREPARAZIONE, VERNICIATURA, LUCIDATURA, CONTROLLO_QUALITA, LAVAGGIO, PRONTA_CONSEGNA, CONSEGNATA" },
   } } },
-  { name: "veicoli_a_rischio_ritardo", description: "Veicoli non ancora consegnati con data di consegna prevista già superata o entro le prossime 48 ore. Include da quanti giorni sono fermi nello stadio attuale.", input_schema: { type: "object", properties: {} } },
-  { name: "veicoli_fermi_per_ricambi", description: "Veicoli attualmente nello stadio 'Ordine ricambi', con da quanti giorni sono fermi lì.", input_schema: { type: "object", properties: {} } },
+  { name: "veicoli_a_rischio_ritardo", description: "Previsioni Predictive Delay AI con rischio superiore al 30%, motivazioni e nuova data stimata. Include numero di pratiche non valutabili. La promessa non cambia.", input_schema: { type: "object", properties: {} } },
+  { name: "veicoli_fermi_per_ricambi", description: "Vetture bloccate da ricambi e fase Ordine ricambi da verificare; durata effettivamente registrata in Parts Tracking.", input_schema: { type: "object", properties: {} } },
   { name: "consegne_settimana", description: "Veicoli non ancora consegnati con data di consegna prevista nei prossimi 7 giorni.", input_schema: { type: "object", properties: {} } },
-  { name: "margine_veicolo", description: "Margine stimato sui preventivi legati a un veicolo specifico (cerca per targa/marca/modello). Il margine sui ricambi è calcolato solo se il ricambio è tracciato a magazzino con lo stesso nome: se non trovato, la voce viene segnalata come costo non tracciato invece di essere stimata a caso.", input_schema: { type: "object", properties: { ricerca: { type: "string" } }, required: ["ricerca"] } },
-  { name: "preventivi_marginalita_bassa", description: "Preventivi con marginalità stimata sotto una soglia percentuale (default 20%). Stessa logica di calcolo di margine_veicolo: segnala i preventivi con dati di costo incompleti.", input_schema: { type: "object", properties: { sogliaPercento: { type: "number" } } } },
+  { name: "margine_veicolo", description: "Margini previsti e reali dal Profit Tracker della pratica. Importi in centesimi di euro. Segnala dati mancanti o provvisori; nessun costo stimato.", input_schema: { type: "object", properties: { ricerca: { type: "string" } }, required: ["ricerca"] } },
+  { name: "preventivi_marginalita_bassa", description: "Pratiche del Profit Tracker con margine reale sotto la soglia. Dichiara dati incompleti o provvisori. Importi in centesimi di euro.", input_schema: { type: "object", properties: { sogliaPercento: { type: "number" } } } },
   { name: "cerca_preventivi", description: "Cerca preventivi per stato, oppure con nonApprovati=true per quelli non ancora inviati/accettati (bozza o inviato).", input_schema: { type: "object", properties: {
     stato: { type: "string", description: "BOZZA, INVIATO, ACCETTATO, RIFIUTATO" }, nonApprovati: { type: "boolean" },
   } } },
@@ -403,7 +355,7 @@ copilotRouter.post("/chiedi", async (req, res) => {
   const riferimentiMap = new Map();
   const raccogli = (rif) => { if (rif?.tipo && rif?.id) riferimentiMap.set(`${rif.tipo}:${rif.id}`, rif); };
 
-  const strumenti = creaStrumenti(tenantId, req.auth.role, raccogli);
+  const strumenti = creaStrumenti(tenantId, req.auth.role, raccogli, req.auth.userId);
   const strumentiDisponibili = strumentiPerRuolo(req.auth.role);
   const systemPrompt = RUOLI_CON_ACCESSO_FINANZIARIO.has(req.auth.role)
     ? SYSTEM_PROMPT_BASE

@@ -137,3 +137,58 @@ export type AiAssistantLog = Prisma.AiAssistantLogModel
  * 
  */
 export type AuditLog = Prisma.AuditLogModel
+/**
+ * Model ProfitRecord
+ * 
+ */
+export type ProfitRecord = Prisma.ProfitRecordModel
+/**
+ * Model ProfitSettings
+ * 
+ */
+export type ProfitSettings = Prisma.ProfitSettingsModel
+/**
+ * Model DelaySettings
+ * 
+ */
+export type DelaySettings = Prisma.DelaySettingsModel
+/**
+ * Model DelayPlan
+ * 
+ */
+export type DelayPlan = Prisma.DelayPlanModel
+/**
+ * Model DelayForecast
+ * 
+ */
+export type DelayForecast = Prisma.DelayForecastModel
+/**
+ * Model DelayDecision
+ * 
+ */
+export type DelayDecision = Prisma.DelayDecisionModel
+/**
+ * Model TrackedPart
+ * 
+ */
+export type TrackedPart = Prisma.TrackedPartModel
+/**
+ * Model TrackedPartEvent
+ * 
+ */
+export type TrackedPartEvent = Prisma.TrackedPartEventModel
+/**
+ * Model VehiclePartBlock
+ * 
+ */
+export type VehiclePartBlock = Prisma.VehiclePartBlockModel
+/**
+ * Model TrackedPartDocument
+ * 
+ */
+export type TrackedPartDocument = Prisma.TrackedPartDocumentModel
+/**
+ * Model PhotoTimelineEdit
+ * 
+ */
+export type PhotoTimelineEdit = Prisma.PhotoTimelineEditModel

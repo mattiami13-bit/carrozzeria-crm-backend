@@ -1,3 +1,4 @@
+import { legacyPhotoSelect } from '../lib/photo-timeline.js';
 import { Router } from "express";
 import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
@@ -57,7 +58,7 @@ vehiclesRouter.get("/:id", async (req, res) => {
     include: {
       client: true,
       tecnico: true,
-      photos: { orderBy: { createdAt: "asc" } },
+      photos: { select:legacyPhotoSelect, orderBy: { createdAt: "asc" } },
       quotes: true,
       stageHistory: { orderBy: { changedAt: "asc" }, include: { changedBy: { select: { nome: true, cognome: true } } } },
     },
@@ -203,7 +204,7 @@ vehiclesRouter.post("/:id/analizza-danni", async (req, res) => {
   const vehicle = await prisma.vehicle.findFirst({
     where: { id: req.params.id, tenantId },
     include: {
-      photos: { where: { fase: "PRIMA" }, orderBy: { createdAt: "asc" }, take: 6 },
+      photos: { select:legacyPhotoSelect, where: { fase: "PRIMA" }, orderBy: { createdAt: "asc" }, take: 6 },
     },
   });
   if (!vehicle) return res.status(404).json({ error: "Veicolo non trovato" });
@@ -291,7 +292,7 @@ Sii prudente: è una stima preliminare da foto, non una perizia definitiva. Se l
     prisma.vehicle.update({
       where: { id: vehicle.id },
       data: { stimaIA: aiResult, stimaIAAt: new Date() },
-      include: { client: true, tecnico: true, photos: { orderBy: { createdAt: "asc" } }, quotes: true },
+      include: { client: true, tecnico: true, photos: { select:legacyPhotoSelect, orderBy: { createdAt: "asc" } }, quotes: true },
     }),
     prisma.aiAnalysisLog.create({
       data: { tenantId, vehicleId: vehicle.id },

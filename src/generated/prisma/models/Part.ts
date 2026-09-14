@@ -260,6 +260,7 @@ export type PartWhereInput = {
   prezzoAcquisto?: Prisma.DecimalFilter<"Part"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoVendita?: Prisma.DecimalNullableFilter<"Part"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fornitore?: Prisma.StringNullableFilter<"Part"> | string | null
+  trackedParts?: Prisma.TrackedPartListRelationFilter
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   movements?: Prisma.PartMovementListRelationFilter
 }
@@ -274,6 +275,7 @@ export type PartOrderByWithRelationInput = {
   prezzoAcquisto?: Prisma.SortOrder
   prezzoVendita?: Prisma.SortOrderInput | Prisma.SortOrder
   fornitore?: Prisma.SortOrderInput | Prisma.SortOrder
+  trackedParts?: Prisma.TrackedPartOrderByRelationAggregateInput
   tenant?: Prisma.TenantOrderByWithRelationInput
   movements?: Prisma.PartMovementOrderByRelationAggregateInput
 }
@@ -292,6 +294,7 @@ export type PartWhereUniqueInput = Prisma.AtLeast<{
   prezzoAcquisto?: Prisma.DecimalFilter<"Part"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoVendita?: Prisma.DecimalNullableFilter<"Part"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fornitore?: Prisma.StringNullableFilter<"Part"> | string | null
+  trackedParts?: Prisma.TrackedPartListRelationFilter
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   movements?: Prisma.PartMovementListRelationFilter
 }, "id" | "tenantId_codice">
@@ -337,6 +340,7 @@ export type PartCreateInput = {
   prezzoAcquisto: runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoVendita?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fornitore?: string | null
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutCatalogPartInput
   tenant: Prisma.TenantCreateNestedOneWithoutPartsInput
   movements?: Prisma.PartMovementCreateNestedManyWithoutPartInput
 }
@@ -351,6 +355,7 @@ export type PartUncheckedCreateInput = {
   prezzoAcquisto: runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoVendita?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fornitore?: string | null
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutCatalogPartInput
   movements?: Prisma.PartMovementUncheckedCreateNestedManyWithoutPartInput
 }
 
@@ -363,6 +368,7 @@ export type PartUpdateInput = {
   prezzoAcquisto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoVendita?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fornitore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutCatalogPartNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutPartsNestedInput
   movements?: Prisma.PartMovementUpdateManyWithoutPartNestedInput
 }
@@ -377,6 +383,7 @@ export type PartUncheckedUpdateInput = {
   prezzoAcquisto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoVendita?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fornitore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutCatalogPartNestedInput
   movements?: Prisma.PartMovementUncheckedUpdateManyWithoutPartNestedInput
 }
 
@@ -485,6 +492,11 @@ export type PartScalarRelationFilter = {
   isNot?: Prisma.PartWhereInput
 }
 
+export type PartNullableScalarRelationFilter = {
+  is?: Prisma.PartWhereInput | null
+  isNot?: Prisma.PartWhereInput | null
+}
+
 export type PartCreateNestedManyWithoutTenantInput = {
   create?: Prisma.XOR<Prisma.PartCreateWithoutTenantInput, Prisma.PartUncheckedCreateWithoutTenantInput> | Prisma.PartCreateWithoutTenantInput[] | Prisma.PartUncheckedCreateWithoutTenantInput[]
   connectOrCreate?: Prisma.PartCreateOrConnectWithoutTenantInput | Prisma.PartCreateOrConnectWithoutTenantInput[]
@@ -527,14 +539,6 @@ export type PartUncheckedUpdateManyWithoutTenantNestedInput = {
   deleteMany?: Prisma.PartScalarWhereInput | Prisma.PartScalarWhereInput[]
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type NullableDecimalFieldUpdateOperationsInput = {
   set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -557,6 +561,22 @@ export type PartUpdateOneRequiredWithoutMovementsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PartUpdateToOneWithWhereWithoutMovementsInput, Prisma.PartUpdateWithoutMovementsInput>, Prisma.PartUncheckedUpdateWithoutMovementsInput>
 }
 
+export type PartCreateNestedOneWithoutTrackedPartsInput = {
+  create?: Prisma.XOR<Prisma.PartCreateWithoutTrackedPartsInput, Prisma.PartUncheckedCreateWithoutTrackedPartsInput>
+  connectOrCreate?: Prisma.PartCreateOrConnectWithoutTrackedPartsInput
+  connect?: Prisma.PartWhereUniqueInput
+}
+
+export type PartUpdateOneWithoutTrackedPartsNestedInput = {
+  create?: Prisma.XOR<Prisma.PartCreateWithoutTrackedPartsInput, Prisma.PartUncheckedCreateWithoutTrackedPartsInput>
+  connectOrCreate?: Prisma.PartCreateOrConnectWithoutTrackedPartsInput
+  upsert?: Prisma.PartUpsertWithoutTrackedPartsInput
+  disconnect?: Prisma.PartWhereInput | boolean
+  delete?: Prisma.PartWhereInput | boolean
+  connect?: Prisma.PartWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PartUpdateToOneWithWhereWithoutTrackedPartsInput, Prisma.PartUpdateWithoutTrackedPartsInput>, Prisma.PartUncheckedUpdateWithoutTrackedPartsInput>
+}
+
 export type PartCreateWithoutTenantInput = {
   id?: string
   codice: string
@@ -566,6 +586,7 @@ export type PartCreateWithoutTenantInput = {
   prezzoAcquisto: runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoVendita?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fornitore?: string | null
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutCatalogPartInput
   movements?: Prisma.PartMovementCreateNestedManyWithoutPartInput
 }
 
@@ -578,6 +599,7 @@ export type PartUncheckedCreateWithoutTenantInput = {
   prezzoAcquisto: runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoVendita?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fornitore?: string | null
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutCatalogPartInput
   movements?: Prisma.PartMovementUncheckedCreateNestedManyWithoutPartInput
 }
 
@@ -631,6 +653,7 @@ export type PartCreateWithoutMovementsInput = {
   prezzoAcquisto: runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoVendita?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fornitore?: string | null
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutCatalogPartInput
   tenant: Prisma.TenantCreateNestedOneWithoutPartsInput
 }
 
@@ -644,6 +667,7 @@ export type PartUncheckedCreateWithoutMovementsInput = {
   prezzoAcquisto: runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoVendita?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fornitore?: string | null
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutCatalogPartInput
 }
 
 export type PartCreateOrConnectWithoutMovementsInput = {
@@ -671,6 +695,7 @@ export type PartUpdateWithoutMovementsInput = {
   prezzoAcquisto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoVendita?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fornitore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutCatalogPartNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutPartsNestedInput
 }
 
@@ -684,6 +709,75 @@ export type PartUncheckedUpdateWithoutMovementsInput = {
   prezzoAcquisto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoVendita?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fornitore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutCatalogPartNestedInput
+}
+
+export type PartCreateWithoutTrackedPartsInput = {
+  id?: string
+  codice: string
+  descrizione: string
+  giacenza?: number
+  scortaMinima?: number
+  prezzoAcquisto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  prezzoVendita?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fornitore?: string | null
+  tenant: Prisma.TenantCreateNestedOneWithoutPartsInput
+  movements?: Prisma.PartMovementCreateNestedManyWithoutPartInput
+}
+
+export type PartUncheckedCreateWithoutTrackedPartsInput = {
+  id?: string
+  tenantId: string
+  codice: string
+  descrizione: string
+  giacenza?: number
+  scortaMinima?: number
+  prezzoAcquisto: runtime.Decimal | runtime.DecimalJsLike | number | string
+  prezzoVendita?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fornitore?: string | null
+  movements?: Prisma.PartMovementUncheckedCreateNestedManyWithoutPartInput
+}
+
+export type PartCreateOrConnectWithoutTrackedPartsInput = {
+  where: Prisma.PartWhereUniqueInput
+  create: Prisma.XOR<Prisma.PartCreateWithoutTrackedPartsInput, Prisma.PartUncheckedCreateWithoutTrackedPartsInput>
+}
+
+export type PartUpsertWithoutTrackedPartsInput = {
+  update: Prisma.XOR<Prisma.PartUpdateWithoutTrackedPartsInput, Prisma.PartUncheckedUpdateWithoutTrackedPartsInput>
+  create: Prisma.XOR<Prisma.PartCreateWithoutTrackedPartsInput, Prisma.PartUncheckedCreateWithoutTrackedPartsInput>
+  where?: Prisma.PartWhereInput
+}
+
+export type PartUpdateToOneWithWhereWithoutTrackedPartsInput = {
+  where?: Prisma.PartWhereInput
+  data: Prisma.XOR<Prisma.PartUpdateWithoutTrackedPartsInput, Prisma.PartUncheckedUpdateWithoutTrackedPartsInput>
+}
+
+export type PartUpdateWithoutTrackedPartsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codice?: Prisma.StringFieldUpdateOperationsInput | string
+  descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  giacenza?: Prisma.IntFieldUpdateOperationsInput | number
+  scortaMinima?: Prisma.IntFieldUpdateOperationsInput | number
+  prezzoAcquisto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  prezzoVendita?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fornitore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutPartsNestedInput
+  movements?: Prisma.PartMovementUpdateManyWithoutPartNestedInput
+}
+
+export type PartUncheckedUpdateWithoutTrackedPartsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  codice?: Prisma.StringFieldUpdateOperationsInput | string
+  descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  giacenza?: Prisma.IntFieldUpdateOperationsInput | number
+  scortaMinima?: Prisma.IntFieldUpdateOperationsInput | number
+  prezzoAcquisto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  prezzoVendita?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fornitore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  movements?: Prisma.PartMovementUncheckedUpdateManyWithoutPartNestedInput
 }
 
 export type PartCreateManyTenantInput = {
@@ -706,6 +800,7 @@ export type PartUpdateWithoutTenantInput = {
   prezzoAcquisto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoVendita?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fornitore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutCatalogPartNestedInput
   movements?: Prisma.PartMovementUpdateManyWithoutPartNestedInput
 }
 
@@ -718,6 +813,7 @@ export type PartUncheckedUpdateWithoutTenantInput = {
   prezzoAcquisto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoVendita?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fornitore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutCatalogPartNestedInput
   movements?: Prisma.PartMovementUncheckedUpdateManyWithoutPartNestedInput
 }
 
@@ -738,10 +834,12 @@ export type PartUncheckedUpdateManyWithoutTenantInput = {
  */
 
 export type PartCountOutputType = {
+  trackedParts: number
   movements: number
 }
 
 export type PartCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  trackedParts?: boolean | PartCountOutputTypeCountTrackedPartsArgs
   movements?: boolean | PartCountOutputTypeCountMovementsArgs
 }
 
@@ -753,6 +851,13 @@ export type PartCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
    * Select specific fields to fetch from the PartCountOutputType
    */
   select?: Prisma.PartCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * PartCountOutputType without action
+ */
+export type PartCountOutputTypeCountTrackedPartsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TrackedPartWhereInput
 }
 
 /**
@@ -773,6 +878,7 @@ export type PartSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   prezzoAcquisto?: boolean
   prezzoVendita?: boolean
   fornitore?: boolean
+  trackedParts?: boolean | Prisma.Part$trackedPartsArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   movements?: boolean | Prisma.Part$movementsArgs<ExtArgs>
   _count?: boolean | Prisma.PartCountOutputTypeDefaultArgs<ExtArgs>
@@ -818,6 +924,7 @@ export type PartSelectScalar = {
 
 export type PartOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "codice" | "descrizione" | "giacenza" | "scortaMinima" | "prezzoAcquisto" | "prezzoVendita" | "fornitore", ExtArgs["result"]["part"]>
 export type PartInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  trackedParts?: boolean | Prisma.Part$trackedPartsArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   movements?: boolean | Prisma.Part$movementsArgs<ExtArgs>
   _count?: boolean | Prisma.PartCountOutputTypeDefaultArgs<ExtArgs>
@@ -832,6 +939,7 @@ export type PartIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $PartPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Part"
   objects: {
+    trackedParts: Prisma.$TrackedPartPayload<ExtArgs>[]
     tenant: Prisma.$TenantPayload<ExtArgs>
     movements: Prisma.$PartMovementPayload<ExtArgs>[]
   }
@@ -1239,6 +1347,7 @@ readonly fields: PartFieldRefs;
  */
 export interface Prisma__PartClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  trackedParts<T extends Prisma.Part$trackedPartsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Part$trackedPartsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TrackedPartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   movements<T extends Prisma.Part$movementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Part$movementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PartMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1677,6 +1786,30 @@ export type PartDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Parts to delete.
    */
   limit?: number
+}
+
+/**
+ * Part.trackedParts
+ */
+export type Part$trackedPartsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TrackedPart
+   */
+  select?: Prisma.TrackedPartSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TrackedPart
+   */
+  omit?: Prisma.TrackedPartOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TrackedPartInclude<ExtArgs> | null
+  where?: Prisma.TrackedPartWhereInput
+  orderBy?: Prisma.TrackedPartOrderByWithRelationInput | Prisma.TrackedPartOrderByWithRelationInput[]
+  cursor?: Prisma.TrackedPartWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TrackedPartScalarFieldEnum | Prisma.TrackedPartScalarFieldEnum[]
 }
 
 /**

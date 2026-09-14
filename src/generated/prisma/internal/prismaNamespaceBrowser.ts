@@ -74,7 +74,18 @@ export const ModelName = {
   PortalAccess: 'PortalAccess',
   AiAnalysisLog: 'AiAnalysisLog',
   AiAssistantLog: 'AiAssistantLog',
-  AuditLog: 'AuditLog'
+  AuditLog: 'AuditLog',
+  ProfitRecord: 'ProfitRecord',
+  ProfitSettings: 'ProfitSettings',
+  DelaySettings: 'DelaySettings',
+  DelayPlan: 'DelayPlan',
+  DelayForecast: 'DelayForecast',
+  DelayDecision: 'DelayDecision',
+  TrackedPart: 'TrackedPart',
+  TrackedPartEvent: 'TrackedPartEvent',
+  VehiclePartBlock: 'VehiclePartBlock',
+  TrackedPartDocument: 'TrackedPartDocument',
+  PhotoTimelineEdit: 'PhotoTimelineEdit'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -186,7 +197,9 @@ export const PhotoScalarFieldEnum = {
   vehicleId: 'vehicleId',
   fase: 'fase',
   url: 'url',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  timeline: 'timeline',
+  timelineVersion: 'timelineVersion'
 } as const
 
 export type PhotoScalarFieldEnum = (typeof PhotoScalarFieldEnum)[keyof typeof PhotoScalarFieldEnum]
@@ -449,6 +462,152 @@ export const AuditLogScalarFieldEnum = {
 } as const
 
 export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
+export const ProfitRecordScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  data: 'data',
+  version: 'version',
+  updatedById: 'updatedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProfitRecordScalarFieldEnum = (typeof ProfitRecordScalarFieldEnum)[keyof typeof ProfitRecordScalarFieldEnum]
+
+
+export const ProfitSettingsScalarFieldEnum = {
+  tenantId: 'tenantId',
+  criticalBelow: 'criticalBelow',
+  goodFrom: 'goodFrom'
+} as const
+
+export type ProfitSettingsScalarFieldEnum = (typeof ProfitSettingsScalarFieldEnum)[keyof typeof ProfitSettingsScalarFieldEnum]
+
+
+export const DelaySettingsScalarFieldEnum = {
+  tenantId: 'tenantId',
+  data: 'data',
+  version: 'version',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DelaySettingsScalarFieldEnum = (typeof DelaySettingsScalarFieldEnum)[keyof typeof DelaySettingsScalarFieldEnum]
+
+
+export const DelayPlanScalarFieldEnum = {
+  vehicleId: 'vehicleId',
+  tenantId: 'tenantId',
+  data: 'data',
+  version: 'version',
+  updatedById: 'updatedById',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DelayPlanScalarFieldEnum = (typeof DelayPlanScalarFieldEnum)[keyof typeof DelayPlanScalarFieldEnum]
+
+
+export const DelayForecastScalarFieldEnum = {
+  id: 'id',
+  vehicleId: 'vehicleId',
+  tenantId: 'tenantId',
+  fingerprint: 'fingerprint',
+  modelVersion: 'modelVersion',
+  promisedAt: 'promisedAt',
+  estimatedDate: 'estimatedDate',
+  risk: 'risk',
+  input: 'input',
+  result: 'result',
+  actualDeliveredAt: 'actualDeliveredAt',
+  createdAt: 'createdAt'
+} as const
+
+export type DelayForecastScalarFieldEnum = (typeof DelayForecastScalarFieldEnum)[keyof typeof DelayForecastScalarFieldEnum]
+
+
+export const DelayDecisionScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  forecastId: 'forecastId',
+  action: 'action',
+  proposedDate: 'proposedDate',
+  note: 'note',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type DelayDecisionScalarFieldEnum = (typeof DelayDecisionScalarFieldEnum)[keyof typeof DelayDecisionScalarFieldEnum]
+
+
+export const TrackedPartScalarFieldEnum = {
+  id: 'id',
+  requestKey: 'requestKey',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  orderItemId: 'orderItemId',
+  catalogPartId: 'catalogPartId',
+  status: 'status',
+  data: 'data',
+  version: 'version',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TrackedPartScalarFieldEnum = (typeof TrackedPartScalarFieldEnum)[keyof typeof TrackedPartScalarFieldEnum]
+
+
+export const TrackedPartEventScalarFieldEnum = {
+  id: 'id',
+  partId: 'partId',
+  actorId: 'actorId',
+  fromStatus: 'fromStatus',
+  toStatus: 'toStatus',
+  reason: 'reason',
+  snapshot: 'snapshot',
+  createdAt: 'createdAt'
+} as const
+
+export type TrackedPartEventScalarFieldEnum = (typeof TrackedPartEventScalarFieldEnum)[keyof typeof TrackedPartEventScalarFieldEnum]
+
+
+export const VehiclePartBlockScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  startedAt: 'startedAt',
+  endedAt: 'endedAt'
+} as const
+
+export type VehiclePartBlockScalarFieldEnum = (typeof VehiclePartBlockScalarFieldEnum)[keyof typeof VehiclePartBlockScalarFieldEnum]
+
+
+export const TrackedPartDocumentScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  partId: 'partId',
+  name: 'name',
+  mime: 'mime',
+  size: 'size',
+  content: 'content',
+  createdAt: 'createdAt'
+} as const
+
+export type TrackedPartDocumentScalarFieldEnum = (typeof TrackedPartDocumentScalarFieldEnum)[keyof typeof TrackedPartDocumentScalarFieldEnum]
+
+
+export const PhotoTimelineEditScalarFieldEnum = {
+  id: 'id',
+  photoId: 'photoId',
+  actorId: 'actorId',
+  before: 'before',
+  after: 'after',
+  createdAt: 'createdAt'
+} as const
+
+export type PhotoTimelineEditScalarFieldEnum = (typeof PhotoTimelineEditScalarFieldEnum)[keyof typeof PhotoTimelineEditScalarFieldEnum]
 
 
 export const SortOrder = {

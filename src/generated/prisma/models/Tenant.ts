@@ -244,6 +244,15 @@ export type TenantWhereInput = {
   limiteAnalisiIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
   limiteAssistenteIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
+  delaySettings?: Prisma.XOR<Prisma.DelaySettingsNullableScalarRelationFilter, Prisma.DelaySettingsWhereInput> | null
+  delayPlans?: Prisma.DelayPlanListRelationFilter
+  delayForecasts?: Prisma.DelayForecastListRelationFilter
+  delayDecisions?: Prisma.DelayDecisionListRelationFilter
+  trackedParts?: Prisma.TrackedPartListRelationFilter
+  partBlocks?: Prisma.VehiclePartBlockListRelationFilter
+  partDocuments?: Prisma.TrackedPartDocumentListRelationFilter
+  profitRecords?: Prisma.ProfitRecordListRelationFilter
+  profitSettings?: Prisma.XOR<Prisma.ProfitSettingsNullableScalarRelationFilter, Prisma.ProfitSettingsWhereInput> | null
   users?: Prisma.UserListRelationFilter
   clients?: Prisma.ClientListRelationFilter
   vehicles?: Prisma.VehicleListRelationFilter
@@ -269,6 +278,15 @@ export type TenantOrderByWithRelationInput = {
   limiteAnalisiIAMensile?: Prisma.SortOrderInput | Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  delaySettings?: Prisma.DelaySettingsOrderByWithRelationInput
+  delayPlans?: Prisma.DelayPlanOrderByRelationAggregateInput
+  delayForecasts?: Prisma.DelayForecastOrderByRelationAggregateInput
+  delayDecisions?: Prisma.DelayDecisionOrderByRelationAggregateInput
+  trackedParts?: Prisma.TrackedPartOrderByRelationAggregateInput
+  partBlocks?: Prisma.VehiclePartBlockOrderByRelationAggregateInput
+  partDocuments?: Prisma.TrackedPartDocumentOrderByRelationAggregateInput
+  profitRecords?: Prisma.ProfitRecordOrderByRelationAggregateInput
+  profitSettings?: Prisma.ProfitSettingsOrderByWithRelationInput
   users?: Prisma.UserOrderByRelationAggregateInput
   clients?: Prisma.ClientOrderByRelationAggregateInput
   vehicles?: Prisma.VehicleOrderByRelationAggregateInput
@@ -297,6 +315,15 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   limiteAnalisiIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
   limiteAssistenteIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
+  delaySettings?: Prisma.XOR<Prisma.DelaySettingsNullableScalarRelationFilter, Prisma.DelaySettingsWhereInput> | null
+  delayPlans?: Prisma.DelayPlanListRelationFilter
+  delayForecasts?: Prisma.DelayForecastListRelationFilter
+  delayDecisions?: Prisma.DelayDecisionListRelationFilter
+  trackedParts?: Prisma.TrackedPartListRelationFilter
+  partBlocks?: Prisma.VehiclePartBlockListRelationFilter
+  partDocuments?: Prisma.TrackedPartDocumentListRelationFilter
+  profitRecords?: Prisma.ProfitRecordListRelationFilter
+  profitSettings?: Prisma.XOR<Prisma.ProfitSettingsNullableScalarRelationFilter, Prisma.ProfitSettingsWhereInput> | null
   users?: Prisma.UserListRelationFilter
   clients?: Prisma.ClientListRelationFilter
   vehicles?: Prisma.VehicleListRelationFilter
@@ -352,6 +379,15 @@ export type TenantCreateInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
@@ -377,6 +413,15 @@ export type TenantUncheckedCreateInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
@@ -402,6 +447,15 @@ export type TenantUpdateInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
@@ -427,6 +481,15 @@ export type TenantUncheckedUpdateInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
@@ -748,6 +811,132 @@ export type TenantUpdateOneRequiredWithoutAssistantLogsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutAssistantLogsInput, Prisma.TenantUpdateWithoutAssistantLogsInput>, Prisma.TenantUncheckedUpdateWithoutAssistantLogsInput>
 }
 
+export type TenantCreateNestedOneWithoutProfitRecordsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutProfitRecordsInput, Prisma.TenantUncheckedCreateWithoutProfitRecordsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutProfitRecordsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutProfitRecordsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutProfitRecordsInput, Prisma.TenantUncheckedCreateWithoutProfitRecordsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutProfitRecordsInput
+  upsert?: Prisma.TenantUpsertWithoutProfitRecordsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutProfitRecordsInput, Prisma.TenantUpdateWithoutProfitRecordsInput>, Prisma.TenantUncheckedUpdateWithoutProfitRecordsInput>
+}
+
+export type TenantCreateNestedOneWithoutProfitSettingsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutProfitSettingsInput, Prisma.TenantUncheckedCreateWithoutProfitSettingsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutProfitSettingsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutProfitSettingsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutProfitSettingsInput, Prisma.TenantUncheckedCreateWithoutProfitSettingsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutProfitSettingsInput
+  upsert?: Prisma.TenantUpsertWithoutProfitSettingsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutProfitSettingsInput, Prisma.TenantUpdateWithoutProfitSettingsInput>, Prisma.TenantUncheckedUpdateWithoutProfitSettingsInput>
+}
+
+export type TenantCreateNestedOneWithoutDelaySettingsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutDelaySettingsInput, Prisma.TenantUncheckedCreateWithoutDelaySettingsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutDelaySettingsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutDelaySettingsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutDelaySettingsInput, Prisma.TenantUncheckedCreateWithoutDelaySettingsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutDelaySettingsInput
+  upsert?: Prisma.TenantUpsertWithoutDelaySettingsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutDelaySettingsInput, Prisma.TenantUpdateWithoutDelaySettingsInput>, Prisma.TenantUncheckedUpdateWithoutDelaySettingsInput>
+}
+
+export type TenantCreateNestedOneWithoutDelayPlansInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutDelayPlansInput, Prisma.TenantUncheckedCreateWithoutDelayPlansInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutDelayPlansInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutDelayPlansNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutDelayPlansInput, Prisma.TenantUncheckedCreateWithoutDelayPlansInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutDelayPlansInput
+  upsert?: Prisma.TenantUpsertWithoutDelayPlansInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutDelayPlansInput, Prisma.TenantUpdateWithoutDelayPlansInput>, Prisma.TenantUncheckedUpdateWithoutDelayPlansInput>
+}
+
+export type TenantCreateNestedOneWithoutDelayForecastsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutDelayForecastsInput, Prisma.TenantUncheckedCreateWithoutDelayForecastsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutDelayForecastsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutDelayForecastsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutDelayForecastsInput, Prisma.TenantUncheckedCreateWithoutDelayForecastsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutDelayForecastsInput
+  upsert?: Prisma.TenantUpsertWithoutDelayForecastsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutDelayForecastsInput, Prisma.TenantUpdateWithoutDelayForecastsInput>, Prisma.TenantUncheckedUpdateWithoutDelayForecastsInput>
+}
+
+export type TenantCreateNestedOneWithoutDelayDecisionsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutDelayDecisionsInput, Prisma.TenantUncheckedCreateWithoutDelayDecisionsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutDelayDecisionsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutDelayDecisionsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutDelayDecisionsInput, Prisma.TenantUncheckedCreateWithoutDelayDecisionsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutDelayDecisionsInput
+  upsert?: Prisma.TenantUpsertWithoutDelayDecisionsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutDelayDecisionsInput, Prisma.TenantUpdateWithoutDelayDecisionsInput>, Prisma.TenantUncheckedUpdateWithoutDelayDecisionsInput>
+}
+
+export type TenantCreateNestedOneWithoutTrackedPartsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutTrackedPartsInput, Prisma.TenantUncheckedCreateWithoutTrackedPartsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutTrackedPartsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutTrackedPartsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutTrackedPartsInput, Prisma.TenantUncheckedCreateWithoutTrackedPartsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutTrackedPartsInput
+  upsert?: Prisma.TenantUpsertWithoutTrackedPartsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutTrackedPartsInput, Prisma.TenantUpdateWithoutTrackedPartsInput>, Prisma.TenantUncheckedUpdateWithoutTrackedPartsInput>
+}
+
+export type TenantCreateNestedOneWithoutPartBlocksInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutPartBlocksInput, Prisma.TenantUncheckedCreateWithoutPartBlocksInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutPartBlocksInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutPartBlocksNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutPartBlocksInput, Prisma.TenantUncheckedCreateWithoutPartBlocksInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutPartBlocksInput
+  upsert?: Prisma.TenantUpsertWithoutPartBlocksInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutPartBlocksInput, Prisma.TenantUpdateWithoutPartBlocksInput>, Prisma.TenantUncheckedUpdateWithoutPartBlocksInput>
+}
+
+export type TenantCreateNestedOneWithoutPartDocumentsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutPartDocumentsInput, Prisma.TenantUncheckedCreateWithoutPartDocumentsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutPartDocumentsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutPartDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutPartDocumentsInput, Prisma.TenantUncheckedCreateWithoutPartDocumentsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutPartDocumentsInput
+  upsert?: Prisma.TenantUpsertWithoutPartDocumentsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutPartDocumentsInput, Prisma.TenantUpdateWithoutPartDocumentsInput>, Prisma.TenantUncheckedUpdateWithoutPartDocumentsInput>
+}
+
 export type TenantCreateWithoutUsersInput = {
   id?: string
   ragioneSociale: string
@@ -757,6 +946,15 @@ export type TenantCreateWithoutUsersInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
@@ -781,6 +979,15 @@ export type TenantUncheckedCreateWithoutUsersInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
@@ -821,6 +1028,15 @@ export type TenantUpdateWithoutUsersInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
@@ -845,6 +1061,15 @@ export type TenantUncheckedUpdateWithoutUsersInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
@@ -869,6 +1094,15 @@ export type TenantCreateWithoutClientsInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
@@ -893,6 +1127,15 @@ export type TenantUncheckedCreateWithoutClientsInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
@@ -933,6 +1176,15 @@ export type TenantUpdateWithoutClientsInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
@@ -957,6 +1209,15 @@ export type TenantUncheckedUpdateWithoutClientsInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
@@ -981,6 +1242,15 @@ export type TenantCreateWithoutVehiclesInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
@@ -1005,6 +1275,15 @@ export type TenantUncheckedCreateWithoutVehiclesInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
@@ -1045,6 +1324,15 @@ export type TenantUpdateWithoutVehiclesInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
@@ -1069,6 +1357,15 @@ export type TenantUncheckedUpdateWithoutVehiclesInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
@@ -1093,6 +1390,15 @@ export type TenantCreateWithoutQuotesInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
@@ -1117,6 +1423,15 @@ export type TenantUncheckedCreateWithoutQuotesInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
@@ -1157,6 +1472,15 @@ export type TenantUpdateWithoutQuotesInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
@@ -1181,6 +1505,15 @@ export type TenantUncheckedUpdateWithoutQuotesInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
@@ -1205,6 +1538,15 @@ export type TenantCreateWithoutDamageAnalysesInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
@@ -1229,6 +1571,15 @@ export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
@@ -1269,6 +1620,15 @@ export type TenantUpdateWithoutDamageAnalysesInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
@@ -1293,6 +1653,15 @@ export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
@@ -1317,6 +1686,15 @@ export type TenantCreateWithoutDamageItemsInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
@@ -1341,6 +1719,15 @@ export type TenantUncheckedCreateWithoutDamageItemsInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
@@ -1381,6 +1768,15 @@ export type TenantUpdateWithoutDamageItemsInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
@@ -1405,6 +1801,15 @@ export type TenantUncheckedUpdateWithoutDamageItemsInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
@@ -1429,6 +1834,15 @@ export type TenantCreateWithoutPartsInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
@@ -1453,6 +1867,15 @@ export type TenantUncheckedCreateWithoutPartsInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
@@ -1493,6 +1916,15 @@ export type TenantUpdateWithoutPartsInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
@@ -1517,6 +1949,15 @@ export type TenantUncheckedUpdateWithoutPartsInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
@@ -1541,6 +1982,15 @@ export type TenantCreateWithoutSupplierOrdersInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
@@ -1565,6 +2015,15 @@ export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
@@ -1605,6 +2064,15 @@ export type TenantUpdateWithoutSupplierOrdersInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
@@ -1629,6 +2097,15 @@ export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
@@ -1653,6 +2130,15 @@ export type TenantCreateWithoutLoanerCarsInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
@@ -1677,6 +2163,15 @@ export type TenantUncheckedCreateWithoutLoanerCarsInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
@@ -1717,6 +2212,15 @@ export type TenantUpdateWithoutLoanerCarsInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
@@ -1741,6 +2245,15 @@ export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
@@ -1765,6 +2278,15 @@ export type TenantCreateWithoutAppointmentsInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
@@ -1789,6 +2311,15 @@ export type TenantUncheckedCreateWithoutAppointmentsInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
@@ -1829,6 +2360,15 @@ export type TenantUpdateWithoutAppointmentsInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
@@ -1853,6 +2393,15 @@ export type TenantUncheckedUpdateWithoutAppointmentsInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
@@ -1877,6 +2426,15 @@ export type TenantCreateWithoutSinistriInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
@@ -1901,6 +2459,15 @@ export type TenantUncheckedCreateWithoutSinistriInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
@@ -1941,6 +2508,15 @@ export type TenantUpdateWithoutSinistriInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
@@ -1965,6 +2541,15 @@ export type TenantUncheckedUpdateWithoutSinistriInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
@@ -1989,6 +2574,15 @@ export type TenantCreateWithoutPortalAccessesInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
@@ -2013,6 +2607,15 @@ export type TenantUncheckedCreateWithoutPortalAccessesInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
@@ -2053,6 +2656,15 @@ export type TenantUpdateWithoutPortalAccessesInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
@@ -2077,6 +2689,15 @@ export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
@@ -2101,6 +2722,15 @@ export type TenantCreateWithoutAiAnalysesInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
@@ -2125,6 +2755,15 @@ export type TenantUncheckedCreateWithoutAiAnalysesInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
@@ -2165,6 +2804,15 @@ export type TenantUpdateWithoutAiAnalysesInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
@@ -2189,6 +2837,15 @@ export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
@@ -2213,6 +2870,15 @@ export type TenantCreateWithoutAssistantLogsInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
@@ -2237,6 +2903,15 @@ export type TenantUncheckedCreateWithoutAssistantLogsInput = {
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
   createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
@@ -2277,6 +2952,15 @@ export type TenantUpdateWithoutAssistantLogsInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
@@ -2301,6 +2985,15 @@ export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
@@ -2316,12 +3009,1351 @@ export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
   damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
 }
 
+export type TenantCreateWithoutProfitRecordsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutProfitRecordsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutProfitRecordsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutProfitRecordsInput, Prisma.TenantUncheckedCreateWithoutProfitRecordsInput>
+}
+
+export type TenantUpsertWithoutProfitRecordsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutProfitRecordsInput, Prisma.TenantUncheckedUpdateWithoutProfitRecordsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutProfitRecordsInput, Prisma.TenantUncheckedCreateWithoutProfitRecordsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutProfitRecordsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutProfitRecordsInput, Prisma.TenantUncheckedUpdateWithoutProfitRecordsInput>
+}
+
+export type TenantUpdateWithoutProfitRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutProfitRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutProfitSettingsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutProfitSettingsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutProfitSettingsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutProfitSettingsInput, Prisma.TenantUncheckedCreateWithoutProfitSettingsInput>
+}
+
+export type TenantUpsertWithoutProfitSettingsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutProfitSettingsInput, Prisma.TenantUncheckedUpdateWithoutProfitSettingsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutProfitSettingsInput, Prisma.TenantUncheckedCreateWithoutProfitSettingsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutProfitSettingsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutProfitSettingsInput, Prisma.TenantUncheckedUpdateWithoutProfitSettingsInput>
+}
+
+export type TenantUpdateWithoutProfitSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutProfitSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutDelaySettingsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutDelaySettingsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutDelaySettingsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutDelaySettingsInput, Prisma.TenantUncheckedCreateWithoutDelaySettingsInput>
+}
+
+export type TenantUpsertWithoutDelaySettingsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutDelaySettingsInput, Prisma.TenantUncheckedUpdateWithoutDelaySettingsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutDelaySettingsInput, Prisma.TenantUncheckedCreateWithoutDelaySettingsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutDelaySettingsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutDelaySettingsInput, Prisma.TenantUncheckedUpdateWithoutDelaySettingsInput>
+}
+
+export type TenantUpdateWithoutDelaySettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutDelaySettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutDelayPlansInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutDelayPlansInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutDelayPlansInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutDelayPlansInput, Prisma.TenantUncheckedCreateWithoutDelayPlansInput>
+}
+
+export type TenantUpsertWithoutDelayPlansInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutDelayPlansInput, Prisma.TenantUncheckedUpdateWithoutDelayPlansInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutDelayPlansInput, Prisma.TenantUncheckedCreateWithoutDelayPlansInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutDelayPlansInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutDelayPlansInput, Prisma.TenantUncheckedUpdateWithoutDelayPlansInput>
+}
+
+export type TenantUpdateWithoutDelayPlansInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutDelayPlansInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutDelayForecastsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutDelayForecastsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutDelayForecastsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutDelayForecastsInput, Prisma.TenantUncheckedCreateWithoutDelayForecastsInput>
+}
+
+export type TenantUpsertWithoutDelayForecastsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutDelayForecastsInput, Prisma.TenantUncheckedUpdateWithoutDelayForecastsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutDelayForecastsInput, Prisma.TenantUncheckedCreateWithoutDelayForecastsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutDelayForecastsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutDelayForecastsInput, Prisma.TenantUncheckedUpdateWithoutDelayForecastsInput>
+}
+
+export type TenantUpdateWithoutDelayForecastsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutDelayForecastsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutDelayDecisionsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutDelayDecisionsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutDelayDecisionsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutDelayDecisionsInput, Prisma.TenantUncheckedCreateWithoutDelayDecisionsInput>
+}
+
+export type TenantUpsertWithoutDelayDecisionsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutDelayDecisionsInput, Prisma.TenantUncheckedUpdateWithoutDelayDecisionsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutDelayDecisionsInput, Prisma.TenantUncheckedCreateWithoutDelayDecisionsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutDelayDecisionsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutDelayDecisionsInput, Prisma.TenantUncheckedUpdateWithoutDelayDecisionsInput>
+}
+
+export type TenantUpdateWithoutDelayDecisionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutDelayDecisionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutTrackedPartsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutTrackedPartsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutTrackedPartsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutTrackedPartsInput, Prisma.TenantUncheckedCreateWithoutTrackedPartsInput>
+}
+
+export type TenantUpsertWithoutTrackedPartsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutTrackedPartsInput, Prisma.TenantUncheckedUpdateWithoutTrackedPartsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutTrackedPartsInput, Prisma.TenantUncheckedCreateWithoutTrackedPartsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutTrackedPartsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutTrackedPartsInput, Prisma.TenantUncheckedUpdateWithoutTrackedPartsInput>
+}
+
+export type TenantUpdateWithoutTrackedPartsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutTrackedPartsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutPartBlocksInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutPartBlocksInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutPartBlocksInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutPartBlocksInput, Prisma.TenantUncheckedCreateWithoutPartBlocksInput>
+}
+
+export type TenantUpsertWithoutPartBlocksInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutPartBlocksInput, Prisma.TenantUncheckedUpdateWithoutPartBlocksInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutPartBlocksInput, Prisma.TenantUncheckedCreateWithoutPartBlocksInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutPartBlocksInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutPartBlocksInput, Prisma.TenantUncheckedUpdateWithoutPartBlocksInput>
+}
+
+export type TenantUpdateWithoutPartBlocksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutPartBlocksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutPartDocumentsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutPartDocumentsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutPartDocumentsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutPartDocumentsInput, Prisma.TenantUncheckedCreateWithoutPartDocumentsInput>
+}
+
+export type TenantUpsertWithoutPartDocumentsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutPartDocumentsInput, Prisma.TenantUncheckedUpdateWithoutPartDocumentsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutPartDocumentsInput, Prisma.TenantUncheckedCreateWithoutPartDocumentsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutPartDocumentsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutPartDocumentsInput, Prisma.TenantUncheckedUpdateWithoutPartDocumentsInput>
+}
+
+export type TenantUpdateWithoutPartDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutPartDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+}
+
 
 /**
  * Count Type TenantCountOutputType
  */
 
 export type TenantCountOutputType = {
+  delayPlans: number
+  delayForecasts: number
+  delayDecisions: number
+  trackedParts: number
+  partBlocks: number
+  partDocuments: number
+  profitRecords: number
   users: number
   clients: number
   vehicles: number
@@ -2339,6 +4371,13 @@ export type TenantCountOutputType = {
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  delayPlans?: boolean | TenantCountOutputTypeCountDelayPlansArgs
+  delayForecasts?: boolean | TenantCountOutputTypeCountDelayForecastsArgs
+  delayDecisions?: boolean | TenantCountOutputTypeCountDelayDecisionsArgs
+  trackedParts?: boolean | TenantCountOutputTypeCountTrackedPartsArgs
+  partBlocks?: boolean | TenantCountOutputTypeCountPartBlocksArgs
+  partDocuments?: boolean | TenantCountOutputTypeCountPartDocumentsArgs
+  profitRecords?: boolean | TenantCountOutputTypeCountProfitRecordsArgs
   users?: boolean | TenantCountOutputTypeCountUsersArgs
   clients?: boolean | TenantCountOutputTypeCountClientsArgs
   vehicles?: boolean | TenantCountOutputTypeCountVehiclesArgs
@@ -2363,6 +4402,55 @@ export type TenantCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
    * Select specific fields to fetch from the TenantCountOutputType
    */
   select?: Prisma.TenantCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountDelayPlansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DelayPlanWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountDelayForecastsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DelayForecastWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountDelayDecisionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DelayDecisionWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountTrackedPartsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TrackedPartWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountPartBlocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VehiclePartBlockWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountPartDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TrackedPartDocumentWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountProfitRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProfitRecordWhereInput
 }
 
 /**
@@ -2473,6 +4561,15 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   limiteAnalisiIAMensile?: boolean
   limiteAssistenteIAMensile?: boolean
   createdAt?: boolean
+  delaySettings?: boolean | Prisma.Tenant$delaySettingsArgs<ExtArgs>
+  delayPlans?: boolean | Prisma.Tenant$delayPlansArgs<ExtArgs>
+  delayForecasts?: boolean | Prisma.Tenant$delayForecastsArgs<ExtArgs>
+  delayDecisions?: boolean | Prisma.Tenant$delayDecisionsArgs<ExtArgs>
+  trackedParts?: boolean | Prisma.Tenant$trackedPartsArgs<ExtArgs>
+  partBlocks?: boolean | Prisma.Tenant$partBlocksArgs<ExtArgs>
+  partDocuments?: boolean | Prisma.Tenant$partDocumentsArgs<ExtArgs>
+  profitRecords?: boolean | Prisma.Tenant$profitRecordsArgs<ExtArgs>
+  profitSettings?: boolean | Prisma.Tenant$profitSettingsArgs<ExtArgs>
   users?: boolean | Prisma.Tenant$usersArgs<ExtArgs>
   clients?: boolean | Prisma.Tenant$clientsArgs<ExtArgs>
   vehicles?: boolean | Prisma.Tenant$vehiclesArgs<ExtArgs>
@@ -2525,6 +4622,15 @@ export type TenantSelectScalar = {
 
 export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ragioneSociale" | "partitaIva" | "piano" | "trialEndsAt" | "limiteAnalisiIAMensile" | "limiteAssistenteIAMensile" | "createdAt", ExtArgs["result"]["tenant"]>
 export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  delaySettings?: boolean | Prisma.Tenant$delaySettingsArgs<ExtArgs>
+  delayPlans?: boolean | Prisma.Tenant$delayPlansArgs<ExtArgs>
+  delayForecasts?: boolean | Prisma.Tenant$delayForecastsArgs<ExtArgs>
+  delayDecisions?: boolean | Prisma.Tenant$delayDecisionsArgs<ExtArgs>
+  trackedParts?: boolean | Prisma.Tenant$trackedPartsArgs<ExtArgs>
+  partBlocks?: boolean | Prisma.Tenant$partBlocksArgs<ExtArgs>
+  partDocuments?: boolean | Prisma.Tenant$partDocumentsArgs<ExtArgs>
+  profitRecords?: boolean | Prisma.Tenant$profitRecordsArgs<ExtArgs>
+  profitSettings?: boolean | Prisma.Tenant$profitSettingsArgs<ExtArgs>
   users?: boolean | Prisma.Tenant$usersArgs<ExtArgs>
   clients?: boolean | Prisma.Tenant$clientsArgs<ExtArgs>
   vehicles?: boolean | Prisma.Tenant$vehiclesArgs<ExtArgs>
@@ -2547,6 +4653,15 @@ export type TenantIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Tenant"
   objects: {
+    delaySettings: Prisma.$DelaySettingsPayload<ExtArgs> | null
+    delayPlans: Prisma.$DelayPlanPayload<ExtArgs>[]
+    delayForecasts: Prisma.$DelayForecastPayload<ExtArgs>[]
+    delayDecisions: Prisma.$DelayDecisionPayload<ExtArgs>[]
+    trackedParts: Prisma.$TrackedPartPayload<ExtArgs>[]
+    partBlocks: Prisma.$VehiclePartBlockPayload<ExtArgs>[]
+    partDocuments: Prisma.$TrackedPartDocumentPayload<ExtArgs>[]
+    profitRecords: Prisma.$ProfitRecordPayload<ExtArgs>[]
+    profitSettings: Prisma.$ProfitSettingsPayload<ExtArgs> | null
     users: Prisma.$UserPayload<ExtArgs>[]
     clients: Prisma.$ClientPayload<ExtArgs>[]
     vehicles: Prisma.$VehiclePayload<ExtArgs>[]
@@ -2965,6 +5080,15 @@ readonly fields: TenantFieldRefs;
  */
 export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  delaySettings<T extends Prisma.Tenant$delaySettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$delaySettingsArgs<ExtArgs>>): Prisma.Prisma__DelaySettingsClient<runtime.Types.Result.GetResult<Prisma.$DelaySettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  delayPlans<T extends Prisma.Tenant$delayPlansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$delayPlansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DelayPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  delayForecasts<T extends Prisma.Tenant$delayForecastsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$delayForecastsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DelayForecastPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  delayDecisions<T extends Prisma.Tenant$delayDecisionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$delayDecisionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DelayDecisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  trackedParts<T extends Prisma.Tenant$trackedPartsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$trackedPartsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TrackedPartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  partBlocks<T extends Prisma.Tenant$partBlocksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$partBlocksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VehiclePartBlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  partDocuments<T extends Prisma.Tenant$partDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$partDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TrackedPartDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  profitRecords<T extends Prisma.Tenant$profitRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$profitRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProfitRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  profitSettings<T extends Prisma.Tenant$profitSettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$profitSettingsArgs<ExtArgs>>): Prisma.Prisma__ProfitSettingsClient<runtime.Types.Result.GetResult<Prisma.$ProfitSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   users<T extends Prisma.Tenant$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   clients<T extends Prisma.Tenant$clientsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$clientsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   vehicles<T extends Prisma.Tenant$vehiclesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$vehiclesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3406,6 +5530,212 @@ export type TenantDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Tenants to delete.
    */
   limit?: number
+}
+
+/**
+ * Tenant.delaySettings
+ */
+export type Tenant$delaySettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DelaySettings
+   */
+  select?: Prisma.DelaySettingsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DelaySettings
+   */
+  omit?: Prisma.DelaySettingsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DelaySettingsInclude<ExtArgs> | null
+  where?: Prisma.DelaySettingsWhereInput
+}
+
+/**
+ * Tenant.delayPlans
+ */
+export type Tenant$delayPlansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DelayPlan
+   */
+  select?: Prisma.DelayPlanSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DelayPlan
+   */
+  omit?: Prisma.DelayPlanOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DelayPlanInclude<ExtArgs> | null
+  where?: Prisma.DelayPlanWhereInput
+  orderBy?: Prisma.DelayPlanOrderByWithRelationInput | Prisma.DelayPlanOrderByWithRelationInput[]
+  cursor?: Prisma.DelayPlanWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DelayPlanScalarFieldEnum | Prisma.DelayPlanScalarFieldEnum[]
+}
+
+/**
+ * Tenant.delayForecasts
+ */
+export type Tenant$delayForecastsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DelayForecast
+   */
+  select?: Prisma.DelayForecastSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DelayForecast
+   */
+  omit?: Prisma.DelayForecastOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DelayForecastInclude<ExtArgs> | null
+  where?: Prisma.DelayForecastWhereInput
+  orderBy?: Prisma.DelayForecastOrderByWithRelationInput | Prisma.DelayForecastOrderByWithRelationInput[]
+  cursor?: Prisma.DelayForecastWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DelayForecastScalarFieldEnum | Prisma.DelayForecastScalarFieldEnum[]
+}
+
+/**
+ * Tenant.delayDecisions
+ */
+export type Tenant$delayDecisionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DelayDecision
+   */
+  select?: Prisma.DelayDecisionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DelayDecision
+   */
+  omit?: Prisma.DelayDecisionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DelayDecisionInclude<ExtArgs> | null
+  where?: Prisma.DelayDecisionWhereInput
+  orderBy?: Prisma.DelayDecisionOrderByWithRelationInput | Prisma.DelayDecisionOrderByWithRelationInput[]
+  cursor?: Prisma.DelayDecisionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DelayDecisionScalarFieldEnum | Prisma.DelayDecisionScalarFieldEnum[]
+}
+
+/**
+ * Tenant.trackedParts
+ */
+export type Tenant$trackedPartsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TrackedPart
+   */
+  select?: Prisma.TrackedPartSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TrackedPart
+   */
+  omit?: Prisma.TrackedPartOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TrackedPartInclude<ExtArgs> | null
+  where?: Prisma.TrackedPartWhereInput
+  orderBy?: Prisma.TrackedPartOrderByWithRelationInput | Prisma.TrackedPartOrderByWithRelationInput[]
+  cursor?: Prisma.TrackedPartWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TrackedPartScalarFieldEnum | Prisma.TrackedPartScalarFieldEnum[]
+}
+
+/**
+ * Tenant.partBlocks
+ */
+export type Tenant$partBlocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VehiclePartBlock
+   */
+  select?: Prisma.VehiclePartBlockSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VehiclePartBlock
+   */
+  omit?: Prisma.VehiclePartBlockOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VehiclePartBlockInclude<ExtArgs> | null
+  where?: Prisma.VehiclePartBlockWhereInput
+  orderBy?: Prisma.VehiclePartBlockOrderByWithRelationInput | Prisma.VehiclePartBlockOrderByWithRelationInput[]
+  cursor?: Prisma.VehiclePartBlockWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VehiclePartBlockScalarFieldEnum | Prisma.VehiclePartBlockScalarFieldEnum[]
+}
+
+/**
+ * Tenant.partDocuments
+ */
+export type Tenant$partDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TrackedPartDocument
+   */
+  select?: Prisma.TrackedPartDocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TrackedPartDocument
+   */
+  omit?: Prisma.TrackedPartDocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TrackedPartDocumentInclude<ExtArgs> | null
+  where?: Prisma.TrackedPartDocumentWhereInput
+  orderBy?: Prisma.TrackedPartDocumentOrderByWithRelationInput | Prisma.TrackedPartDocumentOrderByWithRelationInput[]
+  cursor?: Prisma.TrackedPartDocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TrackedPartDocumentScalarFieldEnum | Prisma.TrackedPartDocumentScalarFieldEnum[]
+}
+
+/**
+ * Tenant.profitRecords
+ */
+export type Tenant$profitRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProfitRecord
+   */
+  select?: Prisma.ProfitRecordSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProfitRecord
+   */
+  omit?: Prisma.ProfitRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProfitRecordInclude<ExtArgs> | null
+  where?: Prisma.ProfitRecordWhereInput
+  orderBy?: Prisma.ProfitRecordOrderByWithRelationInput | Prisma.ProfitRecordOrderByWithRelationInput[]
+  cursor?: Prisma.ProfitRecordWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProfitRecordScalarFieldEnum | Prisma.ProfitRecordScalarFieldEnum[]
+}
+
+/**
+ * Tenant.profitSettings
+ */
+export type Tenant$profitSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProfitSettings
+   */
+  select?: Prisma.ProfitSettingsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProfitSettings
+   */
+  omit?: Prisma.ProfitSettingsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProfitSettingsInclude<ExtArgs> | null
+  where?: Prisma.ProfitSettingsWhereInput
 }
 
 /**

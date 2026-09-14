@@ -1,3 +1,6 @@
+import sharp from 'sharp';
+import { categorySchema,phaseForCategory,photoStoragePath } from '../lib/photo-timeline.js';
+import { savePhotoSuggestion,normalizePhoto } from '../lib/photo-timeline-service.js';
 import { Router } from "express";
 import multer from "multer";
 import { z } from "zod";
@@ -7,6 +10,9 @@ import { supabase, PHOTOS_BUCKET } from "../lib/supabase.js";
 
 export const photosRouter = Router();
 photosRouter.use(requireAuth);
+const wrap=fn=>(req,res,next)=>Promise.resolve(fn(req,res,next)).catch(next);
+photosRouter.use(wrap(async(req,res,next)=>{const user=await prisma.user.findFirst({where:{id:req.auth.userId,tenantId:req.auth.tenantId,attivo:true},select:{nome:true,cognome:true,ruolo:true}});if(!user)return res.status(403).json({error:"Account non attivo"});req.photoUser=user;next();}));
+const photoScope=req=>({...tenantScope(req),...(req.photoUser.ruolo==="TECNICO"?{tecnicoId:req.auth.userId}:{})});
 
 // Le foto restano in memoria solo per il tempo di inoltrarle a Supabase
 // Storage (nessun file temporaneo scritto su disco). Limite 10MB, solo
@@ -27,9 +33,9 @@ const faseSchema = z.enum(["PRIMA", "DURANTE", "DOPO"]);
 
 // POST /api/vehicles/:vehicleId/photos
 // multipart/form-data con campi: file (l'immagine), fase (PRIMA|DURANTE|DOPO)
-photosRouter.post("/vehicles/:vehicleId/photos", upload.single("file"), async (req, res) => {
+photosRouter.post("/vehicles/:vehicleId/photos", upload.single("file"), wrap(async (req, res) => {
   const vehicle = await prisma.vehicle.findFirst({
-    where: { id: req.params.vehicleId, ...tenantScope(req) },
+    where: { id: req.params.vehicleId, ...photoScope(req) },
   });
   if (!vehicle) return res.status(404).json({ error: "Veicolo non trovato" });
 
@@ -42,7 +48,12 @@ photosRouter.post("/vehicles/:vehicleId/photos", upload.single("file"), async (r
     return res.status(400).json({ error: "Fase non valida (PRIMA, DURANTE o DOPO)" });
   }
 
-  const ext = (req.file.originalname.split(".").pop() || "jpg").toLowerCase();
+  const category=req.body.category?categorySchema.safeParse(req.body.category):{success:true,data:null};
+  if(!category.success)return res.status(400).json({error:"Categoria non valida"});
+  let meta;try{meta=await sharp(req.file.buffer,{limitInputPixels:60000000}).metadata();}catch{return res.status(400).json({error:"Immagine non leggibile. Esporta la foto come JPEG, PNG o WebP."});}
+  const ext={jpeg:"jpg",png:"png",webp:"webp",gif:"gif",tiff:"tiff",heif:"heif",avif:"avif"}[meta.format];
+  if(!ext)return res.status(400).json({error:"Formato fotografia non supportato"});
+  let preview;try{preview=await normalizePhoto(req.file.buffer,2400);}catch{return res.status(400).json({error:"Immagine non decodificabile: esportala come JPEG o PNG"});}
   // Path organizzato per tenant/veicolo: evita collisioni tra carrozzerie
   // diverse e rende facile in futuro cancellare tutte le foto di un tenant.
   const path = `${req.auth.tenantId}/${vehicle.id}/${Date.now()}-${Math.random()
@@ -58,33 +69,39 @@ photosRouter.post("/vehicles/:vehicleId/photos", upload.single("file"), async (r
     return res.status(500).json({ error: "Errore durante il caricamento della foto" });
   }
 
-  const { data: publicUrlData } = supabase.storage.from(PHOTOS_BUCKET).getPublicUrl(path);
+  const previewPath=path+'.preview.jpg';
+  const {error:previewError}=await supabase.storage.from(PHOTOS_BUCKET).upload(previewPath,preview,{contentType:'image/jpeg'});
+  if(previewError){await supabase.storage.from(PHOTOS_BUCKET).remove([path]);return res.status(500).json({error:'Impossibile salvare anteprima foto. Riprova.'});}
+  const {data:originalUrlData}=supabase.storage.from(PHOTOS_BUCKET).getPublicUrl(path);
+  const {data:publicUrlData}=supabase.storage.from(PHOTOS_BUCKET).getPublicUrl(previewPath);
 
-  const photo = await prisma.photo.create({
+  let photo;try{photo = await prisma.photo.create({
     data: {
       vehicleId: vehicle.id,
-      fase: parsedFase.data,
+      fase: phaseForCategory(category.data,parsedFase.data),
+      timeline:{originalUrl:originalUrlData.publicUrl,category:category.data,capturedAt:null,authorId:req.auth.userId,authorName:`${req.photoUser.nome} ${req.photoUser.cognome}`,notes:"",internalNotes:"",workDescription:"",markers:[],ai:null},
       url: publicUrlData.publicUrl,
     },
   });
 
+  }catch(e){await supabase.storage.from(PHOTOS_BUCKET).remove([path,previewPath]);throw e;}
+  try{photo=await savePhotoSuggestion(photo,req.auth.tenantId,req.file.buffer)||photo;}catch{ /* Preserve a successful upload if AI metadata cannot be saved. */ }
   res.status(201).json(photo);
-});
+}));
 
 // DELETE /api/photos/:id
-photosRouter.delete("/photos/:id", async (req, res) => {
+photosRouter.delete("/photos/:id", wrap(async (req, res) => {
   const photo = await prisma.photo.findFirst({
-    where: { id: req.params.id, vehicle: tenantScope(req) },
+    where: { id: req.params.id, vehicle: photoScope(req) },
   });
   if (!photo) return res.status(404).json({ error: "Foto non trovata" });
 
-  const marker = `/${PHOTOS_BUCKET}/`;
-  const idx = photo.url.indexOf(marker);
-  if (idx !== -1) {
-    const storagePath = photo.url.slice(idx + marker.length);
-    await supabase.storage.from(PHOTOS_BUCKET).remove([storagePath]);
-  }
+  const paths=[];
+  for(const url of [photo.url,photo.timeline?.originalUrl].filter(Boolean)){try{paths.push(photoStoragePath({...photo,url},req.auth.tenantId,process.env.SUPABASE_URL,PHOTOS_BUCKET));}catch{}}
+  if(paths.length){const {error}=await supabase.storage.from(PHOTOS_BUCKET).remove(paths);if(error)return res.status(502).json({error:'Impossibile eliminare i file della foto. Riprova.'});}
 
   await prisma.photo.delete({ where: { id: photo.id } });
   res.status(204).send();
-});
+}));
+
+photosRouter.use((err,req,res,next)=>{if(err instanceof multer.MulterError)return res.status(400).json({error:"Foto troppo grande: massimo 10 MB per file"});next(err);});

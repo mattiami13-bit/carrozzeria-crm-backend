@@ -370,6 +370,12 @@ export type VehicleWhereInput = {
   sinistri?: Prisma.SinistroListRelationFilter
   portalAccesses?: Prisma.PortalAccessListRelationFilter
   tecnico?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  delayPlan?: Prisma.XOR<Prisma.DelayPlanNullableScalarRelationFilter, Prisma.DelayPlanWhereInput> | null
+  delayForecasts?: Prisma.DelayForecastListRelationFilter
+  delayDecisions?: Prisma.DelayDecisionListRelationFilter
+  trackedParts?: Prisma.TrackedPartListRelationFilter
+  partBlocks?: Prisma.VehiclePartBlockListRelationFilter
+  profitRecord?: Prisma.XOR<Prisma.ProfitRecordNullableScalarRelationFilter, Prisma.ProfitRecordWhereInput> | null
   photos?: Prisma.PhotoListRelationFilter
   quotes?: Prisma.QuoteListRelationFilter
   stageHistory?: Prisma.StageHistoryListRelationFilter
@@ -407,6 +413,12 @@ export type VehicleOrderByWithRelationInput = {
   sinistri?: Prisma.SinistroOrderByRelationAggregateInput
   portalAccesses?: Prisma.PortalAccessOrderByRelationAggregateInput
   tecnico?: Prisma.UserOrderByWithRelationInput
+  delayPlan?: Prisma.DelayPlanOrderByWithRelationInput
+  delayForecasts?: Prisma.DelayForecastOrderByRelationAggregateInput
+  delayDecisions?: Prisma.DelayDecisionOrderByRelationAggregateInput
+  trackedParts?: Prisma.TrackedPartOrderByRelationAggregateInput
+  partBlocks?: Prisma.VehiclePartBlockOrderByRelationAggregateInput
+  profitRecord?: Prisma.ProfitRecordOrderByWithRelationInput
   photos?: Prisma.PhotoOrderByRelationAggregateInput
   quotes?: Prisma.QuoteOrderByRelationAggregateInput
   stageHistory?: Prisma.StageHistoryOrderByRelationAggregateInput
@@ -447,6 +459,12 @@ export type VehicleWhereUniqueInput = Prisma.AtLeast<{
   sinistri?: Prisma.SinistroListRelationFilter
   portalAccesses?: Prisma.PortalAccessListRelationFilter
   tecnico?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  delayPlan?: Prisma.XOR<Prisma.DelayPlanNullableScalarRelationFilter, Prisma.DelayPlanWhereInput> | null
+  delayForecasts?: Prisma.DelayForecastListRelationFilter
+  delayDecisions?: Prisma.DelayDecisionListRelationFilter
+  trackedParts?: Prisma.TrackedPartListRelationFilter
+  partBlocks?: Prisma.VehiclePartBlockListRelationFilter
+  profitRecord?: Prisma.XOR<Prisma.ProfitRecordNullableScalarRelationFilter, Prisma.ProfitRecordWhereInput> | null
   photos?: Prisma.PhotoListRelationFilter
   quotes?: Prisma.QuoteListRelationFilter
   stageHistory?: Prisma.StageHistoryListRelationFilter
@@ -543,6 +561,12 @@ export type VehicleCreateInput = {
   sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
   tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
@@ -577,6 +601,12 @@ export type VehicleUncheckedCreateInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
@@ -611,6 +641,12 @@ export type VehicleUpdateInput = {
   sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
   tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
@@ -645,6 +681,12 @@ export type VehicleUncheckedUpdateInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
@@ -1068,6 +1110,90 @@ export type VehicleUpdateOneRequiredWithoutPortalAccessesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.VehicleUpdateToOneWithWhereWithoutPortalAccessesInput, Prisma.VehicleUpdateWithoutPortalAccessesInput>, Prisma.VehicleUncheckedUpdateWithoutPortalAccessesInput>
 }
 
+export type VehicleCreateNestedOneWithoutProfitRecordInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutProfitRecordInput, Prisma.VehicleUncheckedCreateWithoutProfitRecordInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutProfitRecordInput
+  connect?: Prisma.VehicleWhereUniqueInput
+}
+
+export type VehicleUpdateOneRequiredWithoutProfitRecordNestedInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutProfitRecordInput, Prisma.VehicleUncheckedCreateWithoutProfitRecordInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutProfitRecordInput
+  upsert?: Prisma.VehicleUpsertWithoutProfitRecordInput
+  connect?: Prisma.VehicleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VehicleUpdateToOneWithWhereWithoutProfitRecordInput, Prisma.VehicleUpdateWithoutProfitRecordInput>, Prisma.VehicleUncheckedUpdateWithoutProfitRecordInput>
+}
+
+export type VehicleCreateNestedOneWithoutDelayPlanInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutDelayPlanInput, Prisma.VehicleUncheckedCreateWithoutDelayPlanInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutDelayPlanInput
+  connect?: Prisma.VehicleWhereUniqueInput
+}
+
+export type VehicleUpdateOneRequiredWithoutDelayPlanNestedInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutDelayPlanInput, Prisma.VehicleUncheckedCreateWithoutDelayPlanInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutDelayPlanInput
+  upsert?: Prisma.VehicleUpsertWithoutDelayPlanInput
+  connect?: Prisma.VehicleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VehicleUpdateToOneWithWhereWithoutDelayPlanInput, Prisma.VehicleUpdateWithoutDelayPlanInput>, Prisma.VehicleUncheckedUpdateWithoutDelayPlanInput>
+}
+
+export type VehicleCreateNestedOneWithoutDelayForecastsInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutDelayForecastsInput, Prisma.VehicleUncheckedCreateWithoutDelayForecastsInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutDelayForecastsInput
+  connect?: Prisma.VehicleWhereUniqueInput
+}
+
+export type VehicleUpdateOneRequiredWithoutDelayForecastsNestedInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutDelayForecastsInput, Prisma.VehicleUncheckedCreateWithoutDelayForecastsInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutDelayForecastsInput
+  upsert?: Prisma.VehicleUpsertWithoutDelayForecastsInput
+  connect?: Prisma.VehicleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VehicleUpdateToOneWithWhereWithoutDelayForecastsInput, Prisma.VehicleUpdateWithoutDelayForecastsInput>, Prisma.VehicleUncheckedUpdateWithoutDelayForecastsInput>
+}
+
+export type VehicleCreateNestedOneWithoutDelayDecisionsInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutDelayDecisionsInput, Prisma.VehicleUncheckedCreateWithoutDelayDecisionsInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutDelayDecisionsInput
+  connect?: Prisma.VehicleWhereUniqueInput
+}
+
+export type VehicleUpdateOneRequiredWithoutDelayDecisionsNestedInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutDelayDecisionsInput, Prisma.VehicleUncheckedCreateWithoutDelayDecisionsInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutDelayDecisionsInput
+  upsert?: Prisma.VehicleUpsertWithoutDelayDecisionsInput
+  connect?: Prisma.VehicleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VehicleUpdateToOneWithWhereWithoutDelayDecisionsInput, Prisma.VehicleUpdateWithoutDelayDecisionsInput>, Prisma.VehicleUncheckedUpdateWithoutDelayDecisionsInput>
+}
+
+export type VehicleCreateNestedOneWithoutTrackedPartsInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutTrackedPartsInput, Prisma.VehicleUncheckedCreateWithoutTrackedPartsInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutTrackedPartsInput
+  connect?: Prisma.VehicleWhereUniqueInput
+}
+
+export type VehicleUpdateOneRequiredWithoutTrackedPartsNestedInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutTrackedPartsInput, Prisma.VehicleUncheckedCreateWithoutTrackedPartsInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutTrackedPartsInput
+  upsert?: Prisma.VehicleUpsertWithoutTrackedPartsInput
+  connect?: Prisma.VehicleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VehicleUpdateToOneWithWhereWithoutTrackedPartsInput, Prisma.VehicleUpdateWithoutTrackedPartsInput>, Prisma.VehicleUncheckedUpdateWithoutTrackedPartsInput>
+}
+
+export type VehicleCreateNestedOneWithoutPartBlocksInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutPartBlocksInput, Prisma.VehicleUncheckedCreateWithoutPartBlocksInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutPartBlocksInput
+  connect?: Prisma.VehicleWhereUniqueInput
+}
+
+export type VehicleUpdateOneRequiredWithoutPartBlocksNestedInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutPartBlocksInput, Prisma.VehicleUncheckedCreateWithoutPartBlocksInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutPartBlocksInput
+  upsert?: Prisma.VehicleUpsertWithoutPartBlocksInput
+  connect?: Prisma.VehicleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VehicleUpdateToOneWithWhereWithoutPartBlocksInput, Prisma.VehicleUpdateWithoutPartBlocksInput>, Prisma.VehicleUncheckedUpdateWithoutPartBlocksInput>
+}
+
 export type VehicleCreateWithoutTenantInput = {
   id?: string
   marca: string
@@ -1095,6 +1221,12 @@ export type VehicleCreateWithoutTenantInput = {
   sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
   tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
@@ -1128,6 +1260,12 @@ export type VehicleUncheckedCreateWithoutTenantInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
@@ -1217,6 +1355,12 @@ export type VehicleCreateWithoutTecnicoInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutVehicleInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
@@ -1250,6 +1394,12 @@ export type VehicleUncheckedCreateWithoutTecnicoInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
@@ -1309,6 +1459,12 @@ export type VehicleCreateWithoutClientInput = {
   sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
   tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
@@ -1342,6 +1498,12 @@ export type VehicleUncheckedCreateWithoutClientInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
@@ -1402,6 +1564,12 @@ export type VehicleCreateWithoutStageHistoryInput = {
   sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
   tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
@@ -1435,6 +1603,12 @@ export type VehicleUncheckedCreateWithoutStageHistoryInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
@@ -1484,6 +1658,12 @@ export type VehicleUpdateWithoutStageHistoryInput = {
   sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
   tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
@@ -1517,6 +1697,12 @@ export type VehicleUncheckedUpdateWithoutStageHistoryInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
@@ -1550,6 +1736,12 @@ export type VehicleCreateWithoutPhotosInput = {
   sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
   tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
   damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
@@ -1583,6 +1775,12 @@ export type VehicleUncheckedCreateWithoutPhotosInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
   damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
@@ -1632,6 +1830,12 @@ export type VehicleUpdateWithoutPhotosInput = {
   sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
   tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
   damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
@@ -1665,6 +1869,12 @@ export type VehicleUncheckedUpdateWithoutPhotosInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
   damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
@@ -1698,6 +1908,12 @@ export type VehicleCreateWithoutQuotesInput = {
   sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
   tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
   damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
@@ -1731,6 +1947,12 @@ export type VehicleUncheckedCreateWithoutQuotesInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
   damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
@@ -1780,6 +2002,12 @@ export type VehicleUpdateWithoutQuotesInput = {
   sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
   tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
   damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
@@ -1813,6 +2041,12 @@ export type VehicleUncheckedUpdateWithoutQuotesInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
   damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
@@ -1846,6 +2080,12 @@ export type VehicleCreateWithoutDamageAnalysesInput = {
   sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
   tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
@@ -1879,6 +2119,12 @@ export type VehicleUncheckedCreateWithoutDamageAnalysesInput = {
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
@@ -1928,6 +2174,12 @@ export type VehicleUpdateWithoutDamageAnalysesInput = {
   sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
   tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
@@ -1961,6 +2213,12 @@ export type VehicleUncheckedUpdateWithoutDamageAnalysesInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
@@ -1993,6 +2251,12 @@ export type VehicleCreateWithoutAppointmentsInput = {
   sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
   tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
@@ -2026,6 +2290,12 @@ export type VehicleUncheckedCreateWithoutAppointmentsInput = {
   stimaIAAt?: Date | string | null
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
@@ -2075,6 +2345,12 @@ export type VehicleUpdateWithoutAppointmentsInput = {
   sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
   tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
@@ -2108,6 +2384,12 @@ export type VehicleUncheckedUpdateWithoutAppointmentsInput = {
   stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
@@ -2141,6 +2423,12 @@ export type VehicleCreateWithoutSinistriInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
   tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
@@ -2174,6 +2462,12 @@ export type VehicleUncheckedCreateWithoutSinistriInput = {
   stimaIAAt?: Date | string | null
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
   portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
@@ -2223,6 +2517,12 @@ export type VehicleUpdateWithoutSinistriInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
   tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
@@ -2256,6 +2556,12 @@ export type VehicleUncheckedUpdateWithoutSinistriInput = {
   stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
@@ -2289,6 +2595,12 @@ export type VehicleCreateWithoutPortalAccessesInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutVehicleInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
   tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
@@ -2322,6 +2634,12 @@ export type VehicleUncheckedCreateWithoutPortalAccessesInput = {
   stimaIAAt?: Date | string | null
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
   stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
@@ -2371,6 +2689,12 @@ export type VehicleUpdateWithoutPortalAccessesInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutVehicleNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
   tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
@@ -2404,6 +2728,1044 @@ export type VehicleUncheckedUpdateWithoutPortalAccessesInput = {
   stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleCreateWithoutProfitRecordInput = {
+  id?: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  tenant: Prisma.TenantCreateNestedOneWithoutVehiclesInput
+  client: Prisma.ClientCreateNestedOneWithoutVehiclesInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
+  tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleUncheckedCreateWithoutProfitRecordInput = {
+  id?: string
+  tenantId: string
+  clientId: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  tecnicoId?: string | null
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleCreateOrConnectWithoutProfitRecordInput = {
+  where: Prisma.VehicleWhereUniqueInput
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutProfitRecordInput, Prisma.VehicleUncheckedCreateWithoutProfitRecordInput>
+}
+
+export type VehicleUpsertWithoutProfitRecordInput = {
+  update: Prisma.XOR<Prisma.VehicleUpdateWithoutProfitRecordInput, Prisma.VehicleUncheckedUpdateWithoutProfitRecordInput>
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutProfitRecordInput, Prisma.VehicleUncheckedCreateWithoutProfitRecordInput>
+  where?: Prisma.VehicleWhereInput
+}
+
+export type VehicleUpdateToOneWithWhereWithoutProfitRecordInput = {
+  where?: Prisma.VehicleWhereInput
+  data: Prisma.XOR<Prisma.VehicleUpdateWithoutProfitRecordInput, Prisma.VehicleUncheckedUpdateWithoutProfitRecordInput>
+}
+
+export type VehicleUpdateWithoutProfitRecordInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutVehiclesNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutVehiclesNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
+  tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleUncheckedUpdateWithoutProfitRecordInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  tecnicoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleCreateWithoutDelayPlanInput = {
+  id?: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  tenant: Prisma.TenantCreateNestedOneWithoutVehiclesInput
+  client: Prisma.ClientCreateNestedOneWithoutVehiclesInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
+  tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
+  photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleUncheckedCreateWithoutDelayPlanInput = {
+  id?: string
+  tenantId: string
+  clientId: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  tecnicoId?: string | null
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
+  photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleCreateOrConnectWithoutDelayPlanInput = {
+  where: Prisma.VehicleWhereUniqueInput
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutDelayPlanInput, Prisma.VehicleUncheckedCreateWithoutDelayPlanInput>
+}
+
+export type VehicleUpsertWithoutDelayPlanInput = {
+  update: Prisma.XOR<Prisma.VehicleUpdateWithoutDelayPlanInput, Prisma.VehicleUncheckedUpdateWithoutDelayPlanInput>
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutDelayPlanInput, Prisma.VehicleUncheckedCreateWithoutDelayPlanInput>
+  where?: Prisma.VehicleWhereInput
+}
+
+export type VehicleUpdateToOneWithWhereWithoutDelayPlanInput = {
+  where?: Prisma.VehicleWhereInput
+  data: Prisma.XOR<Prisma.VehicleUpdateWithoutDelayPlanInput, Prisma.VehicleUncheckedUpdateWithoutDelayPlanInput>
+}
+
+export type VehicleUpdateWithoutDelayPlanInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutVehiclesNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutVehiclesNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
+  tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleUncheckedUpdateWithoutDelayPlanInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  tecnicoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleCreateWithoutDelayForecastsInput = {
+  id?: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  tenant: Prisma.TenantCreateNestedOneWithoutVehiclesInput
+  client: Prisma.ClientCreateNestedOneWithoutVehiclesInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
+  tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
+  photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleUncheckedCreateWithoutDelayForecastsInput = {
+  id?: string
+  tenantId: string
+  clientId: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  tecnicoId?: string | null
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
+  photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleCreateOrConnectWithoutDelayForecastsInput = {
+  where: Prisma.VehicleWhereUniqueInput
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutDelayForecastsInput, Prisma.VehicleUncheckedCreateWithoutDelayForecastsInput>
+}
+
+export type VehicleUpsertWithoutDelayForecastsInput = {
+  update: Prisma.XOR<Prisma.VehicleUpdateWithoutDelayForecastsInput, Prisma.VehicleUncheckedUpdateWithoutDelayForecastsInput>
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutDelayForecastsInput, Prisma.VehicleUncheckedCreateWithoutDelayForecastsInput>
+  where?: Prisma.VehicleWhereInput
+}
+
+export type VehicleUpdateToOneWithWhereWithoutDelayForecastsInput = {
+  where?: Prisma.VehicleWhereInput
+  data: Prisma.XOR<Prisma.VehicleUpdateWithoutDelayForecastsInput, Prisma.VehicleUncheckedUpdateWithoutDelayForecastsInput>
+}
+
+export type VehicleUpdateWithoutDelayForecastsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutVehiclesNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutVehiclesNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
+  tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleUncheckedUpdateWithoutDelayForecastsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  tecnicoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleCreateWithoutDelayDecisionsInput = {
+  id?: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  tenant: Prisma.TenantCreateNestedOneWithoutVehiclesInput
+  client: Prisma.ClientCreateNestedOneWithoutVehiclesInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
+  tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
+  photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleUncheckedCreateWithoutDelayDecisionsInput = {
+  id?: string
+  tenantId: string
+  clientId: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  tecnicoId?: string | null
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
+  photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleCreateOrConnectWithoutDelayDecisionsInput = {
+  where: Prisma.VehicleWhereUniqueInput
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutDelayDecisionsInput, Prisma.VehicleUncheckedCreateWithoutDelayDecisionsInput>
+}
+
+export type VehicleUpsertWithoutDelayDecisionsInput = {
+  update: Prisma.XOR<Prisma.VehicleUpdateWithoutDelayDecisionsInput, Prisma.VehicleUncheckedUpdateWithoutDelayDecisionsInput>
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutDelayDecisionsInput, Prisma.VehicleUncheckedCreateWithoutDelayDecisionsInput>
+  where?: Prisma.VehicleWhereInput
+}
+
+export type VehicleUpdateToOneWithWhereWithoutDelayDecisionsInput = {
+  where?: Prisma.VehicleWhereInput
+  data: Prisma.XOR<Prisma.VehicleUpdateWithoutDelayDecisionsInput, Prisma.VehicleUncheckedUpdateWithoutDelayDecisionsInput>
+}
+
+export type VehicleUpdateWithoutDelayDecisionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutVehiclesNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutVehiclesNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
+  tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleUncheckedUpdateWithoutDelayDecisionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  tecnicoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleCreateWithoutTrackedPartsInput = {
+  id?: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  tenant: Prisma.TenantCreateNestedOneWithoutVehiclesInput
+  client: Prisma.ClientCreateNestedOneWithoutVehiclesInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
+  tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
+  photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleUncheckedCreateWithoutTrackedPartsInput = {
+  id?: string
+  tenantId: string
+  clientId: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  tecnicoId?: string | null
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
+  photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleCreateOrConnectWithoutTrackedPartsInput = {
+  where: Prisma.VehicleWhereUniqueInput
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutTrackedPartsInput, Prisma.VehicleUncheckedCreateWithoutTrackedPartsInput>
+}
+
+export type VehicleUpsertWithoutTrackedPartsInput = {
+  update: Prisma.XOR<Prisma.VehicleUpdateWithoutTrackedPartsInput, Prisma.VehicleUncheckedUpdateWithoutTrackedPartsInput>
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutTrackedPartsInput, Prisma.VehicleUncheckedCreateWithoutTrackedPartsInput>
+  where?: Prisma.VehicleWhereInput
+}
+
+export type VehicleUpdateToOneWithWhereWithoutTrackedPartsInput = {
+  where?: Prisma.VehicleWhereInput
+  data: Prisma.XOR<Prisma.VehicleUpdateWithoutTrackedPartsInput, Prisma.VehicleUncheckedUpdateWithoutTrackedPartsInput>
+}
+
+export type VehicleUpdateWithoutTrackedPartsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutVehiclesNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutVehiclesNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
+  tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleUncheckedUpdateWithoutTrackedPartsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  tecnicoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleCreateWithoutPartBlocksInput = {
+  id?: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  tenant: Prisma.TenantCreateNestedOneWithoutVehiclesInput
+  client: Prisma.ClientCreateNestedOneWithoutVehiclesInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
+  tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
+  photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleUncheckedCreateWithoutPartBlocksInput = {
+  id?: string
+  tenantId: string
+  clientId: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  tecnicoId?: string | null
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
+  photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleCreateOrConnectWithoutPartBlocksInput = {
+  where: Prisma.VehicleWhereUniqueInput
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutPartBlocksInput, Prisma.VehicleUncheckedCreateWithoutPartBlocksInput>
+}
+
+export type VehicleUpsertWithoutPartBlocksInput = {
+  update: Prisma.XOR<Prisma.VehicleUpdateWithoutPartBlocksInput, Prisma.VehicleUncheckedUpdateWithoutPartBlocksInput>
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutPartBlocksInput, Prisma.VehicleUncheckedCreateWithoutPartBlocksInput>
+  where?: Prisma.VehicleWhereInput
+}
+
+export type VehicleUpdateToOneWithWhereWithoutPartBlocksInput = {
+  where?: Prisma.VehicleWhereInput
+  data: Prisma.XOR<Prisma.VehicleUpdateWithoutPartBlocksInput, Prisma.VehicleUncheckedUpdateWithoutPartBlocksInput>
+}
+
+export type VehicleUpdateWithoutPartBlocksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutVehiclesNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutVehiclesNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
+  tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleUncheckedUpdateWithoutPartBlocksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  tecnicoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
@@ -2463,6 +3825,12 @@ export type VehicleUpdateWithoutTenantInput = {
   sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
   tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
@@ -2496,6 +3864,12 @@ export type VehicleUncheckedUpdateWithoutTenantInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
@@ -2581,6 +3955,12 @@ export type VehicleUpdateWithoutTecnicoInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutVehicleNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
@@ -2614,6 +3994,12 @@ export type VehicleUncheckedUpdateWithoutTecnicoInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
@@ -2699,6 +4085,12 @@ export type VehicleUpdateWithoutClientInput = {
   sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
   tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
@@ -2732,6 +4124,12 @@ export type VehicleUncheckedUpdateWithoutClientInput = {
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
   portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
@@ -2773,6 +4171,10 @@ export type VehicleCountOutputType = {
   appointments: number
   sinistri: number
   portalAccesses: number
+  delayForecasts: number
+  delayDecisions: number
+  trackedParts: number
+  partBlocks: number
   photos: number
   quotes: number
   stageHistory: number
@@ -2783,6 +4185,10 @@ export type VehicleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   appointments?: boolean | VehicleCountOutputTypeCountAppointmentsArgs
   sinistri?: boolean | VehicleCountOutputTypeCountSinistriArgs
   portalAccesses?: boolean | VehicleCountOutputTypeCountPortalAccessesArgs
+  delayForecasts?: boolean | VehicleCountOutputTypeCountDelayForecastsArgs
+  delayDecisions?: boolean | VehicleCountOutputTypeCountDelayDecisionsArgs
+  trackedParts?: boolean | VehicleCountOutputTypeCountTrackedPartsArgs
+  partBlocks?: boolean | VehicleCountOutputTypeCountPartBlocksArgs
   photos?: boolean | VehicleCountOutputTypeCountPhotosArgs
   quotes?: boolean | VehicleCountOutputTypeCountQuotesArgs
   stageHistory?: boolean | VehicleCountOutputTypeCountStageHistoryArgs
@@ -2818,6 +4224,34 @@ export type VehicleCountOutputTypeCountSinistriArgs<ExtArgs extends runtime.Type
  */
 export type VehicleCountOutputTypeCountPortalAccessesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PortalAccessWhereInput
+}
+
+/**
+ * VehicleCountOutputType without action
+ */
+export type VehicleCountOutputTypeCountDelayForecastsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DelayForecastWhereInput
+}
+
+/**
+ * VehicleCountOutputType without action
+ */
+export type VehicleCountOutputTypeCountDelayDecisionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DelayDecisionWhereInput
+}
+
+/**
+ * VehicleCountOutputType without action
+ */
+export type VehicleCountOutputTypeCountTrackedPartsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TrackedPartWhereInput
+}
+
+/**
+ * VehicleCountOutputType without action
+ */
+export type VehicleCountOutputTypeCountPartBlocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VehiclePartBlockWhereInput
 }
 
 /**
@@ -2880,6 +4314,12 @@ export type VehicleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   sinistri?: boolean | Prisma.Vehicle$sinistriArgs<ExtArgs>
   portalAccesses?: boolean | Prisma.Vehicle$portalAccessesArgs<ExtArgs>
   tecnico?: boolean | Prisma.Vehicle$tecnicoArgs<ExtArgs>
+  delayPlan?: boolean | Prisma.Vehicle$delayPlanArgs<ExtArgs>
+  delayForecasts?: boolean | Prisma.Vehicle$delayForecastsArgs<ExtArgs>
+  delayDecisions?: boolean | Prisma.Vehicle$delayDecisionsArgs<ExtArgs>
+  trackedParts?: boolean | Prisma.Vehicle$trackedPartsArgs<ExtArgs>
+  partBlocks?: boolean | Prisma.Vehicle$partBlocksArgs<ExtArgs>
+  profitRecord?: boolean | Prisma.Vehicle$profitRecordArgs<ExtArgs>
   photos?: boolean | Prisma.Vehicle$photosArgs<ExtArgs>
   quotes?: boolean | Prisma.Vehicle$quotesArgs<ExtArgs>
   stageHistory?: boolean | Prisma.Vehicle$stageHistoryArgs<ExtArgs>
@@ -2982,6 +4422,12 @@ export type VehicleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   sinistri?: boolean | Prisma.Vehicle$sinistriArgs<ExtArgs>
   portalAccesses?: boolean | Prisma.Vehicle$portalAccessesArgs<ExtArgs>
   tecnico?: boolean | Prisma.Vehicle$tecnicoArgs<ExtArgs>
+  delayPlan?: boolean | Prisma.Vehicle$delayPlanArgs<ExtArgs>
+  delayForecasts?: boolean | Prisma.Vehicle$delayForecastsArgs<ExtArgs>
+  delayDecisions?: boolean | Prisma.Vehicle$delayDecisionsArgs<ExtArgs>
+  trackedParts?: boolean | Prisma.Vehicle$trackedPartsArgs<ExtArgs>
+  partBlocks?: boolean | Prisma.Vehicle$partBlocksArgs<ExtArgs>
+  profitRecord?: boolean | Prisma.Vehicle$profitRecordArgs<ExtArgs>
   photos?: boolean | Prisma.Vehicle$photosArgs<ExtArgs>
   quotes?: boolean | Prisma.Vehicle$quotesArgs<ExtArgs>
   stageHistory?: boolean | Prisma.Vehicle$stageHistoryArgs<ExtArgs>
@@ -3008,6 +4454,12 @@ export type $VehiclePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     sinistri: Prisma.$SinistroPayload<ExtArgs>[]
     portalAccesses: Prisma.$PortalAccessPayload<ExtArgs>[]
     tecnico: Prisma.$UserPayload<ExtArgs> | null
+    delayPlan: Prisma.$DelayPlanPayload<ExtArgs> | null
+    delayForecasts: Prisma.$DelayForecastPayload<ExtArgs>[]
+    delayDecisions: Prisma.$DelayDecisionPayload<ExtArgs>[]
+    trackedParts: Prisma.$TrackedPartPayload<ExtArgs>[]
+    partBlocks: Prisma.$VehiclePartBlockPayload<ExtArgs>[]
+    profitRecord: Prisma.$ProfitRecordPayload<ExtArgs> | null
     photos: Prisma.$PhotoPayload<ExtArgs>[]
     quotes: Prisma.$QuotePayload<ExtArgs>[]
     stageHistory: Prisma.$StageHistoryPayload<ExtArgs>[]
@@ -3438,6 +4890,12 @@ export interface Prisma__VehicleClient<T, Null = never, ExtArgs extends runtime.
   sinistri<T extends Prisma.Vehicle$sinistriArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$sinistriArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SinistroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   portalAccesses<T extends Prisma.Vehicle$portalAccessesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$portalAccessesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PortalAccessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tecnico<T extends Prisma.Vehicle$tecnicoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$tecnicoArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  delayPlan<T extends Prisma.Vehicle$delayPlanArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$delayPlanArgs<ExtArgs>>): Prisma.Prisma__DelayPlanClient<runtime.Types.Result.GetResult<Prisma.$DelayPlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  delayForecasts<T extends Prisma.Vehicle$delayForecastsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$delayForecastsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DelayForecastPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  delayDecisions<T extends Prisma.Vehicle$delayDecisionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$delayDecisionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DelayDecisionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  trackedParts<T extends Prisma.Vehicle$trackedPartsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$trackedPartsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TrackedPartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  partBlocks<T extends Prisma.Vehicle$partBlocksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$partBlocksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VehiclePartBlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  profitRecord<T extends Prisma.Vehicle$profitRecordArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$profitRecordArgs<ExtArgs>>): Prisma.Prisma__ProfitRecordClient<runtime.Types.Result.GetResult<Prisma.$ProfitRecordPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   photos<T extends Prisma.Vehicle$photosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$photosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PhotoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   quotes<T extends Prisma.Vehicle$quotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$quotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   stageHistory<T extends Prisma.Vehicle$stageHistoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$stageHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StageHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3984,6 +5442,140 @@ export type Vehicle$tecnicoArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   include?: Prisma.UserInclude<ExtArgs> | null
   where?: Prisma.UserWhereInput
+}
+
+/**
+ * Vehicle.delayPlan
+ */
+export type Vehicle$delayPlanArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DelayPlan
+   */
+  select?: Prisma.DelayPlanSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DelayPlan
+   */
+  omit?: Prisma.DelayPlanOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DelayPlanInclude<ExtArgs> | null
+  where?: Prisma.DelayPlanWhereInput
+}
+
+/**
+ * Vehicle.delayForecasts
+ */
+export type Vehicle$delayForecastsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DelayForecast
+   */
+  select?: Prisma.DelayForecastSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DelayForecast
+   */
+  omit?: Prisma.DelayForecastOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DelayForecastInclude<ExtArgs> | null
+  where?: Prisma.DelayForecastWhereInput
+  orderBy?: Prisma.DelayForecastOrderByWithRelationInput | Prisma.DelayForecastOrderByWithRelationInput[]
+  cursor?: Prisma.DelayForecastWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DelayForecastScalarFieldEnum | Prisma.DelayForecastScalarFieldEnum[]
+}
+
+/**
+ * Vehicle.delayDecisions
+ */
+export type Vehicle$delayDecisionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DelayDecision
+   */
+  select?: Prisma.DelayDecisionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DelayDecision
+   */
+  omit?: Prisma.DelayDecisionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DelayDecisionInclude<ExtArgs> | null
+  where?: Prisma.DelayDecisionWhereInput
+  orderBy?: Prisma.DelayDecisionOrderByWithRelationInput | Prisma.DelayDecisionOrderByWithRelationInput[]
+  cursor?: Prisma.DelayDecisionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DelayDecisionScalarFieldEnum | Prisma.DelayDecisionScalarFieldEnum[]
+}
+
+/**
+ * Vehicle.trackedParts
+ */
+export type Vehicle$trackedPartsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TrackedPart
+   */
+  select?: Prisma.TrackedPartSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TrackedPart
+   */
+  omit?: Prisma.TrackedPartOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TrackedPartInclude<ExtArgs> | null
+  where?: Prisma.TrackedPartWhereInput
+  orderBy?: Prisma.TrackedPartOrderByWithRelationInput | Prisma.TrackedPartOrderByWithRelationInput[]
+  cursor?: Prisma.TrackedPartWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TrackedPartScalarFieldEnum | Prisma.TrackedPartScalarFieldEnum[]
+}
+
+/**
+ * Vehicle.partBlocks
+ */
+export type Vehicle$partBlocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VehiclePartBlock
+   */
+  select?: Prisma.VehiclePartBlockSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VehiclePartBlock
+   */
+  omit?: Prisma.VehiclePartBlockOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VehiclePartBlockInclude<ExtArgs> | null
+  where?: Prisma.VehiclePartBlockWhereInput
+  orderBy?: Prisma.VehiclePartBlockOrderByWithRelationInput | Prisma.VehiclePartBlockOrderByWithRelationInput[]
+  cursor?: Prisma.VehiclePartBlockWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VehiclePartBlockScalarFieldEnum | Prisma.VehiclePartBlockScalarFieldEnum[]
+}
+
+/**
+ * Vehicle.profitRecord
+ */
+export type Vehicle$profitRecordArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProfitRecord
+   */
+  select?: Prisma.ProfitRecordSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProfitRecord
+   */
+  omit?: Prisma.ProfitRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProfitRecordInclude<ExtArgs> | null
+  where?: Prisma.ProfitRecordWhereInput
 }
 
 /**

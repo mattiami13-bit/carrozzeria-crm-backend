@@ -20,8 +20,18 @@ export type PhotoModel = runtime.Types.Result.DefaultSelection<Prisma.$PhotoPayl
 
 export type AggregatePhoto = {
   _count: PhotoCountAggregateOutputType | null
+  _avg: PhotoAvgAggregateOutputType | null
+  _sum: PhotoSumAggregateOutputType | null
   _min: PhotoMinAggregateOutputType | null
   _max: PhotoMaxAggregateOutputType | null
+}
+
+export type PhotoAvgAggregateOutputType = {
+  timelineVersion: number | null
+}
+
+export type PhotoSumAggregateOutputType = {
+  timelineVersion: number | null
 }
 
 export type PhotoMinAggregateOutputType = {
@@ -30,6 +40,7 @@ export type PhotoMinAggregateOutputType = {
   fase: $Enums.FasePhoto | null
   url: string | null
   createdAt: Date | null
+  timelineVersion: number | null
 }
 
 export type PhotoMaxAggregateOutputType = {
@@ -38,6 +49,7 @@ export type PhotoMaxAggregateOutputType = {
   fase: $Enums.FasePhoto | null
   url: string | null
   createdAt: Date | null
+  timelineVersion: number | null
 }
 
 export type PhotoCountAggregateOutputType = {
@@ -46,9 +58,19 @@ export type PhotoCountAggregateOutputType = {
   fase: number
   url: number
   createdAt: number
+  timeline: number
+  timelineVersion: number
   _all: number
 }
 
+
+export type PhotoAvgAggregateInputType = {
+  timelineVersion?: true
+}
+
+export type PhotoSumAggregateInputType = {
+  timelineVersion?: true
+}
 
 export type PhotoMinAggregateInputType = {
   id?: true
@@ -56,6 +78,7 @@ export type PhotoMinAggregateInputType = {
   fase?: true
   url?: true
   createdAt?: true
+  timelineVersion?: true
 }
 
 export type PhotoMaxAggregateInputType = {
@@ -64,6 +87,7 @@ export type PhotoMaxAggregateInputType = {
   fase?: true
   url?: true
   createdAt?: true
+  timelineVersion?: true
 }
 
 export type PhotoCountAggregateInputType = {
@@ -72,6 +96,8 @@ export type PhotoCountAggregateInputType = {
   fase?: true
   url?: true
   createdAt?: true
+  timeline?: true
+  timelineVersion?: true
   _all?: true
 }
 
@@ -113,6 +139,18 @@ export type PhotoAggregateArgs<ExtArgs extends runtime.Types.Extensions.Internal
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: PhotoAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: PhotoSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: PhotoMinAggregateInputType
@@ -143,6 +181,8 @@ export type PhotoGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   _count?: PhotoCountAggregateInputType | true
+  _avg?: PhotoAvgAggregateInputType
+  _sum?: PhotoSumAggregateInputType
   _min?: PhotoMinAggregateInputType
   _max?: PhotoMaxAggregateInputType
 }
@@ -153,7 +193,11 @@ export type PhotoGroupByOutputType = {
   fase: $Enums.FasePhoto
   url: string
   createdAt: Date
+  timeline: runtime.JsonValue
+  timelineVersion: number
   _count: PhotoCountAggregateOutputType | null
+  _avg: PhotoAvgAggregateOutputType | null
+  _sum: PhotoSumAggregateOutputType | null
   _min: PhotoMinAggregateOutputType | null
   _max: PhotoMaxAggregateOutputType | null
 }
@@ -182,7 +226,10 @@ export type PhotoWhereInput = {
   fase?: Prisma.EnumFasePhotoFilter<"Photo"> | $Enums.FasePhoto
   url?: Prisma.StringFilter<"Photo"> | string
   createdAt?: Prisma.DateTimeFilter<"Photo"> | Date | string
+  timeline?: Prisma.JsonFilter<"Photo">
+  timelineVersion?: Prisma.IntFilter<"Photo"> | number
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
+  timelineEdits?: Prisma.PhotoTimelineEditListRelationFilter
 }
 
 export type PhotoOrderByWithRelationInput = {
@@ -191,7 +238,10 @@ export type PhotoOrderByWithRelationInput = {
   fase?: Prisma.SortOrder
   url?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  timeline?: Prisma.SortOrder
+  timelineVersion?: Prisma.SortOrder
   vehicle?: Prisma.VehicleOrderByWithRelationInput
+  timelineEdits?: Prisma.PhotoTimelineEditOrderByRelationAggregateInput
 }
 
 export type PhotoWhereUniqueInput = Prisma.AtLeast<{
@@ -203,7 +253,10 @@ export type PhotoWhereUniqueInput = Prisma.AtLeast<{
   fase?: Prisma.EnumFasePhotoFilter<"Photo"> | $Enums.FasePhoto
   url?: Prisma.StringFilter<"Photo"> | string
   createdAt?: Prisma.DateTimeFilter<"Photo"> | Date | string
+  timeline?: Prisma.JsonFilter<"Photo">
+  timelineVersion?: Prisma.IntFilter<"Photo"> | number
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
+  timelineEdits?: Prisma.PhotoTimelineEditListRelationFilter
 }, "id">
 
 export type PhotoOrderByWithAggregationInput = {
@@ -212,9 +265,13 @@ export type PhotoOrderByWithAggregationInput = {
   fase?: Prisma.SortOrder
   url?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  timeline?: Prisma.SortOrder
+  timelineVersion?: Prisma.SortOrder
   _count?: Prisma.PhotoCountOrderByAggregateInput
+  _avg?: Prisma.PhotoAvgOrderByAggregateInput
   _max?: Prisma.PhotoMaxOrderByAggregateInput
   _min?: Prisma.PhotoMinOrderByAggregateInput
+  _sum?: Prisma.PhotoSumOrderByAggregateInput
 }
 
 export type PhotoScalarWhereWithAggregatesInput = {
@@ -226,6 +283,8 @@ export type PhotoScalarWhereWithAggregatesInput = {
   fase?: Prisma.EnumFasePhotoWithAggregatesFilter<"Photo"> | $Enums.FasePhoto
   url?: Prisma.StringWithAggregatesFilter<"Photo"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Photo"> | Date | string
+  timeline?: Prisma.JsonWithAggregatesFilter<"Photo">
+  timelineVersion?: Prisma.IntWithAggregatesFilter<"Photo"> | number
 }
 
 export type PhotoCreateInput = {
@@ -233,7 +292,10 @@ export type PhotoCreateInput = {
   fase: $Enums.FasePhoto
   url: string
   createdAt?: Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: number
   vehicle: Prisma.VehicleCreateNestedOneWithoutPhotosInput
+  timelineEdits?: Prisma.PhotoTimelineEditCreateNestedManyWithoutPhotoInput
 }
 
 export type PhotoUncheckedCreateInput = {
@@ -242,6 +304,9 @@ export type PhotoUncheckedCreateInput = {
   fase: $Enums.FasePhoto
   url: string
   createdAt?: Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: number
+  timelineEdits?: Prisma.PhotoTimelineEditUncheckedCreateNestedManyWithoutPhotoInput
 }
 
 export type PhotoUpdateInput = {
@@ -249,7 +314,10 @@ export type PhotoUpdateInput = {
   fase?: Prisma.EnumFasePhotoFieldUpdateOperationsInput | $Enums.FasePhoto
   url?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutPhotosNestedInput
+  timelineEdits?: Prisma.PhotoTimelineEditUpdateManyWithoutPhotoNestedInput
 }
 
 export type PhotoUncheckedUpdateInput = {
@@ -258,6 +326,9 @@ export type PhotoUncheckedUpdateInput = {
   fase?: Prisma.EnumFasePhotoFieldUpdateOperationsInput | $Enums.FasePhoto
   url?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
+  timelineEdits?: Prisma.PhotoTimelineEditUncheckedUpdateManyWithoutPhotoNestedInput
 }
 
 export type PhotoCreateManyInput = {
@@ -266,6 +337,8 @@ export type PhotoCreateManyInput = {
   fase: $Enums.FasePhoto
   url: string
   createdAt?: Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: number
 }
 
 export type PhotoUpdateManyMutationInput = {
@@ -273,6 +346,8 @@ export type PhotoUpdateManyMutationInput = {
   fase?: Prisma.EnumFasePhotoFieldUpdateOperationsInput | $Enums.FasePhoto
   url?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PhotoUncheckedUpdateManyInput = {
@@ -281,6 +356,8 @@ export type PhotoUncheckedUpdateManyInput = {
   fase?: Prisma.EnumFasePhotoFieldUpdateOperationsInput | $Enums.FasePhoto
   url?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PhotoListRelationFilter = {
@@ -299,6 +376,12 @@ export type PhotoCountOrderByAggregateInput = {
   fase?: Prisma.SortOrder
   url?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  timeline?: Prisma.SortOrder
+  timelineVersion?: Prisma.SortOrder
+}
+
+export type PhotoAvgOrderByAggregateInput = {
+  timelineVersion?: Prisma.SortOrder
 }
 
 export type PhotoMaxOrderByAggregateInput = {
@@ -307,6 +390,7 @@ export type PhotoMaxOrderByAggregateInput = {
   fase?: Prisma.SortOrder
   url?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  timelineVersion?: Prisma.SortOrder
 }
 
 export type PhotoMinOrderByAggregateInput = {
@@ -315,6 +399,16 @@ export type PhotoMinOrderByAggregateInput = {
   fase?: Prisma.SortOrder
   url?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  timelineVersion?: Prisma.SortOrder
+}
+
+export type PhotoSumOrderByAggregateInput = {
+  timelineVersion?: Prisma.SortOrder
+}
+
+export type PhotoScalarRelationFilter = {
+  is?: Prisma.PhotoWhereInput
+  isNot?: Prisma.PhotoWhereInput
 }
 
 export type PhotoCreateNestedManyWithoutVehicleInput = {
@@ -363,11 +457,36 @@ export type EnumFasePhotoFieldUpdateOperationsInput = {
   set?: $Enums.FasePhoto
 }
 
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type PhotoCreateNestedOneWithoutTimelineEditsInput = {
+  create?: Prisma.XOR<Prisma.PhotoCreateWithoutTimelineEditsInput, Prisma.PhotoUncheckedCreateWithoutTimelineEditsInput>
+  connectOrCreate?: Prisma.PhotoCreateOrConnectWithoutTimelineEditsInput
+  connect?: Prisma.PhotoWhereUniqueInput
+}
+
+export type PhotoUpdateOneRequiredWithoutTimelineEditsNestedInput = {
+  create?: Prisma.XOR<Prisma.PhotoCreateWithoutTimelineEditsInput, Prisma.PhotoUncheckedCreateWithoutTimelineEditsInput>
+  connectOrCreate?: Prisma.PhotoCreateOrConnectWithoutTimelineEditsInput
+  upsert?: Prisma.PhotoUpsertWithoutTimelineEditsInput
+  connect?: Prisma.PhotoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PhotoUpdateToOneWithWhereWithoutTimelineEditsInput, Prisma.PhotoUpdateWithoutTimelineEditsInput>, Prisma.PhotoUncheckedUpdateWithoutTimelineEditsInput>
+}
+
 export type PhotoCreateWithoutVehicleInput = {
   id?: string
   fase: $Enums.FasePhoto
   url: string
   createdAt?: Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: number
+  timelineEdits?: Prisma.PhotoTimelineEditCreateNestedManyWithoutPhotoInput
 }
 
 export type PhotoUncheckedCreateWithoutVehicleInput = {
@@ -375,6 +494,9 @@ export type PhotoUncheckedCreateWithoutVehicleInput = {
   fase: $Enums.FasePhoto
   url: string
   createdAt?: Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: number
+  timelineEdits?: Prisma.PhotoTimelineEditUncheckedCreateNestedManyWithoutPhotoInput
 }
 
 export type PhotoCreateOrConnectWithoutVehicleInput = {
@@ -412,6 +534,64 @@ export type PhotoScalarWhereInput = {
   fase?: Prisma.EnumFasePhotoFilter<"Photo"> | $Enums.FasePhoto
   url?: Prisma.StringFilter<"Photo"> | string
   createdAt?: Prisma.DateTimeFilter<"Photo"> | Date | string
+  timeline?: Prisma.JsonFilter<"Photo">
+  timelineVersion?: Prisma.IntFilter<"Photo"> | number
+}
+
+export type PhotoCreateWithoutTimelineEditsInput = {
+  id?: string
+  fase: $Enums.FasePhoto
+  url: string
+  createdAt?: Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: number
+  vehicle: Prisma.VehicleCreateNestedOneWithoutPhotosInput
+}
+
+export type PhotoUncheckedCreateWithoutTimelineEditsInput = {
+  id?: string
+  vehicleId: string
+  fase: $Enums.FasePhoto
+  url: string
+  createdAt?: Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: number
+}
+
+export type PhotoCreateOrConnectWithoutTimelineEditsInput = {
+  where: Prisma.PhotoWhereUniqueInput
+  create: Prisma.XOR<Prisma.PhotoCreateWithoutTimelineEditsInput, Prisma.PhotoUncheckedCreateWithoutTimelineEditsInput>
+}
+
+export type PhotoUpsertWithoutTimelineEditsInput = {
+  update: Prisma.XOR<Prisma.PhotoUpdateWithoutTimelineEditsInput, Prisma.PhotoUncheckedUpdateWithoutTimelineEditsInput>
+  create: Prisma.XOR<Prisma.PhotoCreateWithoutTimelineEditsInput, Prisma.PhotoUncheckedCreateWithoutTimelineEditsInput>
+  where?: Prisma.PhotoWhereInput
+}
+
+export type PhotoUpdateToOneWithWhereWithoutTimelineEditsInput = {
+  where?: Prisma.PhotoWhereInput
+  data: Prisma.XOR<Prisma.PhotoUpdateWithoutTimelineEditsInput, Prisma.PhotoUncheckedUpdateWithoutTimelineEditsInput>
+}
+
+export type PhotoUpdateWithoutTimelineEditsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fase?: Prisma.EnumFasePhotoFieldUpdateOperationsInput | $Enums.FasePhoto
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
+  vehicle?: Prisma.VehicleUpdateOneRequiredWithoutPhotosNestedInput
+}
+
+export type PhotoUncheckedUpdateWithoutTimelineEditsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.StringFieldUpdateOperationsInput | string
+  fase?: Prisma.EnumFasePhotoFieldUpdateOperationsInput | $Enums.FasePhoto
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PhotoCreateManyVehicleInput = {
@@ -419,6 +599,8 @@ export type PhotoCreateManyVehicleInput = {
   fase: $Enums.FasePhoto
   url: string
   createdAt?: Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: number
 }
 
 export type PhotoUpdateWithoutVehicleInput = {
@@ -426,6 +608,9 @@ export type PhotoUpdateWithoutVehicleInput = {
   fase?: Prisma.EnumFasePhotoFieldUpdateOperationsInput | $Enums.FasePhoto
   url?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
+  timelineEdits?: Prisma.PhotoTimelineEditUpdateManyWithoutPhotoNestedInput
 }
 
 export type PhotoUncheckedUpdateWithoutVehicleInput = {
@@ -433,6 +618,9 @@ export type PhotoUncheckedUpdateWithoutVehicleInput = {
   fase?: Prisma.EnumFasePhotoFieldUpdateOperationsInput | $Enums.FasePhoto
   url?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
+  timelineEdits?: Prisma.PhotoTimelineEditUncheckedUpdateManyWithoutPhotoNestedInput
 }
 
 export type PhotoUncheckedUpdateManyWithoutVehicleInput = {
@@ -440,8 +628,39 @@ export type PhotoUncheckedUpdateManyWithoutVehicleInput = {
   fase?: Prisma.EnumFasePhotoFieldUpdateOperationsInput | $Enums.FasePhoto
   url?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
+
+/**
+ * Count Type PhotoCountOutputType
+ */
+
+export type PhotoCountOutputType = {
+  timelineEdits: number
+}
+
+export type PhotoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  timelineEdits?: boolean | PhotoCountOutputTypeCountTimelineEditsArgs
+}
+
+/**
+ * PhotoCountOutputType without action
+ */
+export type PhotoCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PhotoCountOutputType
+   */
+  select?: Prisma.PhotoCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * PhotoCountOutputType without action
+ */
+export type PhotoCountOutputTypeCountTimelineEditsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PhotoTimelineEditWhereInput
+}
 
 
 export type PhotoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -450,7 +669,11 @@ export type PhotoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   fase?: boolean
   url?: boolean
   createdAt?: boolean
+  timeline?: boolean
+  timelineVersion?: boolean
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
+  timelineEdits?: boolean | Prisma.Photo$timelineEditsArgs<ExtArgs>
+  _count?: boolean | Prisma.PhotoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["photo"]>
 
 export type PhotoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -459,6 +682,8 @@ export type PhotoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   fase?: boolean
   url?: boolean
   createdAt?: boolean
+  timeline?: boolean
+  timelineVersion?: boolean
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["photo"]>
 
@@ -468,6 +693,8 @@ export type PhotoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   fase?: boolean
   url?: boolean
   createdAt?: boolean
+  timeline?: boolean
+  timelineVersion?: boolean
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["photo"]>
 
@@ -477,11 +704,15 @@ export type PhotoSelectScalar = {
   fase?: boolean
   url?: boolean
   createdAt?: boolean
+  timeline?: boolean
+  timelineVersion?: boolean
 }
 
-export type PhotoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "vehicleId" | "fase" | "url" | "createdAt", ExtArgs["result"]["photo"]>
+export type PhotoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "vehicleId" | "fase" | "url" | "createdAt" | "timeline" | "timelineVersion", ExtArgs["result"]["photo"]>
 export type PhotoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
+  timelineEdits?: boolean | Prisma.Photo$timelineEditsArgs<ExtArgs>
+  _count?: boolean | Prisma.PhotoCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PhotoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
@@ -494,6 +725,7 @@ export type $PhotoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "Photo"
   objects: {
     vehicle: Prisma.$VehiclePayload<ExtArgs>
+    timelineEdits: Prisma.$PhotoTimelineEditPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -501,6 +733,8 @@ export type $PhotoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     fase: $Enums.FasePhoto
     url: string
     createdAt: Date
+    timeline: runtime.JsonValue
+    timelineVersion: number
   }, ExtArgs["result"]["photo"]>
   composites: {}
 }
@@ -896,6 +1130,7 @@ readonly fields: PhotoFieldRefs;
 export interface Prisma__PhotoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   vehicle<T extends Prisma.VehicleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VehicleDefaultArgs<ExtArgs>>): Prisma.Prisma__VehicleClient<runtime.Types.Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  timelineEdits<T extends Prisma.Photo$timelineEditsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Photo$timelineEditsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PhotoTimelineEditPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -930,6 +1165,8 @@ export interface PhotoFieldRefs {
   readonly fase: Prisma.FieldRef<"Photo", 'FasePhoto'>
   readonly url: Prisma.FieldRef<"Photo", 'String'>
   readonly createdAt: Prisma.FieldRef<"Photo", 'DateTime'>
+  readonly timeline: Prisma.FieldRef<"Photo", 'Json'>
+  readonly timelineVersion: Prisma.FieldRef<"Photo", 'Int'>
 }
     
 
@@ -1328,6 +1565,30 @@ export type PhotoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Limit how many Photos to delete.
    */
   limit?: number
+}
+
+/**
+ * Photo.timelineEdits
+ */
+export type Photo$timelineEditsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PhotoTimelineEdit
+   */
+  select?: Prisma.PhotoTimelineEditSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PhotoTimelineEdit
+   */
+  omit?: Prisma.PhotoTimelineEditOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PhotoTimelineEditInclude<ExtArgs> | null
+  where?: Prisma.PhotoTimelineEditWhereInput
+  orderBy?: Prisma.PhotoTimelineEditOrderByWithRelationInput | Prisma.PhotoTimelineEditOrderByWithRelationInput[]
+  cursor?: Prisma.PhotoTimelineEditWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PhotoTimelineEditScalarFieldEnum | Prisma.PhotoTimelineEditScalarFieldEnum[]
 }
 
 /**

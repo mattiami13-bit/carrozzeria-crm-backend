@@ -40,6 +40,15 @@ model Tenant {
   limiteAssistenteIAMensile Int?
   createdAt      DateTime  @default(now())
 
+  delaySettings DelaySettings?
+  delayPlans DelayPlan[]
+  delayForecasts DelayForecast[]
+  delayDecisions DelayDecision[]
+  trackedParts TrackedPart[]
+  partBlocks VehiclePartBlock[]
+  partDocuments TrackedPartDocument[]
+  profitRecords ProfitRecord[]
+  profitSettings ProfitSettings?
   users          User[]
   clients        Client[]
   vehicles       Vehicle[]
@@ -177,6 +186,12 @@ model Vehicle {
   stimaIA     Json?
   stimaIAAt   DateTime?
 
+  delayPlan DelayPlan?
+  delayForecasts DelayForecast[]
+  delayDecisions DelayDecision[]
+  trackedParts TrackedPart[]
+  partBlocks VehiclePartBlock[]
+  profitRecord ProfitRecord?
   photos       Photo[]
   quotes       Quote[]
   stageHistory StageHistory[]
@@ -235,6 +250,10 @@ model Photo {
   fase      FasePhoto
   url       String // path su object storage (S3-compatibile)
   createdAt DateTime  @default(now())
+
+  timeline Json @default("{}")
+  timelineVersion Int @default(1)
+  timelineEdits PhotoTimelineEdit[]
 
   @@index([vehicleId])
   @@map("photos")
@@ -403,6 +422,7 @@ enum DamageSeverity {
 // -----------------------------
 
 model Part {
+ trackedParts TrackedPart[]
   id       String @id @default(cuid())
   tenantId String
   tenant   Tenant @relation(fields: [tenantId], references: [id])
@@ -461,6 +481,7 @@ model SupplierOrder {
 }
 
 model SupplierOrderItem {
+ trackedPart TrackedPart?
   id              String        @id @default(cuid())
   supplierOrderId String
   supplierOrder   SupplierOrder @relation(fields: [supplierOrderId], references: [id])
@@ -699,4 +720,160 @@ model AuditLog {
 
   @@index([tenantId, createdAt])
   @@map("audit_logs")
+}
+
+// Profit Tracker: amounts in integer euro cents inside a versioned, validated ledger.
+model ProfitRecord {
+  id String @id @default(cuid())
+  tenantId String
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+  vehicleId String @unique
+  vehicle Vehicle @relation(fields: [vehicleId], references: [id])
+  data Json
+  version Int @default(1)
+  updatedById String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([tenantId])
+  @@map("profit_records")
+}
+
+model ProfitSettings {
+  tenantId String @id
+  tenant Tenant @relation(fields: [tenantId], references: [id])
+  criticalBelow Int @default(20)
+  goodFrom Int @default(35)
+  @@map("profit_settings")
+}
+
+// Predictive Delay AI: operational data only; no quote prices exposed.
+model DelaySettings {
+ tenantId String @id
+ tenant Tenant @relation(fields: [tenantId], references: [id])
+ data Json
+ version Int @default(1)
+ updatedAt DateTime @updatedAt
+ @@map("delay_settings")
+}
+model DelayPlan {
+ vehicleId String @id
+ vehicle Vehicle @relation(fields: [vehicleId], references: [id])
+ tenantId String
+ tenant Tenant @relation(fields: [tenantId], references: [id])
+ data Json
+ version Int @default(1)
+ updatedById String
+ updatedAt DateTime @updatedAt
+ @@index([tenantId])
+ @@map("delay_plans")
+}
+model DelayForecast {
+ id String @id @default(cuid())
+ vehicleId String
+ vehicle Vehicle @relation(fields: [vehicleId], references: [id])
+ tenantId String
+ tenant Tenant @relation(fields: [tenantId], references: [id])
+ fingerprint String
+ modelVersion String
+ promisedAt DateTime?
+ estimatedDate String?
+ risk Int?
+ input Json
+ result Json
+ actualDeliveredAt DateTime?
+ createdAt DateTime @default(now())
+ decisions DelayDecision[]
+ @@unique([vehicleId, fingerprint])
+ @@index([tenantId, createdAt])
+ @@index([vehicleId, createdAt])
+ @@map("delay_forecasts")
+}
+model DelayDecision {
+ id String @id @default(cuid())
+ tenantId String
+ tenant Tenant @relation(fields: [tenantId], references: [id])
+ vehicleId String
+ vehicle Vehicle @relation(fields: [vehicleId], references: [id])
+ forecastId String
+ forecast DelayForecast @relation(fields: [forecastId], references: [id])
+ action String
+ proposedDate String?
+ note String
+ userId String
+ createdAt DateTime @default(now())
+ @@index([tenantId, vehicleId, createdAt])
+ @@map("delay_decisions")
+}
+
+// Parts Tracking: one operational record per practice/vehicle and ordered line.
+model TrackedPart {
+ id String @id @default(cuid())
+ requestKey String @unique
+ tenantId String
+ tenant Tenant @relation(fields: [tenantId], references: [id])
+ vehicleId String
+ vehicle Vehicle @relation(fields: [vehicleId], references: [id])
+ orderItemId String? @unique
+ orderItem SupplierOrderItem? @relation(fields: [orderItemId], references: [id], onDelete: SetNull, onUpdate: NoAction)
+ catalogPartId String?
+ catalogPart Part? @relation(fields: [catalogPartId], references: [id], onDelete: SetNull, onUpdate: NoAction)
+ status String @default("DA_ORDINARE")
+ data Json
+ version Int @default(1)
+ createdAt DateTime @default(now())
+ updatedAt DateTime @updatedAt
+ events TrackedPartEvent[]
+ documents TrackedPartDocument[]
+ @@index([tenantId, vehicleId])
+ @@map("tracked_parts")
+}
+model TrackedPartEvent {
+ id String @id @default(cuid())
+ partId String
+ part TrackedPart @relation(fields: [partId], references: [id])
+ actorId String?
+ fromStatus String?
+ toStatus String
+ reason String
+ snapshot Json
+ createdAt DateTime @default(now())
+ @@index([partId, createdAt])
+ @@map("tracked_part_events")
+}
+model VehiclePartBlock {
+ id String @id @default(cuid())
+ tenantId String
+ tenant Tenant @relation(fields: [tenantId], references: [id])
+ vehicleId String
+ vehicle Vehicle @relation(fields: [vehicleId], references: [id])
+ startedAt DateTime @default(now())
+ endedAt DateTime?
+ @@index([tenantId, vehicleId])
+ @@map("vehicle_part_blocks")
+}
+model TrackedPartDocument {
+ id String @id @default(cuid())
+ tenantId String
+ tenant Tenant @relation(fields: [tenantId], references: [id])
+ partId String
+ part TrackedPart @relation(fields: [partId], references: [id])
+ name String
+ mime String
+ size Int
+ content Bytes
+ createdAt DateTime @default(now())
+ @@index([tenantId, partId])
+ @@map("tracked_part_documents")
+}
+
+model PhotoTimelineEdit {
+ id String @id @default(cuid())
+ photoId String
+ photo Photo @relation(fields: [photoId], references: [id], onDelete: Cascade)
+ actorId String
+ before Json
+ after Json
+ createdAt DateTime @default(now())
+ @@index([photoId, createdAt])
+ @@map("photo_timeline_edits")
 }

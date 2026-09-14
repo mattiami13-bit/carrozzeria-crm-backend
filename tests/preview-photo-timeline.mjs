@@ -1,0 +1,8 @@
+import http from 'node:http';
+import fs from 'node:fs';
+const photos=['DANNI_INIZIALI','CONSEGNA'].map((category,i)=>({id:'demo-'+i,url:'/photo.jpg',fase:i?'DOPO':'PRIMA',createdAt:'2026-09-14T10:00:00Z',timelineVersion:1,timeline:{category,authorName:'Operatore di prova',notes:'Fotografia dimostrativa',internalNotes:'',workDescription:'',markers:[],ai:{status:'ready',category,confidence:85,reason:'Suggerimento di prova'}}}));
+const demo=`const fixture={photos:${JSON.stringify(photos)},canExport:true};
+async function demoApi(path,o={}){if(path.endsWith('/dossier'))return(await fetch('/dossier.pdf')).blob();if(o.method==='PATCH'){const b=JSON.parse(o.body),p=fixture.photos.find(p=>p.id===path.split('/').at(-1));p.timeline={...p.timeline,...b.data};p.timelineVersion++;return p;}return structuredClone(fixture);}
+function PhotoDemo(){return <main style={{maxWidth:960,margin:'auto',padding:16}}><h1>TEST ISOLATO - nessun dato reale</h1><SmartPhotoTimeline vehicleId='demo' api={demoApi}/></main>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<ErrorBoundary><PhotoDemo/></ErrorBoundary>);`;
+http.createServer((req,res)=>{if(req.url==='/photo.jpg'){res.writeHead(200,{'Content-Type':'image/jpeg'});return res.end(fs.readFileSync('tmp/pdfs/test-photo.jpg'));}if(req.url==='/dossier.pdf'){res.writeHead(200,{'Content-Type':'application/pdf'});return res.end(fs.readFileSync('tmp/pdfs/dossier-test.pdf'));}res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});res.end(fs.readFileSync('frontend/carrozzeria-crm-app.html','utf8').replace('ReactDOM.createRoot(document.getElementById("root")).render(<ErrorBoundary><App /></ErrorBoundary>);',demo));}).listen(4313,'127.0.0.1',()=>console.log('Test timeline http://127.0.0.1:4313'));

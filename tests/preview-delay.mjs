@@ -1,0 +1,14 @@
+import http from 'node:http';
+import fs from 'node:fs';
+import {emptyPlan,defaultSettings,predict,accuracy} from '../src/lib/delay.js';
+const plan=emptyPlan();plan.hours=plan.hours.map((h,i)=>({...h,planned:i===0?7.5:0,completed:0}));plan.dependenciesReviewed=true;
+const settings={...defaultSettings(),calendarConfirmed:true,technicians:[{userId:'test',department:'carrozzeria',hoursPerDay:8,unavailableDates:[]}]};
+const result=predict({now:'2026-09-14T06:00:00Z',vehicle:{id:'demo',stage:'IN_LAVORAZIONE',dataIngresso:'2026-09-10T12:00Z',dataPrevistaConsegna:'2026-09-15T12:00Z'},settings,hours:plan.hours,dependencies:[{description:'Paraurti dimostrativo',kind:'part',done:false,eta:'2026-09-16'}],depsReviewed:true,history:[],queue:{carrozzeria:8},appointments:[]});
+const f={id:'demo-f',risk:result.risk,result,estimatedDate:result.estimatedDate,promisedAt:'2026-09-15T12:00Z',createdAt:'2026-09-14T06:00Z',actualDeliveredAt:null};
+const fixture={data:plan,version:0,forecast:f,initial:f,history:[f],decisions:[],canEdit:true,delivered:false,hoursSource:'Dati dimostrativi isolati',operationalHours:plan.hours,orderItems:[]};
+const demo=`const fixture=${JSON.stringify(fixture)};const config=${JSON.stringify({data:settings,version:0,staff:[{id:'test',nome:'Tecnico',cognome:'Dimostrativo'}]})};
+async function demoApi(url,options={}){if(options.method==='PUT'){const body=JSON.parse(options.body);if(url.endsWith('settings'))Object.assign(config,body);else Object.assign(fixture,body);return{ok:true};}if(options.method==='POST'){fixture.decisions.push({...JSON.parse(options.body),id:String(fixture.decisions.length),createdAt:new Date().toISOString()});return{ok:true};}if(url.endsWith('settings'))return structuredClone(config);if(url.endsWith('dashboard'))return{rows:[{vehicleId:'demo',label:'Audi Q5 — DIMOSTRAZIONE',forecast:fixture.forecast,delivered:false}],accuracy:${JSON.stringify(accuracy([]))}};return structuredClone(fixture);}
+function DelayDemo(){const [mode,setMode]=useState('pratica');return <main style={{maxWidth:960,margin:'auto',padding:16}}><h1>TEST ISOLATO — nessun dato reale</h1><button onClick={()=>setMode(mode==='pratica'?'dashboard':'pratica')}>Cambia vista demo</button>{mode==='pratica'?<DelayPanel vehicleId='demo' api={demoApi}/>:<DelayDashboard api={demoApi} ruolo='ADMIN' onOpen={()=>setMode('pratica')}/>}</main>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<ErrorBoundary><DelayDemo/></ErrorBoundary>);`;
+const server=http.createServer((req,res)=>{let html=fs.readFileSync('frontend/carrozzeria-crm-app.html','utf8');html=html.replace('ReactDOM.createRoot(document.getElementById("root")).render(<ErrorBoundary><App /></ErrorBoundary>);',demo);res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});res.end(html);});
+server.listen(4311,'127.0.0.1',()=>console.log('Test UI isolato: http://127.0.0.1:4311'));

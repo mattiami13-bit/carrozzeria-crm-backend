@@ -240,6 +240,7 @@ export type SupplierOrderItemWhereInput = {
   quantitaOrdinata?: Prisma.IntFilter<"SupplierOrderItem"> | number
   quantitaRicevuta?: Prisma.IntFilter<"SupplierOrderItem"> | number
   prezzoUnitario?: Prisma.DecimalNullableFilter<"SupplierOrderItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  trackedPart?: Prisma.XOR<Prisma.TrackedPartNullableScalarRelationFilter, Prisma.TrackedPartWhereInput> | null
   supplierOrder?: Prisma.XOR<Prisma.SupplierOrderScalarRelationFilter, Prisma.SupplierOrderWhereInput>
 }
 
@@ -251,6 +252,7 @@ export type SupplierOrderItemOrderByWithRelationInput = {
   quantitaOrdinata?: Prisma.SortOrder
   quantitaRicevuta?: Prisma.SortOrder
   prezzoUnitario?: Prisma.SortOrderInput | Prisma.SortOrder
+  trackedPart?: Prisma.TrackedPartOrderByWithRelationInput
   supplierOrder?: Prisma.SupplierOrderOrderByWithRelationInput
 }
 
@@ -265,6 +267,7 @@ export type SupplierOrderItemWhereUniqueInput = Prisma.AtLeast<{
   quantitaOrdinata?: Prisma.IntFilter<"SupplierOrderItem"> | number
   quantitaRicevuta?: Prisma.IntFilter<"SupplierOrderItem"> | number
   prezzoUnitario?: Prisma.DecimalNullableFilter<"SupplierOrderItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  trackedPart?: Prisma.XOR<Prisma.TrackedPartNullableScalarRelationFilter, Prisma.TrackedPartWhereInput> | null
   supplierOrder?: Prisma.XOR<Prisma.SupplierOrderScalarRelationFilter, Prisma.SupplierOrderWhereInput>
 }, "id">
 
@@ -303,6 +306,7 @@ export type SupplierOrderItemCreateInput = {
   quantitaOrdinata: number
   quantitaRicevuta?: number
   prezzoUnitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  trackedPart?: Prisma.TrackedPartCreateNestedOneWithoutOrderItemInput
   supplierOrder: Prisma.SupplierOrderCreateNestedOneWithoutItemsInput
 }
 
@@ -314,6 +318,7 @@ export type SupplierOrderItemUncheckedCreateInput = {
   quantitaOrdinata: number
   quantitaRicevuta?: number
   prezzoUnitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  trackedPart?: Prisma.TrackedPartUncheckedCreateNestedOneWithoutOrderItemInput
 }
 
 export type SupplierOrderItemUpdateInput = {
@@ -323,6 +328,7 @@ export type SupplierOrderItemUpdateInput = {
   quantitaOrdinata?: Prisma.IntFieldUpdateOperationsInput | number
   quantitaRicevuta?: Prisma.IntFieldUpdateOperationsInput | number
   prezzoUnitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  trackedPart?: Prisma.TrackedPartUpdateOneWithoutOrderItemNestedInput
   supplierOrder?: Prisma.SupplierOrderUpdateOneRequiredWithoutItemsNestedInput
 }
 
@@ -334,6 +340,7 @@ export type SupplierOrderItemUncheckedUpdateInput = {
   quantitaOrdinata?: Prisma.IntFieldUpdateOperationsInput | number
   quantitaRicevuta?: Prisma.IntFieldUpdateOperationsInput | number
   prezzoUnitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  trackedPart?: Prisma.TrackedPartUncheckedUpdateOneWithoutOrderItemNestedInput
 }
 
 export type SupplierOrderItemCreateManyInput = {
@@ -417,6 +424,11 @@ export type SupplierOrderItemSumOrderByAggregateInput = {
   prezzoUnitario?: Prisma.SortOrder
 }
 
+export type SupplierOrderItemNullableScalarRelationFilter = {
+  is?: Prisma.SupplierOrderItemWhereInput | null
+  isNot?: Prisma.SupplierOrderItemWhereInput | null
+}
+
 export type SupplierOrderItemCreateNestedManyWithoutSupplierOrderInput = {
   create?: Prisma.XOR<Prisma.SupplierOrderItemCreateWithoutSupplierOrderInput, Prisma.SupplierOrderItemUncheckedCreateWithoutSupplierOrderInput> | Prisma.SupplierOrderItemCreateWithoutSupplierOrderInput[] | Prisma.SupplierOrderItemUncheckedCreateWithoutSupplierOrderInput[]
   connectOrCreate?: Prisma.SupplierOrderItemCreateOrConnectWithoutSupplierOrderInput | Prisma.SupplierOrderItemCreateOrConnectWithoutSupplierOrderInput[]
@@ -459,6 +471,22 @@ export type SupplierOrderItemUncheckedUpdateManyWithoutSupplierOrderNestedInput 
   deleteMany?: Prisma.SupplierOrderItemScalarWhereInput | Prisma.SupplierOrderItemScalarWhereInput[]
 }
 
+export type SupplierOrderItemCreateNestedOneWithoutTrackedPartInput = {
+  create?: Prisma.XOR<Prisma.SupplierOrderItemCreateWithoutTrackedPartInput, Prisma.SupplierOrderItemUncheckedCreateWithoutTrackedPartInput>
+  connectOrCreate?: Prisma.SupplierOrderItemCreateOrConnectWithoutTrackedPartInput
+  connect?: Prisma.SupplierOrderItemWhereUniqueInput
+}
+
+export type SupplierOrderItemUpdateOneWithoutTrackedPartNestedInput = {
+  create?: Prisma.XOR<Prisma.SupplierOrderItemCreateWithoutTrackedPartInput, Prisma.SupplierOrderItemUncheckedCreateWithoutTrackedPartInput>
+  connectOrCreate?: Prisma.SupplierOrderItemCreateOrConnectWithoutTrackedPartInput
+  upsert?: Prisma.SupplierOrderItemUpsertWithoutTrackedPartInput
+  disconnect?: Prisma.SupplierOrderItemWhereInput | boolean
+  delete?: Prisma.SupplierOrderItemWhereInput | boolean
+  connect?: Prisma.SupplierOrderItemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SupplierOrderItemUpdateToOneWithWhereWithoutTrackedPartInput, Prisma.SupplierOrderItemUpdateWithoutTrackedPartInput>, Prisma.SupplierOrderItemUncheckedUpdateWithoutTrackedPartInput>
+}
+
 export type SupplierOrderItemCreateWithoutSupplierOrderInput = {
   id?: string
   partId?: string | null
@@ -466,6 +494,7 @@ export type SupplierOrderItemCreateWithoutSupplierOrderInput = {
   quantitaOrdinata: number
   quantitaRicevuta?: number
   prezzoUnitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  trackedPart?: Prisma.TrackedPartCreateNestedOneWithoutOrderItemInput
 }
 
 export type SupplierOrderItemUncheckedCreateWithoutSupplierOrderInput = {
@@ -475,6 +504,7 @@ export type SupplierOrderItemUncheckedCreateWithoutSupplierOrderInput = {
   quantitaOrdinata: number
   quantitaRicevuta?: number
   prezzoUnitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  trackedPart?: Prisma.TrackedPartUncheckedCreateNestedOneWithoutOrderItemInput
 }
 
 export type SupplierOrderItemCreateOrConnectWithoutSupplierOrderInput = {
@@ -516,6 +546,62 @@ export type SupplierOrderItemScalarWhereInput = {
   prezzoUnitario?: Prisma.DecimalNullableFilter<"SupplierOrderItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
+export type SupplierOrderItemCreateWithoutTrackedPartInput = {
+  id?: string
+  partId?: string | null
+  descrizione: string
+  quantitaOrdinata: number
+  quantitaRicevuta?: number
+  prezzoUnitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  supplierOrder: Prisma.SupplierOrderCreateNestedOneWithoutItemsInput
+}
+
+export type SupplierOrderItemUncheckedCreateWithoutTrackedPartInput = {
+  id?: string
+  supplierOrderId: string
+  partId?: string | null
+  descrizione: string
+  quantitaOrdinata: number
+  quantitaRicevuta?: number
+  prezzoUnitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+}
+
+export type SupplierOrderItemCreateOrConnectWithoutTrackedPartInput = {
+  where: Prisma.SupplierOrderItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.SupplierOrderItemCreateWithoutTrackedPartInput, Prisma.SupplierOrderItemUncheckedCreateWithoutTrackedPartInput>
+}
+
+export type SupplierOrderItemUpsertWithoutTrackedPartInput = {
+  update: Prisma.XOR<Prisma.SupplierOrderItemUpdateWithoutTrackedPartInput, Prisma.SupplierOrderItemUncheckedUpdateWithoutTrackedPartInput>
+  create: Prisma.XOR<Prisma.SupplierOrderItemCreateWithoutTrackedPartInput, Prisma.SupplierOrderItemUncheckedCreateWithoutTrackedPartInput>
+  where?: Prisma.SupplierOrderItemWhereInput
+}
+
+export type SupplierOrderItemUpdateToOneWithWhereWithoutTrackedPartInput = {
+  where?: Prisma.SupplierOrderItemWhereInput
+  data: Prisma.XOR<Prisma.SupplierOrderItemUpdateWithoutTrackedPartInput, Prisma.SupplierOrderItemUncheckedUpdateWithoutTrackedPartInput>
+}
+
+export type SupplierOrderItemUpdateWithoutTrackedPartInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  quantitaOrdinata?: Prisma.IntFieldUpdateOperationsInput | number
+  quantitaRicevuta?: Prisma.IntFieldUpdateOperationsInput | number
+  prezzoUnitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  supplierOrder?: Prisma.SupplierOrderUpdateOneRequiredWithoutItemsNestedInput
+}
+
+export type SupplierOrderItemUncheckedUpdateWithoutTrackedPartInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  supplierOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  quantitaOrdinata?: Prisma.IntFieldUpdateOperationsInput | number
+  quantitaRicevuta?: Prisma.IntFieldUpdateOperationsInput | number
+  prezzoUnitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+}
+
 export type SupplierOrderItemCreateManySupplierOrderInput = {
   id?: string
   partId?: string | null
@@ -532,6 +618,7 @@ export type SupplierOrderItemUpdateWithoutSupplierOrderInput = {
   quantitaOrdinata?: Prisma.IntFieldUpdateOperationsInput | number
   quantitaRicevuta?: Prisma.IntFieldUpdateOperationsInput | number
   prezzoUnitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  trackedPart?: Prisma.TrackedPartUpdateOneWithoutOrderItemNestedInput
 }
 
 export type SupplierOrderItemUncheckedUpdateWithoutSupplierOrderInput = {
@@ -541,6 +628,7 @@ export type SupplierOrderItemUncheckedUpdateWithoutSupplierOrderInput = {
   quantitaOrdinata?: Prisma.IntFieldUpdateOperationsInput | number
   quantitaRicevuta?: Prisma.IntFieldUpdateOperationsInput | number
   prezzoUnitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  trackedPart?: Prisma.TrackedPartUncheckedUpdateOneWithoutOrderItemNestedInput
 }
 
 export type SupplierOrderItemUncheckedUpdateManyWithoutSupplierOrderInput = {
@@ -562,6 +650,7 @@ export type SupplierOrderItemSelect<ExtArgs extends runtime.Types.Extensions.Int
   quantitaOrdinata?: boolean
   quantitaRicevuta?: boolean
   prezzoUnitario?: boolean
+  trackedPart?: boolean | Prisma.SupplierOrderItem$trackedPartArgs<ExtArgs>
   supplierOrder?: boolean | Prisma.SupplierOrderDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["supplierOrderItem"]>
 
@@ -599,6 +688,7 @@ export type SupplierOrderItemSelectScalar = {
 
 export type SupplierOrderItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "supplierOrderId" | "partId" | "descrizione" | "quantitaOrdinata" | "quantitaRicevuta" | "prezzoUnitario", ExtArgs["result"]["supplierOrderItem"]>
 export type SupplierOrderItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  trackedPart?: boolean | Prisma.SupplierOrderItem$trackedPartArgs<ExtArgs>
   supplierOrder?: boolean | Prisma.SupplierOrderDefaultArgs<ExtArgs>
 }
 export type SupplierOrderItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -611,6 +701,7 @@ export type SupplierOrderItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.
 export type $SupplierOrderItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "SupplierOrderItem"
   objects: {
+    trackedPart: Prisma.$TrackedPartPayload<ExtArgs> | null
     supplierOrder: Prisma.$SupplierOrderPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1015,6 +1106,7 @@ readonly fields: SupplierOrderItemFieldRefs;
  */
 export interface Prisma__SupplierOrderItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  trackedPart<T extends Prisma.SupplierOrderItem$trackedPartArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SupplierOrderItem$trackedPartArgs<ExtArgs>>): Prisma.Prisma__TrackedPartClient<runtime.Types.Result.GetResult<Prisma.$TrackedPartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   supplierOrder<T extends Prisma.SupplierOrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SupplierOrderDefaultArgs<ExtArgs>>): Prisma.Prisma__SupplierOrderClient<runtime.Types.Result.GetResult<Prisma.$SupplierOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1450,6 +1542,25 @@ export type SupplierOrderItemDeleteManyArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many SupplierOrderItems to delete.
    */
   limit?: number
+}
+
+/**
+ * SupplierOrderItem.trackedPart
+ */
+export type SupplierOrderItem$trackedPartArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TrackedPart
+   */
+  select?: Prisma.TrackedPartSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TrackedPart
+   */
+  omit?: Prisma.TrackedPartOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TrackedPartInclude<ExtArgs> | null
+  where?: Prisma.TrackedPartWhereInput
 }
 
 /**

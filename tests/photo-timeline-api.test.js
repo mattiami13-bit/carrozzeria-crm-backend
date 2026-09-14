@@ -1,0 +1,25 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import express from 'express';
+import jwt from 'jsonwebtoken';
+process.env.SUPABASE_URL='https://store.example';process.env.SUPABASE_SERVICE_ROLE_KEY='isolated-test-key';process.env.JWT_SECRET='isolated-photo-test';
+const {prisma}=await import('../src/lib/prisma.js'),{photoTimelineRouter}=await import('../src/routes/photoTimeline.js');
+let role='ADMIN',photo={id:'p',vehicleId:'v',fase:'PRIMA',timelineVersion:1,timeline:{authorId:'u',authorName:'Autore originale',ai:{category:'DANNI_INIZIALI',confidence:80}}},history=[];
+prisma.user.findFirst=async()=>({ruolo:role});
+prisma.vehicle.findFirst=async({where})=>{assert.equal(where.tenantId,'a');if(role==='TECNICO')assert.equal(where.tecnicoId,'u');return where.id==='v'?{id:'v',photos:[photo]}:null;};
+prisma.photo.findFirst=async({where})=>{assert.equal(where.vehicle.tenantId,'a');if(role==='TECNICO')assert.equal(where.vehicle.tecnicoId,'u');return where.id==='p'?photo:null;};
+prisma.photo.findUnique=async()=>photo;
+prisma.photo.updateMany=async({where,data})=>{if(where.timelineVersion!==photo.timelineVersion)return {count:0};photo={...photo,...data,timelineVersion:photo.timelineVersion+1};return {count:1};};
+prisma.photoTimelineEdit.create=async({data})=>history.push(data);prisma.$transaction=async fn=>fn(prisma);
+const app=express();app.use(express.json());app.use('/timeline',photoTimelineRouter);app.use((e,req,res,next)=>res.status(500).json({error:e.message}));const server=app.listen(0,'127.0.0.1');await new Promise(r=>server.once('listening',r));
+const call=(path,method='GET',body,auth=true)=>fetch(`http://127.0.0.1:${server.address().port}/timeline${path}`,{method,headers:{'Content-Type':'application/json',...(auth?{Authorization:'Bearer '+jwt.sign({sub:'u',tenantId:'a',role:'ADMIN'},process.env.JWT_SECRET)}:{})},body:body?JSON.stringify(body):undefined});
+test('API timeline: auth, tenant, ruolo attuale, storico, conflitti e selezione dossier',async()=>{try{
+ assert.equal((await call('/vehicles/v','GET',null,false)).status,401);assert.equal((await call('/vehicles/foreign')).status,404);
+ role='TECNICO';assert.equal((await call('/vehicles/v')).status,200);
+ const data={category:'DANNI_NASCOSTI',capturedAt:null,notes:'Danno dopo smontaggio',internalNotes:'Nota interna',workDescription:'Smontaggio',markers:[]};
+ assert.equal((await call('/photos/p','PATCH',{version:1,data})).status,200);assert.equal(photo.fase,'DURANTE');assert.equal(photo.timeline.authorName,'Autore originale');assert.equal(photo.timeline.ai.category,'DANNI_INIZIALI');assert.equal(history.length,1);
+ assert.equal((await call('/photos/p','PATCH',{version:1,data})).status,409);
+ assert.equal((await call('/photos/p','PATCH',{version:2,data:{...data,authorName:'Falso'}})).status,400);
+ assert.equal((await call('/vehicles/v/dossier','POST',{audience:'CLIENTE',photoIds:['foreign']})).status,400);
+ assert.equal((await call('/vehicles/v/dossier','POST',{audience:'CLIENTE',photoIds:['p'],comparison:{before:'p',after:'p'}})).status,400);
+ }finally{await new Promise(r=>server.close(r));await prisma.$disconnect();}});
