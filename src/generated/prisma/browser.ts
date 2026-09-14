@@ -138,6 +138,16 @@ export type Sinistro = Prisma.SinistroModel
  */
 export type PortalAccess = Prisma.PortalAccessModel
 /**
+ * Model PortalAction
+ * 
+ */
+export type PortalAction = Prisma.PortalActionModel
+/**
+ * Model PortalDocument
+ * 
+ */
+export type PortalDocument = Prisma.PortalDocumentModel
+/**
  * Model AiAnalysisLog
  * 
  */

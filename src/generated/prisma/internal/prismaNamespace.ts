@@ -421,6 +421,8 @@ export const ModelName = {
   TimeEntry: 'TimeEntry',
   Sinistro: 'Sinistro',
   PortalAccess: 'PortalAccess',
+  PortalAction: 'PortalAction',
+  PortalDocument: 'PortalDocument',
   AiAnalysisLog: 'AiAnalysisLog',
   AiAssistantLog: 'AiAssistantLog',
   AuditLog: 'AuditLog',
@@ -452,7 +454,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerBooking" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage"
+    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerBooking" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2232,6 +2234,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    PortalAction: {
+      payload: Prisma.$PortalActionPayload<ExtArgs>
+      fields: Prisma.PortalActionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PortalActionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalActionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PortalActionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalActionPayload>
+        }
+        findFirst: {
+          args: Prisma.PortalActionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalActionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PortalActionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalActionPayload>
+        }
+        findMany: {
+          args: Prisma.PortalActionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalActionPayload>[]
+        }
+        create: {
+          args: Prisma.PortalActionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalActionPayload>
+        }
+        createMany: {
+          args: Prisma.PortalActionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PortalActionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalActionPayload>[]
+        }
+        delete: {
+          args: Prisma.PortalActionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalActionPayload>
+        }
+        update: {
+          args: Prisma.PortalActionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalActionPayload>
+        }
+        deleteMany: {
+          args: Prisma.PortalActionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PortalActionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PortalActionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalActionPayload>[]
+        }
+        upsert: {
+          args: Prisma.PortalActionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalActionPayload>
+        }
+        aggregate: {
+          args: Prisma.PortalActionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePortalAction>
+        }
+        groupBy: {
+          args: Prisma.PortalActionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PortalActionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PortalActionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PortalActionCountAggregateOutputType> | number
+        }
+      }
+    }
+    PortalDocument: {
+      payload: Prisma.$PortalDocumentPayload<ExtArgs>
+      fields: Prisma.PortalDocumentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PortalDocumentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalDocumentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PortalDocumentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalDocumentPayload>
+        }
+        findFirst: {
+          args: Prisma.PortalDocumentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalDocumentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PortalDocumentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalDocumentPayload>
+        }
+        findMany: {
+          args: Prisma.PortalDocumentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalDocumentPayload>[]
+        }
+        create: {
+          args: Prisma.PortalDocumentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalDocumentPayload>
+        }
+        createMany: {
+          args: Prisma.PortalDocumentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PortalDocumentCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalDocumentPayload>[]
+        }
+        delete: {
+          args: Prisma.PortalDocumentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalDocumentPayload>
+        }
+        update: {
+          args: Prisma.PortalDocumentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalDocumentPayload>
+        }
+        deleteMany: {
+          args: Prisma.PortalDocumentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PortalDocumentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PortalDocumentUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalDocumentPayload>[]
+        }
+        upsert: {
+          args: Prisma.PortalDocumentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalDocumentPayload>
+        }
+        aggregate: {
+          args: Prisma.PortalDocumentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePortalDocument>
+        }
+        groupBy: {
+          args: Prisma.PortalDocumentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PortalDocumentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PortalDocumentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PortalDocumentCountAggregateOutputType> | number
+        }
+      }
+    }
     AiAnalysisLog: {
       payload: Prisma.$AiAnalysisLogPayload<ExtArgs>
       fields: Prisma.AiAnalysisLogFieldRefs
@@ -3553,7 +3703,8 @@ export const PhotoScalarFieldEnum = {
   url: 'url',
   createdAt: 'createdAt',
   timeline: 'timeline',
-  timelineVersion: 'timelineVersion'
+  timelineVersion: 'timelineVersion',
+  visibilePortale: 'visibilePortale'
 } as const
 
 export type PhotoScalarFieldEnum = (typeof PhotoScalarFieldEnum)[keyof typeof PhotoScalarFieldEnum]
@@ -3840,10 +3991,49 @@ export const PortalAccessScalarFieldEnum = {
   token: 'token',
   attivo: 'attivo',
   createdAt: 'createdAt',
-  ultimoAccessoAt: 'ultimoAccessoAt'
+  scadenza: 'scadenza',
+  ultimoAccessoAt: 'ultimoAccessoAt',
+  numeroAccessi: 'numeroAccessi'
 } as const
 
 export type PortalAccessScalarFieldEnum = (typeof PortalAccessScalarFieldEnum)[keyof typeof PortalAccessScalarFieldEnum]
+
+
+export const PortalActionScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  portalAccessId: 'portalAccessId',
+  tipo: 'tipo',
+  messaggio: 'messaggio',
+  dataRichiesta: 'dataRichiesta',
+  ip: 'ip',
+  gestita: 'gestita',
+  gestitaDaId: 'gestitaDaId',
+  gestitaAt: 'gestitaAt',
+  createdAt: 'createdAt'
+} as const
+
+export type PortalActionScalarFieldEnum = (typeof PortalActionScalarFieldEnum)[keyof typeof PortalActionScalarFieldEnum]
+
+
+export const PortalDocumentScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  nome: 'nome',
+  mime: 'mime',
+  size: 'size',
+  content: 'content',
+  richiedeFirma: 'richiedeFirma',
+  firmaDataUrl: 'firmaDataUrl',
+  firmatarioNome: 'firmatarioNome',
+  firmatoAt: 'firmatoAt',
+  caricatoDaId: 'caricatoDaId',
+  createdAt: 'createdAt'
+} as const
+
+export type PortalDocumentScalarFieldEnum = (typeof PortalDocumentScalarFieldEnum)[keyof typeof PortalDocumentScalarFieldEnum]
 
 
 export const AiAnalysisLogScalarFieldEnum = {
@@ -4359,6 +4549,20 @@ export type ListEnumSinistroStatusFieldRefInput<$PrismaModel> = FieldRefInputTyp
 
 
 /**
+ * Reference to a field of type 'PortalActionTipo'
+ */
+export type EnumPortalActionTipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PortalActionTipo'>
+    
+
+
+/**
+ * Reference to a field of type 'PortalActionTipo[]'
+ */
+export type ListEnumPortalActionTipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PortalActionTipo[]'>
+    
+
+
+/**
  * Reference to a field of type 'WhatsappEvento'
  */
 export type EnumWhatsappEventoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WhatsappEvento'>
@@ -4574,6 +4778,8 @@ export type GlobalOmitConfig = {
   timeEntry?: Prisma.TimeEntryOmit
   sinistro?: Prisma.SinistroOmit
   portalAccess?: Prisma.PortalAccessOmit
+  portalAction?: Prisma.PortalActionOmit
+  portalDocument?: Prisma.PortalDocumentOmit
   aiAnalysisLog?: Prisma.AiAnalysisLogOmit
   aiAssistantLog?: Prisma.AiAssistantLogOmit
   auditLog?: Prisma.AuditLogOmit

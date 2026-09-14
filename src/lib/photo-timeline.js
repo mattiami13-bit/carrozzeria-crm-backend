@@ -16,5 +16,5 @@ export function photoStoragePath(photo,tenantId,baseUrl,bucket){
 }
 export function dossierPhotos(photos,ids){if(ids==null)return sortedPhotos(photos);if(new Set(ids).size!==ids.length||ids.some(id=>!photos.some(p=>p.id===id)))throw new Error('Selezione foto non valida per questa pratica');return sortedPhotos(photos.filter(p=>ids.includes(p.id)));}
 
-export const legacyPhotoSelect={id:true,vehicleId:true,fase:true,url:true,createdAt:true};
+export const legacyPhotoSelect={id:true,vehicleId:true,fase:true,url:true,createdAt:true,visibilePortale:true};
 export function publicPhoto(p){return {id:p.id,vehicleId:p.vehicleId,fase:p.fase,url:p.url,createdAt:p.createdAt};}

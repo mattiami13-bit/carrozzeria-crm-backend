@@ -125,6 +125,17 @@ export const SinistroStatus = {
 export type SinistroStatus = (typeof SinistroStatus)[keyof typeof SinistroStatus]
 
 
+export const PortalActionTipo = {
+  APPROVAZIONE_PREVENTIVO: 'APPROVAZIONE_PREVENTIVO',
+  APPROVAZIONE_INTEGRAZIONE: 'APPROVAZIONE_INTEGRAZIONE',
+  FIRMA_DOCUMENTO: 'FIRMA_DOCUMENTO',
+  RICHIESTA_CONTATTO: 'RICHIESTA_CONTATTO',
+  RICHIESTA_RITIRO: 'RICHIESTA_RITIRO'
+} as const
+
+export type PortalActionTipo = (typeof PortalActionTipo)[keyof typeof PortalActionTipo]
+
+
 export const WhatsappEvento = {
   ACCETTAZIONE: 'ACCETTAZIONE',
   PREVENTIVO: 'PREVENTIVO',

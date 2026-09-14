@@ -68,6 +68,8 @@ model Tenant {
   insuranceGapSuggestions InsuranceGapSuggestion[]
   whatsappTemplates WhatsappTemplate[]
   whatsappMessages  WhatsappMessage[]
+  portalActions     PortalAction[]
+  portalDocuments   PortalDocument[]
 
 
 
@@ -109,6 +111,8 @@ model User {
   correzioniGapAssicurazione InsuranceGapItem[]
   whatsappTemplateAggiornati WhatsappTemplate[]
   whatsappMessaggiInviati    WhatsappMessage[]
+  portalActionsGestite       PortalAction[]
+  portalDocumentiCaricati    PortalDocument[]
 
   @@index([tenantId])
   @@map("users")
@@ -215,6 +219,8 @@ model Vehicle {
   damageAnalyses DamageAnalysis[]
   insuranceGapAnalyses InsuranceGapAnalysis[]
   whatsappMessages WhatsappMessage[]
+  portalActions PortalAction[]
+  portalDocuments PortalDocument[]
 
   @@index([tenantId])
   @@index([tenantId, targa])
@@ -273,6 +279,11 @@ model Photo {
   timeline Json @default("{}")
   timelineVersion Int @default(1)
   timelineEdits PhotoTimelineEdit[]
+
+  // Di default visibile (comportamento storico invariato): lo staff può
+  // togliere singole foto dal portale cliente senza eliminarle (es. scatti
+  // di dettaglio non adatti a essere mostrati al cliente).
+  visibilePortale Boolean @default(true)
 
   @@index([vehicleId])
   @@map("photos")
@@ -805,11 +816,90 @@ model PortalAccess {
 
   attivo         Boolean   @default(true)
   createdAt      DateTime  @default(now())
+  // Token temporaneo: scade di default 180 giorni dopo la creazione.
+  // Un link scaduto o disattivato risponde come "non trovato", mai con
+  // un errore che distingua i due casi (non deve rivelare se un token è
+  // mai esistito).
+  scadenza        DateTime?
   ultimoAccessoAt DateTime?
+  numeroAccessi   Int       @default(0)
+
+  azioni PortalAction[]
 
   @@index([tenantId])
   @@index([token])
   @@map("portal_access")
+}
+
+enum PortalActionTipo {
+  APPROVAZIONE_PREVENTIVO
+  APPROVAZIONE_INTEGRAZIONE
+  FIRMA_DOCUMENTO
+  RICHIESTA_CONTATTO
+  RICHIESTA_RITIRO
+}
+
+// Audit log di ogni azione del cliente nel portale (approvazioni, firme,
+// richieste): traccia sempre timestamp, IP e, per le richieste allo staff
+// (contatto/ritiro), lo stato di gestione.
+model PortalAction {
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+
+  portalAccessId String
+  portalAccess   PortalAccess @relation(fields: [portalAccessId], references: [id])
+
+  tipo         PortalActionTipo
+  messaggio    String?   @db.Text
+  dataRichiesta DateTime?
+  ip           String?
+
+  gestita     Boolean   @default(false)
+  gestitaDaId String?
+  gestitaDa   User?     @relation(fields: [gestitaDaId], references: [id])
+  gestitaAt   DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([tenantId])
+  @@index([vehicleId])
+  @@map("portal_actions")
+}
+
+// Documenti condivisi con il cliente tramite il portale (es. condizioni,
+// informativa, dichiarazioni): byte salvati su Postgres e mai esposti con
+// un URL pubblico, esattamente come i documenti di Parts Tracking e i
+// documenti assicurazione di Insurance Gap Analysis.
+model PortalDocument {
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+
+  nome    String
+  mime    String
+  size    Int
+  content Bytes
+
+  richiedeFirma  Boolean   @default(false)
+  firmaDataUrl   String?   @db.Text
+  firmatarioNome String?
+  firmatoAt      DateTime?
+
+  caricatoDaId String?
+  caricatoDa   User?   @relation(fields: [caricatoDaId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@index([tenantId])
+  @@index([vehicleId])
+  @@map("portal_documents")
 }
 
 // -----------------------------

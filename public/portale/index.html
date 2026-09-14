@@ -2,182 +2,261 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ombra CRM — Stato veicolo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Rifless — Stato pratica</title>
 <style>
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
-    margin: 0; padding: 20px; font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
-    background: #15171B; color: #F3F1EC;
+    margin: 0; padding: 16px; padding-bottom: 48px; font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: #15171B; color: #F3F1EC; font-size: 15px; line-height: 1.45;
   }
+  .wrap { max-width: 480px; margin: 0 auto; }
   .card {
-    background: #1B1E23; border: 1px solid #2A2E34; border-radius: 14px; padding: 18px; margin-bottom: 16px;
+    background: #1B1E23; border: 1px solid #2A2E34; border-radius: 14px; padding: 16px; margin-bottom: 14px;
   }
-  h1 { font-size: 18px; margin: 0 0 4px; }
-  .targa { font-family: monospace; font-size: 12px; background: #1B1E23; color: #C9A24B; border: 1px solid #2A2E34; display: inline-block; padding: 3px 8px; border-radius: 6px; margin-bottom: 8px; }
-  .cliente { font-size: 13px; color: #A8A29B; margin-bottom: 20px.cliente { font-size: 13px; color: #A8A29B; margin-bottom: 20px; }
-  h2 { font-size: 13px; font-weight: 700; margin: 0 0 12px; }
-  .stage-badge { display: inline-block; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 20px; background: rgba(201,162,75,0.15); color: #C9A24B; border: 1px solid rgba(201,162,75,0.4); }
+  h1 { font-size: 19px; margin: 0 0 4px; }
+  h2 { font-size: 13px; font-weight: 700; margin: 0 0 12px; text-transform: uppercase; letter-spacing: 0.03em; color: #A8A29B; }
+  .targa { font-family: monospace; font-size: 12px; background: #15171B; color: #C9A24B; border: 1px solid #2A2E34; display: inline-block; padding: 4px 9px; border-radius: 6px; margin-bottom: 8px; }
+  .cliente { font-size: 13px; color: #A8A29B; margin-bottom: 16px; }
+  .stage-badge { display: inline-block; font-size: 13px; font-weight: 700; padding: 7px 14px; border-radius: 20px; background: rgba(201,162,75,0.15); color: #C9A24B; border: 1px solid rgba(201,162,75,0.4); }
+  .numero-pratica { font-size: 12px; color: #A8A29B; margin-top: 6px; }
+
+  /* Workflow stepper: verticale su mobile per leggibilità con touch, si legge dall'alto */
+  .workflow-step { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; }
+  .workflow-icon { flex: 0 0 26px; width: 26px; height: 26px; border-radius: 99px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+  .workflow-icon.fatto { background: #2F8F5B22; color: #2F8F5B; border: 1.5px solid #2F8F5B; }
+  .workflow-icon.corso { background: #C9A24B22; color: #C9A24B; border: 1.5px solid #C9A24B; }
+  .workflow-icon.dafare { background: transparent; color: #4A4E56; border: 1.5px solid #2A2E34; }
+  .workflow-line { width: 1.5px; flex: 1; background: #2A2E34; margin-left: 12.5px; min-height: 10px; }
+  .workflow-label { font-size: 13.5px; padding-top: 3px; }
+  .workflow-label.corso { font-weight: 700; color: #C9A24B; }
+  .workflow-label.dafare { color: #6B6963; }
+
   .timeline-item { display: flex; gap: 10px; font-size: 13px; padding: 8px 0; border-bottom: 1px solid #2A2E34; }
   .timeline-item:last-child { border-bottom: none; }
   .timeline-data { color: #A8A29B; font-size: 12px; white-space: nowrap; }
   .foto-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .foto-grid img { width: 100%; height: 110px; object-fit: cover; border-radius: 8px; border: 1px solid #2A2E34; }
-  .stato-msg { text-align: center; color: #A8A29B; font-size: 14px; padding: 40px 20px; }
+  .stato-msg { text-align: center; color: #A8A29B; font-size: 14px; padding: 60px 20px; }
   .errore { background: #2A1A1A; color: #E5806B; padding: 14px; border-radius: 10px; font-size: 14px; border: 1px solid #4A2A2A; }
-.btn-primario { padding: 10px 16px; border-radius: 8px; border: none; background: #C9A24B; color: #15171B; font-size: 14px; font-weight: 600; cursor: pointer; }
-  .btn-secondario { padding: 10px 16px; border-radius: 8px; border: 1px solid #2A2E34; background: #1B1E23; color: #F3F1EC; font-size: 14px; font-weight: 600; cursor: pointer; }
-  .firma-overlay { position: fixed; inset: 0; background: rgba(27,26,23,0.6); display: flex; align-items: center; justify-content: center; z-index: 50; padding: 16px; }
-  .firma-box { background: #1B1E23; color: #F3F1EC; border-radius: 14px; padding: 20px; width: 100%; max-width: 420px; }
+  .ok-msg { background: #16261E; color: #6FBF8E; padding: 12px 14px; border-radius: 10px; font-size: 13px; border: 1px solid #2A4A3A; margin-top: 10px; }
+
+  .btn { width: 100%; padding: 13px 16px; border-radius: 10px; border: none; font-size: 14.5px; font-weight: 600; cursor: pointer; margin-top: 8px; min-height: 46px; }
+  .btn-primario { background: #C9A24B; color: #15171B; }
+  .btn-secondario { background: #15171B; color: #F3F1EC; border: 1px solid #2A2E34; }
+  .btn:disabled { opacity: 0.55; }
+  .btn-row { display: flex; gap: 8px; }
+  .btn-row .btn { margin-top: 0; }
+
+  textarea, input[type="text"], input[type="datetime-local"] {
+    width: 100%; padding: 11px 12px; border-radius: 9px; border: 1px solid #2A2E34; background: #15171B; color: #F3F1EC;
+    font-size: 14.5px; font-family: inherit; margin-bottom: 8px;
+  }
+  textarea { resize: vertical; min-height: 70px; }
+
+  .doc-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 0; border-bottom: 1px solid #2A2E34; }
+  .doc-row:last-child { border-bottom: none; }
+  .doc-nome { font-size: 13.5px; font-weight: 600; }
+  .doc-badge { font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+  .doc-badge.firmato { background: #2F8F5B22; color: #2F8F5B; }
+  .doc-badge.attesa { background: #C9A24B22; color: #C9A24B; }
+  .doc-link { font-size: 12px; color: #8FA9C9; text-decoration: none; }
+
+  .prev-card { border-top: 1px solid #2A2E34; padding-top: 12px; margin-top: 12px; }
+  .prev-card:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+
+  .firma-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 50; padding: 16px; }
+  .firma-box { background: #1B1E23; color: #F3F1EC; border-radius: 14px; padding: 20px; width: 100%; max-width: 420px; max-height: 90vh; overflow-y: auto; }
   #firmaCanvas { width: 100%; height: 160px; border: 1.5px dashed #4A4E56; border-radius: 8px; background: #F3F1EC; touch-action: none; }
   .firma-input { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #2A2E34; background: #F3F1EC; color: #15171B; font-size: 14px; margin: 10px 0; box-sizing: border-box; }
+
+  .privacy-note { font-size: 11px; color: #6B6963; margin-top: 20px; text-align: center; line-height: 1.5; }
 </style>
 </head>
 <body>
 
-<div id="app" class="stato-msg">Caricamento…</div>
+<div class="wrap">
+  <div id="app" class="stato-msg">Caricamento…</div>
+</div>
+
 <div id="firmaOverlay" class="firma-overlay" style="display:none;">
   <div class="firma-box">
-    <h2 style="margin:0 0 4px;">Firma per accettazione</h2>
+    <h2 id="firmaTitolo" style="margin:0 0 4px;text-transform:none;color:#F3F1EC;font-size:15px;">Firma</h2>
     <div style="font-size:12px;color:#A8A29B;margin-bottom:10px;">Disegna la tua firma qui sotto</div>
     <canvas id="firmaCanvas"></canvas>
-    <button class="btn-secondario" onclick="pulisciFirma()" style="margin-top:8px;">Cancella</button>
+    <button class="btn-secondario" style="width:auto;padding:7px 12px;margin-top:8px;min-height:auto;" onclick="pulisciFirma()">Cancella</button>
     <input id="firmaNome" class="firma-input" type="text" placeholder="Il tuo nome e cognome" />
-    <div id="firmaErrore" style="color:#B4472E;font-size:13px;margin-bottom:8px;display:none;"></div>
-    <div style="display:flex;gap:10px;">
-      <button class="btn-secondario" style="flex:1;" onclick="chiudiFirma()">Annulla</button>
-      <button class="btn-primario" style="flex:1;" onclick="confermaFirma()">Conferma firma</button>
+    <div id="firmaErrore" style="color:#E5806B;font-size:13px;margin-bottom:8px;display:none;"></div>
+    <div class="btn-row">
+      <button class="btn btn-secondario" onclick="chiudiFirma()">Annulla</button>
+      <button class="btn btn-primario" onclick="confermaFirma()">Conferma firma</button>
     </div>
   </div>
 </div>
 
 <script>
-async function init() {
-  const params = new URLSearchParams(window.location.search);
-  const token = params.get("t");
-  const app = document.getElementById("app");
+const params = new URLSearchParams(window.location.search);
+const token = params.get("t");
+let statoCorrente = null;
 
+async function init() {
+  const app = document.getElementById("app");
   if (!token) {
     app.className = "errore";
     app.textContent = "Link non valido: manca il codice di accesso.";
     return;
   }
-
   try {
     const res = await fetch(`/api/portale/${token}`);
     if (!res.ok) {
       const body = await res.json().catch(() => ({}));
       throw new Error(body.error || "Link non valido o scaduto.");
     }
-    const data = await res.json();
-    render(data);
+    statoCorrente = await res.json();
+    render(statoCorrente);
   } catch (e) {
     app.className = "errore";
     app.textContent = e.message;
   }
 }
 
-function render(data) {
- const { veicolo, cliente, foto, storicoStage, preventivo, sinistro } = data;
+const STATO_PREVENTIVO = { BOZZA: "Bozza", INVIATO: "In attesa della tua firma", ACCETTATO: "Accettato e firmato", RIFIUTATO: "Rifiutato" };
+const euro = (v) => v != null ? `€ ${Number(v).toFixed(2)}` : "—";
 
-  const STAGE_LABELS = {
-    ACCETTAZIONE: "Accettazione", PREVENTIVO: "Preventivo", ATTESA_APPROVAZIONE: "In attesa di approvazione",
-    ORDINE_RICAMBI: "Ordine ricambi", IN_LAVORAZIONE: "In lavorazione", PREPARAZIONE: "Preparazione",
-    VERNICIATURA: "Verniciatura", LUCIDATURA: "Lucidatura", CONTROLLO_QUALITA: "Controllo qualità",
-    LAVAGGIO: "Lavaggio", PRONTA_CONSEGNA: "Pronta per la consegna", CONSEGNATA: "Consegnata",
-  };
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function render(data) {
+  const { veicolo, cliente, numeroPratica, workflow, foto, preventivi, documenti, sinistro } = data;
 
   let html = `
     <div class="card">
-      <div class="targa">${veicolo.targa}</div>
-      <h1>${veicolo.marca} ${veicolo.modello}</h1>
-      <div class="cliente">${cliente?.nome || ""} ${cliente?.cognome || ""}</div>
-      <span class="stage-badge">${STAGE_LABELS[veicolo.stage] || veicolo.stage}</span>
+      <div class="targa">${esc(veicolo.targa)}</div>
+      <h1>${esc(veicolo.marca)} ${esc(veicolo.modello)}</h1>
+      <div class="cliente">${esc(cliente?.nome)} ${esc(cliente?.cognome)}</div>
+      <span class="stage-badge">${esc(workflow.find(w => w.stato === "IN_CORSO")?.label || veicolo.stage)}</span>
+      <div class="numero-pratica">Pratica n. ${esc(numeroPratica)}</div>
       ${veicolo.dataPrevistaConsegna ? `<div style="margin-top:10px;font-size:13px;color:#A8A29B;">Consegna prevista: ${new Date(veicolo.dataPrevistaConsegna).toLocaleDateString("it-IT")}</div>` : ""}
     </div>
   `;
 
-  if (storicoStage && storicoStage.length > 0) {
-    html += `<div class="card"><h2>Avanzamento lavorazione</h2>`;
-    storicoStage.forEach((s) => {
+  html += `<div class="card"><h2>Avanzamento lavorazione</h2>`;
+  workflow.forEach((w, i) => {
+    const iconClass = w.stato === "FATTO" ? "fatto" : w.stato === "IN_CORSO" ? "corso" : "dafare";
+    const icona = w.stato === "FATTO" ? "✓" : w.stato === "IN_CORSO" ? "" : "";
+    const dot = w.stato === "IN_CORSO" ? "●" : w.stato === "DA_FARE" ? "○" : "✓";
+    html += `
+      <div class="workflow-step">
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="workflow-icon ${iconClass}">${dot}</div>
+          ${i < workflow.length - 1 ? `<div class="workflow-line"></div>` : ""}
+        </div>
+        <div class="workflow-label ${iconClass === "corso" ? "corso" : iconClass === "dafare" ? "dafare" : ""}">${esc(w.label)}</div>
+      </div>
+    `;
+  });
+  html += `</div>`;
+
+  if (foto && foto.length > 0) {
+    html += `<div class="card"><h2>Fotografie</h2><div class="foto-grid">`;
+    foto.forEach((p) => { html += `<img src="${esc(p.url)}" alt="Foto veicolo" loading="lazy" />`; });
+    html += `</div></div>`;
+  }
+
+  if (preventivi && preventivi.length > 0) {
+    html += `<div class="card"><h2>Preventivi</h2>`;
+    preventivi.forEach((p, i) => {
       html += `
-        <div class="timeline-item">
-          <div class="timeline-data">${new Date(s.changedAt).toLocaleDateString("it-IT")}</div>
-          <div>${STAGE_LABELS[s.toStage] || s.toStage}</div>
+        <div class="prev-card">
+          <div style="font-size:11.5px;color:#8FA9C9;font-weight:700;text-transform:uppercase;margin-bottom:2px;">${p.tipo === "INTEGRAZIONE" ? "Integrazione" : "Preventivo"}</div>
+          <div style="font-size:20px;font-weight:700;">${euro(p.totale)}</div>
+          <div style="font-size:12px;color:#A8A29B;margin-top:4px;margin-bottom:10px;">Stato: ${esc(STATO_PREVENTIVO[p.stato] || p.stato)}</div>
+          ${p.stato === "INVIATO" ? `<button class="btn btn-primario" onclick="apriFirmaPreventivo('${p.id}', ${p.tipo === "INTEGRAZIONE"})">${p.tipo === "INTEGRAZIONE" ? "Approva integrazione" : "Approva preventivo"}</button>` : ""}
+          ${p.stato === "ACCETTATO" ? `<div style="font-size:13px;color:#2F8F5B;font-weight:600;">✓ Firmato da ${esc(p.firmatarioNome)}</div>` : ""}
         </div>
       `;
     });
     html += `</div>`;
   }
 
-  if (foto && foto.length > 0) {
-    html += `<div class="card"><h2>Foto</h2><div class="foto-grid">`;
-    foto.forEach((p) => {
-      html += `<img src="${p.url}" alt="Foto veicolo" />`;
+  if (documenti && documenti.length > 0) {
+    html += `<div class="card"><h2>Documenti</h2>`;
+    documenti.forEach((d) => {
+      const badge = d.richiedeFirma ? (d.firmatoAt ? `<span class="doc-badge firmato">Firmato</span>` : `<span class="doc-badge attesa">Da firmare</span>`) : "";
+      html += `
+        <div class="doc-row">
+          <div>
+            <div class="doc-nome">${esc(d.nome)}</div>
+            <a class="doc-link" href="/api/portale/${token}/documenti/${d.id}/scarica" target="_blank" rel="noopener">Scarica</a>
+          </div>
+          <div style="text-align:right;">
+            ${badge}
+            ${d.richiedeFirma && !d.firmatoAt ? `<div><button class="btn btn-secondario" style="width:auto;padding:7px 12px;margin-top:6px;min-height:auto;font-size:12.5px;" onclick="apriFirmaDocumento('${d.id}')">Firma</button></div>` : ""}
+          </div>
+        </div>
+      `;
     });
-    html += `</div></div>`;
+    html += `</div>`;
   }
 
-  if (preventivo) {
-    const STATO_PREVENTIVO = { BOZZA: "Bozza", INVIATO: "In attesa della tua firma", ACCETTATO: "Accettato e firmato", RIFIUTATO: "Rifiutato" };
+  if (sinistro) {
+    const SINISTRO_LABELS = {
+      APERTO: "Aperto", INVIATO_ASSICURAZIONE: "Inviato all'assicurazione", PERIZIA_FISSATA: "Perizia fissata",
+      PERIZIA_COMPLETATA: "Perizia completata", APPROVATO: "Approvato", LAVORAZIONE: "In lavorazione",
+      COMPLETATO: "Completato", LIQUIDATO: "Liquidato",
+    };
     html += `
       <div class="card">
-        <h2>Preventivo</h2>
-        <div style="font-size:20px;font-weight:700;">€ ${Number(preventivo.totale).toFixed(2)}</div>
-        <div style="font-size:12px;color:#A8A29B;margin-top:4px;margin-bottom:12px;">Stato: ${STATO_PREVENTIVO[preventivo.stato] || preventivo.stato}</div>
-        ${preventivo.stato === "INVIATO" ? `<button class="btn-primario" onclick="apriFirma()">Firma e accetta preventivo</button>` : ""}
-        ${preventivo.stato === "ACCETTATO" ? `<div style="font-size:13px;color:#2F8F5B;font-weight:600;">✓ Firmato da ${preventivo.firmatarioNome}</div>` : ""}
+        <h2>Sinistro</h2>
+        <div style="font-size:13px;margin-bottom:4px;"><strong>Compagnia:</strong> ${esc(sinistro.compagniaAssicurativa)}</div>
+        <div style="font-size:13px;">Stato: ${esc(SINISTRO_LABELS[sinistro.stato] || sinistro.stato)}</div>
       </div>
     `;
   }
-if (sinistro) {
-  const SINISTRO_LABELS = {
-    APERTO: "Aperto", INVIATO_ASSICURAZIONE: "Inviato all'assicurazione", PERIZIA_FISSATA: "Perizia fissata",
-    PERIZIA_COMPLETATA: "Perizia completata", APPROVATO: "Approvato", LAVORAZIONE: "In lavorazione",
-    COMPLETATO: "Completato", LIQUIDATO: "Liquidato",
-  };
-  const euro = (v) => v != null ? `€ ${Number(v).toFixed(2)}` : "—";
 
   html += `
     <div class="card">
-      <h2>Sinistro</h2>
-      ${sinistro.numeroPratica ? `<div style="font-size:13px;color:#A8A29B;margin-bottom:6px;">Pratica n. ${sinistro.numeroPratica}</div>` : ""}
-      <div style="font-size:13px;margin-bottom:4px;"><strong>Compagnia:</strong> ${sinistro.compagniaAssicurativa}</div>
-      ${sinistro.perito ? `<div style="font-size:13px;margin-bottom:4px;"><strong>Perito:</strong> ${sinistro.perito}</div>` : ""}
-      <div style="font-size:13px;margin-bottom:10px;">Stato: ${SINISTRO_LABELS[sinistro.stato] || sinistro.stato}</div>
+      <h2>Contatta la carrozzeria</h2>
+      <textarea id="messaggioContatto" placeholder="Scrivi un messaggio allo staff…"></textarea>
+      <button class="btn btn-secondario" onclick="inviaContatto()">Invia messaggio</button>
+      <div id="contattoEsito"></div>
+    </div>
 
-      <div style="border-top:1px solid #F1EFE8;padding-top:10px;">
-        <div class="timeline-item" style="border:none;padding:4px 0;">
-          <div>Importo totale danno</div>
-          <div style="margin-left:auto;font-weight:600;">${euro(sinistro.importoTotale)}</div>
-        </div>
-        ${sinistro.percentualeFranchigia != null ? `
-        <div class="timeline-item" style="border:none;padding:4px 0;">
-          <div>Franchigia</div>
-          <div style="margin-left:auto;font-weight:600;">${sinistro.percentualeFranchigia}% (${euro(sinistro.importoFranchigia)})</div>
-        </div>` : ""}
-        <div class="timeline-item" style="border:none;padding:4px 0;">
-          <div>Pagato dall'assicurazione</div>
-          <div style="margin-left:auto;font-weight:600;">${euro(sinistro.importoPagatoAssicurazione)}</div>
-        </div>
-        <div class="timeline-item" style="border:none;padding:4px 0;">
-          <div>Pagato da te</div>
-          <div style="margin-left:auto;font-weight:600;">${euro(sinistro.importoPagatoCliente)}</div>
-        </div>
-      </div>
+    <div class="card">
+      <h2>Prenota il ritiro</h2>
+      <input id="dataRitiro" type="datetime-local" />
+      <textarea id="noteRitiro" placeholder="Note (opzionale)"></textarea>
+      <button class="btn btn-secondario" onclick="prenotaRitiro()">Prenota ritiro</button>
+      <div id="ritiroEsito"></div>
+    </div>
 
-      <div style="font-size:12px;color:#A8A29B;margin-top:10px;">
-        Apertura: ${new Date(sinistro.dataApertura).toLocaleDateString("it-IT")}
-        ${sinistro.dataChiusura ? ` — Chiusura: ${new Date(sinistro.dataChiusura).toLocaleDateString("it-IT")}` : ""}
-      </div>
+    <div class="privacy-note">
+      Questa pagina mostra solo i dati della tua pratica. Il link è personale: non condividerlo. Ogni azione che effettui qui viene registrata con data e ora.
     </div>
   `;
-}
+
   document.getElementById("app").className = "";
   document.getElementById("app").innerHTML = html;
 }
 
 init();
+
+// --- Firma preventivo/integrazione ---
+let firmaTarget = null; // { tipo: "preventivo", id } | { tipo: "documento", id }
+
+function apriFirmaPreventivo(quoteId, integrazione) {
+  firmaTarget = { tipo: "preventivo", id: quoteId };
+  document.getElementById("firmaTitolo").textContent = integrazione ? "Approva integrazione" : "Approva preventivo";
+  apriFirma();
+}
+function apriFirmaDocumento(docId) {
+  firmaTarget = { tipo: "documento", id: docId };
+  document.getElementById("firmaTitolo").textContent = "Firma documento";
+  apriFirma();
+}
+
 let disegnando = false;
 let canvasEl, ctx;
 
@@ -200,63 +279,74 @@ function apriFirma() {
     const point = e.touches ? e.touches[0] : e;
     return { x: point.clientX - rect.left, y: point.clientY - rect.top };
   };
-
   const start = (e) => { disegnando = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); };
-  const move = (e) => {
-    if (!disegnando) return;
-    e.preventDefault();
-    const p = getPos(e);
-    ctx.lineTo(p.x, p.y);
-    ctx.stroke();
-  };
+  const move = (e) => { if (!disegnando) return; e.preventDefault(); const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); };
   const end = () => { disegnando = false; };
 
-  canvasEl.onmousedown = start;
-  canvasEl.onmousemove = move;
-  canvasEl.onmouseup = end;
-  canvasEl.onmouseleave = end;
-  canvasEl.ontouchstart = start;
-  canvasEl.ontouchmove = move;
-  canvasEl.ontouchend = end;
+  canvasEl.onmousedown = start; canvasEl.onmousemove = move; canvasEl.onmouseup = end; canvasEl.onmouseleave = end;
+  canvasEl.ontouchstart = start; canvasEl.ontouchmove = move; canvasEl.ontouchend = end;
 }
-
-function pulisciFirma() {
-  ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
-}
-
-function chiudiFirma() {
-  document.getElementById("firmaOverlay").style.display = "none";
-}
+function pulisciFirma() { ctx.clearRect(0, 0, canvasEl.width, canvasEl.height); }
+function chiudiFirma() { document.getElementById("firmaOverlay").style.display = "none"; }
 
 async function confermaFirma() {
   const nome = document.getElementById("firmaNome").value.trim();
   const erroreEl = document.getElementById("firmaErrore");
-
-  if (!nome) {
-    erroreEl.textContent = "Inserisci il tuo nome e cognome.";
-    erroreEl.style.display = "block";
-    return;
-  }
+  if (!nome) { erroreEl.textContent = "Inserisci il tuo nome e cognome."; erroreEl.style.display = "block"; return; }
 
   const firmaDataUrl = canvasEl.toDataURL("image/png");
-  const params = new URLSearchParams(window.location.search);
-  const token = params.get("t");
+  const url = firmaTarget.tipo === "preventivo"
+    ? `/api/portale/${token}/preventivi/${firmaTarget.id}/firma`
+    : `/api/portale/${token}/documenti/${firmaTarget.id}/firma`;
 
   try {
-    const res = await fetch(`/api/portale/${token}/firma-preventivo`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch(url, {
+      method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ firmaDataUrl, firmatarioNome: nome }),
     });
-    if (!res.ok) {
-      const body = await res.json().catch(() => ({}));
-      throw new Error(body.error || "Errore durante l'invio della firma.");
-    }
+    if (!res.ok) { const body = await res.json().catch(() => ({})); throw new Error(body.error || "Errore durante l'invio della firma."); }
     chiudiFirma();
     init();
   } catch (e) {
     erroreEl.textContent = e.message;
     erroreEl.style.display = "block";
+  }
+}
+
+// --- Contatta carrozzeria ---
+async function inviaContatto() {
+  const testo = document.getElementById("messaggioContatto").value.trim();
+  const esitoEl = document.getElementById("contattoEsito");
+  esitoEl.innerHTML = "";
+  if (!testo) { esitoEl.innerHTML = `<div class="errore" style="margin-top:8px;">Scrivi un messaggio prima di inviare.</div>`; return; }
+  try {
+    const res = await fetch(`/api/portale/${token}/contatta`, {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ messaggio: testo }),
+    });
+    if (!res.ok) { const body = await res.json().catch(() => ({})); throw new Error(body.error || "Errore durante l'invio."); }
+    document.getElementById("messaggioContatto").value = "";
+    esitoEl.innerHTML = `<div class="ok-msg">Messaggio inviato. Ti risponderemo al più presto.</div>`;
+  } catch (e) {
+    esitoEl.innerHTML = `<div class="errore" style="margin-top:8px;">${esc(e.message)}</div>`;
+  }
+}
+
+// --- Prenota ritiro ---
+async function prenotaRitiro() {
+  const dataVal = document.getElementById("dataRitiro").value;
+  const note = document.getElementById("noteRitiro").value.trim();
+  const esitoEl = document.getElementById("ritiroEsito");
+  esitoEl.innerHTML = "";
+  if (!dataVal) { esitoEl.innerHTML = `<div class="errore" style="margin-top:8px;">Seleziona una data.</div>`; return; }
+  try {
+    const res = await fetch(`/api/portale/${token}/prenota-ritiro`, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ dataRichiesta: new Date(dataVal).toISOString(), messaggio: note || undefined }),
+    });
+    if (!res.ok) { const body = await res.json().catch(() => ({})); throw new Error(body.error || "Errore durante la prenotazione."); }
+    esitoEl.innerHTML = `<div class="ok-msg">Richiesta di ritiro inviata. Ti confermeremo l'orario.</div>`;
+  } catch (e) {
+    esitoEl.innerHTML = `<div class="errore" style="margin-top:8px;">${esc(e.message)}</div>`;
   }
 }
 </script>

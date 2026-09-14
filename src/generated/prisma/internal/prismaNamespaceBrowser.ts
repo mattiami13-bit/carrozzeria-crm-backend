@@ -75,6 +75,8 @@ export const ModelName = {
   TimeEntry: 'TimeEntry',
   Sinistro: 'Sinistro',
   PortalAccess: 'PortalAccess',
+  PortalAction: 'PortalAction',
+  PortalDocument: 'PortalDocument',
   AiAnalysisLog: 'AiAnalysisLog',
   AiAssistantLog: 'AiAssistantLog',
   AuditLog: 'AuditLog',
@@ -207,7 +209,8 @@ export const PhotoScalarFieldEnum = {
   url: 'url',
   createdAt: 'createdAt',
   timeline: 'timeline',
-  timelineVersion: 'timelineVersion'
+  timelineVersion: 'timelineVersion',
+  visibilePortale: 'visibilePortale'
 } as const
 
 export type PhotoScalarFieldEnum = (typeof PhotoScalarFieldEnum)[keyof typeof PhotoScalarFieldEnum]
@@ -494,10 +497,49 @@ export const PortalAccessScalarFieldEnum = {
   token: 'token',
   attivo: 'attivo',
   createdAt: 'createdAt',
-  ultimoAccessoAt: 'ultimoAccessoAt'
+  scadenza: 'scadenza',
+  ultimoAccessoAt: 'ultimoAccessoAt',
+  numeroAccessi: 'numeroAccessi'
 } as const
 
 export type PortalAccessScalarFieldEnum = (typeof PortalAccessScalarFieldEnum)[keyof typeof PortalAccessScalarFieldEnum]
+
+
+export const PortalActionScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  portalAccessId: 'portalAccessId',
+  tipo: 'tipo',
+  messaggio: 'messaggio',
+  dataRichiesta: 'dataRichiesta',
+  ip: 'ip',
+  gestita: 'gestita',
+  gestitaDaId: 'gestitaDaId',
+  gestitaAt: 'gestitaAt',
+  createdAt: 'createdAt'
+} as const
+
+export type PortalActionScalarFieldEnum = (typeof PortalActionScalarFieldEnum)[keyof typeof PortalActionScalarFieldEnum]
+
+
+export const PortalDocumentScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  nome: 'nome',
+  mime: 'mime',
+  size: 'size',
+  content: 'content',
+  richiedeFirma: 'richiedeFirma',
+  firmaDataUrl: 'firmaDataUrl',
+  firmatarioNome: 'firmatarioNome',
+  firmatoAt: 'firmatoAt',
+  caricatoDaId: 'caricatoDaId',
+  createdAt: 'createdAt'
+} as const
+
+export type PortalDocumentScalarFieldEnum = (typeof PortalDocumentScalarFieldEnum)[keyof typeof PortalDocumentScalarFieldEnum]
 
 
 export const AiAnalysisLogScalarFieldEnum = {

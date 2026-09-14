@@ -41,6 +41,7 @@ export type PhotoMinAggregateOutputType = {
   url: string | null
   createdAt: Date | null
   timelineVersion: number | null
+  visibilePortale: boolean | null
 }
 
 export type PhotoMaxAggregateOutputType = {
@@ -50,6 +51,7 @@ export type PhotoMaxAggregateOutputType = {
   url: string | null
   createdAt: Date | null
   timelineVersion: number | null
+  visibilePortale: boolean | null
 }
 
 export type PhotoCountAggregateOutputType = {
@@ -60,6 +62,7 @@ export type PhotoCountAggregateOutputType = {
   createdAt: number
   timeline: number
   timelineVersion: number
+  visibilePortale: number
   _all: number
 }
 
@@ -79,6 +82,7 @@ export type PhotoMinAggregateInputType = {
   url?: true
   createdAt?: true
   timelineVersion?: true
+  visibilePortale?: true
 }
 
 export type PhotoMaxAggregateInputType = {
@@ -88,6 +92,7 @@ export type PhotoMaxAggregateInputType = {
   url?: true
   createdAt?: true
   timelineVersion?: true
+  visibilePortale?: true
 }
 
 export type PhotoCountAggregateInputType = {
@@ -98,6 +103,7 @@ export type PhotoCountAggregateInputType = {
   createdAt?: true
   timeline?: true
   timelineVersion?: true
+  visibilePortale?: true
   _all?: true
 }
 
@@ -195,6 +201,7 @@ export type PhotoGroupByOutputType = {
   createdAt: Date
   timeline: runtime.JsonValue
   timelineVersion: number
+  visibilePortale: boolean
   _count: PhotoCountAggregateOutputType | null
   _avg: PhotoAvgAggregateOutputType | null
   _sum: PhotoSumAggregateOutputType | null
@@ -228,6 +235,7 @@ export type PhotoWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Photo"> | Date | string
   timeline?: Prisma.JsonFilter<"Photo">
   timelineVersion?: Prisma.IntFilter<"Photo"> | number
+  visibilePortale?: Prisma.BoolFilter<"Photo"> | boolean
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
   timelineEdits?: Prisma.PhotoTimelineEditListRelationFilter
 }
@@ -240,6 +248,7 @@ export type PhotoOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   timeline?: Prisma.SortOrder
   timelineVersion?: Prisma.SortOrder
+  visibilePortale?: Prisma.SortOrder
   vehicle?: Prisma.VehicleOrderByWithRelationInput
   timelineEdits?: Prisma.PhotoTimelineEditOrderByRelationAggregateInput
 }
@@ -255,6 +264,7 @@ export type PhotoWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Photo"> | Date | string
   timeline?: Prisma.JsonFilter<"Photo">
   timelineVersion?: Prisma.IntFilter<"Photo"> | number
+  visibilePortale?: Prisma.BoolFilter<"Photo"> | boolean
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
   timelineEdits?: Prisma.PhotoTimelineEditListRelationFilter
 }, "id">
@@ -267,6 +277,7 @@ export type PhotoOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   timeline?: Prisma.SortOrder
   timelineVersion?: Prisma.SortOrder
+  visibilePortale?: Prisma.SortOrder
   _count?: Prisma.PhotoCountOrderByAggregateInput
   _avg?: Prisma.PhotoAvgOrderByAggregateInput
   _max?: Prisma.PhotoMaxOrderByAggregateInput
@@ -285,6 +296,7 @@ export type PhotoScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Photo"> | Date | string
   timeline?: Prisma.JsonWithAggregatesFilter<"Photo">
   timelineVersion?: Prisma.IntWithAggregatesFilter<"Photo"> | number
+  visibilePortale?: Prisma.BoolWithAggregatesFilter<"Photo"> | boolean
 }
 
 export type PhotoCreateInput = {
@@ -294,6 +306,7 @@ export type PhotoCreateInput = {
   createdAt?: Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: number
+  visibilePortale?: boolean
   vehicle: Prisma.VehicleCreateNestedOneWithoutPhotosInput
   timelineEdits?: Prisma.PhotoTimelineEditCreateNestedManyWithoutPhotoInput
 }
@@ -306,6 +319,7 @@ export type PhotoUncheckedCreateInput = {
   createdAt?: Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: number
+  visibilePortale?: boolean
   timelineEdits?: Prisma.PhotoTimelineEditUncheckedCreateNestedManyWithoutPhotoInput
 }
 
@@ -316,6 +330,7 @@ export type PhotoUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
+  visibilePortale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutPhotosNestedInput
   timelineEdits?: Prisma.PhotoTimelineEditUpdateManyWithoutPhotoNestedInput
 }
@@ -328,6 +343,7 @@ export type PhotoUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
+  visibilePortale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   timelineEdits?: Prisma.PhotoTimelineEditUncheckedUpdateManyWithoutPhotoNestedInput
 }
 
@@ -339,6 +355,7 @@ export type PhotoCreateManyInput = {
   createdAt?: Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: number
+  visibilePortale?: boolean
 }
 
 export type PhotoUpdateManyMutationInput = {
@@ -348,6 +365,7 @@ export type PhotoUpdateManyMutationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
+  visibilePortale?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type PhotoUncheckedUpdateManyInput = {
@@ -358,6 +376,7 @@ export type PhotoUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
+  visibilePortale?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type PhotoListRelationFilter = {
@@ -378,6 +397,7 @@ export type PhotoCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   timeline?: Prisma.SortOrder
   timelineVersion?: Prisma.SortOrder
+  visibilePortale?: Prisma.SortOrder
 }
 
 export type PhotoAvgOrderByAggregateInput = {
@@ -391,6 +411,7 @@ export type PhotoMaxOrderByAggregateInput = {
   url?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   timelineVersion?: Prisma.SortOrder
+  visibilePortale?: Prisma.SortOrder
 }
 
 export type PhotoMinOrderByAggregateInput = {
@@ -400,6 +421,7 @@ export type PhotoMinOrderByAggregateInput = {
   url?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   timelineVersion?: Prisma.SortOrder
+  visibilePortale?: Prisma.SortOrder
 }
 
 export type PhotoSumOrderByAggregateInput = {
@@ -486,6 +508,7 @@ export type PhotoCreateWithoutVehicleInput = {
   createdAt?: Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: number
+  visibilePortale?: boolean
   timelineEdits?: Prisma.PhotoTimelineEditCreateNestedManyWithoutPhotoInput
 }
 
@@ -496,6 +519,7 @@ export type PhotoUncheckedCreateWithoutVehicleInput = {
   createdAt?: Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: number
+  visibilePortale?: boolean
   timelineEdits?: Prisma.PhotoTimelineEditUncheckedCreateNestedManyWithoutPhotoInput
 }
 
@@ -536,6 +560,7 @@ export type PhotoScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Photo"> | Date | string
   timeline?: Prisma.JsonFilter<"Photo">
   timelineVersion?: Prisma.IntFilter<"Photo"> | number
+  visibilePortale?: Prisma.BoolFilter<"Photo"> | boolean
 }
 
 export type PhotoCreateWithoutTimelineEditsInput = {
@@ -545,6 +570,7 @@ export type PhotoCreateWithoutTimelineEditsInput = {
   createdAt?: Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: number
+  visibilePortale?: boolean
   vehicle: Prisma.VehicleCreateNestedOneWithoutPhotosInput
 }
 
@@ -556,6 +582,7 @@ export type PhotoUncheckedCreateWithoutTimelineEditsInput = {
   createdAt?: Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: number
+  visibilePortale?: boolean
 }
 
 export type PhotoCreateOrConnectWithoutTimelineEditsInput = {
@@ -581,6 +608,7 @@ export type PhotoUpdateWithoutTimelineEditsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
+  visibilePortale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutPhotosNestedInput
 }
 
@@ -592,6 +620,7 @@ export type PhotoUncheckedUpdateWithoutTimelineEditsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
+  visibilePortale?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type PhotoCreateManyVehicleInput = {
@@ -601,6 +630,7 @@ export type PhotoCreateManyVehicleInput = {
   createdAt?: Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: number
+  visibilePortale?: boolean
 }
 
 export type PhotoUpdateWithoutVehicleInput = {
@@ -610,6 +640,7 @@ export type PhotoUpdateWithoutVehicleInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
+  visibilePortale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   timelineEdits?: Prisma.PhotoTimelineEditUpdateManyWithoutPhotoNestedInput
 }
 
@@ -620,6 +651,7 @@ export type PhotoUncheckedUpdateWithoutVehicleInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
+  visibilePortale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   timelineEdits?: Prisma.PhotoTimelineEditUncheckedUpdateManyWithoutPhotoNestedInput
 }
 
@@ -630,6 +662,7 @@ export type PhotoUncheckedUpdateManyWithoutVehicleInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   timeline?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   timelineVersion?: Prisma.IntFieldUpdateOperationsInput | number
+  visibilePortale?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -671,6 +704,7 @@ export type PhotoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   createdAt?: boolean
   timeline?: boolean
   timelineVersion?: boolean
+  visibilePortale?: boolean
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
   timelineEdits?: boolean | Prisma.Photo$timelineEditsArgs<ExtArgs>
   _count?: boolean | Prisma.PhotoCountOutputTypeDefaultArgs<ExtArgs>
@@ -684,6 +718,7 @@ export type PhotoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   createdAt?: boolean
   timeline?: boolean
   timelineVersion?: boolean
+  visibilePortale?: boolean
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["photo"]>
 
@@ -695,6 +730,7 @@ export type PhotoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   createdAt?: boolean
   timeline?: boolean
   timelineVersion?: boolean
+  visibilePortale?: boolean
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["photo"]>
 
@@ -706,9 +742,10 @@ export type PhotoSelectScalar = {
   createdAt?: boolean
   timeline?: boolean
   timelineVersion?: boolean
+  visibilePortale?: boolean
 }
 
-export type PhotoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "vehicleId" | "fase" | "url" | "createdAt" | "timeline" | "timelineVersion", ExtArgs["result"]["photo"]>
+export type PhotoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "vehicleId" | "fase" | "url" | "createdAt" | "timeline" | "timelineVersion" | "visibilePortale", ExtArgs["result"]["photo"]>
 export type PhotoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
   timelineEdits?: boolean | Prisma.Photo$timelineEditsArgs<ExtArgs>
@@ -735,6 +772,7 @@ export type $PhotoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     createdAt: Date
     timeline: runtime.JsonValue
     timelineVersion: number
+    visibilePortale: boolean
   }, ExtArgs["result"]["photo"]>
   composites: {}
 }
@@ -1167,6 +1205,7 @@ export interface PhotoFieldRefs {
   readonly createdAt: Prisma.FieldRef<"Photo", 'DateTime'>
   readonly timeline: Prisma.FieldRef<"Photo", 'Json'>
   readonly timelineVersion: Prisma.FieldRef<"Photo", 'Int'>
+  readonly visibilePortale: Prisma.FieldRef<"Photo", 'Boolean'>
 }
     
 

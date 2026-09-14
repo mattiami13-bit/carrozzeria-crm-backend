@@ -89,6 +89,20 @@ photosRouter.post("/vehicles/:vehicleId/photos", upload.single("file"), wrap(asy
   res.status(201).json(photo);
 }));
 
+// PATCH /api/photos/:id/visibilita — mostra/nascondi una foto nel portale
+// cliente senza eliminarla (es. scatti di dettaglio non da mostrare).
+photosRouter.patch("/photos/:id/visibilita", wrap(async (req, res) => {
+  const parsed = z.object({ visibilePortale: z.boolean() }).safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: "Valore non valido" });
+
+  const { count } = await prisma.photo.updateMany({
+    where: { id: req.params.id, vehicle: photoScope(req) },
+    data: { visibilePortale: parsed.data.visibilePortale },
+  });
+  if (count === 0) return res.status(404).json({ error: "Foto non trovata" });
+  res.status(204).send();
+}));
+
 // DELETE /api/photos/:id
 photosRouter.delete("/photos/:id", wrap(async (req, res) => {
   const photo = await prisma.photo.findFirst({

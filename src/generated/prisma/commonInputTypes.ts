@@ -579,6 +579,23 @@ export type EnumSinistroStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumSinistroStatusFilter<$PrismaModel>
 }
 
+export type EnumPortalActionTipoFilter<$PrismaModel = never> = {
+  equals?: $Enums.PortalActionTipo | Prisma.EnumPortalActionTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.PortalActionTipo[] | Prisma.ListEnumPortalActionTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PortalActionTipo[] | Prisma.ListEnumPortalActionTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPortalActionTipoFilter<$PrismaModel> | $Enums.PortalActionTipo
+}
+
+export type EnumPortalActionTipoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PortalActionTipo | Prisma.EnumPortalActionTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.PortalActionTipo[] | Prisma.ListEnumPortalActionTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PortalActionTipo[] | Prisma.ListEnumPortalActionTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPortalActionTipoWithAggregatesFilter<$PrismaModel> | $Enums.PortalActionTipo
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPortalActionTipoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPortalActionTipoFilter<$PrismaModel>
+}
+
 export type EnumWhatsappEventoFilter<$PrismaModel = never> = {
   equals?: $Enums.WhatsappEvento | Prisma.EnumWhatsappEventoFieldRefInput<$PrismaModel>
   in?: $Enums.WhatsappEvento[] | Prisma.ListEnumWhatsappEventoFieldRefInput<$PrismaModel>
@@ -1135,6 +1152,23 @@ export type NestedEnumSinistroStatusWithAggregatesFilter<$PrismaModel = never> =
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumSinistroStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumSinistroStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumPortalActionTipoFilter<$PrismaModel = never> = {
+  equals?: $Enums.PortalActionTipo | Prisma.EnumPortalActionTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.PortalActionTipo[] | Prisma.ListEnumPortalActionTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PortalActionTipo[] | Prisma.ListEnumPortalActionTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPortalActionTipoFilter<$PrismaModel> | $Enums.PortalActionTipo
+}
+
+export type NestedEnumPortalActionTipoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PortalActionTipo | Prisma.EnumPortalActionTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.PortalActionTipo[] | Prisma.ListEnumPortalActionTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PortalActionTipo[] | Prisma.ListEnumPortalActionTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPortalActionTipoWithAggregatesFilter<$PrismaModel> | $Enums.PortalActionTipo
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPortalActionTipoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPortalActionTipoFilter<$PrismaModel>
 }
 
 export type NestedEnumWhatsappEventoFilter<$PrismaModel = never> = {

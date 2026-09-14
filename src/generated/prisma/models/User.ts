@@ -226,6 +226,8 @@ export type UserWhereInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemListRelationFilter
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateListRelationFilter
   whatsappMessaggiInviati?: Prisma.WhatsappMessageListRelationFilter
+  portalActionsGestite?: Prisma.PortalActionListRelationFilter
+  portalDocumentiCaricati?: Prisma.PortalDocumentListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -250,6 +252,8 @@ export type UserOrderByWithRelationInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemOrderByRelationAggregateInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateOrderByRelationAggregateInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageOrderByRelationAggregateInput
+  portalActionsGestite?: Prisma.PortalActionOrderByRelationAggregateInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -277,6 +281,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemListRelationFilter
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateListRelationFilter
   whatsappMessaggiInviati?: Prisma.WhatsappMessageListRelationFilter
+  portalActionsGestite?: Prisma.PortalActionListRelationFilter
+  portalDocumentiCaricati?: Prisma.PortalDocumentListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -330,6 +336,8 @@ export type UserCreateInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -353,6 +361,8 @@ export type UserUncheckedCreateInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserUpdateInput = {
@@ -376,6 +386,8 @@ export type UserUpdateInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -399,6 +411,8 @@ export type UserUncheckedUpdateInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -668,6 +682,38 @@ export type UserUpdateOneRequiredWithoutTimeEntriesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTimeEntriesInput, Prisma.UserUpdateWithoutTimeEntriesInput>, Prisma.UserUncheckedUpdateWithoutTimeEntriesInput>
 }
 
+export type UserCreateNestedOneWithoutPortalActionsGestiteInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPortalActionsGestiteInput, Prisma.UserUncheckedCreateWithoutPortalActionsGestiteInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPortalActionsGestiteInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutPortalActionsGestiteNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPortalActionsGestiteInput, Prisma.UserUncheckedCreateWithoutPortalActionsGestiteInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPortalActionsGestiteInput
+  upsert?: Prisma.UserUpsertWithoutPortalActionsGestiteInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPortalActionsGestiteInput, Prisma.UserUpdateWithoutPortalActionsGestiteInput>, Prisma.UserUncheckedUpdateWithoutPortalActionsGestiteInput>
+}
+
+export type UserCreateNestedOneWithoutPortalDocumentiCaricatiInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPortalDocumentiCaricatiInput, Prisma.UserUncheckedCreateWithoutPortalDocumentiCaricatiInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPortalDocumentiCaricatiInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutPortalDocumentiCaricatiNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPortalDocumentiCaricatiInput, Prisma.UserUncheckedCreateWithoutPortalDocumentiCaricatiInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPortalDocumentiCaricatiInput
+  upsert?: Prisma.UserUpsertWithoutPortalDocumentiCaricatiInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPortalDocumentiCaricatiInput, Prisma.UserUpdateWithoutPortalDocumentiCaricatiInput>, Prisma.UserUncheckedUpdateWithoutPortalDocumentiCaricatiInput>
+}
+
 export type UserCreateNestedOneWithoutAuditLogsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuditLogsInput
@@ -736,6 +782,8 @@ export type UserCreateWithoutTenantInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserUncheckedCreateWithoutTenantInput = {
@@ -758,6 +806,8 @@ export type UserUncheckedCreateWithoutTenantInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserCreateOrConnectWithoutTenantInput = {
@@ -821,6 +871,8 @@ export type UserCreateWithoutVehiclesAssegnatiInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserUncheckedCreateWithoutVehiclesAssegnatiInput = {
@@ -843,6 +895,8 @@ export type UserUncheckedCreateWithoutVehiclesAssegnatiInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserCreateOrConnectWithoutVehiclesAssegnatiInput = {
@@ -881,6 +935,8 @@ export type UserUpdateWithoutVehiclesAssegnatiInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVehiclesAssegnatiInput = {
@@ -903,6 +959,8 @@ export type UserUncheckedUpdateWithoutVehiclesAssegnatiInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserCreateWithoutStageChangesInput = {
@@ -925,6 +983,8 @@ export type UserCreateWithoutStageChangesInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserUncheckedCreateWithoutStageChangesInput = {
@@ -947,6 +1007,8 @@ export type UserUncheckedCreateWithoutStageChangesInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserCreateOrConnectWithoutStageChangesInput = {
@@ -985,6 +1047,8 @@ export type UserUpdateWithoutStageChangesInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStageChangesInput = {
@@ -1007,6 +1071,8 @@ export type UserUncheckedUpdateWithoutStageChangesInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserCreateWithoutAnalisiDanniCreateInput = {
@@ -1029,6 +1095,8 @@ export type UserCreateWithoutAnalisiDanniCreateInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserUncheckedCreateWithoutAnalisiDanniCreateInput = {
@@ -1051,6 +1119,8 @@ export type UserUncheckedCreateWithoutAnalisiDanniCreateInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserCreateOrConnectWithoutAnalisiDanniCreateInput = {
@@ -1089,6 +1159,8 @@ export type UserUpdateWithoutAnalisiDanniCreateInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAnalisiDanniCreateInput = {
@@ -1111,6 +1183,8 @@ export type UserUncheckedUpdateWithoutAnalisiDanniCreateInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserCreateWithoutCorrezioniDanniInput = {
@@ -1133,6 +1207,8 @@ export type UserCreateWithoutCorrezioniDanniInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserUncheckedCreateWithoutCorrezioniDanniInput = {
@@ -1155,6 +1231,8 @@ export type UserUncheckedCreateWithoutCorrezioniDanniInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserCreateOrConnectWithoutCorrezioniDanniInput = {
@@ -1193,6 +1271,8 @@ export type UserUpdateWithoutCorrezioniDanniInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCorrezioniDanniInput = {
@@ -1215,6 +1295,8 @@ export type UserUncheckedUpdateWithoutCorrezioniDanniInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserCreateWithoutAnalisiGapCreateInput = {
@@ -1237,6 +1319,8 @@ export type UserCreateWithoutAnalisiGapCreateInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserUncheckedCreateWithoutAnalisiGapCreateInput = {
@@ -1259,6 +1343,8 @@ export type UserUncheckedCreateWithoutAnalisiGapCreateInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserCreateOrConnectWithoutAnalisiGapCreateInput = {
@@ -1297,6 +1383,8 @@ export type UserUpdateWithoutAnalisiGapCreateInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAnalisiGapCreateInput = {
@@ -1319,6 +1407,8 @@ export type UserUncheckedUpdateWithoutAnalisiGapCreateInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserCreateWithoutCorrezioniGapAssicurazioneInput = {
@@ -1341,6 +1431,8 @@ export type UserCreateWithoutCorrezioniGapAssicurazioneInput = {
   analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserUncheckedCreateWithoutCorrezioniGapAssicurazioneInput = {
@@ -1363,6 +1455,8 @@ export type UserUncheckedCreateWithoutCorrezioniGapAssicurazioneInput = {
   analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserCreateOrConnectWithoutCorrezioniGapAssicurazioneInput = {
@@ -1401,6 +1495,8 @@ export type UserUpdateWithoutCorrezioniGapAssicurazioneInput = {
   analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCorrezioniGapAssicurazioneInput = {
@@ -1423,6 +1519,8 @@ export type UserUncheckedUpdateWithoutCorrezioniGapAssicurazioneInput = {
   analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserCreateWithoutAppuntamentiTecnicoInput = {
@@ -1445,6 +1543,8 @@ export type UserCreateWithoutAppuntamentiTecnicoInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserUncheckedCreateWithoutAppuntamentiTecnicoInput = {
@@ -1467,6 +1567,8 @@ export type UserUncheckedCreateWithoutAppuntamentiTecnicoInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserCreateOrConnectWithoutAppuntamentiTecnicoInput = {
@@ -1505,6 +1607,8 @@ export type UserUpdateWithoutAppuntamentiTecnicoInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAppuntamentiTecnicoInput = {
@@ -1527,6 +1631,8 @@ export type UserUncheckedUpdateWithoutAppuntamentiTecnicoInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserCreateWithoutTimeEntriesInput = {
@@ -1549,6 +1655,8 @@ export type UserCreateWithoutTimeEntriesInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserUncheckedCreateWithoutTimeEntriesInput = {
@@ -1571,6 +1679,8 @@ export type UserUncheckedCreateWithoutTimeEntriesInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserCreateOrConnectWithoutTimeEntriesInput = {
@@ -1609,6 +1719,8 @@ export type UserUpdateWithoutTimeEntriesInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTimeEntriesInput = {
@@ -1631,6 +1743,232 @@ export type UserUncheckedUpdateWithoutTimeEntriesInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
+}
+
+export type UserCreateWithoutPortalActionsGestiteInput = {
+  id?: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
+}
+
+export type UserUncheckedCreateWithoutPortalActionsGestiteInput = {
+  id?: string
+  tenantId: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
+}
+
+export type UserCreateOrConnectWithoutPortalActionsGestiteInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPortalActionsGestiteInput, Prisma.UserUncheckedCreateWithoutPortalActionsGestiteInput>
+}
+
+export type UserUpsertWithoutPortalActionsGestiteInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPortalActionsGestiteInput, Prisma.UserUncheckedUpdateWithoutPortalActionsGestiteInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPortalActionsGestiteInput, Prisma.UserUncheckedCreateWithoutPortalActionsGestiteInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPortalActionsGestiteInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPortalActionsGestiteInput, Prisma.UserUncheckedUpdateWithoutPortalActionsGestiteInput>
+}
+
+export type UserUpdateWithoutPortalActionsGestiteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
+  vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPortalActionsGestiteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
+}
+
+export type UserCreateWithoutPortalDocumentiCaricatiInput = {
+  id?: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+}
+
+export type UserUncheckedCreateWithoutPortalDocumentiCaricatiInput = {
+  id?: string
+  tenantId: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+}
+
+export type UserCreateOrConnectWithoutPortalDocumentiCaricatiInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPortalDocumentiCaricatiInput, Prisma.UserUncheckedCreateWithoutPortalDocumentiCaricatiInput>
+}
+
+export type UserUpsertWithoutPortalDocumentiCaricatiInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPortalDocumentiCaricatiInput, Prisma.UserUncheckedUpdateWithoutPortalDocumentiCaricatiInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPortalDocumentiCaricatiInput, Prisma.UserUncheckedCreateWithoutPortalDocumentiCaricatiInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPortalDocumentiCaricatiInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPortalDocumentiCaricatiInput, Prisma.UserUncheckedUpdateWithoutPortalDocumentiCaricatiInput>
+}
+
+export type UserUpdateWithoutPortalDocumentiCaricatiInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
+  vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPortalDocumentiCaricatiInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1653,6 +1991,8 @@ export type UserCreateWithoutAuditLogsInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1675,6 +2015,8 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1713,6 +2055,8 @@ export type UserUpdateWithoutAuditLogsInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1735,6 +2079,8 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserCreateWithoutWhatsappTemplateAggiornatiInput = {
@@ -1757,6 +2103,8 @@ export type UserCreateWithoutWhatsappTemplateAggiornatiInput = {
   analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserUncheckedCreateWithoutWhatsappTemplateAggiornatiInput = {
@@ -1779,6 +2127,8 @@ export type UserUncheckedCreateWithoutWhatsappTemplateAggiornatiInput = {
   analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserCreateOrConnectWithoutWhatsappTemplateAggiornatiInput = {
@@ -1817,6 +2167,8 @@ export type UserUpdateWithoutWhatsappTemplateAggiornatiInput = {
   analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWhatsappTemplateAggiornatiInput = {
@@ -1839,6 +2191,8 @@ export type UserUncheckedUpdateWithoutWhatsappTemplateAggiornatiInput = {
   analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserCreateWithoutWhatsappMessaggiInviatiInput = {
@@ -1861,6 +2215,8 @@ export type UserCreateWithoutWhatsappMessaggiInviatiInput = {
   analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserUncheckedCreateWithoutWhatsappMessaggiInviatiInput = {
@@ -1883,6 +2239,8 @@ export type UserUncheckedCreateWithoutWhatsappMessaggiInviatiInput = {
   analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
 }
 
 export type UserCreateOrConnectWithoutWhatsappMessaggiInviatiInput = {
@@ -1921,6 +2279,8 @@ export type UserUpdateWithoutWhatsappMessaggiInviatiInput = {
   analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWhatsappMessaggiInviatiInput = {
@@ -1943,6 +2303,8 @@ export type UserUncheckedUpdateWithoutWhatsappMessaggiInviatiInput = {
   analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserCreateManyTenantInput = {
@@ -1976,6 +2338,8 @@ export type UserUpdateWithoutTenantInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTenantInput = {
@@ -1998,6 +2362,8 @@ export type UserUncheckedUpdateWithoutTenantInput = {
   correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
   whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
   whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutTenantInput = {
@@ -2028,6 +2394,8 @@ export type UserCountOutputType = {
   correzioniGapAssicurazione: number
   whatsappTemplateAggiornati: number
   whatsappMessaggiInviati: number
+  portalActionsGestite: number
+  portalDocumentiCaricati: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2042,6 +2410,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   correzioniGapAssicurazione?: boolean | UserCountOutputTypeCountCorrezioniGapAssicurazioneArgs
   whatsappTemplateAggiornati?: boolean | UserCountOutputTypeCountWhatsappTemplateAggiornatiArgs
   whatsappMessaggiInviati?: boolean | UserCountOutputTypeCountWhatsappMessaggiInviatiArgs
+  portalActionsGestite?: boolean | UserCountOutputTypeCountPortalActionsGestiteArgs
+  portalDocumentiCaricati?: boolean | UserCountOutputTypeCountPortalDocumentiCaricatiArgs
 }
 
 /**
@@ -2131,6 +2501,20 @@ export type UserCountOutputTypeCountWhatsappMessaggiInviatiArgs<ExtArgs extends 
   where?: Prisma.WhatsappMessageWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPortalActionsGestiteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PortalActionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPortalDocumentiCaricatiArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PortalDocumentWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2154,6 +2538,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   correzioniGapAssicurazione?: boolean | Prisma.User$correzioniGapAssicurazioneArgs<ExtArgs>
   whatsappTemplateAggiornati?: boolean | Prisma.User$whatsappTemplateAggiornatiArgs<ExtArgs>
   whatsappMessaggiInviati?: boolean | Prisma.User$whatsappMessaggiInviatiArgs<ExtArgs>
+  portalActionsGestite?: boolean | Prisma.User$portalActionsGestiteArgs<ExtArgs>
+  portalDocumentiCaricati?: boolean | Prisma.User$portalDocumentiCaricatiArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2209,6 +2595,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   correzioniGapAssicurazione?: boolean | Prisma.User$correzioniGapAssicurazioneArgs<ExtArgs>
   whatsappTemplateAggiornati?: boolean | Prisma.User$whatsappTemplateAggiornatiArgs<ExtArgs>
   whatsappMessaggiInviati?: boolean | Prisma.User$whatsappMessaggiInviatiArgs<ExtArgs>
+  portalActionsGestite?: boolean | Prisma.User$portalActionsGestiteArgs<ExtArgs>
+  portalDocumentiCaricati?: boolean | Prisma.User$portalDocumentiCaricatiArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2233,6 +2621,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     correzioniGapAssicurazione: Prisma.$InsuranceGapItemPayload<ExtArgs>[]
     whatsappTemplateAggiornati: Prisma.$WhatsappTemplatePayload<ExtArgs>[]
     whatsappMessaggiInviati: Prisma.$WhatsappMessagePayload<ExtArgs>[]
+    portalActionsGestite: Prisma.$PortalActionPayload<ExtArgs>[]
+    portalDocumentiCaricati: Prisma.$PortalDocumentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2650,6 +3040,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   correzioniGapAssicurazione<T extends Prisma.User$correzioniGapAssicurazioneArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$correzioniGapAssicurazioneArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InsuranceGapItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   whatsappTemplateAggiornati<T extends Prisma.User$whatsappTemplateAggiornatiArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$whatsappTemplateAggiornatiArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WhatsappTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   whatsappMessaggiInviati<T extends Prisma.User$whatsappMessaggiInviatiArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$whatsappMessaggiInviatiArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WhatsappMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  portalActionsGestite<T extends Prisma.User$portalActionsGestiteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$portalActionsGestiteArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PortalActionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  portalDocumentiCaricati<T extends Prisma.User$portalDocumentiCaricatiArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$portalDocumentiCaricatiArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PortalDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3350,6 +3742,54 @@ export type User$whatsappMessaggiInviatiArgs<ExtArgs extends runtime.Types.Exten
   take?: number
   skip?: number
   distinct?: Prisma.WhatsappMessageScalarFieldEnum | Prisma.WhatsappMessageScalarFieldEnum[]
+}
+
+/**
+ * User.portalActionsGestite
+ */
+export type User$portalActionsGestiteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PortalAction
+   */
+  select?: Prisma.PortalActionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PortalAction
+   */
+  omit?: Prisma.PortalActionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PortalActionInclude<ExtArgs> | null
+  where?: Prisma.PortalActionWhereInput
+  orderBy?: Prisma.PortalActionOrderByWithRelationInput | Prisma.PortalActionOrderByWithRelationInput[]
+  cursor?: Prisma.PortalActionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PortalActionScalarFieldEnum | Prisma.PortalActionScalarFieldEnum[]
+}
+
+/**
+ * User.portalDocumentiCaricati
+ */
+export type User$portalDocumentiCaricatiArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PortalDocument
+   */
+  select?: Prisma.PortalDocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PortalDocument
+   */
+  omit?: Prisma.PortalDocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PortalDocumentInclude<ExtArgs> | null
+  where?: Prisma.PortalDocumentWhereInput
+  orderBy?: Prisma.PortalDocumentOrderByWithRelationInput | Prisma.PortalDocumentOrderByWithRelationInput[]
+  cursor?: Prisma.PortalDocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PortalDocumentScalarFieldEnum | Prisma.PortalDocumentScalarFieldEnum[]
 }
 
 /**

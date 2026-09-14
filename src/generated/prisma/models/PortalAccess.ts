@@ -20,8 +20,18 @@ export type PortalAccessModel = runtime.Types.Result.DefaultSelection<Prisma.$Po
 
 export type AggregatePortalAccess = {
   _count: PortalAccessCountAggregateOutputType | null
+  _avg: PortalAccessAvgAggregateOutputType | null
+  _sum: PortalAccessSumAggregateOutputType | null
   _min: PortalAccessMinAggregateOutputType | null
   _max: PortalAccessMaxAggregateOutputType | null
+}
+
+export type PortalAccessAvgAggregateOutputType = {
+  numeroAccessi: number | null
+}
+
+export type PortalAccessSumAggregateOutputType = {
+  numeroAccessi: number | null
 }
 
 export type PortalAccessMinAggregateOutputType = {
@@ -31,7 +41,9 @@ export type PortalAccessMinAggregateOutputType = {
   token: string | null
   attivo: boolean | null
   createdAt: Date | null
+  scadenza: Date | null
   ultimoAccessoAt: Date | null
+  numeroAccessi: number | null
 }
 
 export type PortalAccessMaxAggregateOutputType = {
@@ -41,7 +53,9 @@ export type PortalAccessMaxAggregateOutputType = {
   token: string | null
   attivo: boolean | null
   createdAt: Date | null
+  scadenza: Date | null
   ultimoAccessoAt: Date | null
+  numeroAccessi: number | null
 }
 
 export type PortalAccessCountAggregateOutputType = {
@@ -51,10 +65,20 @@ export type PortalAccessCountAggregateOutputType = {
   token: number
   attivo: number
   createdAt: number
+  scadenza: number
   ultimoAccessoAt: number
+  numeroAccessi: number
   _all: number
 }
 
+
+export type PortalAccessAvgAggregateInputType = {
+  numeroAccessi?: true
+}
+
+export type PortalAccessSumAggregateInputType = {
+  numeroAccessi?: true
+}
 
 export type PortalAccessMinAggregateInputType = {
   id?: true
@@ -63,7 +87,9 @@ export type PortalAccessMinAggregateInputType = {
   token?: true
   attivo?: true
   createdAt?: true
+  scadenza?: true
   ultimoAccessoAt?: true
+  numeroAccessi?: true
 }
 
 export type PortalAccessMaxAggregateInputType = {
@@ -73,7 +99,9 @@ export type PortalAccessMaxAggregateInputType = {
   token?: true
   attivo?: true
   createdAt?: true
+  scadenza?: true
   ultimoAccessoAt?: true
+  numeroAccessi?: true
 }
 
 export type PortalAccessCountAggregateInputType = {
@@ -83,7 +111,9 @@ export type PortalAccessCountAggregateInputType = {
   token?: true
   attivo?: true
   createdAt?: true
+  scadenza?: true
   ultimoAccessoAt?: true
+  numeroAccessi?: true
   _all?: true
 }
 
@@ -125,6 +155,18 @@ export type PortalAccessAggregateArgs<ExtArgs extends runtime.Types.Extensions.I
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: PortalAccessAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: PortalAccessSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: PortalAccessMinAggregateInputType
@@ -155,6 +197,8 @@ export type PortalAccessGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   _count?: PortalAccessCountAggregateInputType | true
+  _avg?: PortalAccessAvgAggregateInputType
+  _sum?: PortalAccessSumAggregateInputType
   _min?: PortalAccessMinAggregateInputType
   _max?: PortalAccessMaxAggregateInputType
 }
@@ -166,8 +210,12 @@ export type PortalAccessGroupByOutputType = {
   token: string
   attivo: boolean
   createdAt: Date
+  scadenza: Date | null
   ultimoAccessoAt: Date | null
+  numeroAccessi: number
   _count: PortalAccessCountAggregateOutputType | null
+  _avg: PortalAccessAvgAggregateOutputType | null
+  _sum: PortalAccessSumAggregateOutputType | null
   _min: PortalAccessMinAggregateOutputType | null
   _max: PortalAccessMaxAggregateOutputType | null
 }
@@ -197,9 +245,12 @@ export type PortalAccessWhereInput = {
   token?: Prisma.StringFilter<"PortalAccess"> | string
   attivo?: Prisma.BoolFilter<"PortalAccess"> | boolean
   createdAt?: Prisma.DateTimeFilter<"PortalAccess"> | Date | string
+  scadenza?: Prisma.DateTimeNullableFilter<"PortalAccess"> | Date | string | null
   ultimoAccessoAt?: Prisma.DateTimeNullableFilter<"PortalAccess"> | Date | string | null
+  numeroAccessi?: Prisma.IntFilter<"PortalAccess"> | number
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
+  azioni?: Prisma.PortalActionListRelationFilter
 }
 
 export type PortalAccessOrderByWithRelationInput = {
@@ -209,9 +260,12 @@ export type PortalAccessOrderByWithRelationInput = {
   token?: Prisma.SortOrder
   attivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  scadenza?: Prisma.SortOrderInput | Prisma.SortOrder
   ultimoAccessoAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  numeroAccessi?: Prisma.SortOrder
   tenant?: Prisma.TenantOrderByWithRelationInput
   vehicle?: Prisma.VehicleOrderByWithRelationInput
+  azioni?: Prisma.PortalActionOrderByRelationAggregateInput
 }
 
 export type PortalAccessWhereUniqueInput = Prisma.AtLeast<{
@@ -224,9 +278,12 @@ export type PortalAccessWhereUniqueInput = Prisma.AtLeast<{
   vehicleId?: Prisma.StringFilter<"PortalAccess"> | string
   attivo?: Prisma.BoolFilter<"PortalAccess"> | boolean
   createdAt?: Prisma.DateTimeFilter<"PortalAccess"> | Date | string
+  scadenza?: Prisma.DateTimeNullableFilter<"PortalAccess"> | Date | string | null
   ultimoAccessoAt?: Prisma.DateTimeNullableFilter<"PortalAccess"> | Date | string | null
+  numeroAccessi?: Prisma.IntFilter<"PortalAccess"> | number
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
+  azioni?: Prisma.PortalActionListRelationFilter
 }, "id" | "token">
 
 export type PortalAccessOrderByWithAggregationInput = {
@@ -236,10 +293,14 @@ export type PortalAccessOrderByWithAggregationInput = {
   token?: Prisma.SortOrder
   attivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  scadenza?: Prisma.SortOrderInput | Prisma.SortOrder
   ultimoAccessoAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  numeroAccessi?: Prisma.SortOrder
   _count?: Prisma.PortalAccessCountOrderByAggregateInput
+  _avg?: Prisma.PortalAccessAvgOrderByAggregateInput
   _max?: Prisma.PortalAccessMaxOrderByAggregateInput
   _min?: Prisma.PortalAccessMinOrderByAggregateInput
+  _sum?: Prisma.PortalAccessSumOrderByAggregateInput
 }
 
 export type PortalAccessScalarWhereWithAggregatesInput = {
@@ -252,7 +313,9 @@ export type PortalAccessScalarWhereWithAggregatesInput = {
   token?: Prisma.StringWithAggregatesFilter<"PortalAccess"> | string
   attivo?: Prisma.BoolWithAggregatesFilter<"PortalAccess"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PortalAccess"> | Date | string
+  scadenza?: Prisma.DateTimeNullableWithAggregatesFilter<"PortalAccess"> | Date | string | null
   ultimoAccessoAt?: Prisma.DateTimeNullableWithAggregatesFilter<"PortalAccess"> | Date | string | null
+  numeroAccessi?: Prisma.IntWithAggregatesFilter<"PortalAccess"> | number
 }
 
 export type PortalAccessCreateInput = {
@@ -260,9 +323,12 @@ export type PortalAccessCreateInput = {
   token: string
   attivo?: boolean
   createdAt?: Date | string
+  scadenza?: Date | string | null
   ultimoAccessoAt?: Date | string | null
+  numeroAccessi?: number
   tenant: Prisma.TenantCreateNestedOneWithoutPortalAccessesInput
   vehicle: Prisma.VehicleCreateNestedOneWithoutPortalAccessesInput
+  azioni?: Prisma.PortalActionCreateNestedManyWithoutPortalAccessInput
 }
 
 export type PortalAccessUncheckedCreateInput = {
@@ -272,7 +338,10 @@ export type PortalAccessUncheckedCreateInput = {
   token: string
   attivo?: boolean
   createdAt?: Date | string
+  scadenza?: Date | string | null
   ultimoAccessoAt?: Date | string | null
+  numeroAccessi?: number
+  azioni?: Prisma.PortalActionUncheckedCreateNestedManyWithoutPortalAccessInput
 }
 
 export type PortalAccessUpdateInput = {
@@ -280,9 +349,12 @@ export type PortalAccessUpdateInput = {
   token?: Prisma.StringFieldUpdateOperationsInput | string
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ultimoAccessoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  numeroAccessi?: Prisma.IntFieldUpdateOperationsInput | number
   tenant?: Prisma.TenantUpdateOneRequiredWithoutPortalAccessesNestedInput
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutPortalAccessesNestedInput
+  azioni?: Prisma.PortalActionUpdateManyWithoutPortalAccessNestedInput
 }
 
 export type PortalAccessUncheckedUpdateInput = {
@@ -292,7 +364,10 @@ export type PortalAccessUncheckedUpdateInput = {
   token?: Prisma.StringFieldUpdateOperationsInput | string
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ultimoAccessoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  numeroAccessi?: Prisma.IntFieldUpdateOperationsInput | number
+  azioni?: Prisma.PortalActionUncheckedUpdateManyWithoutPortalAccessNestedInput
 }
 
 export type PortalAccessCreateManyInput = {
@@ -302,7 +377,9 @@ export type PortalAccessCreateManyInput = {
   token: string
   attivo?: boolean
   createdAt?: Date | string
+  scadenza?: Date | string | null
   ultimoAccessoAt?: Date | string | null
+  numeroAccessi?: number
 }
 
 export type PortalAccessUpdateManyMutationInput = {
@@ -310,7 +387,9 @@ export type PortalAccessUpdateManyMutationInput = {
   token?: Prisma.StringFieldUpdateOperationsInput | string
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ultimoAccessoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  numeroAccessi?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PortalAccessUncheckedUpdateManyInput = {
@@ -320,7 +399,9 @@ export type PortalAccessUncheckedUpdateManyInput = {
   token?: Prisma.StringFieldUpdateOperationsInput | string
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ultimoAccessoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  numeroAccessi?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PortalAccessListRelationFilter = {
@@ -340,7 +421,13 @@ export type PortalAccessCountOrderByAggregateInput = {
   token?: Prisma.SortOrder
   attivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  scadenza?: Prisma.SortOrder
   ultimoAccessoAt?: Prisma.SortOrder
+  numeroAccessi?: Prisma.SortOrder
+}
+
+export type PortalAccessAvgOrderByAggregateInput = {
+  numeroAccessi?: Prisma.SortOrder
 }
 
 export type PortalAccessMaxOrderByAggregateInput = {
@@ -350,7 +437,9 @@ export type PortalAccessMaxOrderByAggregateInput = {
   token?: Prisma.SortOrder
   attivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  scadenza?: Prisma.SortOrder
   ultimoAccessoAt?: Prisma.SortOrder
+  numeroAccessi?: Prisma.SortOrder
 }
 
 export type PortalAccessMinOrderByAggregateInput = {
@@ -360,7 +449,18 @@ export type PortalAccessMinOrderByAggregateInput = {
   token?: Prisma.SortOrder
   attivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  scadenza?: Prisma.SortOrder
   ultimoAccessoAt?: Prisma.SortOrder
+  numeroAccessi?: Prisma.SortOrder
+}
+
+export type PortalAccessSumOrderByAggregateInput = {
+  numeroAccessi?: Prisma.SortOrder
+}
+
+export type PortalAccessScalarRelationFilter = {
+  is?: Prisma.PortalAccessWhereInput
+  isNot?: Prisma.PortalAccessWhereInput
 }
 
 export type PortalAccessCreateNestedManyWithoutTenantInput = {
@@ -447,13 +547,30 @@ export type PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput = {
   deleteMany?: Prisma.PortalAccessScalarWhereInput | Prisma.PortalAccessScalarWhereInput[]
 }
 
+export type PortalAccessCreateNestedOneWithoutAzioniInput = {
+  create?: Prisma.XOR<Prisma.PortalAccessCreateWithoutAzioniInput, Prisma.PortalAccessUncheckedCreateWithoutAzioniInput>
+  connectOrCreate?: Prisma.PortalAccessCreateOrConnectWithoutAzioniInput
+  connect?: Prisma.PortalAccessWhereUniqueInput
+}
+
+export type PortalAccessUpdateOneRequiredWithoutAzioniNestedInput = {
+  create?: Prisma.XOR<Prisma.PortalAccessCreateWithoutAzioniInput, Prisma.PortalAccessUncheckedCreateWithoutAzioniInput>
+  connectOrCreate?: Prisma.PortalAccessCreateOrConnectWithoutAzioniInput
+  upsert?: Prisma.PortalAccessUpsertWithoutAzioniInput
+  connect?: Prisma.PortalAccessWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PortalAccessUpdateToOneWithWhereWithoutAzioniInput, Prisma.PortalAccessUpdateWithoutAzioniInput>, Prisma.PortalAccessUncheckedUpdateWithoutAzioniInput>
+}
+
 export type PortalAccessCreateWithoutTenantInput = {
   id?: string
   token: string
   attivo?: boolean
   createdAt?: Date | string
+  scadenza?: Date | string | null
   ultimoAccessoAt?: Date | string | null
+  numeroAccessi?: number
   vehicle: Prisma.VehicleCreateNestedOneWithoutPortalAccessesInput
+  azioni?: Prisma.PortalActionCreateNestedManyWithoutPortalAccessInput
 }
 
 export type PortalAccessUncheckedCreateWithoutTenantInput = {
@@ -462,7 +579,10 @@ export type PortalAccessUncheckedCreateWithoutTenantInput = {
   token: string
   attivo?: boolean
   createdAt?: Date | string
+  scadenza?: Date | string | null
   ultimoAccessoAt?: Date | string | null
+  numeroAccessi?: number
+  azioni?: Prisma.PortalActionUncheckedCreateNestedManyWithoutPortalAccessInput
 }
 
 export type PortalAccessCreateOrConnectWithoutTenantInput = {
@@ -501,7 +621,9 @@ export type PortalAccessScalarWhereInput = {
   token?: Prisma.StringFilter<"PortalAccess"> | string
   attivo?: Prisma.BoolFilter<"PortalAccess"> | boolean
   createdAt?: Prisma.DateTimeFilter<"PortalAccess"> | Date | string
+  scadenza?: Prisma.DateTimeNullableFilter<"PortalAccess"> | Date | string | null
   ultimoAccessoAt?: Prisma.DateTimeNullableFilter<"PortalAccess"> | Date | string | null
+  numeroAccessi?: Prisma.IntFilter<"PortalAccess"> | number
 }
 
 export type PortalAccessCreateWithoutVehicleInput = {
@@ -509,8 +631,11 @@ export type PortalAccessCreateWithoutVehicleInput = {
   token: string
   attivo?: boolean
   createdAt?: Date | string
+  scadenza?: Date | string | null
   ultimoAccessoAt?: Date | string | null
+  numeroAccessi?: number
   tenant: Prisma.TenantCreateNestedOneWithoutPortalAccessesInput
+  azioni?: Prisma.PortalActionCreateNestedManyWithoutPortalAccessInput
 }
 
 export type PortalAccessUncheckedCreateWithoutVehicleInput = {
@@ -519,7 +644,10 @@ export type PortalAccessUncheckedCreateWithoutVehicleInput = {
   token: string
   attivo?: boolean
   createdAt?: Date | string
+  scadenza?: Date | string | null
   ultimoAccessoAt?: Date | string | null
+  numeroAccessi?: number
+  azioni?: Prisma.PortalActionUncheckedCreateNestedManyWithoutPortalAccessInput
 }
 
 export type PortalAccessCreateOrConnectWithoutVehicleInput = {
@@ -548,13 +676,79 @@ export type PortalAccessUpdateManyWithWhereWithoutVehicleInput = {
   data: Prisma.XOR<Prisma.PortalAccessUpdateManyMutationInput, Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleInput>
 }
 
+export type PortalAccessCreateWithoutAzioniInput = {
+  id?: string
+  token: string
+  attivo?: boolean
+  createdAt?: Date | string
+  scadenza?: Date | string | null
+  ultimoAccessoAt?: Date | string | null
+  numeroAccessi?: number
+  tenant: Prisma.TenantCreateNestedOneWithoutPortalAccessesInput
+  vehicle: Prisma.VehicleCreateNestedOneWithoutPortalAccessesInput
+}
+
+export type PortalAccessUncheckedCreateWithoutAzioniInput = {
+  id?: string
+  tenantId: string
+  vehicleId: string
+  token: string
+  attivo?: boolean
+  createdAt?: Date | string
+  scadenza?: Date | string | null
+  ultimoAccessoAt?: Date | string | null
+  numeroAccessi?: number
+}
+
+export type PortalAccessCreateOrConnectWithoutAzioniInput = {
+  where: Prisma.PortalAccessWhereUniqueInput
+  create: Prisma.XOR<Prisma.PortalAccessCreateWithoutAzioniInput, Prisma.PortalAccessUncheckedCreateWithoutAzioniInput>
+}
+
+export type PortalAccessUpsertWithoutAzioniInput = {
+  update: Prisma.XOR<Prisma.PortalAccessUpdateWithoutAzioniInput, Prisma.PortalAccessUncheckedUpdateWithoutAzioniInput>
+  create: Prisma.XOR<Prisma.PortalAccessCreateWithoutAzioniInput, Prisma.PortalAccessUncheckedCreateWithoutAzioniInput>
+  where?: Prisma.PortalAccessWhereInput
+}
+
+export type PortalAccessUpdateToOneWithWhereWithoutAzioniInput = {
+  where?: Prisma.PortalAccessWhereInput
+  data: Prisma.XOR<Prisma.PortalAccessUpdateWithoutAzioniInput, Prisma.PortalAccessUncheckedUpdateWithoutAzioniInput>
+}
+
+export type PortalAccessUpdateWithoutAzioniInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  token?: Prisma.StringFieldUpdateOperationsInput | string
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ultimoAccessoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  numeroAccessi?: Prisma.IntFieldUpdateOperationsInput | number
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutPortalAccessesNestedInput
+  vehicle?: Prisma.VehicleUpdateOneRequiredWithoutPortalAccessesNestedInput
+}
+
+export type PortalAccessUncheckedUpdateWithoutAzioniInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.StringFieldUpdateOperationsInput | string
+  token?: Prisma.StringFieldUpdateOperationsInput | string
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ultimoAccessoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  numeroAccessi?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
 export type PortalAccessCreateManyTenantInput = {
   id?: string
   vehicleId: string
   token: string
   attivo?: boolean
   createdAt?: Date | string
+  scadenza?: Date | string | null
   ultimoAccessoAt?: Date | string | null
+  numeroAccessi?: number
 }
 
 export type PortalAccessUpdateWithoutTenantInput = {
@@ -562,8 +756,11 @@ export type PortalAccessUpdateWithoutTenantInput = {
   token?: Prisma.StringFieldUpdateOperationsInput | string
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ultimoAccessoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  numeroAccessi?: Prisma.IntFieldUpdateOperationsInput | number
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutPortalAccessesNestedInput
+  azioni?: Prisma.PortalActionUpdateManyWithoutPortalAccessNestedInput
 }
 
 export type PortalAccessUncheckedUpdateWithoutTenantInput = {
@@ -572,7 +769,10 @@ export type PortalAccessUncheckedUpdateWithoutTenantInput = {
   token?: Prisma.StringFieldUpdateOperationsInput | string
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ultimoAccessoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  numeroAccessi?: Prisma.IntFieldUpdateOperationsInput | number
+  azioni?: Prisma.PortalActionUncheckedUpdateManyWithoutPortalAccessNestedInput
 }
 
 export type PortalAccessUncheckedUpdateManyWithoutTenantInput = {
@@ -581,7 +781,9 @@ export type PortalAccessUncheckedUpdateManyWithoutTenantInput = {
   token?: Prisma.StringFieldUpdateOperationsInput | string
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ultimoAccessoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  numeroAccessi?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PortalAccessCreateManyVehicleInput = {
@@ -590,7 +792,9 @@ export type PortalAccessCreateManyVehicleInput = {
   token: string
   attivo?: boolean
   createdAt?: Date | string
+  scadenza?: Date | string | null
   ultimoAccessoAt?: Date | string | null
+  numeroAccessi?: number
 }
 
 export type PortalAccessUpdateWithoutVehicleInput = {
@@ -598,8 +802,11 @@ export type PortalAccessUpdateWithoutVehicleInput = {
   token?: Prisma.StringFieldUpdateOperationsInput | string
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ultimoAccessoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  numeroAccessi?: Prisma.IntFieldUpdateOperationsInput | number
   tenant?: Prisma.TenantUpdateOneRequiredWithoutPortalAccessesNestedInput
+  azioni?: Prisma.PortalActionUpdateManyWithoutPortalAccessNestedInput
 }
 
 export type PortalAccessUncheckedUpdateWithoutVehicleInput = {
@@ -608,7 +815,10 @@ export type PortalAccessUncheckedUpdateWithoutVehicleInput = {
   token?: Prisma.StringFieldUpdateOperationsInput | string
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ultimoAccessoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  numeroAccessi?: Prisma.IntFieldUpdateOperationsInput | number
+  azioni?: Prisma.PortalActionUncheckedUpdateManyWithoutPortalAccessNestedInput
 }
 
 export type PortalAccessUncheckedUpdateManyWithoutVehicleInput = {
@@ -617,9 +827,40 @@ export type PortalAccessUncheckedUpdateManyWithoutVehicleInput = {
   token?: Prisma.StringFieldUpdateOperationsInput | string
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ultimoAccessoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  numeroAccessi?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
+
+/**
+ * Count Type PortalAccessCountOutputType
+ */
+
+export type PortalAccessCountOutputType = {
+  azioni: number
+}
+
+export type PortalAccessCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  azioni?: boolean | PortalAccessCountOutputTypeCountAzioniArgs
+}
+
+/**
+ * PortalAccessCountOutputType without action
+ */
+export type PortalAccessCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PortalAccessCountOutputType
+   */
+  select?: Prisma.PortalAccessCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * PortalAccessCountOutputType without action
+ */
+export type PortalAccessCountOutputTypeCountAzioniArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PortalActionWhereInput
+}
 
 
 export type PortalAccessSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -629,9 +870,13 @@ export type PortalAccessSelect<ExtArgs extends runtime.Types.Extensions.Internal
   token?: boolean
   attivo?: boolean
   createdAt?: boolean
+  scadenza?: boolean
   ultimoAccessoAt?: boolean
+  numeroAccessi?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
+  azioni?: boolean | Prisma.PortalAccess$azioniArgs<ExtArgs>
+  _count?: boolean | Prisma.PortalAccessCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["portalAccess"]>
 
 export type PortalAccessSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -641,7 +886,9 @@ export type PortalAccessSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   token?: boolean
   attivo?: boolean
   createdAt?: boolean
+  scadenza?: boolean
   ultimoAccessoAt?: boolean
+  numeroAccessi?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["portalAccess"]>
@@ -653,7 +900,9 @@ export type PortalAccessSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   token?: boolean
   attivo?: boolean
   createdAt?: boolean
+  scadenza?: boolean
   ultimoAccessoAt?: boolean
+  numeroAccessi?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["portalAccess"]>
@@ -665,13 +914,17 @@ export type PortalAccessSelectScalar = {
   token?: boolean
   attivo?: boolean
   createdAt?: boolean
+  scadenza?: boolean
   ultimoAccessoAt?: boolean
+  numeroAccessi?: boolean
 }
 
-export type PortalAccessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "vehicleId" | "token" | "attivo" | "createdAt" | "ultimoAccessoAt", ExtArgs["result"]["portalAccess"]>
+export type PortalAccessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "vehicleId" | "token" | "attivo" | "createdAt" | "scadenza" | "ultimoAccessoAt" | "numeroAccessi", ExtArgs["result"]["portalAccess"]>
 export type PortalAccessInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
+  azioni?: boolean | Prisma.PortalAccess$azioniArgs<ExtArgs>
+  _count?: boolean | Prisma.PortalAccessCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PortalAccessIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
@@ -687,6 +940,7 @@ export type $PortalAccessPayload<ExtArgs extends runtime.Types.Extensions.Intern
   objects: {
     tenant: Prisma.$TenantPayload<ExtArgs>
     vehicle: Prisma.$VehiclePayload<ExtArgs>
+    azioni: Prisma.$PortalActionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -695,7 +949,9 @@ export type $PortalAccessPayload<ExtArgs extends runtime.Types.Extensions.Intern
     token: string
     attivo: boolean
     createdAt: Date
+    scadenza: Date | null
     ultimoAccessoAt: Date | null
+    numeroAccessi: number
   }, ExtArgs["result"]["portalAccess"]>
   composites: {}
 }
@@ -1092,6 +1348,7 @@ export interface Prisma__PortalAccessClient<T, Null = never, ExtArgs extends run
   readonly [Symbol.toStringTag]: "PrismaPromise"
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   vehicle<T extends Prisma.VehicleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VehicleDefaultArgs<ExtArgs>>): Prisma.Prisma__VehicleClient<runtime.Types.Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  azioni<T extends Prisma.PortalAccess$azioniArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PortalAccess$azioniArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PortalActionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1127,7 +1384,9 @@ export interface PortalAccessFieldRefs {
   readonly token: Prisma.FieldRef<"PortalAccess", 'String'>
   readonly attivo: Prisma.FieldRef<"PortalAccess", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"PortalAccess", 'DateTime'>
+  readonly scadenza: Prisma.FieldRef<"PortalAccess", 'DateTime'>
   readonly ultimoAccessoAt: Prisma.FieldRef<"PortalAccess", 'DateTime'>
+  readonly numeroAccessi: Prisma.FieldRef<"PortalAccess", 'Int'>
 }
     
 
@@ -1526,6 +1785,30 @@ export type PortalAccessDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many PortalAccesses to delete.
    */
   limit?: number
+}
+
+/**
+ * PortalAccess.azioni
+ */
+export type PortalAccess$azioniArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PortalAction
+   */
+  select?: Prisma.PortalActionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PortalAction
+   */
+  omit?: Prisma.PortalActionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PortalActionInclude<ExtArgs> | null
+  where?: Prisma.PortalActionWhereInput
+  orderBy?: Prisma.PortalActionOrderByWithRelationInput | Prisma.PortalActionOrderByWithRelationInput[]
+  cursor?: Prisma.PortalActionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PortalActionScalarFieldEnum | Prisma.PortalActionScalarFieldEnum[]
 }
 
 /**
