@@ -4,6 +4,7 @@ import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
 import { enqueueNotification } from "../lib/notifiche.js";
+import { inviaComunicazioneWhatsapp } from "../lib/whatsapp.js";
 
 export const vehiclesRouter = Router();
 vehiclesRouter.use(requireAuth);
@@ -94,12 +95,16 @@ vehiclesRouter.post("/", async (req, res) => {
         ? new Date(parsed.data.dataPrevistaConsegna)
         : undefined,
     },
+    include: { client: true, sinistri: true },
   });
 
   // Prima riga di cronologia: l'accettazione stessa.
   await prisma.stageHistory.create({
     data: { vehicleId: vehicle.id, toStage: "ACCETTAZIONE", changedById: req.auth.userId },
   });
+
+  const baseUrl = `${req.protocol}://${req.get("host")}`;
+  await inviaComunicazioneWhatsapp(vehicle, "ACCETTAZIONE", baseUrl, req.auth.userId);
 
   res.status(201).json(vehicle);
 });
@@ -132,7 +137,7 @@ vehiclesRouter.patch("/:id/stage", async (req, res) => {
         stage: parsed.data.stage,
         dataConsegnaEffettiva: parsed.data.stage === "CONSEGNATA" ? new Date() : undefined,
       },
-      include: { client: true },
+      include: { client: true, sinistri: { orderBy: { createdAt: "desc" }, take: 1 } },
     });
     await tx.stageHistory.create({
       data: {
@@ -147,6 +152,7 @@ vehiclesRouter.patch("/:id/stage", async (req, res) => {
 
   const baseUrl = `${req.protocol}://${req.get("host")}`;
   await enqueueNotification(updated, parsed.data.stage, baseUrl);
+  await inviaComunicazioneWhatsapp(updated, parsed.data.stage, baseUrl, req.auth.userId);
 
   res.json(updated);
 });
@@ -332,7 +338,7 @@ vehiclesRouter.post("/:id/firma-consegna", async (req, res) => {
         firmatarioConsegna: parsed.data.firmatarioNome,
         dataFirmaConsegna: new Date(),
       },
-      include: { client: true },
+      include: { client: true, sinistri: { orderBy: { createdAt: "desc" }, take: 1 } },
     });
     await tx.stageHistory.create({
       data: {
@@ -347,6 +353,7 @@ vehiclesRouter.post("/:id/firma-consegna", async (req, res) => {
 
   const baseUrl = `${req.protocol}://${req.get("host")}`;
   await enqueueNotification(updated, "CONSEGNATA", baseUrl);
+  await inviaComunicazioneWhatsapp(updated, "CONSEGNATA", baseUrl, req.auth.userId);
 
   res.json(updated);
 });

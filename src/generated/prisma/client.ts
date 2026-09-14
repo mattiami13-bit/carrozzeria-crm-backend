@@ -231,3 +231,13 @@ export type TrackedPartDocument = Prisma.TrackedPartDocumentModel
  * 
  */
 export type PhotoTimelineEdit = Prisma.PhotoTimelineEditModel
+/**
+ * Model WhatsappTemplate
+ * 
+ */
+export type WhatsappTemplate = Prisma.WhatsappTemplateModel
+/**
+ * Model WhatsappMessage
+ * 
+ */
+export type WhatsappMessage = Prisma.WhatsappMessageModel

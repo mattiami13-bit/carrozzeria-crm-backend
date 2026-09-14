@@ -51,6 +51,8 @@ const clientSchema = z.object({
   partitaIva: z.string().optional(),
   indirizzo: z.string().optional(),
   noteInterne: z.string().optional(),
+  notificheWhatsappConsenso: z.boolean().optional(),
+  notificheWhatsappAttive: z.boolean().optional(),
 });
 
 clientsRouter.post("/", async (req, res) => {
@@ -67,9 +69,15 @@ clientsRouter.patch("/:id", async (req, res) => {
   const parsed = clientSchema.partial().safeParse(req.body);
   if (!parsed.success) return res.status(400).json({ error: parsed.error.flatten() });
 
+  // Il consenso privacy WhatsApp va sempre datato: registriamo il momento
+  // in cui viene esplicitamente attivato, per poterlo dimostrare.
+  const data = { ...parsed.data };
+  if (data.notificheWhatsappConsenso === true) data.notificheWhatsappConsensoAt = new Date();
+  if (data.notificheWhatsappConsenso === false) data.notificheWhatsappConsensoAt = null;
+
   const { count } = await prisma.client.updateMany({
     where: { id: req.params.id, ...tenantScope(req) },
-    data: parsed.data,
+    data,
   });
   if (count === 0) return res.status(404).json({ error: "Cliente non trovato" });
 

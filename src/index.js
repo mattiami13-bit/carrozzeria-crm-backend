@@ -23,6 +23,7 @@ import { startDelayWorker } from "./lib/delay-service.js";
 import { profitRouter } from "./routes/profit.js";
 import { copilotRouter } from "./routes/copilot.js";
 import { insuranceGapRouter, insuranceGapItemsRouter, insuranceGapSuggestionsRouter } from "./routes/insuranceGap.js";
+import { whatsappRouter, whatsappWebhookRouter } from "./routes/whatsapp.js";
 import { portaleRouter } from "./routes/portale.js";
 import { auditLogger } from "./middleware/audit.js";
 import path from "path";
@@ -31,12 +32,18 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
+// Dietro il proxy di Railway: serve per ricostruire correttamente
+// protocollo/host pubblici (link portale nei messaggi, validazione firma
+// webhook Twilio).
+app.set("trust proxy", true);
 
 app.use(cors());
 app.use("/api/profit", express.json({limit:"1mb"}));
 app.use("/api/photo-timeline", express.json({limit:"1mb"}));
 app.use("/api/parts-tracking", express.json({limit:"1mb"}));
 app.use("/api/delay", express.json({limit:"1mb"}));
+// Twilio invia i webhook come form url-encoded, non JSON.
+app.use("/api/whatsapp/webhook", express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(auditLogger);
 
@@ -58,6 +65,8 @@ app.use("/api/copilot", copilotRouter);
 app.use("/api/vehicles/:vehicleId/insurance-gap", insuranceGapRouter);
 app.use("/api/insurance-gap-items", insuranceGapItemsRouter);
 app.use("/api/insurance-gap-suggestions", insuranceGapSuggestionsRouter);
+app.use("/api/whatsapp/webhook", whatsappWebhookRouter);
+app.use("/api/whatsapp", whatsappRouter);
 app.use("/api/profit", profitRouter);
 app.use("/api/delay", delayRouter);
 app.use("/api/parts-tracking", partsTrackingRouter);

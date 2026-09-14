@@ -579,6 +579,40 @@ export type EnumSinistroStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumSinistroStatusFilter<$PrismaModel>
 }
 
+export type EnumWhatsappEventoFilter<$PrismaModel = never> = {
+  equals?: $Enums.WhatsappEvento | Prisma.EnumWhatsappEventoFieldRefInput<$PrismaModel>
+  in?: $Enums.WhatsappEvento[] | Prisma.ListEnumWhatsappEventoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.WhatsappEvento[] | Prisma.ListEnumWhatsappEventoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumWhatsappEventoFilter<$PrismaModel> | $Enums.WhatsappEvento
+}
+
+export type EnumWhatsappEventoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.WhatsappEvento | Prisma.EnumWhatsappEventoFieldRefInput<$PrismaModel>
+  in?: $Enums.WhatsappEvento[] | Prisma.ListEnumWhatsappEventoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.WhatsappEvento[] | Prisma.ListEnumWhatsappEventoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumWhatsappEventoWithAggregatesFilter<$PrismaModel> | $Enums.WhatsappEvento
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumWhatsappEventoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumWhatsappEventoFilter<$PrismaModel>
+}
+
+export type EnumWhatsappMessageStatoFilter<$PrismaModel = never> = {
+  equals?: $Enums.WhatsappMessageStato | Prisma.EnumWhatsappMessageStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.WhatsappMessageStato[] | Prisma.ListEnumWhatsappMessageStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.WhatsappMessageStato[] | Prisma.ListEnumWhatsappMessageStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumWhatsappMessageStatoFilter<$PrismaModel> | $Enums.WhatsappMessageStato
+}
+
+export type EnumWhatsappMessageStatoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.WhatsappMessageStato | Prisma.EnumWhatsappMessageStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.WhatsappMessageStato[] | Prisma.ListEnumWhatsappMessageStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.WhatsappMessageStato[] | Prisma.ListEnumWhatsappMessageStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumWhatsappMessageStatoWithAggregatesFilter<$PrismaModel> | $Enums.WhatsappMessageStato
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumWhatsappMessageStatoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumWhatsappMessageStatoFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -1101,6 +1135,40 @@ export type NestedEnumSinistroStatusWithAggregatesFilter<$PrismaModel = never> =
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumSinistroStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumSinistroStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumWhatsappEventoFilter<$PrismaModel = never> = {
+  equals?: $Enums.WhatsappEvento | Prisma.EnumWhatsappEventoFieldRefInput<$PrismaModel>
+  in?: $Enums.WhatsappEvento[] | Prisma.ListEnumWhatsappEventoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.WhatsappEvento[] | Prisma.ListEnumWhatsappEventoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumWhatsappEventoFilter<$PrismaModel> | $Enums.WhatsappEvento
+}
+
+export type NestedEnumWhatsappEventoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.WhatsappEvento | Prisma.EnumWhatsappEventoFieldRefInput<$PrismaModel>
+  in?: $Enums.WhatsappEvento[] | Prisma.ListEnumWhatsappEventoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.WhatsappEvento[] | Prisma.ListEnumWhatsappEventoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumWhatsappEventoWithAggregatesFilter<$PrismaModel> | $Enums.WhatsappEvento
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumWhatsappEventoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumWhatsappEventoFilter<$PrismaModel>
+}
+
+export type NestedEnumWhatsappMessageStatoFilter<$PrismaModel = never> = {
+  equals?: $Enums.WhatsappMessageStato | Prisma.EnumWhatsappMessageStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.WhatsappMessageStato[] | Prisma.ListEnumWhatsappMessageStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.WhatsappMessageStato[] | Prisma.ListEnumWhatsappMessageStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumWhatsappMessageStatoFilter<$PrismaModel> | $Enums.WhatsappMessageStato
+}
+
+export type NestedEnumWhatsappMessageStatoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.WhatsappMessageStato | Prisma.EnumWhatsappMessageStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.WhatsappMessageStato[] | Prisma.ListEnumWhatsappMessageStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.WhatsappMessageStato[] | Prisma.ListEnumWhatsappMessageStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumWhatsappMessageStatoWithAggregatesFilter<$PrismaModel> | $Enums.WhatsappMessageStato
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumWhatsappMessageStatoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumWhatsappMessageStatoFilter<$PrismaModel>
 }
 
 

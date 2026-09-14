@@ -66,8 +66,8 @@ model Tenant {
   insuranceGapAnalyses   InsuranceGapAnalysis[]
   insuranceGapItems      InsuranceGapItem[]
   insuranceGapSuggestions InsuranceGapSuggestion[]
-
-
+  whatsappTemplates WhatsappTemplate[]
+  whatsappMessages  WhatsappMessage[]
 
 
 
@@ -107,6 +107,8 @@ model User {
   correzioniDanni     DamageItem[]
   analisiGapCreate         InsuranceGapAnalysis[]
   correzioniGapAssicurazione InsuranceGapItem[]
+  whatsappTemplateAggiornati WhatsappTemplate[]
+  whatsappMessaggiInviati    WhatsappMessage[]
 
   @@index([tenantId])
   @@map("users")
@@ -138,11 +140,21 @@ model Client {
   noteInterne   String?
   createdAt     DateTime @default(now())
 
+  // Consenso privacy per le comunicazioni automatiche WhatsApp: nessun
+  // messaggio viene mai inviato senza notificheWhatsappConsenso = true.
+  // notificheWhatsappAttive permette di sospendere le notifiche per questo
+  // cliente anche a consenso già dato (es. su sua richiesta esplicita),
+  // senza dover revocare il consenso stesso.
+  notificheWhatsappConsenso   Boolean   @default(false)
+  notificheWhatsappConsensoAt DateTime?
+  notificheWhatsappAttive     Boolean   @default(true)
+
   vehicles     Vehicle[]
   quotes       Quote[]
   documents    Document[]
   appointments Appointment[]
   sinistri     Sinistro[]
+  whatsappMessages WhatsappMessage[]
 
   @@index([tenantId])
   @@index([tenantId, telefono])
@@ -202,6 +214,7 @@ model Vehicle {
   stageHistory StageHistory[]
   damageAnalyses DamageAnalysis[]
   insuranceGapAnalyses InsuranceGapAnalysis[]
+  whatsappMessages WhatsappMessage[]
 
   @@index([tenantId])
   @@index([tenantId, targa])
@@ -1007,4 +1020,91 @@ model PhotoTimelineEdit {
  createdAt DateTime @default(now())
  @@index([photoId, createdAt])
  @@map("photo_timeline_edits")
+}
+
+// -----------------------------
+// COMUNICAZIONI WHATSAPP (workflow pratica)
+// -----------------------------
+// Inviate esclusivamente tramite Twilio come Meta Business Solution
+// Provider ufficiale per WhatsApp Business (nessuna libreria non ufficiale).
+// Un evento = un cambio di stato della pratica (WorkflowStage) oppure un
+// evento speciale non legato allo stage (es. ricambio in ritardo, segnalato
+// manualmente dall'operatore perché non è un vero cambio di stato).
+// L'amministratore decide, evento per evento, se è attivo e con quale testo.
+
+enum WhatsappEvento {
+  ACCETTAZIONE
+  PREVENTIVO
+  ATTESA_APPROVAZIONE
+  ORDINE_RICAMBI
+  IN_LAVORAZIONE
+  PREPARAZIONE
+  VERNICIATURA
+  LUCIDATURA
+  CONTROLLO_QUALITA
+  LAVAGGIO
+  PRONTA_CONSEGNA
+  CONSEGNATA
+  RICAMBIO_RITARDO
+}
+
+model WhatsappTemplate {
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  evento WhatsappEvento
+  attivo Boolean @default(false)
+  testo  String  @db.Text
+
+  aggiornatoDaId String?
+  aggiornatoDa   User?    @relation(fields: [aggiornatoDaId], references: [id])
+  updatedAt      DateTime @updatedAt
+  createdAt      DateTime @default(now())
+
+  @@unique([tenantId, evento])
+  @@index([tenantId])
+  @@map("whatsapp_templates")
+}
+
+enum WhatsappMessageStato {
+  INVIATO
+  CONSEGNATO
+  LETTO
+  FALLITO
+  RISPOSTA_RICEVUTA
+}
+
+// Registro immutabile di ogni messaggio WhatsApp inviato da una pratica:
+// testo effettivo, stato di consegna (aggiornato dal webhook Twilio),
+// eventuale errore ed eventuale risposta ricevuta dal cliente.
+model WhatsappMessage {
+  id        String @id @default(cuid())
+  tenantId  String
+  tenant    Tenant @relation(fields: [tenantId], references: [id])
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+  clientId  String
+  client    Client @relation(fields: [clientId], references: [id])
+
+  evento   WhatsappEvento
+  testo    String @db.Text
+  telefono String
+
+  stato               WhatsappMessageStato @default(INVIATO)
+  providerMessageSid  String?
+  errore              String? @db.Text
+
+  rispostaTesto String?   @db.Text
+  rispostaAt    DateTime?
+
+  inviatoDaId String?
+  inviatoDa   User?   @relation(fields: [inviatoDaId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@index([tenantId])
+  @@index([vehicleId])
+  @@index([providerMessageSid])
+  @@map("whatsapp_messages")
 }

@@ -270,6 +270,8 @@ export type TenantWhereInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisListRelationFilter
   insuranceGapItems?: Prisma.InsuranceGapItemListRelationFilter
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionListRelationFilter
+  whatsappTemplates?: Prisma.WhatsappTemplateListRelationFilter
+  whatsappMessages?: Prisma.WhatsappMessageListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -307,6 +309,8 @@ export type TenantOrderByWithRelationInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisOrderByRelationAggregateInput
   insuranceGapItems?: Prisma.InsuranceGapItemOrderByRelationAggregateInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionOrderByRelationAggregateInput
+  whatsappTemplates?: Prisma.WhatsappTemplateOrderByRelationAggregateInput
+  whatsappMessages?: Prisma.WhatsappMessageOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -347,6 +351,8 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisListRelationFilter
   insuranceGapItems?: Prisma.InsuranceGapItemListRelationFilter
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionListRelationFilter
+  whatsappTemplates?: Prisma.WhatsappTemplateListRelationFilter
+  whatsappMessages?: Prisma.WhatsappMessageListRelationFilter
 }, "id" | "partitaIva">
 
 export type TenantOrderByWithAggregationInput = {
@@ -414,6 +420,8 @@ export type TenantCreateInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -451,6 +459,8 @@ export type TenantUncheckedCreateInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -488,6 +498,8 @@ export type TenantUpdateInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -525,6 +537,8 @@ export type TenantUncheckedUpdateInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -1000,6 +1014,34 @@ export type TenantUpdateOneRequiredWithoutPartDocumentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutPartDocumentsInput, Prisma.TenantUpdateWithoutPartDocumentsInput>, Prisma.TenantUncheckedUpdateWithoutPartDocumentsInput>
 }
 
+export type TenantCreateNestedOneWithoutWhatsappTemplatesInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutWhatsappTemplatesInput, Prisma.TenantUncheckedCreateWithoutWhatsappTemplatesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutWhatsappTemplatesInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutWhatsappTemplatesNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutWhatsappTemplatesInput, Prisma.TenantUncheckedCreateWithoutWhatsappTemplatesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutWhatsappTemplatesInput
+  upsert?: Prisma.TenantUpsertWithoutWhatsappTemplatesInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutWhatsappTemplatesInput, Prisma.TenantUpdateWithoutWhatsappTemplatesInput>, Prisma.TenantUncheckedUpdateWithoutWhatsappTemplatesInput>
+}
+
+export type TenantCreateNestedOneWithoutWhatsappMessagesInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutWhatsappMessagesInput, Prisma.TenantUncheckedCreateWithoutWhatsappMessagesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutWhatsappMessagesInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutWhatsappMessagesNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutWhatsappMessagesInput, Prisma.TenantUncheckedCreateWithoutWhatsappMessagesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutWhatsappMessagesInput
+  upsert?: Prisma.TenantUpsertWithoutWhatsappMessagesInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutWhatsappMessagesInput, Prisma.TenantUpdateWithoutWhatsappMessagesInput>, Prisma.TenantUncheckedUpdateWithoutWhatsappMessagesInput>
+}
+
 export type TenantCreateWithoutUsersInput = {
   id?: string
   ragioneSociale: string
@@ -1034,6 +1076,8 @@ export type TenantCreateWithoutUsersInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutUsersInput = {
@@ -1070,6 +1114,8 @@ export type TenantUncheckedCreateWithoutUsersInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutUsersInput = {
@@ -1122,6 +1168,8 @@ export type TenantUpdateWithoutUsersInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutUsersInput = {
@@ -1158,6 +1206,8 @@ export type TenantUncheckedUpdateWithoutUsersInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutClientsInput = {
@@ -1194,6 +1244,8 @@ export type TenantCreateWithoutClientsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutClientsInput = {
@@ -1230,6 +1282,8 @@ export type TenantUncheckedCreateWithoutClientsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutClientsInput = {
@@ -1282,6 +1336,8 @@ export type TenantUpdateWithoutClientsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutClientsInput = {
@@ -1318,6 +1374,8 @@ export type TenantUncheckedUpdateWithoutClientsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutVehiclesInput = {
@@ -1354,6 +1412,8 @@ export type TenantCreateWithoutVehiclesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutVehiclesInput = {
@@ -1390,6 +1450,8 @@ export type TenantUncheckedCreateWithoutVehiclesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutVehiclesInput = {
@@ -1442,6 +1504,8 @@ export type TenantUpdateWithoutVehiclesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutVehiclesInput = {
@@ -1478,6 +1542,8 @@ export type TenantUncheckedUpdateWithoutVehiclesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQuotesInput = {
@@ -1514,6 +1580,8 @@ export type TenantCreateWithoutQuotesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQuotesInput = {
@@ -1550,6 +1618,8 @@ export type TenantUncheckedCreateWithoutQuotesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQuotesInput = {
@@ -1602,6 +1672,8 @@ export type TenantUpdateWithoutQuotesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQuotesInput = {
@@ -1638,6 +1710,8 @@ export type TenantUncheckedUpdateWithoutQuotesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDamageAnalysesInput = {
@@ -1674,6 +1748,8 @@ export type TenantCreateWithoutDamageAnalysesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
@@ -1710,6 +1786,8 @@ export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDamageAnalysesInput = {
@@ -1762,6 +1840,8 @@ export type TenantUpdateWithoutDamageAnalysesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
@@ -1798,6 +1878,8 @@ export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDamageItemsInput = {
@@ -1834,6 +1916,8 @@ export type TenantCreateWithoutDamageItemsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDamageItemsInput = {
@@ -1870,6 +1954,8 @@ export type TenantUncheckedCreateWithoutDamageItemsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDamageItemsInput = {
@@ -1922,6 +2008,8 @@ export type TenantUpdateWithoutDamageItemsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDamageItemsInput = {
@@ -1958,6 +2046,8 @@ export type TenantUncheckedUpdateWithoutDamageItemsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInsuranceGapAnalysesInput = {
@@ -1994,6 +2084,8 @@ export type TenantCreateWithoutInsuranceGapAnalysesInput = {
   damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInsuranceGapAnalysesInput = {
@@ -2030,6 +2122,8 @@ export type TenantUncheckedCreateWithoutInsuranceGapAnalysesInput = {
   damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInsuranceGapAnalysesInput = {
@@ -2082,6 +2176,8 @@ export type TenantUpdateWithoutInsuranceGapAnalysesInput = {
   damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
@@ -2118,6 +2214,8 @@ export type TenantUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
   damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInsuranceGapItemsInput = {
@@ -2154,6 +2252,8 @@ export type TenantCreateWithoutInsuranceGapItemsInput = {
   damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInsuranceGapItemsInput = {
@@ -2190,6 +2290,8 @@ export type TenantUncheckedCreateWithoutInsuranceGapItemsInput = {
   damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInsuranceGapItemsInput = {
@@ -2242,6 +2344,8 @@ export type TenantUpdateWithoutInsuranceGapItemsInput = {
   damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInsuranceGapItemsInput = {
@@ -2278,6 +2382,8 @@ export type TenantUncheckedUpdateWithoutInsuranceGapItemsInput = {
   damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInsuranceGapSuggestionsInput = {
@@ -2314,6 +2420,8 @@ export type TenantCreateWithoutInsuranceGapSuggestionsInput = {
   damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInsuranceGapSuggestionsInput = {
@@ -2350,6 +2458,8 @@ export type TenantUncheckedCreateWithoutInsuranceGapSuggestionsInput = {
   damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInsuranceGapSuggestionsInput = {
@@ -2402,6 +2512,8 @@ export type TenantUpdateWithoutInsuranceGapSuggestionsInput = {
   damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInsuranceGapSuggestionsInput = {
@@ -2438,6 +2550,8 @@ export type TenantUncheckedUpdateWithoutInsuranceGapSuggestionsInput = {
   damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartsInput = {
@@ -2474,6 +2588,8 @@ export type TenantCreateWithoutPartsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartsInput = {
@@ -2510,6 +2626,8 @@ export type TenantUncheckedCreateWithoutPartsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartsInput = {
@@ -2562,6 +2680,8 @@ export type TenantUpdateWithoutPartsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartsInput = {
@@ -2598,6 +2718,8 @@ export type TenantUncheckedUpdateWithoutPartsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSupplierOrdersInput = {
@@ -2634,6 +2756,8 @@ export type TenantCreateWithoutSupplierOrdersInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
@@ -2670,6 +2794,8 @@ export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSupplierOrdersInput = {
@@ -2722,6 +2848,8 @@ export type TenantUpdateWithoutSupplierOrdersInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
@@ -2758,6 +2886,8 @@ export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutLoanerCarsInput = {
@@ -2794,6 +2924,8 @@ export type TenantCreateWithoutLoanerCarsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutLoanerCarsInput = {
@@ -2830,6 +2962,8 @@ export type TenantUncheckedCreateWithoutLoanerCarsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutLoanerCarsInput = {
@@ -2882,6 +3016,8 @@ export type TenantUpdateWithoutLoanerCarsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
@@ -2918,6 +3054,8 @@ export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAppointmentsInput = {
@@ -2954,6 +3092,8 @@ export type TenantCreateWithoutAppointmentsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAppointmentsInput = {
@@ -2990,6 +3130,8 @@ export type TenantUncheckedCreateWithoutAppointmentsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAppointmentsInput = {
@@ -3042,6 +3184,8 @@ export type TenantUpdateWithoutAppointmentsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAppointmentsInput = {
@@ -3078,6 +3222,8 @@ export type TenantUncheckedUpdateWithoutAppointmentsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSinistriInput = {
@@ -3114,6 +3260,8 @@ export type TenantCreateWithoutSinistriInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSinistriInput = {
@@ -3150,6 +3298,8 @@ export type TenantUncheckedCreateWithoutSinistriInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSinistriInput = {
@@ -3202,6 +3352,8 @@ export type TenantUpdateWithoutSinistriInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSinistriInput = {
@@ -3238,6 +3390,8 @@ export type TenantUncheckedUpdateWithoutSinistriInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPortalAccessesInput = {
@@ -3274,6 +3428,8 @@ export type TenantCreateWithoutPortalAccessesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPortalAccessesInput = {
@@ -3310,6 +3466,8 @@ export type TenantUncheckedCreateWithoutPortalAccessesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPortalAccessesInput = {
@@ -3362,6 +3520,8 @@ export type TenantUpdateWithoutPortalAccessesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
@@ -3398,6 +3558,8 @@ export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAiAnalysesInput = {
@@ -3434,6 +3596,8 @@ export type TenantCreateWithoutAiAnalysesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAiAnalysesInput = {
@@ -3470,6 +3634,8 @@ export type TenantUncheckedCreateWithoutAiAnalysesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAiAnalysesInput = {
@@ -3522,6 +3688,8 @@ export type TenantUpdateWithoutAiAnalysesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
@@ -3558,6 +3726,8 @@ export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAssistantLogsInput = {
@@ -3594,6 +3764,8 @@ export type TenantCreateWithoutAssistantLogsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAssistantLogsInput = {
@@ -3630,6 +3802,8 @@ export type TenantUncheckedCreateWithoutAssistantLogsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAssistantLogsInput = {
@@ -3682,6 +3856,8 @@ export type TenantUpdateWithoutAssistantLogsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
@@ -3718,6 +3894,8 @@ export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutProfitRecordsInput = {
@@ -3754,6 +3932,8 @@ export type TenantCreateWithoutProfitRecordsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutProfitRecordsInput = {
@@ -3790,6 +3970,8 @@ export type TenantUncheckedCreateWithoutProfitRecordsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutProfitRecordsInput = {
@@ -3842,6 +4024,8 @@ export type TenantUpdateWithoutProfitRecordsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutProfitRecordsInput = {
@@ -3878,6 +4062,8 @@ export type TenantUncheckedUpdateWithoutProfitRecordsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutProfitSettingsInput = {
@@ -3914,6 +4100,8 @@ export type TenantCreateWithoutProfitSettingsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutProfitSettingsInput = {
@@ -3950,6 +4138,8 @@ export type TenantUncheckedCreateWithoutProfitSettingsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutProfitSettingsInput = {
@@ -4002,6 +4192,8 @@ export type TenantUpdateWithoutProfitSettingsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutProfitSettingsInput = {
@@ -4038,6 +4230,8 @@ export type TenantUncheckedUpdateWithoutProfitSettingsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelaySettingsInput = {
@@ -4074,6 +4268,8 @@ export type TenantCreateWithoutDelaySettingsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelaySettingsInput = {
@@ -4110,6 +4306,8 @@ export type TenantUncheckedCreateWithoutDelaySettingsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelaySettingsInput = {
@@ -4162,6 +4360,8 @@ export type TenantUpdateWithoutDelaySettingsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelaySettingsInput = {
@@ -4198,6 +4398,8 @@ export type TenantUncheckedUpdateWithoutDelaySettingsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelayPlansInput = {
@@ -4234,6 +4436,8 @@ export type TenantCreateWithoutDelayPlansInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelayPlansInput = {
@@ -4270,6 +4474,8 @@ export type TenantUncheckedCreateWithoutDelayPlansInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelayPlansInput = {
@@ -4322,6 +4528,8 @@ export type TenantUpdateWithoutDelayPlansInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelayPlansInput = {
@@ -4358,6 +4566,8 @@ export type TenantUncheckedUpdateWithoutDelayPlansInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelayForecastsInput = {
@@ -4394,6 +4604,8 @@ export type TenantCreateWithoutDelayForecastsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelayForecastsInput = {
@@ -4430,6 +4642,8 @@ export type TenantUncheckedCreateWithoutDelayForecastsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelayForecastsInput = {
@@ -4482,6 +4696,8 @@ export type TenantUpdateWithoutDelayForecastsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelayForecastsInput = {
@@ -4518,6 +4734,8 @@ export type TenantUncheckedUpdateWithoutDelayForecastsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelayDecisionsInput = {
@@ -4554,6 +4772,8 @@ export type TenantCreateWithoutDelayDecisionsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelayDecisionsInput = {
@@ -4590,6 +4810,8 @@ export type TenantUncheckedCreateWithoutDelayDecisionsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelayDecisionsInput = {
@@ -4642,6 +4864,8 @@ export type TenantUpdateWithoutDelayDecisionsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelayDecisionsInput = {
@@ -4678,6 +4902,8 @@ export type TenantUncheckedUpdateWithoutDelayDecisionsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutTrackedPartsInput = {
@@ -4714,6 +4940,8 @@ export type TenantCreateWithoutTrackedPartsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutTrackedPartsInput = {
@@ -4750,6 +4978,8 @@ export type TenantUncheckedCreateWithoutTrackedPartsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutTrackedPartsInput = {
@@ -4802,6 +5032,8 @@ export type TenantUpdateWithoutTrackedPartsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutTrackedPartsInput = {
@@ -4838,6 +5070,8 @@ export type TenantUncheckedUpdateWithoutTrackedPartsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartBlocksInput = {
@@ -4874,6 +5108,8 @@ export type TenantCreateWithoutPartBlocksInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartBlocksInput = {
@@ -4910,6 +5146,8 @@ export type TenantUncheckedCreateWithoutPartBlocksInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartBlocksInput = {
@@ -4962,6 +5200,8 @@ export type TenantUpdateWithoutPartBlocksInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartBlocksInput = {
@@ -4998,6 +5238,8 @@ export type TenantUncheckedUpdateWithoutPartBlocksInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartDocumentsInput = {
@@ -5034,6 +5276,8 @@ export type TenantCreateWithoutPartDocumentsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartDocumentsInput = {
@@ -5070,6 +5314,8 @@ export type TenantUncheckedCreateWithoutPartDocumentsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartDocumentsInput = {
@@ -5122,6 +5368,8 @@ export type TenantUpdateWithoutPartDocumentsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartDocumentsInput = {
@@ -5158,6 +5406,344 @@ export type TenantUncheckedUpdateWithoutPartDocumentsInput = {
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
   insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutWhatsappTemplatesInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutWhatsappTemplatesInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutWhatsappTemplatesInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutWhatsappTemplatesInput, Prisma.TenantUncheckedCreateWithoutWhatsappTemplatesInput>
+}
+
+export type TenantUpsertWithoutWhatsappTemplatesInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutWhatsappTemplatesInput, Prisma.TenantUncheckedUpdateWithoutWhatsappTemplatesInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutWhatsappTemplatesInput, Prisma.TenantUncheckedCreateWithoutWhatsappTemplatesInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutWhatsappTemplatesInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutWhatsappTemplatesInput, Prisma.TenantUncheckedUpdateWithoutWhatsappTemplatesInput>
+}
+
+export type TenantUpdateWithoutWhatsappTemplatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutWhatsappTemplatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutWhatsappMessagesInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutWhatsappMessagesInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutWhatsappMessagesInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutWhatsappMessagesInput, Prisma.TenantUncheckedCreateWithoutWhatsappMessagesInput>
+}
+
+export type TenantUpsertWithoutWhatsappMessagesInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutWhatsappMessagesInput, Prisma.TenantUncheckedUpdateWithoutWhatsappMessagesInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutWhatsappMessagesInput, Prisma.TenantUncheckedCreateWithoutWhatsappMessagesInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutWhatsappMessagesInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutWhatsappMessagesInput, Prisma.TenantUncheckedUpdateWithoutWhatsappMessagesInput>
+}
+
+export type TenantUpdateWithoutWhatsappMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutWhatsappMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 
@@ -5190,6 +5776,8 @@ export type TenantCountOutputType = {
   insuranceGapAnalyses: number
   insuranceGapItems: number
   insuranceGapSuggestions: number
+  whatsappTemplates: number
+  whatsappMessages: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5217,6 +5805,8 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   insuranceGapAnalyses?: boolean | TenantCountOutputTypeCountInsuranceGapAnalysesArgs
   insuranceGapItems?: boolean | TenantCountOutputTypeCountInsuranceGapItemsArgs
   insuranceGapSuggestions?: boolean | TenantCountOutputTypeCountInsuranceGapSuggestionsArgs
+  whatsappTemplates?: boolean | TenantCountOutputTypeCountWhatsappTemplatesArgs
+  whatsappMessages?: boolean | TenantCountOutputTypeCountWhatsappMessagesArgs
 }
 
 /**
@@ -5397,6 +5987,20 @@ export type TenantCountOutputTypeCountInsuranceGapSuggestionsArgs<ExtArgs extend
   where?: Prisma.InsuranceGapSuggestionWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountWhatsappTemplatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WhatsappTemplateWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountWhatsappMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WhatsappMessageWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -5433,6 +6037,8 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   insuranceGapAnalyses?: boolean | Prisma.Tenant$insuranceGapAnalysesArgs<ExtArgs>
   insuranceGapItems?: boolean | Prisma.Tenant$insuranceGapItemsArgs<ExtArgs>
   insuranceGapSuggestions?: boolean | Prisma.Tenant$insuranceGapSuggestionsArgs<ExtArgs>
+  whatsappTemplates?: boolean | Prisma.Tenant$whatsappTemplatesArgs<ExtArgs>
+  whatsappMessages?: boolean | Prisma.Tenant$whatsappMessagesArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -5497,6 +6103,8 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   insuranceGapAnalyses?: boolean | Prisma.Tenant$insuranceGapAnalysesArgs<ExtArgs>
   insuranceGapItems?: boolean | Prisma.Tenant$insuranceGapItemsArgs<ExtArgs>
   insuranceGapSuggestions?: boolean | Prisma.Tenant$insuranceGapSuggestionsArgs<ExtArgs>
+  whatsappTemplates?: boolean | Prisma.Tenant$whatsappTemplatesArgs<ExtArgs>
+  whatsappMessages?: boolean | Prisma.Tenant$whatsappMessagesArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -5531,6 +6139,8 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     insuranceGapAnalyses: Prisma.$InsuranceGapAnalysisPayload<ExtArgs>[]
     insuranceGapItems: Prisma.$InsuranceGapItemPayload<ExtArgs>[]
     insuranceGapSuggestions: Prisma.$InsuranceGapSuggestionPayload<ExtArgs>[]
+    whatsappTemplates: Prisma.$WhatsappTemplatePayload<ExtArgs>[]
+    whatsappMessages: Prisma.$WhatsappMessagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -5961,6 +6571,8 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   insuranceGapAnalyses<T extends Prisma.Tenant$insuranceGapAnalysesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$insuranceGapAnalysesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InsuranceGapAnalysisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   insuranceGapItems<T extends Prisma.Tenant$insuranceGapItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$insuranceGapItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InsuranceGapItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   insuranceGapSuggestions<T extends Prisma.Tenant$insuranceGapSuggestionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$insuranceGapSuggestionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InsuranceGapSuggestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  whatsappTemplates<T extends Prisma.Tenant$whatsappTemplatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$whatsappTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WhatsappTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  whatsappMessages<T extends Prisma.Tenant$whatsappMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$whatsappMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WhatsappMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7002,6 +7614,54 @@ export type Tenant$insuranceGapSuggestionsArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.InsuranceGapSuggestionScalarFieldEnum | Prisma.InsuranceGapSuggestionScalarFieldEnum[]
+}
+
+/**
+ * Tenant.whatsappTemplates
+ */
+export type Tenant$whatsappTemplatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WhatsappTemplate
+   */
+  select?: Prisma.WhatsappTemplateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WhatsappTemplate
+   */
+  omit?: Prisma.WhatsappTemplateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhatsappTemplateInclude<ExtArgs> | null
+  where?: Prisma.WhatsappTemplateWhereInput
+  orderBy?: Prisma.WhatsappTemplateOrderByWithRelationInput | Prisma.WhatsappTemplateOrderByWithRelationInput[]
+  cursor?: Prisma.WhatsappTemplateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WhatsappTemplateScalarFieldEnum | Prisma.WhatsappTemplateScalarFieldEnum[]
+}
+
+/**
+ * Tenant.whatsappMessages
+ */
+export type Tenant$whatsappMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WhatsappMessage
+   */
+  select?: Prisma.WhatsappMessageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WhatsappMessage
+   */
+  omit?: Prisma.WhatsappMessageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhatsappMessageInclude<ExtArgs> | null
+  where?: Prisma.WhatsappMessageWhereInput
+  orderBy?: Prisma.WhatsappMessageOrderByWithRelationInput | Prisma.WhatsappMessageOrderByWithRelationInput[]
+  cursor?: Prisma.WhatsappMessageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WhatsappMessageScalarFieldEnum | Prisma.WhatsappMessageScalarFieldEnum[]
 }
 
 /**

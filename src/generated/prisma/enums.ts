@@ -123,3 +123,33 @@ export const SinistroStatus = {
 } as const
 
 export type SinistroStatus = (typeof SinistroStatus)[keyof typeof SinistroStatus]
+
+
+export const WhatsappEvento = {
+  ACCETTAZIONE: 'ACCETTAZIONE',
+  PREVENTIVO: 'PREVENTIVO',
+  ATTESA_APPROVAZIONE: 'ATTESA_APPROVAZIONE',
+  ORDINE_RICAMBI: 'ORDINE_RICAMBI',
+  IN_LAVORAZIONE: 'IN_LAVORAZIONE',
+  PREPARAZIONE: 'PREPARAZIONE',
+  VERNICIATURA: 'VERNICIATURA',
+  LUCIDATURA: 'LUCIDATURA',
+  CONTROLLO_QUALITA: 'CONTROLLO_QUALITA',
+  LAVAGGIO: 'LAVAGGIO',
+  PRONTA_CONSEGNA: 'PRONTA_CONSEGNA',
+  CONSEGNATA: 'CONSEGNATA',
+  RICAMBIO_RITARDO: 'RICAMBIO_RITARDO'
+} as const
+
+export type WhatsappEvento = (typeof WhatsappEvento)[keyof typeof WhatsappEvento]
+
+
+export const WhatsappMessageStato = {
+  INVIATO: 'INVIATO',
+  CONSEGNATO: 'CONSEGNATO',
+  LETTO: 'LETTO',
+  FALLITO: 'FALLITO',
+  RISPOSTA_RICEVUTA: 'RISPOSTA_RICEVUTA'
+} as const
+
+export type WhatsappMessageStato = (typeof WhatsappMessageStato)[keyof typeof WhatsappMessageStato]

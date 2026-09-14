@@ -266,7 +266,8 @@ function Dashboard({ token, onLogout }) {
   const ruolo = decodificaRuolo(token);
   const delayNav = [...NAV_BASE, {key:"delay",label:"Predictive Delay AI"}, {key:"parts-tracking",label:"Parts Tracking"}];
   const baseNav = ruolo === "ADMIN" ? [...delayNav, { key: "registro", label: "Registro attività" }] : delayNav;
-  const nav = ["ADMIN", "AMMINISTRAZIONE"].includes(ruolo) ? [...baseNav, {key:"profit",label:"Profit Tracker"}] : baseNav;
+  const navConProfit = ["ADMIN", "AMMINISTRAZIONE"].includes(ruolo) ? [...baseNav, {key:"profit",label:"Profit Tracker"}] : baseNav;
+  const nav = ruolo === "ADMIN" ? [...navConProfit, { key: "whatsapp", label: "WhatsApp" }] : navConProfit;
 
   // Usato dalla scheda cliente per aprire i sinistri già filtrati su quel cliente
   const apriSinistriCliente = (client) => {
@@ -328,6 +329,7 @@ function Dashboard({ token, onLogout }) {
         )}
         {tab === "clienti" && <ClientiView api={api} onOpenSinistri={apriSinistriCliente} />}
         {tab === "registro" && ruolo === "ADMIN" && <RegistroAttivitaView api={api} />}
+        {tab === "whatsapp" && ruolo === "ADMIN" && <WhatsappSettingsView api={api} />}
       </main>
       <AiCopilot api={api} onNavigateTab={setTab} onApriPraticaVeicolo={apriPraticaVeicolo} />
       <AssistenteFlottante api={api} />
@@ -1792,6 +1794,9 @@ function VehicleDetailModal({ vehicleId, api, token, onClose: closeRequested, on
             <DelayPanel vehicleId={vehicle.id} api={api} clientPhone={vehicle.client?.telefono} onDirtyChange={setDelayDirty} />
             {["ADMIN","AMMINISTRAZIONE"].includes(decodificaRuolo(token)) && <ProfitTracker vehicleId={vehicle.id} api={api} onDirtyChange={setProfitDirty} />}
             <InsuranceGapAnalysis vehicle={vehicle} api={api} token={token} />
+
+            <h3 style={{ fontSize: 13, fontWeight: 700, marginTop: 26, marginBottom: 10 }}>Comunicazioni WhatsApp</h3>
+            <WhatsappPanel vehicleId={vehicle.id} api={api} />
 
             <h3 style={{ fontSize: 13, fontWeight: 700, marginTop: 26, marginBottom: 10 }}>Consegna e firma</h3>
             <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 12, padding: 16 }}>
@@ -3328,6 +3333,183 @@ function NuovoAppuntamentoForm({ api, clients, vehicles, users, defaultDate, onC
 }
 
 /* ---------------- CLIENTI VIEW ---------------- */
+/* ---------------- WHATSAPP: comunicazioni automatiche workflow ---------------- */
+const WHATSAPP_EVENTO_LABEL = {
+  ACCETTAZIONE: "Vettura ricevuta",
+  PREVENTIVO: "Preventivo in preparazione",
+  ATTESA_APPROVAZIONE: "Preventivo pronto per approvazione",
+  ORDINE_RICAMBI: "Ricambi in ordinazione",
+  IN_LAVORAZIONE: "Lavorazione iniziata",
+  PREPARAZIONE: "Veicolo in preparazione",
+  VERNICIATURA: "Verniciatura completata",
+  LUCIDATURA: "Veicolo in lucidatura",
+  CONTROLLO_QUALITA: "Controllo qualità in corso",
+  LAVAGGIO: "Veicolo in fase di lavaggio",
+  PRONTA_CONSEGNA: "Vettura pronta",
+  CONSEGNATA: "Vettura consegnata",
+  RICAMBIO_RITARDO: "Ricambio in ritardo",
+};
+const WHATSAPP_STATO_STYLE = {
+  INVIATO: { label: "Inviato", color: "#8D9099" },
+  CONSEGNATO: { label: "Consegnato", color: "#4E7F8C" },
+  LETTO: { label: "Letto", color: "#2F8F5B" },
+  FALLITO: { label: "Fallito", color: "#B4472E" },
+  RISPOSTA_RICEVUTA: { label: "Risposta ricevuta", color: "#C9A24B" },
+};
+
+// Pannello nella scheda veicolo: registro dei messaggi WhatsApp inviati per
+// questa pratica (data/ora, stato consegna, eventuale errore/risposta) e
+// pulsante per segnalare manualmente un ritardo ricambio al cliente
+// (non è un cambio di stato della pratica, quindi resta una scelta
+// dell'operatore caso per caso).
+function WhatsappPanel({ vehicleId, api }) {
+  const [messaggi, setMessaggi] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [inviando, setInviando] = useState(false);
+  const [avviso, setAvviso] = useState(null);
+
+  const load = useCallback(() => {
+    setLoading(true);
+    api(`/api/whatsapp/vehicles/${vehicleId}/messages`).then(setMessaggi).catch(() => setMessaggi([])).finally(() => setLoading(false));
+  }, [api, vehicleId]);
+
+  useEffect(load, [load]);
+
+  const segnalaRitardo = async () => {
+    setAvviso(null);
+    setInviando(true);
+    try {
+      await api(`/api/whatsapp/vehicles/${vehicleId}/ricambio-ritardo`, { method: "POST" });
+      load();
+    } catch (e) {
+      setAvviso(e.message);
+    } finally {
+      setInviando(false);
+    }
+  };
+
+  return (
+    <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 12, padding: 16 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+        <div style={{ fontSize: 12, color: "#8D9099" }}>Registro dei messaggi WhatsApp inviati automaticamente sui cambi di stato di questa pratica.</div>
+        <button onClick={segnalaRitardo} disabled={inviando} style={{
+          padding: "7px 12px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12, fontWeight: 600, whiteSpace: "nowrap",
+        }}>{inviando ? "Invio…" : "Segnala ricambio in ritardo"}</button>
+      </div>
+
+      {avviso && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 12, padding: 10, borderRadius: 8, marginBottom: 10 }}>{avviso}</div>}
+
+      {loading ? <Loading /> : messaggi.length === 0 ? (
+        <div style={{ fontSize: 12, color: "#8D9099" }}>Nessun messaggio WhatsApp inviato finora per questa pratica.</div>
+      ) : (
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {messaggi.map((m) => {
+            const stile = WHATSAPP_STATO_STYLE[m.stato] || WHATSAPP_STATO_STYLE.INVIATO;
+            return (
+              <div key={m.id} style={{ border: "1px solid #2A2E34", borderRadius: 10, padding: 10 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 6 }}>
+                  <span style={{ fontSize: 12.5, fontWeight: 700 }}>{WHATSAPP_EVENTO_LABEL[m.evento] || m.evento}</span>
+                  <span style={{ fontSize: 10.5, fontWeight: 700, color: stile.color, border: `1px solid ${stile.color}`, borderRadius: 20, padding: "2px 8px" }}>{stile.label}</span>
+                </div>
+                <div style={{ fontSize: 11, color: "#8D9099", marginTop: 3 }}>{new Date(m.createdAt).toLocaleString("it-IT")} · {m.telefono}</div>
+                <div style={{ fontSize: 12, color: "#D9D6CE", marginTop: 6, whiteSpace: "pre-wrap" }}>{m.testo}</div>
+                {m.errore && <div style={{ fontSize: 11.5, color: "#B4472E", marginTop: 6 }}>Errore: {m.errore}</div>}
+                {m.rispostaTesto && (
+                  <div style={{ fontSize: 12, color: "#C9A24B", marginTop: 8, borderTop: "1px solid #2A2E34", paddingTop: 6 }}>
+                    Risposta cliente ({new Date(m.rispostaAt).toLocaleString("it-IT")}): {m.rispostaTesto}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+const WHATSAPP_VARIABILI = ["nome_cliente", "veicolo", "targa", "numero_pratica", "stato", "data_consegna", "link_portale"];
+
+// Schermata Admin: decide quali cambi di stato generano una comunicazione
+// WhatsApp automatica e con quale testo (personalizzabile per tenant).
+function WhatsappSettingsView({ api }) {
+  const [templates, setTemplates] = useState(null);
+  const [saving, setSaving] = useState({});
+  const [saved, setSaved] = useState({});
+  const [error, setError] = useState(null);
+
+  const load = useCallback(() => {
+    api("/api/whatsapp/templates").then(setTemplates).catch((e) => setError(e.message));
+  }, [api]);
+
+  useEffect(load, [load]);
+
+  const updateLocal = (evento, patch) => {
+    setTemplates((prev) => prev.map((t) => (t.evento === evento ? { ...t, ...patch } : t)));
+  };
+
+  const salva = async (t) => {
+    setSaving((s) => ({ ...s, [t.evento]: true }));
+    setSaved((s) => ({ ...s, [t.evento]: false }));
+    setError(null);
+    try {
+      await api(`/api/whatsapp/templates/${t.evento}`, {
+        method: "PUT",
+        body: JSON.stringify({ attivo: t.attivo, testo: t.testo }),
+      });
+      setSaved((s) => ({ ...s, [t.evento]: true }));
+      setTimeout(() => setSaved((s) => ({ ...s, [t.evento]: false })), 2500);
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setSaving((s) => ({ ...s, [t.evento]: false }));
+    }
+  };
+
+  if (!templates) return <Loading />;
+
+  return (
+    <div>
+      <h1 style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>WhatsApp — comunicazioni automatiche</h1>
+      <div style={{ fontSize: 12.5, color: "#8D9099", marginBottom: 8, maxWidth: 720 }}>
+        Attiva per ogni cambio di stato della pratica se generare o meno un messaggio WhatsApp automatico al cliente, e personalizza il testo. Il messaggio parte solo se il cliente ha dato il consenso alle notifiche (scheda cliente) e ha un numero di telefono.
+      </div>
+      <div style={{ fontSize: 11.5, color: "#6B6963", marginBottom: 18, maxWidth: 720 }}>
+        Variabili disponibili: {WHATSAPP_VARIABILI.map((v) => `{{${v}}}`).join("  ")}
+      </div>
+
+      {error && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 12, padding: 10, borderRadius: 8, marginBottom: 14 }}>{error}</div>}
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        {templates.map((t) => (
+          <div key={t.evento} style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 16 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+              <div style={{ fontSize: 14, fontWeight: 700 }}>{t.label}</div>
+              <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12.5, cursor: "pointer" }}>
+                <input type="checkbox" checked={t.attivo} onChange={(e) => updateLocal(t.evento, { attivo: e.target.checked })} />
+                {t.attivo ? "Attivo" : "Disattivato"}
+              </label>
+            </div>
+            <textarea
+              value={t.testo}
+              onChange={(e) => updateLocal(t.evento, { testo: e.target.value })}
+              rows={3}
+              style={{ width: "100%", padding: 10, borderRadius: 8, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC", fontSize: 12.5, fontFamily: "inherit", resize: "vertical" }}
+            />
+            <div style={{ marginTop: 10, display: "flex", alignItems: "center", gap: 10 }}>
+              <button onClick={() => salva(t)} disabled={saving[t.evento]} style={{
+                padding: "7px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 12.5, fontWeight: 600,
+              }}>{saving[t.evento] ? "Salvataggio…" : "Salva"}</button>
+              {saved[t.evento] && <span style={{ fontSize: 12, color: "#2F8F5B" }}>Salvato</span>}
+              {!t.personalizzato && <span style={{ fontSize: 11, color: "#6B6963" }}>Testo di default, non ancora personalizzato</span>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function ClientiView({ api, onOpenSinistri }) {
   const [clients, setClients] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -3395,11 +3577,14 @@ function ClientDetailModal({ clientId, api, onClose, onSaved }) {
       setForm({
         nome: c.nome || "", cognome: c.cognome || "", telefono: c.telefono || "",
         email: c.email || "", codiceFiscale: c.codiceFiscale || "", indirizzo: c.indirizzo || "",
+        notificheWhatsappConsenso: c.notificheWhatsappConsenso || false,
+        notificheWhatsappAttive: c.notificheWhatsappAttive ?? true,
       });
     }).finally(() => setLoading(false));
   }, [clientId]);
 
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+  const setBool = (k) => (e) => setForm({ ...form, [k]: e.target.checked });
 
   const submit = async () => {
     setError(null);
@@ -3438,6 +3623,18 @@ function ClientDetailModal({ clientId, api, onClose, onSaved }) {
               <input placeholder="Email" value={form.email} onChange={set("email")} style={{ padding: 9, borderRadius: 8, border: "1px solid #2A2E34" }} />
               <input placeholder="Codice fiscale" value={form.codiceFiscale} onChange={set("codiceFiscale")} style={{ padding: 9, borderRadius: 8, border: "1px solid #2A2E34" }} />
               <input placeholder="Indirizzo" value={form.indirizzo} onChange={set("indirizzo")} style={{ padding: 9, borderRadius: 8, border: "1px solid #2A2E34" }} />
+            </div>
+
+            <div style={{ marginTop: 16, padding: 12, borderRadius: 10, border: "1px solid #2A2E34", background: "#1B1E23" }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: "#C9A24B", marginBottom: 8 }}>Comunicazioni automatiche WhatsApp</div>
+              <label style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 12.5, color: "#D9D6CE", marginBottom: 8, cursor: "pointer" }}>
+                <input type="checkbox" checked={form.notificheWhatsappConsenso} onChange={setBool("notificheWhatsappConsenso")} style={{ marginTop: 2 }} />
+                <span>Il cliente ha dato il consenso a ricevere comunicazioni WhatsApp sull'avanzamento della pratica (privacy).</span>
+              </label>
+              <label style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 12.5, color: "#D9D6CE", cursor: "pointer" }}>
+                <input type="checkbox" checked={form.notificheWhatsappAttive} onChange={setBool("notificheWhatsappAttive")} style={{ marginTop: 2 }} />
+                <span>Notifiche automatiche attive per questo cliente (disattivabile in qualsiasi momento senza revocare il consenso).</span>
+              </label>
             </div>
 
             {error && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 12, padding: 10, borderRadius: 8, marginTop: 12 }}>{error}</div>}

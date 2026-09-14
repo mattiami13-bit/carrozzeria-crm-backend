@@ -4,6 +4,7 @@ import PDFDocument from "pdfkit";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
 import { enqueueNotification } from "../lib/notifiche.js";
+import { inviaComunicazioneWhatsapp } from "../lib/whatsapp.js";
 
 export const quotesRouter = Router();
 quotesRouter.use(requireAuth);
@@ -84,11 +85,12 @@ quotesRouter.patch("/:id/stato", async (req, res) => {
   if (parsed.data.stato === "INVIATO" && quote.vehicleId) {
     const vehicle = await prisma.vehicle.findUnique({
       where: { id: quote.vehicleId },
-      include: { client: true },
+      include: { client: true, sinistri: { orderBy: { createdAt: "desc" }, take: 1 } },
     });
     if (vehicle) {
       const baseUrl = `${req.protocol}://${req.get("host")}`;
       await enqueueNotification(vehicle, "ATTESA_APPROVAZIONE", baseUrl);
+      await inviaComunicazioneWhatsapp(vehicle, "ATTESA_APPROVAZIONE", baseUrl, req.auth.userId);
     }
   }
 

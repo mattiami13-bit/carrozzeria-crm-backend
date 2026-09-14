@@ -88,7 +88,9 @@ export const ModelName = {
   TrackedPartEvent: 'TrackedPartEvent',
   VehiclePartBlock: 'VehiclePartBlock',
   TrackedPartDocument: 'TrackedPartDocument',
-  PhotoTimelineEdit: 'PhotoTimelineEdit'
+  PhotoTimelineEdit: 'PhotoTimelineEdit',
+  WhatsappTemplate: 'WhatsappTemplate',
+  WhatsappMessage: 'WhatsappMessage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -147,7 +149,10 @@ export const ClientScalarFieldEnum = {
   partitaIva: 'partitaIva',
   indirizzo: 'indirizzo',
   noteInterne: 'noteInterne',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  notificheWhatsappConsenso: 'notificheWhatsappConsenso',
+  notificheWhatsappConsensoAt: 'notificheWhatsappConsensoAt',
+  notificheWhatsappAttive: 'notificheWhatsappAttive'
 } as const
 
 export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
@@ -672,6 +677,40 @@ export const PhotoTimelineEditScalarFieldEnum = {
 } as const
 
 export type PhotoTimelineEditScalarFieldEnum = (typeof PhotoTimelineEditScalarFieldEnum)[keyof typeof PhotoTimelineEditScalarFieldEnum]
+
+
+export const WhatsappTemplateScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  evento: 'evento',
+  attivo: 'attivo',
+  testo: 'testo',
+  aggiornatoDaId: 'aggiornatoDaId',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type WhatsappTemplateScalarFieldEnum = (typeof WhatsappTemplateScalarFieldEnum)[keyof typeof WhatsappTemplateScalarFieldEnum]
+
+
+export const WhatsappMessageScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  clientId: 'clientId',
+  evento: 'evento',
+  testo: 'testo',
+  telefono: 'telefono',
+  stato: 'stato',
+  providerMessageSid: 'providerMessageSid',
+  errore: 'errore',
+  rispostaTesto: 'rispostaTesto',
+  rispostaAt: 'rispostaAt',
+  inviatoDaId: 'inviatoDaId',
+  createdAt: 'createdAt'
+} as const
+
+export type WhatsappMessageScalarFieldEnum = (typeof WhatsappMessageScalarFieldEnum)[keyof typeof WhatsappMessageScalarFieldEnum]
 
 
 export const SortOrder = {
