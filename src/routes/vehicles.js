@@ -5,6 +5,7 @@ import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
 import { enqueueNotification } from "../lib/notifiche.js";
 import { inviaComunicazioneWhatsapp } from "../lib/whatsapp.js";
+import { ultimaIspezioneApprovata } from "./qc.js";
 
 export const vehiclesRouter = Router();
 vehiclesRouter.use(requireAuth);
@@ -128,10 +129,22 @@ vehiclesRouter.patch("/:id/stage", async (req, res) => {
   });
   if (!current) return res.status(404).json({ error: "Veicolo non trovato" });
 
+  // Quality Control obbligatorio: non si passa a "Pronta" senza un'ispezione
+  // QC approvata (nessun controllo critico non conforme, checklist completa).
+  if (parsed.data.stage === "PRONTA_CONSEGNA" && current.stage !== "PRONTA_CONSEGNA") {
+    const approvato = await ultimaIspezioneApprovata(req.auth.tenantId, current.id);
+    if (!approvato) {
+      return res.status(409).json({
+        error: "Prima di passare a \"Pronta\" serve completare e approvare il Controllo Qualità (QC) di questa pratica.",
+        qcRichiesto: true,
+      });
+    }
+  }
+
     const updated = await prisma.$transaction(async (tx) => {
     const vehicle = await tx.vehicle.update({
 
-  
+
       where: { id: current.id },
       data: {
         stage: parsed.data.stage,

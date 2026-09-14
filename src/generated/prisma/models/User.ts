@@ -233,6 +233,12 @@ export type UserWhereInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryListRelationFilter
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryListRelationFilter
   workOrderEventiAttore?: Prisma.WorkOrderEventoListRelationFilter
+  qcIspezioniIniziate?: Prisma.QcInspectionListRelationFilter
+  qcIspezioniApprovate?: Prisma.QcInspectionListRelationFilter
+  qcEsitiAggiornati?: Prisma.QcCheckResultListRelationFilter
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaListRelationFilter
+  qcNonConformitaCreate?: Prisma.QcNonConformitaListRelationFilter
+  qcEventiAttore?: Prisma.QcEventoListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -264,6 +270,12 @@ export type UserOrderByWithRelationInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryOrderByRelationAggregateInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryOrderByRelationAggregateInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoOrderByRelationAggregateInput
+  qcIspezioniIniziate?: Prisma.QcInspectionOrderByRelationAggregateInput
+  qcIspezioniApprovate?: Prisma.QcInspectionOrderByRelationAggregateInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultOrderByRelationAggregateInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaOrderByRelationAggregateInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaOrderByRelationAggregateInput
+  qcEventiAttore?: Prisma.QcEventoOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -298,6 +310,12 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryListRelationFilter
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryListRelationFilter
   workOrderEventiAttore?: Prisma.WorkOrderEventoListRelationFilter
+  qcIspezioniIniziate?: Prisma.QcInspectionListRelationFilter
+  qcIspezioniApprovate?: Prisma.QcInspectionListRelationFilter
+  qcEsitiAggiornati?: Prisma.QcCheckResultListRelationFilter
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaListRelationFilter
+  qcNonConformitaCreate?: Prisma.QcNonConformitaListRelationFilter
+  qcEventiAttore?: Prisma.QcEventoListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -358,6 +376,12 @@ export type UserCreateInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -388,6 +412,12 @@ export type UserUncheckedCreateInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUpdateInput = {
@@ -418,6 +448,12 @@ export type UserUpdateInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -448,6 +484,12 @@ export type UserUncheckedUpdateInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -869,6 +911,102 @@ export type UserUpdateOneWithoutWhatsappMessaggiInviatiNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutWhatsappMessaggiInviatiInput, Prisma.UserUpdateWithoutWhatsappMessaggiInviatiInput>, Prisma.UserUncheckedUpdateWithoutWhatsappMessaggiInviatiInput>
 }
 
+export type UserCreateNestedOneWithoutQcIspezioniIniziateInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQcIspezioniIniziateInput, Prisma.UserUncheckedCreateWithoutQcIspezioniIniziateInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQcIspezioniIniziateInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutQcIspezioniApprovateInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQcIspezioniApprovateInput, Prisma.UserUncheckedCreateWithoutQcIspezioniApprovateInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQcIspezioniApprovateInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutQcIspezioniIniziateNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQcIspezioniIniziateInput, Prisma.UserUncheckedCreateWithoutQcIspezioniIniziateInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQcIspezioniIniziateInput
+  upsert?: Prisma.UserUpsertWithoutQcIspezioniIniziateInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutQcIspezioniIniziateInput, Prisma.UserUpdateWithoutQcIspezioniIniziateInput>, Prisma.UserUncheckedUpdateWithoutQcIspezioniIniziateInput>
+}
+
+export type UserUpdateOneWithoutQcIspezioniApprovateNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQcIspezioniApprovateInput, Prisma.UserUncheckedCreateWithoutQcIspezioniApprovateInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQcIspezioniApprovateInput
+  upsert?: Prisma.UserUpsertWithoutQcIspezioniApprovateInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutQcIspezioniApprovateInput, Prisma.UserUpdateWithoutQcIspezioniApprovateInput>, Prisma.UserUncheckedUpdateWithoutQcIspezioniApprovateInput>
+}
+
+export type UserCreateNestedOneWithoutQcEsitiAggiornatiInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQcEsitiAggiornatiInput, Prisma.UserUncheckedCreateWithoutQcEsitiAggiornatiInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQcEsitiAggiornatiInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutQcEsitiAggiornatiNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQcEsitiAggiornatiInput, Prisma.UserUncheckedCreateWithoutQcEsitiAggiornatiInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQcEsitiAggiornatiInput
+  upsert?: Prisma.UserUpsertWithoutQcEsitiAggiornatiInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutQcEsitiAggiornatiInput, Prisma.UserUpdateWithoutQcEsitiAggiornatiInput>, Prisma.UserUncheckedUpdateWithoutQcEsitiAggiornatiInput>
+}
+
+export type UserCreateNestedOneWithoutQcNonConformitaResponsabileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQcNonConformitaResponsabileInput, Prisma.UserUncheckedCreateWithoutQcNonConformitaResponsabileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQcNonConformitaResponsabileInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutQcNonConformitaCreateInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQcNonConformitaCreateInput, Prisma.UserUncheckedCreateWithoutQcNonConformitaCreateInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQcNonConformitaCreateInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutQcNonConformitaResponsabileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQcNonConformitaResponsabileInput, Prisma.UserUncheckedCreateWithoutQcNonConformitaResponsabileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQcNonConformitaResponsabileInput
+  upsert?: Prisma.UserUpsertWithoutQcNonConformitaResponsabileInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutQcNonConformitaResponsabileInput, Prisma.UserUpdateWithoutQcNonConformitaResponsabileInput>, Prisma.UserUncheckedUpdateWithoutQcNonConformitaResponsabileInput>
+}
+
+export type UserUpdateOneWithoutQcNonConformitaCreateNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQcNonConformitaCreateInput, Prisma.UserUncheckedCreateWithoutQcNonConformitaCreateInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQcNonConformitaCreateInput
+  upsert?: Prisma.UserUpsertWithoutQcNonConformitaCreateInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutQcNonConformitaCreateInput, Prisma.UserUpdateWithoutQcNonConformitaCreateInput>, Prisma.UserUncheckedUpdateWithoutQcNonConformitaCreateInput>
+}
+
+export type UserCreateNestedOneWithoutQcEventiAttoreInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQcEventiAttoreInput, Prisma.UserUncheckedCreateWithoutQcEventiAttoreInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQcEventiAttoreInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutQcEventiAttoreNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQcEventiAttoreInput, Prisma.UserUncheckedCreateWithoutQcEventiAttoreInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQcEventiAttoreInput
+  upsert?: Prisma.UserUpsertWithoutQcEventiAttoreInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutQcEventiAttoreInput, Prisma.UserUpdateWithoutQcEventiAttoreInput>, Prisma.UserUncheckedUpdateWithoutQcEventiAttoreInput>
+}
+
 export type UserCreateWithoutTenantInput = {
   id?: string
   nome: string
@@ -896,6 +1034,12 @@ export type UserCreateWithoutTenantInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutTenantInput = {
@@ -925,6 +1069,12 @@ export type UserUncheckedCreateWithoutTenantInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutTenantInput = {
@@ -995,6 +1145,12 @@ export type UserCreateWithoutVehiclesAssegnatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutVehiclesAssegnatiInput = {
@@ -1024,6 +1180,12 @@ export type UserUncheckedCreateWithoutVehiclesAssegnatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutVehiclesAssegnatiInput = {
@@ -1069,6 +1231,12 @@ export type UserUpdateWithoutVehiclesAssegnatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVehiclesAssegnatiInput = {
@@ -1098,6 +1266,12 @@ export type UserUncheckedUpdateWithoutVehiclesAssegnatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateWithoutStageChangesInput = {
@@ -1127,6 +1301,12 @@ export type UserCreateWithoutStageChangesInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutStageChangesInput = {
@@ -1156,6 +1336,12 @@ export type UserUncheckedCreateWithoutStageChangesInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutStageChangesInput = {
@@ -1201,6 +1387,12 @@ export type UserUpdateWithoutStageChangesInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStageChangesInput = {
@@ -1230,6 +1422,12 @@ export type UserUncheckedUpdateWithoutStageChangesInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateWithoutAnalisiDanniCreateInput = {
@@ -1259,6 +1457,12 @@ export type UserCreateWithoutAnalisiDanniCreateInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutAnalisiDanniCreateInput = {
@@ -1288,6 +1492,12 @@ export type UserUncheckedCreateWithoutAnalisiDanniCreateInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutAnalisiDanniCreateInput = {
@@ -1333,6 +1543,12 @@ export type UserUpdateWithoutAnalisiDanniCreateInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAnalisiDanniCreateInput = {
@@ -1362,6 +1578,12 @@ export type UserUncheckedUpdateWithoutAnalisiDanniCreateInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateWithoutCorrezioniDanniInput = {
@@ -1391,6 +1613,12 @@ export type UserCreateWithoutCorrezioniDanniInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutCorrezioniDanniInput = {
@@ -1420,6 +1648,12 @@ export type UserUncheckedCreateWithoutCorrezioniDanniInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutCorrezioniDanniInput = {
@@ -1465,6 +1699,12 @@ export type UserUpdateWithoutCorrezioniDanniInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCorrezioniDanniInput = {
@@ -1494,6 +1734,12 @@ export type UserUncheckedUpdateWithoutCorrezioniDanniInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateWithoutAnalisiGapCreateInput = {
@@ -1523,6 +1769,12 @@ export type UserCreateWithoutAnalisiGapCreateInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutAnalisiGapCreateInput = {
@@ -1552,6 +1804,12 @@ export type UserUncheckedCreateWithoutAnalisiGapCreateInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutAnalisiGapCreateInput = {
@@ -1597,6 +1855,12 @@ export type UserUpdateWithoutAnalisiGapCreateInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAnalisiGapCreateInput = {
@@ -1626,6 +1890,12 @@ export type UserUncheckedUpdateWithoutAnalisiGapCreateInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateWithoutCorrezioniGapAssicurazioneInput = {
@@ -1655,6 +1925,12 @@ export type UserCreateWithoutCorrezioniGapAssicurazioneInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutCorrezioniGapAssicurazioneInput = {
@@ -1684,6 +1960,12 @@ export type UserUncheckedCreateWithoutCorrezioniGapAssicurazioneInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutCorrezioniGapAssicurazioneInput = {
@@ -1729,6 +2011,12 @@ export type UserUpdateWithoutCorrezioniGapAssicurazioneInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCorrezioniGapAssicurazioneInput = {
@@ -1758,6 +2046,12 @@ export type UserUncheckedUpdateWithoutCorrezioniGapAssicurazioneInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateWithoutAppuntamentiTecnicoInput = {
@@ -1787,6 +2081,12 @@ export type UserCreateWithoutAppuntamentiTecnicoInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutAppuntamentiTecnicoInput = {
@@ -1816,6 +2116,12 @@ export type UserUncheckedCreateWithoutAppuntamentiTecnicoInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutAppuntamentiTecnicoInput = {
@@ -1861,6 +2167,12 @@ export type UserUpdateWithoutAppuntamentiTecnicoInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAppuntamentiTecnicoInput = {
@@ -1890,6 +2202,12 @@ export type UserUncheckedUpdateWithoutAppuntamentiTecnicoInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateWithoutTimeEntriesInput = {
@@ -1919,6 +2237,12 @@ export type UserCreateWithoutTimeEntriesInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutTimeEntriesInput = {
@@ -1948,6 +2272,12 @@ export type UserUncheckedCreateWithoutTimeEntriesInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutTimeEntriesInput = {
@@ -1993,6 +2323,12 @@ export type UserUpdateWithoutTimeEntriesInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTimeEntriesInput = {
@@ -2022,6 +2358,12 @@ export type UserUncheckedUpdateWithoutTimeEntriesInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateWithoutPortalActionsGestiteInput = {
@@ -2051,6 +2393,12 @@ export type UserCreateWithoutPortalActionsGestiteInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutPortalActionsGestiteInput = {
@@ -2080,6 +2428,12 @@ export type UserUncheckedCreateWithoutPortalActionsGestiteInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutPortalActionsGestiteInput = {
@@ -2125,6 +2479,12 @@ export type UserUpdateWithoutPortalActionsGestiteInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPortalActionsGestiteInput = {
@@ -2154,6 +2514,12 @@ export type UserUncheckedUpdateWithoutPortalActionsGestiteInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateWithoutWorkOrdersAssegnatiInput = {
@@ -2183,6 +2549,12 @@ export type UserCreateWithoutWorkOrdersAssegnatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrdersAssegnatiInput = {
@@ -2212,6 +2584,12 @@ export type UserUncheckedCreateWithoutWorkOrdersAssegnatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrdersAssegnatiInput = {
@@ -2246,6 +2624,12 @@ export type UserCreateWithoutWorkOrdersCreatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrdersCreatiInput = {
@@ -2275,6 +2659,12 @@ export type UserUncheckedCreateWithoutWorkOrdersCreatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrdersCreatiInput = {
@@ -2320,6 +2710,12 @@ export type UserUpdateWithoutWorkOrdersAssegnatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrdersAssegnatiInput = {
@@ -2349,6 +2745,12 @@ export type UserUncheckedUpdateWithoutWorkOrdersAssegnatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUpsertWithoutWorkOrdersCreatiInput = {
@@ -2389,6 +2791,12 @@ export type UserUpdateWithoutWorkOrdersCreatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrdersCreatiInput = {
@@ -2418,6 +2826,12 @@ export type UserUncheckedUpdateWithoutWorkOrdersCreatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateWithoutWorkOrderTimeEntriesInput = {
@@ -2447,6 +2861,12 @@ export type UserCreateWithoutWorkOrderTimeEntriesInput = {
   workOrdersCreati?: Prisma.WorkOrderCreateNestedManyWithoutCreatoDaInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
@@ -2476,6 +2896,12 @@ export type UserUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
   workOrdersCreati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatoDaInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrderTimeEntriesInput = {
@@ -2510,6 +2936,12 @@ export type UserCreateWithoutWorkOrderTimeCorrezioniInput = {
   workOrdersCreati?: Prisma.WorkOrderCreateNestedManyWithoutCreatoDaInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrderTimeCorrezioniInput = {
@@ -2539,6 +2971,12 @@ export type UserUncheckedCreateWithoutWorkOrderTimeCorrezioniInput = {
   workOrdersCreati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatoDaInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrderTimeCorrezioniInput = {
@@ -2584,6 +3022,12 @@ export type UserUpdateWithoutWorkOrderTimeEntriesInput = {
   workOrdersCreati?: Prisma.WorkOrderUpdateManyWithoutCreatoDaNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
@@ -2613,6 +3057,12 @@ export type UserUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
   workOrdersCreati?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatoDaNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUpsertWithoutWorkOrderTimeCorrezioniInput = {
@@ -2653,6 +3103,12 @@ export type UserUpdateWithoutWorkOrderTimeCorrezioniInput = {
   workOrdersCreati?: Prisma.WorkOrderUpdateManyWithoutCreatoDaNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrderTimeCorrezioniInput = {
@@ -2682,6 +3138,12 @@ export type UserUncheckedUpdateWithoutWorkOrderTimeCorrezioniInput = {
   workOrdersCreati?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatoDaNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateWithoutWorkOrderEventiAttoreInput = {
@@ -2711,6 +3173,12 @@ export type UserCreateWithoutWorkOrderEventiAttoreInput = {
   workOrdersCreati?: Prisma.WorkOrderCreateNestedManyWithoutCreatoDaInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrderEventiAttoreInput = {
@@ -2740,6 +3208,12 @@ export type UserUncheckedCreateWithoutWorkOrderEventiAttoreInput = {
   workOrdersCreati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatoDaInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrderEventiAttoreInput = {
@@ -2785,6 +3259,12 @@ export type UserUpdateWithoutWorkOrderEventiAttoreInput = {
   workOrdersCreati?: Prisma.WorkOrderUpdateManyWithoutCreatoDaNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrderEventiAttoreInput = {
@@ -2814,6 +3294,12 @@ export type UserUncheckedUpdateWithoutWorkOrderEventiAttoreInput = {
   workOrdersCreati?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatoDaNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateWithoutPortalDocumentiCaricatiInput = {
@@ -2843,6 +3329,12 @@ export type UserCreateWithoutPortalDocumentiCaricatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutPortalDocumentiCaricatiInput = {
@@ -2872,6 +3364,12 @@ export type UserUncheckedCreateWithoutPortalDocumentiCaricatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutPortalDocumentiCaricatiInput = {
@@ -2917,6 +3415,12 @@ export type UserUpdateWithoutPortalDocumentiCaricatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPortalDocumentiCaricatiInput = {
@@ -2946,6 +3450,12 @@ export type UserUncheckedUpdateWithoutPortalDocumentiCaricatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -2975,6 +3485,12 @@ export type UserCreateWithoutAuditLogsInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -3004,6 +3520,12 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -3049,6 +3571,12 @@ export type UserUpdateWithoutAuditLogsInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -3078,6 +3606,12 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateWithoutWhatsappTemplateAggiornatiInput = {
@@ -3107,6 +3641,12 @@ export type UserCreateWithoutWhatsappTemplateAggiornatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutWhatsappTemplateAggiornatiInput = {
@@ -3136,6 +3676,12 @@ export type UserUncheckedCreateWithoutWhatsappTemplateAggiornatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutWhatsappTemplateAggiornatiInput = {
@@ -3181,6 +3727,12 @@ export type UserUpdateWithoutWhatsappTemplateAggiornatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWhatsappTemplateAggiornatiInput = {
@@ -3210,6 +3762,12 @@ export type UserUncheckedUpdateWithoutWhatsappTemplateAggiornatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserCreateWithoutWhatsappMessaggiInviatiInput = {
@@ -3239,6 +3797,12 @@ export type UserCreateWithoutWhatsappMessaggiInviatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
 }
 
 export type UserUncheckedCreateWithoutWhatsappMessaggiInviatiInput = {
@@ -3268,6 +3832,12 @@ export type UserUncheckedCreateWithoutWhatsappMessaggiInviatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
 }
 
 export type UserCreateOrConnectWithoutWhatsappMessaggiInviatiInput = {
@@ -3313,6 +3883,12 @@ export type UserUpdateWithoutWhatsappMessaggiInviatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWhatsappMessaggiInviatiInput = {
@@ -3342,6 +3918,948 @@ export type UserUncheckedUpdateWithoutWhatsappMessaggiInviatiInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
+}
+
+export type UserCreateWithoutQcIspezioniIniziateInput = {
+  id?: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
+}
+
+export type UserUncheckedCreateWithoutQcIspezioniIniziateInput = {
+  id?: string
+  tenantId: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
+}
+
+export type UserCreateOrConnectWithoutQcIspezioniIniziateInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutQcIspezioniIniziateInput, Prisma.UserUncheckedCreateWithoutQcIspezioniIniziateInput>
+}
+
+export type UserCreateWithoutQcIspezioniApprovateInput = {
+  id?: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
+}
+
+export type UserUncheckedCreateWithoutQcIspezioniApprovateInput = {
+  id?: string
+  tenantId: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
+}
+
+export type UserCreateOrConnectWithoutQcIspezioniApprovateInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutQcIspezioniApprovateInput, Prisma.UserUncheckedCreateWithoutQcIspezioniApprovateInput>
+}
+
+export type UserUpsertWithoutQcIspezioniIniziateInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutQcIspezioniIniziateInput, Prisma.UserUncheckedUpdateWithoutQcIspezioniIniziateInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutQcIspezioniIniziateInput, Prisma.UserUncheckedCreateWithoutQcIspezioniIniziateInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutQcIspezioniIniziateInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutQcIspezioniIniziateInput, Prisma.UserUncheckedUpdateWithoutQcIspezioniIniziateInput>
+}
+
+export type UserUpdateWithoutQcIspezioniIniziateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
+  vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
+}
+
+export type UserUncheckedUpdateWithoutQcIspezioniIniziateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
+}
+
+export type UserUpsertWithoutQcIspezioniApprovateInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutQcIspezioniApprovateInput, Prisma.UserUncheckedUpdateWithoutQcIspezioniApprovateInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutQcIspezioniApprovateInput, Prisma.UserUncheckedCreateWithoutQcIspezioniApprovateInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutQcIspezioniApprovateInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutQcIspezioniApprovateInput, Prisma.UserUncheckedUpdateWithoutQcIspezioniApprovateInput>
+}
+
+export type UserUpdateWithoutQcIspezioniApprovateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
+  vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
+}
+
+export type UserUncheckedUpdateWithoutQcIspezioniApprovateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
+}
+
+export type UserCreateWithoutQcEsitiAggiornatiInput = {
+  id?: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
+}
+
+export type UserUncheckedCreateWithoutQcEsitiAggiornatiInput = {
+  id?: string
+  tenantId: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
+}
+
+export type UserCreateOrConnectWithoutQcEsitiAggiornatiInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutQcEsitiAggiornatiInput, Prisma.UserUncheckedCreateWithoutQcEsitiAggiornatiInput>
+}
+
+export type UserUpsertWithoutQcEsitiAggiornatiInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutQcEsitiAggiornatiInput, Prisma.UserUncheckedUpdateWithoutQcEsitiAggiornatiInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutQcEsitiAggiornatiInput, Prisma.UserUncheckedCreateWithoutQcEsitiAggiornatiInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutQcEsitiAggiornatiInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutQcEsitiAggiornatiInput, Prisma.UserUncheckedUpdateWithoutQcEsitiAggiornatiInput>
+}
+
+export type UserUpdateWithoutQcEsitiAggiornatiInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
+  vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
+}
+
+export type UserUncheckedUpdateWithoutQcEsitiAggiornatiInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
+}
+
+export type UserCreateWithoutQcNonConformitaResponsabileInput = {
+  id?: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
+}
+
+export type UserUncheckedCreateWithoutQcNonConformitaResponsabileInput = {
+  id?: string
+  tenantId: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
+}
+
+export type UserCreateOrConnectWithoutQcNonConformitaResponsabileInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutQcNonConformitaResponsabileInput, Prisma.UserUncheckedCreateWithoutQcNonConformitaResponsabileInput>
+}
+
+export type UserCreateWithoutQcNonConformitaCreateInput = {
+  id?: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
+}
+
+export type UserUncheckedCreateWithoutQcNonConformitaCreateInput = {
+  id?: string
+  tenantId: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
+}
+
+export type UserCreateOrConnectWithoutQcNonConformitaCreateInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutQcNonConformitaCreateInput, Prisma.UserUncheckedCreateWithoutQcNonConformitaCreateInput>
+}
+
+export type UserUpsertWithoutQcNonConformitaResponsabileInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutQcNonConformitaResponsabileInput, Prisma.UserUncheckedUpdateWithoutQcNonConformitaResponsabileInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutQcNonConformitaResponsabileInput, Prisma.UserUncheckedCreateWithoutQcNonConformitaResponsabileInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutQcNonConformitaResponsabileInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutQcNonConformitaResponsabileInput, Prisma.UserUncheckedUpdateWithoutQcNonConformitaResponsabileInput>
+}
+
+export type UserUpdateWithoutQcNonConformitaResponsabileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
+  vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
+}
+
+export type UserUncheckedUpdateWithoutQcNonConformitaResponsabileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
+}
+
+export type UserUpsertWithoutQcNonConformitaCreateInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutQcNonConformitaCreateInput, Prisma.UserUncheckedUpdateWithoutQcNonConformitaCreateInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutQcNonConformitaCreateInput, Prisma.UserUncheckedCreateWithoutQcNonConformitaCreateInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutQcNonConformitaCreateInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutQcNonConformitaCreateInput, Prisma.UserUncheckedUpdateWithoutQcNonConformitaCreateInput>
+}
+
+export type UserUpdateWithoutQcNonConformitaCreateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
+  vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
+}
+
+export type UserUncheckedUpdateWithoutQcNonConformitaCreateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
+}
+
+export type UserCreateWithoutQcEventiAttoreInput = {
+  id?: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+}
+
+export type UserUncheckedCreateWithoutQcEventiAttoreInput = {
+  id?: string
+  tenantId: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+}
+
+export type UserCreateOrConnectWithoutQcEventiAttoreInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutQcEventiAttoreInput, Prisma.UserUncheckedCreateWithoutQcEventiAttoreInput>
+}
+
+export type UserUpsertWithoutQcEventiAttoreInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutQcEventiAttoreInput, Prisma.UserUncheckedUpdateWithoutQcEventiAttoreInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutQcEventiAttoreInput, Prisma.UserUncheckedCreateWithoutQcEventiAttoreInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutQcEventiAttoreInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutQcEventiAttoreInput, Prisma.UserUncheckedUpdateWithoutQcEventiAttoreInput>
+}
+
+export type UserUpdateWithoutQcEventiAttoreInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
+  vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+}
+
+export type UserUncheckedUpdateWithoutQcEventiAttoreInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
 }
 
 export type UserCreateManyTenantInput = {
@@ -3382,6 +4900,12 @@ export type UserUpdateWithoutTenantInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTenantInput = {
@@ -3411,6 +4935,12 @@ export type UserUncheckedUpdateWithoutTenantInput = {
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
   workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
   workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutTenantInput = {
@@ -3448,6 +4978,12 @@ export type UserCountOutputType = {
   workOrderTimeEntries: number
   workOrderTimeCorrezioni: number
   workOrderEventiAttore: number
+  qcIspezioniIniziate: number
+  qcIspezioniApprovate: number
+  qcEsitiAggiornati: number
+  qcNonConformitaResponsabile: number
+  qcNonConformitaCreate: number
+  qcEventiAttore: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3469,6 +5005,12 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   workOrderTimeEntries?: boolean | UserCountOutputTypeCountWorkOrderTimeEntriesArgs
   workOrderTimeCorrezioni?: boolean | UserCountOutputTypeCountWorkOrderTimeCorrezioniArgs
   workOrderEventiAttore?: boolean | UserCountOutputTypeCountWorkOrderEventiAttoreArgs
+  qcIspezioniIniziate?: boolean | UserCountOutputTypeCountQcIspezioniIniziateArgs
+  qcIspezioniApprovate?: boolean | UserCountOutputTypeCountQcIspezioniApprovateArgs
+  qcEsitiAggiornati?: boolean | UserCountOutputTypeCountQcEsitiAggiornatiArgs
+  qcNonConformitaResponsabile?: boolean | UserCountOutputTypeCountQcNonConformitaResponsabileArgs
+  qcNonConformitaCreate?: boolean | UserCountOutputTypeCountQcNonConformitaCreateArgs
+  qcEventiAttore?: boolean | UserCountOutputTypeCountQcEventiAttoreArgs
 }
 
 /**
@@ -3607,6 +5149,48 @@ export type UserCountOutputTypeCountWorkOrderEventiAttoreArgs<ExtArgs extends ru
   where?: Prisma.WorkOrderEventoWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountQcIspezioniIniziateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QcInspectionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountQcIspezioniApprovateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QcInspectionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountQcEsitiAggiornatiArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QcCheckResultWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountQcNonConformitaResponsabileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QcNonConformitaWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountQcNonConformitaCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QcNonConformitaWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountQcEventiAttoreArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QcEventoWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3637,6 +5221,12 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   workOrderTimeEntries?: boolean | Prisma.User$workOrderTimeEntriesArgs<ExtArgs>
   workOrderTimeCorrezioni?: boolean | Prisma.User$workOrderTimeCorrezioniArgs<ExtArgs>
   workOrderEventiAttore?: boolean | Prisma.User$workOrderEventiAttoreArgs<ExtArgs>
+  qcIspezioniIniziate?: boolean | Prisma.User$qcIspezioniIniziateArgs<ExtArgs>
+  qcIspezioniApprovate?: boolean | Prisma.User$qcIspezioniApprovateArgs<ExtArgs>
+  qcEsitiAggiornati?: boolean | Prisma.User$qcEsitiAggiornatiArgs<ExtArgs>
+  qcNonConformitaResponsabile?: boolean | Prisma.User$qcNonConformitaResponsabileArgs<ExtArgs>
+  qcNonConformitaCreate?: boolean | Prisma.User$qcNonConformitaCreateArgs<ExtArgs>
+  qcEventiAttore?: boolean | Prisma.User$qcEventiAttoreArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -3699,6 +5289,12 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   workOrderTimeEntries?: boolean | Prisma.User$workOrderTimeEntriesArgs<ExtArgs>
   workOrderTimeCorrezioni?: boolean | Prisma.User$workOrderTimeCorrezioniArgs<ExtArgs>
   workOrderEventiAttore?: boolean | Prisma.User$workOrderEventiAttoreArgs<ExtArgs>
+  qcIspezioniIniziate?: boolean | Prisma.User$qcIspezioniIniziateArgs<ExtArgs>
+  qcIspezioniApprovate?: boolean | Prisma.User$qcIspezioniApprovateArgs<ExtArgs>
+  qcEsitiAggiornati?: boolean | Prisma.User$qcEsitiAggiornatiArgs<ExtArgs>
+  qcNonConformitaResponsabile?: boolean | Prisma.User$qcNonConformitaResponsabileArgs<ExtArgs>
+  qcNonConformitaCreate?: boolean | Prisma.User$qcNonConformitaCreateArgs<ExtArgs>
+  qcEventiAttore?: boolean | Prisma.User$qcEventiAttoreArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3730,6 +5326,12 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     workOrderTimeEntries: Prisma.$WorkOrderTimeEntryPayload<ExtArgs>[]
     workOrderTimeCorrezioni: Prisma.$WorkOrderTimeEntryPayload<ExtArgs>[]
     workOrderEventiAttore: Prisma.$WorkOrderEventoPayload<ExtArgs>[]
+    qcIspezioniIniziate: Prisma.$QcInspectionPayload<ExtArgs>[]
+    qcIspezioniApprovate: Prisma.$QcInspectionPayload<ExtArgs>[]
+    qcEsitiAggiornati: Prisma.$QcCheckResultPayload<ExtArgs>[]
+    qcNonConformitaResponsabile: Prisma.$QcNonConformitaPayload<ExtArgs>[]
+    qcNonConformitaCreate: Prisma.$QcNonConformitaPayload<ExtArgs>[]
+    qcEventiAttore: Prisma.$QcEventoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -4154,6 +5756,12 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   workOrderTimeEntries<T extends Prisma.User$workOrderTimeEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$workOrderTimeEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderTimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workOrderTimeCorrezioni<T extends Prisma.User$workOrderTimeCorrezioniArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$workOrderTimeCorrezioniArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderTimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workOrderEventiAttore<T extends Prisma.User$workOrderEventiAttoreArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$workOrderEventiAttoreArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderEventoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qcIspezioniIniziate<T extends Prisma.User$qcIspezioniIniziateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$qcIspezioniIniziateArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcInspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qcIspezioniApprovate<T extends Prisma.User$qcIspezioniApprovateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$qcIspezioniApprovateArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcInspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qcEsitiAggiornati<T extends Prisma.User$qcEsitiAggiornatiArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$qcEsitiAggiornatiArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcCheckResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qcNonConformitaResponsabile<T extends Prisma.User$qcNonConformitaResponsabileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$qcNonConformitaResponsabileArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcNonConformitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qcNonConformitaCreate<T extends Prisma.User$qcNonConformitaCreateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$qcNonConformitaCreateArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcNonConformitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qcEventiAttore<T extends Prisma.User$qcEventiAttoreArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$qcEventiAttoreArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcEventoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5022,6 +6630,150 @@ export type User$workOrderEventiAttoreArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.WorkOrderEventoScalarFieldEnum | Prisma.WorkOrderEventoScalarFieldEnum[]
+}
+
+/**
+ * User.qcIspezioniIniziate
+ */
+export type User$qcIspezioniIniziateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QcInspection
+   */
+  select?: Prisma.QcInspectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QcInspection
+   */
+  omit?: Prisma.QcInspectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QcInspectionInclude<ExtArgs> | null
+  where?: Prisma.QcInspectionWhereInput
+  orderBy?: Prisma.QcInspectionOrderByWithRelationInput | Prisma.QcInspectionOrderByWithRelationInput[]
+  cursor?: Prisma.QcInspectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QcInspectionScalarFieldEnum | Prisma.QcInspectionScalarFieldEnum[]
+}
+
+/**
+ * User.qcIspezioniApprovate
+ */
+export type User$qcIspezioniApprovateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QcInspection
+   */
+  select?: Prisma.QcInspectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QcInspection
+   */
+  omit?: Prisma.QcInspectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QcInspectionInclude<ExtArgs> | null
+  where?: Prisma.QcInspectionWhereInput
+  orderBy?: Prisma.QcInspectionOrderByWithRelationInput | Prisma.QcInspectionOrderByWithRelationInput[]
+  cursor?: Prisma.QcInspectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QcInspectionScalarFieldEnum | Prisma.QcInspectionScalarFieldEnum[]
+}
+
+/**
+ * User.qcEsitiAggiornati
+ */
+export type User$qcEsitiAggiornatiArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QcCheckResult
+   */
+  select?: Prisma.QcCheckResultSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QcCheckResult
+   */
+  omit?: Prisma.QcCheckResultOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QcCheckResultInclude<ExtArgs> | null
+  where?: Prisma.QcCheckResultWhereInput
+  orderBy?: Prisma.QcCheckResultOrderByWithRelationInput | Prisma.QcCheckResultOrderByWithRelationInput[]
+  cursor?: Prisma.QcCheckResultWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QcCheckResultScalarFieldEnum | Prisma.QcCheckResultScalarFieldEnum[]
+}
+
+/**
+ * User.qcNonConformitaResponsabile
+ */
+export type User$qcNonConformitaResponsabileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QcNonConformita
+   */
+  select?: Prisma.QcNonConformitaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QcNonConformita
+   */
+  omit?: Prisma.QcNonConformitaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QcNonConformitaInclude<ExtArgs> | null
+  where?: Prisma.QcNonConformitaWhereInput
+  orderBy?: Prisma.QcNonConformitaOrderByWithRelationInput | Prisma.QcNonConformitaOrderByWithRelationInput[]
+  cursor?: Prisma.QcNonConformitaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QcNonConformitaScalarFieldEnum | Prisma.QcNonConformitaScalarFieldEnum[]
+}
+
+/**
+ * User.qcNonConformitaCreate
+ */
+export type User$qcNonConformitaCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QcNonConformita
+   */
+  select?: Prisma.QcNonConformitaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QcNonConformita
+   */
+  omit?: Prisma.QcNonConformitaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QcNonConformitaInclude<ExtArgs> | null
+  where?: Prisma.QcNonConformitaWhereInput
+  orderBy?: Prisma.QcNonConformitaOrderByWithRelationInput | Prisma.QcNonConformitaOrderByWithRelationInput[]
+  cursor?: Prisma.QcNonConformitaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QcNonConformitaScalarFieldEnum | Prisma.QcNonConformitaScalarFieldEnum[]
+}
+
+/**
+ * User.qcEventiAttore
+ */
+export type User$qcEventiAttoreArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QcEvento
+   */
+  select?: Prisma.QcEventoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QcEvento
+   */
+  omit?: Prisma.QcEventoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QcEventoInclude<ExtArgs> | null
+  where?: Prisma.QcEventoWhereInput
+  orderBy?: Prisma.QcEventoOrderByWithRelationInput | Prisma.QcEventoOrderByWithRelationInput[]
+  cursor?: Prisma.QcEventoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QcEventoScalarFieldEnum | Prisma.QcEventoScalarFieldEnum[]
 }
 
 /**

@@ -77,7 +77,11 @@ model Tenant {
   workOrders        WorkOrder[]
   workOrderTimeEntries WorkOrderTimeEntry[]
   workOrderEventi   WorkOrderEvento[]
-
+  qcChecklistItems  QcChecklistItem[]
+  qcInspections     QcInspection[]
+  qcCheckResults    QcCheckResult[]
+  qcNonConformita   QcNonConformita[]
+  qcEventi          QcEvento[]
 
 
   @@map("tenants")
@@ -125,6 +129,12 @@ model User {
   workOrderTimeEntries       WorkOrderTimeEntry[]   @relation("WorkOrderTimeEntryTecnico")
   workOrderTimeCorrezioni    WorkOrderTimeEntry[]   @relation("WorkOrderTimeEntryCorrettore")
   workOrderEventiAttore      WorkOrderEvento[]      @relation("WorkOrderEventoAttore")
+  qcIspezioniIniziate        QcInspection[]         @relation("QcInspectionIniziataDa")
+  qcIspezioniApprovate       QcInspection[]         @relation("QcInspectionApprovataDa")
+  qcEsitiAggiornati          QcCheckResult[]
+  qcNonConformitaResponsabile QcNonConformita[]      @relation("QcNonConformitaResponsabile")
+  qcNonConformitaCreate      QcNonConformita[]       @relation("QcNonConformitaCreata")
+  qcEventiAttore             QcEvento[]              @relation("QcEventoAttore")
 
   @@index([tenantId])
   @@map("users")
@@ -234,6 +244,7 @@ model Vehicle {
   portalActions PortalAction[]
   portalDocuments PortalDocument[]
   workOrders WorkOrder[]
+  qcInspections QcInspection[]
 
   @@index([tenantId])
   @@index([tenantId, targa])
@@ -1339,4 +1350,178 @@ model WhatsappMessage {
   @@index([vehicleId])
   @@index([providerMessageSid])
   @@map("whatsapp_messages")
+}
+
+// -----------------------------
+// QUALITY CONTROL (obbligatorio prima di "Pronta")
+// -----------------------------
+// Checklist configurabile dal tenant: ogni riga è un controllo (chiave
+// stabile + etichetta modificabile), con un flag "critico" che decide se
+// un esito NON_CONFORME su quella voce blocca l'approvazione QC. Stesso
+// pattern "salvato o bozza di default" già usato per WhatsappTemplate:
+// finché l'admin non la personalizza, la route restituisce la checklist
+// di esempio senza scrivere nulla nel database.
+model QcChecklistItem {
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  chiave    String
+  etichetta String
+  ordine    Int     @default(0)
+  critico   Boolean @default(true)
+  attivo    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([tenantId, chiave])
+  @@index([tenantId])
+  @@map("qc_checklist_items")
+}
+
+enum QcInspectionStato {
+  IN_CORSO
+  APPROVATO
+}
+
+enum QcEsito {
+  OK
+  DA_VERIFICARE
+  NON_CONFORME
+  NA
+}
+
+// Un'ispezione QC per pratica: nasce con una riga QcCheckResult per ogni
+// voce attiva della checklist al momento dell'avvio (così una modifica
+// successiva alla checklist non altera retroattivamente ispezioni già in
+// corso). Il passaggio della pratica a "Pronta" richiede che l'ultima
+// ispezione sia APPROVATO — verificato in vehicles.js, non qui.
+model QcInspection {
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+
+  stato QcInspectionStato @default(IN_CORSO)
+
+  iniziataDaId String?
+  iniziataDa   User?   @relation("QcInspectionIniziataDa", fields: [iniziataDaId], references: [id])
+
+  approvatoDaId String?
+  approvatoDa   User?     @relation("QcInspectionApprovataDa", fields: [approvatoDaId], references: [id])
+  approvatoAt   DateTime?
+
+  createdAt DateTime @default(now())
+
+  checkResults    QcCheckResult[]
+  nonConformita   QcNonConformita[]
+  eventi          QcEvento[]
+
+  @@index([tenantId])
+  @@index([vehicleId])
+  @@map("qc_inspections")
+}
+
+model QcCheckResult {
+  id           String       @id @default(cuid())
+  tenantId     String
+  tenant       Tenant       @relation(fields: [tenantId], references: [id])
+  inspectionId String
+  inspection   QcInspection @relation(fields: [inspectionId], references: [id])
+
+  chiave    String
+  etichetta String
+  critico   Boolean
+
+  esito QcEsito? // null = non ancora valutato
+  note  String?  @db.Text
+
+  aggiornatoDaId String?
+  aggiornatoDa   User?     @relation(fields: [aggiornatoDaId], references: [id])
+  aggiornatoAt   DateTime?
+
+  nonConformita QcNonConformita[]
+
+  createdAt DateTime @default(now())
+
+  @@unique([inspectionId, chiave])
+  @@index([tenantId])
+  @@index([inspectionId])
+  @@map("qc_check_results")
+}
+
+enum QcNonConformitaStato {
+  APERTA
+  IN_LAVORAZIONE
+  RISOLTA
+  CHIUSA
+}
+
+model QcNonConformita {
+  id           String       @id @default(cuid())
+  tenantId     String
+  tenant       Tenant       @relation(fields: [tenantId], references: [id])
+  inspectionId String
+  inspection   QcInspection @relation(fields: [inspectionId], references: [id])
+  checkResultId String?
+  checkResult   QcCheckResult? @relation(fields: [checkResultId], references: [id])
+
+  descrizione String @db.Text
+
+  fotografia     Bytes?
+  fotografiaMime String?
+  fotografiaSize Int?
+
+  responsabileId String?
+  responsabile   User?   @relation("QcNonConformitaResponsabile", fields: [responsabileId], references: [id])
+
+  azioneCorrettiva String?  @db.Text
+  data             DateTime @default(now())
+  stato            QcNonConformitaStato @default(APERTA)
+
+  creataDaId String?
+  creataDa   User?   @relation("QcNonConformitaCreata", fields: [creataDaId], references: [id])
+
+  chiusaAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([tenantId])
+  @@index([inspectionId])
+  @@map("qc_non_conformita")
+}
+
+enum QcEventoTipo {
+  ISPEZIONE_AVVIATA
+  ESITO_AGGIORNATO
+  NON_CONFORMITA_APERTA
+  NON_CONFORMITA_AGGIORNATA
+  NON_CONFORMITA_CHIUSA
+  QC_APPROVATO
+}
+
+// Audit log immutabile di ogni azione QC: esiti, non conformità aperte o
+// chiuse, approvazione finale — sempre con autore e timestamp.
+model QcEvento {
+  id           String       @id @default(cuid())
+  tenantId     String
+  tenant       Tenant       @relation(fields: [tenantId], references: [id])
+  inspectionId String
+  inspection   QcInspection @relation(fields: [inspectionId], references: [id])
+
+  tipo     QcEventoTipo
+  dettagli Json?
+
+  attoreId String?
+  attore   User?   @relation("QcEventoAttore", fields: [attoreId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@index([tenantId])
+  @@index([inspectionId])
+  @@map("qc_eventi")
 }

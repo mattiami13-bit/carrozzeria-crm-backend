@@ -715,6 +715,91 @@ export type EnumWhatsappMessageStatoWithAggregatesFilter<$PrismaModel = never> =
   _max?: Prisma.NestedEnumWhatsappMessageStatoFilter<$PrismaModel>
 }
 
+export type EnumQcInspectionStatoFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcInspectionStato | Prisma.EnumQcInspectionStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.QcInspectionStato[] | Prisma.ListEnumQcInspectionStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QcInspectionStato[] | Prisma.ListEnumQcInspectionStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQcInspectionStatoFilter<$PrismaModel> | $Enums.QcInspectionStato
+}
+
+export type EnumQcInspectionStatoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcInspectionStato | Prisma.EnumQcInspectionStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.QcInspectionStato[] | Prisma.ListEnumQcInspectionStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QcInspectionStato[] | Prisma.ListEnumQcInspectionStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQcInspectionStatoWithAggregatesFilter<$PrismaModel> | $Enums.QcInspectionStato
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumQcInspectionStatoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumQcInspectionStatoFilter<$PrismaModel>
+}
+
+export type EnumQcEsitoNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcEsito | Prisma.EnumQcEsitoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.QcEsito[] | Prisma.ListEnumQcEsitoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.QcEsito[] | Prisma.ListEnumQcEsitoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumQcEsitoNullableFilter<$PrismaModel> | $Enums.QcEsito | null
+}
+
+export type EnumQcEsitoNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcEsito | Prisma.EnumQcEsitoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.QcEsito[] | Prisma.ListEnumQcEsitoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.QcEsito[] | Prisma.ListEnumQcEsitoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumQcEsitoNullableWithAggregatesFilter<$PrismaModel> | $Enums.QcEsito | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumQcEsitoNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumQcEsitoNullableFilter<$PrismaModel>
+}
+
+export type BytesNullableFilter<$PrismaModel = never> = {
+  equals?: runtime.Bytes | Prisma.BytesFieldRefInput<$PrismaModel> | null
+  in?: runtime.Bytes[] | Prisma.ListBytesFieldRefInput<$PrismaModel> | null
+  notIn?: runtime.Bytes[] | Prisma.ListBytesFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedBytesNullableFilter<$PrismaModel> | runtime.Bytes | null
+}
+
+export type EnumQcNonConformitaStatoFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcNonConformitaStato | Prisma.EnumQcNonConformitaStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.QcNonConformitaStato[] | Prisma.ListEnumQcNonConformitaStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QcNonConformitaStato[] | Prisma.ListEnumQcNonConformitaStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQcNonConformitaStatoFilter<$PrismaModel> | $Enums.QcNonConformitaStato
+}
+
+export type BytesNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: runtime.Bytes | Prisma.BytesFieldRefInput<$PrismaModel> | null
+  in?: runtime.Bytes[] | Prisma.ListBytesFieldRefInput<$PrismaModel> | null
+  notIn?: runtime.Bytes[] | Prisma.ListBytesFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedBytesNullableWithAggregatesFilter<$PrismaModel> | runtime.Bytes | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedBytesNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedBytesNullableFilter<$PrismaModel>
+}
+
+export type EnumQcNonConformitaStatoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcNonConformitaStato | Prisma.EnumQcNonConformitaStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.QcNonConformitaStato[] | Prisma.ListEnumQcNonConformitaStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QcNonConformitaStato[] | Prisma.ListEnumQcNonConformitaStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQcNonConformitaStatoWithAggregatesFilter<$PrismaModel> | $Enums.QcNonConformitaStato
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumQcNonConformitaStatoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumQcNonConformitaStatoFilter<$PrismaModel>
+}
+
+export type EnumQcEventoTipoFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcEventoTipo | Prisma.EnumQcEventoTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.QcEventoTipo[] | Prisma.ListEnumQcEventoTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QcEventoTipo[] | Prisma.ListEnumQcEventoTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQcEventoTipoFilter<$PrismaModel> | $Enums.QcEventoTipo
+}
+
+export type EnumQcEventoTipoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcEventoTipo | Prisma.EnumQcEventoTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.QcEventoTipo[] | Prisma.ListEnumQcEventoTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QcEventoTipo[] | Prisma.ListEnumQcEventoTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQcEventoTipoWithAggregatesFilter<$PrismaModel> | $Enums.QcEventoTipo
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumQcEventoTipoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumQcEventoTipoFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -1373,6 +1458,91 @@ export type NestedEnumWhatsappMessageStatoWithAggregatesFilter<$PrismaModel = ne
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumWhatsappMessageStatoFilter<$PrismaModel>
   _max?: Prisma.NestedEnumWhatsappMessageStatoFilter<$PrismaModel>
+}
+
+export type NestedEnumQcInspectionStatoFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcInspectionStato | Prisma.EnumQcInspectionStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.QcInspectionStato[] | Prisma.ListEnumQcInspectionStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QcInspectionStato[] | Prisma.ListEnumQcInspectionStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQcInspectionStatoFilter<$PrismaModel> | $Enums.QcInspectionStato
+}
+
+export type NestedEnumQcInspectionStatoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcInspectionStato | Prisma.EnumQcInspectionStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.QcInspectionStato[] | Prisma.ListEnumQcInspectionStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QcInspectionStato[] | Prisma.ListEnumQcInspectionStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQcInspectionStatoWithAggregatesFilter<$PrismaModel> | $Enums.QcInspectionStato
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumQcInspectionStatoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumQcInspectionStatoFilter<$PrismaModel>
+}
+
+export type NestedEnumQcEsitoNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcEsito | Prisma.EnumQcEsitoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.QcEsito[] | Prisma.ListEnumQcEsitoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.QcEsito[] | Prisma.ListEnumQcEsitoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumQcEsitoNullableFilter<$PrismaModel> | $Enums.QcEsito | null
+}
+
+export type NestedEnumQcEsitoNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcEsito | Prisma.EnumQcEsitoFieldRefInput<$PrismaModel> | null
+  in?: $Enums.QcEsito[] | Prisma.ListEnumQcEsitoFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.QcEsito[] | Prisma.ListEnumQcEsitoFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumQcEsitoNullableWithAggregatesFilter<$PrismaModel> | $Enums.QcEsito | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumQcEsitoNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumQcEsitoNullableFilter<$PrismaModel>
+}
+
+export type NestedBytesNullableFilter<$PrismaModel = never> = {
+  equals?: runtime.Bytes | Prisma.BytesFieldRefInput<$PrismaModel> | null
+  in?: runtime.Bytes[] | Prisma.ListBytesFieldRefInput<$PrismaModel> | null
+  notIn?: runtime.Bytes[] | Prisma.ListBytesFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedBytesNullableFilter<$PrismaModel> | runtime.Bytes | null
+}
+
+export type NestedEnumQcNonConformitaStatoFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcNonConformitaStato | Prisma.EnumQcNonConformitaStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.QcNonConformitaStato[] | Prisma.ListEnumQcNonConformitaStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QcNonConformitaStato[] | Prisma.ListEnumQcNonConformitaStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQcNonConformitaStatoFilter<$PrismaModel> | $Enums.QcNonConformitaStato
+}
+
+export type NestedBytesNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: runtime.Bytes | Prisma.BytesFieldRefInput<$PrismaModel> | null
+  in?: runtime.Bytes[] | Prisma.ListBytesFieldRefInput<$PrismaModel> | null
+  notIn?: runtime.Bytes[] | Prisma.ListBytesFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedBytesNullableWithAggregatesFilter<$PrismaModel> | runtime.Bytes | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedBytesNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedBytesNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumQcNonConformitaStatoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcNonConformitaStato | Prisma.EnumQcNonConformitaStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.QcNonConformitaStato[] | Prisma.ListEnumQcNonConformitaStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QcNonConformitaStato[] | Prisma.ListEnumQcNonConformitaStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQcNonConformitaStatoWithAggregatesFilter<$PrismaModel> | $Enums.QcNonConformitaStato
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumQcNonConformitaStatoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumQcNonConformitaStatoFilter<$PrismaModel>
+}
+
+export type NestedEnumQcEventoTipoFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcEventoTipo | Prisma.EnumQcEventoTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.QcEventoTipo[] | Prisma.ListEnumQcEventoTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QcEventoTipo[] | Prisma.ListEnumQcEventoTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQcEventoTipoFilter<$PrismaModel> | $Enums.QcEventoTipo
+}
+
+export type NestedEnumQcEventoTipoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.QcEventoTipo | Prisma.EnumQcEventoTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.QcEventoTipo[] | Prisma.ListEnumQcEventoTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.QcEventoTipo[] | Prisma.ListEnumQcEventoTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumQcEventoTipoWithAggregatesFilter<$PrismaModel> | $Enums.QcEventoTipo
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumQcEventoTipoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumQcEventoTipoFilter<$PrismaModel>
 }
 
 

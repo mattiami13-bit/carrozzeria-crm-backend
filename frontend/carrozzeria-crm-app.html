@@ -292,7 +292,7 @@ function Dashboard({ token, onLogout }) {
   const delayNav = [...NAV_BASE, {key:"delay",label:"Predictive Delay AI"}, {key:"parts-tracking",label:"Parts Tracking"}, {key:"lavori",label:"I miei lavori"}, {key:"live",label:"Carrozzeria Live"}];
   const baseNav = ruolo === "ADMIN" ? [...delayNav, { key: "registro", label: "Registro attività" }] : delayNav;
   const navConProfit = ["ADMIN", "AMMINISTRAZIONE"].includes(ruolo) ? [...baseNav, {key:"profit",label:"Profit Tracker"}, {key:"kpi-tecnici",label:"KPI Tecnici"}] : baseNav;
-  const nav = ruolo === "ADMIN" ? [...navConProfit, { key: "whatsapp", label: "WhatsApp" }] : navConProfit;
+  const nav = ruolo === "ADMIN" ? [...navConProfit, { key: "whatsapp", label: "WhatsApp" }, { key: "qc-checklist", label: "QC Checklist" }] : navConProfit;
 
   // Usato dalla scheda cliente per aprire i sinistri già filtrati su quel cliente
   const apriSinistriCliente = (client) => {
@@ -355,6 +355,7 @@ function Dashboard({ token, onLogout }) {
         {tab === "clienti" && <ClientiView api={api} onOpenSinistri={apriSinistriCliente} />}
         {tab === "registro" && ruolo === "ADMIN" && <RegistroAttivitaView api={api} />}
         {tab === "whatsapp" && ruolo === "ADMIN" && <WhatsappSettingsView api={api} />}
+        {tab === "qc-checklist" && ruolo === "ADMIN" && <QcChecklistSettingsView api={api} />}
         {tab === "lavori" && <TecnicoLavoriView api={api} token={token} />}
         {tab === "live" && <CarrozzeriaLiveView api={api} />}
         {tab === "kpi-tecnici" && ["ADMIN", "AMMINISTRAZIONE"].includes(ruolo) && <KpiTecniciView api={api} ruolo={ruolo} />}
@@ -616,8 +617,19 @@ function VeicoliView({ api, token, openVehicleId, onVehicleOpened }) {
   }, [openVehicleId]);
 
   const changeStage = async (id, stage) => {
-    await api(`/api/vehicles/${id}/stage`, { method: "PATCH", body: JSON.stringify({ stage }) });
-    load();
+    try {
+      await api(`/api/vehicles/${id}/stage`, { method: "PATCH", body: JSON.stringify({ stage }) });
+      load();
+    } catch (e) {
+      let msg = e.message;
+      try { msg = JSON.parse(msg); } catch {}
+      if (stage === "PRONTA_CONSEGNA") {
+        alert(`${msg}\n\nApri la pratica e completa il Controllo Qualità (QC) dalla sezione dedicata.`);
+        setSelectedId(id);
+      } else {
+        alert(msg);
+      }
+    }
   };
 
   if (loading) return <Loading />;
@@ -1844,6 +1856,9 @@ function VehicleDetailModal({ vehicleId, api, token, onClose: closeRequested, on
 
             <h3 style={{ fontSize: 13, fontWeight: 700, marginTop: 26, marginBottom: 10 }}>Comunicazioni WhatsApp</h3>
             <WhatsappPanel vehicleId={vehicle.id} api={api} />
+
+            <h3 style={{ fontSize: 13, fontWeight: 700, marginTop: 26, marginBottom: 10 }}>Controllo Qualità (QC)</h3>
+            <QcPanel vehicleId={vehicle.id} api={api} ruolo={decodificaRuolo(token)} />
 
             <h3 style={{ fontSize: 13, fontWeight: 700, marginTop: 26, marginBottom: 10 }}>Consegna e firma</h3>
             <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 12, padding: 16 }}>
@@ -4277,6 +4292,302 @@ const STAGE_LABELS_LIVE = {
   VERNICIATURA: "Verniciatura", LUCIDATURA: "Lucidatura", CONTROLLO_QUALITA: "Controllo qualità",
   LAVAGGIO: "Lavaggio", PRONTA_CONSEGNA: "Pronta",
 };
+
+/* ---------------- QUALITY CONTROL ---------------- */
+const QC_ESITO_STYLE = {
+  OK: { simbolo: "✓", label: "OK", color: "#2F8F5B" },
+  DA_VERIFICARE: { simbolo: "⚠", label: "Da verificare", color: "#C9A24B" },
+  NON_CONFORME: { simbolo: "✕", label: "Non conforme", color: "#B4472E" },
+  NA: { simbolo: "N/A", label: "Non applicabile", color: "#6B6963" },
+};
+const QC_NC_STATO_STYLE = {
+  APERTA: { label: "Aperta", color: "#B4472E" },
+  IN_LAVORAZIONE: { label: "In lavorazione", color: "#C9A24B" },
+  RISOLTA: { label: "Risolta", color: "#4E7F8C" },
+  CHIUSA: { label: "Chiusa", color: "#2F8F5B" },
+};
+
+function QcEsitoSelector({ risultato, onSetEsito, disabled }) {
+  return (
+    <div style={{ display: "flex", gap: 5 }}>
+      {Object.keys(QC_ESITO_STYLE).map((k) => {
+        const s = QC_ESITO_STYLE[k];
+        const attivo = risultato.esito === k;
+        return (
+          <button key={k} disabled={disabled} onClick={() => onSetEsito(risultato.chiave, k)} title={s.label} style={{
+            width: 34, height: 30, borderRadius: 7, border: attivo ? `1.5px solid ${s.color}` : "1px solid #2A2E34",
+            background: attivo ? s.color + "22" : "#0A0B0D", color: attivo ? s.color : "#8D9099", fontSize: k === "NA" ? 9.5 : 14, fontWeight: 700,
+          }}>{s.simbolo}</button>
+        );
+      })}
+    </div>
+  );
+}
+
+function QcNonConformitaForm({ vehicleId, inspectionId, checkResultId, api, tecnici, onDone, onCancel }) {
+  const [form, setForm] = useState({ descrizione: "", responsabileId: "", azioneCorrettiva: "", stato: "APERTA" });
+  const [file, setFile] = useState(null);
+  const [error, setError] = useState(null);
+  const [salvando, setSalvando] = useState(false);
+  const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+
+  const salva = async () => {
+    if (!form.descrizione.trim()) { setError("Descrivi la non conformità."); return; }
+    setSalvando(true);
+    setError(null);
+    try {
+      const body = new FormData();
+      body.append("descrizione", form.descrizione.trim());
+      if (form.responsabileId) body.append("responsabileId", form.responsabileId);
+      if (form.azioneCorrettiva) body.append("azioneCorrettiva", form.azioneCorrettiva);
+      body.append("stato", form.stato);
+      if (checkResultId) body.append("checkResultId", checkResultId);
+      if (file) body.append("file", file);
+      await api(`/api/qc/inspections/${inspectionId}/non-conformita`, { method: "POST", body });
+      onDone();
+    } catch (e) { setError(e.message); } finally { setSalvando(false); }
+  };
+
+  return (
+    <div style={{ background: "#0A0B0D", border: "1px solid #B4472E", borderRadius: 10, padding: 12, marginTop: 8 }}>
+      <div style={{ fontSize: 12, fontWeight: 700, color: "#E5806B", marginBottom: 8 }}>Nuova non conformità</div>
+      <textarea placeholder="Descrizione" value={form.descrizione} onChange={set("descrizione")} rows={2} style={{ width: "100%", padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, marginBottom: 8, boxSizing: "border-box", fontFamily: "inherit" }} />
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 8 }}>
+        <select value={form.responsabileId} onChange={set("responsabileId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+          <option value="">Responsabile…</option>
+          {tecnici.map((t) => <option key={t.id} value={t.id}>{t.nome} {t.cognome}</option>)}
+        </select>
+        <select value={form.stato} onChange={set("stato")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+          {Object.keys(QC_NC_STATO_STYLE).map((s) => <option key={s} value={s}>{QC_NC_STATO_STYLE[s].label}</option>)}
+        </select>
+      </div>
+      <textarea placeholder="Azione correttiva" value={form.azioneCorrettiva} onChange={set("azioneCorrettiva")} rows={2} style={{ width: "100%", padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, marginBottom: 8, boxSizing: "border-box", fontFamily: "inherit" }} />
+      <input type="file" accept="image/*" capture="environment" onChange={(e) => setFile(e.target.files[0])} style={{ fontSize: 11.5, color: "#8D9099", marginBottom: 8 }} />
+      {error && <div style={{ color: "#E5806B", fontSize: 12, marginBottom: 8 }}>{error}</div>}
+      <div style={{ display: "flex", gap: 8 }}>
+        <button onClick={salva} disabled={salvando} style={{ padding: "7px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 12.5, fontWeight: 600 }}>{salvando ? "Salvataggio…" : "Apri non conformità"}</button>
+        <button onClick={onCancel} style={{ padding: "7px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>Annulla</button>
+      </div>
+    </div>
+  );
+}
+
+function QcNonConformitaRow({ nc, api, onChanged }) {
+  const [modificando, setModificando] = useState(false);
+  const [stato, setStato] = useState(nc.stato);
+  const s = QC_NC_STATO_STYLE[nc.stato] || QC_NC_STATO_STYLE.APERTA;
+
+  const vediFoto = async () => {
+    const blob = await api(`/api/qc/non-conformita/${nc.id}/fotografia`, { responseType: "blob" });
+    window.open(URL.createObjectURL(blob), "_blank");
+  };
+  const salvaStato = async () => {
+    await api(`/api/qc/non-conformita/${nc.id}`, { method: "PATCH", body: JSON.stringify({ stato }) });
+    setModificando(false);
+    onChanged();
+  };
+
+  return (
+    <div style={{ border: "1px solid #2A2E34", borderRadius: 8, padding: 10, marginBottom: 8 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
+        <div style={{ fontSize: 12.5, color: "#F3F1EC" }}>{nc.descrizione}</div>
+        <span style={{ fontSize: 10.5, fontWeight: 700, padding: "2px 8px", borderRadius: 20, background: s.color + "22", color: s.color, whiteSpace: "nowrap" }}>{s.label}</span>
+      </div>
+      <div style={{ fontSize: 11, color: "#8D9099", marginTop: 4 }}>
+        {new Date(nc.createdAt).toLocaleString("it-IT")}
+        {nc.responsabile ? ` · Responsabile: ${nc.responsabile.nome} ${nc.responsabile.cognome}` : ""}
+      </div>
+      {nc.azioneCorrettiva && <div style={{ fontSize: 12, color: "#A8A29B", marginTop: 4 }}>Azione correttiva: {nc.azioneCorrettiva}</div>}
+      <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+        {nc.fotografiaMime && <button onClick={vediFoto} style={{ padding: "4px 9px", borderRadius: 6, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC", fontSize: 11 }}>Vedi foto</button>}
+        {!modificando ? (
+          <button onClick={() => setModificando(true)} style={{ padding: "4px 9px", borderRadius: 6, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC", fontSize: 11 }}>Aggiorna stato</button>
+        ) : (
+          <>
+            <select value={stato} onChange={(e) => setStato(e.target.value)} style={{ fontSize: 11, padding: "3px 6px", borderRadius: 6, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC" }}>
+              {Object.keys(QC_NC_STATO_STYLE).map((k) => <option key={k} value={k}>{QC_NC_STATO_STYLE[k].label}</option>)}
+            </select>
+            <button onClick={salvaStato} style={{ padding: "4px 9px", borderRadius: 6, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 11, fontWeight: 600 }}>Salva</button>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function QcPanel({ vehicleId, api, ruolo }) {
+  const [ispezione, setIspezione] = useState(undefined); // undefined=loading, null=nessuna
+  const [tecnici, setTecnici] = useState([]);
+  const [ncPer, setNcPer] = useState(null); // chiave della voce per cui si sta aprendo una non conformità
+  const [ncGenerale, setNcGenerale] = useState(false);
+  const [error, setError] = useState(null);
+  const [eventi, setEventi] = useState(null);
+  const [mostraEventi, setMostraEventi] = useState(false);
+  const [azionando, setAzionando] = useState(false);
+
+  const load = useCallback(() => {
+    Promise.all([api(`/api/vehicles/${vehicleId}/qc`), api("/api/users")])
+      .then(([lista, users]) => { setIspezione(lista[0] || null); setTecnici(users); })
+      .catch((e) => setError(e.message));
+  }, [api, vehicleId]);
+  useEffect(load, [load]);
+
+  const avvia = async () => {
+    setError(null);
+    setAzionando(true);
+    try { await api(`/api/vehicles/${vehicleId}/qc`, { method: "POST" }); load(); }
+    catch (e) { setError(e.message); } finally { setAzionando(false); }
+  };
+
+  const setEsito = async (chiave, esito) => {
+    setError(null);
+    try {
+      const nuovoEsito = ispezione.checkResults.find((r) => r.chiave === chiave)?.esito === esito ? null : esito;
+      await api(`/api/qc/inspections/${ispezione.id}/esiti/${chiave}`, { method: "PATCH", body: JSON.stringify({ esito: nuovoEsito }) });
+      load();
+    } catch (e) { setError(e.message); }
+  };
+
+  const approva = async () => {
+    setError(null);
+    setAzionando(true);
+    try { await api(`/api/qc/inspections/${ispezione.id}/approva`, { method: "POST" }); load(); }
+    catch (e) {
+      let msg = e.message;
+      try { const parsed = JSON.parse(msg); msg = typeof parsed === "string" ? parsed : (parsed.error || msg) + (parsed.vociBloccanti ? `: ${parsed.vociBloccanti.join(", ")}` : parsed.vociDaValutare ? `: ${parsed.vociDaValutare.join(", ")}` : ""); } catch {}
+      setError(msg);
+    } finally { setAzionando(false); }
+  };
+
+  const apriEventi = async () => {
+    setMostraEventi(!mostraEventi);
+    if (!eventi) setEventi(await api(`/api/qc/inspections/${ispezione.id}/eventi`));
+  };
+
+  if (ispezione === undefined) return <div style={{ marginTop: 12 }}><Loading /></div>;
+
+  return (
+    <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 12, padding: 16 }}>
+      {error && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 12, padding: 10, borderRadius: 8, marginBottom: 10 }}>{error}</div>}
+
+      {!ispezione ? (
+        <div>
+          <div style={{ fontSize: 12, color: "#8D9099", marginBottom: 10 }}>Nessun controllo qualità avviato per questa pratica. È obbligatorio prima di poter passare la pratica a "Pronta".</div>
+          <button onClick={avvia} disabled={azionando} style={{ padding: "8px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 13, fontWeight: 600 }}>{azionando ? "Avvio…" : "Avvia controllo qualità"}</button>
+        </div>
+      ) : (
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+            <span style={{ fontSize: 12.5, fontWeight: 700, color: ispezione.stato === "APPROVATO" ? "#2F8F5B" : "#C9A24B" }}>
+              {ispezione.stato === "APPROVATO" ? `✓ QC approvato da ${ispezione.approvatoDa?.nome} ${ispezione.approvatoDa?.cognome} il ${new Date(ispezione.approvatoAt).toLocaleString("it-IT")}` : "QC in corso"}
+            </span>
+            <button onClick={apriEventi} style={{ padding: "4px 9px", borderRadius: 6, border: "1px solid #2A2E34", background: "#15171B", color: "#8D9099", fontSize: 11 }}>{mostraEventi ? "Nascondi" : "Storico"}</button>
+          </div>
+
+          {mostraEventi && (
+            <div style={{ marginBottom: 12, borderBottom: "1px solid #2A2E34", paddingBottom: 10 }}>
+              {!eventi ? <Loading /> : eventi.map((ev) => (
+                <div key={ev.id} style={{ fontSize: 11, color: "#8D9099", marginBottom: 3 }}>
+                  {new Date(ev.createdAt).toLocaleString("it-IT")} — {ev.tipo}{ev.attore ? ` (${ev.attore.nome} ${ev.attore.cognome})` : ""}
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 4, marginBottom: 12 }}>
+            {ispezione.checkResults.map((r) => (
+              <div key={r.chiave} style={{ borderBottom: "1px solid #2A2E34", paddingBottom: 8, marginBottom: 4 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8 }}>
+                  <div style={{ fontSize: 12.5 }}>{r.etichetta}{r.critico && <span style={{ color: "#B4472E", marginLeft: 4 }} title="Controllo critico">●</span>}</div>
+                  <QcEsitoSelector risultato={r} onSetEsito={setEsito} disabled={ispezione.stato === "APPROVATO"} />
+                </div>
+                {r.esito === "NON_CONFORME" && ispezione.stato !== "APPROVATO" && (
+                  ncPer === r.chiave ? (
+                    <QcNonConformitaForm vehicleId={vehicleId} inspectionId={ispezione.id} checkResultId={r.id} api={api} tecnici={tecnici} onDone={() => { setNcPer(null); load(); }} onCancel={() => setNcPer(null)} />
+                  ) : (
+                    <button onClick={() => setNcPer(r.chiave)} style={{ marginTop: 6, padding: "3px 9px", borderRadius: 6, border: "1px solid #B4472E", background: "transparent", color: "#E5806B", fontSize: 11 }}>+ Apri non conformità</button>
+                  )
+                )}
+              </div>
+            ))}
+          </div>
+
+          {ispezione.nonConformita.length > 0 && (
+            <div style={{ marginBottom: 12 }}>
+              <div style={{ fontSize: 11.5, fontWeight: 700, color: "#8D9099", marginBottom: 6 }}>Non conformità</div>
+              {ispezione.nonConformita.map((nc) => <QcNonConformitaRow key={nc.id} nc={nc} api={api} onChanged={load} />)}
+            </div>
+          )}
+
+          {ispezione.stato !== "APPROVATO" && !ncGenerale && (
+            <button onClick={() => setNcGenerale(true)} style={{ padding: "5px 10px", borderRadius: 6, border: "1px solid #2A2E34", background: "#15171B", color: "#8D9099", fontSize: 11, marginBottom: 12 }}>+ Non conformità generale (non legata a una voce)</button>
+          )}
+          {ncGenerale && <QcNonConformitaForm vehicleId={vehicleId} inspectionId={ispezione.id} checkResultId={null} api={api} tecnici={tecnici} onDone={() => { setNcGenerale(false); load(); }} onCancel={() => setNcGenerale(false)} />}
+
+          {ispezione.stato !== "APPROVATO" && (
+            <button onClick={approva} disabled={azionando} style={{ marginTop: 8, padding: "9px 16px", borderRadius: 8, border: "none", background: "#2F8F5B", color: "#fff", fontSize: 13, fontWeight: 700 }}>{azionando ? "Approvazione…" : "✓ Approva QC"}</button>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ---------------- QC: checklist configurabile (Admin) ---------------- */
+function QcChecklistSettingsView({ api }) {
+  const [voci, setVoci] = useState(null);
+  const [nuovaEtichetta, setNuovaEtichetta] = useState("");
+  const [error, setError] = useState(null);
+
+  const load = useCallback(() => { api("/api/qc/template").then(setVoci).catch((e) => setError(e.message)); }, [api]);
+  useEffect(load, [load]);
+
+  const salva = async (v) => {
+    try { await api(`/api/qc/template/${v.chiave}`, { method: "PUT", body: JSON.stringify({ etichetta: v.etichetta, critico: v.critico, attivo: v.attivo, ordine: v.ordine }) }); load(); }
+    catch (e) { setError(e.message); }
+  };
+  const aggiungi = async () => {
+    if (!nuovaEtichetta.trim()) return;
+    try { await api("/api/qc/template", { method: "POST", body: JSON.stringify({ etichetta: nuovaEtichetta.trim(), critico: true }) }); setNuovaEtichetta(""); load(); }
+    catch (e) { setError(e.message); }
+  };
+  const elimina = async (chiave) => {
+    try { await api(`/api/qc/template/${chiave}`, { method: "DELETE" }); load(); }
+    catch (e) { setError(e.message); }
+  };
+
+  if (!voci) return <Loading />;
+
+  return (
+    <div>
+      <h1 style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Checklist Controllo Qualità</h1>
+      <div style={{ fontSize: 12.5, color: "#8D9099", marginBottom: 18, maxWidth: 640 }}>
+        Voci verificate prima di poter passare una pratica a "Pronta". Le voci segnate come critiche bloccano l'approvazione del QC se il loro esito è "Non conforme".
+      </div>
+      {error && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 12, padding: 10, borderRadius: 8, marginBottom: 14 }}>{error}</div>}
+
+      <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, overflow: "hidden", marginBottom: 16 }}>
+        {voci.map((v, i) => (
+          <div key={v.chiave} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", borderTop: i === 0 ? "none" : "1px solid #2A2E34" }}>
+            <input value={v.etichetta} onChange={(e) => setVoci(voci.map((x) => x.chiave === v.chiave ? { ...x, etichetta: e.target.value } : x))} onBlur={() => salva(v)} style={{ flex: 1, padding: 7, borderRadius: 7, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC", fontSize: 12.5 }} />
+            <label style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11.5, color: "#D9D6CE", cursor: "pointer" }}>
+              <input type="checkbox" checked={v.critico} onChange={(e) => salva({ ...v, critico: e.target.checked })} /> Critico
+            </label>
+            <label style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11.5, color: "#D9D6CE", cursor: "pointer" }}>
+              <input type="checkbox" checked={v.attivo} onChange={(e) => salva({ ...v, attivo: e.target.checked })} /> Attivo
+            </label>
+            {v.personalizzato && <button onClick={() => elimina(v.chiave)} style={{ padding: "4px 9px", borderRadius: 6, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#B4472E", fontSize: 11 }}>Elimina</button>}
+          </div>
+        ))}
+      </div>
+
+      <div style={{ display: "flex", gap: 8 }}>
+        <input placeholder="Nuova voce personalizzata…" value={nuovaEtichetta} onChange={(e) => setNuovaEtichetta(e.target.value)} style={{ flex: 1, maxWidth: 320, padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }} />
+        <button onClick={aggiungi} style={{ padding: "8px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 12.5, fontWeight: 600 }}>+ Aggiungi voce</button>
+      </div>
+    </div>
+  );
+}
 
 function ClientiView({ api, onOpenSinistri }) {
   const [clients, setClients] = useState([]);

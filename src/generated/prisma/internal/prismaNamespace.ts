@@ -441,7 +441,12 @@ export const ModelName = {
   TrackedPartDocument: 'TrackedPartDocument',
   PhotoTimelineEdit: 'PhotoTimelineEdit',
   WhatsappTemplate: 'WhatsappTemplate',
-  WhatsappMessage: 'WhatsappMessage'
+  WhatsappMessage: 'WhatsappMessage',
+  QcChecklistItem: 'QcChecklistItem',
+  QcInspection: 'QcInspection',
+  QcCheckResult: 'QcCheckResult',
+  QcNonConformita: 'QcNonConformita',
+  QcEvento: 'QcEvento'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -457,7 +462,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerBooking" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage"
+    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerBooking" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage" | "qcChecklistItem" | "qcInspection" | "qcCheckResult" | "qcNonConformita" | "qcEvento"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3791,6 +3796,376 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    QcChecklistItem: {
+      payload: Prisma.$QcChecklistItemPayload<ExtArgs>
+      fields: Prisma.QcChecklistItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.QcChecklistItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcChecklistItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.QcChecklistItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcChecklistItemPayload>
+        }
+        findFirst: {
+          args: Prisma.QcChecklistItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcChecklistItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.QcChecklistItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcChecklistItemPayload>
+        }
+        findMany: {
+          args: Prisma.QcChecklistItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcChecklistItemPayload>[]
+        }
+        create: {
+          args: Prisma.QcChecklistItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcChecklistItemPayload>
+        }
+        createMany: {
+          args: Prisma.QcChecklistItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.QcChecklistItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcChecklistItemPayload>[]
+        }
+        delete: {
+          args: Prisma.QcChecklistItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcChecklistItemPayload>
+        }
+        update: {
+          args: Prisma.QcChecklistItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcChecklistItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.QcChecklistItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.QcChecklistItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.QcChecklistItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcChecklistItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.QcChecklistItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcChecklistItemPayload>
+        }
+        aggregate: {
+          args: Prisma.QcChecklistItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQcChecklistItem>
+        }
+        groupBy: {
+          args: Prisma.QcChecklistItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QcChecklistItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.QcChecklistItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QcChecklistItemCountAggregateOutputType> | number
+        }
+      }
+    }
+    QcInspection: {
+      payload: Prisma.$QcInspectionPayload<ExtArgs>
+      fields: Prisma.QcInspectionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.QcInspectionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcInspectionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.QcInspectionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcInspectionPayload>
+        }
+        findFirst: {
+          args: Prisma.QcInspectionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcInspectionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.QcInspectionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcInspectionPayload>
+        }
+        findMany: {
+          args: Prisma.QcInspectionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcInspectionPayload>[]
+        }
+        create: {
+          args: Prisma.QcInspectionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcInspectionPayload>
+        }
+        createMany: {
+          args: Prisma.QcInspectionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.QcInspectionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcInspectionPayload>[]
+        }
+        delete: {
+          args: Prisma.QcInspectionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcInspectionPayload>
+        }
+        update: {
+          args: Prisma.QcInspectionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcInspectionPayload>
+        }
+        deleteMany: {
+          args: Prisma.QcInspectionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.QcInspectionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.QcInspectionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcInspectionPayload>[]
+        }
+        upsert: {
+          args: Prisma.QcInspectionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcInspectionPayload>
+        }
+        aggregate: {
+          args: Prisma.QcInspectionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQcInspection>
+        }
+        groupBy: {
+          args: Prisma.QcInspectionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QcInspectionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.QcInspectionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QcInspectionCountAggregateOutputType> | number
+        }
+      }
+    }
+    QcCheckResult: {
+      payload: Prisma.$QcCheckResultPayload<ExtArgs>
+      fields: Prisma.QcCheckResultFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.QcCheckResultFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcCheckResultPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.QcCheckResultFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcCheckResultPayload>
+        }
+        findFirst: {
+          args: Prisma.QcCheckResultFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcCheckResultPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.QcCheckResultFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcCheckResultPayload>
+        }
+        findMany: {
+          args: Prisma.QcCheckResultFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcCheckResultPayload>[]
+        }
+        create: {
+          args: Prisma.QcCheckResultCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcCheckResultPayload>
+        }
+        createMany: {
+          args: Prisma.QcCheckResultCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.QcCheckResultCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcCheckResultPayload>[]
+        }
+        delete: {
+          args: Prisma.QcCheckResultDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcCheckResultPayload>
+        }
+        update: {
+          args: Prisma.QcCheckResultUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcCheckResultPayload>
+        }
+        deleteMany: {
+          args: Prisma.QcCheckResultDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.QcCheckResultUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.QcCheckResultUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcCheckResultPayload>[]
+        }
+        upsert: {
+          args: Prisma.QcCheckResultUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcCheckResultPayload>
+        }
+        aggregate: {
+          args: Prisma.QcCheckResultAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQcCheckResult>
+        }
+        groupBy: {
+          args: Prisma.QcCheckResultGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QcCheckResultGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.QcCheckResultCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QcCheckResultCountAggregateOutputType> | number
+        }
+      }
+    }
+    QcNonConformita: {
+      payload: Prisma.$QcNonConformitaPayload<ExtArgs>
+      fields: Prisma.QcNonConformitaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.QcNonConformitaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcNonConformitaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.QcNonConformitaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcNonConformitaPayload>
+        }
+        findFirst: {
+          args: Prisma.QcNonConformitaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcNonConformitaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.QcNonConformitaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcNonConformitaPayload>
+        }
+        findMany: {
+          args: Prisma.QcNonConformitaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcNonConformitaPayload>[]
+        }
+        create: {
+          args: Prisma.QcNonConformitaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcNonConformitaPayload>
+        }
+        createMany: {
+          args: Prisma.QcNonConformitaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.QcNonConformitaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcNonConformitaPayload>[]
+        }
+        delete: {
+          args: Prisma.QcNonConformitaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcNonConformitaPayload>
+        }
+        update: {
+          args: Prisma.QcNonConformitaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcNonConformitaPayload>
+        }
+        deleteMany: {
+          args: Prisma.QcNonConformitaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.QcNonConformitaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.QcNonConformitaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcNonConformitaPayload>[]
+        }
+        upsert: {
+          args: Prisma.QcNonConformitaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcNonConformitaPayload>
+        }
+        aggregate: {
+          args: Prisma.QcNonConformitaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQcNonConformita>
+        }
+        groupBy: {
+          args: Prisma.QcNonConformitaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QcNonConformitaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.QcNonConformitaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QcNonConformitaCountAggregateOutputType> | number
+        }
+      }
+    }
+    QcEvento: {
+      payload: Prisma.$QcEventoPayload<ExtArgs>
+      fields: Prisma.QcEventoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.QcEventoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcEventoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.QcEventoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcEventoPayload>
+        }
+        findFirst: {
+          args: Prisma.QcEventoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcEventoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.QcEventoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcEventoPayload>
+        }
+        findMany: {
+          args: Prisma.QcEventoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcEventoPayload>[]
+        }
+        create: {
+          args: Prisma.QcEventoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcEventoPayload>
+        }
+        createMany: {
+          args: Prisma.QcEventoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.QcEventoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcEventoPayload>[]
+        }
+        delete: {
+          args: Prisma.QcEventoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcEventoPayload>
+        }
+        update: {
+          args: Prisma.QcEventoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcEventoPayload>
+        }
+        deleteMany: {
+          args: Prisma.QcEventoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.QcEventoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.QcEventoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcEventoPayload>[]
+        }
+        upsert: {
+          args: Prisma.QcEventoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QcEventoPayload>
+        }
+        aggregate: {
+          args: Prisma.QcEventoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQcEvento>
+        }
+        groupBy: {
+          args: Prisma.QcEventoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QcEventoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.QcEventoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QcEventoCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -4527,6 +4902,87 @@ export const WhatsappMessageScalarFieldEnum = {
 export type WhatsappMessageScalarFieldEnum = (typeof WhatsappMessageScalarFieldEnum)[keyof typeof WhatsappMessageScalarFieldEnum]
 
 
+export const QcChecklistItemScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  chiave: 'chiave',
+  etichetta: 'etichetta',
+  ordine: 'ordine',
+  critico: 'critico',
+  attivo: 'attivo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QcChecklistItemScalarFieldEnum = (typeof QcChecklistItemScalarFieldEnum)[keyof typeof QcChecklistItemScalarFieldEnum]
+
+
+export const QcInspectionScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  stato: 'stato',
+  iniziataDaId: 'iniziataDaId',
+  approvatoDaId: 'approvatoDaId',
+  approvatoAt: 'approvatoAt',
+  createdAt: 'createdAt'
+} as const
+
+export type QcInspectionScalarFieldEnum = (typeof QcInspectionScalarFieldEnum)[keyof typeof QcInspectionScalarFieldEnum]
+
+
+export const QcCheckResultScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  inspectionId: 'inspectionId',
+  chiave: 'chiave',
+  etichetta: 'etichetta',
+  critico: 'critico',
+  esito: 'esito',
+  note: 'note',
+  aggiornatoDaId: 'aggiornatoDaId',
+  aggiornatoAt: 'aggiornatoAt',
+  createdAt: 'createdAt'
+} as const
+
+export type QcCheckResultScalarFieldEnum = (typeof QcCheckResultScalarFieldEnum)[keyof typeof QcCheckResultScalarFieldEnum]
+
+
+export const QcNonConformitaScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  inspectionId: 'inspectionId',
+  checkResultId: 'checkResultId',
+  descrizione: 'descrizione',
+  fotografia: 'fotografia',
+  fotografiaMime: 'fotografiaMime',
+  fotografiaSize: 'fotografiaSize',
+  responsabileId: 'responsabileId',
+  azioneCorrettiva: 'azioneCorrettiva',
+  data: 'data',
+  stato: 'stato',
+  creataDaId: 'creataDaId',
+  chiusaAt: 'chiusaAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QcNonConformitaScalarFieldEnum = (typeof QcNonConformitaScalarFieldEnum)[keyof typeof QcNonConformitaScalarFieldEnum]
+
+
+export const QcEventoScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  inspectionId: 'inspectionId',
+  tipo: 'tipo',
+  dettagli: 'dettagli',
+  attoreId: 'attoreId',
+  createdAt: 'createdAt'
+} as const
+
+export type QcEventoScalarFieldEnum = (typeof QcEventoScalarFieldEnum)[keyof typeof QcEventoScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -4925,6 +5381,62 @@ export type ListEnumWhatsappMessageStatoFieldRefInput<$PrismaModel> = FieldRefIn
 
 
 /**
+ * Reference to a field of type 'QcInspectionStato'
+ */
+export type EnumQcInspectionStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QcInspectionStato'>
+    
+
+
+/**
+ * Reference to a field of type 'QcInspectionStato[]'
+ */
+export type ListEnumQcInspectionStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QcInspectionStato[]'>
+    
+
+
+/**
+ * Reference to a field of type 'QcEsito'
+ */
+export type EnumQcEsitoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QcEsito'>
+    
+
+
+/**
+ * Reference to a field of type 'QcEsito[]'
+ */
+export type ListEnumQcEsitoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QcEsito[]'>
+    
+
+
+/**
+ * Reference to a field of type 'QcNonConformitaStato'
+ */
+export type EnumQcNonConformitaStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QcNonConformitaStato'>
+    
+
+
+/**
+ * Reference to a field of type 'QcNonConformitaStato[]'
+ */
+export type ListEnumQcNonConformitaStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QcNonConformitaStato[]'>
+    
+
+
+/**
+ * Reference to a field of type 'QcEventoTipo'
+ */
+export type EnumQcEventoTipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QcEventoTipo'>
+    
+
+
+/**
+ * Reference to a field of type 'QcEventoTipo[]'
+ */
+export type ListEnumQcEventoTipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QcEventoTipo[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -5133,6 +5645,11 @@ export type GlobalOmitConfig = {
   photoTimelineEdit?: Prisma.PhotoTimelineEditOmit
   whatsappTemplate?: Prisma.WhatsappTemplateOmit
   whatsappMessage?: Prisma.WhatsappMessageOmit
+  qcChecklistItem?: Prisma.QcChecklistItemOmit
+  qcInspection?: Prisma.QcInspectionOmit
+  qcCheckResult?: Prisma.QcCheckResultOmit
+  qcNonConformita?: Prisma.QcNonConformitaOmit
+  qcEvento?: Prisma.QcEventoOmit
 }
 
 /* Types for Logging */

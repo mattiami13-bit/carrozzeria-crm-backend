@@ -285,6 +285,11 @@ export type TenantWhereInput = {
   workOrders?: Prisma.WorkOrderListRelationFilter
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryListRelationFilter
   workOrderEventi?: Prisma.WorkOrderEventoListRelationFilter
+  qcChecklistItems?: Prisma.QcChecklistItemListRelationFilter
+  qcInspections?: Prisma.QcInspectionListRelationFilter
+  qcCheckResults?: Prisma.QcCheckResultListRelationFilter
+  qcNonConformita?: Prisma.QcNonConformitaListRelationFilter
+  qcEventi?: Prisma.QcEventoListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -330,6 +335,11 @@ export type TenantOrderByWithRelationInput = {
   workOrders?: Prisma.WorkOrderOrderByRelationAggregateInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryOrderByRelationAggregateInput
   workOrderEventi?: Prisma.WorkOrderEventoOrderByRelationAggregateInput
+  qcChecklistItems?: Prisma.QcChecklistItemOrderByRelationAggregateInput
+  qcInspections?: Prisma.QcInspectionOrderByRelationAggregateInput
+  qcCheckResults?: Prisma.QcCheckResultOrderByRelationAggregateInput
+  qcNonConformita?: Prisma.QcNonConformitaOrderByRelationAggregateInput
+  qcEventi?: Prisma.QcEventoOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -378,6 +388,11 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   workOrders?: Prisma.WorkOrderListRelationFilter
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryListRelationFilter
   workOrderEventi?: Prisma.WorkOrderEventoListRelationFilter
+  qcChecklistItems?: Prisma.QcChecklistItemListRelationFilter
+  qcInspections?: Prisma.QcInspectionListRelationFilter
+  qcCheckResults?: Prisma.QcCheckResultListRelationFilter
+  qcNonConformita?: Prisma.QcNonConformitaListRelationFilter
+  qcEventi?: Prisma.QcEventoListRelationFilter
 }, "id" | "partitaIva">
 
 export type TenantOrderByWithAggregationInput = {
@@ -455,6 +470,11 @@ export type TenantCreateInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -500,6 +520,11 @@ export type TenantUncheckedCreateInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -545,6 +570,11 @@ export type TenantUpdateInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -590,6 +620,11 @@ export type TenantUncheckedUpdateInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -1173,6 +1208,76 @@ export type TenantUpdateOneRequiredWithoutWhatsappMessagesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutWhatsappMessagesInput, Prisma.TenantUpdateWithoutWhatsappMessagesInput>, Prisma.TenantUncheckedUpdateWithoutWhatsappMessagesInput>
 }
 
+export type TenantCreateNestedOneWithoutQcChecklistItemsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutQcChecklistItemsInput, Prisma.TenantUncheckedCreateWithoutQcChecklistItemsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutQcChecklistItemsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutQcChecklistItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutQcChecklistItemsInput, Prisma.TenantUncheckedCreateWithoutQcChecklistItemsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutQcChecklistItemsInput
+  upsert?: Prisma.TenantUpsertWithoutQcChecklistItemsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutQcChecklistItemsInput, Prisma.TenantUpdateWithoutQcChecklistItemsInput>, Prisma.TenantUncheckedUpdateWithoutQcChecklistItemsInput>
+}
+
+export type TenantCreateNestedOneWithoutQcInspectionsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutQcInspectionsInput, Prisma.TenantUncheckedCreateWithoutQcInspectionsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutQcInspectionsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutQcInspectionsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutQcInspectionsInput, Prisma.TenantUncheckedCreateWithoutQcInspectionsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutQcInspectionsInput
+  upsert?: Prisma.TenantUpsertWithoutQcInspectionsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutQcInspectionsInput, Prisma.TenantUpdateWithoutQcInspectionsInput>, Prisma.TenantUncheckedUpdateWithoutQcInspectionsInput>
+}
+
+export type TenantCreateNestedOneWithoutQcCheckResultsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutQcCheckResultsInput, Prisma.TenantUncheckedCreateWithoutQcCheckResultsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutQcCheckResultsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutQcCheckResultsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutQcCheckResultsInput, Prisma.TenantUncheckedCreateWithoutQcCheckResultsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutQcCheckResultsInput
+  upsert?: Prisma.TenantUpsertWithoutQcCheckResultsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutQcCheckResultsInput, Prisma.TenantUpdateWithoutQcCheckResultsInput>, Prisma.TenantUncheckedUpdateWithoutQcCheckResultsInput>
+}
+
+export type TenantCreateNestedOneWithoutQcNonConformitaInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutQcNonConformitaInput, Prisma.TenantUncheckedCreateWithoutQcNonConformitaInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutQcNonConformitaInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutQcNonConformitaNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutQcNonConformitaInput, Prisma.TenantUncheckedCreateWithoutQcNonConformitaInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutQcNonConformitaInput
+  upsert?: Prisma.TenantUpsertWithoutQcNonConformitaInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutQcNonConformitaInput, Prisma.TenantUpdateWithoutQcNonConformitaInput>, Prisma.TenantUncheckedUpdateWithoutQcNonConformitaInput>
+}
+
+export type TenantCreateNestedOneWithoutQcEventiInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutQcEventiInput, Prisma.TenantUncheckedCreateWithoutQcEventiInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutQcEventiInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutQcEventiNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutQcEventiInput, Prisma.TenantUncheckedCreateWithoutQcEventiInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutQcEventiInput
+  upsert?: Prisma.TenantUpsertWithoutQcEventiInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutQcEventiInput, Prisma.TenantUpdateWithoutQcEventiInput>, Prisma.TenantUncheckedUpdateWithoutQcEventiInput>
+}
+
 export type TenantCreateWithoutUsersInput = {
   id?: string
   ragioneSociale: string
@@ -1215,6 +1320,11 @@ export type TenantCreateWithoutUsersInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutUsersInput = {
@@ -1259,6 +1369,11 @@ export type TenantUncheckedCreateWithoutUsersInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutUsersInput = {
@@ -1319,6 +1434,11 @@ export type TenantUpdateWithoutUsersInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutUsersInput = {
@@ -1363,6 +1483,11 @@ export type TenantUncheckedUpdateWithoutUsersInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutClientsInput = {
@@ -1407,6 +1532,11 @@ export type TenantCreateWithoutClientsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutClientsInput = {
@@ -1451,6 +1581,11 @@ export type TenantUncheckedCreateWithoutClientsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutClientsInput = {
@@ -1511,6 +1646,11 @@ export type TenantUpdateWithoutClientsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutClientsInput = {
@@ -1555,6 +1695,11 @@ export type TenantUncheckedUpdateWithoutClientsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutVehiclesInput = {
@@ -1599,6 +1744,11 @@ export type TenantCreateWithoutVehiclesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutVehiclesInput = {
@@ -1643,6 +1793,11 @@ export type TenantUncheckedCreateWithoutVehiclesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutVehiclesInput = {
@@ -1703,6 +1858,11 @@ export type TenantUpdateWithoutVehiclesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutVehiclesInput = {
@@ -1747,6 +1907,11 @@ export type TenantUncheckedUpdateWithoutVehiclesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQuotesInput = {
@@ -1791,6 +1956,11 @@ export type TenantCreateWithoutQuotesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQuotesInput = {
@@ -1835,6 +2005,11 @@ export type TenantUncheckedCreateWithoutQuotesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQuotesInput = {
@@ -1895,6 +2070,11 @@ export type TenantUpdateWithoutQuotesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQuotesInput = {
@@ -1939,6 +2119,11 @@ export type TenantUncheckedUpdateWithoutQuotesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDamageAnalysesInput = {
@@ -1983,6 +2168,11 @@ export type TenantCreateWithoutDamageAnalysesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
@@ -2027,6 +2217,11 @@ export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDamageAnalysesInput = {
@@ -2087,6 +2282,11 @@ export type TenantUpdateWithoutDamageAnalysesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
@@ -2131,6 +2331,11 @@ export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDamageItemsInput = {
@@ -2175,6 +2380,11 @@ export type TenantCreateWithoutDamageItemsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDamageItemsInput = {
@@ -2219,6 +2429,11 @@ export type TenantUncheckedCreateWithoutDamageItemsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDamageItemsInput = {
@@ -2279,6 +2494,11 @@ export type TenantUpdateWithoutDamageItemsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDamageItemsInput = {
@@ -2323,6 +2543,11 @@ export type TenantUncheckedUpdateWithoutDamageItemsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInsuranceGapAnalysesInput = {
@@ -2367,6 +2592,11 @@ export type TenantCreateWithoutInsuranceGapAnalysesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInsuranceGapAnalysesInput = {
@@ -2411,6 +2641,11 @@ export type TenantUncheckedCreateWithoutInsuranceGapAnalysesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInsuranceGapAnalysesInput = {
@@ -2471,6 +2706,11 @@ export type TenantUpdateWithoutInsuranceGapAnalysesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
@@ -2515,6 +2755,11 @@ export type TenantUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInsuranceGapItemsInput = {
@@ -2559,6 +2804,11 @@ export type TenantCreateWithoutInsuranceGapItemsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInsuranceGapItemsInput = {
@@ -2603,6 +2853,11 @@ export type TenantUncheckedCreateWithoutInsuranceGapItemsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInsuranceGapItemsInput = {
@@ -2663,6 +2918,11 @@ export type TenantUpdateWithoutInsuranceGapItemsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInsuranceGapItemsInput = {
@@ -2707,6 +2967,11 @@ export type TenantUncheckedUpdateWithoutInsuranceGapItemsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInsuranceGapSuggestionsInput = {
@@ -2751,6 +3016,11 @@ export type TenantCreateWithoutInsuranceGapSuggestionsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInsuranceGapSuggestionsInput = {
@@ -2795,6 +3065,11 @@ export type TenantUncheckedCreateWithoutInsuranceGapSuggestionsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInsuranceGapSuggestionsInput = {
@@ -2855,6 +3130,11 @@ export type TenantUpdateWithoutInsuranceGapSuggestionsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInsuranceGapSuggestionsInput = {
@@ -2899,6 +3179,11 @@ export type TenantUncheckedUpdateWithoutInsuranceGapSuggestionsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartsInput = {
@@ -2943,6 +3228,11 @@ export type TenantCreateWithoutPartsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartsInput = {
@@ -2987,6 +3277,11 @@ export type TenantUncheckedCreateWithoutPartsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartsInput = {
@@ -3047,6 +3342,11 @@ export type TenantUpdateWithoutPartsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartsInput = {
@@ -3091,6 +3391,11 @@ export type TenantUncheckedUpdateWithoutPartsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSupplierOrdersInput = {
@@ -3135,6 +3440,11 @@ export type TenantCreateWithoutSupplierOrdersInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
@@ -3179,6 +3489,11 @@ export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSupplierOrdersInput = {
@@ -3239,6 +3554,11 @@ export type TenantUpdateWithoutSupplierOrdersInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
@@ -3283,6 +3603,11 @@ export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutLoanerCarsInput = {
@@ -3327,6 +3652,11 @@ export type TenantCreateWithoutLoanerCarsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutLoanerCarsInput = {
@@ -3371,6 +3701,11 @@ export type TenantUncheckedCreateWithoutLoanerCarsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutLoanerCarsInput = {
@@ -3431,6 +3766,11 @@ export type TenantUpdateWithoutLoanerCarsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
@@ -3475,6 +3815,11 @@ export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAppointmentsInput = {
@@ -3519,6 +3864,11 @@ export type TenantCreateWithoutAppointmentsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAppointmentsInput = {
@@ -3563,6 +3913,11 @@ export type TenantUncheckedCreateWithoutAppointmentsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAppointmentsInput = {
@@ -3623,6 +3978,11 @@ export type TenantUpdateWithoutAppointmentsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAppointmentsInput = {
@@ -3667,6 +4027,11 @@ export type TenantUncheckedUpdateWithoutAppointmentsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSinistriInput = {
@@ -3711,6 +4076,11 @@ export type TenantCreateWithoutSinistriInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSinistriInput = {
@@ -3755,6 +4125,11 @@ export type TenantUncheckedCreateWithoutSinistriInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSinistriInput = {
@@ -3815,6 +4190,11 @@ export type TenantUpdateWithoutSinistriInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSinistriInput = {
@@ -3859,6 +4239,11 @@ export type TenantUncheckedUpdateWithoutSinistriInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPortalAccessesInput = {
@@ -3903,6 +4288,11 @@ export type TenantCreateWithoutPortalAccessesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPortalAccessesInput = {
@@ -3947,6 +4337,11 @@ export type TenantUncheckedCreateWithoutPortalAccessesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPortalAccessesInput = {
@@ -4007,6 +4402,11 @@ export type TenantUpdateWithoutPortalAccessesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
@@ -4051,6 +4451,11 @@ export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPortalActionsInput = {
@@ -4095,6 +4500,11 @@ export type TenantCreateWithoutPortalActionsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPortalActionsInput = {
@@ -4139,6 +4549,11 @@ export type TenantUncheckedCreateWithoutPortalActionsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPortalActionsInput = {
@@ -4199,6 +4614,11 @@ export type TenantUpdateWithoutPortalActionsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPortalActionsInput = {
@@ -4243,6 +4663,11 @@ export type TenantUncheckedUpdateWithoutPortalActionsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWorkOrdersInput = {
@@ -4287,6 +4712,11 @@ export type TenantCreateWithoutWorkOrdersInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWorkOrdersInput = {
@@ -4331,6 +4761,11 @@ export type TenantUncheckedCreateWithoutWorkOrdersInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWorkOrdersInput = {
@@ -4391,6 +4826,11 @@ export type TenantUpdateWithoutWorkOrdersInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWorkOrdersInput = {
@@ -4435,6 +4875,11 @@ export type TenantUncheckedUpdateWithoutWorkOrdersInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWorkOrderTimeEntriesInput = {
@@ -4479,6 +4924,11 @@ export type TenantCreateWithoutWorkOrderTimeEntriesInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
@@ -4523,6 +4973,11 @@ export type TenantUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWorkOrderTimeEntriesInput = {
@@ -4583,6 +5038,11 @@ export type TenantUpdateWithoutWorkOrderTimeEntriesInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
@@ -4627,6 +5087,11 @@ export type TenantUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWorkOrderEventiInput = {
@@ -4671,6 +5136,11 @@ export type TenantCreateWithoutWorkOrderEventiInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWorkOrderEventiInput = {
@@ -4715,6 +5185,11 @@ export type TenantUncheckedCreateWithoutWorkOrderEventiInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWorkOrderEventiInput = {
@@ -4775,6 +5250,11 @@ export type TenantUpdateWithoutWorkOrderEventiInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWorkOrderEventiInput = {
@@ -4819,6 +5299,11 @@ export type TenantUncheckedUpdateWithoutWorkOrderEventiInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPortalDocumentsInput = {
@@ -4863,6 +5348,11 @@ export type TenantCreateWithoutPortalDocumentsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPortalDocumentsInput = {
@@ -4907,6 +5397,11 @@ export type TenantUncheckedCreateWithoutPortalDocumentsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPortalDocumentsInput = {
@@ -4967,6 +5462,11 @@ export type TenantUpdateWithoutPortalDocumentsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPortalDocumentsInput = {
@@ -5011,6 +5511,11 @@ export type TenantUncheckedUpdateWithoutPortalDocumentsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAiAnalysesInput = {
@@ -5055,6 +5560,11 @@ export type TenantCreateWithoutAiAnalysesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAiAnalysesInput = {
@@ -5099,6 +5609,11 @@ export type TenantUncheckedCreateWithoutAiAnalysesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAiAnalysesInput = {
@@ -5159,6 +5674,11 @@ export type TenantUpdateWithoutAiAnalysesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
@@ -5203,6 +5723,11 @@ export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAssistantLogsInput = {
@@ -5247,6 +5772,11 @@ export type TenantCreateWithoutAssistantLogsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAssistantLogsInput = {
@@ -5291,6 +5821,11 @@ export type TenantUncheckedCreateWithoutAssistantLogsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAssistantLogsInput = {
@@ -5351,6 +5886,11 @@ export type TenantUpdateWithoutAssistantLogsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
@@ -5395,6 +5935,11 @@ export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutProfitRecordsInput = {
@@ -5439,6 +5984,11 @@ export type TenantCreateWithoutProfitRecordsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutProfitRecordsInput = {
@@ -5483,6 +6033,11 @@ export type TenantUncheckedCreateWithoutProfitRecordsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutProfitRecordsInput = {
@@ -5543,6 +6098,11 @@ export type TenantUpdateWithoutProfitRecordsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutProfitRecordsInput = {
@@ -5587,6 +6147,11 @@ export type TenantUncheckedUpdateWithoutProfitRecordsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutProfitSettingsInput = {
@@ -5631,6 +6196,11 @@ export type TenantCreateWithoutProfitSettingsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutProfitSettingsInput = {
@@ -5675,6 +6245,11 @@ export type TenantUncheckedCreateWithoutProfitSettingsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutProfitSettingsInput = {
@@ -5735,6 +6310,11 @@ export type TenantUpdateWithoutProfitSettingsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutProfitSettingsInput = {
@@ -5779,6 +6359,11 @@ export type TenantUncheckedUpdateWithoutProfitSettingsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelaySettingsInput = {
@@ -5823,6 +6408,11 @@ export type TenantCreateWithoutDelaySettingsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelaySettingsInput = {
@@ -5867,6 +6457,11 @@ export type TenantUncheckedCreateWithoutDelaySettingsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelaySettingsInput = {
@@ -5927,6 +6522,11 @@ export type TenantUpdateWithoutDelaySettingsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelaySettingsInput = {
@@ -5971,6 +6571,11 @@ export type TenantUncheckedUpdateWithoutDelaySettingsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelayPlansInput = {
@@ -6015,6 +6620,11 @@ export type TenantCreateWithoutDelayPlansInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelayPlansInput = {
@@ -6059,6 +6669,11 @@ export type TenantUncheckedCreateWithoutDelayPlansInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelayPlansInput = {
@@ -6119,6 +6734,11 @@ export type TenantUpdateWithoutDelayPlansInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelayPlansInput = {
@@ -6163,6 +6783,11 @@ export type TenantUncheckedUpdateWithoutDelayPlansInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelayForecastsInput = {
@@ -6207,6 +6832,11 @@ export type TenantCreateWithoutDelayForecastsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelayForecastsInput = {
@@ -6251,6 +6881,11 @@ export type TenantUncheckedCreateWithoutDelayForecastsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelayForecastsInput = {
@@ -6311,6 +6946,11 @@ export type TenantUpdateWithoutDelayForecastsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelayForecastsInput = {
@@ -6355,6 +6995,11 @@ export type TenantUncheckedUpdateWithoutDelayForecastsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelayDecisionsInput = {
@@ -6399,6 +7044,11 @@ export type TenantCreateWithoutDelayDecisionsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelayDecisionsInput = {
@@ -6443,6 +7093,11 @@ export type TenantUncheckedCreateWithoutDelayDecisionsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelayDecisionsInput = {
@@ -6503,6 +7158,11 @@ export type TenantUpdateWithoutDelayDecisionsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelayDecisionsInput = {
@@ -6547,6 +7207,11 @@ export type TenantUncheckedUpdateWithoutDelayDecisionsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutTrackedPartsInput = {
@@ -6591,6 +7256,11 @@ export type TenantCreateWithoutTrackedPartsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutTrackedPartsInput = {
@@ -6635,6 +7305,11 @@ export type TenantUncheckedCreateWithoutTrackedPartsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutTrackedPartsInput = {
@@ -6695,6 +7370,11 @@ export type TenantUpdateWithoutTrackedPartsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutTrackedPartsInput = {
@@ -6739,6 +7419,11 @@ export type TenantUncheckedUpdateWithoutTrackedPartsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartBlocksInput = {
@@ -6783,6 +7468,11 @@ export type TenantCreateWithoutPartBlocksInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartBlocksInput = {
@@ -6827,6 +7517,11 @@ export type TenantUncheckedCreateWithoutPartBlocksInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartBlocksInput = {
@@ -6887,6 +7582,11 @@ export type TenantUpdateWithoutPartBlocksInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartBlocksInput = {
@@ -6931,6 +7631,11 @@ export type TenantUncheckedUpdateWithoutPartBlocksInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartDocumentsInput = {
@@ -6975,6 +7680,11 @@ export type TenantCreateWithoutPartDocumentsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartDocumentsInput = {
@@ -7019,6 +7729,11 @@ export type TenantUncheckedCreateWithoutPartDocumentsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartDocumentsInput = {
@@ -7079,6 +7794,11 @@ export type TenantUpdateWithoutPartDocumentsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartDocumentsInput = {
@@ -7123,6 +7843,11 @@ export type TenantUncheckedUpdateWithoutPartDocumentsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWhatsappTemplatesInput = {
@@ -7167,6 +7892,11 @@ export type TenantCreateWithoutWhatsappTemplatesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWhatsappTemplatesInput = {
@@ -7211,6 +7941,11 @@ export type TenantUncheckedCreateWithoutWhatsappTemplatesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWhatsappTemplatesInput = {
@@ -7271,6 +8006,11 @@ export type TenantUpdateWithoutWhatsappTemplatesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWhatsappTemplatesInput = {
@@ -7315,6 +8055,11 @@ export type TenantUncheckedUpdateWithoutWhatsappTemplatesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWhatsappMessagesInput = {
@@ -7359,6 +8104,11 @@ export type TenantCreateWithoutWhatsappMessagesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWhatsappMessagesInput = {
@@ -7403,6 +8153,11 @@ export type TenantUncheckedCreateWithoutWhatsappMessagesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWhatsappMessagesInput = {
@@ -7463,6 +8218,11 @@ export type TenantUpdateWithoutWhatsappMessagesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWhatsappMessagesInput = {
@@ -7507,6 +8267,1071 @@ export type TenantUncheckedUpdateWithoutWhatsappMessagesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
   workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutQcChecklistItemsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutQcChecklistItemsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutQcChecklistItemsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutQcChecklistItemsInput, Prisma.TenantUncheckedCreateWithoutQcChecklistItemsInput>
+}
+
+export type TenantUpsertWithoutQcChecklistItemsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutQcChecklistItemsInput, Prisma.TenantUncheckedUpdateWithoutQcChecklistItemsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutQcChecklistItemsInput, Prisma.TenantUncheckedCreateWithoutQcChecklistItemsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutQcChecklistItemsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutQcChecklistItemsInput, Prisma.TenantUncheckedUpdateWithoutQcChecklistItemsInput>
+}
+
+export type TenantUpdateWithoutQcChecklistItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutQcChecklistItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutQcInspectionsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutQcInspectionsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutQcInspectionsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutQcInspectionsInput, Prisma.TenantUncheckedCreateWithoutQcInspectionsInput>
+}
+
+export type TenantUpsertWithoutQcInspectionsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutQcInspectionsInput, Prisma.TenantUncheckedUpdateWithoutQcInspectionsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutQcInspectionsInput, Prisma.TenantUncheckedCreateWithoutQcInspectionsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutQcInspectionsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutQcInspectionsInput, Prisma.TenantUncheckedUpdateWithoutQcInspectionsInput>
+}
+
+export type TenantUpdateWithoutQcInspectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutQcInspectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutQcCheckResultsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutQcCheckResultsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutQcCheckResultsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutQcCheckResultsInput, Prisma.TenantUncheckedCreateWithoutQcCheckResultsInput>
+}
+
+export type TenantUpsertWithoutQcCheckResultsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutQcCheckResultsInput, Prisma.TenantUncheckedUpdateWithoutQcCheckResultsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutQcCheckResultsInput, Prisma.TenantUncheckedCreateWithoutQcCheckResultsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutQcCheckResultsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutQcCheckResultsInput, Prisma.TenantUncheckedUpdateWithoutQcCheckResultsInput>
+}
+
+export type TenantUpdateWithoutQcCheckResultsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutQcCheckResultsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutQcNonConformitaInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutQcNonConformitaInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutQcNonConformitaInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutQcNonConformitaInput, Prisma.TenantUncheckedCreateWithoutQcNonConformitaInput>
+}
+
+export type TenantUpsertWithoutQcNonConformitaInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutQcNonConformitaInput, Prisma.TenantUncheckedUpdateWithoutQcNonConformitaInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutQcNonConformitaInput, Prisma.TenantUncheckedCreateWithoutQcNonConformitaInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutQcNonConformitaInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutQcNonConformitaInput, Prisma.TenantUncheckedUpdateWithoutQcNonConformitaInput>
+}
+
+export type TenantUpdateWithoutQcNonConformitaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutQcNonConformitaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutQcEventiInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutQcEventiInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutQcEventiInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutQcEventiInput, Prisma.TenantUncheckedCreateWithoutQcEventiInput>
+}
+
+export type TenantUpsertWithoutQcEventiInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutQcEventiInput, Prisma.TenantUncheckedUpdateWithoutQcEventiInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutQcEventiInput, Prisma.TenantUncheckedCreateWithoutQcEventiInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutQcEventiInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutQcEventiInput, Prisma.TenantUncheckedUpdateWithoutQcEventiInput>
+}
+
+export type TenantUpdateWithoutQcEventiInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutQcEventiInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 
@@ -7546,6 +9371,11 @@ export type TenantCountOutputType = {
   workOrders: number
   workOrderTimeEntries: number
   workOrderEventi: number
+  qcChecklistItems: number
+  qcInspections: number
+  qcCheckResults: number
+  qcNonConformita: number
+  qcEventi: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -7580,6 +9410,11 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   workOrders?: boolean | TenantCountOutputTypeCountWorkOrdersArgs
   workOrderTimeEntries?: boolean | TenantCountOutputTypeCountWorkOrderTimeEntriesArgs
   workOrderEventi?: boolean | TenantCountOutputTypeCountWorkOrderEventiArgs
+  qcChecklistItems?: boolean | TenantCountOutputTypeCountQcChecklistItemsArgs
+  qcInspections?: boolean | TenantCountOutputTypeCountQcInspectionsArgs
+  qcCheckResults?: boolean | TenantCountOutputTypeCountQcCheckResultsArgs
+  qcNonConformita?: boolean | TenantCountOutputTypeCountQcNonConformitaArgs
+  qcEventi?: boolean | TenantCountOutputTypeCountQcEventiArgs
 }
 
 /**
@@ -7809,6 +9644,41 @@ export type TenantCountOutputTypeCountWorkOrderEventiArgs<ExtArgs extends runtim
   where?: Prisma.WorkOrderEventoWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountQcChecklistItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QcChecklistItemWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountQcInspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QcInspectionWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountQcCheckResultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QcCheckResultWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountQcNonConformitaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QcNonConformitaWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountQcEventiArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QcEventoWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -7853,6 +9723,11 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   workOrders?: boolean | Prisma.Tenant$workOrdersArgs<ExtArgs>
   workOrderTimeEntries?: boolean | Prisma.Tenant$workOrderTimeEntriesArgs<ExtArgs>
   workOrderEventi?: boolean | Prisma.Tenant$workOrderEventiArgs<ExtArgs>
+  qcChecklistItems?: boolean | Prisma.Tenant$qcChecklistItemsArgs<ExtArgs>
+  qcInspections?: boolean | Prisma.Tenant$qcInspectionsArgs<ExtArgs>
+  qcCheckResults?: boolean | Prisma.Tenant$qcCheckResultsArgs<ExtArgs>
+  qcNonConformita?: boolean | Prisma.Tenant$qcNonConformitaArgs<ExtArgs>
+  qcEventi?: boolean | Prisma.Tenant$qcEventiArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -7927,6 +9802,11 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   workOrders?: boolean | Prisma.Tenant$workOrdersArgs<ExtArgs>
   workOrderTimeEntries?: boolean | Prisma.Tenant$workOrderTimeEntriesArgs<ExtArgs>
   workOrderEventi?: boolean | Prisma.Tenant$workOrderEventiArgs<ExtArgs>
+  qcChecklistItems?: boolean | Prisma.Tenant$qcChecklistItemsArgs<ExtArgs>
+  qcInspections?: boolean | Prisma.Tenant$qcInspectionsArgs<ExtArgs>
+  qcCheckResults?: boolean | Prisma.Tenant$qcCheckResultsArgs<ExtArgs>
+  qcNonConformita?: boolean | Prisma.Tenant$qcNonConformitaArgs<ExtArgs>
+  qcEventi?: boolean | Prisma.Tenant$qcEventiArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -7968,6 +9848,11 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     workOrders: Prisma.$WorkOrderPayload<ExtArgs>[]
     workOrderTimeEntries: Prisma.$WorkOrderTimeEntryPayload<ExtArgs>[]
     workOrderEventi: Prisma.$WorkOrderEventoPayload<ExtArgs>[]
+    qcChecklistItems: Prisma.$QcChecklistItemPayload<ExtArgs>[]
+    qcInspections: Prisma.$QcInspectionPayload<ExtArgs>[]
+    qcCheckResults: Prisma.$QcCheckResultPayload<ExtArgs>[]
+    qcNonConformita: Prisma.$QcNonConformitaPayload<ExtArgs>[]
+    qcEventi: Prisma.$QcEventoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -8406,6 +10291,11 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   workOrders<T extends Prisma.Tenant$workOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$workOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workOrderTimeEntries<T extends Prisma.Tenant$workOrderTimeEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$workOrderTimeEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderTimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workOrderEventi<T extends Prisma.Tenant$workOrderEventiArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$workOrderEventiArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderEventoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qcChecklistItems<T extends Prisma.Tenant$qcChecklistItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$qcChecklistItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcChecklistItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qcInspections<T extends Prisma.Tenant$qcInspectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$qcInspectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcInspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qcCheckResults<T extends Prisma.Tenant$qcCheckResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$qcCheckResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcCheckResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qcNonConformita<T extends Prisma.Tenant$qcNonConformitaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$qcNonConformitaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcNonConformitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qcEventi<T extends Prisma.Tenant$qcEventiArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$qcEventiArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcEventoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9616,6 +11506,126 @@ export type Tenant$workOrderEventiArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.WorkOrderEventoScalarFieldEnum | Prisma.WorkOrderEventoScalarFieldEnum[]
+}
+
+/**
+ * Tenant.qcChecklistItems
+ */
+export type Tenant$qcChecklistItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QcChecklistItem
+   */
+  select?: Prisma.QcChecklistItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QcChecklistItem
+   */
+  omit?: Prisma.QcChecklistItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QcChecklistItemInclude<ExtArgs> | null
+  where?: Prisma.QcChecklistItemWhereInput
+  orderBy?: Prisma.QcChecklistItemOrderByWithRelationInput | Prisma.QcChecklistItemOrderByWithRelationInput[]
+  cursor?: Prisma.QcChecklistItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QcChecklistItemScalarFieldEnum | Prisma.QcChecklistItemScalarFieldEnum[]
+}
+
+/**
+ * Tenant.qcInspections
+ */
+export type Tenant$qcInspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QcInspection
+   */
+  select?: Prisma.QcInspectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QcInspection
+   */
+  omit?: Prisma.QcInspectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QcInspectionInclude<ExtArgs> | null
+  where?: Prisma.QcInspectionWhereInput
+  orderBy?: Prisma.QcInspectionOrderByWithRelationInput | Prisma.QcInspectionOrderByWithRelationInput[]
+  cursor?: Prisma.QcInspectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QcInspectionScalarFieldEnum | Prisma.QcInspectionScalarFieldEnum[]
+}
+
+/**
+ * Tenant.qcCheckResults
+ */
+export type Tenant$qcCheckResultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QcCheckResult
+   */
+  select?: Prisma.QcCheckResultSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QcCheckResult
+   */
+  omit?: Prisma.QcCheckResultOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QcCheckResultInclude<ExtArgs> | null
+  where?: Prisma.QcCheckResultWhereInput
+  orderBy?: Prisma.QcCheckResultOrderByWithRelationInput | Prisma.QcCheckResultOrderByWithRelationInput[]
+  cursor?: Prisma.QcCheckResultWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QcCheckResultScalarFieldEnum | Prisma.QcCheckResultScalarFieldEnum[]
+}
+
+/**
+ * Tenant.qcNonConformita
+ */
+export type Tenant$qcNonConformitaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QcNonConformita
+   */
+  select?: Prisma.QcNonConformitaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QcNonConformita
+   */
+  omit?: Prisma.QcNonConformitaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QcNonConformitaInclude<ExtArgs> | null
+  where?: Prisma.QcNonConformitaWhereInput
+  orderBy?: Prisma.QcNonConformitaOrderByWithRelationInput | Prisma.QcNonConformitaOrderByWithRelationInput[]
+  cursor?: Prisma.QcNonConformitaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QcNonConformitaScalarFieldEnum | Prisma.QcNonConformitaScalarFieldEnum[]
+}
+
+/**
+ * Tenant.qcEventi
+ */
+export type Tenant$qcEventiArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QcEvento
+   */
+  select?: Prisma.QcEventoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QcEvento
+   */
+  omit?: Prisma.QcEventoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QcEventoInclude<ExtArgs> | null
+  where?: Prisma.QcEventoWhereInput
+  orderBy?: Prisma.QcEventoOrderByWithRelationInput | Prisma.QcEventoOrderByWithRelationInput[]
+  cursor?: Prisma.QcEventoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QcEventoScalarFieldEnum | Prisma.QcEventoScalarFieldEnum[]
 }
 
 /**

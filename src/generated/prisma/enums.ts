@@ -207,3 +207,43 @@ export const WhatsappMessageStato = {
 } as const
 
 export type WhatsappMessageStato = (typeof WhatsappMessageStato)[keyof typeof WhatsappMessageStato]
+
+
+export const QcInspectionStato = {
+  IN_CORSO: 'IN_CORSO',
+  APPROVATO: 'APPROVATO'
+} as const
+
+export type QcInspectionStato = (typeof QcInspectionStato)[keyof typeof QcInspectionStato]
+
+
+export const QcEsito = {
+  OK: 'OK',
+  DA_VERIFICARE: 'DA_VERIFICARE',
+  NON_CONFORME: 'NON_CONFORME',
+  NA: 'NA'
+} as const
+
+export type QcEsito = (typeof QcEsito)[keyof typeof QcEsito]
+
+
+export const QcNonConformitaStato = {
+  APERTA: 'APERTA',
+  IN_LAVORAZIONE: 'IN_LAVORAZIONE',
+  RISOLTA: 'RISOLTA',
+  CHIUSA: 'CHIUSA'
+} as const
+
+export type QcNonConformitaStato = (typeof QcNonConformitaStato)[keyof typeof QcNonConformitaStato]
+
+
+export const QcEventoTipo = {
+  ISPEZIONE_AVVIATA: 'ISPEZIONE_AVVIATA',
+  ESITO_AGGIORNATO: 'ESITO_AGGIORNATO',
+  NON_CONFORMITA_APERTA: 'NON_CONFORMITA_APERTA',
+  NON_CONFORMITA_AGGIORNATA: 'NON_CONFORMITA_AGGIORNATA',
+  NON_CONFORMITA_CHIUSA: 'NON_CONFORMITA_CHIUSA',
+  QC_APPROVATO: 'QC_APPROVATO'
+} as const
+
+export type QcEventoTipo = (typeof QcEventoTipo)[keyof typeof QcEventoTipo]

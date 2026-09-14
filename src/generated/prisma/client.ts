@@ -266,3 +266,28 @@ export type WhatsappTemplate = Prisma.WhatsappTemplateModel
  * 
  */
 export type WhatsappMessage = Prisma.WhatsappMessageModel
+/**
+ * Model QcChecklistItem
+ * 
+ */
+export type QcChecklistItem = Prisma.QcChecklistItemModel
+/**
+ * Model QcInspection
+ * 
+ */
+export type QcInspection = Prisma.QcInspectionModel
+/**
+ * Model QcCheckResult
+ * 
+ */
+export type QcCheckResult = Prisma.QcCheckResultModel
+/**
+ * Model QcNonConformita
+ * 
+ */
+export type QcNonConformita = Prisma.QcNonConformitaModel
+/**
+ * Model QcEvento
+ * 
+ */
+export type QcEvento = Prisma.QcEventoModel

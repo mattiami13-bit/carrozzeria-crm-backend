@@ -385,6 +385,7 @@ export type VehicleWhereInput = {
   portalActions?: Prisma.PortalActionListRelationFilter
   portalDocuments?: Prisma.PortalDocumentListRelationFilter
   workOrders?: Prisma.WorkOrderListRelationFilter
+  qcInspections?: Prisma.QcInspectionListRelationFilter
 }
 
 export type VehicleOrderByWithRelationInput = {
@@ -433,6 +434,7 @@ export type VehicleOrderByWithRelationInput = {
   portalActions?: Prisma.PortalActionOrderByRelationAggregateInput
   portalDocuments?: Prisma.PortalDocumentOrderByRelationAggregateInput
   workOrders?: Prisma.WorkOrderOrderByRelationAggregateInput
+  qcInspections?: Prisma.QcInspectionOrderByRelationAggregateInput
 }
 
 export type VehicleWhereUniqueInput = Prisma.AtLeast<{
@@ -484,6 +486,7 @@ export type VehicleWhereUniqueInput = Prisma.AtLeast<{
   portalActions?: Prisma.PortalActionListRelationFilter
   portalDocuments?: Prisma.PortalDocumentListRelationFilter
   workOrders?: Prisma.WorkOrderListRelationFilter
+  qcInspections?: Prisma.QcInspectionListRelationFilter
 }, "id">
 
 export type VehicleOrderByWithAggregationInput = {
@@ -591,6 +594,7 @@ export type VehicleCreateInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateInput = {
@@ -636,6 +640,7 @@ export type VehicleUncheckedCreateInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUpdateInput = {
@@ -681,6 +686,7 @@ export type VehicleUpdateInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateInput = {
@@ -726,6 +732,7 @@ export type VehicleUncheckedUpdateInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateManyInput = {
@@ -1299,6 +1306,20 @@ export type VehicleUpdateOneRequiredWithoutWhatsappMessagesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.VehicleUpdateToOneWithWhereWithoutWhatsappMessagesInput, Prisma.VehicleUpdateWithoutWhatsappMessagesInput>, Prisma.VehicleUncheckedUpdateWithoutWhatsappMessagesInput>
 }
 
+export type VehicleCreateNestedOneWithoutQcInspectionsInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutQcInspectionsInput, Prisma.VehicleUncheckedCreateWithoutQcInspectionsInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutQcInspectionsInput
+  connect?: Prisma.VehicleWhereUniqueInput
+}
+
+export type VehicleUpdateOneRequiredWithoutQcInspectionsNestedInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutQcInspectionsInput, Prisma.VehicleUncheckedCreateWithoutQcInspectionsInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutQcInspectionsInput
+  upsert?: Prisma.VehicleUpsertWithoutQcInspectionsInput
+  connect?: Prisma.VehicleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VehicleUpdateToOneWithWhereWithoutQcInspectionsInput, Prisma.VehicleUpdateWithoutQcInspectionsInput>, Prisma.VehicleUncheckedUpdateWithoutQcInspectionsInput>
+}
+
 export type VehicleCreateWithoutTenantInput = {
   id?: string
   marca: string
@@ -1341,6 +1362,7 @@ export type VehicleCreateWithoutTenantInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutTenantInput = {
@@ -1385,6 +1407,7 @@ export type VehicleUncheckedCreateWithoutTenantInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutTenantInput = {
@@ -1485,6 +1508,7 @@ export type VehicleCreateWithoutTecnicoInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutTecnicoInput = {
@@ -1529,6 +1553,7 @@ export type VehicleUncheckedCreateWithoutTecnicoInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutTecnicoInput = {
@@ -1599,6 +1624,7 @@ export type VehicleCreateWithoutClientInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutClientInput = {
@@ -1643,6 +1669,7 @@ export type VehicleUncheckedCreateWithoutClientInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutClientInput = {
@@ -1713,6 +1740,7 @@ export type VehicleCreateWithoutStageHistoryInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutStageHistoryInput = {
@@ -1757,6 +1785,7 @@ export type VehicleUncheckedCreateWithoutStageHistoryInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutStageHistoryInput = {
@@ -1817,6 +1846,7 @@ export type VehicleUpdateWithoutStageHistoryInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutStageHistoryInput = {
@@ -1861,6 +1891,7 @@ export type VehicleUncheckedUpdateWithoutStageHistoryInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutPhotosInput = {
@@ -1905,6 +1936,7 @@ export type VehicleCreateWithoutPhotosInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutPhotosInput = {
@@ -1949,6 +1981,7 @@ export type VehicleUncheckedCreateWithoutPhotosInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutPhotosInput = {
@@ -2009,6 +2042,7 @@ export type VehicleUpdateWithoutPhotosInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutPhotosInput = {
@@ -2053,6 +2087,7 @@ export type VehicleUncheckedUpdateWithoutPhotosInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutQuotesInput = {
@@ -2097,6 +2132,7 @@ export type VehicleCreateWithoutQuotesInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutQuotesInput = {
@@ -2141,6 +2177,7 @@ export type VehicleUncheckedCreateWithoutQuotesInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutQuotesInput = {
@@ -2201,6 +2238,7 @@ export type VehicleUpdateWithoutQuotesInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutQuotesInput = {
@@ -2245,6 +2283,7 @@ export type VehicleUncheckedUpdateWithoutQuotesInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutDamageAnalysesInput = {
@@ -2289,6 +2328,7 @@ export type VehicleCreateWithoutDamageAnalysesInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutDamageAnalysesInput = {
@@ -2333,6 +2373,7 @@ export type VehicleUncheckedCreateWithoutDamageAnalysesInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutDamageAnalysesInput = {
@@ -2393,6 +2434,7 @@ export type VehicleUpdateWithoutDamageAnalysesInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutDamageAnalysesInput = {
@@ -2437,6 +2479,7 @@ export type VehicleUncheckedUpdateWithoutDamageAnalysesInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutInsuranceGapAnalysesInput = {
@@ -2481,6 +2524,7 @@ export type VehicleCreateWithoutInsuranceGapAnalysesInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutInsuranceGapAnalysesInput = {
@@ -2525,6 +2569,7 @@ export type VehicleUncheckedCreateWithoutInsuranceGapAnalysesInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutInsuranceGapAnalysesInput = {
@@ -2585,6 +2630,7 @@ export type VehicleUpdateWithoutInsuranceGapAnalysesInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
@@ -2629,6 +2675,7 @@ export type VehicleUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutAppointmentsInput = {
@@ -2673,6 +2720,7 @@ export type VehicleCreateWithoutAppointmentsInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutAppointmentsInput = {
@@ -2717,6 +2765,7 @@ export type VehicleUncheckedCreateWithoutAppointmentsInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutAppointmentsInput = {
@@ -2777,6 +2826,7 @@ export type VehicleUpdateWithoutAppointmentsInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutAppointmentsInput = {
@@ -2821,6 +2871,7 @@ export type VehicleUncheckedUpdateWithoutAppointmentsInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutSinistriInput = {
@@ -2865,6 +2916,7 @@ export type VehicleCreateWithoutSinistriInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutSinistriInput = {
@@ -2909,6 +2961,7 @@ export type VehicleUncheckedCreateWithoutSinistriInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutSinistriInput = {
@@ -2969,6 +3022,7 @@ export type VehicleUpdateWithoutSinistriInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutSinistriInput = {
@@ -3013,6 +3067,7 @@ export type VehicleUncheckedUpdateWithoutSinistriInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutPortalAccessesInput = {
@@ -3057,6 +3112,7 @@ export type VehicleCreateWithoutPortalAccessesInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutPortalAccessesInput = {
@@ -3101,6 +3157,7 @@ export type VehicleUncheckedCreateWithoutPortalAccessesInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutPortalAccessesInput = {
@@ -3161,6 +3218,7 @@ export type VehicleUpdateWithoutPortalAccessesInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutPortalAccessesInput = {
@@ -3205,6 +3263,7 @@ export type VehicleUncheckedUpdateWithoutPortalAccessesInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutPortalActionsInput = {
@@ -3249,6 +3308,7 @@ export type VehicleCreateWithoutPortalActionsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutPortalActionsInput = {
@@ -3293,6 +3353,7 @@ export type VehicleUncheckedCreateWithoutPortalActionsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutPortalActionsInput = {
@@ -3353,6 +3414,7 @@ export type VehicleUpdateWithoutPortalActionsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutPortalActionsInput = {
@@ -3397,6 +3459,7 @@ export type VehicleUncheckedUpdateWithoutPortalActionsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutWorkOrdersInput = {
@@ -3441,6 +3504,7 @@ export type VehicleCreateWithoutWorkOrdersInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutVehicleInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutWorkOrdersInput = {
@@ -3485,6 +3549,7 @@ export type VehicleUncheckedCreateWithoutWorkOrdersInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutVehicleInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutWorkOrdersInput = {
@@ -3545,6 +3610,7 @@ export type VehicleUpdateWithoutWorkOrdersInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutVehicleNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutWorkOrdersInput = {
@@ -3589,6 +3655,7 @@ export type VehicleUncheckedUpdateWithoutWorkOrdersInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutVehicleNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutPortalDocumentsInput = {
@@ -3633,6 +3700,7 @@ export type VehicleCreateWithoutPortalDocumentsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutVehicleInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutPortalDocumentsInput = {
@@ -3677,6 +3745,7 @@ export type VehicleUncheckedCreateWithoutPortalDocumentsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutVehicleInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutPortalDocumentsInput = {
@@ -3737,6 +3806,7 @@ export type VehicleUpdateWithoutPortalDocumentsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutVehicleNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutPortalDocumentsInput = {
@@ -3781,6 +3851,7 @@ export type VehicleUncheckedUpdateWithoutPortalDocumentsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutVehicleNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutProfitRecordInput = {
@@ -3825,6 +3896,7 @@ export type VehicleCreateWithoutProfitRecordInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutProfitRecordInput = {
@@ -3869,6 +3941,7 @@ export type VehicleUncheckedCreateWithoutProfitRecordInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutProfitRecordInput = {
@@ -3929,6 +4002,7 @@ export type VehicleUpdateWithoutProfitRecordInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutProfitRecordInput = {
@@ -3973,6 +4047,7 @@ export type VehicleUncheckedUpdateWithoutProfitRecordInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutDelayPlanInput = {
@@ -4017,6 +4092,7 @@ export type VehicleCreateWithoutDelayPlanInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutDelayPlanInput = {
@@ -4061,6 +4137,7 @@ export type VehicleUncheckedCreateWithoutDelayPlanInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutDelayPlanInput = {
@@ -4121,6 +4198,7 @@ export type VehicleUpdateWithoutDelayPlanInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutDelayPlanInput = {
@@ -4165,6 +4243,7 @@ export type VehicleUncheckedUpdateWithoutDelayPlanInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutDelayForecastsInput = {
@@ -4209,6 +4288,7 @@ export type VehicleCreateWithoutDelayForecastsInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutDelayForecastsInput = {
@@ -4253,6 +4333,7 @@ export type VehicleUncheckedCreateWithoutDelayForecastsInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutDelayForecastsInput = {
@@ -4313,6 +4394,7 @@ export type VehicleUpdateWithoutDelayForecastsInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutDelayForecastsInput = {
@@ -4357,6 +4439,7 @@ export type VehicleUncheckedUpdateWithoutDelayForecastsInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutDelayDecisionsInput = {
@@ -4401,6 +4484,7 @@ export type VehicleCreateWithoutDelayDecisionsInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutDelayDecisionsInput = {
@@ -4445,6 +4529,7 @@ export type VehicleUncheckedCreateWithoutDelayDecisionsInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutDelayDecisionsInput = {
@@ -4505,6 +4590,7 @@ export type VehicleUpdateWithoutDelayDecisionsInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutDelayDecisionsInput = {
@@ -4549,6 +4635,7 @@ export type VehicleUncheckedUpdateWithoutDelayDecisionsInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutTrackedPartsInput = {
@@ -4593,6 +4680,7 @@ export type VehicleCreateWithoutTrackedPartsInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutTrackedPartsInput = {
@@ -4637,6 +4725,7 @@ export type VehicleUncheckedCreateWithoutTrackedPartsInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutTrackedPartsInput = {
@@ -4697,6 +4786,7 @@ export type VehicleUpdateWithoutTrackedPartsInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutTrackedPartsInput = {
@@ -4741,6 +4831,7 @@ export type VehicleUncheckedUpdateWithoutTrackedPartsInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutPartBlocksInput = {
@@ -4785,6 +4876,7 @@ export type VehicleCreateWithoutPartBlocksInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutPartBlocksInput = {
@@ -4829,6 +4921,7 @@ export type VehicleUncheckedCreateWithoutPartBlocksInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutPartBlocksInput = {
@@ -4889,6 +4982,7 @@ export type VehicleUpdateWithoutPartBlocksInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutPartBlocksInput = {
@@ -4933,6 +5027,7 @@ export type VehicleUncheckedUpdateWithoutPartBlocksInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutWhatsappMessagesInput = {
@@ -4977,6 +5072,7 @@ export type VehicleCreateWithoutWhatsappMessagesInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutWhatsappMessagesInput = {
@@ -5021,6 +5117,7 @@ export type VehicleUncheckedCreateWithoutWhatsappMessagesInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutWhatsappMessagesInput = {
@@ -5081,6 +5178,7 @@ export type VehicleUpdateWithoutWhatsappMessagesInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutWhatsappMessagesInput = {
@@ -5122,6 +5220,203 @@ export type VehicleUncheckedUpdateWithoutWhatsappMessagesInput = {
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
   damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
   insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
+  portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleCreateWithoutQcInspectionsInput = {
+  id?: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  tenant: Prisma.TenantCreateNestedOneWithoutVehiclesInput
+  client: Prisma.ClientCreateNestedOneWithoutVehiclesInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
+  tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
+  photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutVehicleInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutVehicleInput
+  portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
+  portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleUncheckedCreateWithoutQcInspectionsInput = {
+  id?: string
+  tenantId: string
+  clientId: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  tecnicoId?: string | null
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
+  photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutVehicleInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutVehicleInput
+  portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleCreateOrConnectWithoutQcInspectionsInput = {
+  where: Prisma.VehicleWhereUniqueInput
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutQcInspectionsInput, Prisma.VehicleUncheckedCreateWithoutQcInspectionsInput>
+}
+
+export type VehicleUpsertWithoutQcInspectionsInput = {
+  update: Prisma.XOR<Prisma.VehicleUpdateWithoutQcInspectionsInput, Prisma.VehicleUncheckedUpdateWithoutQcInspectionsInput>
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutQcInspectionsInput, Prisma.VehicleUncheckedCreateWithoutQcInspectionsInput>
+  where?: Prisma.VehicleWhereInput
+}
+
+export type VehicleUpdateToOneWithWhereWithoutQcInspectionsInput = {
+  where?: Prisma.VehicleWhereInput
+  data: Prisma.XOR<Prisma.VehicleUpdateWithoutQcInspectionsInput, Prisma.VehicleUncheckedUpdateWithoutQcInspectionsInput>
+}
+
+export type VehicleUpdateWithoutQcInspectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutVehiclesNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutVehiclesNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
+  tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutVehicleNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutVehicleNestedInput
+  portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
+  portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleUncheckedUpdateWithoutQcInspectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  tecnicoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutVehicleNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
@@ -5195,6 +5490,7 @@ export type VehicleUpdateWithoutTenantInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutTenantInput = {
@@ -5239,6 +5535,7 @@ export type VehicleUncheckedUpdateWithoutTenantInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateManyWithoutTenantInput = {
@@ -5335,6 +5632,7 @@ export type VehicleUpdateWithoutTecnicoInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutTecnicoInput = {
@@ -5379,6 +5677,7 @@ export type VehicleUncheckedUpdateWithoutTecnicoInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateManyWithoutTecnicoInput = {
@@ -5475,6 +5774,7 @@ export type VehicleUpdateWithoutClientInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutClientInput = {
@@ -5519,6 +5819,7 @@ export type VehicleUncheckedUpdateWithoutClientInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateManyWithoutClientInput = {
@@ -5569,6 +5870,7 @@ export type VehicleCountOutputType = {
   portalActions: number
   portalDocuments: number
   workOrders: number
+  qcInspections: number
 }
 
 export type VehicleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5588,6 +5890,7 @@ export type VehicleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   portalActions?: boolean | VehicleCountOutputTypeCountPortalActionsArgs
   portalDocuments?: boolean | VehicleCountOutputTypeCountPortalDocumentsArgs
   workOrders?: boolean | VehicleCountOutputTypeCountWorkOrdersArgs
+  qcInspections?: boolean | VehicleCountOutputTypeCountQcInspectionsArgs
 }
 
 /**
@@ -5712,6 +6015,13 @@ export type VehicleCountOutputTypeCountWorkOrdersArgs<ExtArgs extends runtime.Ty
   where?: Prisma.WorkOrderWhereInput
 }
 
+/**
+ * VehicleCountOutputType without action
+ */
+export type VehicleCountOutputTypeCountQcInspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QcInspectionWhereInput
+}
+
 
 export type VehicleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -5759,6 +6069,7 @@ export type VehicleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   portalActions?: boolean | Prisma.Vehicle$portalActionsArgs<ExtArgs>
   portalDocuments?: boolean | Prisma.Vehicle$portalDocumentsArgs<ExtArgs>
   workOrders?: boolean | Prisma.Vehicle$workOrdersArgs<ExtArgs>
+  qcInspections?: boolean | Prisma.Vehicle$qcInspectionsArgs<ExtArgs>
   _count?: boolean | Prisma.VehicleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["vehicle"]>
 
@@ -5872,6 +6183,7 @@ export type VehicleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   portalActions?: boolean | Prisma.Vehicle$portalActionsArgs<ExtArgs>
   portalDocuments?: boolean | Prisma.Vehicle$portalDocumentsArgs<ExtArgs>
   workOrders?: boolean | Prisma.Vehicle$workOrdersArgs<ExtArgs>
+  qcInspections?: boolean | Prisma.Vehicle$qcInspectionsArgs<ExtArgs>
   _count?: boolean | Prisma.VehicleCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type VehicleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5909,6 +6221,7 @@ export type $VehiclePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     portalActions: Prisma.$PortalActionPayload<ExtArgs>[]
     portalDocuments: Prisma.$PortalDocumentPayload<ExtArgs>[]
     workOrders: Prisma.$WorkOrderPayload<ExtArgs>[]
+    qcInspections: Prisma.$QcInspectionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -6350,6 +6663,7 @@ export interface Prisma__VehicleClient<T, Null = never, ExtArgs extends runtime.
   portalActions<T extends Prisma.Vehicle$portalActionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$portalActionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PortalActionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   portalDocuments<T extends Prisma.Vehicle$portalDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$portalDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PortalDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workOrders<T extends Prisma.Vehicle$workOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$workOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qcInspections<T extends Prisma.Vehicle$qcInspectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$qcInspectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcInspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7242,6 +7556,30 @@ export type Vehicle$workOrdersArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.WorkOrderScalarFieldEnum | Prisma.WorkOrderScalarFieldEnum[]
+}
+
+/**
+ * Vehicle.qcInspections
+ */
+export type Vehicle$qcInspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QcInspection
+   */
+  select?: Prisma.QcInspectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QcInspection
+   */
+  omit?: Prisma.QcInspectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QcInspectionInclude<ExtArgs> | null
+  where?: Prisma.QcInspectionWhereInput
+  orderBy?: Prisma.QcInspectionOrderByWithRelationInput | Prisma.QcInspectionOrderByWithRelationInput[]
+  cursor?: Prisma.QcInspectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QcInspectionScalarFieldEnum | Prisma.QcInspectionScalarFieldEnum[]
 }
 
 /**

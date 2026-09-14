@@ -95,7 +95,12 @@ export const ModelName = {
   TrackedPartDocument: 'TrackedPartDocument',
   PhotoTimelineEdit: 'PhotoTimelineEdit',
   WhatsappTemplate: 'WhatsappTemplate',
-  WhatsappMessage: 'WhatsappMessage'
+  WhatsappMessage: 'WhatsappMessage',
+  QcChecklistItem: 'QcChecklistItem',
+  QcInspection: 'QcInspection',
+  QcCheckResult: 'QcCheckResult',
+  QcNonConformita: 'QcNonConformita',
+  QcEvento: 'QcEvento'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -809,6 +814,87 @@ export const WhatsappMessageScalarFieldEnum = {
 } as const
 
 export type WhatsappMessageScalarFieldEnum = (typeof WhatsappMessageScalarFieldEnum)[keyof typeof WhatsappMessageScalarFieldEnum]
+
+
+export const QcChecklistItemScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  chiave: 'chiave',
+  etichetta: 'etichetta',
+  ordine: 'ordine',
+  critico: 'critico',
+  attivo: 'attivo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QcChecklistItemScalarFieldEnum = (typeof QcChecklistItemScalarFieldEnum)[keyof typeof QcChecklistItemScalarFieldEnum]
+
+
+export const QcInspectionScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  stato: 'stato',
+  iniziataDaId: 'iniziataDaId',
+  approvatoDaId: 'approvatoDaId',
+  approvatoAt: 'approvatoAt',
+  createdAt: 'createdAt'
+} as const
+
+export type QcInspectionScalarFieldEnum = (typeof QcInspectionScalarFieldEnum)[keyof typeof QcInspectionScalarFieldEnum]
+
+
+export const QcCheckResultScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  inspectionId: 'inspectionId',
+  chiave: 'chiave',
+  etichetta: 'etichetta',
+  critico: 'critico',
+  esito: 'esito',
+  note: 'note',
+  aggiornatoDaId: 'aggiornatoDaId',
+  aggiornatoAt: 'aggiornatoAt',
+  createdAt: 'createdAt'
+} as const
+
+export type QcCheckResultScalarFieldEnum = (typeof QcCheckResultScalarFieldEnum)[keyof typeof QcCheckResultScalarFieldEnum]
+
+
+export const QcNonConformitaScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  inspectionId: 'inspectionId',
+  checkResultId: 'checkResultId',
+  descrizione: 'descrizione',
+  fotografia: 'fotografia',
+  fotografiaMime: 'fotografiaMime',
+  fotografiaSize: 'fotografiaSize',
+  responsabileId: 'responsabileId',
+  azioneCorrettiva: 'azioneCorrettiva',
+  data: 'data',
+  stato: 'stato',
+  creataDaId: 'creataDaId',
+  chiusaAt: 'chiusaAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QcNonConformitaScalarFieldEnum = (typeof QcNonConformitaScalarFieldEnum)[keyof typeof QcNonConformitaScalarFieldEnum]
+
+
+export const QcEventoScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  inspectionId: 'inspectionId',
+  tipo: 'tipo',
+  dettagli: 'dettagli',
+  attoreId: 'attoreId',
+  createdAt: 'createdAt'
+} as const
+
+export type QcEventoScalarFieldEnum = (typeof QcEventoScalarFieldEnum)[keyof typeof QcEventoScalarFieldEnum]
 
 
 export const SortOrder = {
