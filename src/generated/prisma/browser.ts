@@ -143,6 +143,21 @@ export type PortalAccess = Prisma.PortalAccessModel
  */
 export type PortalAction = Prisma.PortalActionModel
 /**
+ * Model WorkOrder
+ * 
+ */
+export type WorkOrder = Prisma.WorkOrderModel
+/**
+ * Model WorkOrderTimeEntry
+ * 
+ */
+export type WorkOrderTimeEntry = Prisma.WorkOrderTimeEntryModel
+/**
+ * Model WorkOrderEvento
+ * 
+ */
+export type WorkOrderEvento = Prisma.WorkOrderEventoModel
+/**
  * Model PortalDocument
  * 
  */

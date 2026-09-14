@@ -136,6 +136,49 @@ export const PortalActionTipo = {
 export type PortalActionTipo = (typeof PortalActionTipo)[keyof typeof PortalActionTipo]
 
 
+export const Reparto = {
+  CARROZZERIA: 'CARROZZERIA',
+  MECCANICA: 'MECCANICA',
+  VERNICIATURA: 'VERNICIATURA',
+  FINITURA: 'FINITURA'
+} as const
+
+export type Reparto = (typeof Reparto)[keyof typeof Reparto]
+
+
+export const PrioritaLavorazione = {
+  BASSA: 'BASSA',
+  NORMALE: 'NORMALE',
+  ALTA: 'ALTA',
+  URGENTE: 'URGENTE'
+} as const
+
+export type PrioritaLavorazione = (typeof PrioritaLavorazione)[keyof typeof PrioritaLavorazione]
+
+
+export const WorkOrderStato = {
+  DA_INIZIARE: 'DA_INIZIARE',
+  IN_CORSO: 'IN_CORSO',
+  IN_PAUSA: 'IN_PAUSA',
+  COMPLETATA: 'COMPLETATA'
+} as const
+
+export type WorkOrderStato = (typeof WorkOrderStato)[keyof typeof WorkOrderStato]
+
+
+export const WorkOrderEventoTipo = {
+  CREATA: 'CREATA',
+  INIZIATA: 'INIZIATA',
+  PAUSA: 'PAUSA',
+  RIPRESA: 'RIPRESA',
+  TERMINATA: 'TERMINATA',
+  CORREZIONE_MANUALE: 'CORREZIONE_MANUALE',
+  RIASSEGNATA: 'RIASSEGNATA'
+} as const
+
+export type WorkOrderEventoTipo = (typeof WorkOrderEventoTipo)[keyof typeof WorkOrderEventoTipo]
+
+
 export const WhatsappEvento = {
   ACCETTAZIONE: 'ACCETTAZIONE',
   PREVENTIVO: 'PREVENTIVO',

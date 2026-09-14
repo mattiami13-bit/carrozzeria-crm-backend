@@ -76,6 +76,9 @@ export const ModelName = {
   Sinistro: 'Sinistro',
   PortalAccess: 'PortalAccess',
   PortalAction: 'PortalAction',
+  WorkOrder: 'WorkOrder',
+  WorkOrderTimeEntry: 'WorkOrderTimeEntry',
+  WorkOrderEvento: 'WorkOrderEvento',
   PortalDocument: 'PortalDocument',
   AiAnalysisLog: 'AiAnalysisLog',
   AiAssistantLog: 'AiAssistantLog',
@@ -119,6 +122,7 @@ export const TenantScalarFieldEnum = {
   trialEndsAt: 'trialEndsAt',
   limiteAnalisiIAMensile: 'limiteAnalisiIAMensile',
   limiteAssistenteIAMensile: 'limiteAssistenteIAMensile',
+  consentiLavorazioniSimultanee: 'consentiLavorazioniSimultanee',
   createdAt: 'createdAt'
 } as const
 
@@ -521,6 +525,58 @@ export const PortalActionScalarFieldEnum = {
 } as const
 
 export type PortalActionScalarFieldEnum = (typeof PortalActionScalarFieldEnum)[keyof typeof PortalActionScalarFieldEnum]
+
+
+export const WorkOrderScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  tecnicoId: 'tecnicoId',
+  titolo: 'titolo',
+  reparto: 'reparto',
+  priorita: 'priorita',
+  oreStimate: 'oreStimate',
+  noteTecniche: 'noteTecniche',
+  dataConsegna: 'dataConsegna',
+  stato: 'stato',
+  creatoDaId: 'creatoDaId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WorkOrderScalarFieldEnum = (typeof WorkOrderScalarFieldEnum)[keyof typeof WorkOrderScalarFieldEnum]
+
+
+export const WorkOrderTimeEntryScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  workOrderId: 'workOrderId',
+  tecnicoId: 'tecnicoId',
+  inizio: 'inizio',
+  fine: 'fine',
+  correzioneManuale: 'correzioneManuale',
+  correzioneMotivo: 'correzioneMotivo',
+  correzioneDaId: 'correzioneDaId',
+  correzioneAt: 'correzioneAt',
+  createdAt: 'createdAt'
+} as const
+
+export type WorkOrderTimeEntryScalarFieldEnum = (typeof WorkOrderTimeEntryScalarFieldEnum)[keyof typeof WorkOrderTimeEntryScalarFieldEnum]
+
+
+export const WorkOrderEventoScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  workOrderId: 'workOrderId',
+  tipo: 'tipo',
+  daStato: 'daStato',
+  aStato: 'aStato',
+  dettagli: 'dettagli',
+  attoreId: 'attoreId',
+  createdAt: 'createdAt'
+} as const
+
+export type WorkOrderEventoScalarFieldEnum = (typeof WorkOrderEventoScalarFieldEnum)[keyof typeof WorkOrderEventoScalarFieldEnum]
 
 
 export const PortalDocumentScalarFieldEnum = {

@@ -38,6 +38,10 @@ model Tenant {
   trialEndsAt    DateTime?
   limiteAnalisiIAMensile Int?
   limiteAssistenteIAMensile Int?
+  // Modalità Tecnico: di default un tecnico non può avere due lavorazioni
+  // IN_CORSO insieme (evita di sommare per errore ore su due pratiche);
+  // l'admin può abilitarlo esplicitamente per i casi in cui serve davvero.
+  consentiLavorazioniSimultanee Boolean @default(false)
   createdAt      DateTime  @default(now())
 
   delaySettings DelaySettings?
@@ -70,6 +74,9 @@ model Tenant {
   whatsappMessages  WhatsappMessage[]
   portalActions     PortalAction[]
   portalDocuments   PortalDocument[]
+  workOrders        WorkOrder[]
+  workOrderTimeEntries WorkOrderTimeEntry[]
+  workOrderEventi   WorkOrderEvento[]
 
 
 
@@ -113,6 +120,11 @@ model User {
   whatsappMessaggiInviati    WhatsappMessage[]
   portalActionsGestite       PortalAction[]
   portalDocumentiCaricati    PortalDocument[]
+  workOrdersAssegnati        WorkOrder[]            @relation("WorkOrderTecnico")
+  workOrdersCreati           WorkOrder[]            @relation("WorkOrderCreatore")
+  workOrderTimeEntries       WorkOrderTimeEntry[]   @relation("WorkOrderTimeEntryTecnico")
+  workOrderTimeCorrezioni    WorkOrderTimeEntry[]   @relation("WorkOrderTimeEntryCorrettore")
+  workOrderEventiAttore      WorkOrderEvento[]      @relation("WorkOrderEventoAttore")
 
   @@index([tenantId])
   @@map("users")
@@ -221,6 +233,7 @@ model Vehicle {
   whatsappMessages WhatsappMessage[]
   portalActions PortalAction[]
   portalDocuments PortalDocument[]
+  workOrders WorkOrder[]
 
   @@index([tenantId])
   @@index([tenantId, targa])
@@ -874,6 +887,135 @@ model PortalAction {
 // informativa, dichiarazioni): byte salvati su Postgres e mai esposti con
 // un URL pubblico, esattamente come i documenti di Parts Tracking e i
 // documenti assicurazione di Insurance Gap Analysis.
+// -----------------------------
+// MODALITÀ TECNICO: lavorazioni e tracciamento ore
+// -----------------------------
+// Reparto: stessi 4 valori usati (in minuscolo, dentro un JSON) dal
+// Predictive Delay AI (src/lib/delay.js DEPARTMENTS) — qui come enum
+// Prisma nativo per le lavorazioni assegnate ai tecnici.
+enum Reparto {
+  CARROZZERIA
+  MECCANICA
+  VERNICIATURA
+  FINITURA
+}
+
+enum PrioritaLavorazione {
+  BASSA
+  NORMALE
+  ALTA
+  URGENTE
+}
+
+enum WorkOrderStato {
+  DA_INIZIARE
+  IN_CORSO
+  IN_PAUSA
+  COMPLETATA
+}
+
+enum WorkOrderEventoTipo {
+  CREATA
+  INIZIATA
+  PAUSA
+  RIPRESA
+  TERMINATA
+  CORREZIONE_MANUALE
+  RIASSEGNATA
+}
+
+// Una lavorazione assegnata a un tecnico su una pratica ("I miei lavori").
+// Le ore reali non sono un campo diretto: si calcolano sempre sommando i
+// segmenti in WorkOrderTimeEntry, così pausa/ripresa/correzioni restano
+// sempre coerenti con lo storico invece che con un totale scollegato.
+model WorkOrder {
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+
+  tecnicoId String
+  tecnico   User   @relation("WorkOrderTecnico", fields: [tecnicoId], references: [id])
+
+  titolo        String
+  reparto       Reparto
+  priorita      PrioritaLavorazione @default(NORMALE)
+  oreStimate    Decimal             @db.Decimal(6, 2)
+  noteTecniche  String?             @db.Text
+  dataConsegna  DateTime?
+
+  stato WorkOrderStato @default(DA_INIZIARE)
+
+  creatoDaId String?
+  creatoDa   User?   @relation("WorkOrderCreatore", fields: [creatoDaId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  timeEntries WorkOrderTimeEntry[]
+  eventi      WorkOrderEvento[]
+
+  @@index([tenantId])
+  @@index([tenantId, tecnicoId])
+  @@index([vehicleId])
+  @@map("work_orders")
+}
+
+// Segmenti di lavoro effettivo: un intervallo per ogni INIZIA→PAUSA/TERMINA.
+// Le ore reali di una lavorazione sono sempre la somma di questi segmenti,
+// mai un totale inserito a mano (le correzioni manuali modificano un
+// segmento esistente, con motivo obbligatorio e tracciate in WorkOrderEvento).
+model WorkOrderTimeEntry {
+  id          String    @id @default(cuid())
+  tenantId    String
+  tenant      Tenant    @relation(fields: [tenantId], references: [id])
+  workOrderId String
+  workOrder   WorkOrder @relation(fields: [workOrderId], references: [id])
+  tecnicoId   String
+  tecnico     User      @relation("WorkOrderTimeEntryTecnico", fields: [tecnicoId], references: [id])
+
+  inizio DateTime
+  fine   DateTime?
+
+  correzioneManuale Boolean   @default(false)
+  correzioneMotivo  String?   @db.Text
+  correzioneDaId    String?
+  correzioneDa      User?     @relation("WorkOrderTimeEntryCorrettore", fields: [correzioneDaId], references: [id])
+  correzioneAt      DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([tenantId])
+  @@index([workOrderId])
+  @@index([tecnicoId])
+  @@map("work_order_time_entries")
+}
+
+// Storico modifiche immutabile: ogni cambio di stato e ogni correzione
+// manuale, chi l'ha fatto e quando.
+model WorkOrderEvento {
+  id          String    @id @default(cuid())
+  tenantId    String
+  tenant      Tenant    @relation(fields: [tenantId], references: [id])
+  workOrderId String
+  workOrder   WorkOrder @relation(fields: [workOrderId], references: [id])
+
+  tipo     WorkOrderEventoTipo
+  daStato  WorkOrderStato?
+  aStato   WorkOrderStato?
+  dettagli Json?
+
+  attoreId String?
+  attore   User?   @relation("WorkOrderEventoAttore", fields: [attoreId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@index([tenantId])
+  @@index([workOrderId])
+  @@map("work_order_eventi")
+}
+
 model PortalDocument {
   id       String @id @default(cuid())
   tenantId String

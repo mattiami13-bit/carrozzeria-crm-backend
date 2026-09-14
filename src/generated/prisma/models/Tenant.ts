@@ -44,6 +44,7 @@ export type TenantMinAggregateOutputType = {
   trialEndsAt: Date | null
   limiteAnalisiIAMensile: number | null
   limiteAssistenteIAMensile: number | null
+  consentiLavorazioniSimultanee: boolean | null
   createdAt: Date | null
 }
 
@@ -55,6 +56,7 @@ export type TenantMaxAggregateOutputType = {
   trialEndsAt: Date | null
   limiteAnalisiIAMensile: number | null
   limiteAssistenteIAMensile: number | null
+  consentiLavorazioniSimultanee: boolean | null
   createdAt: Date | null
 }
 
@@ -66,6 +68,7 @@ export type TenantCountAggregateOutputType = {
   trialEndsAt: number
   limiteAnalisiIAMensile: number
   limiteAssistenteIAMensile: number
+  consentiLavorazioniSimultanee: number
   createdAt: number
   _all: number
 }
@@ -89,6 +92,7 @@ export type TenantMinAggregateInputType = {
   trialEndsAt?: true
   limiteAnalisiIAMensile?: true
   limiteAssistenteIAMensile?: true
+  consentiLavorazioniSimultanee?: true
   createdAt?: true
 }
 
@@ -100,6 +104,7 @@ export type TenantMaxAggregateInputType = {
   trialEndsAt?: true
   limiteAnalisiIAMensile?: true
   limiteAssistenteIAMensile?: true
+  consentiLavorazioniSimultanee?: true
   createdAt?: true
 }
 
@@ -111,6 +116,7 @@ export type TenantCountAggregateInputType = {
   trialEndsAt?: true
   limiteAnalisiIAMensile?: true
   limiteAssistenteIAMensile?: true
+  consentiLavorazioniSimultanee?: true
   createdAt?: true
   _all?: true
 }
@@ -209,6 +215,7 @@ export type TenantGroupByOutputType = {
   trialEndsAt: Date | null
   limiteAnalisiIAMensile: number | null
   limiteAssistenteIAMensile: number | null
+  consentiLavorazioniSimultanee: boolean
   createdAt: Date
   _count: TenantCountAggregateOutputType | null
   _avg: TenantAvgAggregateOutputType | null
@@ -243,6 +250,7 @@ export type TenantWhereInput = {
   trialEndsAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   limiteAnalisiIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
   limiteAssistenteIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFilter<"Tenant"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   delaySettings?: Prisma.XOR<Prisma.DelaySettingsNullableScalarRelationFilter, Prisma.DelaySettingsWhereInput> | null
   delayPlans?: Prisma.DelayPlanListRelationFilter
@@ -274,6 +282,9 @@ export type TenantWhereInput = {
   whatsappMessages?: Prisma.WhatsappMessageListRelationFilter
   portalActions?: Prisma.PortalActionListRelationFilter
   portalDocuments?: Prisma.PortalDocumentListRelationFilter
+  workOrders?: Prisma.WorkOrderListRelationFilter
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryListRelationFilter
+  workOrderEventi?: Prisma.WorkOrderEventoListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -284,6 +295,7 @@ export type TenantOrderByWithRelationInput = {
   trialEndsAt?: Prisma.SortOrderInput | Prisma.SortOrder
   limiteAnalisiIAMensile?: Prisma.SortOrderInput | Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrderInput | Prisma.SortOrder
+  consentiLavorazioniSimultanee?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   delaySettings?: Prisma.DelaySettingsOrderByWithRelationInput
   delayPlans?: Prisma.DelayPlanOrderByRelationAggregateInput
@@ -315,6 +327,9 @@ export type TenantOrderByWithRelationInput = {
   whatsappMessages?: Prisma.WhatsappMessageOrderByRelationAggregateInput
   portalActions?: Prisma.PortalActionOrderByRelationAggregateInput
   portalDocuments?: Prisma.PortalDocumentOrderByRelationAggregateInput
+  workOrders?: Prisma.WorkOrderOrderByRelationAggregateInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryOrderByRelationAggregateInput
+  workOrderEventi?: Prisma.WorkOrderEventoOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -328,6 +343,7 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   trialEndsAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   limiteAnalisiIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
   limiteAssistenteIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFilter<"Tenant"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   delaySettings?: Prisma.XOR<Prisma.DelaySettingsNullableScalarRelationFilter, Prisma.DelaySettingsWhereInput> | null
   delayPlans?: Prisma.DelayPlanListRelationFilter
@@ -359,6 +375,9 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   whatsappMessages?: Prisma.WhatsappMessageListRelationFilter
   portalActions?: Prisma.PortalActionListRelationFilter
   portalDocuments?: Prisma.PortalDocumentListRelationFilter
+  workOrders?: Prisma.WorkOrderListRelationFilter
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryListRelationFilter
+  workOrderEventi?: Prisma.WorkOrderEventoListRelationFilter
 }, "id" | "partitaIva">
 
 export type TenantOrderByWithAggregationInput = {
@@ -369,6 +388,7 @@ export type TenantOrderByWithAggregationInput = {
   trialEndsAt?: Prisma.SortOrderInput | Prisma.SortOrder
   limiteAnalisiIAMensile?: Prisma.SortOrderInput | Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrderInput | Prisma.SortOrder
+  consentiLavorazioniSimultanee?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.TenantCountOrderByAggregateInput
   _avg?: Prisma.TenantAvgOrderByAggregateInput
@@ -388,6 +408,7 @@ export type TenantScalarWhereWithAggregatesInput = {
   trialEndsAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Tenant"> | Date | string | null
   limiteAnalisiIAMensile?: Prisma.IntNullableWithAggregatesFilter<"Tenant"> | number | null
   limiteAssistenteIAMensile?: Prisma.IntNullableWithAggregatesFilter<"Tenant"> | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolWithAggregatesFilter<"Tenant"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Tenant"> | Date | string
 }
 
@@ -399,6 +420,7 @@ export type TenantCreateInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -430,6 +452,9 @@ export type TenantCreateInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -440,6 +465,7 @@ export type TenantUncheckedCreateInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -471,6 +497,9 @@ export type TenantUncheckedCreateInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -481,6 +510,7 @@ export type TenantUpdateInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -512,6 +542,9 @@ export type TenantUpdateInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -522,6 +555,7 @@ export type TenantUncheckedUpdateInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -553,6 +587,9 @@ export type TenantUncheckedUpdateInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -563,6 +600,7 @@ export type TenantCreateManyInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
 }
 
@@ -574,6 +612,7 @@ export type TenantUpdateManyMutationInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -585,6 +624,7 @@ export type TenantUncheckedUpdateManyInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -596,6 +636,7 @@ export type TenantCountOrderByAggregateInput = {
   trialEndsAt?: Prisma.SortOrder
   limiteAnalisiIAMensile?: Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrder
+  consentiLavorazioniSimultanee?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -612,6 +653,7 @@ export type TenantMaxOrderByAggregateInput = {
   trialEndsAt?: Prisma.SortOrder
   limiteAnalisiIAMensile?: Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrder
+  consentiLavorazioniSimultanee?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -623,6 +665,7 @@ export type TenantMinOrderByAggregateInput = {
   trialEndsAt?: Prisma.SortOrder
   limiteAnalisiIAMensile?: Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrder
+  consentiLavorazioniSimultanee?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -658,6 +701,10 @@ export type NullableIntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -888,6 +935,48 @@ export type TenantUpdateOneRequiredWithoutPortalActionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutPortalActionsInput, Prisma.TenantUpdateWithoutPortalActionsInput>, Prisma.TenantUncheckedUpdateWithoutPortalActionsInput>
 }
 
+export type TenantCreateNestedOneWithoutWorkOrdersInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrdersInput, Prisma.TenantUncheckedCreateWithoutWorkOrdersInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutWorkOrdersInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutWorkOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrdersInput, Prisma.TenantUncheckedCreateWithoutWorkOrdersInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutWorkOrdersInput
+  upsert?: Prisma.TenantUpsertWithoutWorkOrdersInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutWorkOrdersInput, Prisma.TenantUpdateWithoutWorkOrdersInput>, Prisma.TenantUncheckedUpdateWithoutWorkOrdersInput>
+}
+
+export type TenantCreateNestedOneWithoutWorkOrderTimeEntriesInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrderTimeEntriesInput, Prisma.TenantUncheckedCreateWithoutWorkOrderTimeEntriesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutWorkOrderTimeEntriesInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutWorkOrderTimeEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrderTimeEntriesInput, Prisma.TenantUncheckedCreateWithoutWorkOrderTimeEntriesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutWorkOrderTimeEntriesInput
+  upsert?: Prisma.TenantUpsertWithoutWorkOrderTimeEntriesInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutWorkOrderTimeEntriesInput, Prisma.TenantUpdateWithoutWorkOrderTimeEntriesInput>, Prisma.TenantUncheckedUpdateWithoutWorkOrderTimeEntriesInput>
+}
+
+export type TenantCreateNestedOneWithoutWorkOrderEventiInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrderEventiInput, Prisma.TenantUncheckedCreateWithoutWorkOrderEventiInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutWorkOrderEventiInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutWorkOrderEventiNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrderEventiInput, Prisma.TenantUncheckedCreateWithoutWorkOrderEventiInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutWorkOrderEventiInput
+  upsert?: Prisma.TenantUpsertWithoutWorkOrderEventiInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutWorkOrderEventiInput, Prisma.TenantUpdateWithoutWorkOrderEventiInput>, Prisma.TenantUncheckedUpdateWithoutWorkOrderEventiInput>
+}
+
 export type TenantCreateNestedOneWithoutPortalDocumentsInput = {
   create?: Prisma.XOR<Prisma.TenantCreateWithoutPortalDocumentsInput, Prisma.TenantUncheckedCreateWithoutPortalDocumentsInput>
   connectOrCreate?: Prisma.TenantCreateOrConnectWithoutPortalDocumentsInput
@@ -1092,6 +1181,7 @@ export type TenantCreateWithoutUsersInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -1122,6 +1212,9 @@ export type TenantCreateWithoutUsersInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutUsersInput = {
@@ -1132,6 +1225,7 @@ export type TenantUncheckedCreateWithoutUsersInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -1162,6 +1256,9 @@ export type TenantUncheckedCreateWithoutUsersInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutUsersInput = {
@@ -1188,6 +1285,7 @@ export type TenantUpdateWithoutUsersInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -1218,6 +1316,9 @@ export type TenantUpdateWithoutUsersInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutUsersInput = {
@@ -1228,6 +1329,7 @@ export type TenantUncheckedUpdateWithoutUsersInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -1258,6 +1360,9 @@ export type TenantUncheckedUpdateWithoutUsersInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutClientsInput = {
@@ -1268,6 +1373,7 @@ export type TenantCreateWithoutClientsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -1298,6 +1404,9 @@ export type TenantCreateWithoutClientsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutClientsInput = {
@@ -1308,6 +1417,7 @@ export type TenantUncheckedCreateWithoutClientsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -1338,6 +1448,9 @@ export type TenantUncheckedCreateWithoutClientsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutClientsInput = {
@@ -1364,6 +1477,7 @@ export type TenantUpdateWithoutClientsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -1394,6 +1508,9 @@ export type TenantUpdateWithoutClientsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutClientsInput = {
@@ -1404,6 +1521,7 @@ export type TenantUncheckedUpdateWithoutClientsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -1434,6 +1552,9 @@ export type TenantUncheckedUpdateWithoutClientsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutVehiclesInput = {
@@ -1444,6 +1565,7 @@ export type TenantCreateWithoutVehiclesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -1474,6 +1596,9 @@ export type TenantCreateWithoutVehiclesInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutVehiclesInput = {
@@ -1484,6 +1609,7 @@ export type TenantUncheckedCreateWithoutVehiclesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -1514,6 +1640,9 @@ export type TenantUncheckedCreateWithoutVehiclesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutVehiclesInput = {
@@ -1540,6 +1669,7 @@ export type TenantUpdateWithoutVehiclesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -1570,6 +1700,9 @@ export type TenantUpdateWithoutVehiclesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutVehiclesInput = {
@@ -1580,6 +1713,7 @@ export type TenantUncheckedUpdateWithoutVehiclesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -1610,6 +1744,9 @@ export type TenantUncheckedUpdateWithoutVehiclesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQuotesInput = {
@@ -1620,6 +1757,7 @@ export type TenantCreateWithoutQuotesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -1650,6 +1788,9 @@ export type TenantCreateWithoutQuotesInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQuotesInput = {
@@ -1660,6 +1801,7 @@ export type TenantUncheckedCreateWithoutQuotesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -1690,6 +1832,9 @@ export type TenantUncheckedCreateWithoutQuotesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQuotesInput = {
@@ -1716,6 +1861,7 @@ export type TenantUpdateWithoutQuotesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -1746,6 +1892,9 @@ export type TenantUpdateWithoutQuotesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQuotesInput = {
@@ -1756,6 +1905,7 @@ export type TenantUncheckedUpdateWithoutQuotesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -1786,6 +1936,9 @@ export type TenantUncheckedUpdateWithoutQuotesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDamageAnalysesInput = {
@@ -1796,6 +1949,7 @@ export type TenantCreateWithoutDamageAnalysesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -1826,6 +1980,9 @@ export type TenantCreateWithoutDamageAnalysesInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
@@ -1836,6 +1993,7 @@ export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -1866,6 +2024,9 @@ export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDamageAnalysesInput = {
@@ -1892,6 +2053,7 @@ export type TenantUpdateWithoutDamageAnalysesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -1922,6 +2084,9 @@ export type TenantUpdateWithoutDamageAnalysesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
@@ -1932,6 +2097,7 @@ export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -1962,6 +2128,9 @@ export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDamageItemsInput = {
@@ -1972,6 +2141,7 @@ export type TenantCreateWithoutDamageItemsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -2002,6 +2172,9 @@ export type TenantCreateWithoutDamageItemsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDamageItemsInput = {
@@ -2012,6 +2185,7 @@ export type TenantUncheckedCreateWithoutDamageItemsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -2042,6 +2216,9 @@ export type TenantUncheckedCreateWithoutDamageItemsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDamageItemsInput = {
@@ -2068,6 +2245,7 @@ export type TenantUpdateWithoutDamageItemsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -2098,6 +2276,9 @@ export type TenantUpdateWithoutDamageItemsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDamageItemsInput = {
@@ -2108,6 +2289,7 @@ export type TenantUncheckedUpdateWithoutDamageItemsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -2138,6 +2320,9 @@ export type TenantUncheckedUpdateWithoutDamageItemsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInsuranceGapAnalysesInput = {
@@ -2148,6 +2333,7 @@ export type TenantCreateWithoutInsuranceGapAnalysesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -2178,6 +2364,9 @@ export type TenantCreateWithoutInsuranceGapAnalysesInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInsuranceGapAnalysesInput = {
@@ -2188,6 +2377,7 @@ export type TenantUncheckedCreateWithoutInsuranceGapAnalysesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -2218,6 +2408,9 @@ export type TenantUncheckedCreateWithoutInsuranceGapAnalysesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInsuranceGapAnalysesInput = {
@@ -2244,6 +2437,7 @@ export type TenantUpdateWithoutInsuranceGapAnalysesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -2274,6 +2468,9 @@ export type TenantUpdateWithoutInsuranceGapAnalysesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
@@ -2284,6 +2481,7 @@ export type TenantUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -2314,6 +2512,9 @@ export type TenantUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInsuranceGapItemsInput = {
@@ -2324,6 +2525,7 @@ export type TenantCreateWithoutInsuranceGapItemsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -2354,6 +2556,9 @@ export type TenantCreateWithoutInsuranceGapItemsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInsuranceGapItemsInput = {
@@ -2364,6 +2569,7 @@ export type TenantUncheckedCreateWithoutInsuranceGapItemsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -2394,6 +2600,9 @@ export type TenantUncheckedCreateWithoutInsuranceGapItemsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInsuranceGapItemsInput = {
@@ -2420,6 +2629,7 @@ export type TenantUpdateWithoutInsuranceGapItemsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -2450,6 +2660,9 @@ export type TenantUpdateWithoutInsuranceGapItemsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInsuranceGapItemsInput = {
@@ -2460,6 +2673,7 @@ export type TenantUncheckedUpdateWithoutInsuranceGapItemsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -2490,6 +2704,9 @@ export type TenantUncheckedUpdateWithoutInsuranceGapItemsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInsuranceGapSuggestionsInput = {
@@ -2500,6 +2717,7 @@ export type TenantCreateWithoutInsuranceGapSuggestionsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -2530,6 +2748,9 @@ export type TenantCreateWithoutInsuranceGapSuggestionsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInsuranceGapSuggestionsInput = {
@@ -2540,6 +2761,7 @@ export type TenantUncheckedCreateWithoutInsuranceGapSuggestionsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -2570,6 +2792,9 @@ export type TenantUncheckedCreateWithoutInsuranceGapSuggestionsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInsuranceGapSuggestionsInput = {
@@ -2596,6 +2821,7 @@ export type TenantUpdateWithoutInsuranceGapSuggestionsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -2626,6 +2852,9 @@ export type TenantUpdateWithoutInsuranceGapSuggestionsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInsuranceGapSuggestionsInput = {
@@ -2636,6 +2865,7 @@ export type TenantUncheckedUpdateWithoutInsuranceGapSuggestionsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -2666,6 +2896,9 @@ export type TenantUncheckedUpdateWithoutInsuranceGapSuggestionsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartsInput = {
@@ -2676,6 +2909,7 @@ export type TenantCreateWithoutPartsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -2706,6 +2940,9 @@ export type TenantCreateWithoutPartsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartsInput = {
@@ -2716,6 +2953,7 @@ export type TenantUncheckedCreateWithoutPartsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -2746,6 +2984,9 @@ export type TenantUncheckedCreateWithoutPartsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartsInput = {
@@ -2772,6 +3013,7 @@ export type TenantUpdateWithoutPartsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -2802,6 +3044,9 @@ export type TenantUpdateWithoutPartsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartsInput = {
@@ -2812,6 +3057,7 @@ export type TenantUncheckedUpdateWithoutPartsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -2842,6 +3088,9 @@ export type TenantUncheckedUpdateWithoutPartsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSupplierOrdersInput = {
@@ -2852,6 +3101,7 @@ export type TenantCreateWithoutSupplierOrdersInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -2882,6 +3132,9 @@ export type TenantCreateWithoutSupplierOrdersInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
@@ -2892,6 +3145,7 @@ export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -2922,6 +3176,9 @@ export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSupplierOrdersInput = {
@@ -2948,6 +3205,7 @@ export type TenantUpdateWithoutSupplierOrdersInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -2978,6 +3236,9 @@ export type TenantUpdateWithoutSupplierOrdersInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
@@ -2988,6 +3249,7 @@ export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -3018,6 +3280,9 @@ export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutLoanerCarsInput = {
@@ -3028,6 +3293,7 @@ export type TenantCreateWithoutLoanerCarsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -3058,6 +3324,9 @@ export type TenantCreateWithoutLoanerCarsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutLoanerCarsInput = {
@@ -3068,6 +3337,7 @@ export type TenantUncheckedCreateWithoutLoanerCarsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -3098,6 +3368,9 @@ export type TenantUncheckedCreateWithoutLoanerCarsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutLoanerCarsInput = {
@@ -3124,6 +3397,7 @@ export type TenantUpdateWithoutLoanerCarsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -3154,6 +3428,9 @@ export type TenantUpdateWithoutLoanerCarsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
@@ -3164,6 +3441,7 @@ export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -3194,6 +3472,9 @@ export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAppointmentsInput = {
@@ -3204,6 +3485,7 @@ export type TenantCreateWithoutAppointmentsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -3234,6 +3516,9 @@ export type TenantCreateWithoutAppointmentsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAppointmentsInput = {
@@ -3244,6 +3529,7 @@ export type TenantUncheckedCreateWithoutAppointmentsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -3274,6 +3560,9 @@ export type TenantUncheckedCreateWithoutAppointmentsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAppointmentsInput = {
@@ -3300,6 +3589,7 @@ export type TenantUpdateWithoutAppointmentsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -3330,6 +3620,9 @@ export type TenantUpdateWithoutAppointmentsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAppointmentsInput = {
@@ -3340,6 +3633,7 @@ export type TenantUncheckedUpdateWithoutAppointmentsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -3370,6 +3664,9 @@ export type TenantUncheckedUpdateWithoutAppointmentsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSinistriInput = {
@@ -3380,6 +3677,7 @@ export type TenantCreateWithoutSinistriInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -3410,6 +3708,9 @@ export type TenantCreateWithoutSinistriInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSinistriInput = {
@@ -3420,6 +3721,7 @@ export type TenantUncheckedCreateWithoutSinistriInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -3450,6 +3752,9 @@ export type TenantUncheckedCreateWithoutSinistriInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSinistriInput = {
@@ -3476,6 +3781,7 @@ export type TenantUpdateWithoutSinistriInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -3506,6 +3812,9 @@ export type TenantUpdateWithoutSinistriInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSinistriInput = {
@@ -3516,6 +3825,7 @@ export type TenantUncheckedUpdateWithoutSinistriInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -3546,6 +3856,9 @@ export type TenantUncheckedUpdateWithoutSinistriInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPortalAccessesInput = {
@@ -3556,6 +3869,7 @@ export type TenantCreateWithoutPortalAccessesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -3586,6 +3900,9 @@ export type TenantCreateWithoutPortalAccessesInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPortalAccessesInput = {
@@ -3596,6 +3913,7 @@ export type TenantUncheckedCreateWithoutPortalAccessesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -3626,6 +3944,9 @@ export type TenantUncheckedCreateWithoutPortalAccessesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPortalAccessesInput = {
@@ -3652,6 +3973,7 @@ export type TenantUpdateWithoutPortalAccessesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -3682,6 +4004,9 @@ export type TenantUpdateWithoutPortalAccessesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
@@ -3692,6 +4017,7 @@ export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -3722,6 +4048,9 @@ export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPortalActionsInput = {
@@ -3732,6 +4061,7 @@ export type TenantCreateWithoutPortalActionsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -3762,6 +4092,9 @@ export type TenantCreateWithoutPortalActionsInput = {
   whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPortalActionsInput = {
@@ -3772,6 +4105,7 @@ export type TenantUncheckedCreateWithoutPortalActionsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -3802,6 +4136,9 @@ export type TenantUncheckedCreateWithoutPortalActionsInput = {
   whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPortalActionsInput = {
@@ -3828,6 +4165,7 @@ export type TenantUpdateWithoutPortalActionsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -3858,6 +4196,9 @@ export type TenantUpdateWithoutPortalActionsInput = {
   whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPortalActionsInput = {
@@ -3868,6 +4209,7 @@ export type TenantUncheckedUpdateWithoutPortalActionsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -3898,9 +4240,12 @@ export type TenantUncheckedUpdateWithoutPortalActionsInput = {
   whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
-export type TenantCreateWithoutPortalDocumentsInput = {
+export type TenantCreateWithoutWorkOrdersInput = {
   id?: string
   ragioneSociale: string
   partitaIva?: string | null
@@ -3908,6 +4253,7 @@ export type TenantCreateWithoutPortalDocumentsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -3938,9 +4284,12 @@ export type TenantCreateWithoutPortalDocumentsInput = {
   whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
-export type TenantUncheckedCreateWithoutPortalDocumentsInput = {
+export type TenantUncheckedCreateWithoutWorkOrdersInput = {
   id?: string
   ragioneSociale: string
   partitaIva?: string | null
@@ -3948,6 +4297,7 @@ export type TenantUncheckedCreateWithoutPortalDocumentsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -3978,6 +4328,585 @@ export type TenantUncheckedCreateWithoutPortalDocumentsInput = {
   whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutWorkOrdersInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrdersInput, Prisma.TenantUncheckedCreateWithoutWorkOrdersInput>
+}
+
+export type TenantUpsertWithoutWorkOrdersInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutWorkOrdersInput, Prisma.TenantUncheckedUpdateWithoutWorkOrdersInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrdersInput, Prisma.TenantUncheckedCreateWithoutWorkOrdersInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutWorkOrdersInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutWorkOrdersInput, Prisma.TenantUncheckedUpdateWithoutWorkOrdersInput>
+}
+
+export type TenantUpdateWithoutWorkOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutWorkOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutWorkOrderTimeEntriesInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutWorkOrderTimeEntriesInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrderTimeEntriesInput, Prisma.TenantUncheckedCreateWithoutWorkOrderTimeEntriesInput>
+}
+
+export type TenantUpsertWithoutWorkOrderTimeEntriesInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutWorkOrderTimeEntriesInput, Prisma.TenantUncheckedUpdateWithoutWorkOrderTimeEntriesInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrderTimeEntriesInput, Prisma.TenantUncheckedCreateWithoutWorkOrderTimeEntriesInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutWorkOrderTimeEntriesInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutWorkOrderTimeEntriesInput, Prisma.TenantUncheckedUpdateWithoutWorkOrderTimeEntriesInput>
+}
+
+export type TenantUpdateWithoutWorkOrderTimeEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutWorkOrderEventiInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutWorkOrderEventiInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutWorkOrderEventiInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrderEventiInput, Prisma.TenantUncheckedCreateWithoutWorkOrderEventiInput>
+}
+
+export type TenantUpsertWithoutWorkOrderEventiInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutWorkOrderEventiInput, Prisma.TenantUncheckedUpdateWithoutWorkOrderEventiInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrderEventiInput, Prisma.TenantUncheckedCreateWithoutWorkOrderEventiInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutWorkOrderEventiInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutWorkOrderEventiInput, Prisma.TenantUncheckedUpdateWithoutWorkOrderEventiInput>
+}
+
+export type TenantUpdateWithoutWorkOrderEventiInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutWorkOrderEventiInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutPortalDocumentsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutPortalDocumentsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPortalDocumentsInput = {
@@ -4004,6 +4933,7 @@ export type TenantUpdateWithoutPortalDocumentsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -4034,6 +4964,9 @@ export type TenantUpdateWithoutPortalDocumentsInput = {
   whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPortalDocumentsInput = {
@@ -4044,6 +4977,7 @@ export type TenantUncheckedUpdateWithoutPortalDocumentsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -4074,6 +5008,9 @@ export type TenantUncheckedUpdateWithoutPortalDocumentsInput = {
   whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAiAnalysesInput = {
@@ -4084,6 +5021,7 @@ export type TenantCreateWithoutAiAnalysesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -4114,6 +5052,9 @@ export type TenantCreateWithoutAiAnalysesInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAiAnalysesInput = {
@@ -4124,6 +5065,7 @@ export type TenantUncheckedCreateWithoutAiAnalysesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -4154,6 +5096,9 @@ export type TenantUncheckedCreateWithoutAiAnalysesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAiAnalysesInput = {
@@ -4180,6 +5125,7 @@ export type TenantUpdateWithoutAiAnalysesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -4210,6 +5156,9 @@ export type TenantUpdateWithoutAiAnalysesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
@@ -4220,6 +5169,7 @@ export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -4250,6 +5200,9 @@ export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAssistantLogsInput = {
@@ -4260,6 +5213,7 @@ export type TenantCreateWithoutAssistantLogsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -4290,6 +5244,9 @@ export type TenantCreateWithoutAssistantLogsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAssistantLogsInput = {
@@ -4300,6 +5257,7 @@ export type TenantUncheckedCreateWithoutAssistantLogsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -4330,6 +5288,9 @@ export type TenantUncheckedCreateWithoutAssistantLogsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAssistantLogsInput = {
@@ -4356,6 +5317,7 @@ export type TenantUpdateWithoutAssistantLogsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -4386,6 +5348,9 @@ export type TenantUpdateWithoutAssistantLogsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
@@ -4396,6 +5361,7 @@ export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -4426,6 +5392,9 @@ export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutProfitRecordsInput = {
@@ -4436,6 +5405,7 @@ export type TenantCreateWithoutProfitRecordsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -4466,6 +5436,9 @@ export type TenantCreateWithoutProfitRecordsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutProfitRecordsInput = {
@@ -4476,6 +5449,7 @@ export type TenantUncheckedCreateWithoutProfitRecordsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -4506,6 +5480,9 @@ export type TenantUncheckedCreateWithoutProfitRecordsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutProfitRecordsInput = {
@@ -4532,6 +5509,7 @@ export type TenantUpdateWithoutProfitRecordsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -4562,6 +5540,9 @@ export type TenantUpdateWithoutProfitRecordsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutProfitRecordsInput = {
@@ -4572,6 +5553,7 @@ export type TenantUncheckedUpdateWithoutProfitRecordsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -4602,6 +5584,9 @@ export type TenantUncheckedUpdateWithoutProfitRecordsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutProfitSettingsInput = {
@@ -4612,6 +5597,7 @@ export type TenantCreateWithoutProfitSettingsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -4642,6 +5628,9 @@ export type TenantCreateWithoutProfitSettingsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutProfitSettingsInput = {
@@ -4652,6 +5641,7 @@ export type TenantUncheckedCreateWithoutProfitSettingsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -4682,6 +5672,9 @@ export type TenantUncheckedCreateWithoutProfitSettingsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutProfitSettingsInput = {
@@ -4708,6 +5701,7 @@ export type TenantUpdateWithoutProfitSettingsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -4738,6 +5732,9 @@ export type TenantUpdateWithoutProfitSettingsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutProfitSettingsInput = {
@@ -4748,6 +5745,7 @@ export type TenantUncheckedUpdateWithoutProfitSettingsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -4778,6 +5776,9 @@ export type TenantUncheckedUpdateWithoutProfitSettingsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelaySettingsInput = {
@@ -4788,6 +5789,7 @@ export type TenantCreateWithoutDelaySettingsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
   delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
@@ -4818,6 +5820,9 @@ export type TenantCreateWithoutDelaySettingsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelaySettingsInput = {
@@ -4828,6 +5833,7 @@ export type TenantUncheckedCreateWithoutDelaySettingsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
   delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
@@ -4858,6 +5864,9 @@ export type TenantUncheckedCreateWithoutDelaySettingsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelaySettingsInput = {
@@ -4884,6 +5893,7 @@ export type TenantUpdateWithoutDelaySettingsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
   delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
@@ -4914,6 +5924,9 @@ export type TenantUpdateWithoutDelaySettingsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelaySettingsInput = {
@@ -4924,6 +5937,7 @@ export type TenantUncheckedUpdateWithoutDelaySettingsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
   delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
@@ -4954,6 +5968,9 @@ export type TenantUncheckedUpdateWithoutDelaySettingsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelayPlansInput = {
@@ -4964,6 +5981,7 @@ export type TenantCreateWithoutDelayPlansInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
@@ -4994,6 +6012,9 @@ export type TenantCreateWithoutDelayPlansInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelayPlansInput = {
@@ -5004,6 +6025,7 @@ export type TenantUncheckedCreateWithoutDelayPlansInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
@@ -5034,6 +6056,9 @@ export type TenantUncheckedCreateWithoutDelayPlansInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelayPlansInput = {
@@ -5060,6 +6085,7 @@ export type TenantUpdateWithoutDelayPlansInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
@@ -5090,6 +6116,9 @@ export type TenantUpdateWithoutDelayPlansInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelayPlansInput = {
@@ -5100,6 +6129,7 @@ export type TenantUncheckedUpdateWithoutDelayPlansInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
@@ -5130,6 +6160,9 @@ export type TenantUncheckedUpdateWithoutDelayPlansInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelayForecastsInput = {
@@ -5140,6 +6173,7 @@ export type TenantCreateWithoutDelayForecastsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -5170,6 +6204,9 @@ export type TenantCreateWithoutDelayForecastsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelayForecastsInput = {
@@ -5180,6 +6217,7 @@ export type TenantUncheckedCreateWithoutDelayForecastsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -5210,6 +6248,9 @@ export type TenantUncheckedCreateWithoutDelayForecastsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelayForecastsInput = {
@@ -5236,6 +6277,7 @@ export type TenantUpdateWithoutDelayForecastsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -5266,6 +6308,9 @@ export type TenantUpdateWithoutDelayForecastsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelayForecastsInput = {
@@ -5276,6 +6321,7 @@ export type TenantUncheckedUpdateWithoutDelayForecastsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -5306,6 +6352,9 @@ export type TenantUncheckedUpdateWithoutDelayForecastsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelayDecisionsInput = {
@@ -5316,6 +6365,7 @@ export type TenantCreateWithoutDelayDecisionsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -5346,6 +6396,9 @@ export type TenantCreateWithoutDelayDecisionsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelayDecisionsInput = {
@@ -5356,6 +6409,7 @@ export type TenantUncheckedCreateWithoutDelayDecisionsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -5386,6 +6440,9 @@ export type TenantUncheckedCreateWithoutDelayDecisionsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelayDecisionsInput = {
@@ -5412,6 +6469,7 @@ export type TenantUpdateWithoutDelayDecisionsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -5442,6 +6500,9 @@ export type TenantUpdateWithoutDelayDecisionsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelayDecisionsInput = {
@@ -5452,6 +6513,7 @@ export type TenantUncheckedUpdateWithoutDelayDecisionsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -5482,6 +6544,9 @@ export type TenantUncheckedUpdateWithoutDelayDecisionsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutTrackedPartsInput = {
@@ -5492,6 +6557,7 @@ export type TenantCreateWithoutTrackedPartsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -5522,6 +6588,9 @@ export type TenantCreateWithoutTrackedPartsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutTrackedPartsInput = {
@@ -5532,6 +6601,7 @@ export type TenantUncheckedCreateWithoutTrackedPartsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -5562,6 +6632,9 @@ export type TenantUncheckedCreateWithoutTrackedPartsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutTrackedPartsInput = {
@@ -5588,6 +6661,7 @@ export type TenantUpdateWithoutTrackedPartsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -5618,6 +6692,9 @@ export type TenantUpdateWithoutTrackedPartsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutTrackedPartsInput = {
@@ -5628,6 +6705,7 @@ export type TenantUncheckedUpdateWithoutTrackedPartsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -5658,6 +6736,9 @@ export type TenantUncheckedUpdateWithoutTrackedPartsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartBlocksInput = {
@@ -5668,6 +6749,7 @@ export type TenantCreateWithoutPartBlocksInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -5698,6 +6780,9 @@ export type TenantCreateWithoutPartBlocksInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartBlocksInput = {
@@ -5708,6 +6793,7 @@ export type TenantUncheckedCreateWithoutPartBlocksInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -5738,6 +6824,9 @@ export type TenantUncheckedCreateWithoutPartBlocksInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartBlocksInput = {
@@ -5764,6 +6853,7 @@ export type TenantUpdateWithoutPartBlocksInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -5794,6 +6884,9 @@ export type TenantUpdateWithoutPartBlocksInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartBlocksInput = {
@@ -5804,6 +6897,7 @@ export type TenantUncheckedUpdateWithoutPartBlocksInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -5834,6 +6928,9 @@ export type TenantUncheckedUpdateWithoutPartBlocksInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartDocumentsInput = {
@@ -5844,6 +6941,7 @@ export type TenantCreateWithoutPartDocumentsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -5874,6 +6972,9 @@ export type TenantCreateWithoutPartDocumentsInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartDocumentsInput = {
@@ -5884,6 +6985,7 @@ export type TenantUncheckedCreateWithoutPartDocumentsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -5914,6 +7016,9 @@ export type TenantUncheckedCreateWithoutPartDocumentsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartDocumentsInput = {
@@ -5940,6 +7045,7 @@ export type TenantUpdateWithoutPartDocumentsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -5970,6 +7076,9 @@ export type TenantUpdateWithoutPartDocumentsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartDocumentsInput = {
@@ -5980,6 +7089,7 @@ export type TenantUncheckedUpdateWithoutPartDocumentsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -6010,6 +7120,9 @@ export type TenantUncheckedUpdateWithoutPartDocumentsInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWhatsappTemplatesInput = {
@@ -6020,6 +7133,7 @@ export type TenantCreateWithoutWhatsappTemplatesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -6050,6 +7164,9 @@ export type TenantCreateWithoutWhatsappTemplatesInput = {
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWhatsappTemplatesInput = {
@@ -6060,6 +7177,7 @@ export type TenantUncheckedCreateWithoutWhatsappTemplatesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -6090,6 +7208,9 @@ export type TenantUncheckedCreateWithoutWhatsappTemplatesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWhatsappTemplatesInput = {
@@ -6116,6 +7237,7 @@ export type TenantUpdateWithoutWhatsappTemplatesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -6146,6 +7268,9 @@ export type TenantUpdateWithoutWhatsappTemplatesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWhatsappTemplatesInput = {
@@ -6156,6 +7281,7 @@ export type TenantUncheckedUpdateWithoutWhatsappTemplatesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -6186,6 +7312,9 @@ export type TenantUncheckedUpdateWithoutWhatsappTemplatesInput = {
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWhatsappMessagesInput = {
@@ -6196,6 +7325,7 @@ export type TenantCreateWithoutWhatsappMessagesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
@@ -6226,6 +7356,9 @@ export type TenantCreateWithoutWhatsappMessagesInput = {
   whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWhatsappMessagesInput = {
@@ -6236,6 +7369,7 @@ export type TenantUncheckedCreateWithoutWhatsappMessagesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
   delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
@@ -6266,6 +7400,9 @@ export type TenantUncheckedCreateWithoutWhatsappMessagesInput = {
   whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWhatsappMessagesInput = {
@@ -6292,6 +7429,7 @@ export type TenantUpdateWithoutWhatsappMessagesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
@@ -6322,6 +7460,9 @@ export type TenantUpdateWithoutWhatsappMessagesInput = {
   whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWhatsappMessagesInput = {
@@ -6332,6 +7473,7 @@ export type TenantUncheckedUpdateWithoutWhatsappMessagesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
   delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
@@ -6362,6 +7504,9 @@ export type TenantUncheckedUpdateWithoutWhatsappMessagesInput = {
   whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 
@@ -6398,6 +7543,9 @@ export type TenantCountOutputType = {
   whatsappMessages: number
   portalActions: number
   portalDocuments: number
+  workOrders: number
+  workOrderTimeEntries: number
+  workOrderEventi: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -6429,6 +7577,9 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   whatsappMessages?: boolean | TenantCountOutputTypeCountWhatsappMessagesArgs
   portalActions?: boolean | TenantCountOutputTypeCountPortalActionsArgs
   portalDocuments?: boolean | TenantCountOutputTypeCountPortalDocumentsArgs
+  workOrders?: boolean | TenantCountOutputTypeCountWorkOrdersArgs
+  workOrderTimeEntries?: boolean | TenantCountOutputTypeCountWorkOrderTimeEntriesArgs
+  workOrderEventi?: boolean | TenantCountOutputTypeCountWorkOrderEventiArgs
 }
 
 /**
@@ -6637,6 +7788,27 @@ export type TenantCountOutputTypeCountPortalDocumentsArgs<ExtArgs extends runtim
   where?: Prisma.PortalDocumentWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountWorkOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WorkOrderWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountWorkOrderTimeEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WorkOrderTimeEntryWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountWorkOrderEventiArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WorkOrderEventoWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -6646,6 +7818,7 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   trialEndsAt?: boolean
   limiteAnalisiIAMensile?: boolean
   limiteAssistenteIAMensile?: boolean
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: boolean
   delaySettings?: boolean | Prisma.Tenant$delaySettingsArgs<ExtArgs>
   delayPlans?: boolean | Prisma.Tenant$delayPlansArgs<ExtArgs>
@@ -6677,6 +7850,9 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   whatsappMessages?: boolean | Prisma.Tenant$whatsappMessagesArgs<ExtArgs>
   portalActions?: boolean | Prisma.Tenant$portalActionsArgs<ExtArgs>
   portalDocuments?: boolean | Prisma.Tenant$portalDocumentsArgs<ExtArgs>
+  workOrders?: boolean | Prisma.Tenant$workOrdersArgs<ExtArgs>
+  workOrderTimeEntries?: boolean | Prisma.Tenant$workOrderTimeEntriesArgs<ExtArgs>
+  workOrderEventi?: boolean | Prisma.Tenant$workOrderEventiArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -6688,6 +7864,7 @@ export type TenantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   trialEndsAt?: boolean
   limiteAnalisiIAMensile?: boolean
   limiteAssistenteIAMensile?: boolean
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["tenant"]>
 
@@ -6699,6 +7876,7 @@ export type TenantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   trialEndsAt?: boolean
   limiteAnalisiIAMensile?: boolean
   limiteAssistenteIAMensile?: boolean
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["tenant"]>
 
@@ -6710,10 +7888,11 @@ export type TenantSelectScalar = {
   trialEndsAt?: boolean
   limiteAnalisiIAMensile?: boolean
   limiteAssistenteIAMensile?: boolean
+  consentiLavorazioniSimultanee?: boolean
   createdAt?: boolean
 }
 
-export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ragioneSociale" | "partitaIva" | "piano" | "trialEndsAt" | "limiteAnalisiIAMensile" | "limiteAssistenteIAMensile" | "createdAt", ExtArgs["result"]["tenant"]>
+export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ragioneSociale" | "partitaIva" | "piano" | "trialEndsAt" | "limiteAnalisiIAMensile" | "limiteAssistenteIAMensile" | "consentiLavorazioniSimultanee" | "createdAt", ExtArgs["result"]["tenant"]>
 export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   delaySettings?: boolean | Prisma.Tenant$delaySettingsArgs<ExtArgs>
   delayPlans?: boolean | Prisma.Tenant$delayPlansArgs<ExtArgs>
@@ -6745,6 +7924,9 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   whatsappMessages?: boolean | Prisma.Tenant$whatsappMessagesArgs<ExtArgs>
   portalActions?: boolean | Prisma.Tenant$portalActionsArgs<ExtArgs>
   portalDocuments?: boolean | Prisma.Tenant$portalDocumentsArgs<ExtArgs>
+  workOrders?: boolean | Prisma.Tenant$workOrdersArgs<ExtArgs>
+  workOrderTimeEntries?: boolean | Prisma.Tenant$workOrderTimeEntriesArgs<ExtArgs>
+  workOrderEventi?: boolean | Prisma.Tenant$workOrderEventiArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -6783,6 +7965,9 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     whatsappMessages: Prisma.$WhatsappMessagePayload<ExtArgs>[]
     portalActions: Prisma.$PortalActionPayload<ExtArgs>[]
     portalDocuments: Prisma.$PortalDocumentPayload<ExtArgs>[]
+    workOrders: Prisma.$WorkOrderPayload<ExtArgs>[]
+    workOrderTimeEntries: Prisma.$WorkOrderTimeEntryPayload<ExtArgs>[]
+    workOrderEventi: Prisma.$WorkOrderEventoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -6792,6 +7977,7 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     trialEndsAt: Date | null
     limiteAnalisiIAMensile: number | null
     limiteAssistenteIAMensile: number | null
+    consentiLavorazioniSimultanee: boolean
     createdAt: Date
   }, ExtArgs["result"]["tenant"]>
   composites: {}
@@ -7217,6 +8403,9 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   whatsappMessages<T extends Prisma.Tenant$whatsappMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$whatsappMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WhatsappMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   portalActions<T extends Prisma.Tenant$portalActionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$portalActionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PortalActionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   portalDocuments<T extends Prisma.Tenant$portalDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$portalDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PortalDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  workOrders<T extends Prisma.Tenant$workOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$workOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  workOrderTimeEntries<T extends Prisma.Tenant$workOrderTimeEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$workOrderTimeEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderTimeEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  workOrderEventi<T extends Prisma.Tenant$workOrderEventiArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$workOrderEventiArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderEventoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7253,6 +8442,7 @@ export interface TenantFieldRefs {
   readonly trialEndsAt: Prisma.FieldRef<"Tenant", 'DateTime'>
   readonly limiteAnalisiIAMensile: Prisma.FieldRef<"Tenant", 'Int'>
   readonly limiteAssistenteIAMensile: Prisma.FieldRef<"Tenant", 'Int'>
+  readonly consentiLavorazioniSimultanee: Prisma.FieldRef<"Tenant", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Tenant", 'DateTime'>
 }
     
@@ -8354,6 +9544,78 @@ export type Tenant$portalDocumentsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.PortalDocumentScalarFieldEnum | Prisma.PortalDocumentScalarFieldEnum[]
+}
+
+/**
+ * Tenant.workOrders
+ */
+export type Tenant$workOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WorkOrder
+   */
+  select?: Prisma.WorkOrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WorkOrder
+   */
+  omit?: Prisma.WorkOrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WorkOrderInclude<ExtArgs> | null
+  where?: Prisma.WorkOrderWhereInput
+  orderBy?: Prisma.WorkOrderOrderByWithRelationInput | Prisma.WorkOrderOrderByWithRelationInput[]
+  cursor?: Prisma.WorkOrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WorkOrderScalarFieldEnum | Prisma.WorkOrderScalarFieldEnum[]
+}
+
+/**
+ * Tenant.workOrderTimeEntries
+ */
+export type Tenant$workOrderTimeEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WorkOrderTimeEntry
+   */
+  select?: Prisma.WorkOrderTimeEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WorkOrderTimeEntry
+   */
+  omit?: Prisma.WorkOrderTimeEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WorkOrderTimeEntryInclude<ExtArgs> | null
+  where?: Prisma.WorkOrderTimeEntryWhereInput
+  orderBy?: Prisma.WorkOrderTimeEntryOrderByWithRelationInput | Prisma.WorkOrderTimeEntryOrderByWithRelationInput[]
+  cursor?: Prisma.WorkOrderTimeEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WorkOrderTimeEntryScalarFieldEnum | Prisma.WorkOrderTimeEntryScalarFieldEnum[]
+}
+
+/**
+ * Tenant.workOrderEventi
+ */
+export type Tenant$workOrderEventiArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WorkOrderEvento
+   */
+  select?: Prisma.WorkOrderEventoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WorkOrderEvento
+   */
+  omit?: Prisma.WorkOrderEventoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WorkOrderEventoInclude<ExtArgs> | null
+  where?: Prisma.WorkOrderEventoWhereInput
+  orderBy?: Prisma.WorkOrderEventoOrderByWithRelationInput | Prisma.WorkOrderEventoOrderByWithRelationInput[]
+  cursor?: Prisma.WorkOrderEventoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WorkOrderEventoScalarFieldEnum | Prisma.WorkOrderEventoScalarFieldEnum[]
 }
 
 /**

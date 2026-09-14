@@ -422,6 +422,9 @@ export const ModelName = {
   Sinistro: 'Sinistro',
   PortalAccess: 'PortalAccess',
   PortalAction: 'PortalAction',
+  WorkOrder: 'WorkOrder',
+  WorkOrderTimeEntry: 'WorkOrderTimeEntry',
+  WorkOrderEvento: 'WorkOrderEvento',
   PortalDocument: 'PortalDocument',
   AiAnalysisLog: 'AiAnalysisLog',
   AiAssistantLog: 'AiAssistantLog',
@@ -454,7 +457,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerBooking" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage"
+    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerBooking" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2308,6 +2311,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    WorkOrder: {
+      payload: Prisma.$WorkOrderPayload<ExtArgs>
+      fields: Prisma.WorkOrderFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WorkOrderFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WorkOrderFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>
+        }
+        findFirst: {
+          args: Prisma.WorkOrderFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WorkOrderFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>
+        }
+        findMany: {
+          args: Prisma.WorkOrderFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>[]
+        }
+        create: {
+          args: Prisma.WorkOrderCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>
+        }
+        createMany: {
+          args: Prisma.WorkOrderCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WorkOrderCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>[]
+        }
+        delete: {
+          args: Prisma.WorkOrderDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>
+        }
+        update: {
+          args: Prisma.WorkOrderUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>
+        }
+        deleteMany: {
+          args: Prisma.WorkOrderDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WorkOrderUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WorkOrderUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>[]
+        }
+        upsert: {
+          args: Prisma.WorkOrderUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderPayload>
+        }
+        aggregate: {
+          args: Prisma.WorkOrderAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWorkOrder>
+        }
+        groupBy: {
+          args: Prisma.WorkOrderGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WorkOrderGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WorkOrderCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WorkOrderCountAggregateOutputType> | number
+        }
+      }
+    }
+    WorkOrderTimeEntry: {
+      payload: Prisma.$WorkOrderTimeEntryPayload<ExtArgs>
+      fields: Prisma.WorkOrderTimeEntryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WorkOrderTimeEntryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderTimeEntryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WorkOrderTimeEntryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderTimeEntryPayload>
+        }
+        findFirst: {
+          args: Prisma.WorkOrderTimeEntryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderTimeEntryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WorkOrderTimeEntryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderTimeEntryPayload>
+        }
+        findMany: {
+          args: Prisma.WorkOrderTimeEntryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderTimeEntryPayload>[]
+        }
+        create: {
+          args: Prisma.WorkOrderTimeEntryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderTimeEntryPayload>
+        }
+        createMany: {
+          args: Prisma.WorkOrderTimeEntryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WorkOrderTimeEntryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderTimeEntryPayload>[]
+        }
+        delete: {
+          args: Prisma.WorkOrderTimeEntryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderTimeEntryPayload>
+        }
+        update: {
+          args: Prisma.WorkOrderTimeEntryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderTimeEntryPayload>
+        }
+        deleteMany: {
+          args: Prisma.WorkOrderTimeEntryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WorkOrderTimeEntryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WorkOrderTimeEntryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderTimeEntryPayload>[]
+        }
+        upsert: {
+          args: Prisma.WorkOrderTimeEntryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderTimeEntryPayload>
+        }
+        aggregate: {
+          args: Prisma.WorkOrderTimeEntryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWorkOrderTimeEntry>
+        }
+        groupBy: {
+          args: Prisma.WorkOrderTimeEntryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WorkOrderTimeEntryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WorkOrderTimeEntryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WorkOrderTimeEntryCountAggregateOutputType> | number
+        }
+      }
+    }
+    WorkOrderEvento: {
+      payload: Prisma.$WorkOrderEventoPayload<ExtArgs>
+      fields: Prisma.WorkOrderEventoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WorkOrderEventoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderEventoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WorkOrderEventoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderEventoPayload>
+        }
+        findFirst: {
+          args: Prisma.WorkOrderEventoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderEventoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WorkOrderEventoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderEventoPayload>
+        }
+        findMany: {
+          args: Prisma.WorkOrderEventoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderEventoPayload>[]
+        }
+        create: {
+          args: Prisma.WorkOrderEventoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderEventoPayload>
+        }
+        createMany: {
+          args: Prisma.WorkOrderEventoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WorkOrderEventoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderEventoPayload>[]
+        }
+        delete: {
+          args: Prisma.WorkOrderEventoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderEventoPayload>
+        }
+        update: {
+          args: Prisma.WorkOrderEventoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderEventoPayload>
+        }
+        deleteMany: {
+          args: Prisma.WorkOrderEventoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WorkOrderEventoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WorkOrderEventoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderEventoPayload>[]
+        }
+        upsert: {
+          args: Prisma.WorkOrderEventoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkOrderEventoPayload>
+        }
+        aggregate: {
+          args: Prisma.WorkOrderEventoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWorkOrderEvento>
+        }
+        groupBy: {
+          args: Prisma.WorkOrderEventoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WorkOrderEventoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WorkOrderEventoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WorkOrderEventoCountAggregateOutputType> | number
+        }
+      }
+    }
     PortalDocument: {
       payload: Prisma.$PortalDocumentPayload<ExtArgs>
       fields: Prisma.PortalDocumentFieldRefs
@@ -3613,6 +3838,7 @@ export const TenantScalarFieldEnum = {
   trialEndsAt: 'trialEndsAt',
   limiteAnalisiIAMensile: 'limiteAnalisiIAMensile',
   limiteAssistenteIAMensile: 'limiteAssistenteIAMensile',
+  consentiLavorazioniSimultanee: 'consentiLavorazioniSimultanee',
   createdAt: 'createdAt'
 } as const
 
@@ -4017,6 +4243,58 @@ export const PortalActionScalarFieldEnum = {
 export type PortalActionScalarFieldEnum = (typeof PortalActionScalarFieldEnum)[keyof typeof PortalActionScalarFieldEnum]
 
 
+export const WorkOrderScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  tecnicoId: 'tecnicoId',
+  titolo: 'titolo',
+  reparto: 'reparto',
+  priorita: 'priorita',
+  oreStimate: 'oreStimate',
+  noteTecniche: 'noteTecniche',
+  dataConsegna: 'dataConsegna',
+  stato: 'stato',
+  creatoDaId: 'creatoDaId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WorkOrderScalarFieldEnum = (typeof WorkOrderScalarFieldEnum)[keyof typeof WorkOrderScalarFieldEnum]
+
+
+export const WorkOrderTimeEntryScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  workOrderId: 'workOrderId',
+  tecnicoId: 'tecnicoId',
+  inizio: 'inizio',
+  fine: 'fine',
+  correzioneManuale: 'correzioneManuale',
+  correzioneMotivo: 'correzioneMotivo',
+  correzioneDaId: 'correzioneDaId',
+  correzioneAt: 'correzioneAt',
+  createdAt: 'createdAt'
+} as const
+
+export type WorkOrderTimeEntryScalarFieldEnum = (typeof WorkOrderTimeEntryScalarFieldEnum)[keyof typeof WorkOrderTimeEntryScalarFieldEnum]
+
+
+export const WorkOrderEventoScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  workOrderId: 'workOrderId',
+  tipo: 'tipo',
+  daStato: 'daStato',
+  aStato: 'aStato',
+  dettagli: 'dettagli',
+  attoreId: 'attoreId',
+  createdAt: 'createdAt'
+} as const
+
+export type WorkOrderEventoScalarFieldEnum = (typeof WorkOrderEventoScalarFieldEnum)[keyof typeof WorkOrderEventoScalarFieldEnum]
+
+
 export const PortalDocumentScalarFieldEnum = {
   id: 'id',
   tenantId: 'tenantId',
@@ -4360,6 +4638,13 @@ export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'Role'
  */
 export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
@@ -4370,13 +4655,6 @@ export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'Role[]'
  */
 export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -4559,6 +4837,62 @@ export type EnumPortalActionTipoFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'PortalActionTipo[]'
  */
 export type ListEnumPortalActionTipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PortalActionTipo[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Reparto'
+ */
+export type EnumRepartoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Reparto'>
+    
+
+
+/**
+ * Reference to a field of type 'Reparto[]'
+ */
+export type ListEnumRepartoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Reparto[]'>
+    
+
+
+/**
+ * Reference to a field of type 'PrioritaLavorazione'
+ */
+export type EnumPrioritaLavorazioneFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PrioritaLavorazione'>
+    
+
+
+/**
+ * Reference to a field of type 'PrioritaLavorazione[]'
+ */
+export type ListEnumPrioritaLavorazioneFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PrioritaLavorazione[]'>
+    
+
+
+/**
+ * Reference to a field of type 'WorkOrderStato'
+ */
+export type EnumWorkOrderStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkOrderStato'>
+    
+
+
+/**
+ * Reference to a field of type 'WorkOrderStato[]'
+ */
+export type ListEnumWorkOrderStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkOrderStato[]'>
+    
+
+
+/**
+ * Reference to a field of type 'WorkOrderEventoTipo'
+ */
+export type EnumWorkOrderEventoTipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkOrderEventoTipo'>
+    
+
+
+/**
+ * Reference to a field of type 'WorkOrderEventoTipo[]'
+ */
+export type ListEnumWorkOrderEventoTipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkOrderEventoTipo[]'>
     
 
 
@@ -4779,6 +5113,9 @@ export type GlobalOmitConfig = {
   sinistro?: Prisma.SinistroOmit
   portalAccess?: Prisma.PortalAccessOmit
   portalAction?: Prisma.PortalActionOmit
+  workOrder?: Prisma.WorkOrderOmit
+  workOrderTimeEntry?: Prisma.WorkOrderTimeEntryOmit
+  workOrderEvento?: Prisma.WorkOrderEventoOmit
   portalDocument?: Prisma.PortalDocumentOmit
   aiAnalysisLog?: Prisma.AiAnalysisLogOmit
   aiAssistantLog?: Prisma.AiAssistantLogOmit

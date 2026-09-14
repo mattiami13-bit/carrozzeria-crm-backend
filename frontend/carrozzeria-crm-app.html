@@ -51,7 +51,7 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react">
-const { useState, useEffect, useCallback, useRef } = React;
+const { useState, useEffect, useCallback, useRef, useMemo } = React;
 
 /* ---------------- CONFIG ---------------- */
 const API = ["127.0.0.1", "localhost"].includes(window.location.hostname) && window.location.port === "4310" ? window.location.origin : "https://carrozzeria-crm-backend-production.up.railway.app";
@@ -258,15 +258,40 @@ const NAV_BASE = [
   { key: "clienti", label: "Clienti" },
 ];
 
+// Modalità Tecnico: shell minimale pensata per smartphone/tablet in
+// officina — niente sidebar con 15 voci, solo "I miei lavori" a schermo
+// intero. Un tecnico può comunque avere altri ruoli in futuro: la
+// semplificazione scatta solo se il ruolo è ESATTAMENTE "TECNICO".
+function DashboardTecnico({ token, onLogout }) {
+  const api = useApi(token);
+  return (
+    <div style={{ minHeight: "100vh", background: "#0A0B0D" }}>
+      <div style={{ position: "sticky", top: 0, zIndex: 10, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", background: "#15171B", borderBottom: "1px solid #2A2E34" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ width: 22, height: 22, borderRadius: 6, background: "#C9A24B" }} />
+          <span style={{ fontWeight: 700, fontSize: 15, color: "#F3F1EC" }}>I miei lavori</span>
+        </div>
+        <button onClick={onLogout} style={{ padding: "7px 12px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#B4472E", fontSize: 12.5, fontWeight: 600 }}>Esci</button>
+      </div>
+      <div style={{ padding: 14, maxWidth: 560, margin: "0 auto" }}>
+        <TecnicoLavoriView api={api} token={token} />
+      </div>
+    </div>
+  );
+}
+
 function Dashboard({ token, onLogout }) {
   const [tab, setTab] = useState("dashboard");
   const [sinistriClientFilter, setSinistriClientFilter] = useState(null);
   const [copilotOpenVehicleId, setCopilotOpenVehicleId] = useState(null);
   const api = useApi(token);
   const ruolo = decodificaRuolo(token);
-  const delayNav = [...NAV_BASE, {key:"delay",label:"Predictive Delay AI"}, {key:"parts-tracking",label:"Parts Tracking"}];
+
+  if (ruolo === "TECNICO") return <DashboardTecnico token={token} onLogout={onLogout} />;
+
+  const delayNav = [...NAV_BASE, {key:"delay",label:"Predictive Delay AI"}, {key:"parts-tracking",label:"Parts Tracking"}, {key:"lavori",label:"I miei lavori"}];
   const baseNav = ruolo === "ADMIN" ? [...delayNav, { key: "registro", label: "Registro attività" }] : delayNav;
-  const navConProfit = ["ADMIN", "AMMINISTRAZIONE"].includes(ruolo) ? [...baseNav, {key:"profit",label:"Profit Tracker"}] : baseNav;
+  const navConProfit = ["ADMIN", "AMMINISTRAZIONE"].includes(ruolo) ? [...baseNav, {key:"profit",label:"Profit Tracker"}, {key:"kpi-tecnici",label:"KPI Tecnici"}] : baseNav;
   const nav = ruolo === "ADMIN" ? [...navConProfit, { key: "whatsapp", label: "WhatsApp" }] : navConProfit;
 
   // Usato dalla scheda cliente per aprire i sinistri già filtrati su quel cliente
@@ -330,6 +355,8 @@ function Dashboard({ token, onLogout }) {
         {tab === "clienti" && <ClientiView api={api} onOpenSinistri={apriSinistriCliente} />}
         {tab === "registro" && ruolo === "ADMIN" && <RegistroAttivitaView api={api} />}
         {tab === "whatsapp" && ruolo === "ADMIN" && <WhatsappSettingsView api={api} />}
+        {tab === "lavori" && <TecnicoLavoriView api={api} token={token} />}
+        {tab === "kpi-tecnici" && ["ADMIN", "AMMINISTRAZIONE"].includes(ruolo) && <KpiTecniciView api={api} ruolo={ruolo} />}
       </main>
       <AiCopilot api={api} onNavigateTab={setTab} onApriPraticaVeicolo={apriPraticaVeicolo} />
       <AssistenteFlottante api={api} />
@@ -1807,6 +1834,10 @@ function VehicleDetailModal({ vehicleId, api, token, onClose: closeRequested, on
             <AiDamageAssistant vehicle={vehicle} api={api} token={token} onVehicleReload={load} />
             <PartsPanel vehicleId={vehicle.id} api={api} onDirtyChange={setPartsDirty} />
             <DelayPanel vehicleId={vehicle.id} api={api} clientPhone={vehicle.client?.telefono} onDirtyChange={setDelayDirty} />
+
+            <h3 style={{ fontSize: 13, fontWeight: 700, marginTop: 26, marginBottom: 10 }}>Lavorazioni (Modalità Tecnico)</h3>
+            <WorkOrdersPanel vehicleId={vehicle.id} api={api} ruolo={decodificaRuolo(token)} />
+
             {["ADMIN","AMMINISTRAZIONE"].includes(decodificaRuolo(token)) && <ProfitTracker vehicleId={vehicle.id} api={api} onDirtyChange={setProfitDirty} />}
             <InsuranceGapAnalysis vehicle={vehicle} api={api} token={token} />
 
@@ -3658,6 +3689,418 @@ function PortalStaffExtras({ vehicleId, api }) {
             ))}
           </div>
         </details>
+      )}
+    </div>
+  );
+}
+
+/* ---------------- MODALITÀ TECNICO: I miei lavori ---------------- */
+const PRIORITA_STYLE = {
+  URGENTE: { label: "Urgente", color: "#B4472E" },
+  ALTA: { label: "Alta", color: "#C9752B" },
+  NORMALE: { label: "Normale", color: "#4E7F8C" },
+  BASSA: { label: "Bassa", color: "#6B6963" },
+};
+const WO_STATO_STYLE = {
+  DA_INIZIARE: { label: "Da iniziare", color: "#8D9099" },
+  IN_CORSO: { label: "In corso", color: "#2F8F5B" },
+  IN_PAUSA: { label: "In pausa", color: "#C9A24B" },
+  COMPLETATA: { label: "Completata", color: "#4E7F8C" },
+};
+const REPARTO_LABEL = { CARROZZERIA: "Carrozzeria", MECCANICA: "Meccanica", VERNICIATURA: "Verniciatura", FINITURA: "Finitura" };
+
+function formatOre(h) {
+  const n = Number(h || 0);
+  const ore = Math.floor(n);
+  const min = Math.round((n - ore) * 60);
+  return `${ore}h ${String(min).padStart(2, "0")}m`;
+}
+
+// Ore reali "vive": somma i segmenti chiusi (già inclusi in oreReali dal
+// server) più il tempo trascorso dal segmento aperto, se c'è, calcolato
+// lato client con un tick a intervalli regolari — nessuna chiamata di
+// rete extra solo per far scorrere un cronometro.
+function useOreLive(workOrder, tick) {
+  return useMemo(() => {
+    const aperto = (workOrder.timeEntries || []).find((e) => !e.fine);
+    if (!aperto) return workOrder.oreReali;
+    const extra = (Date.now() - new Date(aperto.inizio).getTime()) / 3_600_000;
+    return workOrder.oreReali + Math.max(0, extra);
+  }, [workOrder, tick]);
+}
+
+function LavoroCard({ wo, onAzione, azionando }) {
+  const [tick, setTick] = useState(0);
+  useEffect(() => {
+    if (wo.stato !== "IN_CORSO") return;
+    const id = setInterval(() => setTick((t) => t + 1), 15000);
+    return () => clearInterval(id);
+  }, [wo.stato]);
+  const oreLive = useOreLive(wo, tick);
+  const prio = PRIORITA_STYLE[wo.priorita] || PRIORITA_STYLE.NORMALE;
+  const stato = WO_STATO_STYLE[wo.stato] || WO_STATO_STYLE.DA_INIZIARE;
+
+  return (
+    <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 14, padding: 16, marginBottom: 12 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, marginBottom: 8 }}>
+        <div>
+          <div style={{ fontFamily: "monospace", fontSize: 11.5, background: "#0A0B0D", color: "#C9A24B", border: "1px solid #2A2E34", display: "inline-block", padding: "2px 8px", borderRadius: 6, marginBottom: 6 }}>{wo.vehicle?.targa}</div>
+          <div style={{ fontSize: 16, fontWeight: 700, color: "#F3F1EC" }}>{wo.vehicle?.marca} {wo.vehicle?.modello}</div>
+        </div>
+        <span style={{ fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 20, background: stato.color + "22", color: stato.color, whiteSpace: "nowrap" }}>{stato.label}</span>
+      </div>
+
+      <div style={{ fontSize: 14.5, fontWeight: 600, color: "#F3F1EC", marginBottom: 6 }}>{wo.titolo}</div>
+
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
+        <span style={{ fontSize: 11, fontWeight: 700, padding: "3px 9px", borderRadius: 20, background: prio.color + "22", color: prio.color }}>{prio.label}</span>
+        <span style={{ fontSize: 11, padding: "3px 9px", borderRadius: 20, background: "#0A0B0D", color: "#8D9099", border: "1px solid #2A2E34" }}>{REPARTO_LABEL[wo.reparto] || wo.reparto}</span>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, fontSize: 12.5, color: "#D9D6CE", marginBottom: 10 }}>
+        <div>Ore previste: <strong>{formatOre(wo.oreStimate)}</strong></div>
+        <div>Ore reali: <strong style={{ color: wo.stato === "IN_CORSO" ? "#2F8F5B" : "#F3F1EC" }}>{formatOre(oreLive)}</strong></div>
+        {wo.dataConsegna && <div style={{ gridColumn: "1 / -1" }}>Consegna prevista: <strong>{new Date(wo.dataConsegna).toLocaleDateString("it-IT")}</strong></div>}
+      </div>
+
+      {wo.noteTecniche && (
+        <div style={{ fontSize: 12.5, color: "#A8A29B", background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 8, padding: 10, marginBottom: 10 }}>
+          {wo.noteTecniche}
+        </div>
+      )}
+
+      <div style={{ display: "flex", gap: 8 }}>
+        {wo.stato === "DA_INIZIARE" && (
+          <button disabled={azionando} onClick={() => onAzione(wo.id, "inizia")} style={{ flex: 1, padding: "12px 14px", borderRadius: 10, border: "none", background: "#2F8F5B", color: "#fff", fontSize: 14.5, fontWeight: 700, minHeight: 46 }}>▶ INIZIA</button>
+        )}
+        {wo.stato === "IN_PAUSA" && (
+          <button disabled={azionando} onClick={() => onAzione(wo.id, "inizia")} style={{ flex: 1, padding: "12px 14px", borderRadius: 10, border: "none", background: "#2F8F5B", color: "#fff", fontSize: 14.5, fontWeight: 700, minHeight: 46 }}>▶ RIPRENDI</button>
+        )}
+        {wo.stato === "IN_CORSO" && (
+          <button disabled={azionando} onClick={() => onAzione(wo.id, "pausa")} style={{ flex: 1, padding: "12px 14px", borderRadius: 10, border: "1px solid #C9A24B", background: "#15171B", color: "#C9A24B", fontSize: 14.5, fontWeight: 700, minHeight: 46 }}>⏸ PAUSA</button>
+        )}
+        {["IN_CORSO", "IN_PAUSA"].includes(wo.stato) && (
+          <button disabled={azionando} onClick={() => onAzione(wo.id, "termina")} style={{ flex: 1, padding: "12px 14px", borderRadius: 10, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 14.5, fontWeight: 700, minHeight: 46 }}>✓ TERMINA</button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function TecnicoLavoriView({ api, token }) {
+  const [lavori, setLavori] = useState(null);
+  const [azionando, setAzionando] = useState(null);
+  const [avviso, setAvviso] = useState(null);
+  const [error, setError] = useState(null);
+  const [mostraCompletate, setMostraCompletate] = useState(false);
+
+  const load = useCallback(() => {
+    api(`/api/work-orders/mie${mostraCompletate ? "?tutte=1" : ""}`).then(setLavori).catch((e) => setError(e.message));
+  }, [api, mostraCompletate]);
+
+  useEffect(load, [load]);
+
+  const azione = async (id, tipo) => {
+    setError(null);
+    setAvviso(null);
+    setAzionando(id);
+    try {
+      const res = await api(`/api/work-orders/${id}/${tipo}`, { method: "POST" });
+      if (res.cambiataDaLavorazioneId) setAvviso("La lavorazione precedente è stata messa in pausa automaticamente (cambio lavorazione).");
+      load();
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setAzionando(null);
+    }
+  };
+
+  if (!lavori) return <Loading />;
+
+  return (
+    <div>
+      {error && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 13, padding: 12, borderRadius: 10, marginBottom: 12 }}>{error}</div>}
+      {avviso && <div style={{ background: "#1B1500", border: "1px solid #4A3A00", color: "#C9A24B", fontSize: 12.5, padding: 12, borderRadius: 10, marginBottom: 12 }}>{avviso}</div>}
+
+      <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12.5, color: "#8D9099", marginBottom: 14, cursor: "pointer" }}>
+        <input type="checkbox" checked={mostraCompletate} onChange={(e) => setMostraCompletate(e.target.checked)} />
+        Mostra anche le lavorazioni completate
+      </label>
+
+      {lavori.length === 0 ? (
+        <div style={{ textAlign: "center", color: "#8D9099", fontSize: 13.5, padding: "40px 20px" }}>Nessuna lavorazione assegnata al momento.</div>
+      ) : (
+        lavori.map((wo) => <LavoroCard key={wo.id} wo={wo} onAzione={azione} azionando={azionando === wo.id} />)
+      )}
+    </div>
+  );
+}
+
+/* ---------------- LAVORAZIONI (staff, scheda veicolo) ---------------- */
+function CorrezioneTempoForm({ entry, api, onDone, onCancel }) {
+  const toLocalInput = (iso) => iso ? new Date(new Date(iso).getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16) : "";
+  const [inizio, setInizio] = useState(toLocalInput(entry.inizio));
+  const [fine, setFine] = useState(toLocalInput(entry.fine));
+  const [motivo, setMotivo] = useState("");
+  const [error, setError] = useState(null);
+  const [salvando, setSalvando] = useState(false);
+
+  const salva = async () => {
+    if (!motivo.trim()) { setError("Indica il motivo della correzione."); return; }
+    setSalvando(true);
+    setError(null);
+    try {
+      await api(`/api/work-order-time-entries/${entry.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ inizio: new Date(inizio).toISOString(), fine: fine ? new Date(fine).toISOString() : null, motivo: motivo.trim() }),
+      });
+      onDone();
+    } catch (e) { setError(e.message); } finally { setSalvando(false); }
+  };
+
+  return (
+    <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 8, padding: 10, marginTop: 6 }}>
+      <div style={{ display: "flex", gap: 8, marginBottom: 6 }}>
+        <input type="datetime-local" value={inizio} onChange={(e) => setInizio(e.target.value)} style={{ flex: 1, padding: 6, borderRadius: 6, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12 }} />
+        <input type="datetime-local" value={fine} onChange={(e) => setFine(e.target.value)} style={{ flex: 1, padding: 6, borderRadius: 6, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12 }} />
+      </div>
+      <input placeholder="Motivo della correzione (obbligatorio)" value={motivo} onChange={(e) => setMotivo(e.target.value)} style={{ width: "100%", padding: 6, borderRadius: 6, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12, marginBottom: 6, boxSizing: "border-box" }} />
+      {error && <div style={{ color: "#E5806B", fontSize: 11.5, marginBottom: 6 }}>{error}</div>}
+      <div style={{ display: "flex", gap: 6 }}>
+        <button onClick={salva} disabled={salvando} style={{ padding: "5px 10px", borderRadius: 6, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 11.5, fontWeight: 600 }}>{salvando ? "Salvataggio…" : "Salva correzione"}</button>
+        <button onClick={onCancel} style={{ padding: "5px 10px", borderRadius: 6, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 11.5 }}>Annulla</button>
+      </div>
+    </div>
+  );
+}
+
+function WorkOrderRow({ wo, api, ruolo, onChanged }) {
+  const [espanso, setEspanso] = useState(false);
+  const [eventi, setEventi] = useState(null);
+  const [correggendo, setCorreggendo] = useState(null);
+  const puoCorreggere = ["ADMIN", "ACCETTATORE"].includes(ruolo);
+
+  const apriStorico = async () => {
+    setEspanso(!espanso);
+    if (!eventi) {
+      const res = await api(`/api/work-orders/${wo.id}/eventi`);
+      setEventi(res);
+    }
+  };
+
+  const elimina = async () => {
+    if (!confirm(`Eliminare la lavorazione "${wo.titolo}"? Verrà rimosso anche lo storico ore.`)) return;
+    await api(`/api/work-orders/${wo.id}`, { method: "DELETE" });
+    onChanged();
+  };
+
+  const stato = WO_STATO_STYLE[wo.stato] || WO_STATO_STYLE.DA_INIZIARE;
+  const prio = PRIORITA_STYLE[wo.priorita] || PRIORITA_STYLE.NORMALE;
+
+  return (
+    <div style={{ borderTop: "1px solid #2A2E34", padding: "12px 0" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
+        <div>
+          <div style={{ fontSize: 13.5, fontWeight: 700 }}>{wo.titolo}</div>
+          <div style={{ fontSize: 11.5, color: "#8D9099", marginTop: 2 }}>
+            {REPARTO_LABEL[wo.reparto]} · {wo.tecnico?.nome} {wo.tecnico?.cognome} · previste {formatOre(wo.oreStimate)} · reali {formatOre(wo.oreReali)}
+          </div>
+        </div>
+        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+          <span style={{ fontSize: 10.5, fontWeight: 700, padding: "2px 8px", borderRadius: 20, background: prio.color + "22", color: prio.color }}>{prio.label}</span>
+          <span style={{ fontSize: 10.5, fontWeight: 700, padding: "2px 8px", borderRadius: 20, background: stato.color + "22", color: stato.color }}>{stato.label}</span>
+        </div>
+      </div>
+      {wo.noteTecniche && <div style={{ fontSize: 12, color: "#A8A29B", marginTop: 6 }}>{wo.noteTecniche}</div>}
+      <div style={{ display: "flex", gap: 10, marginTop: 8 }}>
+        <button onClick={apriStorico} style={{ padding: "4px 9px", borderRadius: 6, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC", fontSize: 11 }}>{espanso ? "Nascondi storico" : "Storico e segmenti"}</button>
+        <button onClick={elimina} style={{ padding: "4px 9px", borderRadius: 6, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#B4472E", fontSize: 11 }}>Elimina</button>
+      </div>
+
+      {espanso && (
+        <div style={{ marginTop: 10 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: "#8D9099", marginBottom: 6 }}>Segmenti di lavoro</div>
+          {(wo.timeEntries || []).length === 0 && <div style={{ fontSize: 11.5, color: "#6B6963", marginBottom: 8 }}>Nessun segmento registrato.</div>}
+          {(wo.timeEntries || []).map((e) => (
+            <div key={e.id} style={{ fontSize: 11.5, color: "#D9D6CE", marginBottom: 4 }}>
+              {new Date(e.inizio).toLocaleString("it-IT")} → {e.fine ? new Date(e.fine).toLocaleString("it-IT") : "in corso"}
+              {e.correzioneManuale && <span style={{ color: "#C9A24B" }}> · corretto: {e.correzioneMotivo}</span>}
+              {puoCorreggere && e.fine && (
+                <button onClick={() => setCorreggendo(correggendo === e.id ? null : e.id)} style={{ marginLeft: 8, padding: "1px 7px", borderRadius: 5, border: "1px solid #2A2E34", background: "transparent", color: "#8D9099", fontSize: 10.5 }}>Correggi</button>
+              )}
+              {correggendo === e.id && (
+                <CorrezioneTempoForm entry={e} api={api} onCancel={() => setCorreggendo(null)} onDone={() => { setCorreggendo(null); onChanged(); }} />
+              )}
+            </div>
+          ))}
+
+          <div style={{ fontSize: 11, fontWeight: 700, color: "#8D9099", margin: "10px 0 6px" }}>Storico modifiche</div>
+          {!eventi ? <Loading /> : eventi.length === 0 ? <div style={{ fontSize: 11.5, color: "#6B6963" }}>Nessun evento.</div> : eventi.map((ev) => (
+            <div key={ev.id} style={{ fontSize: 11.5, color: "#8D9099", marginBottom: 3 }}>
+              {new Date(ev.createdAt).toLocaleString("it-IT")} — {ev.tipo}{ev.attore ? ` (${ev.attore.nome} ${ev.attore.cognome})` : ""}
+              {ev.dettagli?.motivo ? `: ${ev.dettagli.motivo}` : ""}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function NuovaLavorazioneForm({ vehicleId, api, tecnici, onDone, onCancel }) {
+  const [form, setForm] = useState({ titolo: "", reparto: "CARROZZERIA", tecnicoId: tecnici[0]?.id || "", priorita: "NORMALE", oreStimate: "", noteTecniche: "", dataConsegna: "" });
+  const [error, setError] = useState(null);
+  const [salvando, setSalvando] = useState(false);
+  const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+
+  const salva = async () => {
+    if (!form.titolo.trim() || !form.tecnicoId || !form.oreStimate) { setError("Compila titolo, tecnico e ore previste."); return; }
+    setSalvando(true);
+    setError(null);
+    try {
+      await api(`/api/vehicles/${vehicleId}/work-orders`, {
+        method: "POST",
+        body: JSON.stringify({
+          titolo: form.titolo.trim(), reparto: form.reparto, tecnicoId: form.tecnicoId, priorita: form.priorita,
+          oreStimate: Number(form.oreStimate), noteTecniche: form.noteTecniche || undefined,
+          dataConsegna: form.dataConsegna ? new Date(form.dataConsegna).toISOString() : undefined,
+        }),
+      });
+      onDone();
+    } catch (e) { setError(e.message); } finally { setSalvando(false); }
+  };
+
+  return (
+    <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 10, padding: 12, marginBottom: 12 }}>
+      <input placeholder="Lavorazione (es. Sostituzione paraurti)" value={form.titolo} onChange={set("titolo")} style={{ width: "100%", padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, marginBottom: 8, boxSizing: "border-box" }} />
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 8 }}>
+        <select value={form.reparto} onChange={set("reparto")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+          {Object.keys(REPARTO_LABEL).map((r) => <option key={r} value={r}>{REPARTO_LABEL[r]}</option>)}
+        </select>
+        <select value={form.tecnicoId} onChange={set("tecnicoId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+          {tecnici.map((t) => <option key={t.id} value={t.id}>{t.nome} {t.cognome}</option>)}
+        </select>
+        <select value={form.priorita} onChange={set("priorita")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+          {Object.keys(PRIORITA_STYLE).map((p) => <option key={p} value={p}>{PRIORITA_STYLE[p].label}</option>)}
+        </select>
+        <input type="number" step="0.5" min="0" placeholder="Ore previste" value={form.oreStimate} onChange={set("oreStimate")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }} />
+      </div>
+      <input type="datetime-local" value={form.dataConsegna} onChange={set("dataConsegna")} style={{ width: "100%", padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, marginBottom: 8, boxSizing: "border-box" }} />
+      <textarea placeholder="Note tecniche per il tecnico" value={form.noteTecniche} onChange={set("noteTecniche")} rows={2} style={{ width: "100%", padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, marginBottom: 8, boxSizing: "border-box", fontFamily: "inherit" }} />
+      {error && <div style={{ color: "#E5806B", fontSize: 12, marginBottom: 8 }}>{error}</div>}
+      <div style={{ display: "flex", gap: 8 }}>
+        <button onClick={salva} disabled={salvando} style={{ padding: "7px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 12.5, fontWeight: 600 }}>{salvando ? "Creazione…" : "Assegna lavorazione"}</button>
+        <button onClick={onCancel} style={{ padding: "7px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>Annulla</button>
+      </div>
+    </div>
+  );
+}
+
+function WorkOrdersPanel({ vehicleId, api, ruolo }) {
+  const [lavorazioni, setLavorazioni] = useState(null);
+  const [tecnici, setTecnici] = useState([]);
+  const [oreLavorate, setOreLavorate] = useState(null);
+  const [mostraForm, setMostraForm] = useState(false);
+  const [error, setError] = useState(null);
+
+  const load = useCallback(() => {
+    Promise.all([
+      api(`/api/vehicles/${vehicleId}/work-orders`),
+      api("/api/users"),
+      api(`/api/vehicles/${vehicleId}/ore-lavorate`),
+    ]).then(([wo, users, ore]) => { setLavorazioni(wo); setTecnici(users.filter((u) => u.ruolo === "TECNICO")); setOreLavorate(ore); }).catch((e) => setError(e.message));
+  }, [api, vehicleId]);
+  useEffect(load, [load]);
+
+  if (!lavorazioni) return <div style={{ marginTop: 12 }}><Loading /></div>;
+
+  return (
+    <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 12, padding: 16 }}>
+      {error && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 12, padding: 10, borderRadius: 8, marginBottom: 10 }}>{error}</div>}
+
+      {mostraForm ? (
+        tecnici.length === 0 ? (
+          <div style={{ fontSize: 12, color: "#8D9099", marginBottom: 10 }}>Nessun tecnico attivo nel tenant: creane uno da Registro utenti prima di assegnare una lavorazione.</div>
+        ) : (
+          <NuovaLavorazioneForm vehicleId={vehicleId} api={api} tecnici={tecnici} onDone={() => { setMostraForm(false); load(); }} onCancel={() => setMostraForm(false)} />
+        )
+      ) : (
+        <button onClick={() => setMostraForm(true)} style={{ padding: "8px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 13, fontWeight: 600 }}>+ Assegna lavorazione</button>
+      )}
+
+      {lavorazioni.length === 0 ? (
+        <div style={{ fontSize: 12, color: "#8D9099", marginTop: 12 }}>Nessuna lavorazione assegnata su questa pratica.</div>
+      ) : lavorazioni.map((wo) => <WorkOrderRow key={wo.id} wo={wo} api={api} ruolo={ruolo} onChanged={load} />)}
+
+      {oreLavorate && oreLavorate.some((o) => o.ore > 0) && (
+        <div style={{ fontSize: 11, color: "#6B6963", marginTop: 14, borderTop: "1px solid #2A2E34", paddingTop: 10 }}>
+          Ore reali tracciate per reparto (riferimento per Profit Tracker e Predictive Delay AI, non inserite automaticamente): {oreLavorate.filter((o) => o.ore > 0).map((o) => `${REPARTO_LABEL[o.reparto]} ${formatOre(o.ore)}`).join(" · ")}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ---------------- KPI TECNICI/REPARTI (Admin/Amministrazione) ---------------- */
+function KpiTecniciView({ api, ruolo }) {
+  const [vista, setVista] = useState("tecnici");
+  const [dati, setDati] = useState(null);
+  const [impostazioni, setImpostazioni] = useState(null);
+  const [error, setError] = useState(null);
+
+  const load = useCallback(() => {
+    api(`/api/work-orders/kpi/${vista === "tecnici" ? "tecnici" : "reparti"}`).then(setDati).catch((e) => setError(e.message));
+  }, [api, vista]);
+  useEffect(load, [load]);
+  useEffect(() => { api("/api/work-orders/impostazioni").then(setImpostazioni).catch(() => {}); }, [api]);
+
+  const toggleSimultanee = async () => {
+    try {
+      const res = await api("/api/work-orders/impostazioni", { method: "PATCH", body: JSON.stringify({ consentiLavorazioniSimultanee: !impostazioni.consentiLavorazioniSimultanee }) });
+      setImpostazioni(res);
+    } catch (e) { setError(e.message); }
+  };
+
+  return (
+    <div>
+      <h1 style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>KPI Tecnici e Reparti</h1>
+      <div style={{ fontSize: 12.5, color: "#8D9099", marginBottom: 18, maxWidth: 640 }}>
+        Confronto tra ore previste e ore realmente tracciate con la Modalità Tecnico. Non è un punteggio né una classifica: gli scostamenti vanno letti insieme al contesto (priorità, imprevisti, complessità della lavorazione).
+      </div>
+
+      {error && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 12, padding: 10, borderRadius: 8, marginBottom: 14 }}>{error}</div>}
+
+      {ruolo === "ADMIN" && impostazioni && (
+        <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12.5, color: "#D9D6CE", marginBottom: 18, cursor: "pointer", background: "#15171B", border: "1px solid #2A2E34", borderRadius: 10, padding: 12, maxWidth: 480 }}>
+          <input type="checkbox" checked={impostazioni.consentiLavorazioniSimultanee} onChange={toggleSimultanee} />
+          Consenti a un tecnico di avere più lavorazioni "in corso" contemporaneamente (di default non consentito: iniziarne una mette in pausa l'altra)
+        </label>
+      )}
+
+      <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
+        <button onClick={() => setVista("tecnici")} style={{ padding: "7px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: vista === "tecnici" ? "#F3F1EC" : "#15171B", color: vista === "tecnici" ? "#15171B" : "#F3F1EC", fontSize: 12.5, fontWeight: 600 }}>Per tecnico</button>
+        <button onClick={() => setVista("reparti")} style={{ padding: "7px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: vista === "reparti" ? "#F3F1EC" : "#15171B", color: vista === "reparti" ? "#15171B" : "#F3F1EC", fontSize: 12.5, fontWeight: 600 }}>Per reparto</button>
+      </div>
+
+      {!dati ? <Loading /> : dati.kpi.length === 0 ? (
+        <div style={{ fontSize: 13, color: "#8D9099" }}>Nessuna lavorazione registrata ancora.</div>
+      ) : (
+        <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, overflow: "hidden" }}>
+          {dati.kpi.map((k, i) => (
+            <div key={k.key} style={{ padding: "14px 16px", borderTop: i === 0 ? "none" : "1px solid #2A2E34" }}>
+              <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 8 }}>{vista === "reparti" ? (REPARTO_LABEL[k.label] || k.label) : k.label}</div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, fontSize: 12.5, color: "#D9D6CE" }}>
+                <div>Lavorazioni<br /><strong style={{ fontSize: 15 }}>{k.lavorazioni}</strong></div>
+                <div>Completate<br /><strong style={{ fontSize: 15 }}>{k.completate}</strong></div>
+                <div>Ore previste<br /><strong style={{ fontSize: 15 }}>{formatOre(k.oreStimateTot)}</strong></div>
+                <div>Ore reali<br /><strong style={{ fontSize: 15 }}>{formatOre(k.oreRealiTot)}</strong></div>
+              </div>
+              <div style={{ fontSize: 11.5, color: "#8D9099", marginTop: 6 }}>
+                Scostamento: {k.scostamentoTot >= 0 ? "+" : ""}{formatOre(Math.abs(k.scostamentoTot))} {k.scostamentoTot >= 0 ? "oltre la stima" : "sotto la stima"}
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
