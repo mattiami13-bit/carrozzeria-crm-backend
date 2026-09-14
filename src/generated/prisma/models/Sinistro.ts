@@ -347,6 +347,7 @@ export type SinistroWhereInput = {
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
   vehicle?: Prisma.XOR<Prisma.VehicleNullableScalarRelationFilter, Prisma.VehicleWhereInput> | null
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisListRelationFilter
 }
 
 export type SinistroOrderByWithRelationInput = {
@@ -372,6 +373,7 @@ export type SinistroOrderByWithRelationInput = {
   tenant?: Prisma.TenantOrderByWithRelationInput
   client?: Prisma.ClientOrderByWithRelationInput
   vehicle?: Prisma.VehicleOrderByWithRelationInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisOrderByRelationAggregateInput
 }
 
 export type SinistroWhereUniqueInput = Prisma.AtLeast<{
@@ -400,6 +402,7 @@ export type SinistroWhereUniqueInput = Prisma.AtLeast<{
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
   vehicle?: Prisma.XOR<Prisma.VehicleNullableScalarRelationFilter, Prisma.VehicleWhereInput> | null
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisListRelationFilter
 }, "id">
 
 export type SinistroOrderByWithAggregationInput = {
@@ -474,6 +477,7 @@ export type SinistroCreateInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutSinistriInput
   client: Prisma.ClientCreateNestedOneWithoutSinistriInput
   vehicle?: Prisma.VehicleCreateNestedOneWithoutSinistriInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutSinistroInput
 }
 
 export type SinistroUncheckedCreateInput = {
@@ -496,6 +500,7 @@ export type SinistroUncheckedCreateInput = {
   note?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutSinistroInput
 }
 
 export type SinistroUpdateInput = {
@@ -518,6 +523,7 @@ export type SinistroUpdateInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutSinistriNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutSinistriNestedInput
   vehicle?: Prisma.VehicleUpdateOneWithoutSinistriNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutSinistroNestedInput
 }
 
 export type SinistroUncheckedUpdateInput = {
@@ -540,6 +546,7 @@ export type SinistroUncheckedUpdateInput = {
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutSinistroNestedInput
 }
 
 export type SinistroCreateManyInput = {
@@ -613,6 +620,11 @@ export type SinistroListRelationFilter = {
 
 export type SinistroOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type SinistroNullableScalarRelationFilter = {
+  is?: Prisma.SinistroWhereInput | null
+  isNot?: Prisma.SinistroWhereInput | null
 }
 
 export type SinistroCountOrderByAggregateInput = {
@@ -823,6 +835,22 @@ export type SinistroUncheckedUpdateManyWithoutVehicleNestedInput = {
   deleteMany?: Prisma.SinistroScalarWhereInput | Prisma.SinistroScalarWhereInput[]
 }
 
+export type SinistroCreateNestedOneWithoutInsuranceGapAnalysesInput = {
+  create?: Prisma.XOR<Prisma.SinistroCreateWithoutInsuranceGapAnalysesInput, Prisma.SinistroUncheckedCreateWithoutInsuranceGapAnalysesInput>
+  connectOrCreate?: Prisma.SinistroCreateOrConnectWithoutInsuranceGapAnalysesInput
+  connect?: Prisma.SinistroWhereUniqueInput
+}
+
+export type SinistroUpdateOneWithoutInsuranceGapAnalysesNestedInput = {
+  create?: Prisma.XOR<Prisma.SinistroCreateWithoutInsuranceGapAnalysesInput, Prisma.SinistroUncheckedCreateWithoutInsuranceGapAnalysesInput>
+  connectOrCreate?: Prisma.SinistroCreateOrConnectWithoutInsuranceGapAnalysesInput
+  upsert?: Prisma.SinistroUpsertWithoutInsuranceGapAnalysesInput
+  disconnect?: Prisma.SinistroWhereInput | boolean
+  delete?: Prisma.SinistroWhereInput | boolean
+  connect?: Prisma.SinistroWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SinistroUpdateToOneWithWhereWithoutInsuranceGapAnalysesInput, Prisma.SinistroUpdateWithoutInsuranceGapAnalysesInput>, Prisma.SinistroUncheckedUpdateWithoutInsuranceGapAnalysesInput>
+}
+
 export type EnumSinistroStatusFieldUpdateOperationsInput = {
   set?: $Enums.SinistroStatus
 }
@@ -846,6 +874,7 @@ export type SinistroCreateWithoutTenantInput = {
   updatedAt?: Date | string
   client: Prisma.ClientCreateNestedOneWithoutSinistriInput
   vehicle?: Prisma.VehicleCreateNestedOneWithoutSinistriInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutSinistroInput
 }
 
 export type SinistroUncheckedCreateWithoutTenantInput = {
@@ -867,6 +896,7 @@ export type SinistroUncheckedCreateWithoutTenantInput = {
   note?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutSinistroInput
 }
 
 export type SinistroCreateOrConnectWithoutTenantInput = {
@@ -939,6 +969,7 @@ export type SinistroCreateWithoutClientInput = {
   updatedAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutSinistriInput
   vehicle?: Prisma.VehicleCreateNestedOneWithoutSinistriInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutSinistroInput
 }
 
 export type SinistroUncheckedCreateWithoutClientInput = {
@@ -960,6 +991,7 @@ export type SinistroUncheckedCreateWithoutClientInput = {
   note?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutSinistroInput
 }
 
 export type SinistroCreateOrConnectWithoutClientInput = {
@@ -1007,6 +1039,7 @@ export type SinistroCreateWithoutVehicleInput = {
   updatedAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutSinistriInput
   client: Prisma.ClientCreateNestedOneWithoutSinistriInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutSinistroInput
 }
 
 export type SinistroUncheckedCreateWithoutVehicleInput = {
@@ -1028,6 +1061,7 @@ export type SinistroUncheckedCreateWithoutVehicleInput = {
   note?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutSinistroInput
 }
 
 export type SinistroCreateOrConnectWithoutVehicleInput = {
@@ -1054,6 +1088,110 @@ export type SinistroUpdateWithWhereUniqueWithoutVehicleInput = {
 export type SinistroUpdateManyWithWhereWithoutVehicleInput = {
   where: Prisma.SinistroScalarWhereInput
   data: Prisma.XOR<Prisma.SinistroUpdateManyMutationInput, Prisma.SinistroUncheckedUpdateManyWithoutVehicleInput>
+}
+
+export type SinistroCreateWithoutInsuranceGapAnalysesInput = {
+  id?: string
+  numeroPratica?: string | null
+  compagniaAssicurativa: string
+  perito?: string | null
+  responsabile?: string | null
+  stato?: $Enums.SinistroStatus
+  importoTotale?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  percentualeFranchigia?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  importoFranchigia?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  importoPagatoAssicurazione?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  importoPagatoCliente?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  dataApertura?: Date | string
+  dataChiusura?: Date | string | null
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutSinistriInput
+  client: Prisma.ClientCreateNestedOneWithoutSinistriInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutSinistriInput
+}
+
+export type SinistroUncheckedCreateWithoutInsuranceGapAnalysesInput = {
+  id?: string
+  tenantId: string
+  clientId: string
+  vehicleId?: string | null
+  numeroPratica?: string | null
+  compagniaAssicurativa: string
+  perito?: string | null
+  responsabile?: string | null
+  stato?: $Enums.SinistroStatus
+  importoTotale?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  percentualeFranchigia?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  importoFranchigia?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  importoPagatoAssicurazione?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  importoPagatoCliente?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  dataApertura?: Date | string
+  dataChiusura?: Date | string | null
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SinistroCreateOrConnectWithoutInsuranceGapAnalysesInput = {
+  where: Prisma.SinistroWhereUniqueInput
+  create: Prisma.XOR<Prisma.SinistroCreateWithoutInsuranceGapAnalysesInput, Prisma.SinistroUncheckedCreateWithoutInsuranceGapAnalysesInput>
+}
+
+export type SinistroUpsertWithoutInsuranceGapAnalysesInput = {
+  update: Prisma.XOR<Prisma.SinistroUpdateWithoutInsuranceGapAnalysesInput, Prisma.SinistroUncheckedUpdateWithoutInsuranceGapAnalysesInput>
+  create: Prisma.XOR<Prisma.SinistroCreateWithoutInsuranceGapAnalysesInput, Prisma.SinistroUncheckedCreateWithoutInsuranceGapAnalysesInput>
+  where?: Prisma.SinistroWhereInput
+}
+
+export type SinistroUpdateToOneWithWhereWithoutInsuranceGapAnalysesInput = {
+  where?: Prisma.SinistroWhereInput
+  data: Prisma.XOR<Prisma.SinistroUpdateWithoutInsuranceGapAnalysesInput, Prisma.SinistroUncheckedUpdateWithoutInsuranceGapAnalysesInput>
+}
+
+export type SinistroUpdateWithoutInsuranceGapAnalysesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  numeroPratica?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  compagniaAssicurativa?: Prisma.StringFieldUpdateOperationsInput | string
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsabile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumSinistroStatusFieldUpdateOperationsInput | $Enums.SinistroStatus
+  importoTotale?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  percentualeFranchigia?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  importoFranchigia?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  importoPagatoAssicurazione?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  importoPagatoCliente?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  dataApertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataChiusura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutSinistriNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutSinistriNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutSinistriNestedInput
+}
+
+export type SinistroUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroPratica?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  compagniaAssicurativa?: Prisma.StringFieldUpdateOperationsInput | string
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  responsabile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumSinistroStatusFieldUpdateOperationsInput | $Enums.SinistroStatus
+  importoTotale?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  percentualeFranchigia?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  importoFranchigia?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  importoPagatoAssicurazione?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  importoPagatoCliente?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  dataApertura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataChiusura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SinistroCreateManyTenantInput = {
@@ -1096,6 +1234,7 @@ export type SinistroUpdateWithoutTenantInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   client?: Prisma.ClientUpdateOneRequiredWithoutSinistriNestedInput
   vehicle?: Prisma.VehicleUpdateOneWithoutSinistriNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutSinistroNestedInput
 }
 
 export type SinistroUncheckedUpdateWithoutTenantInput = {
@@ -1117,6 +1256,7 @@ export type SinistroUncheckedUpdateWithoutTenantInput = {
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutSinistroNestedInput
 }
 
 export type SinistroUncheckedUpdateManyWithoutTenantInput = {
@@ -1180,6 +1320,7 @@ export type SinistroUpdateWithoutClientInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutSinistriNestedInput
   vehicle?: Prisma.VehicleUpdateOneWithoutSinistriNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutSinistroNestedInput
 }
 
 export type SinistroUncheckedUpdateWithoutClientInput = {
@@ -1201,6 +1342,7 @@ export type SinistroUncheckedUpdateWithoutClientInput = {
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutSinistroNestedInput
 }
 
 export type SinistroUncheckedUpdateManyWithoutClientInput = {
@@ -1264,6 +1406,7 @@ export type SinistroUpdateWithoutVehicleInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutSinistriNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutSinistriNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutSinistroNestedInput
 }
 
 export type SinistroUncheckedUpdateWithoutVehicleInput = {
@@ -1285,6 +1428,7 @@ export type SinistroUncheckedUpdateWithoutVehicleInput = {
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutSinistroNestedInput
 }
 
 export type SinistroUncheckedUpdateManyWithoutVehicleInput = {
@@ -1308,6 +1452,35 @@ export type SinistroUncheckedUpdateManyWithoutVehicleInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type SinistroCountOutputType
+ */
+
+export type SinistroCountOutputType = {
+  insuranceGapAnalyses: number
+}
+
+export type SinistroCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  insuranceGapAnalyses?: boolean | SinistroCountOutputTypeCountInsuranceGapAnalysesArgs
+}
+
+/**
+ * SinistroCountOutputType without action
+ */
+export type SinistroCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SinistroCountOutputType
+   */
+  select?: Prisma.SinistroCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * SinistroCountOutputType without action
+ */
+export type SinistroCountOutputTypeCountInsuranceGapAnalysesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InsuranceGapAnalysisWhereInput
+}
 
 
 export type SinistroSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1333,6 +1506,8 @@ export type SinistroSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.Sinistro$vehicleArgs<ExtArgs>
+  insuranceGapAnalyses?: boolean | Prisma.Sinistro$insuranceGapAnalysesArgs<ExtArgs>
+  _count?: boolean | Prisma.SinistroCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sinistro"]>
 
 export type SinistroSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1412,6 +1587,8 @@ export type SinistroInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.Sinistro$vehicleArgs<ExtArgs>
+  insuranceGapAnalyses?: boolean | Prisma.Sinistro$insuranceGapAnalysesArgs<ExtArgs>
+  _count?: boolean | Prisma.SinistroCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SinistroIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
@@ -1430,6 +1607,7 @@ export type $SinistroPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     tenant: Prisma.$TenantPayload<ExtArgs>
     client: Prisma.$ClientPayload<ExtArgs>
     vehicle: Prisma.$VehiclePayload<ExtArgs> | null
+    insuranceGapAnalyses: Prisma.$InsuranceGapAnalysisPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1848,6 +2026,7 @@ export interface Prisma__SinistroClient<T, Null = never, ExtArgs extends runtime
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   client<T extends Prisma.ClientDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientDefaultArgs<ExtArgs>>): Prisma.Prisma__ClientClient<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   vehicle<T extends Prisma.Sinistro$vehicleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Sinistro$vehicleArgs<ExtArgs>>): Prisma.Prisma__VehicleClient<runtime.Types.Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  insuranceGapAnalyses<T extends Prisma.Sinistro$insuranceGapAnalysesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Sinistro$insuranceGapAnalysesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InsuranceGapAnalysisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2313,6 +2492,30 @@ export type Sinistro$vehicleArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   include?: Prisma.VehicleInclude<ExtArgs> | null
   where?: Prisma.VehicleWhereInput
+}
+
+/**
+ * Sinistro.insuranceGapAnalyses
+ */
+export type Sinistro$insuranceGapAnalysesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InsuranceGapAnalysis
+   */
+  select?: Prisma.InsuranceGapAnalysisSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InsuranceGapAnalysis
+   */
+  omit?: Prisma.InsuranceGapAnalysisOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InsuranceGapAnalysisInclude<ExtArgs> | null
+  where?: Prisma.InsuranceGapAnalysisWhereInput
+  orderBy?: Prisma.InsuranceGapAnalysisOrderByWithRelationInput | Prisma.InsuranceGapAnalysisOrderByWithRelationInput[]
+  cursor?: Prisma.InsuranceGapAnalysisWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InsuranceGapAnalysisScalarFieldEnum | Prisma.InsuranceGapAnalysisScalarFieldEnum[]
 }
 
 /**

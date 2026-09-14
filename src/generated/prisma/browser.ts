@@ -68,6 +68,21 @@ export type DamageAnalysis = Prisma.DamageAnalysisModel
  */
 export type DamageItem = Prisma.DamageItemModel
 /**
+ * Model InsuranceGapAnalysis
+ * 
+ */
+export type InsuranceGapAnalysis = Prisma.InsuranceGapAnalysisModel
+/**
+ * Model InsuranceGapItem
+ * 
+ */
+export type InsuranceGapItem = Prisma.InsuranceGapItemModel
+/**
+ * Model InsuranceGapSuggestion
+ * 
+ */
+export type InsuranceGapSuggestion = Prisma.InsuranceGapSuggestionModel
+/**
  * Model Part
  * 
  */

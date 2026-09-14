@@ -407,6 +407,9 @@ export const ModelName = {
   QuoteItem: 'QuoteItem',
   DamageAnalysis: 'DamageAnalysis',
   DamageItem: 'DamageItem',
+  InsuranceGapAnalysis: 'InsuranceGapAnalysis',
+  InsuranceGapItem: 'InsuranceGapItem',
+  InsuranceGapSuggestion: 'InsuranceGapSuggestion',
   Part: 'Part',
   PartMovement: 'PartMovement',
   SupplierOrder: 'SupplierOrder',
@@ -447,7 +450,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerBooking" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit"
+    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerBooking" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1188,6 +1191,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.DamageItemCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.DamageItemCountAggregateOutputType> | number
+        }
+      }
+    }
+    InsuranceGapAnalysis: {
+      payload: Prisma.$InsuranceGapAnalysisPayload<ExtArgs>
+      fields: Prisma.InsuranceGapAnalysisFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.InsuranceGapAnalysisFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapAnalysisPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.InsuranceGapAnalysisFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapAnalysisPayload>
+        }
+        findFirst: {
+          args: Prisma.InsuranceGapAnalysisFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapAnalysisPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.InsuranceGapAnalysisFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapAnalysisPayload>
+        }
+        findMany: {
+          args: Prisma.InsuranceGapAnalysisFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapAnalysisPayload>[]
+        }
+        create: {
+          args: Prisma.InsuranceGapAnalysisCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapAnalysisPayload>
+        }
+        createMany: {
+          args: Prisma.InsuranceGapAnalysisCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.InsuranceGapAnalysisCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapAnalysisPayload>[]
+        }
+        delete: {
+          args: Prisma.InsuranceGapAnalysisDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapAnalysisPayload>
+        }
+        update: {
+          args: Prisma.InsuranceGapAnalysisUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapAnalysisPayload>
+        }
+        deleteMany: {
+          args: Prisma.InsuranceGapAnalysisDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.InsuranceGapAnalysisUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.InsuranceGapAnalysisUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapAnalysisPayload>[]
+        }
+        upsert: {
+          args: Prisma.InsuranceGapAnalysisUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapAnalysisPayload>
+        }
+        aggregate: {
+          args: Prisma.InsuranceGapAnalysisAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateInsuranceGapAnalysis>
+        }
+        groupBy: {
+          args: Prisma.InsuranceGapAnalysisGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InsuranceGapAnalysisGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.InsuranceGapAnalysisCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InsuranceGapAnalysisCountAggregateOutputType> | number
+        }
+      }
+    }
+    InsuranceGapItem: {
+      payload: Prisma.$InsuranceGapItemPayload<ExtArgs>
+      fields: Prisma.InsuranceGapItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.InsuranceGapItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.InsuranceGapItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapItemPayload>
+        }
+        findFirst: {
+          args: Prisma.InsuranceGapItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.InsuranceGapItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapItemPayload>
+        }
+        findMany: {
+          args: Prisma.InsuranceGapItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapItemPayload>[]
+        }
+        create: {
+          args: Prisma.InsuranceGapItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapItemPayload>
+        }
+        createMany: {
+          args: Prisma.InsuranceGapItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.InsuranceGapItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapItemPayload>[]
+        }
+        delete: {
+          args: Prisma.InsuranceGapItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapItemPayload>
+        }
+        update: {
+          args: Prisma.InsuranceGapItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.InsuranceGapItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.InsuranceGapItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.InsuranceGapItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.InsuranceGapItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapItemPayload>
+        }
+        aggregate: {
+          args: Prisma.InsuranceGapItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateInsuranceGapItem>
+        }
+        groupBy: {
+          args: Prisma.InsuranceGapItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InsuranceGapItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.InsuranceGapItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InsuranceGapItemCountAggregateOutputType> | number
+        }
+      }
+    }
+    InsuranceGapSuggestion: {
+      payload: Prisma.$InsuranceGapSuggestionPayload<ExtArgs>
+      fields: Prisma.InsuranceGapSuggestionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.InsuranceGapSuggestionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapSuggestionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.InsuranceGapSuggestionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapSuggestionPayload>
+        }
+        findFirst: {
+          args: Prisma.InsuranceGapSuggestionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapSuggestionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.InsuranceGapSuggestionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapSuggestionPayload>
+        }
+        findMany: {
+          args: Prisma.InsuranceGapSuggestionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapSuggestionPayload>[]
+        }
+        create: {
+          args: Prisma.InsuranceGapSuggestionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapSuggestionPayload>
+        }
+        createMany: {
+          args: Prisma.InsuranceGapSuggestionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.InsuranceGapSuggestionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapSuggestionPayload>[]
+        }
+        delete: {
+          args: Prisma.InsuranceGapSuggestionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapSuggestionPayload>
+        }
+        update: {
+          args: Prisma.InsuranceGapSuggestionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapSuggestionPayload>
+        }
+        deleteMany: {
+          args: Prisma.InsuranceGapSuggestionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.InsuranceGapSuggestionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.InsuranceGapSuggestionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapSuggestionPayload>[]
+        }
+        upsert: {
+          args: Prisma.InsuranceGapSuggestionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InsuranceGapSuggestionPayload>
+        }
+        aggregate: {
+          args: Prisma.InsuranceGapSuggestionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateInsuranceGapSuggestion>
+        }
+        groupBy: {
+          args: Prisma.InsuranceGapSuggestionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InsuranceGapSuggestionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.InsuranceGapSuggestionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InsuranceGapSuggestionCountAggregateOutputType> | number
         }
       }
     }
@@ -3257,6 +3482,67 @@ export const DamageItemScalarFieldEnum = {
 export type DamageItemScalarFieldEnum = (typeof DamageItemScalarFieldEnum)[keyof typeof DamageItemScalarFieldEnum]
 
 
+export const InsuranceGapAnalysisScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  quoteId: 'quoteId',
+  sinistroId: 'sinistroId',
+  documentName: 'documentName',
+  documentMime: 'documentMime',
+  documentSize: 'documentSize',
+  documentContent: 'documentContent',
+  rispostaGrezza: 'rispostaGrezza',
+  totalePreventivoInterno: 'totalePreventivoInterno',
+  totaleRiconosciutoAssicurazione: 'totaleRiconosciutoAssicurazione',
+  differenza: 'differenza',
+  creatoDaId: 'creatoDaId',
+  createdAt: 'createdAt'
+} as const
+
+export type InsuranceGapAnalysisScalarFieldEnum = (typeof InsuranceGapAnalysisScalarFieldEnum)[keyof typeof InsuranceGapAnalysisScalarFieldEnum]
+
+
+export const InsuranceGapItemScalarFieldEnum = {
+  id: 'id',
+  analysisId: 'analysisId',
+  tenantId: 'tenantId',
+  quoteItemId: 'quoteItemId',
+  descrizione: 'descrizione',
+  tipo: 'tipo',
+  quantita: 'quantita',
+  prezzoUnitario: 'prezzoUnitario',
+  trovatoAI: 'trovatoAI',
+  descrizioneAssicurazioneAI: 'descrizioneAssicurazioneAI',
+  quantitaAssicurazioneAI: 'quantitaAssicurazioneAI',
+  prezzoUnitarioAssicurazioneAI: 'prezzoUnitarioAssicurazioneAI',
+  statoAI: 'statoAI',
+  quantitaAssicurazione: 'quantitaAssicurazione',
+  prezzoUnitarioAssicurazione: 'prezzoUnitarioAssicurazione',
+  stato: 'stato',
+  noteOperatore: 'noteOperatore',
+  modificatoManualmente: 'modificatoManualmente',
+  modificatoDaId: 'modificatoDaId',
+  modificatoAt: 'modificatoAt',
+  createdAt: 'createdAt'
+} as const
+
+export type InsuranceGapItemScalarFieldEnum = (typeof InsuranceGapItemScalarFieldEnum)[keyof typeof InsuranceGapItemScalarFieldEnum]
+
+
+export const InsuranceGapSuggestionScalarFieldEnum = {
+  id: 'id',
+  analysisId: 'analysisId',
+  tenantId: 'tenantId',
+  voce: 'voce',
+  motivo: 'motivo',
+  scartata: 'scartata',
+  createdAt: 'createdAt'
+} as const
+
+export type InsuranceGapSuggestionScalarFieldEnum = (typeof InsuranceGapSuggestionScalarFieldEnum)[keyof typeof InsuranceGapSuggestionScalarFieldEnum]
+
+
 export const PartScalarFieldEnum = {
   id: 'id',
   tenantId: 'tenantId',
@@ -3816,6 +4102,34 @@ export type ListEnumDamageSeverityFieldRefInput<$PrismaModel> = FieldRefInputTyp
 
 
 /**
+ * Reference to a field of type 'Bytes'
+ */
+export type BytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes'>
+    
+
+
+/**
+ * Reference to a field of type 'Bytes[]'
+ */
+export type ListBytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes[]'>
+    
+
+
+/**
+ * Reference to a field of type 'InsuranceGapStatus'
+ */
+export type EnumInsuranceGapStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'InsuranceGapStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'InsuranceGapStatus[]'
+ */
+export type ListEnumInsuranceGapStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'InsuranceGapStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'MovementType'
  */
 export type EnumMovementTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MovementType'>
@@ -3854,20 +4168,6 @@ export type EnumSinistroStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$P
  * Reference to a field of type 'SinistroStatus[]'
  */
 export type ListEnumSinistroStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SinistroStatus[]'>
-    
-
-
-/**
- * Reference to a field of type 'Bytes'
- */
-export type BytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes'>
-    
-
-
-/**
- * Reference to a field of type 'Bytes[]'
- */
-export type ListBytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes[]'>
     
 
 
@@ -4045,6 +4345,9 @@ export type GlobalOmitConfig = {
   quoteItem?: Prisma.QuoteItemOmit
   damageAnalysis?: Prisma.DamageAnalysisOmit
   damageItem?: Prisma.DamageItemOmit
+  insuranceGapAnalysis?: Prisma.InsuranceGapAnalysisOmit
+  insuranceGapItem?: Prisma.InsuranceGapItemOmit
+  insuranceGapSuggestion?: Prisma.InsuranceGapSuggestionOmit
   part?: Prisma.PartOmit
   partMovement?: Prisma.PartMovementOmit
   supplierOrder?: Prisma.SupplierOrderOmit

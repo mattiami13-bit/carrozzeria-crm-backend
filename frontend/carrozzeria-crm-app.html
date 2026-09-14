@@ -1159,6 +1159,261 @@ function ProfitDashboard({api,ruolo,onOpen}) {
  {ruolo==="ADMIN"&&settings&&<div><h3>Soglie marginalità</h3><div className="profit-grid"><label>Critica sotto (%)<input type="number" min="0" max="99" value={settings.criticalBelow} onChange={e=>setSettings(s=>({...s,criticalBelow:Number(e.target.value)}))}/></label><label>Buona da (%)<input type="number" min="1" max="100" value={settings.goodFrom} onChange={e=>setSettings(s=>({...s,goodFrom:Number(e.target.value)}))}/></label></div><p className="profit-muted">Tra le due soglie: marginalità da controllare. Le soglie si applicano a tutta la carrozzeria.</p><button disabled={saving} onClick={saveSettings}>Salva soglie</button></div>}</section>;
 }
 
+/* ---------------- INSURANCE GAP ANALYSIS ----------------
+   Confronto tra il preventivo interno e il documento ricevuto
+   dall'assicurazione. Riservato ad ADMIN/AMMINISTRAZIONE (come Profit
+   Tracker). L'IA propone una lettura del documento: non dichiara mai
+   automaticamente una voce dovuta o corretta, l'operatore corregge e
+   conferma sempre prima di generare la bozza di richiesta integrazione. */
+const GAP_STATO_INFO = {
+  CORRISPONDE: { emoji: "🟢", label: "Corrisponde", color: "#2F8F5B" },
+  DIFFERENZA: { emoji: "🟠", label: "Differenza", color: "#C9A24B" },
+  MANCANTE: { emoji: "🔴", label: "Voce mancante", color: "#B4472E" },
+};
+
+function InsuranceGapAnalysis({ vehicle, api, token }) {
+  const ruolo = decodificaRuolo(token);
+  const [analisi, setAnalisi] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [quoteId, setQuoteId] = useState(vehicle.quotes?.[0]?.id || "");
+  const [analizzando, setAnalizzando] = useState(false);
+  const [errore, setErrore] = useState(null);
+  const [modificheLocali, setModificheLocali] = useState({});
+  const [salvandoId, setSalvandoId] = useState(null);
+  const [generandoPdfId, setGenerandoPdfId] = useState(null);
+
+  const load = useCallback(() => {
+    setLoading(true);
+    api(`/api/vehicles/${vehicle.id}/insurance-gap`).then(setAnalisi).catch(() => {}).finally(() => setLoading(false));
+  }, [api, vehicle.id]);
+
+  useEffect(() => { if (RUOLI_CON_ACCESSO_FINANZIARIO.includes(ruolo)) load(); }, [load, ruolo]);
+
+  if (!RUOLI_CON_ACCESSO_FINANZIARIO.includes(ruolo)) return null;
+
+  const caricaEAnalizza = async (file) => {
+    if (!file || !quoteId) return;
+    setErrore(null);
+    setAnalizzando(true);
+    try {
+      const body = new FormData();
+      body.append("file", file);
+      body.append("quoteId", quoteId);
+      const res = await fetch(`${API}/api/vehicles/${vehicle.id}/insurance-gap/analizza`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body,
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error ? JSON.stringify(data.error) : "Errore durante l'analisi");
+      setAnalisi((prev) => [data, ...prev]);
+    } catch (e) {
+      setErrore(e.message);
+    } finally {
+      setAnalizzando(false);
+    }
+  };
+
+  const aggiornaCampo = (itemId, campo, valore) => {
+    setModificheLocali((prev) => ({ ...prev, [itemId]: { ...(prev[itemId] || {}), [campo]: valore } }));
+  };
+
+  const salvaCorrezioni = async (item) => {
+    const modifiche = modificheLocali[item.id];
+    if (!modifiche) return;
+    setSalvandoId(item.id);
+    setErrore(null);
+    try {
+      const aggiornato = await api(`/api/insurance-gap-items/${item.id}`, { method: "PATCH", body: JSON.stringify(modifiche) });
+      setAnalisi((prev) => prev.map((a) => ({ ...a, items: a.items.map((it) => (it.id === item.id ? aggiornato : it)) })));
+      setModificheLocali((prev) => { const p = { ...prev }; delete p[item.id]; return p; });
+    } catch (e) {
+      setErrore(e.message);
+    } finally {
+      setSalvandoId(null);
+    }
+  };
+
+  const toggleSuggerimento = async (s, analysisId) => {
+    setErrore(null);
+    try {
+      await api(`/api/insurance-gap-suggestions/${s.id}`, { method: "PATCH", body: JSON.stringify({ scartata: !s.scartata }) });
+      setAnalisi((prev) => prev.map((a) => (a.id === analysisId
+        ? { ...a, suggerimenti: a.suggerimenti.map((x) => (x.id === s.id ? { ...x, scartata: !x.scartata } : x)) }
+        : a)));
+    } catch (e) {
+      setErrore(e.message);
+    }
+  };
+
+  const eliminaAnalisi = async (id) => {
+    if (!confirm("Eliminare questa analisi? L'operazione non si può annullare.")) return;
+    setErrore(null);
+    try {
+      await api(`/api/vehicles/${vehicle.id}/insurance-gap/${id}`, { method: "DELETE" });
+      setAnalisi((prev) => prev.filter((a) => a.id !== id));
+    } catch (e) {
+      setErrore(e.message);
+    }
+  };
+
+  const generaPdf = async (analysisId) => {
+    setGenerandoPdfId(analysisId);
+    setErrore(null);
+    try {
+      const res = await fetch(`${API}/api/vehicles/${vehicle.id}/insurance-gap/${analysisId}/richiesta-integrazione`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+        body: JSON.stringify({}),
+      });
+      if (!res.ok) {
+        const d = await res.json().catch(() => ({}));
+        throw new Error(d.error || "Errore durante la generazione del documento");
+      }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `richiesta-integrazione-${vehicle.targa}.pdf`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      setErrore(e.message);
+    } finally {
+      setGenerandoPdfId(null);
+    }
+  };
+
+  return (
+    <div style={{ marginTop: 26 }}>
+      <h3 style={{ fontSize: 13, fontWeight: 700, marginBottom: 10 }}>Insurance Gap Analysis</h3>
+      <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 12, padding: 16 }}>
+        <div style={{ fontSize: 12, color: "#8D9099", marginBottom: 12, lineHeight: 1.5 }}>
+          Carica il preventivo o la perizia ricevuti dall'assicurazione: l'IA confronta ogni voce con il preventivo interno e segnala eventuali differenze, senza mai dichiarare automaticamente una voce dovuta o corretta.
+        </div>
+
+        {(vehicle.quotes || []).length === 0 ? (
+          <div style={{ fontSize: 12, color: "#8D9099" }}>Crea prima un preventivo interno per questo veicolo per poterlo confrontare.</div>
+        ) : (
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", marginBottom: 12 }}>
+            <select value={quoteId} onChange={(e) => setQuoteId(e.target.value)} style={{
+              fontSize: 12, padding: "7px 8px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC",
+            }}>
+              {vehicle.quotes.map((q) => (
+                <option key={q.id} value={q.id}>Preventivo {q.id.slice(-6)} — {euro(q.totale)} ({q.stato})</option>
+              ))}
+            </select>
+            <label style={{
+              padding: "8px 14px", borderRadius: 8, border: "1.5px dashed #D9D5CA", fontSize: 12, color: "#8D9099",
+              cursor: analizzando || !quoteId ? "default" : "pointer",
+            }}>
+              {analizzando ? "Analisi in corso…" : "Carica documento assicurazione (PDF/JPEG/PNG)"}
+              <input type="file" accept="application/pdf,image/jpeg,image/png" style={{ display: "none" }}
+                disabled={analizzando || !quoteId}
+                onChange={(e) => { const f = e.target.files[0]; e.target.value = ""; if (f) caricaEAnalizza(f); }} />
+            </label>
+          </div>
+        )}
+
+        {errore && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 12, padding: 10, borderRadius: 8, marginBottom: 12 }}>{errore}</div>}
+
+        {loading ? (
+          <div style={{ fontSize: 12, color: "#8D9099" }}>Caricamento…</div>
+        ) : analisi.map((a) => (
+          <div key={a.id} style={{ border: "1px solid #2A2E34", borderRadius: 10, padding: 12, background: "#15171B", marginBottom: 12 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 700 }}>{a.documentName}</div>
+                <div style={{ fontSize: 11, color: "#8D9099" }}>{new Date(a.createdAt).toLocaleString("it-IT")}</div>
+              </div>
+              <button onClick={() => eliminaAnalisi(a.id)} style={{
+                fontSize: 11, padding: "4px 8px", borderRadius: 6, border: "1px solid #2A2E34", background: "transparent", color: "#8D9099",
+              }}>Elimina</button>
+            </div>
+
+            <div style={{ display: "flex", gap: 16, flexWrap: "wrap", margin: "10px 0", fontSize: 13 }}>
+              <div>Preventivo carrozzeria: <strong>{euro(a.totalePreventivoInterno)}</strong></div>
+              <div>Riconosciuto assicurazione: <strong>{a.totaleRiconosciutoAssicurazione != null ? euro(a.totaleRiconosciutoAssicurazione) : "non indicato"}</strong></div>
+              {a.differenza != null && (
+                <div style={{ color: Number(a.differenza) > 0 ? "#B4472E" : "#2F8F5B", fontWeight: 700 }}>
+                  Differenza: {Number(a.differenza) > 0 ? "-" : "+"}{euro(Math.abs(a.differenza))}
+                </div>
+              )}
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {a.items.map((item) => {
+                const modifiche = modificheLocali[item.id] || {};
+                const valore = (campo) => (campo in modifiche ? modifiche[campo] : item[campo]);
+                const info = GAP_STATO_INFO[valore("stato")] || GAP_STATO_INFO.MANCANTE;
+                const dirty = !!modificheLocali[item.id];
+                return (
+                  <div key={item.id} style={{ border: "1px solid #2A2E34", borderRadius: 8, padding: 10 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+                      <span>{info.emoji}</span>
+                      <span style={{ fontSize: 12, fontWeight: 700, flex: 1, minWidth: 120 }}>{item.descrizione}</span>
+                      <select value={valore("stato")} onChange={(e) => aggiornaCampo(item.id, "stato", e.target.value)} style={{
+                        fontSize: 11, padding: "3px 6px", borderRadius: 6, border: "1px solid #2A2E34", background: "#0A0B0D", color: info.color, fontWeight: 600,
+                      }}>
+                        {Object.entries(GAP_STATO_INFO).map(([k, v]) => <option key={k} value={k}>{v.emoji} {v.label}</option>)}
+                      </select>
+                    </div>
+                    <div style={{ fontSize: 11, color: "#8D9099", marginTop: 4 }}>
+                      Preventivo carrozzeria: {Number(item.quantita)} × {euro(item.prezzoUnitario)} = {euro(Number(item.quantita) * Number(item.prezzoUnitario))}
+                    </div>
+                    <div style={{ display: "flex", gap: 6, alignItems: "center", marginTop: 6, flexWrap: "wrap" }}>
+                      <span style={{ fontSize: 11, color: "#8D9099" }}>Riconosciuto assicurazione:</span>
+                      <input type="number" step="0.01" value={valore("quantitaAssicurazione") ?? ""} placeholder="qtà"
+                        onChange={(e) => aggiornaCampo(item.id, "quantitaAssicurazione", e.target.value === "" ? null : Number(e.target.value))}
+                        style={{ width: 56, fontSize: 11, padding: "3px 5px", borderRadius: 5, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC" }} />
+                      <span style={{ fontSize: 11, color: "#8D9099" }}>×</span>
+                      <input type="number" step="0.01" value={valore("prezzoUnitarioAssicurazione") ?? ""} placeholder="prezzo"
+                        onChange={(e) => aggiornaCampo(item.id, "prezzoUnitarioAssicurazione", e.target.value === "" ? null : Number(e.target.value))}
+                        style={{ width: 70, fontSize: 11, padding: "3px 5px", borderRadius: 5, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC" }} />
+                      {item.descrizioneAssicurazioneAI && (
+                        <span style={{ fontSize: 11, color: "#8D9099" }}>· nel documento: "{item.descrizioneAssicurazioneAI}"</span>
+                      )}
+                    </div>
+                    {dirty && (
+                      <button onClick={() => salvaCorrezioni(item)} disabled={salvandoId === item.id} style={{
+                        marginTop: 8, fontSize: 11, fontWeight: 600, padding: "4px 10px", borderRadius: 6, border: "none", background: "#4E7F8C", color: "#fff",
+                      }}>{salvandoId === item.id ? "Salvataggio…" : "Salva correzione"}</button>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {a.suggerimenti?.length > 0 && (
+              <div style={{ marginTop: 14 }}>
+                <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 4 }}>Possibili voci da verificare</div>
+                <div style={{ fontSize: 11, color: "#8D9099", marginBottom: 8 }}>Non sono voci confermate: vanno valutate professionalmente prima di includerle in qualsiasi richiesta.</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  {a.suggerimenti.map((s) => (
+                    <div key={s.id} style={{ display: "flex", gap: 8, alignItems: "flex-start", opacity: s.scartata ? 0.5 : 1 }}>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 12, fontWeight: 600 }}>{s.voce}</div>
+                        {s.motivo && <div style={{ fontSize: 11, color: "#8D9099" }}>{s.motivo}</div>}
+                      </div>
+                      <button onClick={() => toggleSuggerimento(s, a.id)} style={{
+                        fontSize: 10, padding: "3px 8px", borderRadius: 6, border: "1px solid #2A2E34", background: "transparent", color: "#8D9099",
+                      }}>{s.scartata ? "Ripristina" : "Scarta"}</button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <button onClick={() => generaPdf(a.id)} disabled={generandoPdfId === a.id} style={{
+              marginTop: 14, padding: "8px 14px", borderRadius: 8, border: "none", background: "#C9A24B", color: "#15171B", fontSize: 12, fontWeight: 700,
+            }}>{generandoPdfId === a.id ? "Generazione…" : "Genera richiesta integrazione"}</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
 const DELAY_DEPTS={carrozzeria:"Carrozzeria",meccanica:"Meccanica",verniciatura:"Verniciatura",finitura:"Finitura / controllo / lavaggio"};
 const delayDate=d=>d?new Date(d.length===10?d+"T12:00:00":d).toLocaleDateString("it-IT",{timeZone:"Europe/Rome"}):"Non disponibile";
@@ -1536,6 +1791,7 @@ function VehicleDetailModal({ vehicleId, api, token, onClose: closeRequested, on
             <PartsPanel vehicleId={vehicle.id} api={api} onDirtyChange={setPartsDirty} />
             <DelayPanel vehicleId={vehicle.id} api={api} clientPhone={vehicle.client?.telefono} onDirtyChange={setDelayDirty} />
             {["ADMIN","AMMINISTRAZIONE"].includes(decodificaRuolo(token)) && <ProfitTracker vehicleId={vehicle.id} api={api} onDirtyChange={setProfitDirty} />}
+            <InsuranceGapAnalysis vehicle={vehicle} api={api} token={token} />
 
             <h3 style={{ fontSize: 13, fontWeight: 700, marginTop: 26, marginBottom: 10 }}>Consegna e firma</h3>
             <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 12, padding: 16 }}>

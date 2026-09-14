@@ -513,10 +513,6 @@ export type TrackedPartDocumentUncheckedUpdateManyWithoutPartNestedInput = {
   deleteMany?: Prisma.TrackedPartDocumentScalarWhereInput | Prisma.TrackedPartDocumentScalarWhereInput[]
 }
 
-export type BytesFieldUpdateOperationsInput = {
-  set?: runtime.Bytes
-}
-
 export type TrackedPartDocumentCreateWithoutTenantInput = {
   id?: string
   name: string

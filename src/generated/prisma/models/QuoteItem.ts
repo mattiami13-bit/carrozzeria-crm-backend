@@ -229,6 +229,7 @@ export type QuoteItemWhereInput = {
   quantita?: Prisma.DecimalFilter<"QuoteItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoUnitario?: Prisma.DecimalFilter<"QuoteItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   quote?: Prisma.XOR<Prisma.QuoteScalarRelationFilter, Prisma.QuoteWhereInput>
+  insuranceGapItems?: Prisma.InsuranceGapItemListRelationFilter
 }
 
 export type QuoteItemOrderByWithRelationInput = {
@@ -239,6 +240,7 @@ export type QuoteItemOrderByWithRelationInput = {
   quantita?: Prisma.SortOrder
   prezzoUnitario?: Prisma.SortOrder
   quote?: Prisma.QuoteOrderByWithRelationInput
+  insuranceGapItems?: Prisma.InsuranceGapItemOrderByRelationAggregateInput
 }
 
 export type QuoteItemWhereUniqueInput = Prisma.AtLeast<{
@@ -252,6 +254,7 @@ export type QuoteItemWhereUniqueInput = Prisma.AtLeast<{
   quantita?: Prisma.DecimalFilter<"QuoteItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoUnitario?: Prisma.DecimalFilter<"QuoteItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   quote?: Prisma.XOR<Prisma.QuoteScalarRelationFilter, Prisma.QuoteWhereInput>
+  insuranceGapItems?: Prisma.InsuranceGapItemListRelationFilter
 }, "id">
 
 export type QuoteItemOrderByWithAggregationInput = {
@@ -287,6 +290,7 @@ export type QuoteItemCreateInput = {
   quantita?: runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
   quote: Prisma.QuoteCreateNestedOneWithoutItemsInput
+  insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutQuoteItemInput
 }
 
 export type QuoteItemUncheckedCreateInput = {
@@ -296,6 +300,7 @@ export type QuoteItemUncheckedCreateInput = {
   descrizione: string
   quantita?: runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutQuoteItemInput
 }
 
 export type QuoteItemUpdateInput = {
@@ -305,6 +310,7 @@ export type QuoteItemUpdateInput = {
   quantita?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   quote?: Prisma.QuoteUpdateOneRequiredWithoutItemsNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutQuoteItemNestedInput
 }
 
 export type QuoteItemUncheckedUpdateInput = {
@@ -314,6 +320,7 @@ export type QuoteItemUncheckedUpdateInput = {
   descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   quantita?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutQuoteItemNestedInput
 }
 
 export type QuoteItemCreateManyInput = {
@@ -389,6 +396,11 @@ export type QuoteItemSumOrderByAggregateInput = {
   prezzoUnitario?: Prisma.SortOrder
 }
 
+export type QuoteItemScalarRelationFilter = {
+  is?: Prisma.QuoteItemWhereInput
+  isNot?: Prisma.QuoteItemWhereInput
+}
+
 export type QuoteItemCreateNestedManyWithoutQuoteInput = {
   create?: Prisma.XOR<Prisma.QuoteItemCreateWithoutQuoteInput, Prisma.QuoteItemUncheckedCreateWithoutQuoteInput> | Prisma.QuoteItemCreateWithoutQuoteInput[] | Prisma.QuoteItemUncheckedCreateWithoutQuoteInput[]
   connectOrCreate?: Prisma.QuoteItemCreateOrConnectWithoutQuoteInput | Prisma.QuoteItemCreateOrConnectWithoutQuoteInput[]
@@ -435,12 +447,27 @@ export type EnumQuoteItemTypeFieldUpdateOperationsInput = {
   set?: $Enums.QuoteItemType
 }
 
+export type QuoteItemCreateNestedOneWithoutInsuranceGapItemsInput = {
+  create?: Prisma.XOR<Prisma.QuoteItemCreateWithoutInsuranceGapItemsInput, Prisma.QuoteItemUncheckedCreateWithoutInsuranceGapItemsInput>
+  connectOrCreate?: Prisma.QuoteItemCreateOrConnectWithoutInsuranceGapItemsInput
+  connect?: Prisma.QuoteItemWhereUniqueInput
+}
+
+export type QuoteItemUpdateOneRequiredWithoutInsuranceGapItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.QuoteItemCreateWithoutInsuranceGapItemsInput, Prisma.QuoteItemUncheckedCreateWithoutInsuranceGapItemsInput>
+  connectOrCreate?: Prisma.QuoteItemCreateOrConnectWithoutInsuranceGapItemsInput
+  upsert?: Prisma.QuoteItemUpsertWithoutInsuranceGapItemsInput
+  connect?: Prisma.QuoteItemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.QuoteItemUpdateToOneWithWhereWithoutInsuranceGapItemsInput, Prisma.QuoteItemUpdateWithoutInsuranceGapItemsInput>, Prisma.QuoteItemUncheckedUpdateWithoutInsuranceGapItemsInput>
+}
+
 export type QuoteItemCreateWithoutQuoteInput = {
   id?: string
   tipo: $Enums.QuoteItemType
   descrizione: string
   quantita?: runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutQuoteItemInput
 }
 
 export type QuoteItemUncheckedCreateWithoutQuoteInput = {
@@ -449,6 +476,7 @@ export type QuoteItemUncheckedCreateWithoutQuoteInput = {
   descrizione: string
   quantita?: runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutQuoteItemInput
 }
 
 export type QuoteItemCreateOrConnectWithoutQuoteInput = {
@@ -489,6 +517,58 @@ export type QuoteItemScalarWhereInput = {
   prezzoUnitario?: Prisma.DecimalFilter<"QuoteItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
+export type QuoteItemCreateWithoutInsuranceGapItemsInput = {
+  id?: string
+  tipo: $Enums.QuoteItemType
+  descrizione: string
+  quantita?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  prezzoUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quote: Prisma.QuoteCreateNestedOneWithoutItemsInput
+}
+
+export type QuoteItemUncheckedCreateWithoutInsuranceGapItemsInput = {
+  id?: string
+  quoteId: string
+  tipo: $Enums.QuoteItemType
+  descrizione: string
+  quantita?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  prezzoUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type QuoteItemCreateOrConnectWithoutInsuranceGapItemsInput = {
+  where: Prisma.QuoteItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuoteItemCreateWithoutInsuranceGapItemsInput, Prisma.QuoteItemUncheckedCreateWithoutInsuranceGapItemsInput>
+}
+
+export type QuoteItemUpsertWithoutInsuranceGapItemsInput = {
+  update: Prisma.XOR<Prisma.QuoteItemUpdateWithoutInsuranceGapItemsInput, Prisma.QuoteItemUncheckedUpdateWithoutInsuranceGapItemsInput>
+  create: Prisma.XOR<Prisma.QuoteItemCreateWithoutInsuranceGapItemsInput, Prisma.QuoteItemUncheckedCreateWithoutInsuranceGapItemsInput>
+  where?: Prisma.QuoteItemWhereInput
+}
+
+export type QuoteItemUpdateToOneWithWhereWithoutInsuranceGapItemsInput = {
+  where?: Prisma.QuoteItemWhereInput
+  data: Prisma.XOR<Prisma.QuoteItemUpdateWithoutInsuranceGapItemsInput, Prisma.QuoteItemUncheckedUpdateWithoutInsuranceGapItemsInput>
+}
+
+export type QuoteItemUpdateWithoutInsuranceGapItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumQuoteItemTypeFieldUpdateOperationsInput | $Enums.QuoteItemType
+  descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  quantita?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  prezzoUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quote?: Prisma.QuoteUpdateOneRequiredWithoutItemsNestedInput
+}
+
+export type QuoteItemUncheckedUpdateWithoutInsuranceGapItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  quoteId?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.EnumQuoteItemTypeFieldUpdateOperationsInput | $Enums.QuoteItemType
+  descrizione?: Prisma.StringFieldUpdateOperationsInput | string
+  quantita?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  prezzoUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
 export type QuoteItemCreateManyQuoteInput = {
   id?: string
   tipo: $Enums.QuoteItemType
@@ -503,6 +583,7 @@ export type QuoteItemUpdateWithoutQuoteInput = {
   descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   quantita?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutQuoteItemNestedInput
 }
 
 export type QuoteItemUncheckedUpdateWithoutQuoteInput = {
@@ -511,6 +592,7 @@ export type QuoteItemUncheckedUpdateWithoutQuoteInput = {
   descrizione?: Prisma.StringFieldUpdateOperationsInput | string
   quantita?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   prezzoUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutQuoteItemNestedInput
 }
 
 export type QuoteItemUncheckedUpdateManyWithoutQuoteInput = {
@@ -522,6 +604,35 @@ export type QuoteItemUncheckedUpdateManyWithoutQuoteInput = {
 }
 
 
+/**
+ * Count Type QuoteItemCountOutputType
+ */
+
+export type QuoteItemCountOutputType = {
+  insuranceGapItems: number
+}
+
+export type QuoteItemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  insuranceGapItems?: boolean | QuoteItemCountOutputTypeCountInsuranceGapItemsArgs
+}
+
+/**
+ * QuoteItemCountOutputType without action
+ */
+export type QuoteItemCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QuoteItemCountOutputType
+   */
+  select?: Prisma.QuoteItemCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * QuoteItemCountOutputType without action
+ */
+export type QuoteItemCountOutputTypeCountInsuranceGapItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InsuranceGapItemWhereInput
+}
+
 
 export type QuoteItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -531,6 +642,8 @@ export type QuoteItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   quantita?: boolean
   prezzoUnitario?: boolean
   quote?: boolean | Prisma.QuoteDefaultArgs<ExtArgs>
+  insuranceGapItems?: boolean | Prisma.QuoteItem$insuranceGapItemsArgs<ExtArgs>
+  _count?: boolean | Prisma.QuoteItemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quoteItem"]>
 
 export type QuoteItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -565,6 +678,8 @@ export type QuoteItemSelectScalar = {
 export type QuoteItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "quoteId" | "tipo" | "descrizione" | "quantita" | "prezzoUnitario", ExtArgs["result"]["quoteItem"]>
 export type QuoteItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quote?: boolean | Prisma.QuoteDefaultArgs<ExtArgs>
+  insuranceGapItems?: boolean | Prisma.QuoteItem$insuranceGapItemsArgs<ExtArgs>
+  _count?: boolean | Prisma.QuoteItemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type QuoteItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quote?: boolean | Prisma.QuoteDefaultArgs<ExtArgs>
@@ -577,6 +692,7 @@ export type $QuoteItemPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   name: "QuoteItem"
   objects: {
     quote: Prisma.$QuotePayload<ExtArgs>
+    insuranceGapItems: Prisma.$InsuranceGapItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -980,6 +1096,7 @@ readonly fields: QuoteItemFieldRefs;
 export interface Prisma__QuoteItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   quote<T extends Prisma.QuoteDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuoteDefaultArgs<ExtArgs>>): Prisma.Prisma__QuoteClient<runtime.Types.Result.GetResult<Prisma.$QuotePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  insuranceGapItems<T extends Prisma.QuoteItem$insuranceGapItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuoteItem$insuranceGapItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InsuranceGapItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1413,6 +1530,30 @@ export type QuoteItemDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Limit how many QuoteItems to delete.
    */
   limit?: number
+}
+
+/**
+ * QuoteItem.insuranceGapItems
+ */
+export type QuoteItem$insuranceGapItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InsuranceGapItem
+   */
+  select?: Prisma.InsuranceGapItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InsuranceGapItem
+   */
+  omit?: Prisma.InsuranceGapItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InsuranceGapItemInclude<ExtArgs> | null
+  where?: Prisma.InsuranceGapItemWhereInput
+  orderBy?: Prisma.InsuranceGapItemOrderByWithRelationInput | Prisma.InsuranceGapItemOrderByWithRelationInput[]
+  cursor?: Prisma.InsuranceGapItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InsuranceGapItemScalarFieldEnum | Prisma.InsuranceGapItemScalarFieldEnum[]
 }
 
 /**

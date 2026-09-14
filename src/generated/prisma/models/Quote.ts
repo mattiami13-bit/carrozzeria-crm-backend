@@ -309,6 +309,7 @@ export type QuoteWhereInput = {
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
   items?: Prisma.QuoteItemListRelationFilter
   damageItems?: Prisma.DamageItemListRelationFilter
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisListRelationFilter
 }
 
 export type QuoteOrderByWithRelationInput = {
@@ -332,6 +333,7 @@ export type QuoteOrderByWithRelationInput = {
   vehicle?: Prisma.VehicleOrderByWithRelationInput
   items?: Prisma.QuoteItemOrderByRelationAggregateInput
   damageItems?: Prisma.DamageItemOrderByRelationAggregateInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisOrderByRelationAggregateInput
 }
 
 export type QuoteWhereUniqueInput = Prisma.AtLeast<{
@@ -358,6 +360,7 @@ export type QuoteWhereUniqueInput = Prisma.AtLeast<{
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
   items?: Prisma.QuoteItemListRelationFilter
   damageItems?: Prisma.DamageItemListRelationFilter
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisListRelationFilter
 }, "id">
 
 export type QuoteOrderByWithAggregationInput = {
@@ -422,6 +425,7 @@ export type QuoteCreateInput = {
   vehicle: Prisma.VehicleCreateNestedOneWithoutQuotesInput
   items?: Prisma.QuoteItemCreateNestedManyWithoutQuoteInput
   damageItems?: Prisma.DamageItemCreateNestedManyWithoutQuoteInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteUncheckedCreateInput = {
@@ -442,6 +446,7 @@ export type QuoteUncheckedCreateInput = {
   updatedAt?: Date | string
   items?: Prisma.QuoteItemUncheckedCreateNestedManyWithoutQuoteInput
   damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutQuoteInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteUpdateInput = {
@@ -462,6 +467,7 @@ export type QuoteUpdateInput = {
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutQuotesNestedInput
   items?: Prisma.QuoteItemUpdateManyWithoutQuoteNestedInput
   damageItems?: Prisma.DamageItemUpdateManyWithoutQuoteNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateInput = {
@@ -482,6 +488,7 @@ export type QuoteUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuoteItemUncheckedUpdateManyWithoutQuoteNestedInput
   damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutQuoteNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteCreateManyInput = {
@@ -789,6 +796,20 @@ export type QuoteUpdateOneWithoutDamageItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.QuoteUpdateToOneWithWhereWithoutDamageItemsInput, Prisma.QuoteUpdateWithoutDamageItemsInput>, Prisma.QuoteUncheckedUpdateWithoutDamageItemsInput>
 }
 
+export type QuoteCreateNestedOneWithoutInsuranceGapAnalysesInput = {
+  create?: Prisma.XOR<Prisma.QuoteCreateWithoutInsuranceGapAnalysesInput, Prisma.QuoteUncheckedCreateWithoutInsuranceGapAnalysesInput>
+  connectOrCreate?: Prisma.QuoteCreateOrConnectWithoutInsuranceGapAnalysesInput
+  connect?: Prisma.QuoteWhereUniqueInput
+}
+
+export type QuoteUpdateOneRequiredWithoutInsuranceGapAnalysesNestedInput = {
+  create?: Prisma.XOR<Prisma.QuoteCreateWithoutInsuranceGapAnalysesInput, Prisma.QuoteUncheckedCreateWithoutInsuranceGapAnalysesInput>
+  connectOrCreate?: Prisma.QuoteCreateOrConnectWithoutInsuranceGapAnalysesInput
+  upsert?: Prisma.QuoteUpsertWithoutInsuranceGapAnalysesInput
+  connect?: Prisma.QuoteWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.QuoteUpdateToOneWithWhereWithoutInsuranceGapAnalysesInput, Prisma.QuoteUpdateWithoutInsuranceGapAnalysesInput>, Prisma.QuoteUncheckedUpdateWithoutInsuranceGapAnalysesInput>
+}
+
 export type QuoteCreateWithoutTenantInput = {
   id?: string
   stato?: $Enums.QuoteStatus
@@ -806,6 +827,7 @@ export type QuoteCreateWithoutTenantInput = {
   vehicle: Prisma.VehicleCreateNestedOneWithoutQuotesInput
   items?: Prisma.QuoteItemCreateNestedManyWithoutQuoteInput
   damageItems?: Prisma.DamageItemCreateNestedManyWithoutQuoteInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteUncheckedCreateWithoutTenantInput = {
@@ -825,6 +847,7 @@ export type QuoteUncheckedCreateWithoutTenantInput = {
   updatedAt?: Date | string
   items?: Prisma.QuoteItemUncheckedCreateNestedManyWithoutQuoteInput
   damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutQuoteInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteCreateOrConnectWithoutTenantInput = {
@@ -891,6 +914,7 @@ export type QuoteCreateWithoutClientInput = {
   vehicle: Prisma.VehicleCreateNestedOneWithoutQuotesInput
   items?: Prisma.QuoteItemCreateNestedManyWithoutQuoteInput
   damageItems?: Prisma.DamageItemCreateNestedManyWithoutQuoteInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteUncheckedCreateWithoutClientInput = {
@@ -910,6 +934,7 @@ export type QuoteUncheckedCreateWithoutClientInput = {
   updatedAt?: Date | string
   items?: Prisma.QuoteItemUncheckedCreateNestedManyWithoutQuoteInput
   damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutQuoteInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteCreateOrConnectWithoutClientInput = {
@@ -955,6 +980,7 @@ export type QuoteCreateWithoutVehicleInput = {
   client: Prisma.ClientCreateNestedOneWithoutQuotesInput
   items?: Prisma.QuoteItemCreateNestedManyWithoutQuoteInput
   damageItems?: Prisma.DamageItemCreateNestedManyWithoutQuoteInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteUncheckedCreateWithoutVehicleInput = {
@@ -974,6 +1000,7 @@ export type QuoteUncheckedCreateWithoutVehicleInput = {
   updatedAt?: Date | string
   items?: Prisma.QuoteItemUncheckedCreateNestedManyWithoutQuoteInput
   damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutQuoteInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteCreateOrConnectWithoutVehicleInput = {
@@ -1019,6 +1046,7 @@ export type QuoteCreateWithoutItemsInput = {
   client: Prisma.ClientCreateNestedOneWithoutQuotesInput
   vehicle: Prisma.VehicleCreateNestedOneWithoutQuotesInput
   damageItems?: Prisma.DamageItemCreateNestedManyWithoutQuoteInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteUncheckedCreateWithoutItemsInput = {
@@ -1038,6 +1066,7 @@ export type QuoteUncheckedCreateWithoutItemsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutQuoteInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteCreateOrConnectWithoutItemsInput = {
@@ -1073,6 +1102,7 @@ export type QuoteUpdateWithoutItemsInput = {
   client?: Prisma.ClientUpdateOneRequiredWithoutQuotesNestedInput
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutQuotesNestedInput
   damageItems?: Prisma.DamageItemUpdateManyWithoutQuoteNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateWithoutItemsInput = {
@@ -1092,6 +1122,7 @@ export type QuoteUncheckedUpdateWithoutItemsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutQuoteNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteCreateWithoutDamageItemsInput = {
@@ -1111,6 +1142,7 @@ export type QuoteCreateWithoutDamageItemsInput = {
   client: Prisma.ClientCreateNestedOneWithoutQuotesInput
   vehicle: Prisma.VehicleCreateNestedOneWithoutQuotesInput
   items?: Prisma.QuoteItemCreateNestedManyWithoutQuoteInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteUncheckedCreateWithoutDamageItemsInput = {
@@ -1130,6 +1162,7 @@ export type QuoteUncheckedCreateWithoutDamageItemsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.QuoteItemUncheckedCreateNestedManyWithoutQuoteInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutQuoteInput
 }
 
 export type QuoteCreateOrConnectWithoutDamageItemsInput = {
@@ -1165,6 +1198,7 @@ export type QuoteUpdateWithoutDamageItemsInput = {
   client?: Prisma.ClientUpdateOneRequiredWithoutQuotesNestedInput
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutQuotesNestedInput
   items?: Prisma.QuoteItemUpdateManyWithoutQuoteNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateWithoutDamageItemsInput = {
@@ -1184,6 +1218,103 @@ export type QuoteUncheckedUpdateWithoutDamageItemsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuoteItemUncheckedUpdateManyWithoutQuoteNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutQuoteNestedInput
+}
+
+export type QuoteCreateWithoutInsuranceGapAnalysesInput = {
+  id?: string
+  stato?: $Enums.QuoteStatus
+  imponibile: runtime.Decimal | runtime.DecimalJsLike | number | string
+  aliquotaIva?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totale: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdfUrl?: string | null
+  inviatoAt?: Date | string | null
+  firmaDataUrl?: string | null
+  firmatarioNome?: string | null
+  firmatoAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutQuotesInput
+  client: Prisma.ClientCreateNestedOneWithoutQuotesInput
+  vehicle: Prisma.VehicleCreateNestedOneWithoutQuotesInput
+  items?: Prisma.QuoteItemCreateNestedManyWithoutQuoteInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutQuoteInput
+}
+
+export type QuoteUncheckedCreateWithoutInsuranceGapAnalysesInput = {
+  id?: string
+  tenantId: string
+  clientId: string
+  vehicleId: string
+  stato?: $Enums.QuoteStatus
+  imponibile: runtime.Decimal | runtime.DecimalJsLike | number | string
+  aliquotaIva?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totale: runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdfUrl?: string | null
+  inviatoAt?: Date | string | null
+  firmaDataUrl?: string | null
+  firmatarioNome?: string | null
+  firmatoAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  items?: Prisma.QuoteItemUncheckedCreateNestedManyWithoutQuoteInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutQuoteInput
+}
+
+export type QuoteCreateOrConnectWithoutInsuranceGapAnalysesInput = {
+  where: Prisma.QuoteWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuoteCreateWithoutInsuranceGapAnalysesInput, Prisma.QuoteUncheckedCreateWithoutInsuranceGapAnalysesInput>
+}
+
+export type QuoteUpsertWithoutInsuranceGapAnalysesInput = {
+  update: Prisma.XOR<Prisma.QuoteUpdateWithoutInsuranceGapAnalysesInput, Prisma.QuoteUncheckedUpdateWithoutInsuranceGapAnalysesInput>
+  create: Prisma.XOR<Prisma.QuoteCreateWithoutInsuranceGapAnalysesInput, Prisma.QuoteUncheckedCreateWithoutInsuranceGapAnalysesInput>
+  where?: Prisma.QuoteWhereInput
+}
+
+export type QuoteUpdateToOneWithWhereWithoutInsuranceGapAnalysesInput = {
+  where?: Prisma.QuoteWhereInput
+  data: Prisma.XOR<Prisma.QuoteUpdateWithoutInsuranceGapAnalysesInput, Prisma.QuoteUncheckedUpdateWithoutInsuranceGapAnalysesInput>
+}
+
+export type QuoteUpdateWithoutInsuranceGapAnalysesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  stato?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  imponibile?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aliquotaIva?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totale?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutQuotesNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutQuotesNestedInput
+  vehicle?: Prisma.VehicleUpdateOneRequiredWithoutQuotesNestedInput
+  items?: Prisma.QuoteItemUpdateManyWithoutQuoteNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutQuoteNestedInput
+}
+
+export type QuoteUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.StringFieldUpdateOperationsInput | string
+  stato?: Prisma.EnumQuoteStatusFieldUpdateOperationsInput | $Enums.QuoteStatus
+  imponibile?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  aliquotaIva?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totale?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  items?: Prisma.QuoteItemUncheckedUpdateManyWithoutQuoteNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteCreateManyTenantInput = {
@@ -1220,6 +1351,7 @@ export type QuoteUpdateWithoutTenantInput = {
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutQuotesNestedInput
   items?: Prisma.QuoteItemUpdateManyWithoutQuoteNestedInput
   damageItems?: Prisma.DamageItemUpdateManyWithoutQuoteNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateWithoutTenantInput = {
@@ -1239,6 +1371,7 @@ export type QuoteUncheckedUpdateWithoutTenantInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuoteItemUncheckedUpdateManyWithoutQuoteNestedInput
   damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutQuoteNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateManyWithoutTenantInput = {
@@ -1292,6 +1425,7 @@ export type QuoteUpdateWithoutClientInput = {
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutQuotesNestedInput
   items?: Prisma.QuoteItemUpdateManyWithoutQuoteNestedInput
   damageItems?: Prisma.DamageItemUpdateManyWithoutQuoteNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateWithoutClientInput = {
@@ -1311,6 +1445,7 @@ export type QuoteUncheckedUpdateWithoutClientInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuoteItemUncheckedUpdateManyWithoutQuoteNestedInput
   damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutQuoteNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateManyWithoutClientInput = {
@@ -1364,6 +1499,7 @@ export type QuoteUpdateWithoutVehicleInput = {
   client?: Prisma.ClientUpdateOneRequiredWithoutQuotesNestedInput
   items?: Prisma.QuoteItemUpdateManyWithoutQuoteNestedInput
   damageItems?: Prisma.DamageItemUpdateManyWithoutQuoteNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateWithoutVehicleInput = {
@@ -1383,6 +1519,7 @@ export type QuoteUncheckedUpdateWithoutVehicleInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.QuoteItemUncheckedUpdateManyWithoutQuoteNestedInput
   damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutQuoteNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutQuoteNestedInput
 }
 
 export type QuoteUncheckedUpdateManyWithoutVehicleInput = {
@@ -1410,11 +1547,13 @@ export type QuoteUncheckedUpdateManyWithoutVehicleInput = {
 export type QuoteCountOutputType = {
   items: number
   damageItems: number
+  insuranceGapAnalyses: number
 }
 
 export type QuoteCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | QuoteCountOutputTypeCountItemsArgs
   damageItems?: boolean | QuoteCountOutputTypeCountDamageItemsArgs
+  insuranceGapAnalyses?: boolean | QuoteCountOutputTypeCountInsuranceGapAnalysesArgs
 }
 
 /**
@@ -1441,6 +1580,13 @@ export type QuoteCountOutputTypeCountDamageItemsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.DamageItemWhereInput
 }
 
+/**
+ * QuoteCountOutputType without action
+ */
+export type QuoteCountOutputTypeCountInsuranceGapAnalysesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InsuranceGapAnalysisWhereInput
+}
+
 
 export type QuoteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1463,6 +1609,7 @@ export type QuoteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Quote$itemsArgs<ExtArgs>
   damageItems?: boolean | Prisma.Quote$damageItemsArgs<ExtArgs>
+  insuranceGapAnalyses?: boolean | Prisma.Quote$insuranceGapAnalysesArgs<ExtArgs>
   _count?: boolean | Prisma.QuoteCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quote"]>
 
@@ -1533,6 +1680,7 @@ export type QuoteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Quote$itemsArgs<ExtArgs>
   damageItems?: boolean | Prisma.Quote$damageItemsArgs<ExtArgs>
+  insuranceGapAnalyses?: boolean | Prisma.Quote$insuranceGapAnalysesArgs<ExtArgs>
   _count?: boolean | Prisma.QuoteCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type QuoteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1554,6 +1702,7 @@ export type $QuotePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     vehicle: Prisma.$VehiclePayload<ExtArgs>
     items: Prisma.$QuoteItemPayload<ExtArgs>[]
     damageItems: Prisma.$DamageItemPayload<ExtArgs>[]
+    insuranceGapAnalyses: Prisma.$InsuranceGapAnalysisPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1970,6 +2119,7 @@ export interface Prisma__QuoteClient<T, Null = never, ExtArgs extends runtime.Ty
   vehicle<T extends Prisma.VehicleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VehicleDefaultArgs<ExtArgs>>): Prisma.Prisma__VehicleClient<runtime.Types.Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.Quote$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quote$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuoteItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   damageItems<T extends Prisma.Quote$damageItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quote$damageItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DamageItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  insuranceGapAnalyses<T extends Prisma.Quote$insuranceGapAnalysesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Quote$insuranceGapAnalysesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InsuranceGapAnalysisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2460,6 +2610,30 @@ export type Quote$damageItemsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.DamageItemScalarFieldEnum | Prisma.DamageItemScalarFieldEnum[]
+}
+
+/**
+ * Quote.insuranceGapAnalyses
+ */
+export type Quote$insuranceGapAnalysesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InsuranceGapAnalysis
+   */
+  select?: Prisma.InsuranceGapAnalysisSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InsuranceGapAnalysis
+   */
+  omit?: Prisma.InsuranceGapAnalysisOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InsuranceGapAnalysisInclude<ExtArgs> | null
+  where?: Prisma.InsuranceGapAnalysisWhereInput
+  orderBy?: Prisma.InsuranceGapAnalysisOrderByWithRelationInput | Prisma.InsuranceGapAnalysisOrderByWithRelationInput[]
+  cursor?: Prisma.InsuranceGapAnalysisWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InsuranceGapAnalysisScalarFieldEnum | Prisma.InsuranceGapAnalysisScalarFieldEnum[]
 }
 
 /**

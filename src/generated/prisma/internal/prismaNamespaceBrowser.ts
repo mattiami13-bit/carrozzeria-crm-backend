@@ -61,6 +61,9 @@ export const ModelName = {
   QuoteItem: 'QuoteItem',
   DamageAnalysis: 'DamageAnalysis',
   DamageItem: 'DamageItem',
+  InsuranceGapAnalysis: 'InsuranceGapAnalysis',
+  InsuranceGapItem: 'InsuranceGapItem',
+  InsuranceGapSuggestion: 'InsuranceGapSuggestion',
   Part: 'Part',
   PartMovement: 'PartMovement',
   SupplierOrder: 'SupplierOrder',
@@ -279,6 +282,67 @@ export const DamageItemScalarFieldEnum = {
 } as const
 
 export type DamageItemScalarFieldEnum = (typeof DamageItemScalarFieldEnum)[keyof typeof DamageItemScalarFieldEnum]
+
+
+export const InsuranceGapAnalysisScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  vehicleId: 'vehicleId',
+  quoteId: 'quoteId',
+  sinistroId: 'sinistroId',
+  documentName: 'documentName',
+  documentMime: 'documentMime',
+  documentSize: 'documentSize',
+  documentContent: 'documentContent',
+  rispostaGrezza: 'rispostaGrezza',
+  totalePreventivoInterno: 'totalePreventivoInterno',
+  totaleRiconosciutoAssicurazione: 'totaleRiconosciutoAssicurazione',
+  differenza: 'differenza',
+  creatoDaId: 'creatoDaId',
+  createdAt: 'createdAt'
+} as const
+
+export type InsuranceGapAnalysisScalarFieldEnum = (typeof InsuranceGapAnalysisScalarFieldEnum)[keyof typeof InsuranceGapAnalysisScalarFieldEnum]
+
+
+export const InsuranceGapItemScalarFieldEnum = {
+  id: 'id',
+  analysisId: 'analysisId',
+  tenantId: 'tenantId',
+  quoteItemId: 'quoteItemId',
+  descrizione: 'descrizione',
+  tipo: 'tipo',
+  quantita: 'quantita',
+  prezzoUnitario: 'prezzoUnitario',
+  trovatoAI: 'trovatoAI',
+  descrizioneAssicurazioneAI: 'descrizioneAssicurazioneAI',
+  quantitaAssicurazioneAI: 'quantitaAssicurazioneAI',
+  prezzoUnitarioAssicurazioneAI: 'prezzoUnitarioAssicurazioneAI',
+  statoAI: 'statoAI',
+  quantitaAssicurazione: 'quantitaAssicurazione',
+  prezzoUnitarioAssicurazione: 'prezzoUnitarioAssicurazione',
+  stato: 'stato',
+  noteOperatore: 'noteOperatore',
+  modificatoManualmente: 'modificatoManualmente',
+  modificatoDaId: 'modificatoDaId',
+  modificatoAt: 'modificatoAt',
+  createdAt: 'createdAt'
+} as const
+
+export type InsuranceGapItemScalarFieldEnum = (typeof InsuranceGapItemScalarFieldEnum)[keyof typeof InsuranceGapItemScalarFieldEnum]
+
+
+export const InsuranceGapSuggestionScalarFieldEnum = {
+  id: 'id',
+  analysisId: 'analysisId',
+  tenantId: 'tenantId',
+  voce: 'voce',
+  motivo: 'motivo',
+  scartata: 'scartata',
+  createdAt: 'createdAt'
+} as const
+
+export type InsuranceGapSuggestionScalarFieldEnum = (typeof InsuranceGapSuggestionScalarFieldEnum)[keyof typeof InsuranceGapSuggestionScalarFieldEnum]
 
 
 export const PartScalarFieldEnum = {

@@ -222,6 +222,8 @@ export type UserWhereInput = {
   appuntamentiTecnico?: Prisma.AppointmentListRelationFilter
   analisiDanniCreate?: Prisma.DamageAnalysisListRelationFilter
   correzioniDanni?: Prisma.DamageItemListRelationFilter
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisListRelationFilter
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -242,6 +244,8 @@ export type UserOrderByWithRelationInput = {
   appuntamentiTecnico?: Prisma.AppointmentOrderByRelationAggregateInput
   analisiDanniCreate?: Prisma.DamageAnalysisOrderByRelationAggregateInput
   correzioniDanni?: Prisma.DamageItemOrderByRelationAggregateInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisOrderByRelationAggregateInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -265,6 +269,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   appuntamentiTecnico?: Prisma.AppointmentListRelationFilter
   analisiDanniCreate?: Prisma.DamageAnalysisListRelationFilter
   correzioniDanni?: Prisma.DamageItemListRelationFilter
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisListRelationFilter
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -314,6 +320,8 @@ export type UserCreateInput = {
   appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
   analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
   correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -333,6 +341,8 @@ export type UserUncheckedCreateInput = {
   appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
   correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUpdateInput = {
@@ -352,6 +362,8 @@ export type UserUpdateInput = {
   appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
   correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -371,6 +383,8 @@ export type UserUncheckedUpdateInput = {
   appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
   correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -578,6 +592,38 @@ export type UserUpdateOneWithoutCorrezioniDanniNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCorrezioniDanniInput, Prisma.UserUpdateWithoutCorrezioniDanniInput>, Prisma.UserUncheckedUpdateWithoutCorrezioniDanniInput>
 }
 
+export type UserCreateNestedOneWithoutAnalisiGapCreateInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAnalisiGapCreateInput, Prisma.UserUncheckedCreateWithoutAnalisiGapCreateInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAnalisiGapCreateInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutAnalisiGapCreateNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAnalisiGapCreateInput, Prisma.UserUncheckedCreateWithoutAnalisiGapCreateInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAnalisiGapCreateInput
+  upsert?: Prisma.UserUpsertWithoutAnalisiGapCreateInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAnalisiGapCreateInput, Prisma.UserUpdateWithoutAnalisiGapCreateInput>, Prisma.UserUncheckedUpdateWithoutAnalisiGapCreateInput>
+}
+
+export type UserCreateNestedOneWithoutCorrezioniGapAssicurazioneInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCorrezioniGapAssicurazioneInput, Prisma.UserUncheckedCreateWithoutCorrezioniGapAssicurazioneInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCorrezioniGapAssicurazioneInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCorrezioniGapAssicurazioneNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCorrezioniGapAssicurazioneInput, Prisma.UserUncheckedCreateWithoutCorrezioniGapAssicurazioneInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCorrezioniGapAssicurazioneInput
+  upsert?: Prisma.UserUpsertWithoutCorrezioniGapAssicurazioneInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCorrezioniGapAssicurazioneInput, Prisma.UserUpdateWithoutCorrezioniGapAssicurazioneInput>, Prisma.UserUncheckedUpdateWithoutCorrezioniGapAssicurazioneInput>
+}
+
 export type UserCreateNestedOneWithoutAppuntamentiTecnicoInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutAppuntamentiTecnicoInput, Prisma.UserUncheckedCreateWithoutAppuntamentiTecnicoInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutAppuntamentiTecnicoInput
@@ -640,6 +686,8 @@ export type UserCreateWithoutTenantInput = {
   appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
   analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
   correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateWithoutTenantInput = {
@@ -658,6 +706,8 @@ export type UserUncheckedCreateWithoutTenantInput = {
   appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
   correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserCreateOrConnectWithoutTenantInput = {
@@ -717,6 +767,8 @@ export type UserCreateWithoutVehiclesAssegnatiInput = {
   appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
   analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
   correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateWithoutVehiclesAssegnatiInput = {
@@ -735,6 +787,8 @@ export type UserUncheckedCreateWithoutVehiclesAssegnatiInput = {
   appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
   correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserCreateOrConnectWithoutVehiclesAssegnatiInput = {
@@ -769,6 +823,8 @@ export type UserUpdateWithoutVehiclesAssegnatiInput = {
   appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
   correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVehiclesAssegnatiInput = {
@@ -787,6 +843,8 @@ export type UserUncheckedUpdateWithoutVehiclesAssegnatiInput = {
   appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
   correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserCreateWithoutStageChangesInput = {
@@ -805,6 +863,8 @@ export type UserCreateWithoutStageChangesInput = {
   appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
   analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
   correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateWithoutStageChangesInput = {
@@ -823,6 +883,8 @@ export type UserUncheckedCreateWithoutStageChangesInput = {
   appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
   correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserCreateOrConnectWithoutStageChangesInput = {
@@ -857,6 +919,8 @@ export type UserUpdateWithoutStageChangesInput = {
   appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
   correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStageChangesInput = {
@@ -875,6 +939,8 @@ export type UserUncheckedUpdateWithoutStageChangesInput = {
   appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
   correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserCreateWithoutAnalisiDanniCreateInput = {
@@ -893,6 +959,8 @@ export type UserCreateWithoutAnalisiDanniCreateInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
   correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateWithoutAnalisiDanniCreateInput = {
@@ -911,6 +979,8 @@ export type UserUncheckedCreateWithoutAnalisiDanniCreateInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
   correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserCreateOrConnectWithoutAnalisiDanniCreateInput = {
@@ -945,6 +1015,8 @@ export type UserUpdateWithoutAnalisiDanniCreateInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
   correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAnalisiDanniCreateInput = {
@@ -963,6 +1035,8 @@ export type UserUncheckedUpdateWithoutAnalisiDanniCreateInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
   correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserCreateWithoutCorrezioniDanniInput = {
@@ -981,6 +1055,8 @@ export type UserCreateWithoutCorrezioniDanniInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
   analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateWithoutCorrezioniDanniInput = {
@@ -999,6 +1075,8 @@ export type UserUncheckedCreateWithoutCorrezioniDanniInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserCreateOrConnectWithoutCorrezioniDanniInput = {
@@ -1033,6 +1111,8 @@ export type UserUpdateWithoutCorrezioniDanniInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCorrezioniDanniInput = {
@@ -1051,6 +1131,200 @@ export type UserUncheckedUpdateWithoutCorrezioniDanniInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+}
+
+export type UserCreateWithoutAnalisiGapCreateInput = {
+  id?: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
+}
+
+export type UserUncheckedCreateWithoutAnalisiGapCreateInput = {
+  id?: string
+  tenantId: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
+}
+
+export type UserCreateOrConnectWithoutAnalisiGapCreateInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAnalisiGapCreateInput, Prisma.UserUncheckedCreateWithoutAnalisiGapCreateInput>
+}
+
+export type UserUpsertWithoutAnalisiGapCreateInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAnalisiGapCreateInput, Prisma.UserUncheckedUpdateWithoutAnalisiGapCreateInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAnalisiGapCreateInput, Prisma.UserUncheckedCreateWithoutAnalisiGapCreateInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAnalisiGapCreateInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAnalisiGapCreateInput, Prisma.UserUncheckedUpdateWithoutAnalisiGapCreateInput>
+}
+
+export type UserUpdateWithoutAnalisiGapCreateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
+  vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAnalisiGapCreateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+}
+
+export type UserCreateWithoutCorrezioniGapAssicurazioneInput = {
+  id?: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+}
+
+export type UserUncheckedCreateWithoutCorrezioniGapAssicurazioneInput = {
+  id?: string
+  tenantId: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+}
+
+export type UserCreateOrConnectWithoutCorrezioniGapAssicurazioneInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCorrezioniGapAssicurazioneInput, Prisma.UserUncheckedCreateWithoutCorrezioniGapAssicurazioneInput>
+}
+
+export type UserUpsertWithoutCorrezioniGapAssicurazioneInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCorrezioniGapAssicurazioneInput, Prisma.UserUncheckedUpdateWithoutCorrezioniGapAssicurazioneInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCorrezioniGapAssicurazioneInput, Prisma.UserUncheckedCreateWithoutCorrezioniGapAssicurazioneInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCorrezioniGapAssicurazioneInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCorrezioniGapAssicurazioneInput, Prisma.UserUncheckedUpdateWithoutCorrezioniGapAssicurazioneInput>
+}
+
+export type UserUpdateWithoutCorrezioniGapAssicurazioneInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
+  vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCorrezioniGapAssicurazioneInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
 }
 
 export type UserCreateWithoutAppuntamentiTecnicoInput = {
@@ -1069,6 +1343,8 @@ export type UserCreateWithoutAppuntamentiTecnicoInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
   correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateWithoutAppuntamentiTecnicoInput = {
@@ -1087,6 +1363,8 @@ export type UserUncheckedCreateWithoutAppuntamentiTecnicoInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
   correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserCreateOrConnectWithoutAppuntamentiTecnicoInput = {
@@ -1121,6 +1399,8 @@ export type UserUpdateWithoutAppuntamentiTecnicoInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
   correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAppuntamentiTecnicoInput = {
@@ -1139,6 +1419,8 @@ export type UserUncheckedUpdateWithoutAppuntamentiTecnicoInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
   correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserCreateWithoutTimeEntriesInput = {
@@ -1157,6 +1439,8 @@ export type UserCreateWithoutTimeEntriesInput = {
   appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
   analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
   correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateWithoutTimeEntriesInput = {
@@ -1175,6 +1459,8 @@ export type UserUncheckedCreateWithoutTimeEntriesInput = {
   appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
   correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserCreateOrConnectWithoutTimeEntriesInput = {
@@ -1209,6 +1495,8 @@ export type UserUpdateWithoutTimeEntriesInput = {
   appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
   correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTimeEntriesInput = {
@@ -1227,6 +1515,8 @@ export type UserUncheckedUpdateWithoutTimeEntriesInput = {
   appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
   correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1245,6 +1535,8 @@ export type UserCreateWithoutAuditLogsInput = {
   appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
   analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
   correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1263,6 +1555,8 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
   correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1297,6 +1591,8 @@ export type UserUpdateWithoutAuditLogsInput = {
   appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
   correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1315,6 +1611,8 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
   correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserCreateManyTenantInput = {
@@ -1344,6 +1642,8 @@ export type UserUpdateWithoutTenantInput = {
   appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
   correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTenantInput = {
@@ -1362,6 +1662,8 @@ export type UserUncheckedUpdateWithoutTenantInput = {
   appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
   analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
   correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutTenantInput = {
@@ -1388,6 +1690,8 @@ export type UserCountOutputType = {
   appuntamentiTecnico: number
   analisiDanniCreate: number
   correzioniDanni: number
+  analisiGapCreate: number
+  correzioniGapAssicurazione: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1398,6 +1702,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   appuntamentiTecnico?: boolean | UserCountOutputTypeCountAppuntamentiTecnicoArgs
   analisiDanniCreate?: boolean | UserCountOutputTypeCountAnalisiDanniCreateArgs
   correzioniDanni?: boolean | UserCountOutputTypeCountCorrezioniDanniArgs
+  analisiGapCreate?: boolean | UserCountOutputTypeCountAnalisiGapCreateArgs
+  correzioniGapAssicurazione?: boolean | UserCountOutputTypeCountCorrezioniGapAssicurazioneArgs
 }
 
 /**
@@ -1459,6 +1765,20 @@ export type UserCountOutputTypeCountCorrezioniDanniArgs<ExtArgs extends runtime.
   where?: Prisma.DamageItemWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAnalisiGapCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InsuranceGapAnalysisWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCorrezioniGapAssicurazioneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InsuranceGapItemWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1478,6 +1798,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   appuntamentiTecnico?: boolean | Prisma.User$appuntamentiTecnicoArgs<ExtArgs>
   analisiDanniCreate?: boolean | Prisma.User$analisiDanniCreateArgs<ExtArgs>
   correzioniDanni?: boolean | Prisma.User$correzioniDanniArgs<ExtArgs>
+  analisiGapCreate?: boolean | Prisma.User$analisiGapCreateArgs<ExtArgs>
+  correzioniGapAssicurazione?: boolean | Prisma.User$correzioniGapAssicurazioneArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1529,6 +1851,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   appuntamentiTecnico?: boolean | Prisma.User$appuntamentiTecnicoArgs<ExtArgs>
   analisiDanniCreate?: boolean | Prisma.User$analisiDanniCreateArgs<ExtArgs>
   correzioniDanni?: boolean | Prisma.User$correzioniDanniArgs<ExtArgs>
+  analisiGapCreate?: boolean | Prisma.User$analisiGapCreateArgs<ExtArgs>
+  correzioniGapAssicurazione?: boolean | Prisma.User$correzioniGapAssicurazioneArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1549,6 +1873,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     appuntamentiTecnico: Prisma.$AppointmentPayload<ExtArgs>[]
     analisiDanniCreate: Prisma.$DamageAnalysisPayload<ExtArgs>[]
     correzioniDanni: Prisma.$DamageItemPayload<ExtArgs>[]
+    analisiGapCreate: Prisma.$InsuranceGapAnalysisPayload<ExtArgs>[]
+    correzioniGapAssicurazione: Prisma.$InsuranceGapItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1962,6 +2288,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   appuntamentiTecnico<T extends Prisma.User$appuntamentiTecnicoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$appuntamentiTecnicoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   analisiDanniCreate<T extends Prisma.User$analisiDanniCreateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$analisiDanniCreateArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DamageAnalysisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   correzioniDanni<T extends Prisma.User$correzioniDanniArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$correzioniDanniArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DamageItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  analisiGapCreate<T extends Prisma.User$analisiGapCreateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$analisiGapCreateArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InsuranceGapAnalysisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  correzioniGapAssicurazione<T extends Prisma.User$correzioniGapAssicurazioneArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$correzioniGapAssicurazioneArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InsuranceGapItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2566,6 +2894,54 @@ export type User$correzioniDanniArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.DamageItemScalarFieldEnum | Prisma.DamageItemScalarFieldEnum[]
+}
+
+/**
+ * User.analisiGapCreate
+ */
+export type User$analisiGapCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InsuranceGapAnalysis
+   */
+  select?: Prisma.InsuranceGapAnalysisSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InsuranceGapAnalysis
+   */
+  omit?: Prisma.InsuranceGapAnalysisOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InsuranceGapAnalysisInclude<ExtArgs> | null
+  where?: Prisma.InsuranceGapAnalysisWhereInput
+  orderBy?: Prisma.InsuranceGapAnalysisOrderByWithRelationInput | Prisma.InsuranceGapAnalysisOrderByWithRelationInput[]
+  cursor?: Prisma.InsuranceGapAnalysisWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InsuranceGapAnalysisScalarFieldEnum | Prisma.InsuranceGapAnalysisScalarFieldEnum[]
+}
+
+/**
+ * User.correzioniGapAssicurazione
+ */
+export type User$correzioniGapAssicurazioneArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InsuranceGapItem
+   */
+  select?: Prisma.InsuranceGapItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InsuranceGapItem
+   */
+  omit?: Prisma.InsuranceGapItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InsuranceGapItemInclude<ExtArgs> | null
+  where?: Prisma.InsuranceGapItemWhereInput
+  orderBy?: Prisma.InsuranceGapItemOrderByWithRelationInput | Prisma.InsuranceGapItemOrderByWithRelationInput[]
+  cursor?: Prisma.InsuranceGapItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InsuranceGapItemScalarFieldEnum | Prisma.InsuranceGapItemScalarFieldEnum[]
 }
 
 /**

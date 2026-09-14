@@ -63,8 +63,11 @@ model Tenant {
   portalAccesses PortalAccess[]
   damageAnalyses DamageAnalysis[]
   damageItems    DamageItem[]
+  insuranceGapAnalyses   InsuranceGapAnalysis[]
+  insuranceGapItems      InsuranceGapItem[]
+  insuranceGapSuggestions InsuranceGapSuggestion[]
 
-  
+
 
 
 
@@ -102,6 +105,8 @@ model User {
   appuntamentiTecnico Appointment[]  @relation("TecnicoAppuntamento")
   analisiDanniCreate  DamageAnalysis[]
   correzioniDanni     DamageItem[]
+  analisiGapCreate         InsuranceGapAnalysis[]
+  correzioniGapAssicurazione InsuranceGapItem[]
 
   @@index([tenantId])
   @@map("users")
@@ -196,6 +201,7 @@ model Vehicle {
   quotes       Quote[]
   stageHistory StageHistory[]
   damageAnalyses DamageAnalysis[]
+  insuranceGapAnalyses InsuranceGapAnalysis[]
 
   @@index([tenantId])
   @@index([tenantId, targa])
@@ -296,6 +302,7 @@ model Quote {
 
   items QuoteItem[]
   damageItems DamageItem[]
+  insuranceGapAnalyses InsuranceGapAnalysis[]
 
   @@index([tenantId])
   @@index([tenantId, stato])
@@ -318,6 +325,8 @@ model QuoteItem {
   descrizione    String
   quantita       Decimal       @default(1) @db.Decimal(10, 2)
   prezzoUnitario Decimal       @db.Decimal(10, 2)
+
+  insuranceGapItems InsuranceGapItem[]
 
   @@map("quote_items")
 }
@@ -415,6 +424,126 @@ enum DamageSeverity {
   LIEVE
   MEDIA
   GRAVE
+}
+
+// -----------------------------
+// INSURANCE GAP ANALYSIS
+// -----------------------------
+// Confronto tra il preventivo interno e il documento (perizia/preventivo)
+// ricevuto dall'assicurazione. Sola lettura/proposta: l'IA classifica ogni
+// voce del preventivo interno come corrispondente, con differenza o
+// mancante nel documento assicurazione, e suggerisce elementi da
+// verificare — non dichiara mai automaticamente una voce dovuta o corretta.
+// Riservato a ADMIN/AMMINISTRAZIONE (confronto importi/prezzi).
+
+model InsuranceGapAnalysis {
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+
+  quoteId String
+  quote   Quote  @relation(fields: [quoteId], references: [id])
+
+  sinistroId String?
+  sinistro   Sinistro? @relation(fields: [sinistroId], references: [id])
+
+  documentName    String
+  documentMime    String
+  documentSize    Int
+  documentContent Bytes
+
+  rispostaGrezza Json? // risposta testuale grezza dell'IA: debug e miglioramento futuro del prompt
+
+  totalePreventivoInterno         Decimal  @db.Decimal(10, 2)
+  totaleRiconosciutoAssicurazione Decimal? @db.Decimal(10, 2)
+  differenza                      Decimal? @db.Decimal(10, 2)
+
+  creatoDaId String?
+  creatoDa   User?   @relation(fields: [creatoDaId], references: [id])
+  createdAt  DateTime @default(now())
+
+  items        InsuranceGapItem[]
+  suggerimenti InsuranceGapSuggestion[]
+
+  @@index([tenantId])
+  @@index([vehicleId])
+  @@map("insurance_gap_analyses")
+}
+
+// Una riga per ciascuna voce del preventivo interno selezionato: i campi
+// "*AI" sono la lettura originale del documento assicurazione fatta
+// dal modello e restano immutabili; l'operatore corregge solo i campi
+// correnti (utile per capire dove l'IA legge male i documenti).
+model InsuranceGapItem {
+  id         String                @id @default(cuid())
+  analysisId String
+  analysis   InsuranceGapAnalysis  @relation(fields: [analysisId], references: [id])
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  quoteItemId String
+  quoteItem   QuoteItem @relation(fields: [quoteItemId], references: [id])
+
+  // Snapshot della voce del preventivo interno al momento dell'analisi.
+  descrizione    String
+  tipo           QuoteItemType
+  quantita       Decimal @db.Decimal(10, 2)
+  prezzoUnitario Decimal @db.Decimal(10, 2)
+
+  // Lettura originale del documento assicurazione fatta dall'IA — immutabile.
+  trovatoAI                      Boolean @default(false)
+  descrizioneAssicurazioneAI     String?
+  quantitaAssicurazioneAI        Decimal? @db.Decimal(10, 2)
+  prezzoUnitarioAssicurazioneAI  Decimal? @db.Decimal(10, 2)
+  statoAI                        InsuranceGapStatus
+
+  // Valori correnti: partono identici a quelli AI, l'operatore li corregge liberamente.
+  quantitaAssicurazione       Decimal? @db.Decimal(10, 2)
+  prezzoUnitarioAssicurazione Decimal? @db.Decimal(10, 2)
+  stato                       InsuranceGapStatus
+  noteOperatore               String?
+
+  modificatoManualmente Boolean   @default(false)
+  modificatoDaId        String?
+  modificatoDa          User?     @relation(fields: [modificatoDaId], references: [id])
+  modificatoAt          DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([tenantId])
+  @@index([analysisId])
+  @@map("insurance_gap_items")
+}
+
+enum InsuranceGapStatus {
+  CORRISPONDE
+  DIFFERENZA
+  MANCANTE
+}
+
+// Possibili elementi dimenticati suggeriti dall'IA, mai legati a una voce
+// specifica del preventivo: solo un promemoria da verificare professionalmente.
+model InsuranceGapSuggestion {
+  id         String               @id @default(cuid())
+  analysisId String
+  analysis   InsuranceGapAnalysis @relation(fields: [analysisId], references: [id])
+
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  voce     String
+  motivo   String
+  scartata Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  @@index([tenantId])
+  @@index([analysisId])
+  @@map("insurance_gap_suggestions")
 }
 
 // -----------------------------
@@ -624,6 +753,8 @@ model Sinistro {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  insuranceGapAnalyses InsuranceGapAnalysis[]
 
   @@index([tenantId])
   @@index([tenantId, stato])

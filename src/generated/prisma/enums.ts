@@ -85,6 +85,15 @@ export const DamageSeverity = {
 export type DamageSeverity = (typeof DamageSeverity)[keyof typeof DamageSeverity]
 
 
+export const InsuranceGapStatus = {
+  CORRISPONDE: 'CORRISPONDE',
+  DIFFERENZA: 'DIFFERENZA',
+  MANCANTE: 'MANCANTE'
+} as const
+
+export type InsuranceGapStatus = (typeof InsuranceGapStatus)[keyof typeof InsuranceGapStatus]
+
+
 export const MovementType = {
   CARICO: 'CARICO',
   SCARICO: 'SCARICO'
