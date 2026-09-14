@@ -26,6 +26,7 @@ import { insuranceGapRouter, insuranceGapItemsRouter, insuranceGapSuggestionsRou
 import { whatsappRouter, whatsappWebhookRouter } from "./routes/whatsapp.js";
 import { portaleRouter, portalDocumentsRouter, portalActionsRouter, portalDocumentItemRouter, portalActionItemRouter } from "./routes/portale.js";
 import { vehicleWorkOrdersRouter, workOrdersRouter, workOrderTimeEntriesRouter, vehicleOreLavorateRouter } from "./routes/workOrders.js";
+import { liveDashboardRouter } from "./routes/liveDashboard.js";
 import { auditLogger } from "./middleware/audit.js";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -81,6 +82,7 @@ app.use("/api/vehicles/:vehicleId/work-orders", vehicleWorkOrdersRouter);
 app.use("/api/vehicles/:vehicleId/ore-lavorate", vehicleOreLavorateRouter);
 app.use("/api/work-orders", workOrdersRouter);
 app.use("/api/work-order-time-entries", workOrderTimeEntriesRouter);
+app.use("/api/live-dashboard", liveDashboardRouter);
 app.use("/api/loaner-cars", loanerCarsRouter);
 app.use("/api/supplier-orders", supplierOrdersRouter);
 app.use("/api/dashboard", dashboardRouter);

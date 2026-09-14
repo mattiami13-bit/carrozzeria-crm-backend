@@ -289,7 +289,7 @@ function Dashboard({ token, onLogout }) {
 
   if (ruolo === "TECNICO") return <DashboardTecnico token={token} onLogout={onLogout} />;
 
-  const delayNav = [...NAV_BASE, {key:"delay",label:"Predictive Delay AI"}, {key:"parts-tracking",label:"Parts Tracking"}, {key:"lavori",label:"I miei lavori"}];
+  const delayNav = [...NAV_BASE, {key:"delay",label:"Predictive Delay AI"}, {key:"parts-tracking",label:"Parts Tracking"}, {key:"lavori",label:"I miei lavori"}, {key:"live",label:"Carrozzeria Live"}];
   const baseNav = ruolo === "ADMIN" ? [...delayNav, { key: "registro", label: "Registro attività" }] : delayNav;
   const navConProfit = ["ADMIN", "AMMINISTRAZIONE"].includes(ruolo) ? [...baseNav, {key:"profit",label:"Profit Tracker"}, {key:"kpi-tecnici",label:"KPI Tecnici"}] : baseNav;
   const nav = ruolo === "ADMIN" ? [...navConProfit, { key: "whatsapp", label: "WhatsApp" }] : navConProfit;
@@ -356,6 +356,7 @@ function Dashboard({ token, onLogout }) {
         {tab === "registro" && ruolo === "ADMIN" && <RegistroAttivitaView api={api} />}
         {tab === "whatsapp" && ruolo === "ADMIN" && <WhatsappSettingsView api={api} />}
         {tab === "lavori" && <TecnicoLavoriView api={api} token={token} />}
+        {tab === "live" && <CarrozzeriaLiveView api={api} />}
         {tab === "kpi-tecnici" && ["ADMIN", "AMMINISTRAZIONE"].includes(ruolo) && <KpiTecniciView api={api} ruolo={ruolo} />}
       </main>
       <AiCopilot api={api} onNavigateTab={setTab} onApriPraticaVeicolo={apriPraticaVeicolo} />
@@ -4105,6 +4106,177 @@ function KpiTecniciView({ api, ruolo }) {
     </div>
   );
 }
+
+/* ---------------- CARROZZERIA LIVE: board officina/TV ---------------- */
+const SEMAFORO_STYLE = { verde: { color: "#2F8F5B", label: "Regolare" }, arancione: { color: "#C9A24B", label: "Attenzione" }, rosso: { color: "#B4472E", label: "Problema/ritardo" } };
+
+function isOggi(d) { if (!d) return false; const x = new Date(d), o = new Date(); return x.toDateString() === o.toDateString(); }
+function isQuestaSettimana(d) {
+  if (!d) return false;
+  const x = new Date(d); x.setHours(0, 0, 0, 0);
+  const o = new Date(); o.setHours(0, 0, 0, 0);
+  const fine = new Date(o); fine.setDate(fine.getDate() + (7 - o.getDay() || 7));
+  return x >= o && x <= fine;
+}
+
+function CarrozzeriaLiveView({ api }) {
+  const [righe, setRighe] = useState(null);
+  const [error, setError] = useState(null);
+  const [modalitaOfficina, setModalitaOfficina] = useState(true);
+  const [fullscreen, setFullscreen] = useState(false);
+  const [filtri, setFiltri] = useState({ reparto: "", tecnicoId: "", stato: "", oggi: false, settimana: false, bloccate: false });
+  const containerRef = useRef(null);
+
+  const load = useCallback(() => {
+    api("/api/live-dashboard").then(setRighe).catch((e) => setError(e.message));
+  }, [api]);
+
+  useEffect(load, [load]);
+  useEffect(() => {
+    const id = setInterval(load, 30000); // aggiornamento automatico ogni 30s
+    return () => clearInterval(id);
+  }, [load]);
+
+  useEffect(() => {
+    const onChange = () => setFullscreen(!!document.fullscreenElement);
+    document.addEventListener("fullscreenchange", onChange);
+    return () => document.removeEventListener("fullscreenchange", onChange);
+  }, []);
+
+  const entraFullscreen = () => { containerRef.current?.requestFullscreen?.(); };
+  const esciFullscreen = () => { if (document.fullscreenElement) document.exitFullscreen(); };
+
+  // In fullscreen (monitor visibile a chiunque in officina) la Modalità
+  // Officina è sempre attiva, a prescindere da cosa lo staff aveva scelto.
+  const officinaEffettiva = fullscreen || modalitaOfficina;
+
+  const tecniciDisponibili = useMemo(() => {
+    if (!righe) return [];
+    const map = new Map();
+    righe.forEach((r) => { if (r.tecnico) map.set(r.tecnico.id, r.tecnico); });
+    return [...map.values()];
+  }, [righe]);
+
+  const righeFiltrate = useMemo(() => {
+    if (!righe) return [];
+    const oggiFine = new Date(); oggiFine.setDate(oggiFine.getDate() + 1);
+    return righe.filter((r) => {
+      if (filtri.reparto && r.reparto !== filtri.reparto) return false;
+      if (filtri.tecnicoId && r.tecnico?.id !== filtri.tecnicoId) return false;
+      if (filtri.stato && r.stage !== filtri.stato) return false;
+      if (filtri.oggi && !isOggi(r.dataConsegna)) return false;
+      if (filtri.settimana && !isQuestaSettimana(r.dataConsegna)) return false;
+      if (filtri.bloccate && !r.blocco.attivo) return false;
+      return true;
+    });
+  }, [righe, filtri]);
+
+  const fontBase = fullscreen ? 20 : 13.5;
+
+  if (!righe) return <Loading />;
+
+  return (
+    <div ref={containerRef} style={{ background: fullscreen ? "#0A0B0D" : "transparent", minHeight: fullscreen ? "100vh" : "auto", padding: fullscreen ? 28 : 0 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10, marginBottom: fullscreen ? 20 : 14 }}>
+        <div>
+          <h1 style={{ fontSize: fullscreen ? 30 : 20, fontWeight: 700, margin: 0 }}>Carrozzeria Live</h1>
+          {!fullscreen && <div style={{ fontSize: 12, color: "#8D9099", marginTop: 4 }}>Si aggiorna automaticamente ogni 30 secondi.</div>}
+        </div>
+        <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: fullscreen ? 14 : 11.5 }}>
+            {Object.entries(SEMAFORO_STYLE).map(([k, s]) => (
+              <span key={k} style={{ display: "flex", alignItems: "center", gap: 4, color: "#8D9099" }}>
+                <span style={{ width: 10, height: 10, borderRadius: 99, background: s.color, display: "inline-block" }} /> {s.label}
+              </span>
+            ))}
+          </div>
+          {!fullscreen && (
+            <label style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "#D9D6CE", cursor: "pointer" }}>
+              <input type="checkbox" checked={modalitaOfficina} onChange={(e) => setModalitaOfficina(e.target.checked)} />
+              Modalità officina (nasconde i dati del cliente)
+            </label>
+          )}
+          {!fullscreen ? (
+            <button onClick={entraFullscreen} style={{ padding: "7px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 12.5, fontWeight: 600 }}>⛶ Schermo intero (TV)</button>
+          ) : (
+            <button onClick={esciFullscreen} style={{ padding: "9px 18px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 14, fontWeight: 600 }}>Esci da schermo intero</button>
+          )}
+        </div>
+      </div>
+
+      {error && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 12, padding: 10, borderRadius: 8, marginBottom: 12 }}>{error}</div>}
+
+      {!fullscreen && (
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 16 }}>
+          <select value={filtri.reparto} onChange={(e) => setFiltri({ ...filtri, reparto: e.target.value })} style={{ padding: 7, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+            <option value="">Tutti i reparti</option>
+            {Object.keys(REPARTO_LABEL).map((r) => <option key={r} value={r}>{REPARTO_LABEL[r]}</option>)}
+          </select>
+          <select value={filtri.tecnicoId} onChange={(e) => setFiltri({ ...filtri, tecnicoId: e.target.value })} style={{ padding: 7, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+            <option value="">Tutti i tecnici</option>
+            {tecniciDisponibili.map((t) => <option key={t.id} value={t.id}>{t.nome} {t.cognome}</option>)}
+          </select>
+          <select value={filtri.stato} onChange={(e) => setFiltri({ ...filtri, stato: e.target.value })} style={{ padding: 7, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+            <option value="">Tutti gli stati</option>
+            {Object.keys(STAGE_LABELS_LIVE).map((s) => <option key={s} value={s}>{STAGE_LABELS_LIVE[s]}</option>)}
+          </select>
+          <label style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, padding: "0 6px", cursor: "pointer" }}>
+            <input type="checkbox" checked={filtri.oggi} onChange={(e) => setFiltri({ ...filtri, oggi: e.target.checked, settimana: false })} /> Consegne oggi
+          </label>
+          <label style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, padding: "0 6px", cursor: "pointer" }}>
+            <input type="checkbox" checked={filtri.settimana} onChange={(e) => setFiltri({ ...filtri, settimana: e.target.checked, oggi: false })} /> Consegne questa settimana
+          </label>
+          <label style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, padding: "0 6px", cursor: "pointer" }}>
+            <input type="checkbox" checked={filtri.bloccate} onChange={(e) => setFiltri({ ...filtri, bloccate: e.target.checked })} /> Solo vetture bloccate
+          </label>
+        </div>
+      )}
+
+      <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, overflow: "hidden" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1.3fr 1.2fr 0.9fr 1.3fr 1.4fr", gap: 8, padding: fullscreen ? "16px 20px" : "10px 14px", borderBottom: "1px solid #2A2E34", fontSize: fontBase * 0.6, fontWeight: 700, color: "#8D9099", textTransform: "uppercase", letterSpacing: "0.03em" }}>
+          <div>Veicolo</div><div>Stato</div><div>Tecnico</div><div>Consegna</div><div>Avanzamento</div><div>Blocco</div>
+        </div>
+        {righeFiltrate.length === 0 ? (
+          <div style={{ padding: 30, textAlign: "center", color: "#8D9099", fontSize: fontBase }}>Nessuna pratica corrisponde ai filtri.</div>
+        ) : righeFiltrate.map((r) => (
+          <div key={r.vehicleId} style={{ display: "grid", gridTemplateColumns: "1.6fr 1.3fr 1.2fr 0.9fr 1.3fr 1.4fr", gap: 8, alignItems: "center", padding: fullscreen ? "16px 20px" : "10px 14px", borderBottom: "1px solid #2A2E34", fontSize: fontBase }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+              <span style={{ width: 11, height: 11, borderRadius: 99, background: SEMAFORO_STYLE[r.semaforo].color, flexShrink: 0 }} title={SEMAFORO_STYLE[r.semaforo].label} />
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.veicolo}</div>
+                <div style={{ fontSize: fontBase * 0.75, color: "#8D9099", fontFamily: "monospace" }}>{r.targa}</div>
+                {!officinaEffettiva && r.cliente && (
+                  <div style={{ fontSize: fontBase * 0.7, color: "#6B6963", marginTop: 2 }}>{r.cliente.nome} {r.cliente.cognome}{r.cliente.telefono ? ` · ${r.cliente.telefono}` : ""}</div>
+                )}
+              </div>
+            </div>
+            <div>{r.stato}</div>
+            <div style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.tecnico ? `${r.tecnico.nome} ${r.tecnico.cognome}` : "—"}</div>
+            <div>{r.dataConsegna ? new Date(r.dataConsegna).toLocaleDateString("it-IT", { day: "2-digit", month: "2-digit" }) : "—"}</div>
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <div style={{ flex: 1, height: fullscreen ? 10 : 7, borderRadius: 20, background: "#0A0B0D", overflow: "hidden" }}>
+                  <div style={{ width: `${r.avanzamento}%`, height: "100%", background: SEMAFORO_STYLE[r.semaforo].color, borderRadius: 20 }} />
+                </div>
+                <span style={{ fontSize: fontBase * 0.8, color: "#D9D6CE", flexShrink: 0 }}>{r.avanzamento}%</span>
+              </div>
+            </div>
+            <div style={{ color: r.blocco.attivo ? "#E5806B" : "#6B6963", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+              {r.blocco.attivo ? `🔴 ${r.blocco.descrizione || "Bloccato"}` : "—"}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const STAGE_LABELS_LIVE = {
+  ACCETTAZIONE: "Accettazione", PREVENTIVO: "Preventivo", ATTESA_APPROVAZIONE: "Approvazione",
+  ORDINE_RICAMBI: "Ricambi", IN_LAVORAZIONE: "Lavorazione", PREPARAZIONE: "Preparazione",
+  VERNICIATURA: "Verniciatura", LUCIDATURA: "Lucidatura", CONTROLLO_QUALITA: "Controllo qualità",
+  LAVAGGIO: "Lavaggio", PRONTA_CONSEGNA: "Pronta",
+};
 
 function ClientiView({ api, onOpenSinistri }) {
   const [clients, setClients] = useState([]);
