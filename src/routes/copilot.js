@@ -41,12 +41,6 @@ async function contaDomandeQuestoMese(tenantId) {
 const RUOLI_CON_ACCESSO_FINANZIARIO = new Set(["ADMIN", "AMMINISTRAZIONE"]);
 const STRUMENTI_FINANZIARI = new Set(["margine_veicolo", "preventivi_marginalita_bassa", "fatturato_mensile"]);
 
-async function giorniInStadioCorrente(vehicleId) {
-  const ultimo = await prisma.stageHistory.findFirst({ where: { vehicleId }, orderBy: { changedAt: "desc" } });
-  if (!ultimo) return null;
-  return Math.floor((Date.now() - new Date(ultimo.changedAt).getTime()) / (1000 * 60 * 60 * 24));
-}
-
 // Filtro di ricerca veicolo "a parole": "Volkswagen Golf" deve trovare un
 // veicolo con marca="Volkswagen" e modello="Golf" separatamente, non
 // cercare l'intera frase come sottostringa di un singolo campo (che non

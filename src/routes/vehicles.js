@@ -89,6 +89,16 @@ vehiclesRouter.post("/", async (req, res) => {
   const parsed = vehicleSchema.safeParse(req.body);
   if (!parsed.success) return res.status(400).json({ error: parsed.error.flatten() });
 
+  // clientId/tecnicoId arrivano dal client: verificare che appartengano
+  // allo stesso tenant, altrimenti si potrebbe agganciare un veicolo al
+  // cliente (o assegnarlo al tecnico) di un'altra organizzazione.
+  const client = await prisma.client.findFirst({ where: { id: parsed.data.clientId, ...tenantScope(req) } });
+  if (!client) return res.status(400).json({ error: "Cliente non valido" });
+  if (parsed.data.tecnicoId) {
+    const tecnico = await prisma.user.findFirst({ where: { id: parsed.data.tecnicoId, ...tenantScope(req) } });
+    if (!tecnico) return res.status(400).json({ error: "Tecnico non valido" });
+  }
+
   const vehicle = await prisma.vehicle.create({
     data: {
       ...parsed.data,
@@ -174,6 +184,15 @@ vehiclesRouter.patch("/:id/stage", async (req, res) => {
 vehiclesRouter.patch("/:id", async (req, res) => {
   const parsed = vehicleSchema.partial().safeParse(req.body);
   if (!parsed.success) return res.status(400).json({ error: parsed.error.flatten() });
+
+  if (parsed.data.clientId) {
+    const client = await prisma.client.findFirst({ where: { id: parsed.data.clientId, ...tenantScope(req) } });
+    if (!client) return res.status(400).json({ error: "Cliente non valido" });
+  }
+  if (parsed.data.tecnicoId) {
+    const tecnico = await prisma.user.findFirst({ where: { id: parsed.data.tecnicoId, ...tenantScope(req) } });
+    if (!tecnico) return res.status(400).json({ error: "Tecnico non valido" });
+  }
 
   const { count } = await prisma.vehicle.updateMany({
     where: { id: req.params.id, ...tenantScope(req) },

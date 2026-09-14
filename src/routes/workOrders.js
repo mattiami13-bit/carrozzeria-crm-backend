@@ -75,6 +75,8 @@ vehicleWorkOrdersRouter.post("/", wrap(async (req, res) => {
 // GET /api/vehicles/:vehicleId/work-orders — elenco per la scheda veicolo (staff).
 vehicleWorkOrdersRouter.get("/", wrap(async (req, res) => {
   const { tenantId } = tenantScope(req);
+  const vehicle = await prisma.vehicle.findFirst({ where: { id: req.params.vehicleId, tenantId } });
+  if (!vehicle) return res.status(404).json({ error: "Veicolo non trovato" });
   const orders = await prisma.workOrder.findMany({
     where: { vehicleId: req.params.vehicleId, tenantId },
     select: woSelect,

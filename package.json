@@ -14,7 +14,8 @@
     "test:delay": "node --test tests/delay.test.js tests/delay-api.test.js && node tests/check-frontend.cjs",
     "test:parts": "node --test tests/parts.test.js tests/parts-api.test.js && node tests/check-frontend.cjs",
     "test:executive": "node --test tests/executive.test.js tests/executive-api.test.js && node tests/check-frontend.cjs",
-    "test:briefing": "node --test tests/briefing.test.js tests/briefing-api.test.js && node tests/check-frontend.cjs"
+    "test:briefing": "node --test tests/briefing.test.js tests/briefing-api.test.js && node tests/check-frontend.cjs",
+    "test:tenant-isolation": "node --test tests/tenant-isolation.test.js"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",

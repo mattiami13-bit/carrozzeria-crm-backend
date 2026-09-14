@@ -122,6 +122,13 @@ export async function ultimaIspezioneApprovata(tenantId, vehicleId) {
 // GET /api/vehicles/:vehicleId/qc — elenco ispezioni del veicolo.
 vehicleQcRouter.get("/", wrap(async (req, res) => {
   const { tenantId } = tenantScope(req);
+  // Verifica esplicita che il veicolo sia del tenant richiedente: senza
+  // questo controllo un id di un altro tenant risponderebbe comunque 200
+  // con lista vuota (nessun dato del tenant B) invece di un chiaro 404 —
+  // nessuna fuga di dati, ma un comportamento incoerente da evitare.
+  const vehicle = await prisma.vehicle.findFirst({ where: { id: req.params.vehicleId, tenantId } });
+  if (!vehicle) return res.status(404).json({ error: "Veicolo non trovato" });
+
   const ispezioni = await prisma.qcInspection.findMany({
     where: { vehicleId: req.params.vehicleId, tenantId },
     select: inspectionSelect(),

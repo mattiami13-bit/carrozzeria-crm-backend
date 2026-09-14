@@ -44,6 +44,15 @@ quotesRouter.post("/", async (req, res) => {
   if (!parsed.success) return res.status(400).json({ error: parsed.error.flatten() });
 
   const { clientId, vehicleId, aliquotaIva, items } = parsed.data;
+
+  // clientId/vehicleId arrivano dal client: verificare che appartengano al
+  // tenant richiedente, altrimenti si potrebbe agganciare un preventivo a
+  // un cliente o un veicolo di un'altra organizzazione.
+  const client = await prisma.client.findFirst({ where: { id: clientId, ...tenantScope(req) } });
+  if (!client) return res.status(400).json({ error: "Cliente non valido" });
+  const vehicle = await prisma.vehicle.findFirst({ where: { id: vehicleId, ...tenantScope(req) } });
+  if (!vehicle) return res.status(400).json({ error: "Veicolo non valido" });
+
   const imponibile = items.reduce((sum, i) => sum + i.quantita * i.prezzoUnitario, 0);
   const totale = imponibile * (1 + aliquotaIva / 100);
 
