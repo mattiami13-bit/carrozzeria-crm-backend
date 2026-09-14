@@ -562,6 +562,57 @@ export type EnumOrderStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumOrderStatusFilter<$PrismaModel>
 }
 
+export type EnumFuelTypeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.FuelType | Prisma.EnumFuelTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.FuelType[] | Prisma.ListEnumFuelTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.FuelType[] | Prisma.ListEnumFuelTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumFuelTypeNullableFilter<$PrismaModel> | $Enums.FuelType | null
+}
+
+export type EnumLoanerStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.LoanerStatus | Prisma.EnumLoanerStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LoanerStatus[] | Prisma.ListEnumLoanerStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LoanerStatus[] | Prisma.ListEnumLoanerStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLoanerStatusFilter<$PrismaModel> | $Enums.LoanerStatus
+}
+
+export type EnumFuelTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.FuelType | Prisma.EnumFuelTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.FuelType[] | Prisma.ListEnumFuelTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.FuelType[] | Prisma.ListEnumFuelTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumFuelTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.FuelType | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumFuelTypeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumFuelTypeNullableFilter<$PrismaModel>
+}
+
+export type EnumLoanerStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LoanerStatus | Prisma.EnumLoanerStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LoanerStatus[] | Prisma.ListEnumLoanerStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LoanerStatus[] | Prisma.ListEnumLoanerStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLoanerStatusWithAggregatesFilter<$PrismaModel> | $Enums.LoanerStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLoanerStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLoanerStatusFilter<$PrismaModel>
+}
+
+export type EnumLoanerBookingStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.LoanerBookingStatus | Prisma.EnumLoanerBookingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LoanerBookingStatus[] | Prisma.ListEnumLoanerBookingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LoanerBookingStatus[] | Prisma.ListEnumLoanerBookingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLoanerBookingStatusFilter<$PrismaModel> | $Enums.LoanerBookingStatus
+}
+
+export type EnumLoanerBookingStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LoanerBookingStatus | Prisma.EnumLoanerBookingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LoanerBookingStatus[] | Prisma.ListEnumLoanerBookingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LoanerBookingStatus[] | Prisma.ListEnumLoanerBookingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLoanerBookingStatusWithAggregatesFilter<$PrismaModel> | $Enums.LoanerBookingStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLoanerBookingStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLoanerBookingStatusFilter<$PrismaModel>
+}
+
 export type EnumSinistroStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.SinistroStatus | Prisma.EnumSinistroStatusFieldRefInput<$PrismaModel>
   in?: $Enums.SinistroStatus[] | Prisma.ListEnumSinistroStatusFieldRefInput<$PrismaModel>
@@ -1084,6 +1135,57 @@ export type NestedEnumOrderStatusWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumOrderStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumOrderStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumFuelTypeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.FuelType | Prisma.EnumFuelTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.FuelType[] | Prisma.ListEnumFuelTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.FuelType[] | Prisma.ListEnumFuelTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumFuelTypeNullableFilter<$PrismaModel> | $Enums.FuelType | null
+}
+
+export type NestedEnumLoanerStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.LoanerStatus | Prisma.EnumLoanerStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LoanerStatus[] | Prisma.ListEnumLoanerStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LoanerStatus[] | Prisma.ListEnumLoanerStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLoanerStatusFilter<$PrismaModel> | $Enums.LoanerStatus
+}
+
+export type NestedEnumFuelTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.FuelType | Prisma.EnumFuelTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.FuelType[] | Prisma.ListEnumFuelTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.FuelType[] | Prisma.ListEnumFuelTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumFuelTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.FuelType | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumFuelTypeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumFuelTypeNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumLoanerStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LoanerStatus | Prisma.EnumLoanerStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LoanerStatus[] | Prisma.ListEnumLoanerStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LoanerStatus[] | Prisma.ListEnumLoanerStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLoanerStatusWithAggregatesFilter<$PrismaModel> | $Enums.LoanerStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLoanerStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLoanerStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumLoanerBookingStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.LoanerBookingStatus | Prisma.EnumLoanerBookingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LoanerBookingStatus[] | Prisma.ListEnumLoanerBookingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LoanerBookingStatus[] | Prisma.ListEnumLoanerBookingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLoanerBookingStatusFilter<$PrismaModel> | $Enums.LoanerBookingStatus
+}
+
+export type NestedEnumLoanerBookingStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LoanerBookingStatus | Prisma.EnumLoanerBookingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LoanerBookingStatus[] | Prisma.ListEnumLoanerBookingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LoanerBookingStatus[] | Prisma.ListEnumLoanerBookingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLoanerBookingStatusWithAggregatesFilter<$PrismaModel> | $Enums.LoanerBookingStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLoanerBookingStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLoanerBookingStatusFilter<$PrismaModel>
 }
 
 export type NestedEnumSinistroStatusFilter<$PrismaModel = never> = {

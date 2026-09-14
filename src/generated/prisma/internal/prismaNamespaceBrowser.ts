@@ -403,7 +403,21 @@ export const LoanerCarScalarFieldEnum = {
   targa: 'targa',
   marca: 'marca',
   modello: 'modello',
-  disponibile: 'disponibile'
+  km: 'km',
+  carburante: 'carburante',
+  stato: 'stato',
+  assicurazioneCompagnia: 'assicurazioneCompagnia',
+  assicurazioneScadenza: 'assicurazioneScadenza',
+  revisioneScadenza: 'revisioneScadenza',
+  manutenzioneNote: 'manutenzioneNote',
+  manutenzioneScadenza: 'manutenzioneScadenza',
+  manutenzioneKm: 'manutenzioneKm',
+  costoGiornalieroCents: 'costoGiornalieroCents',
+  note: 'note',
+  foto: 'foto',
+  attiva: 'attiva',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type LoanerCarScalarFieldEnum = (typeof LoanerCarScalarFieldEnum)[keyof typeof LoanerCarScalarFieldEnum]
@@ -411,10 +425,31 @@ export type LoanerCarScalarFieldEnum = (typeof LoanerCarScalarFieldEnum)[keyof t
 
 export const LoanerBookingScalarFieldEnum = {
   id: 'id',
+  tenantId: 'tenantId',
   loanerCarId: 'loanerCarId',
   clientId: 'clientId',
+  vehicleId: 'vehicleId',
+  stato: 'stato',
   dataInizio: 'dataInizio',
-  dataFine: 'dataFine'
+  dataFinePrevista: 'dataFinePrevista',
+  dataConsegna: 'dataConsegna',
+  dataRestituzione: 'dataRestituzione',
+  kmIniziali: 'kmIniziali',
+  kmFinali: 'kmFinali',
+  carburanteIniziale: 'carburanteIniziale',
+  carburanteFinale: 'carburanteFinale',
+  firmaClienteDataUrl: 'firmaClienteDataUrl',
+  firmatarioNome: 'firmatarioNome',
+  firmaAt: 'firmaAt',
+  fotoConsegna: 'fotoConsegna',
+  fotoRestituzione: 'fotoRestituzione',
+  danni: 'danni',
+  note: 'note',
+  costoGiornalieroCents: 'costoGiornalieroCents',
+  costoTotaleCents: 'costoTotaleCents',
+  attribuitaAllaPratica: 'attribuitaAllaPratica',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type LoanerBookingScalarFieldEnum = (typeof LoanerBookingScalarFieldEnum)[keyof typeof LoanerBookingScalarFieldEnum]
