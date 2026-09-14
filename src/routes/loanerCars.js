@@ -41,9 +41,12 @@ function carSelect() {
     _count: { select: { photos: true } },
   };
 }
+// Aggiunge stato calcolato e prenotazione attiva SENZA rimuovere
+// "bookings": nella vista dettaglio serve lo storico completo, in quella
+// elenco è già limitato alle sole prenotazioni attive da carSelect().
 function conStato(car) {
-  const { bookings, ...rest } = car;
-  return { ...rest, stato: statoCalcolato(car), prenotazioneAttiva: bookings.find((b) => b.stato === "ASSEGNATA") || bookings.find((b) => b.stato === "PRENOTATA") || null };
+  const bookings = car.bookings || [];
+  return { ...car, stato: statoCalcolato(car), prenotazioneAttiva: bookings.find((b) => b.stato === "ASSEGNATA") || bookings.find((b) => b.stato === "PRENOTATA") || null };
 }
 
 // GET /api/loaner-cars
