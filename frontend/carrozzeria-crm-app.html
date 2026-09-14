@@ -2415,6 +2415,7 @@ const LOANER_STATO_META = {
   NON_DISPONIBILE: { label: "Non disponibile", bg: "#ECECEC", fg: "#6B6B6B" },
 };
 const DAMAGE_META = { LIEVE: "Lieve", MEDIA: "Media", GRAVE: "Grave" };
+const BOOKING_STATO_LABELS = { PRENOTATA: "Prenotata", ASSEGNATA: "Assegnata", RESTITUITA: "Restituita", ANNULLATA: "Annullata" };
 const loanerEuro = (c) => (c == null ? "—" : (c / 100).toLocaleString("it-IT", { style: "currency", currency: "EUR" }));
 const euroToCents = (s) => { const n = parseFloat(String(s).replace(",", ".")); return Number.isFinite(n) ? Math.round(n * 100) : 0; };
 const loanerDate = (d) => (d ? new Date(d).toLocaleDateString("it-IT") : "—");
@@ -2907,7 +2908,7 @@ function LoanerCarDetailModal({ carId, api, clients, vehicles, onClose, onChange
                 <div style={{ border: "1px solid #2A2E34", borderRadius: 10, overflow: "hidden" }}>
                   {car.bookings.map((b, i) => (
                     <div key={b.id} style={{ display: "flex", justifyContent: "space-between", gap: 8, padding: "8px 12px", fontSize: 12, borderTop: i === 0 ? "none" : "1px solid #2A2E34" }}>
-                      <span>{b.client ? `${b.client.nome} ${b.client.cognome}` : "—"}{b.vehicle ? ` · ${b.vehicle.targa}` : ""} <em style={{ color: "#8D9099" }}>({LOANER_STATO_META[b.stato] ? LOANER_STATO_META[b.stato].label : b.stato})</em></span>
+                      <span>{b.client ? `${b.client.nome} ${b.client.cognome}` : "—"}{b.vehicle ? ` · ${b.vehicle.targa}` : ""} <em style={{ color: "#8D9099" }}>({BOOKING_STATO_LABELS[b.stato] || b.stato})</em></span>
                       <span style={{ color: "#8D9099", textAlign: "right" }}>
                         {loanerDate(b.dataConsegna || b.dataInizio)}{b.dataRestituzione ? ` → ${loanerDate(b.dataRestituzione)}` : ""}
                         {b.costoTotaleCents != null ? ` · ${loanerEuro(b.costoTotaleCents)}${b.attribuitaAllaPratica ? " (pratica)" : ""}` : ""}
