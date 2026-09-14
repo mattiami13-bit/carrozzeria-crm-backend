@@ -1866,7 +1866,7 @@ function VehicleDetailModal({ vehicleId, api, token, onClose: closeRequested, on
               )}
               {erroreLink && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 12, padding: 10, borderRadius: 8, marginTop: 10 }}>{erroreLink}</div>}
             </div>
-            <PortalStaffExtras vehicleId={vehicle.id} api={api} />
+            <PortalStaffExtras vehicleId={vehicleId} api={api} />
       </div>
 
       {mostraFirmaConsegna && (
