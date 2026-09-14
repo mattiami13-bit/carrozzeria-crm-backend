@@ -59,7 +59,8 @@ vehiclesRouter.get("/:id", async (req, res) => {
     where: { id: req.params.id, ...tenantScope(req) },
     include: {
       client: true,
-      tecnico: true,
+      // Mai l'utente intero: includerebbe passwordHash nella risposta.
+      tecnico: { select: { id: true, nome: true, cognome: true, ruolo: true } },
       photos: { select:legacyPhotoSelect, orderBy: { createdAt: "asc" } },
       quotes: true,
       stageHistory: { orderBy: { changedAt: "asc" }, include: { changedBy: { select: { nome: true, cognome: true } } } },
@@ -311,7 +312,7 @@ Sii prudente: è una stima preliminare da foto, non una perizia definitiva. Se l
     prisma.vehicle.update({
       where: { id: vehicle.id },
       data: { stimaIA: aiResult, stimaIAAt: new Date() },
-      include: { client: true, tecnico: true, photos: { select:legacyPhotoSelect, orderBy: { createdAt: "asc" } }, quotes: true },
+      include: { client: true, tecnico: { select: { id: true, nome: true, cognome: true, ruolo: true } }, photos: { select:legacyPhotoSelect, orderBy: { createdAt: "asc" } }, quotes: true },
     }),
     prisma.aiAnalysisLog.create({
       data: { tenantId, vehicleId: vehicle.id },
