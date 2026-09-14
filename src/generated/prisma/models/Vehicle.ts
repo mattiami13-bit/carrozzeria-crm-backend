@@ -386,6 +386,7 @@ export type VehicleWhereInput = {
   portalDocuments?: Prisma.PortalDocumentListRelationFilter
   workOrders?: Prisma.WorkOrderListRelationFilter
   qcInspections?: Prisma.QcInspectionListRelationFilter
+  loanerBookings?: Prisma.LoanerBookingListRelationFilter
 }
 
 export type VehicleOrderByWithRelationInput = {
@@ -435,6 +436,7 @@ export type VehicleOrderByWithRelationInput = {
   portalDocuments?: Prisma.PortalDocumentOrderByRelationAggregateInput
   workOrders?: Prisma.WorkOrderOrderByRelationAggregateInput
   qcInspections?: Prisma.QcInspectionOrderByRelationAggregateInput
+  loanerBookings?: Prisma.LoanerBookingOrderByRelationAggregateInput
 }
 
 export type VehicleWhereUniqueInput = Prisma.AtLeast<{
@@ -487,6 +489,7 @@ export type VehicleWhereUniqueInput = Prisma.AtLeast<{
   portalDocuments?: Prisma.PortalDocumentListRelationFilter
   workOrders?: Prisma.WorkOrderListRelationFilter
   qcInspections?: Prisma.QcInspectionListRelationFilter
+  loanerBookings?: Prisma.LoanerBookingListRelationFilter
 }, "id">
 
 export type VehicleOrderByWithAggregationInput = {
@@ -595,6 +598,7 @@ export type VehicleCreateInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateInput = {
@@ -641,6 +645,7 @@ export type VehicleUncheckedCreateInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUpdateInput = {
@@ -687,6 +692,7 @@ export type VehicleUpdateInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateInput = {
@@ -733,6 +739,7 @@ export type VehicleUncheckedUpdateInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateManyInput = {
@@ -1120,6 +1127,22 @@ export type VehicleUpdateOneRequiredWithoutInsuranceGapAnalysesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.VehicleUpdateToOneWithWhereWithoutInsuranceGapAnalysesInput, Prisma.VehicleUpdateWithoutInsuranceGapAnalysesInput>, Prisma.VehicleUncheckedUpdateWithoutInsuranceGapAnalysesInput>
 }
 
+export type VehicleCreateNestedOneWithoutLoanerBookingsInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutLoanerBookingsInput, Prisma.VehicleUncheckedCreateWithoutLoanerBookingsInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutLoanerBookingsInput
+  connect?: Prisma.VehicleWhereUniqueInput
+}
+
+export type VehicleUpdateOneWithoutLoanerBookingsNestedInput = {
+  create?: Prisma.XOR<Prisma.VehicleCreateWithoutLoanerBookingsInput, Prisma.VehicleUncheckedCreateWithoutLoanerBookingsInput>
+  connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutLoanerBookingsInput
+  upsert?: Prisma.VehicleUpsertWithoutLoanerBookingsInput
+  disconnect?: Prisma.VehicleWhereInput | boolean
+  delete?: Prisma.VehicleWhereInput | boolean
+  connect?: Prisma.VehicleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VehicleUpdateToOneWithWhereWithoutLoanerBookingsInput, Prisma.VehicleUpdateWithoutLoanerBookingsInput>, Prisma.VehicleUncheckedUpdateWithoutLoanerBookingsInput>
+}
+
 export type VehicleCreateNestedOneWithoutAppointmentsInput = {
   create?: Prisma.XOR<Prisma.VehicleCreateWithoutAppointmentsInput, Prisma.VehicleUncheckedCreateWithoutAppointmentsInput>
   connectOrCreate?: Prisma.VehicleCreateOrConnectWithoutAppointmentsInput
@@ -1363,6 +1386,7 @@ export type VehicleCreateWithoutTenantInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutTenantInput = {
@@ -1408,6 +1432,7 @@ export type VehicleUncheckedCreateWithoutTenantInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutTenantInput = {
@@ -1509,6 +1534,7 @@ export type VehicleCreateWithoutTecnicoInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutTecnicoInput = {
@@ -1554,6 +1580,7 @@ export type VehicleUncheckedCreateWithoutTecnicoInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutTecnicoInput = {
@@ -1625,6 +1652,7 @@ export type VehicleCreateWithoutClientInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutClientInput = {
@@ -1670,6 +1698,7 @@ export type VehicleUncheckedCreateWithoutClientInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutClientInput = {
@@ -1741,6 +1770,7 @@ export type VehicleCreateWithoutStageHistoryInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutStageHistoryInput = {
@@ -1786,6 +1816,7 @@ export type VehicleUncheckedCreateWithoutStageHistoryInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutStageHistoryInput = {
@@ -1847,6 +1878,7 @@ export type VehicleUpdateWithoutStageHistoryInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutStageHistoryInput = {
@@ -1892,6 +1924,7 @@ export type VehicleUncheckedUpdateWithoutStageHistoryInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutPhotosInput = {
@@ -1937,6 +1970,7 @@ export type VehicleCreateWithoutPhotosInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutPhotosInput = {
@@ -1982,6 +2016,7 @@ export type VehicleUncheckedCreateWithoutPhotosInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutPhotosInput = {
@@ -2043,6 +2078,7 @@ export type VehicleUpdateWithoutPhotosInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutPhotosInput = {
@@ -2088,6 +2124,7 @@ export type VehicleUncheckedUpdateWithoutPhotosInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutQuotesInput = {
@@ -2133,6 +2170,7 @@ export type VehicleCreateWithoutQuotesInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutQuotesInput = {
@@ -2178,6 +2216,7 @@ export type VehicleUncheckedCreateWithoutQuotesInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutQuotesInput = {
@@ -2239,6 +2278,7 @@ export type VehicleUpdateWithoutQuotesInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutQuotesInput = {
@@ -2284,6 +2324,7 @@ export type VehicleUncheckedUpdateWithoutQuotesInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutDamageAnalysesInput = {
@@ -2329,6 +2370,7 @@ export type VehicleCreateWithoutDamageAnalysesInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutDamageAnalysesInput = {
@@ -2374,6 +2416,7 @@ export type VehicleUncheckedCreateWithoutDamageAnalysesInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutDamageAnalysesInput = {
@@ -2435,6 +2478,7 @@ export type VehicleUpdateWithoutDamageAnalysesInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutDamageAnalysesInput = {
@@ -2480,6 +2524,7 @@ export type VehicleUncheckedUpdateWithoutDamageAnalysesInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutInsuranceGapAnalysesInput = {
@@ -2525,6 +2570,7 @@ export type VehicleCreateWithoutInsuranceGapAnalysesInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutInsuranceGapAnalysesInput = {
@@ -2570,6 +2616,7 @@ export type VehicleUncheckedCreateWithoutInsuranceGapAnalysesInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutInsuranceGapAnalysesInput = {
@@ -2631,6 +2678,7 @@ export type VehicleUpdateWithoutInsuranceGapAnalysesInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
@@ -2671,6 +2719,207 @@ export type VehicleUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
   stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
   damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutVehicleNestedInput
+  portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleCreateWithoutLoanerBookingsInput = {
+  id?: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  tenant: Prisma.TenantCreateNestedOneWithoutVehiclesInput
+  client: Prisma.ClientCreateNestedOneWithoutVehiclesInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutVehicleInput
+  tecnico?: Prisma.UserCreateNestedOneWithoutVehiclesAssegnatiInput
+  delayPlan?: Prisma.DelayPlanCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordCreateNestedOneWithoutVehicleInput
+  photos?: Prisma.PhotoCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutVehicleInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutVehicleInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutVehicleInput
+  portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
+  portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleUncheckedCreateWithoutLoanerBookingsInput = {
+  id?: string
+  tenantId: string
+  clientId: string
+  marca: string
+  modello: string
+  targa: string
+  vin?: string | null
+  colore?: string | null
+  km?: number | null
+  compagniaAssicurativa?: string | null
+  numeroSinistro?: string | null
+  perito?: string | null
+  stage?: $Enums.WorkflowStage
+  tecnicoId?: string | null
+  dataIngresso?: Date | string
+  dataPrevistaConsegna?: Date | string | null
+  dataConsegnaEffettiva?: Date | string | null
+  firmaConsegnaDataUrl?: string | null
+  firmatarioConsegna?: string | null
+  dataFirmaConsegna?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Date | string | null
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutVehicleInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutVehicleInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutVehicleInput
+  delayPlan?: Prisma.DelayPlanUncheckedCreateNestedOneWithoutVehicleInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutVehicleInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutVehicleInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutVehicleInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutVehicleInput
+  profitRecord?: Prisma.ProfitRecordUncheckedCreateNestedOneWithoutVehicleInput
+  photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutVehicleInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutVehicleInput
+  stageHistory?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutVehicleInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutVehicleInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutVehicleInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutVehicleInput
+  portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+}
+
+export type VehicleCreateOrConnectWithoutLoanerBookingsInput = {
+  where: Prisma.VehicleWhereUniqueInput
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutLoanerBookingsInput, Prisma.VehicleUncheckedCreateWithoutLoanerBookingsInput>
+}
+
+export type VehicleUpsertWithoutLoanerBookingsInput = {
+  update: Prisma.XOR<Prisma.VehicleUpdateWithoutLoanerBookingsInput, Prisma.VehicleUncheckedUpdateWithoutLoanerBookingsInput>
+  create: Prisma.XOR<Prisma.VehicleCreateWithoutLoanerBookingsInput, Prisma.VehicleUncheckedCreateWithoutLoanerBookingsInput>
+  where?: Prisma.VehicleWhereInput
+}
+
+export type VehicleUpdateToOneWithWhereWithoutLoanerBookingsInput = {
+  where?: Prisma.VehicleWhereInput
+  data: Prisma.XOR<Prisma.VehicleUpdateWithoutLoanerBookingsInput, Prisma.VehicleUncheckedUpdateWithoutLoanerBookingsInput>
+}
+
+export type VehicleUpdateWithoutLoanerBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutVehiclesNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutVehiclesNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutVehicleNestedInput
+  tecnico?: Prisma.UserUpdateOneWithoutVehiclesAssegnatiNestedInput
+  delayPlan?: Prisma.DelayPlanUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUpdateOneWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutVehicleNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutVehicleNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutVehicleNestedInput
+  portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
+  portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+}
+
+export type VehicleUncheckedUpdateWithoutLoanerBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  vin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  colore?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  compagniaAssicurativa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  numeroSinistro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  perito?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stage?: Prisma.EnumWorkflowStageFieldUpdateOperationsInput | $Enums.WorkflowStage
+  tecnicoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataIngresso?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataPrevistaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegnaEffettiva?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firmaConsegnaDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioConsegna?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataFirmaConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stimaIA?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  stimaIAAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutVehicleNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutVehicleNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutVehicleNestedInput
+  delayPlan?: Prisma.DelayPlanUncheckedUpdateOneWithoutVehicleNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutVehicleNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutVehicleNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutVehicleNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutVehicleNestedInput
+  profitRecord?: Prisma.ProfitRecordUncheckedUpdateOneWithoutVehicleNestedInput
+  photos?: Prisma.PhotoUncheckedUpdateManyWithoutVehicleNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutVehicleNestedInput
+  stageHistory?: Prisma.StageHistoryUncheckedUpdateManyWithoutVehicleNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutVehicleNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutVehicleNestedInput
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
@@ -2721,6 +2970,7 @@ export type VehicleCreateWithoutAppointmentsInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutAppointmentsInput = {
@@ -2766,6 +3016,7 @@ export type VehicleUncheckedCreateWithoutAppointmentsInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutAppointmentsInput = {
@@ -2827,6 +3078,7 @@ export type VehicleUpdateWithoutAppointmentsInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutAppointmentsInput = {
@@ -2872,6 +3124,7 @@ export type VehicleUncheckedUpdateWithoutAppointmentsInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutSinistriInput = {
@@ -2917,6 +3170,7 @@ export type VehicleCreateWithoutSinistriInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutSinistriInput = {
@@ -2962,6 +3216,7 @@ export type VehicleUncheckedCreateWithoutSinistriInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutSinistriInput = {
@@ -3023,6 +3278,7 @@ export type VehicleUpdateWithoutSinistriInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutSinistriInput = {
@@ -3068,6 +3324,7 @@ export type VehicleUncheckedUpdateWithoutSinistriInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutPortalAccessesInput = {
@@ -3113,6 +3370,7 @@ export type VehicleCreateWithoutPortalAccessesInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutPortalAccessesInput = {
@@ -3158,6 +3416,7 @@ export type VehicleUncheckedCreateWithoutPortalAccessesInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutPortalAccessesInput = {
@@ -3219,6 +3478,7 @@ export type VehicleUpdateWithoutPortalAccessesInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutPortalAccessesInput = {
@@ -3264,6 +3524,7 @@ export type VehicleUncheckedUpdateWithoutPortalAccessesInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutPortalActionsInput = {
@@ -3309,6 +3570,7 @@ export type VehicleCreateWithoutPortalActionsInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutPortalActionsInput = {
@@ -3354,6 +3616,7 @@ export type VehicleUncheckedCreateWithoutPortalActionsInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutPortalActionsInput = {
@@ -3415,6 +3678,7 @@ export type VehicleUpdateWithoutPortalActionsInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutPortalActionsInput = {
@@ -3460,6 +3724,7 @@ export type VehicleUncheckedUpdateWithoutPortalActionsInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutWorkOrdersInput = {
@@ -3505,6 +3770,7 @@ export type VehicleCreateWithoutWorkOrdersInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutWorkOrdersInput = {
@@ -3550,6 +3816,7 @@ export type VehicleUncheckedCreateWithoutWorkOrdersInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutWorkOrdersInput = {
@@ -3611,6 +3878,7 @@ export type VehicleUpdateWithoutWorkOrdersInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutWorkOrdersInput = {
@@ -3656,6 +3924,7 @@ export type VehicleUncheckedUpdateWithoutWorkOrdersInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutPortalDocumentsInput = {
@@ -3701,6 +3970,7 @@ export type VehicleCreateWithoutPortalDocumentsInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutPortalDocumentsInput = {
@@ -3746,6 +4016,7 @@ export type VehicleUncheckedCreateWithoutPortalDocumentsInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutPortalDocumentsInput = {
@@ -3807,6 +4078,7 @@ export type VehicleUpdateWithoutPortalDocumentsInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutPortalDocumentsInput = {
@@ -3852,6 +4124,7 @@ export type VehicleUncheckedUpdateWithoutPortalDocumentsInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutProfitRecordInput = {
@@ -3897,6 +4170,7 @@ export type VehicleCreateWithoutProfitRecordInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutProfitRecordInput = {
@@ -3942,6 +4216,7 @@ export type VehicleUncheckedCreateWithoutProfitRecordInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutProfitRecordInput = {
@@ -4003,6 +4278,7 @@ export type VehicleUpdateWithoutProfitRecordInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutProfitRecordInput = {
@@ -4048,6 +4324,7 @@ export type VehicleUncheckedUpdateWithoutProfitRecordInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutDelayPlanInput = {
@@ -4093,6 +4370,7 @@ export type VehicleCreateWithoutDelayPlanInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutDelayPlanInput = {
@@ -4138,6 +4416,7 @@ export type VehicleUncheckedCreateWithoutDelayPlanInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutDelayPlanInput = {
@@ -4199,6 +4478,7 @@ export type VehicleUpdateWithoutDelayPlanInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutDelayPlanInput = {
@@ -4244,6 +4524,7 @@ export type VehicleUncheckedUpdateWithoutDelayPlanInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutDelayForecastsInput = {
@@ -4289,6 +4570,7 @@ export type VehicleCreateWithoutDelayForecastsInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutDelayForecastsInput = {
@@ -4334,6 +4616,7 @@ export type VehicleUncheckedCreateWithoutDelayForecastsInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutDelayForecastsInput = {
@@ -4395,6 +4678,7 @@ export type VehicleUpdateWithoutDelayForecastsInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutDelayForecastsInput = {
@@ -4440,6 +4724,7 @@ export type VehicleUncheckedUpdateWithoutDelayForecastsInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutDelayDecisionsInput = {
@@ -4485,6 +4770,7 @@ export type VehicleCreateWithoutDelayDecisionsInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutDelayDecisionsInput = {
@@ -4530,6 +4816,7 @@ export type VehicleUncheckedCreateWithoutDelayDecisionsInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutDelayDecisionsInput = {
@@ -4591,6 +4878,7 @@ export type VehicleUpdateWithoutDelayDecisionsInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutDelayDecisionsInput = {
@@ -4636,6 +4924,7 @@ export type VehicleUncheckedUpdateWithoutDelayDecisionsInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutTrackedPartsInput = {
@@ -4681,6 +4970,7 @@ export type VehicleCreateWithoutTrackedPartsInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutTrackedPartsInput = {
@@ -4726,6 +5016,7 @@ export type VehicleUncheckedCreateWithoutTrackedPartsInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutTrackedPartsInput = {
@@ -4787,6 +5078,7 @@ export type VehicleUpdateWithoutTrackedPartsInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutTrackedPartsInput = {
@@ -4832,6 +5124,7 @@ export type VehicleUncheckedUpdateWithoutTrackedPartsInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutPartBlocksInput = {
@@ -4877,6 +5170,7 @@ export type VehicleCreateWithoutPartBlocksInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutPartBlocksInput = {
@@ -4922,6 +5216,7 @@ export type VehicleUncheckedCreateWithoutPartBlocksInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutPartBlocksInput = {
@@ -4983,6 +5278,7 @@ export type VehicleUpdateWithoutPartBlocksInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutPartBlocksInput = {
@@ -5028,6 +5324,7 @@ export type VehicleUncheckedUpdateWithoutPartBlocksInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutWhatsappMessagesInput = {
@@ -5073,6 +5370,7 @@ export type VehicleCreateWithoutWhatsappMessagesInput = {
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutWhatsappMessagesInput = {
@@ -5118,6 +5416,7 @@ export type VehicleUncheckedCreateWithoutWhatsappMessagesInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
   qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutWhatsappMessagesInput = {
@@ -5179,6 +5478,7 @@ export type VehicleUpdateWithoutWhatsappMessagesInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutWhatsappMessagesInput = {
@@ -5224,6 +5524,7 @@ export type VehicleUncheckedUpdateWithoutWhatsappMessagesInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateWithoutQcInspectionsInput = {
@@ -5269,6 +5570,7 @@ export type VehicleCreateWithoutQcInspectionsInput = {
   portalActions?: Prisma.PortalActionCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateWithoutQcInspectionsInput = {
@@ -5314,6 +5616,7 @@ export type VehicleUncheckedCreateWithoutQcInspectionsInput = {
   portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutVehicleInput
   portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutVehicleInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutVehicleInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleCreateOrConnectWithoutQcInspectionsInput = {
@@ -5375,6 +5678,7 @@ export type VehicleUpdateWithoutQcInspectionsInput = {
   portalActions?: Prisma.PortalActionUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutQcInspectionsInput = {
@@ -5420,6 +5724,7 @@ export type VehicleUncheckedUpdateWithoutQcInspectionsInput = {
   portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutVehicleNestedInput
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateManyTenantInput = {
@@ -5491,6 +5796,7 @@ export type VehicleUpdateWithoutTenantInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutTenantInput = {
@@ -5536,6 +5842,7 @@ export type VehicleUncheckedUpdateWithoutTenantInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateManyWithoutTenantInput = {
@@ -5633,6 +5940,7 @@ export type VehicleUpdateWithoutTecnicoInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutTecnicoInput = {
@@ -5678,6 +5986,7 @@ export type VehicleUncheckedUpdateWithoutTecnicoInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateManyWithoutTecnicoInput = {
@@ -5775,6 +6084,7 @@ export type VehicleUpdateWithoutClientInput = {
   portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateWithoutClientInput = {
@@ -5820,6 +6130,7 @@ export type VehicleUncheckedUpdateWithoutClientInput = {
   portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutVehicleNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutVehicleNestedInput
   qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutVehicleNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateManyWithoutClientInput = {
@@ -5871,6 +6182,7 @@ export type VehicleCountOutputType = {
   portalDocuments: number
   workOrders: number
   qcInspections: number
+  loanerBookings: number
 }
 
 export type VehicleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5891,6 +6203,7 @@ export type VehicleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   portalDocuments?: boolean | VehicleCountOutputTypeCountPortalDocumentsArgs
   workOrders?: boolean | VehicleCountOutputTypeCountWorkOrdersArgs
   qcInspections?: boolean | VehicleCountOutputTypeCountQcInspectionsArgs
+  loanerBookings?: boolean | VehicleCountOutputTypeCountLoanerBookingsArgs
 }
 
 /**
@@ -6022,6 +6335,13 @@ export type VehicleCountOutputTypeCountQcInspectionsArgs<ExtArgs extends runtime
   where?: Prisma.QcInspectionWhereInput
 }
 
+/**
+ * VehicleCountOutputType without action
+ */
+export type VehicleCountOutputTypeCountLoanerBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LoanerBookingWhereInput
+}
+
 
 export type VehicleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -6070,6 +6390,7 @@ export type VehicleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   portalDocuments?: boolean | Prisma.Vehicle$portalDocumentsArgs<ExtArgs>
   workOrders?: boolean | Prisma.Vehicle$workOrdersArgs<ExtArgs>
   qcInspections?: boolean | Prisma.Vehicle$qcInspectionsArgs<ExtArgs>
+  loanerBookings?: boolean | Prisma.Vehicle$loanerBookingsArgs<ExtArgs>
   _count?: boolean | Prisma.VehicleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["vehicle"]>
 
@@ -6184,6 +6505,7 @@ export type VehicleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   portalDocuments?: boolean | Prisma.Vehicle$portalDocumentsArgs<ExtArgs>
   workOrders?: boolean | Prisma.Vehicle$workOrdersArgs<ExtArgs>
   qcInspections?: boolean | Prisma.Vehicle$qcInspectionsArgs<ExtArgs>
+  loanerBookings?: boolean | Prisma.Vehicle$loanerBookingsArgs<ExtArgs>
   _count?: boolean | Prisma.VehicleCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type VehicleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -6222,6 +6544,7 @@ export type $VehiclePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     portalDocuments: Prisma.$PortalDocumentPayload<ExtArgs>[]
     workOrders: Prisma.$WorkOrderPayload<ExtArgs>[]
     qcInspections: Prisma.$QcInspectionPayload<ExtArgs>[]
+    loanerBookings: Prisma.$LoanerBookingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -6664,6 +6987,7 @@ export interface Prisma__VehicleClient<T, Null = never, ExtArgs extends runtime.
   portalDocuments<T extends Prisma.Vehicle$portalDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$portalDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PortalDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workOrders<T extends Prisma.Vehicle$workOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$workOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   qcInspections<T extends Prisma.Vehicle$qcInspectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$qcInspectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcInspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  loanerBookings<T extends Prisma.Vehicle$loanerBookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vehicle$loanerBookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoanerBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7580,6 +7904,30 @@ export type Vehicle$qcInspectionsArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.QcInspectionScalarFieldEnum | Prisma.QcInspectionScalarFieldEnum[]
+}
+
+/**
+ * Vehicle.loanerBookings
+ */
+export type Vehicle$loanerBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LoanerBooking
+   */
+  select?: Prisma.LoanerBookingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LoanerBooking
+   */
+  omit?: Prisma.LoanerBookingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LoanerBookingInclude<ExtArgs> | null
+  where?: Prisma.LoanerBookingWhereInput
+  orderBy?: Prisma.LoanerBookingOrderByWithRelationInput | Prisma.LoanerBookingOrderByWithRelationInput[]
+  cursor?: Prisma.LoanerBookingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LoanerBookingScalarFieldEnum | Prisma.LoanerBookingScalarFieldEnum[]
 }
 
 /**

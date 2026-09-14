@@ -111,6 +111,55 @@ export const OrderStatus = {
 export type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus]
 
 
+export const LoanerFuelType = {
+  BENZINA: 'BENZINA',
+  DIESEL: 'DIESEL',
+  GPL: 'GPL',
+  METANO: 'METANO',
+  ELETTRICA: 'ELETTRICA',
+  IBRIDA: 'IBRIDA'
+} as const
+
+export type LoanerFuelType = (typeof LoanerFuelType)[keyof typeof LoanerFuelType]
+
+
+export const LoanerFuelLevel = {
+  VUOTO: 'VUOTO',
+  UN_QUARTO: 'UN_QUARTO',
+  META: 'META',
+  TRE_QUARTI: 'TRE_QUARTI',
+  PIENO: 'PIENO'
+} as const
+
+export type LoanerFuelLevel = (typeof LoanerFuelLevel)[keyof typeof LoanerFuelLevel]
+
+
+export const LoanerCarStatoManuale = {
+  MANUTENZIONE: 'MANUTENZIONE',
+  NON_DISPONIBILE: 'NON_DISPONIBILE'
+} as const
+
+export type LoanerCarStatoManuale = (typeof LoanerCarStatoManuale)[keyof typeof LoanerCarStatoManuale]
+
+
+export const LoanerBookingStato = {
+  PRENOTATA: 'PRENOTATA',
+  ASSEGNATA: 'ASSEGNATA',
+  RESTITUITA: 'RESTITUITA',
+  ANNULLATA: 'ANNULLATA'
+} as const
+
+export type LoanerBookingStato = (typeof LoanerBookingStato)[keyof typeof LoanerBookingStato]
+
+
+export const LoanerPhotoFase = {
+  CONSEGNA: 'CONSEGNA',
+  RESTITUZIONE: 'RESTITUZIONE'
+} as const
+
+export type LoanerPhotoFase = (typeof LoanerPhotoFase)[keyof typeof LoanerPhotoFase]
+
+
 export const SinistroStatus = {
   APERTO: 'APERTO',
   INVIATO_ASSICURAZIONE: 'INVIATO_ASSICURAZIONE',

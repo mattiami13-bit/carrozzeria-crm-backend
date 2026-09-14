@@ -20,58 +20,192 @@ export type LoanerBookingModel = runtime.Types.Result.DefaultSelection<Prisma.$L
 
 export type AggregateLoanerBooking = {
   _count: LoanerBookingCountAggregateOutputType | null
+  _avg: LoanerBookingAvgAggregateOutputType | null
+  _sum: LoanerBookingSumAggregateOutputType | null
   _min: LoanerBookingMinAggregateOutputType | null
   _max: LoanerBookingMaxAggregateOutputType | null
 }
 
+export type LoanerBookingAvgAggregateOutputType = {
+  kmIniziali: number | null
+  kmFinali: number | null
+  costoInternoCents: number | null
+}
+
+export type LoanerBookingSumAggregateOutputType = {
+  kmIniziali: number | null
+  kmFinali: number | null
+  costoInternoCents: number | null
+}
+
 export type LoanerBookingMinAggregateOutputType = {
   id: string | null
+  tenantId: string | null
   loanerCarId: string | null
   clientId: string | null
-  dataInizio: Date | null
-  dataFine: Date | null
+  vehicleId: string | null
+  dataInizioPrevista: Date | null
+  dataFinePrevista: Date | null
+  dataConsegna: Date | null
+  kmIniziali: number | null
+  carburanteIniziale: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl: string | null
+  firmatarioNome: string | null
+  dataRestituzione: Date | null
+  kmFinali: number | null
+  carburanteFinale: $Enums.LoanerFuelLevel | null
+  danniRiscontrati: string | null
+  noteRestituzione: string | null
+  costoInternoCents: number | null
+  attribuitoProfitRecordId: string | null
+  stato: $Enums.LoanerBookingStato | null
+  creataDaId: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type LoanerBookingMaxAggregateOutputType = {
   id: string | null
+  tenantId: string | null
   loanerCarId: string | null
   clientId: string | null
-  dataInizio: Date | null
-  dataFine: Date | null
+  vehicleId: string | null
+  dataInizioPrevista: Date | null
+  dataFinePrevista: Date | null
+  dataConsegna: Date | null
+  kmIniziali: number | null
+  carburanteIniziale: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl: string | null
+  firmatarioNome: string | null
+  dataRestituzione: Date | null
+  kmFinali: number | null
+  carburanteFinale: $Enums.LoanerFuelLevel | null
+  danniRiscontrati: string | null
+  noteRestituzione: string | null
+  costoInternoCents: number | null
+  attribuitoProfitRecordId: string | null
+  stato: $Enums.LoanerBookingStato | null
+  creataDaId: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type LoanerBookingCountAggregateOutputType = {
   id: number
+  tenantId: number
   loanerCarId: number
   clientId: number
-  dataInizio: number
-  dataFine: number
+  vehicleId: number
+  dataInizioPrevista: number
+  dataFinePrevista: number
+  dataConsegna: number
+  kmIniziali: number
+  carburanteIniziale: number
+  firmaClienteDataUrl: number
+  firmatarioNome: number
+  dataRestituzione: number
+  kmFinali: number
+  carburanteFinale: number
+  danniRiscontrati: number
+  noteRestituzione: number
+  costoInternoCents: number
+  attribuitoProfitRecordId: number
+  stato: number
+  creataDaId: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
 
+export type LoanerBookingAvgAggregateInputType = {
+  kmIniziali?: true
+  kmFinali?: true
+  costoInternoCents?: true
+}
+
+export type LoanerBookingSumAggregateInputType = {
+  kmIniziali?: true
+  kmFinali?: true
+  costoInternoCents?: true
+}
+
 export type LoanerBookingMinAggregateInputType = {
   id?: true
+  tenantId?: true
   loanerCarId?: true
   clientId?: true
-  dataInizio?: true
-  dataFine?: true
+  vehicleId?: true
+  dataInizioPrevista?: true
+  dataFinePrevista?: true
+  dataConsegna?: true
+  kmIniziali?: true
+  carburanteIniziale?: true
+  firmaClienteDataUrl?: true
+  firmatarioNome?: true
+  dataRestituzione?: true
+  kmFinali?: true
+  carburanteFinale?: true
+  danniRiscontrati?: true
+  noteRestituzione?: true
+  costoInternoCents?: true
+  attribuitoProfitRecordId?: true
+  stato?: true
+  creataDaId?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type LoanerBookingMaxAggregateInputType = {
   id?: true
+  tenantId?: true
   loanerCarId?: true
   clientId?: true
-  dataInizio?: true
-  dataFine?: true
+  vehicleId?: true
+  dataInizioPrevista?: true
+  dataFinePrevista?: true
+  dataConsegna?: true
+  kmIniziali?: true
+  carburanteIniziale?: true
+  firmaClienteDataUrl?: true
+  firmatarioNome?: true
+  dataRestituzione?: true
+  kmFinali?: true
+  carburanteFinale?: true
+  danniRiscontrati?: true
+  noteRestituzione?: true
+  costoInternoCents?: true
+  attribuitoProfitRecordId?: true
+  stato?: true
+  creataDaId?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type LoanerBookingCountAggregateInputType = {
   id?: true
+  tenantId?: true
   loanerCarId?: true
   clientId?: true
-  dataInizio?: true
-  dataFine?: true
+  vehicleId?: true
+  dataInizioPrevista?: true
+  dataFinePrevista?: true
+  dataConsegna?: true
+  kmIniziali?: true
+  carburanteIniziale?: true
+  firmaClienteDataUrl?: true
+  firmatarioNome?: true
+  dataRestituzione?: true
+  kmFinali?: true
+  carburanteFinale?: true
+  danniRiscontrati?: true
+  noteRestituzione?: true
+  costoInternoCents?: true
+  attribuitoProfitRecordId?: true
+  stato?: true
+  creataDaId?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -113,6 +247,18 @@ export type LoanerBookingAggregateArgs<ExtArgs extends runtime.Types.Extensions.
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: LoanerBookingAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: LoanerBookingSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: LoanerBookingMinAggregateInputType
@@ -143,17 +289,39 @@ export type LoanerBookingGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   _count?: LoanerBookingCountAggregateInputType | true
+  _avg?: LoanerBookingAvgAggregateInputType
+  _sum?: LoanerBookingSumAggregateInputType
   _min?: LoanerBookingMinAggregateInputType
   _max?: LoanerBookingMaxAggregateInputType
 }
 
 export type LoanerBookingGroupByOutputType = {
   id: string
+  tenantId: string
   loanerCarId: string
   clientId: string
-  dataInizio: Date
-  dataFine: Date | null
+  vehicleId: string | null
+  dataInizioPrevista: Date
+  dataFinePrevista: Date | null
+  dataConsegna: Date | null
+  kmIniziali: number | null
+  carburanteIniziale: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl: string | null
+  firmatarioNome: string | null
+  dataRestituzione: Date | null
+  kmFinali: number | null
+  carburanteFinale: $Enums.LoanerFuelLevel | null
+  danniRiscontrati: string | null
+  noteRestituzione: string | null
+  costoInternoCents: number | null
+  attribuitoProfitRecordId: string | null
+  stato: $Enums.LoanerBookingStato
+  creataDaId: string | null
+  createdAt: Date
+  updatedAt: Date
   _count: LoanerBookingCountAggregateOutputType | null
+  _avg: LoanerBookingAvgAggregateOutputType | null
+  _sum: LoanerBookingSumAggregateOutputType | null
   _min: LoanerBookingMinAggregateOutputType | null
   _max: LoanerBookingMaxAggregateOutputType | null
 }
@@ -178,20 +346,66 @@ export type LoanerBookingWhereInput = {
   OR?: Prisma.LoanerBookingWhereInput[]
   NOT?: Prisma.LoanerBookingWhereInput | Prisma.LoanerBookingWhereInput[]
   id?: Prisma.StringFilter<"LoanerBooking"> | string
+  tenantId?: Prisma.StringFilter<"LoanerBooking"> | string
   loanerCarId?: Prisma.StringFilter<"LoanerBooking"> | string
   clientId?: Prisma.StringFilter<"LoanerBooking"> | string
-  dataInizio?: Prisma.DateTimeFilter<"LoanerBooking"> | Date | string
-  dataFine?: Prisma.DateTimeNullableFilter<"LoanerBooking"> | Date | string | null
+  vehicleId?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  dataInizioPrevista?: Prisma.DateTimeFilter<"LoanerBooking"> | Date | string
+  dataFinePrevista?: Prisma.DateTimeNullableFilter<"LoanerBooking"> | Date | string | null
+  dataConsegna?: Prisma.DateTimeNullableFilter<"LoanerBooking"> | Date | string | null
+  kmIniziali?: Prisma.IntNullableFilter<"LoanerBooking"> | number | null
+  carburanteIniziale?: Prisma.EnumLoanerFuelLevelNullableFilter<"LoanerBooking"> | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  firmatarioNome?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  dataRestituzione?: Prisma.DateTimeNullableFilter<"LoanerBooking"> | Date | string | null
+  kmFinali?: Prisma.IntNullableFilter<"LoanerBooking"> | number | null
+  carburanteFinale?: Prisma.EnumLoanerFuelLevelNullableFilter<"LoanerBooking"> | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  noteRestituzione?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  costoInternoCents?: Prisma.IntNullableFilter<"LoanerBooking"> | number | null
+  attribuitoProfitRecordId?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFilter<"LoanerBooking"> | $Enums.LoanerBookingStato
+  creataDaId?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"LoanerBooking"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"LoanerBooking"> | Date | string
+  tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   loanerCar?: Prisma.XOR<Prisma.LoanerCarScalarRelationFilter, Prisma.LoanerCarWhereInput>
+  client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
+  vehicle?: Prisma.XOR<Prisma.VehicleNullableScalarRelationFilter, Prisma.VehicleWhereInput> | null
+  creataDa?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  photos?: Prisma.LoanerBookingPhotoListRelationFilter
 }
 
 export type LoanerBookingOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   loanerCarId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
-  dataInizio?: Prisma.SortOrder
-  dataFine?: Prisma.SortOrderInput | Prisma.SortOrder
+  vehicleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  dataInizioPrevista?: Prisma.SortOrder
+  dataFinePrevista?: Prisma.SortOrderInput | Prisma.SortOrder
+  dataConsegna?: Prisma.SortOrderInput | Prisma.SortOrder
+  kmIniziali?: Prisma.SortOrderInput | Prisma.SortOrder
+  carburanteIniziale?: Prisma.SortOrderInput | Prisma.SortOrder
+  firmaClienteDataUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  firmatarioNome?: Prisma.SortOrderInput | Prisma.SortOrder
+  dataRestituzione?: Prisma.SortOrderInput | Prisma.SortOrder
+  kmFinali?: Prisma.SortOrderInput | Prisma.SortOrder
+  carburanteFinale?: Prisma.SortOrderInput | Prisma.SortOrder
+  danniRiscontrati?: Prisma.SortOrderInput | Prisma.SortOrder
+  noteRestituzione?: Prisma.SortOrderInput | Prisma.SortOrder
+  costoInternoCents?: Prisma.SortOrderInput | Prisma.SortOrder
+  attribuitoProfitRecordId?: Prisma.SortOrderInput | Prisma.SortOrder
+  stato?: Prisma.SortOrder
+  creataDaId?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  tenant?: Prisma.TenantOrderByWithRelationInput
   loanerCar?: Prisma.LoanerCarOrderByWithRelationInput
+  client?: Prisma.ClientOrderByWithRelationInput
+  vehicle?: Prisma.VehicleOrderByWithRelationInput
+  creataDa?: Prisma.UserOrderByWithRelationInput
+  photos?: Prisma.LoanerBookingPhotoOrderByRelationAggregateInput
 }
 
 export type LoanerBookingWhereUniqueInput = Prisma.AtLeast<{
@@ -199,22 +413,65 @@ export type LoanerBookingWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.LoanerBookingWhereInput | Prisma.LoanerBookingWhereInput[]
   OR?: Prisma.LoanerBookingWhereInput[]
   NOT?: Prisma.LoanerBookingWhereInput | Prisma.LoanerBookingWhereInput[]
+  tenantId?: Prisma.StringFilter<"LoanerBooking"> | string
   loanerCarId?: Prisma.StringFilter<"LoanerBooking"> | string
   clientId?: Prisma.StringFilter<"LoanerBooking"> | string
-  dataInizio?: Prisma.DateTimeFilter<"LoanerBooking"> | Date | string
-  dataFine?: Prisma.DateTimeNullableFilter<"LoanerBooking"> | Date | string | null
+  vehicleId?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  dataInizioPrevista?: Prisma.DateTimeFilter<"LoanerBooking"> | Date | string
+  dataFinePrevista?: Prisma.DateTimeNullableFilter<"LoanerBooking"> | Date | string | null
+  dataConsegna?: Prisma.DateTimeNullableFilter<"LoanerBooking"> | Date | string | null
+  kmIniziali?: Prisma.IntNullableFilter<"LoanerBooking"> | number | null
+  carburanteIniziale?: Prisma.EnumLoanerFuelLevelNullableFilter<"LoanerBooking"> | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  firmatarioNome?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  dataRestituzione?: Prisma.DateTimeNullableFilter<"LoanerBooking"> | Date | string | null
+  kmFinali?: Prisma.IntNullableFilter<"LoanerBooking"> | number | null
+  carburanteFinale?: Prisma.EnumLoanerFuelLevelNullableFilter<"LoanerBooking"> | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  noteRestituzione?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  costoInternoCents?: Prisma.IntNullableFilter<"LoanerBooking"> | number | null
+  attribuitoProfitRecordId?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFilter<"LoanerBooking"> | $Enums.LoanerBookingStato
+  creataDaId?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"LoanerBooking"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"LoanerBooking"> | Date | string
+  tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   loanerCar?: Prisma.XOR<Prisma.LoanerCarScalarRelationFilter, Prisma.LoanerCarWhereInput>
+  client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
+  vehicle?: Prisma.XOR<Prisma.VehicleNullableScalarRelationFilter, Prisma.VehicleWhereInput> | null
+  creataDa?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  photos?: Prisma.LoanerBookingPhotoListRelationFilter
 }, "id">
 
 export type LoanerBookingOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   loanerCarId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
-  dataInizio?: Prisma.SortOrder
-  dataFine?: Prisma.SortOrderInput | Prisma.SortOrder
+  vehicleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  dataInizioPrevista?: Prisma.SortOrder
+  dataFinePrevista?: Prisma.SortOrderInput | Prisma.SortOrder
+  dataConsegna?: Prisma.SortOrderInput | Prisma.SortOrder
+  kmIniziali?: Prisma.SortOrderInput | Prisma.SortOrder
+  carburanteIniziale?: Prisma.SortOrderInput | Prisma.SortOrder
+  firmaClienteDataUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  firmatarioNome?: Prisma.SortOrderInput | Prisma.SortOrder
+  dataRestituzione?: Prisma.SortOrderInput | Prisma.SortOrder
+  kmFinali?: Prisma.SortOrderInput | Prisma.SortOrder
+  carburanteFinale?: Prisma.SortOrderInput | Prisma.SortOrder
+  danniRiscontrati?: Prisma.SortOrderInput | Prisma.SortOrder
+  noteRestituzione?: Prisma.SortOrderInput | Prisma.SortOrder
+  costoInternoCents?: Prisma.SortOrderInput | Prisma.SortOrder
+  attribuitoProfitRecordId?: Prisma.SortOrderInput | Prisma.SortOrder
+  stato?: Prisma.SortOrder
+  creataDaId?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.LoanerBookingCountOrderByAggregateInput
+  _avg?: Prisma.LoanerBookingAvgOrderByAggregateInput
   _max?: Prisma.LoanerBookingMaxOrderByAggregateInput
   _min?: Prisma.LoanerBookingMinOrderByAggregateInput
+  _sum?: Prisma.LoanerBookingSumOrderByAggregateInput
 }
 
 export type LoanerBookingScalarWhereWithAggregatesInput = {
@@ -222,65 +479,209 @@ export type LoanerBookingScalarWhereWithAggregatesInput = {
   OR?: Prisma.LoanerBookingScalarWhereWithAggregatesInput[]
   NOT?: Prisma.LoanerBookingScalarWhereWithAggregatesInput | Prisma.LoanerBookingScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"LoanerBooking"> | string
+  tenantId?: Prisma.StringWithAggregatesFilter<"LoanerBooking"> | string
   loanerCarId?: Prisma.StringWithAggregatesFilter<"LoanerBooking"> | string
   clientId?: Prisma.StringWithAggregatesFilter<"LoanerBooking"> | string
-  dataInizio?: Prisma.DateTimeWithAggregatesFilter<"LoanerBooking"> | Date | string
-  dataFine?: Prisma.DateTimeNullableWithAggregatesFilter<"LoanerBooking"> | Date | string | null
+  vehicleId?: Prisma.StringNullableWithAggregatesFilter<"LoanerBooking"> | string | null
+  dataInizioPrevista?: Prisma.DateTimeWithAggregatesFilter<"LoanerBooking"> | Date | string
+  dataFinePrevista?: Prisma.DateTimeNullableWithAggregatesFilter<"LoanerBooking"> | Date | string | null
+  dataConsegna?: Prisma.DateTimeNullableWithAggregatesFilter<"LoanerBooking"> | Date | string | null
+  kmIniziali?: Prisma.IntNullableWithAggregatesFilter<"LoanerBooking"> | number | null
+  carburanteIniziale?: Prisma.EnumLoanerFuelLevelNullableWithAggregatesFilter<"LoanerBooking"> | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.StringNullableWithAggregatesFilter<"LoanerBooking"> | string | null
+  firmatarioNome?: Prisma.StringNullableWithAggregatesFilter<"LoanerBooking"> | string | null
+  dataRestituzione?: Prisma.DateTimeNullableWithAggregatesFilter<"LoanerBooking"> | Date | string | null
+  kmFinali?: Prisma.IntNullableWithAggregatesFilter<"LoanerBooking"> | number | null
+  carburanteFinale?: Prisma.EnumLoanerFuelLevelNullableWithAggregatesFilter<"LoanerBooking"> | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.StringNullableWithAggregatesFilter<"LoanerBooking"> | string | null
+  noteRestituzione?: Prisma.StringNullableWithAggregatesFilter<"LoanerBooking"> | string | null
+  costoInternoCents?: Prisma.IntNullableWithAggregatesFilter<"LoanerBooking"> | number | null
+  attribuitoProfitRecordId?: Prisma.StringNullableWithAggregatesFilter<"LoanerBooking"> | string | null
+  stato?: Prisma.EnumLoanerBookingStatoWithAggregatesFilter<"LoanerBooking"> | $Enums.LoanerBookingStato
+  creataDaId?: Prisma.StringNullableWithAggregatesFilter<"LoanerBooking"> | string | null
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"LoanerBooking"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"LoanerBooking"> | Date | string
 }
 
 export type LoanerBookingCreateInput = {
   id?: string
-  clientId: string
-  dataInizio: Date | string
-  dataFine?: Date | string | null
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutLoanerBookingsInput
   loanerCar: Prisma.LoanerCarCreateNestedOneWithoutBookingsInput
+  client: Prisma.ClientCreateNestedOneWithoutLoanerBookingsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutLoanerBookingsInput
+  creataDa?: Prisma.UserCreateNestedOneWithoutLoanerBookingsCreateInput
+  photos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutBookingInput
 }
 
 export type LoanerBookingUncheckedCreateInput = {
   id?: string
+  tenantId: string
   loanerCarId: string
   clientId: string
-  dataInizio: Date | string
-  dataFine?: Date | string | null
+  vehicleId?: string | null
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  creataDaId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  photos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutBookingInput
 }
 
 export type LoanerBookingUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
-  dataInizio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataFine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutLoanerBookingsNestedInput
   loanerCar?: Prisma.LoanerCarUpdateOneRequiredWithoutBookingsNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutLoanerBookingsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutLoanerBookingsNestedInput
+  creataDa?: Prisma.UserUpdateOneWithoutLoanerBookingsCreateNestedInput
+  photos?: Prisma.LoanerBookingPhotoUpdateManyWithoutBookingNestedInput
 }
 
 export type LoanerBookingUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   loanerCarId?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
-  dataInizio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataFine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  creataDaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  photos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutBookingNestedInput
 }
 
 export type LoanerBookingCreateManyInput = {
   id?: string
+  tenantId: string
   loanerCarId: string
   clientId: string
-  dataInizio: Date | string
-  dataFine?: Date | string | null
+  vehicleId?: string | null
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  creataDaId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type LoanerBookingUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
-  dataInizio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataFine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type LoanerBookingUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   loanerCarId?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
-  dataInizio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataFine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  creataDaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type LoanerBookingListRelationFilter = {
@@ -295,26 +696,265 @@ export type LoanerBookingOrderByRelationAggregateInput = {
 
 export type LoanerBookingCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   loanerCarId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
-  dataInizio?: Prisma.SortOrder
-  dataFine?: Prisma.SortOrder
+  vehicleId?: Prisma.SortOrder
+  dataInizioPrevista?: Prisma.SortOrder
+  dataFinePrevista?: Prisma.SortOrder
+  dataConsegna?: Prisma.SortOrder
+  kmIniziali?: Prisma.SortOrder
+  carburanteIniziale?: Prisma.SortOrder
+  firmaClienteDataUrl?: Prisma.SortOrder
+  firmatarioNome?: Prisma.SortOrder
+  dataRestituzione?: Prisma.SortOrder
+  kmFinali?: Prisma.SortOrder
+  carburanteFinale?: Prisma.SortOrder
+  danniRiscontrati?: Prisma.SortOrder
+  noteRestituzione?: Prisma.SortOrder
+  costoInternoCents?: Prisma.SortOrder
+  attribuitoProfitRecordId?: Prisma.SortOrder
+  stato?: Prisma.SortOrder
+  creataDaId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+}
+
+export type LoanerBookingAvgOrderByAggregateInput = {
+  kmIniziali?: Prisma.SortOrder
+  kmFinali?: Prisma.SortOrder
+  costoInternoCents?: Prisma.SortOrder
 }
 
 export type LoanerBookingMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   loanerCarId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
-  dataInizio?: Prisma.SortOrder
-  dataFine?: Prisma.SortOrder
+  vehicleId?: Prisma.SortOrder
+  dataInizioPrevista?: Prisma.SortOrder
+  dataFinePrevista?: Prisma.SortOrder
+  dataConsegna?: Prisma.SortOrder
+  kmIniziali?: Prisma.SortOrder
+  carburanteIniziale?: Prisma.SortOrder
+  firmaClienteDataUrl?: Prisma.SortOrder
+  firmatarioNome?: Prisma.SortOrder
+  dataRestituzione?: Prisma.SortOrder
+  kmFinali?: Prisma.SortOrder
+  carburanteFinale?: Prisma.SortOrder
+  danniRiscontrati?: Prisma.SortOrder
+  noteRestituzione?: Prisma.SortOrder
+  costoInternoCents?: Prisma.SortOrder
+  attribuitoProfitRecordId?: Prisma.SortOrder
+  stato?: Prisma.SortOrder
+  creataDaId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type LoanerBookingMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   loanerCarId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
-  dataInizio?: Prisma.SortOrder
-  dataFine?: Prisma.SortOrder
+  vehicleId?: Prisma.SortOrder
+  dataInizioPrevista?: Prisma.SortOrder
+  dataFinePrevista?: Prisma.SortOrder
+  dataConsegna?: Prisma.SortOrder
+  kmIniziali?: Prisma.SortOrder
+  carburanteIniziale?: Prisma.SortOrder
+  firmaClienteDataUrl?: Prisma.SortOrder
+  firmatarioNome?: Prisma.SortOrder
+  dataRestituzione?: Prisma.SortOrder
+  kmFinali?: Prisma.SortOrder
+  carburanteFinale?: Prisma.SortOrder
+  danniRiscontrati?: Prisma.SortOrder
+  noteRestituzione?: Prisma.SortOrder
+  costoInternoCents?: Prisma.SortOrder
+  attribuitoProfitRecordId?: Prisma.SortOrder
+  stato?: Prisma.SortOrder
+  creataDaId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+}
+
+export type LoanerBookingSumOrderByAggregateInput = {
+  kmIniziali?: Prisma.SortOrder
+  kmFinali?: Prisma.SortOrder
+  costoInternoCents?: Prisma.SortOrder
+}
+
+export type LoanerBookingScalarRelationFilter = {
+  is?: Prisma.LoanerBookingWhereInput
+  isNot?: Prisma.LoanerBookingWhereInput
+}
+
+export type LoanerBookingCreateNestedManyWithoutTenantInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutTenantInput, Prisma.LoanerBookingUncheckedCreateWithoutTenantInput> | Prisma.LoanerBookingCreateWithoutTenantInput[] | Prisma.LoanerBookingUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutTenantInput | Prisma.LoanerBookingCreateOrConnectWithoutTenantInput[]
+  createMany?: Prisma.LoanerBookingCreateManyTenantInputEnvelope
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+}
+
+export type LoanerBookingUncheckedCreateNestedManyWithoutTenantInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutTenantInput, Prisma.LoanerBookingUncheckedCreateWithoutTenantInput> | Prisma.LoanerBookingCreateWithoutTenantInput[] | Prisma.LoanerBookingUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutTenantInput | Prisma.LoanerBookingCreateOrConnectWithoutTenantInput[]
+  createMany?: Prisma.LoanerBookingCreateManyTenantInputEnvelope
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+}
+
+export type LoanerBookingUpdateManyWithoutTenantNestedInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutTenantInput, Prisma.LoanerBookingUncheckedCreateWithoutTenantInput> | Prisma.LoanerBookingCreateWithoutTenantInput[] | Prisma.LoanerBookingUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutTenantInput | Prisma.LoanerBookingCreateOrConnectWithoutTenantInput[]
+  upsert?: Prisma.LoanerBookingUpsertWithWhereUniqueWithoutTenantInput | Prisma.LoanerBookingUpsertWithWhereUniqueWithoutTenantInput[]
+  createMany?: Prisma.LoanerBookingCreateManyTenantInputEnvelope
+  set?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  disconnect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  delete?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  update?: Prisma.LoanerBookingUpdateWithWhereUniqueWithoutTenantInput | Prisma.LoanerBookingUpdateWithWhereUniqueWithoutTenantInput[]
+  updateMany?: Prisma.LoanerBookingUpdateManyWithWhereWithoutTenantInput | Prisma.LoanerBookingUpdateManyWithWhereWithoutTenantInput[]
+  deleteMany?: Prisma.LoanerBookingScalarWhereInput | Prisma.LoanerBookingScalarWhereInput[]
+}
+
+export type LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutTenantInput, Prisma.LoanerBookingUncheckedCreateWithoutTenantInput> | Prisma.LoanerBookingCreateWithoutTenantInput[] | Prisma.LoanerBookingUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutTenantInput | Prisma.LoanerBookingCreateOrConnectWithoutTenantInput[]
+  upsert?: Prisma.LoanerBookingUpsertWithWhereUniqueWithoutTenantInput | Prisma.LoanerBookingUpsertWithWhereUniqueWithoutTenantInput[]
+  createMany?: Prisma.LoanerBookingCreateManyTenantInputEnvelope
+  set?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  disconnect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  delete?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  update?: Prisma.LoanerBookingUpdateWithWhereUniqueWithoutTenantInput | Prisma.LoanerBookingUpdateWithWhereUniqueWithoutTenantInput[]
+  updateMany?: Prisma.LoanerBookingUpdateManyWithWhereWithoutTenantInput | Prisma.LoanerBookingUpdateManyWithWhereWithoutTenantInput[]
+  deleteMany?: Prisma.LoanerBookingScalarWhereInput | Prisma.LoanerBookingScalarWhereInput[]
+}
+
+export type LoanerBookingCreateNestedManyWithoutCreataDaInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutCreataDaInput, Prisma.LoanerBookingUncheckedCreateWithoutCreataDaInput> | Prisma.LoanerBookingCreateWithoutCreataDaInput[] | Prisma.LoanerBookingUncheckedCreateWithoutCreataDaInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutCreataDaInput | Prisma.LoanerBookingCreateOrConnectWithoutCreataDaInput[]
+  createMany?: Prisma.LoanerBookingCreateManyCreataDaInputEnvelope
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+}
+
+export type LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutCreataDaInput, Prisma.LoanerBookingUncheckedCreateWithoutCreataDaInput> | Prisma.LoanerBookingCreateWithoutCreataDaInput[] | Prisma.LoanerBookingUncheckedCreateWithoutCreataDaInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutCreataDaInput | Prisma.LoanerBookingCreateOrConnectWithoutCreataDaInput[]
+  createMany?: Prisma.LoanerBookingCreateManyCreataDaInputEnvelope
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+}
+
+export type LoanerBookingUpdateManyWithoutCreataDaNestedInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutCreataDaInput, Prisma.LoanerBookingUncheckedCreateWithoutCreataDaInput> | Prisma.LoanerBookingCreateWithoutCreataDaInput[] | Prisma.LoanerBookingUncheckedCreateWithoutCreataDaInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutCreataDaInput | Prisma.LoanerBookingCreateOrConnectWithoutCreataDaInput[]
+  upsert?: Prisma.LoanerBookingUpsertWithWhereUniqueWithoutCreataDaInput | Prisma.LoanerBookingUpsertWithWhereUniqueWithoutCreataDaInput[]
+  createMany?: Prisma.LoanerBookingCreateManyCreataDaInputEnvelope
+  set?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  disconnect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  delete?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  update?: Prisma.LoanerBookingUpdateWithWhereUniqueWithoutCreataDaInput | Prisma.LoanerBookingUpdateWithWhereUniqueWithoutCreataDaInput[]
+  updateMany?: Prisma.LoanerBookingUpdateManyWithWhereWithoutCreataDaInput | Prisma.LoanerBookingUpdateManyWithWhereWithoutCreataDaInput[]
+  deleteMany?: Prisma.LoanerBookingScalarWhereInput | Prisma.LoanerBookingScalarWhereInput[]
+}
+
+export type LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutCreataDaInput, Prisma.LoanerBookingUncheckedCreateWithoutCreataDaInput> | Prisma.LoanerBookingCreateWithoutCreataDaInput[] | Prisma.LoanerBookingUncheckedCreateWithoutCreataDaInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutCreataDaInput | Prisma.LoanerBookingCreateOrConnectWithoutCreataDaInput[]
+  upsert?: Prisma.LoanerBookingUpsertWithWhereUniqueWithoutCreataDaInput | Prisma.LoanerBookingUpsertWithWhereUniqueWithoutCreataDaInput[]
+  createMany?: Prisma.LoanerBookingCreateManyCreataDaInputEnvelope
+  set?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  disconnect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  delete?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  update?: Prisma.LoanerBookingUpdateWithWhereUniqueWithoutCreataDaInput | Prisma.LoanerBookingUpdateWithWhereUniqueWithoutCreataDaInput[]
+  updateMany?: Prisma.LoanerBookingUpdateManyWithWhereWithoutCreataDaInput | Prisma.LoanerBookingUpdateManyWithWhereWithoutCreataDaInput[]
+  deleteMany?: Prisma.LoanerBookingScalarWhereInput | Prisma.LoanerBookingScalarWhereInput[]
+}
+
+export type LoanerBookingCreateNestedManyWithoutClientInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutClientInput, Prisma.LoanerBookingUncheckedCreateWithoutClientInput> | Prisma.LoanerBookingCreateWithoutClientInput[] | Prisma.LoanerBookingUncheckedCreateWithoutClientInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutClientInput | Prisma.LoanerBookingCreateOrConnectWithoutClientInput[]
+  createMany?: Prisma.LoanerBookingCreateManyClientInputEnvelope
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+}
+
+export type LoanerBookingUncheckedCreateNestedManyWithoutClientInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutClientInput, Prisma.LoanerBookingUncheckedCreateWithoutClientInput> | Prisma.LoanerBookingCreateWithoutClientInput[] | Prisma.LoanerBookingUncheckedCreateWithoutClientInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutClientInput | Prisma.LoanerBookingCreateOrConnectWithoutClientInput[]
+  createMany?: Prisma.LoanerBookingCreateManyClientInputEnvelope
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+}
+
+export type LoanerBookingUpdateManyWithoutClientNestedInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutClientInput, Prisma.LoanerBookingUncheckedCreateWithoutClientInput> | Prisma.LoanerBookingCreateWithoutClientInput[] | Prisma.LoanerBookingUncheckedCreateWithoutClientInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutClientInput | Prisma.LoanerBookingCreateOrConnectWithoutClientInput[]
+  upsert?: Prisma.LoanerBookingUpsertWithWhereUniqueWithoutClientInput | Prisma.LoanerBookingUpsertWithWhereUniqueWithoutClientInput[]
+  createMany?: Prisma.LoanerBookingCreateManyClientInputEnvelope
+  set?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  disconnect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  delete?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  update?: Prisma.LoanerBookingUpdateWithWhereUniqueWithoutClientInput | Prisma.LoanerBookingUpdateWithWhereUniqueWithoutClientInput[]
+  updateMany?: Prisma.LoanerBookingUpdateManyWithWhereWithoutClientInput | Prisma.LoanerBookingUpdateManyWithWhereWithoutClientInput[]
+  deleteMany?: Prisma.LoanerBookingScalarWhereInput | Prisma.LoanerBookingScalarWhereInput[]
+}
+
+export type LoanerBookingUncheckedUpdateManyWithoutClientNestedInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutClientInput, Prisma.LoanerBookingUncheckedCreateWithoutClientInput> | Prisma.LoanerBookingCreateWithoutClientInput[] | Prisma.LoanerBookingUncheckedCreateWithoutClientInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutClientInput | Prisma.LoanerBookingCreateOrConnectWithoutClientInput[]
+  upsert?: Prisma.LoanerBookingUpsertWithWhereUniqueWithoutClientInput | Prisma.LoanerBookingUpsertWithWhereUniqueWithoutClientInput[]
+  createMany?: Prisma.LoanerBookingCreateManyClientInputEnvelope
+  set?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  disconnect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  delete?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  update?: Prisma.LoanerBookingUpdateWithWhereUniqueWithoutClientInput | Prisma.LoanerBookingUpdateWithWhereUniqueWithoutClientInput[]
+  updateMany?: Prisma.LoanerBookingUpdateManyWithWhereWithoutClientInput | Prisma.LoanerBookingUpdateManyWithWhereWithoutClientInput[]
+  deleteMany?: Prisma.LoanerBookingScalarWhereInput | Prisma.LoanerBookingScalarWhereInput[]
+}
+
+export type LoanerBookingCreateNestedManyWithoutVehicleInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutVehicleInput, Prisma.LoanerBookingUncheckedCreateWithoutVehicleInput> | Prisma.LoanerBookingCreateWithoutVehicleInput[] | Prisma.LoanerBookingUncheckedCreateWithoutVehicleInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutVehicleInput | Prisma.LoanerBookingCreateOrConnectWithoutVehicleInput[]
+  createMany?: Prisma.LoanerBookingCreateManyVehicleInputEnvelope
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+}
+
+export type LoanerBookingUncheckedCreateNestedManyWithoutVehicleInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutVehicleInput, Prisma.LoanerBookingUncheckedCreateWithoutVehicleInput> | Prisma.LoanerBookingCreateWithoutVehicleInput[] | Prisma.LoanerBookingUncheckedCreateWithoutVehicleInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutVehicleInput | Prisma.LoanerBookingCreateOrConnectWithoutVehicleInput[]
+  createMany?: Prisma.LoanerBookingCreateManyVehicleInputEnvelope
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+}
+
+export type LoanerBookingUpdateManyWithoutVehicleNestedInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutVehicleInput, Prisma.LoanerBookingUncheckedCreateWithoutVehicleInput> | Prisma.LoanerBookingCreateWithoutVehicleInput[] | Prisma.LoanerBookingUncheckedCreateWithoutVehicleInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutVehicleInput | Prisma.LoanerBookingCreateOrConnectWithoutVehicleInput[]
+  upsert?: Prisma.LoanerBookingUpsertWithWhereUniqueWithoutVehicleInput | Prisma.LoanerBookingUpsertWithWhereUniqueWithoutVehicleInput[]
+  createMany?: Prisma.LoanerBookingCreateManyVehicleInputEnvelope
+  set?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  disconnect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  delete?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  update?: Prisma.LoanerBookingUpdateWithWhereUniqueWithoutVehicleInput | Prisma.LoanerBookingUpdateWithWhereUniqueWithoutVehicleInput[]
+  updateMany?: Prisma.LoanerBookingUpdateManyWithWhereWithoutVehicleInput | Prisma.LoanerBookingUpdateManyWithWhereWithoutVehicleInput[]
+  deleteMany?: Prisma.LoanerBookingScalarWhereInput | Prisma.LoanerBookingScalarWhereInput[]
+}
+
+export type LoanerBookingUncheckedUpdateManyWithoutVehicleNestedInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutVehicleInput, Prisma.LoanerBookingUncheckedCreateWithoutVehicleInput> | Prisma.LoanerBookingCreateWithoutVehicleInput[] | Prisma.LoanerBookingUncheckedCreateWithoutVehicleInput[]
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutVehicleInput | Prisma.LoanerBookingCreateOrConnectWithoutVehicleInput[]
+  upsert?: Prisma.LoanerBookingUpsertWithWhereUniqueWithoutVehicleInput | Prisma.LoanerBookingUpsertWithWhereUniqueWithoutVehicleInput[]
+  createMany?: Prisma.LoanerBookingCreateManyVehicleInputEnvelope
+  set?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  disconnect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  delete?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  connect?: Prisma.LoanerBookingWhereUniqueInput | Prisma.LoanerBookingWhereUniqueInput[]
+  update?: Prisma.LoanerBookingUpdateWithWhereUniqueWithoutVehicleInput | Prisma.LoanerBookingUpdateWithWhereUniqueWithoutVehicleInput[]
+  updateMany?: Prisma.LoanerBookingUpdateManyWithWhereWithoutVehicleInput | Prisma.LoanerBookingUpdateManyWithWhereWithoutVehicleInput[]
+  deleteMany?: Prisma.LoanerBookingScalarWhereInput | Prisma.LoanerBookingScalarWhereInput[]
 }
 
 export type LoanerBookingCreateNestedManyWithoutLoanerCarInput = {
@@ -359,18 +999,419 @@ export type LoanerBookingUncheckedUpdateManyWithoutLoanerCarNestedInput = {
   deleteMany?: Prisma.LoanerBookingScalarWhereInput | Prisma.LoanerBookingScalarWhereInput[]
 }
 
+export type NullableEnumLoanerFuelLevelFieldUpdateOperationsInput = {
+  set?: $Enums.LoanerFuelLevel | null
+}
+
+export type EnumLoanerBookingStatoFieldUpdateOperationsInput = {
+  set?: $Enums.LoanerBookingStato
+}
+
+export type LoanerBookingCreateNestedOneWithoutPhotosInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutPhotosInput, Prisma.LoanerBookingUncheckedCreateWithoutPhotosInput>
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutPhotosInput
+  connect?: Prisma.LoanerBookingWhereUniqueInput
+}
+
+export type LoanerBookingUpdateOneRequiredWithoutPhotosNestedInput = {
+  create?: Prisma.XOR<Prisma.LoanerBookingCreateWithoutPhotosInput, Prisma.LoanerBookingUncheckedCreateWithoutPhotosInput>
+  connectOrCreate?: Prisma.LoanerBookingCreateOrConnectWithoutPhotosInput
+  upsert?: Prisma.LoanerBookingUpsertWithoutPhotosInput
+  connect?: Prisma.LoanerBookingWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LoanerBookingUpdateToOneWithWhereWithoutPhotosInput, Prisma.LoanerBookingUpdateWithoutPhotosInput>, Prisma.LoanerBookingUncheckedUpdateWithoutPhotosInput>
+}
+
+export type LoanerBookingCreateWithoutTenantInput = {
+  id?: string
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  loanerCar: Prisma.LoanerCarCreateNestedOneWithoutBookingsInput
+  client: Prisma.ClientCreateNestedOneWithoutLoanerBookingsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutLoanerBookingsInput
+  creataDa?: Prisma.UserCreateNestedOneWithoutLoanerBookingsCreateInput
+  photos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutBookingInput
+}
+
+export type LoanerBookingUncheckedCreateWithoutTenantInput = {
+  id?: string
+  loanerCarId: string
+  clientId: string
+  vehicleId?: string | null
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  creataDaId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  photos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutBookingInput
+}
+
+export type LoanerBookingCreateOrConnectWithoutTenantInput = {
+  where: Prisma.LoanerBookingWhereUniqueInput
+  create: Prisma.XOR<Prisma.LoanerBookingCreateWithoutTenantInput, Prisma.LoanerBookingUncheckedCreateWithoutTenantInput>
+}
+
+export type LoanerBookingCreateManyTenantInputEnvelope = {
+  data: Prisma.LoanerBookingCreateManyTenantInput | Prisma.LoanerBookingCreateManyTenantInput[]
+  skipDuplicates?: boolean
+}
+
+export type LoanerBookingUpsertWithWhereUniqueWithoutTenantInput = {
+  where: Prisma.LoanerBookingWhereUniqueInput
+  update: Prisma.XOR<Prisma.LoanerBookingUpdateWithoutTenantInput, Prisma.LoanerBookingUncheckedUpdateWithoutTenantInput>
+  create: Prisma.XOR<Prisma.LoanerBookingCreateWithoutTenantInput, Prisma.LoanerBookingUncheckedCreateWithoutTenantInput>
+}
+
+export type LoanerBookingUpdateWithWhereUniqueWithoutTenantInput = {
+  where: Prisma.LoanerBookingWhereUniqueInput
+  data: Prisma.XOR<Prisma.LoanerBookingUpdateWithoutTenantInput, Prisma.LoanerBookingUncheckedUpdateWithoutTenantInput>
+}
+
+export type LoanerBookingUpdateManyWithWhereWithoutTenantInput = {
+  where: Prisma.LoanerBookingScalarWhereInput
+  data: Prisma.XOR<Prisma.LoanerBookingUpdateManyMutationInput, Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantInput>
+}
+
+export type LoanerBookingScalarWhereInput = {
+  AND?: Prisma.LoanerBookingScalarWhereInput | Prisma.LoanerBookingScalarWhereInput[]
+  OR?: Prisma.LoanerBookingScalarWhereInput[]
+  NOT?: Prisma.LoanerBookingScalarWhereInput | Prisma.LoanerBookingScalarWhereInput[]
+  id?: Prisma.StringFilter<"LoanerBooking"> | string
+  tenantId?: Prisma.StringFilter<"LoanerBooking"> | string
+  loanerCarId?: Prisma.StringFilter<"LoanerBooking"> | string
+  clientId?: Prisma.StringFilter<"LoanerBooking"> | string
+  vehicleId?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  dataInizioPrevista?: Prisma.DateTimeFilter<"LoanerBooking"> | Date | string
+  dataFinePrevista?: Prisma.DateTimeNullableFilter<"LoanerBooking"> | Date | string | null
+  dataConsegna?: Prisma.DateTimeNullableFilter<"LoanerBooking"> | Date | string | null
+  kmIniziali?: Prisma.IntNullableFilter<"LoanerBooking"> | number | null
+  carburanteIniziale?: Prisma.EnumLoanerFuelLevelNullableFilter<"LoanerBooking"> | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  firmatarioNome?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  dataRestituzione?: Prisma.DateTimeNullableFilter<"LoanerBooking"> | Date | string | null
+  kmFinali?: Prisma.IntNullableFilter<"LoanerBooking"> | number | null
+  carburanteFinale?: Prisma.EnumLoanerFuelLevelNullableFilter<"LoanerBooking"> | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  noteRestituzione?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  costoInternoCents?: Prisma.IntNullableFilter<"LoanerBooking"> | number | null
+  attribuitoProfitRecordId?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFilter<"LoanerBooking"> | $Enums.LoanerBookingStato
+  creataDaId?: Prisma.StringNullableFilter<"LoanerBooking"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"LoanerBooking"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"LoanerBooking"> | Date | string
+}
+
+export type LoanerBookingCreateWithoutCreataDaInput = {
+  id?: string
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutLoanerBookingsInput
+  loanerCar: Prisma.LoanerCarCreateNestedOneWithoutBookingsInput
+  client: Prisma.ClientCreateNestedOneWithoutLoanerBookingsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutLoanerBookingsInput
+  photos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutBookingInput
+}
+
+export type LoanerBookingUncheckedCreateWithoutCreataDaInput = {
+  id?: string
+  tenantId: string
+  loanerCarId: string
+  clientId: string
+  vehicleId?: string | null
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  photos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutBookingInput
+}
+
+export type LoanerBookingCreateOrConnectWithoutCreataDaInput = {
+  where: Prisma.LoanerBookingWhereUniqueInput
+  create: Prisma.XOR<Prisma.LoanerBookingCreateWithoutCreataDaInput, Prisma.LoanerBookingUncheckedCreateWithoutCreataDaInput>
+}
+
+export type LoanerBookingCreateManyCreataDaInputEnvelope = {
+  data: Prisma.LoanerBookingCreateManyCreataDaInput | Prisma.LoanerBookingCreateManyCreataDaInput[]
+  skipDuplicates?: boolean
+}
+
+export type LoanerBookingUpsertWithWhereUniqueWithoutCreataDaInput = {
+  where: Prisma.LoanerBookingWhereUniqueInput
+  update: Prisma.XOR<Prisma.LoanerBookingUpdateWithoutCreataDaInput, Prisma.LoanerBookingUncheckedUpdateWithoutCreataDaInput>
+  create: Prisma.XOR<Prisma.LoanerBookingCreateWithoutCreataDaInput, Prisma.LoanerBookingUncheckedCreateWithoutCreataDaInput>
+}
+
+export type LoanerBookingUpdateWithWhereUniqueWithoutCreataDaInput = {
+  where: Prisma.LoanerBookingWhereUniqueInput
+  data: Prisma.XOR<Prisma.LoanerBookingUpdateWithoutCreataDaInput, Prisma.LoanerBookingUncheckedUpdateWithoutCreataDaInput>
+}
+
+export type LoanerBookingUpdateManyWithWhereWithoutCreataDaInput = {
+  where: Prisma.LoanerBookingScalarWhereInput
+  data: Prisma.XOR<Prisma.LoanerBookingUpdateManyMutationInput, Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaInput>
+}
+
+export type LoanerBookingCreateWithoutClientInput = {
+  id?: string
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutLoanerBookingsInput
+  loanerCar: Prisma.LoanerCarCreateNestedOneWithoutBookingsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutLoanerBookingsInput
+  creataDa?: Prisma.UserCreateNestedOneWithoutLoanerBookingsCreateInput
+  photos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutBookingInput
+}
+
+export type LoanerBookingUncheckedCreateWithoutClientInput = {
+  id?: string
+  tenantId: string
+  loanerCarId: string
+  vehicleId?: string | null
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  creataDaId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  photos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutBookingInput
+}
+
+export type LoanerBookingCreateOrConnectWithoutClientInput = {
+  where: Prisma.LoanerBookingWhereUniqueInput
+  create: Prisma.XOR<Prisma.LoanerBookingCreateWithoutClientInput, Prisma.LoanerBookingUncheckedCreateWithoutClientInput>
+}
+
+export type LoanerBookingCreateManyClientInputEnvelope = {
+  data: Prisma.LoanerBookingCreateManyClientInput | Prisma.LoanerBookingCreateManyClientInput[]
+  skipDuplicates?: boolean
+}
+
+export type LoanerBookingUpsertWithWhereUniqueWithoutClientInput = {
+  where: Prisma.LoanerBookingWhereUniqueInput
+  update: Prisma.XOR<Prisma.LoanerBookingUpdateWithoutClientInput, Prisma.LoanerBookingUncheckedUpdateWithoutClientInput>
+  create: Prisma.XOR<Prisma.LoanerBookingCreateWithoutClientInput, Prisma.LoanerBookingUncheckedCreateWithoutClientInput>
+}
+
+export type LoanerBookingUpdateWithWhereUniqueWithoutClientInput = {
+  where: Prisma.LoanerBookingWhereUniqueInput
+  data: Prisma.XOR<Prisma.LoanerBookingUpdateWithoutClientInput, Prisma.LoanerBookingUncheckedUpdateWithoutClientInput>
+}
+
+export type LoanerBookingUpdateManyWithWhereWithoutClientInput = {
+  where: Prisma.LoanerBookingScalarWhereInput
+  data: Prisma.XOR<Prisma.LoanerBookingUpdateManyMutationInput, Prisma.LoanerBookingUncheckedUpdateManyWithoutClientInput>
+}
+
+export type LoanerBookingCreateWithoutVehicleInput = {
+  id?: string
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutLoanerBookingsInput
+  loanerCar: Prisma.LoanerCarCreateNestedOneWithoutBookingsInput
+  client: Prisma.ClientCreateNestedOneWithoutLoanerBookingsInput
+  creataDa?: Prisma.UserCreateNestedOneWithoutLoanerBookingsCreateInput
+  photos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutBookingInput
+}
+
+export type LoanerBookingUncheckedCreateWithoutVehicleInput = {
+  id?: string
+  tenantId: string
+  loanerCarId: string
+  clientId: string
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  creataDaId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  photos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutBookingInput
+}
+
+export type LoanerBookingCreateOrConnectWithoutVehicleInput = {
+  where: Prisma.LoanerBookingWhereUniqueInput
+  create: Prisma.XOR<Prisma.LoanerBookingCreateWithoutVehicleInput, Prisma.LoanerBookingUncheckedCreateWithoutVehicleInput>
+}
+
+export type LoanerBookingCreateManyVehicleInputEnvelope = {
+  data: Prisma.LoanerBookingCreateManyVehicleInput | Prisma.LoanerBookingCreateManyVehicleInput[]
+  skipDuplicates?: boolean
+}
+
+export type LoanerBookingUpsertWithWhereUniqueWithoutVehicleInput = {
+  where: Prisma.LoanerBookingWhereUniqueInput
+  update: Prisma.XOR<Prisma.LoanerBookingUpdateWithoutVehicleInput, Prisma.LoanerBookingUncheckedUpdateWithoutVehicleInput>
+  create: Prisma.XOR<Prisma.LoanerBookingCreateWithoutVehicleInput, Prisma.LoanerBookingUncheckedCreateWithoutVehicleInput>
+}
+
+export type LoanerBookingUpdateWithWhereUniqueWithoutVehicleInput = {
+  where: Prisma.LoanerBookingWhereUniqueInput
+  data: Prisma.XOR<Prisma.LoanerBookingUpdateWithoutVehicleInput, Prisma.LoanerBookingUncheckedUpdateWithoutVehicleInput>
+}
+
+export type LoanerBookingUpdateManyWithWhereWithoutVehicleInput = {
+  where: Prisma.LoanerBookingScalarWhereInput
+  data: Prisma.XOR<Prisma.LoanerBookingUpdateManyMutationInput, Prisma.LoanerBookingUncheckedUpdateManyWithoutVehicleInput>
+}
+
 export type LoanerBookingCreateWithoutLoanerCarInput = {
   id?: string
-  clientId: string
-  dataInizio: Date | string
-  dataFine?: Date | string | null
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutLoanerBookingsInput
+  client: Prisma.ClientCreateNestedOneWithoutLoanerBookingsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutLoanerBookingsInput
+  creataDa?: Prisma.UserCreateNestedOneWithoutLoanerBookingsCreateInput
+  photos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutBookingInput
 }
 
 export type LoanerBookingUncheckedCreateWithoutLoanerCarInput = {
   id?: string
+  tenantId: string
   clientId: string
-  dataInizio: Date | string
-  dataFine?: Date | string | null
+  vehicleId?: string | null
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  creataDaId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  photos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutBookingInput
 }
 
 export type LoanerBookingCreateOrConnectWithoutLoanerCarInput = {
@@ -399,104 +1440,847 @@ export type LoanerBookingUpdateManyWithWhereWithoutLoanerCarInput = {
   data: Prisma.XOR<Prisma.LoanerBookingUpdateManyMutationInput, Prisma.LoanerBookingUncheckedUpdateManyWithoutLoanerCarInput>
 }
 
-export type LoanerBookingScalarWhereInput = {
-  AND?: Prisma.LoanerBookingScalarWhereInput | Prisma.LoanerBookingScalarWhereInput[]
-  OR?: Prisma.LoanerBookingScalarWhereInput[]
-  NOT?: Prisma.LoanerBookingScalarWhereInput | Prisma.LoanerBookingScalarWhereInput[]
-  id?: Prisma.StringFilter<"LoanerBooking"> | string
-  loanerCarId?: Prisma.StringFilter<"LoanerBooking"> | string
-  clientId?: Prisma.StringFilter<"LoanerBooking"> | string
-  dataInizio?: Prisma.DateTimeFilter<"LoanerBooking"> | Date | string
-  dataFine?: Prisma.DateTimeNullableFilter<"LoanerBooking"> | Date | string | null
+export type LoanerBookingCreateWithoutPhotosInput = {
+  id?: string
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutLoanerBookingsInput
+  loanerCar: Prisma.LoanerCarCreateNestedOneWithoutBookingsInput
+  client: Prisma.ClientCreateNestedOneWithoutLoanerBookingsInput
+  vehicle?: Prisma.VehicleCreateNestedOneWithoutLoanerBookingsInput
+  creataDa?: Prisma.UserCreateNestedOneWithoutLoanerBookingsCreateInput
+}
+
+export type LoanerBookingUncheckedCreateWithoutPhotosInput = {
+  id?: string
+  tenantId: string
+  loanerCarId: string
+  clientId: string
+  vehicleId?: string | null
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  creataDaId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type LoanerBookingCreateOrConnectWithoutPhotosInput = {
+  where: Prisma.LoanerBookingWhereUniqueInput
+  create: Prisma.XOR<Prisma.LoanerBookingCreateWithoutPhotosInput, Prisma.LoanerBookingUncheckedCreateWithoutPhotosInput>
+}
+
+export type LoanerBookingUpsertWithoutPhotosInput = {
+  update: Prisma.XOR<Prisma.LoanerBookingUpdateWithoutPhotosInput, Prisma.LoanerBookingUncheckedUpdateWithoutPhotosInput>
+  create: Prisma.XOR<Prisma.LoanerBookingCreateWithoutPhotosInput, Prisma.LoanerBookingUncheckedCreateWithoutPhotosInput>
+  where?: Prisma.LoanerBookingWhereInput
+}
+
+export type LoanerBookingUpdateToOneWithWhereWithoutPhotosInput = {
+  where?: Prisma.LoanerBookingWhereInput
+  data: Prisma.XOR<Prisma.LoanerBookingUpdateWithoutPhotosInput, Prisma.LoanerBookingUncheckedUpdateWithoutPhotosInput>
+}
+
+export type LoanerBookingUpdateWithoutPhotosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutLoanerBookingsNestedInput
+  loanerCar?: Prisma.LoanerCarUpdateOneRequiredWithoutBookingsNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutLoanerBookingsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutLoanerBookingsNestedInput
+  creataDa?: Prisma.UserUpdateOneWithoutLoanerBookingsCreateNestedInput
+}
+
+export type LoanerBookingUncheckedUpdateWithoutPhotosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  loanerCarId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  creataDaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type LoanerBookingCreateManyTenantInput = {
+  id?: string
+  loanerCarId: string
+  clientId: string
+  vehicleId?: string | null
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  creataDaId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type LoanerBookingUpdateWithoutTenantInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  loanerCar?: Prisma.LoanerCarUpdateOneRequiredWithoutBookingsNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutLoanerBookingsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutLoanerBookingsNestedInput
+  creataDa?: Prisma.UserUpdateOneWithoutLoanerBookingsCreateNestedInput
+  photos?: Prisma.LoanerBookingPhotoUpdateManyWithoutBookingNestedInput
+}
+
+export type LoanerBookingUncheckedUpdateWithoutTenantInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  loanerCarId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  creataDaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  photos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutBookingNestedInput
+}
+
+export type LoanerBookingUncheckedUpdateManyWithoutTenantInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  loanerCarId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  creataDaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type LoanerBookingCreateManyCreataDaInput = {
+  id?: string
+  tenantId: string
+  loanerCarId: string
+  clientId: string
+  vehicleId?: string | null
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type LoanerBookingUpdateWithoutCreataDaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutLoanerBookingsNestedInput
+  loanerCar?: Prisma.LoanerCarUpdateOneRequiredWithoutBookingsNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutLoanerBookingsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutLoanerBookingsNestedInput
+  photos?: Prisma.LoanerBookingPhotoUpdateManyWithoutBookingNestedInput
+}
+
+export type LoanerBookingUncheckedUpdateWithoutCreataDaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  loanerCarId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  photos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutBookingNestedInput
+}
+
+export type LoanerBookingUncheckedUpdateManyWithoutCreataDaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  loanerCarId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type LoanerBookingCreateManyClientInput = {
+  id?: string
+  tenantId: string
+  loanerCarId: string
+  vehicleId?: string | null
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  creataDaId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type LoanerBookingUpdateWithoutClientInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutLoanerBookingsNestedInput
+  loanerCar?: Prisma.LoanerCarUpdateOneRequiredWithoutBookingsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutLoanerBookingsNestedInput
+  creataDa?: Prisma.UserUpdateOneWithoutLoanerBookingsCreateNestedInput
+  photos?: Prisma.LoanerBookingPhotoUpdateManyWithoutBookingNestedInput
+}
+
+export type LoanerBookingUncheckedUpdateWithoutClientInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  loanerCarId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  creataDaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  photos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutBookingNestedInput
+}
+
+export type LoanerBookingUncheckedUpdateManyWithoutClientInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  loanerCarId?: Prisma.StringFieldUpdateOperationsInput | string
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  creataDaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type LoanerBookingCreateManyVehicleInput = {
+  id?: string
+  tenantId: string
+  loanerCarId: string
+  clientId: string
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  creataDaId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type LoanerBookingUpdateWithoutVehicleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutLoanerBookingsNestedInput
+  loanerCar?: Prisma.LoanerCarUpdateOneRequiredWithoutBookingsNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutLoanerBookingsNestedInput
+  creataDa?: Prisma.UserUpdateOneWithoutLoanerBookingsCreateNestedInput
+  photos?: Prisma.LoanerBookingPhotoUpdateManyWithoutBookingNestedInput
+}
+
+export type LoanerBookingUncheckedUpdateWithoutVehicleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  loanerCarId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  creataDaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  photos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutBookingNestedInput
+}
+
+export type LoanerBookingUncheckedUpdateManyWithoutVehicleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  loanerCarId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.StringFieldUpdateOperationsInput | string
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  creataDaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type LoanerBookingCreateManyLoanerCarInput = {
   id?: string
+  tenantId: string
   clientId: string
-  dataInizio: Date | string
-  dataFine?: Date | string | null
+  vehicleId?: string | null
+  dataInizioPrevista: Date | string
+  dataFinePrevista?: Date | string | null
+  dataConsegna?: Date | string | null
+  kmIniziali?: number | null
+  carburanteIniziale?: $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: string | null
+  firmatarioNome?: string | null
+  dataRestituzione?: Date | string | null
+  kmFinali?: number | null
+  carburanteFinale?: $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: string | null
+  noteRestituzione?: string | null
+  costoInternoCents?: number | null
+  attribuitoProfitRecordId?: string | null
+  stato?: $Enums.LoanerBookingStato
+  creataDaId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type LoanerBookingUpdateWithoutLoanerCarInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  clientId?: Prisma.StringFieldUpdateOperationsInput | string
-  dataInizio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataFine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutLoanerBookingsNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutLoanerBookingsNestedInput
+  vehicle?: Prisma.VehicleUpdateOneWithoutLoanerBookingsNestedInput
+  creataDa?: Prisma.UserUpdateOneWithoutLoanerBookingsCreateNestedInput
+  photos?: Prisma.LoanerBookingPhotoUpdateManyWithoutBookingNestedInput
 }
 
 export type LoanerBookingUncheckedUpdateWithoutLoanerCarInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
-  dataInizio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataFine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  creataDaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  photos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutBookingNestedInput
 }
 
 export type LoanerBookingUncheckedUpdateManyWithoutLoanerCarInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   clientId?: Prisma.StringFieldUpdateOperationsInput | string
-  dataInizio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dataFine?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  vehicleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataInizioPrevista?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dataFinePrevista?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  dataConsegna?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmIniziali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteIniziale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  firmaClienteDataUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmatarioNome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataRestituzione?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  kmFinali?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburanteFinale?: Prisma.NullableEnumLoanerFuelLevelFieldUpdateOperationsInput | $Enums.LoanerFuelLevel | null
+  danniRiscontrati?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteRestituzione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costoInternoCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  attribuitoProfitRecordId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stato?: Prisma.EnumLoanerBookingStatoFieldUpdateOperationsInput | $Enums.LoanerBookingStato
+  creataDaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type LoanerBookingCountOutputType
+ */
+
+export type LoanerBookingCountOutputType = {
+  photos: number
+}
+
+export type LoanerBookingCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  photos?: boolean | LoanerBookingCountOutputTypeCountPhotosArgs
+}
+
+/**
+ * LoanerBookingCountOutputType without action
+ */
+export type LoanerBookingCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LoanerBookingCountOutputType
+   */
+  select?: Prisma.LoanerBookingCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * LoanerBookingCountOutputType without action
+ */
+export type LoanerBookingCountOutputTypeCountPhotosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LoanerBookingPhotoWhereInput
+}
 
 
 export type LoanerBookingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  tenantId?: boolean
   loanerCarId?: boolean
   clientId?: boolean
-  dataInizio?: boolean
-  dataFine?: boolean
+  vehicleId?: boolean
+  dataInizioPrevista?: boolean
+  dataFinePrevista?: boolean
+  dataConsegna?: boolean
+  kmIniziali?: boolean
+  carburanteIniziale?: boolean
+  firmaClienteDataUrl?: boolean
+  firmatarioNome?: boolean
+  dataRestituzione?: boolean
+  kmFinali?: boolean
+  carburanteFinale?: boolean
+  danniRiscontrati?: boolean
+  noteRestituzione?: boolean
+  costoInternoCents?: boolean
+  attribuitoProfitRecordId?: boolean
+  stato?: boolean
+  creataDaId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   loanerCar?: boolean | Prisma.LoanerCarDefaultArgs<ExtArgs>
+  client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
+  vehicle?: boolean | Prisma.LoanerBooking$vehicleArgs<ExtArgs>
+  creataDa?: boolean | Prisma.LoanerBooking$creataDaArgs<ExtArgs>
+  photos?: boolean | Prisma.LoanerBooking$photosArgs<ExtArgs>
+  _count?: boolean | Prisma.LoanerBookingCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["loanerBooking"]>
 
 export type LoanerBookingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  tenantId?: boolean
   loanerCarId?: boolean
   clientId?: boolean
-  dataInizio?: boolean
-  dataFine?: boolean
+  vehicleId?: boolean
+  dataInizioPrevista?: boolean
+  dataFinePrevista?: boolean
+  dataConsegna?: boolean
+  kmIniziali?: boolean
+  carburanteIniziale?: boolean
+  firmaClienteDataUrl?: boolean
+  firmatarioNome?: boolean
+  dataRestituzione?: boolean
+  kmFinali?: boolean
+  carburanteFinale?: boolean
+  danniRiscontrati?: boolean
+  noteRestituzione?: boolean
+  costoInternoCents?: boolean
+  attribuitoProfitRecordId?: boolean
+  stato?: boolean
+  creataDaId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   loanerCar?: boolean | Prisma.LoanerCarDefaultArgs<ExtArgs>
+  client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
+  vehicle?: boolean | Prisma.LoanerBooking$vehicleArgs<ExtArgs>
+  creataDa?: boolean | Prisma.LoanerBooking$creataDaArgs<ExtArgs>
 }, ExtArgs["result"]["loanerBooking"]>
 
 export type LoanerBookingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  tenantId?: boolean
   loanerCarId?: boolean
   clientId?: boolean
-  dataInizio?: boolean
-  dataFine?: boolean
+  vehicleId?: boolean
+  dataInizioPrevista?: boolean
+  dataFinePrevista?: boolean
+  dataConsegna?: boolean
+  kmIniziali?: boolean
+  carburanteIniziale?: boolean
+  firmaClienteDataUrl?: boolean
+  firmatarioNome?: boolean
+  dataRestituzione?: boolean
+  kmFinali?: boolean
+  carburanteFinale?: boolean
+  danniRiscontrati?: boolean
+  noteRestituzione?: boolean
+  costoInternoCents?: boolean
+  attribuitoProfitRecordId?: boolean
+  stato?: boolean
+  creataDaId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   loanerCar?: boolean | Prisma.LoanerCarDefaultArgs<ExtArgs>
+  client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
+  vehicle?: boolean | Prisma.LoanerBooking$vehicleArgs<ExtArgs>
+  creataDa?: boolean | Prisma.LoanerBooking$creataDaArgs<ExtArgs>
 }, ExtArgs["result"]["loanerBooking"]>
 
 export type LoanerBookingSelectScalar = {
   id?: boolean
+  tenantId?: boolean
   loanerCarId?: boolean
   clientId?: boolean
-  dataInizio?: boolean
-  dataFine?: boolean
+  vehicleId?: boolean
+  dataInizioPrevista?: boolean
+  dataFinePrevista?: boolean
+  dataConsegna?: boolean
+  kmIniziali?: boolean
+  carburanteIniziale?: boolean
+  firmaClienteDataUrl?: boolean
+  firmatarioNome?: boolean
+  dataRestituzione?: boolean
+  kmFinali?: boolean
+  carburanteFinale?: boolean
+  danniRiscontrati?: boolean
+  noteRestituzione?: boolean
+  costoInternoCents?: boolean
+  attribuitoProfitRecordId?: boolean
+  stato?: boolean
+  creataDaId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type LoanerBookingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "loanerCarId" | "clientId" | "dataInizio" | "dataFine", ExtArgs["result"]["loanerBooking"]>
+export type LoanerBookingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "loanerCarId" | "clientId" | "vehicleId" | "dataInizioPrevista" | "dataFinePrevista" | "dataConsegna" | "kmIniziali" | "carburanteIniziale" | "firmaClienteDataUrl" | "firmatarioNome" | "dataRestituzione" | "kmFinali" | "carburanteFinale" | "danniRiscontrati" | "noteRestituzione" | "costoInternoCents" | "attribuitoProfitRecordId" | "stato" | "creataDaId" | "createdAt" | "updatedAt", ExtArgs["result"]["loanerBooking"]>
 export type LoanerBookingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   loanerCar?: boolean | Prisma.LoanerCarDefaultArgs<ExtArgs>
+  client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
+  vehicle?: boolean | Prisma.LoanerBooking$vehicleArgs<ExtArgs>
+  creataDa?: boolean | Prisma.LoanerBooking$creataDaArgs<ExtArgs>
+  photos?: boolean | Prisma.LoanerBooking$photosArgs<ExtArgs>
+  _count?: boolean | Prisma.LoanerBookingCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type LoanerBookingIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   loanerCar?: boolean | Prisma.LoanerCarDefaultArgs<ExtArgs>
+  client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
+  vehicle?: boolean | Prisma.LoanerBooking$vehicleArgs<ExtArgs>
+  creataDa?: boolean | Prisma.LoanerBooking$creataDaArgs<ExtArgs>
 }
 export type LoanerBookingIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   loanerCar?: boolean | Prisma.LoanerCarDefaultArgs<ExtArgs>
+  client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
+  vehicle?: boolean | Prisma.LoanerBooking$vehicleArgs<ExtArgs>
+  creataDa?: boolean | Prisma.LoanerBooking$creataDaArgs<ExtArgs>
 }
 
 export type $LoanerBookingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "LoanerBooking"
   objects: {
+    tenant: Prisma.$TenantPayload<ExtArgs>
     loanerCar: Prisma.$LoanerCarPayload<ExtArgs>
+    client: Prisma.$ClientPayload<ExtArgs>
+    vehicle: Prisma.$VehiclePayload<ExtArgs> | null
+    creataDa: Prisma.$UserPayload<ExtArgs> | null
+    photos: Prisma.$LoanerBookingPhotoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    tenantId: string
     loanerCarId: string
     clientId: string
-    dataInizio: Date
-    dataFine: Date | null
+    vehicleId: string | null
+    dataInizioPrevista: Date
+    dataFinePrevista: Date | null
+    dataConsegna: Date | null
+    kmIniziali: number | null
+    carburanteIniziale: $Enums.LoanerFuelLevel | null
+    firmaClienteDataUrl: string | null
+    firmatarioNome: string | null
+    dataRestituzione: Date | null
+    kmFinali: number | null
+    carburanteFinale: $Enums.LoanerFuelLevel | null
+    danniRiscontrati: string | null
+    noteRestituzione: string | null
+    costoInternoCents: number | null
+    attribuitoProfitRecordId: string | null
+    stato: $Enums.LoanerBookingStato
+    creataDaId: string | null
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["loanerBooking"]>
   composites: {}
 }
@@ -891,7 +2675,12 @@ readonly fields: LoanerBookingFieldRefs;
  */
 export interface Prisma__LoanerBookingClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   loanerCar<T extends Prisma.LoanerCarDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LoanerCarDefaultArgs<ExtArgs>>): Prisma.Prisma__LoanerCarClient<runtime.Types.Result.GetResult<Prisma.$LoanerCarPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  client<T extends Prisma.ClientDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientDefaultArgs<ExtArgs>>): Prisma.Prisma__ClientClient<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  vehicle<T extends Prisma.LoanerBooking$vehicleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LoanerBooking$vehicleArgs<ExtArgs>>): Prisma.Prisma__VehicleClient<runtime.Types.Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  creataDa<T extends Prisma.LoanerBooking$creataDaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LoanerBooking$creataDaArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  photos<T extends Prisma.LoanerBooking$photosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LoanerBooking$photosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoanerBookingPhotoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -922,10 +2711,28 @@ export interface Prisma__LoanerBookingClient<T, Null = never, ExtArgs extends ru
  */
 export interface LoanerBookingFieldRefs {
   readonly id: Prisma.FieldRef<"LoanerBooking", 'String'>
+  readonly tenantId: Prisma.FieldRef<"LoanerBooking", 'String'>
   readonly loanerCarId: Prisma.FieldRef<"LoanerBooking", 'String'>
   readonly clientId: Prisma.FieldRef<"LoanerBooking", 'String'>
-  readonly dataInizio: Prisma.FieldRef<"LoanerBooking", 'DateTime'>
-  readonly dataFine: Prisma.FieldRef<"LoanerBooking", 'DateTime'>
+  readonly vehicleId: Prisma.FieldRef<"LoanerBooking", 'String'>
+  readonly dataInizioPrevista: Prisma.FieldRef<"LoanerBooking", 'DateTime'>
+  readonly dataFinePrevista: Prisma.FieldRef<"LoanerBooking", 'DateTime'>
+  readonly dataConsegna: Prisma.FieldRef<"LoanerBooking", 'DateTime'>
+  readonly kmIniziali: Prisma.FieldRef<"LoanerBooking", 'Int'>
+  readonly carburanteIniziale: Prisma.FieldRef<"LoanerBooking", 'LoanerFuelLevel'>
+  readonly firmaClienteDataUrl: Prisma.FieldRef<"LoanerBooking", 'String'>
+  readonly firmatarioNome: Prisma.FieldRef<"LoanerBooking", 'String'>
+  readonly dataRestituzione: Prisma.FieldRef<"LoanerBooking", 'DateTime'>
+  readonly kmFinali: Prisma.FieldRef<"LoanerBooking", 'Int'>
+  readonly carburanteFinale: Prisma.FieldRef<"LoanerBooking", 'LoanerFuelLevel'>
+  readonly danniRiscontrati: Prisma.FieldRef<"LoanerBooking", 'String'>
+  readonly noteRestituzione: Prisma.FieldRef<"LoanerBooking", 'String'>
+  readonly costoInternoCents: Prisma.FieldRef<"LoanerBooking", 'Int'>
+  readonly attribuitoProfitRecordId: Prisma.FieldRef<"LoanerBooking", 'String'>
+  readonly stato: Prisma.FieldRef<"LoanerBooking", 'LoanerBookingStato'>
+  readonly creataDaId: Prisma.FieldRef<"LoanerBooking", 'String'>
+  readonly createdAt: Prisma.FieldRef<"LoanerBooking", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"LoanerBooking", 'DateTime'>
 }
     
 
@@ -1324,6 +3131,68 @@ export type LoanerBookingDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many LoanerBookings to delete.
    */
   limit?: number
+}
+
+/**
+ * LoanerBooking.vehicle
+ */
+export type LoanerBooking$vehicleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Vehicle
+   */
+  select?: Prisma.VehicleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Vehicle
+   */
+  omit?: Prisma.VehicleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VehicleInclude<ExtArgs> | null
+  where?: Prisma.VehicleWhereInput
+}
+
+/**
+ * LoanerBooking.creataDa
+ */
+export type LoanerBooking$creataDaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
+ * LoanerBooking.photos
+ */
+export type LoanerBooking$photosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LoanerBookingPhoto
+   */
+  select?: Prisma.LoanerBookingPhotoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LoanerBookingPhoto
+   */
+  omit?: Prisma.LoanerBookingPhotoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LoanerBookingPhotoInclude<ExtArgs> | null
+  where?: Prisma.LoanerBookingPhotoWhereInput
+  orderBy?: Prisma.LoanerBookingPhotoOrderByWithRelationInput | Prisma.LoanerBookingPhotoOrderByWithRelationInput[]
+  cursor?: Prisma.LoanerBookingPhotoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LoanerBookingPhotoScalarFieldEnum | Prisma.LoanerBookingPhotoScalarFieldEnum[]
 }
 
 /**

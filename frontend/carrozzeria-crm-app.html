@@ -45,6 +45,25 @@
  .smart-photo-card {min-width:0;padding:12px;border:1px solid #414752;border-radius:12px;overflow-wrap:anywhere}
  .smart-comparison {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
  @media(max-width:480px) {.smart-timeline .profit-grid,.smart-comparison {grid-template-columns:minmax(0,1fr)}}
+
+ .executive-dashboard {color:#F3F1EC;max-width:1600px;margin:auto}
+ .executive-dashboard h1 {font-size:30px;margin:6px 0 10px}.executive-dashboard h2 {font-size:20px}
+ .executive-dashboard p {line-height:1.5;color:#B7C0CC;font-size:13px}
+ .executive-heading {display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+ .executive-eyebrow {font-size:10px!important;letter-spacing:1.6px;color:#D2B474!important}
+ .executive-dashboard button {color:#F3F1EC;background:#20252D;border:1px solid #414A57;border-radius:9px;padding:10px 14px;min-height:44px}
+ .executive-filters {display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.executive-filters button[aria-pressed="true"] {background:#C9A24B;border-color:#C9A24B;color:#14171C;font-weight:700}
+ .executive-custom {display:flex;align-items:end;gap:12px;flex-wrap:wrap}.executive-custom label {font-size:12px}.executive-custom input {display:block;color:#F3F1EC;background:#15171B;border:1px solid #414A57;padding:10px;border-radius:8px}
+ .executive-kpis {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(235px,100%),1fr));gap:14px;margin:18px 0}
+ .executive-kpi {display:flex;flex-direction:column;gap:10px;text-align:left;background:#15191F!important;padding:20px!important;min-width:0}
+ .executive-kpi:hover {border-color:#C9A24B}.executive-kpi>span:first-child {font-size:13px;color:#CBD1DA}.executive-kpi strong {font-size:26px;font-weight:650}.executive-kpi small {font-size:11px;line-height:1.5;color:#A6B3C4}.executive-kpi em {font-size:11px;color:#F0C777;font-style:normal}.executive-link {font-size:11px;color:#D2B474;margin-top:auto}
+ .executive-funnel,.executive-detail {padding:20px;border:1px solid #343E4C;border-radius:14px;margin:24px 0;background:#12171D}
+ .executive-stages {display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.executive-stages button {display:flex;flex-direction:column;text-align:left;gap:12px;min-width:0;overflow-wrap:anywhere}.executive-stages span {font-size:12px}.executive-stages strong {font-size:16px}.executive-stages small {font-size:10px}
+ .executive-bar {height:5px;border-radius:3px;background:#343E4C;width:100%;margin-top:auto}.executive-bar>div {height:5px;background:#C9A24B;border-radius:3px}
+ .executive-table {overflow-x:auto}.executive-table table {width:100%;border-collapse:collapse;text-align:left;font-size:12px}.executive-table th,.executive-table td {padding:12px;border-bottom:1px solid #343E4C}.executive-table td:last-child {white-space:nowrap}
+ @media(max-width:1100px){.executive-stages{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:550px){.executive-stages{grid-template-columns:repeat(2,minmax(0,1fr))}.executive-kpi{padding:16px!important}.executive-dashboard h1{font-size:25px}}
+
+.morning-briefing{background:#fffdf6;border:1px solid #dccca4;border-radius:18px;padding:22px;margin-bottom:26px;color:#302d27}.briefing-heading,.briefing-action{display:flex;justify-content:space-between;gap:16px;align-items:start}.briefing-heading h2{margin:6px 0;font-size:30px}.briefing-muted{color:#666052;font-size:13px}.briefing-buttons{display:flex;flex-wrap:wrap;gap:8px}.morning-briefing button{border:1px solid #cbbd9c;background:#fffaf0;color:#393124;border-radius:9px;padding:9px 12px;cursor:pointer}.morning-briefing button:focus-visible{outline:3px solid #876a27}.briefing-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:16px 0}.briefing-metrics>button,.briefing-metrics>div{text-align:left;padding:14px;border:1px solid #e5dcca;border-radius:12px;background:white}.briefing-metrics strong,.briefing-metrics span,.briefing-metrics small{display:block}.briefing-metrics strong{font-size:26px;margin-bottom:6px}.briefing-action{background:white;border-radius:12px;padding:16px;margin:12px 0;border-left:4px solid #d1942c}.briefing-action.red{border-left-color:#be493c}.briefing-action p{margin:7px 0;overflow-wrap:anywhere}.briefing-detail{background:#f4eedf;border-radius:12px;padding:16px;margin:14px 0}.morning-briefing label{display:block;margin:10px 0}.morning-briefing input,.morning-briefing select,.morning-briefing textarea{background:white;color:#302d27;border:1px solid #bdb198;padding:8px;max-width:100%;border-radius:6px}.morning-briefing textarea{display:block;width:100%;min-height:80px;margin-bottom:12px}@media(max-width:640px){.morning-briefing{padding:14px}.briefing-heading,.briefing-action{flex-direction:column}.briefing-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 </head>
 <body>
@@ -281,7 +300,7 @@ function DashboardTecnico({ token, onLogout }) {
 }
 
 function Dashboard({ token, onLogout }) {
-  const [tab, setTab] = useState("dashboard");
+  const [tab, setTab] = useState(()=>decodificaRuolo(token)==="ADMIN"?"executive":"dashboard");
   const [sinistriClientFilter, setSinistriClientFilter] = useState(null);
   const [copilotOpenVehicleId, setCopilotOpenVehicleId] = useState(null);
   const api = useApi(token);
@@ -290,7 +309,7 @@ function Dashboard({ token, onLogout }) {
   if (ruolo === "TECNICO") return <DashboardTecnico token={token} onLogout={onLogout} />;
 
   const delayNav = [...NAV_BASE, {key:"delay",label:"Predictive Delay AI"}, {key:"parts-tracking",label:"Parts Tracking"}, {key:"lavori",label:"I miei lavori"}, {key:"live",label:"Carrozzeria Live"}];
-  const baseNav = ruolo === "ADMIN" ? [...delayNav, { key: "registro", label: "Registro attività" }] : delayNav;
+  const baseNav = ruolo === "ADMIN" ? [{key:"executive",label:"Executive Dashboard"},...delayNav, { key: "registro", label: "Registro attività" }] : delayNav;
   const navConProfit = ["ADMIN", "AMMINISTRAZIONE"].includes(ruolo) ? [...baseNav, {key:"profit",label:"Profit Tracker"}, {key:"kpi-tecnici",label:"KPI Tecnici"}] : baseNav;
   const nav = ruolo === "ADMIN" ? [...navConProfit, { key: "whatsapp", label: "WhatsApp" }, { key: "qc-checklist", label: "QC Checklist" }] : navConProfit;
 
@@ -327,6 +346,7 @@ function Dashboard({ token, onLogout }) {
         }}>Esci</button>
       </aside>
       <main style={{ flex: 1, padding: "28px 32px", overflowY: "auto" }}>
+        {tab === "executive" && ruolo === "ADMIN" && <><MorningBriefing api={api} onOpen={apriPraticaVeicolo} /><ExecutiveDashboard api={api} onOpen={apriPraticaVeicolo} /></>}
         {tab === "dashboard" && <><DashboardView api={api} ruolo={ruolo} /><PartsDashboard api={api} onOpen={apriPraticaVeicolo} compact /></>}
         {tab === "parts-tracking" && <PartsDashboard api={api} onOpen={apriPraticaVeicolo} />}
         {tab === "delay" && <DelayDashboard api={api} ruolo={ruolo} onOpen={apriPraticaVeicolo} />}
@@ -450,6 +470,64 @@ function HBarList({ data, formatValue = (v) => v, barColor = "#4E7F8C" }) {
       ))}
     </div>
   );
+}
+
+
+function MorningBriefing({api,onOpen}){
+ const [data,setData]=useState(null),[error,setError]=useState(''),[busy,setBusy]=useState(false),[selected,setSelected]=useState('live'),[expanded,setExpanded]=useState(false),[settings,setSettings]=useState(null),[editSettings,setEditSettings]=useState(false),[resolution,setResolution]=useState(null),[note,setNote]=useState(''),[detail,setDetail]=useState(null);
+ const sequence=useRef(0);
+ const refresh=useCallback(async()=>{const n=++sequence.current;try{const d=await api('/api/briefing');if(n===sequence.current){setData(d);setError('');}}catch(e){if(n===sequence.current)setError(e.message);}},[api]);
+ useEffect(()=>{refresh();const t=setInterval(refresh,300000);return()=>{clearInterval(t);sequence.current++;};},[refresh]);
+ const report=data?.reports.find(r=>r.id===selected),brief=selected==='live'?data?.live:report?.data;
+ const saveSettings=async()=>{setBusy(true);try{await api('/api/briefing/settings',{method:'PUT',body:JSON.stringify(settings)});setEditSettings(false);await refresh();}catch(e){setError(e.message);}finally{setBusy(false);}};
+ const resolve=async()=>{setBusy(true);try{await api('/api/briefing/'+resolution.reportId+'/resolve',{method:'POST',body:JSON.stringify({actionKey:resolution.actionKey,note})});setResolution(null);setNote('');await refresh();}catch(e){setError(e.message);}finally{setBusy(false);}};
+ const titles={active:'Vetture aperte',deliveries:'Consegne previste oggi',risk:'🔴 Rischio alto',blocked:'🔴 Ferme per ricambi',pending:'🟠 Preventivi > €3.000',late:'🔴 Consegne scadute'};
+ return <section className="morning-briefing" aria-label="AI Morning Briefing">
+  <div className="briefing-heading"><div><small>AI MORNING BRIEFING · DIREZIONE</small><h2>{brief?.kind==='evening'?'Evening Summary':'Buongiorno'}</h2><p>{data?`${data.live.actions.length} situazioni richiedono attenzione adesso.`:'Analisi della situazione operativa…'}</p></div><div className="briefing-buttons"><button onClick={()=>setExpanded(!expanded)} aria-expanded={expanded}>{expanded?'Riduci':'Azioni consigliate'}</button><button onClick={refresh}>Aggiorna</button><button onClick={()=>{setSettings({...data.settings});setEditSettings(true);setExpanded(true);}} disabled={!data}>Orari</button></div></div>
+  {error&&<p role="alert">Impossibile aggiornare il briefing: {error}. I dati precedenti possono essere superati.</p>}
+  {brief&&<><p className="briefing-muted">{selected==='live'?'Situazione corrente':'Fotografia salvata'} · {new Date(brief.generatedAt).toLocaleString('it-IT',{timeZone:'Europe/Rome'})} · Europe/Rome</p>
+   <div className="briefing-metrics">{Object.entries(titles).map(([key,title])=><button key={key} onClick={()=>{setExpanded(true);setDetail(key);}}><strong>{brief.metrics[key].value}{key==='risk'&&brief.metrics.risk.unknown>0?'*':''}</strong><span>{title}</span></button>)}</div>
+   {expanded&&<><label>Consulta <select value={selected} onChange={e=>{setSelected(e.target.value);setDetail(null);}}><option value="live">Situazione corrente</option>{data.reports.map(r=><option key={r.id} value={r.id}>{r.day} · {r.kind==='morning'?'Mattina':'Sera'} · {new Date(r.createdAt).toLocaleTimeString('it-IT',{timeZone:'Europe/Rome',hour:'2-digit',minute:'2-digit'})}</option>)}</select></label>
+    {brief.missing.length>0&&<details><summary>Dati mancanti e limiti dell’analisi ({brief.missing.length})</summary>{brief.missing.map(m=><p key={m}>{m}</p>)}</details>}
+    <p className="briefing-muted">Analisi basata su regole spiegabili e dati registrati. Aggiornamento corrente ogni 5 minuti mentre questa pagina è aperta. I pulsanti aprono la pratica: messaggi, assegnazioni e modifiche richiedono il tuo intervento.</p>
+    {detail&&<div className="briefing-detail"><h3>{titles[detail]}</h3>{(brief.metrics[detail].rows||[]).map(r=><button key={r.vehicleId} onClick={()=>onOpen(r.vehicleId)}>{r.label} · APRI</button>)}{detail==='pending'&&<p>Vedi i suggerimenti relativi ai preventivi qui sotto.</p>}</div>}
+    <h3>Azioni consigliate</h3>{brief.actions.length===0&&<p>Nessuna criticità rilevata nei dati disponibili.</p>}
+    {brief.actions.map(a=>{const handled=report?.resolutions.find(r=>r.actionKey===a.key);return <article key={a.key} className={'briefing-action '+a.severity}><div><strong>{a.severity==='red'?'🔴':'🟠'} {a.title}</strong><p>{a.label}</p><p>{a.reason}</p>{handled&&<p>✓ Gestito il {new Date(handled.createdAt).toLocaleString('it-IT')}: {handled.note}</p>}</div><div className="briefing-buttons"><button onClick={()=>onOpen(a.vehicleId)} title="Apre la pratica; nessuna operazione viene eseguita automaticamente">{a.button}</button>{report&&!handled&&<button onClick={()=>{setResolution({reportId:report.id,actionKey:a.key});setNote('');}}>RISOLVI</button>}</div></article>;})}
+    {report&&<p className="briefing-muted">RISOLVI registra che hai gestito il suggerimento di questo riepilogo. Non modifica lo stato della pratica; una condizione ancora presente resta visibile nella situazione corrente.</p>}
+    <h3>Domani · {brief.tomorrow.day}</h3><p>{brief.tomorrow.deliveries.length} consegne promesse.</p>{brief.tomorrow.deliveries.map(v=><button key={v.vehicleId} onClick={()=>onOpen(v.vehicleId)}>{v.label} · APRI</button>)}
+    <div className="briefing-metrics">{brief.tomorrow.load.map(l=><div key={l.department}><strong>{l.percent==null?(l.hours>0?'Nessuna capacità':'—'):l.percent+'%'}</strong><span>{l.department}</span><small>{l.hours.toFixed(1)} h residue in scadenza / {l.capacity.toFixed(1)} h disponibili</small></div>)}</div><p className="briefing-muted">Carico basato sulle lavorazioni in scadenza entro domani; non equivale a un calendario di produzione completo.</p>
+    {(brief.kind==='evening'||data.settings.eveningEnabled)&&<><h3>Evening Summary {brief.kind!=='evening'?'· anteprima corrente':''}</h3><p>{brief.evening.completed.length} lavorazioni completate · {brief.evening.delivered.length} consegne effettuate · {brief.evening.openProblems} problemi rilevati ancora aperti.</p>{brief.evening.completed.map((v,i)=><p key={'w'+i}><button onClick={()=>onOpen(v.vehicleId)}>{v.label} · {v.title}</button></p>)}{brief.evening.delivered.map(v=><p key={v.vehicleId}><button onClick={()=>onOpen(v.vehicleId)}>Consegnata: {v.label}</button></p>)}<p>{brief.evening.slipped===null?'Slittamenti non confrontabili: briefing mattutino assente.':`${brief.evening.slipped.length} vetture attese stamattina risultano ancora aperte.`}</p>{brief.evening.slipped?.map(v=><button key={v.vehicleId} onClick={()=>onOpen(v.vehicleId)}>{v.label} · VERIFICA</button>)}<p className="briefing-muted">{brief.evening.explanation}</p></>}
+   </>}
+  </>}
+  {editSettings&&settings&&<form className="briefing-detail" onSubmit={e=>{e.preventDefault();saveSettings();}}><h3>Programmazione · Europe/Rome</h3><label><input type="checkbox" checked={settings.morningEnabled} onChange={e=>setSettings({...settings,morningEnabled:e.target.checked})}/> Briefing mattutino</label><input aria-label="Ora mattutina" type="time" required value={settings.morningTime} onChange={e=>setSettings({...settings,morningTime:e.target.value})}/><label><input type="checkbox" checked={settings.eveningEnabled} onChange={e=>setSettings({...settings,eveningEnabled:e.target.checked})}/> Riepilogo serale opzionale</label><input aria-label="Ora serale" type="time" required value={settings.eveningTime} onChange={e=>setSettings({...settings,eveningTime:e.target.value})}/><p>Il server deve essere acceso. Dopo un’interruzione viene salvata la situazione al riavvio per la giornata corrente, con l’ora reale di generazione. Nessun messaggio viene inviato ai clienti.</p><button disabled={busy}>Salva orari</button><button type="button" disabled={busy} onClick={()=>setEditSettings(false)}>Annulla</button></form>}
+  {resolution&&<form className="briefing-detail" onSubmit={e=>{e.preventDefault();resolve();}}><h3>Conferma gestione del suggerimento</h3><p>Registra cosa hai fatto. La pratica e le date di consegna restano da gestire nei rispettivi moduli.</p><textarea aria-label="Nota di gestione" required minLength={3} maxLength={1000} value={note} onChange={e=>setNote(e.target.value)}/><button disabled={busy||note.trim().length<3}>Conferma come gestito</button><button type="button" disabled={busy} onClick={()=>setResolution(null)}>Annulla</button></form>}
+ </section>;
+}
+
+function ExecutiveDashboard({api,onOpen}){
+
+ const [period,setPeriod]=useState('MESE'),[from,setFrom]=useState(''),[to,setTo]=useState(''),[query,setQuery]=useState('period=MESE'),[data,setData]=useState(null),[error,setError]=useState(''),[loading,setLoading]=useState(false),[detail,setDetail]=useState(null),[detailPrevious,setDetailPrevious]=useState(false); const detailRef=useRef(null);useEffect(()=>{if(detail){detailRef.current?.scrollIntoView({behavior:"smooth",block:"start"});detailRef.current?.focus({preventScroll:true});}},[detail]);
+ const requestSequence=useRef(0);
+ const refresh=useCallback(async()=>{const request=++requestSequence.current;setLoading(true);setError('');try{const d=await api('/api/executive?'+query);if(request===requestSequence.current){setData(d);setDetail(null);setDetailPrevious(false);}}catch(e){if(request===requestSequence.current)setError(e.message);}finally{if(request===requestSequence.current)setLoading(false);}},[api,query]);
+ useEffect(()=>{setData(null);setDetail(null);refresh();return()=>{requestSequence.current++;};},[refresh]);
+
+ const choose=p=>{setPeriod(p);if(p!=='PERSONALIZZATO')setQuery('period='+p);};
+ const format=(v,unit)=>v==null?'Non disponibile':unit==='money'?profitEuro(v):Number(v).toLocaleString('it-IT',{maximumFractionDigits:unit==='count'?0:1})+(unit==='percent'?'%':unit==='hours'?' h':unit==='days'?' giorni':'');
+ const metricRowsUnit=k=>({marginPercent:'money',productivity:'hours',capacity:'hours',approvalRate:'count'}[k.id]||k.unit);
+ const opened=detail?.kind==='funnel'?data?.funnel.find(k=>k.id===detail.id):data?.kpis.find(k=>k.id===detail?.id);
+ const rows=detailPrevious?opened?.previousRows||[]:opened?.rows||[];
+ const show=(id,kind='kpi')=>{setDetail({id,kind});setDetailPrevious(false);};
+ const periodLabel=p=>`${delayDate(p.from)} – ${delayDate(p.to)}`;
+ return <section className="executive-dashboard"><div className="executive-heading"><div><p className="executive-eyebrow">DIREZIONE · DATI DELLA CARROZZERIA</p><h1>Executive Dashboard</h1><p>Risultati, carico di lavoro e criticità. Tocca un indicatore per vedere le pratiche che lo compongono.</p></div><button disabled={loading} onClick={refresh}>{loading?'Aggiornamento…':'Aggiorna dati'}</button></div>
+ <div className="executive-filters" aria-label="Periodo dashboard">{['OGGI','SETTIMANA','MESE','TRIMESTRE','ANNO','PERSONALIZZATO'].map(p=><button key={p} aria-pressed={period===p} onClick={()=>choose(p)}>{p==='PERSONALIZZATO'?'PERIODO PERSONALIZZATO':p}</button>)}</div>
+ {period==='PERSONALIZZATO'&&<form className="executive-custom" onSubmit={e=>{e.preventDefault();setQuery(new URLSearchParams({period,from,to}).toString());}}><label>Dal<input required type="date" value={from} onInput={e=>setFrom(e.target.value)}/></label><label>Al<input required type="date" value={to} min={from||undefined} max={new Date().toLocaleDateString('sv-SE')} onInput={e=>setTo(e.target.value)}/></label><button type="submit">Applica periodo</button></form>}
+ {error&&<p role="alert" className="profit-error">{error}</p>}{loading&&!data&&<p role="status">Lettura dei dati reali…</p>}
+ {data&&<><p className="executive-period">{periodLabel(data.period)} · confronto {periodLabel(data.period.previous)}<br/><small>Aggiornato {new Date(data.generatedAt).toLocaleString('it-IT')}. {data.period.label}</small></p>
+ <div className="executive-kpis">{data.kpis.map(k=><button className="executive-kpi" key={k.id} onClick={()=>show(k.id)} aria-label={`Mostra dettagli: ${k.label}`}><span>{k.label}</span><strong>{format(k.value,k.unit)}</strong><small>{k.delta==null?(k.trendNote||'Confronto non disponibile'):`${k.delta>0?'↑':k.delta<0?'↓':'='} ${format(Math.abs(k.delta),k.unit==='percent'?'count':k.unit)}${k.unit==='percent'?' punti percentuali':''}${k.unit!=='percent'&&k.trendPercent!=null?` (${k.trendPercent>0?'+':''}${k.trendPercent.toFixed(1)}%)`:''} rispetto al precedente`}</small>{k.partial>0&&<em>Dati parziali · {k.partial} registri da completare</em>}<span className="executive-link">Pratiche e definizione →</span></button>)}</div>
+ <section className="executive-funnel"><h2>Dal preventivo all’incasso</h2><p>{data.funnelNote}</p><div className="executive-stages">{data.funnel.map((s,i)=><button key={s.id} onClick={()=>show(s.id,'funnel')}><span>{i+1}. {s.label}</span><strong>{s.count==null?'Non disponibile':`${s.count} pratiche`}</strong><span>{format(s.amount,'money')}</span><div className="executive-bar"><div style={{width:s.count==null?'0%':Math.min(100,100*s.count/Math.max(1,...data.funnel.map(x=>x.count||0)))+'%'}}/></div>{s.missing>0&&<small>{s.missing} importi mancanti</small>}</button>)}</div></section>
+ <p className="executive-footnote">Fatturato e incassi richiedono documenti contabili effettivi. Il margine operativo usa i ricavi previsti e i costi registrati nel Profit Tracker. I valori mancanti rimangono non disponibili; non sono trattati come zero.</p>
+ {opened&&<section ref={detailRef} tabIndex={-1} className="executive-detail" role="region" aria-label={`Dettaglio ${opened.label}`}><div className="executive-heading"><h2>{opened.label}</h2><button onClick={()=>setDetail(null)}>Chiudi dettagli</button></div><p>{opened.note||data.funnelNote}</p>{detail.kind==='kpi'&&opened.previous!=null&&<label><input type="checkbox" checked={detailPrevious} onChange={e=>setDetailPrevious(e.target.checked)}/> Mostra pratiche del periodo precedente</label>}<p>{rows.length} righe di origine · {new Set(rows.map(r=>r.vehicleId)).size} pratiche</p>{!rows.length?<p>Nessuna pratica da mostrare per questo dato. {opened.value===null||opened.count===null?'La fonte necessaria non è disponibile.':''}</p>:<div className="executive-table"><table><thead><tr><th>Pratica</th><th>{detail.kind==='funnel'?'Valore previsto':'Contributo / base di calcolo'}</th><th>Dettaglio</th><th></th></tr></thead><tbody>{rows.map((r,i)=><tr key={r.vehicleId+'-'+i}><td>{r.label}</td><td>{format(r.value,detail.kind==='funnel'?'money':metricRowsUnit(opened))}</td><td>{r.detail}</td><td><button onClick={()=>onOpen(r.vehicleId)}>Apri pratica</button></td></tr>)}</tbody></table></div>}</section>}</>}
+ </section>;
 }
 
 function DashboardView({ api, ruolo }) {
@@ -2476,9 +2554,20 @@ function PartDetailModal({ partId, api, onClose, onChanged }) {
 }
 
 /* ---------------- AUTO SOSTITUTIVE VIEW ---------------- */
+const LOANER_STATO_STYLE = {
+  DISPONIBILE: { label: "Disponibile", color: "#2F8F5B" },
+  PRENOTATA: { label: "Prenotata", color: "#4E7F8C" },
+  ASSEGNATA: { label: "Assegnata", color: "#C9A24B" },
+  MANUTENZIONE: { label: "Manutenzione", color: "#B4472E" },
+  NON_DISPONIBILE: { label: "Non disponibile", color: "#6B6963" },
+};
+const LOANER_FUEL_LABEL = { BENZINA: "Benzina", DIESEL: "Diesel", GPL: "GPL", METANO: "Metano", ELETTRICA: "Elettrica", IBRIDA: "Ibrida" };
+const LOANER_FUEL_LEVEL_LABEL = { VUOTO: "Vuoto", UN_QUARTO: "1/4", META: "1/2", TRE_QUARTI: "3/4", PIENO: "Pieno" };
+const euroDaCents = (c) => c == null ? "—" : `€ ${(c / 100).toFixed(2)}`;
+
 function AutoSostitutiveView({ api }) {
   const [cars, setCars] = useState([]);
-  const [clients, setClients] = useState([]);
+  const [alert, setAlert] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
@@ -2486,8 +2575,8 @@ function AutoSostitutiveView({ api }) {
 
   const load = useCallback(() => {
     setLoading(true);
-    Promise.all([api("/api/loaner-cars"), api("/api/clients")])
-      .then(([c, cl]) => { setCars(c); setClients(cl); })
+    Promise.all([api("/api/loaner-cars"), api("/api/loaner-cars/alert")])
+      .then(([c, a]) => { setCars(c); setAlert(a); })
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
   }, [api]);
@@ -2495,6 +2584,8 @@ function AutoSostitutiveView({ api }) {
   useEffect(load, [load]);
 
   if (loading) return <Loading />;
+
+  const numeroAlert = (alert?.scadenze.length || 0) + (alert?.sovrapposizioni.length || 0);
 
   return (
     <div>
@@ -2507,30 +2598,43 @@ function AutoSostitutiveView({ api }) {
 
       {error && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 13, padding: 10, borderRadius: 8, marginBottom: 16 }}>{error}</div>}
 
+      {numeroAlert > 0 && (
+        <div style={{ background: "#1B1500", border: "1px solid #4A3A00", borderRadius: 10, padding: 12, marginBottom: 16 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#C9A24B", marginBottom: 6 }}>{numeroAlert} avviso/i da controllare</div>
+          {alert.scadenze.map((s, i) => (
+            <div key={"s" + i} style={{ fontSize: 12, color: s.scaduta ? "#E5806B" : "#D9D6CE", marginBottom: 3 }}>
+              {s.scaduta ? "🔴" : "🟠"} {s.veicolo} ({s.targa}): {s.tipo} {s.scaduta ? "scaduta" : "in scadenza"} il {new Date(s.data).toLocaleDateString("it-IT")}
+            </div>
+          ))}
+          {alert.sovrapposizioni.map((s, i) => (
+            <div key={"o" + i} style={{ fontSize: 12, color: "#D9D6CE", marginBottom: 3 }}>
+              🟠 {s.veicolo} ({s.targa}): prenotazioni sovrapposte — {s.prenotazioneA.cliente} e {s.prenotazioneB.cliente}
+            </div>
+          ))}
+        </div>
+      )}
+
       {showForm && (
         <NewLoanerCarForm api={api} onDone={() => { setShowForm(false); load(); }} onCancel={() => setShowForm(false)} />
       )}
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 12 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(230px, 1fr))", gap: 12 }}>
         {cars.length === 0 && <div style={{ fontSize: 13, color: "#8D9099" }}>Nessuna auto sostitutiva ancora.</div>}
         {cars.map((c) => {
-          const attiva = c.bookings && c.bookings[0];
-          const client = attiva ? clients.find((cl) => cl.id === attiva.clientId) : null;
+          const stato = LOANER_STATO_STYLE[c.stato] || LOANER_STATO_STYLE.DISPONIBILE;
           return (
             <div key={c.id} onClick={() => setSelectedId(c.id)} style={{
               background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 14, cursor: "pointer",
             }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                <div style={{ fontFamily: "monospace", fontSize: 11, background: "#F1EFE8", display: "inline-block", padding: "2px 6px", borderRadius: 4 }}>{c.targa}</div>
-                <span style={{
-                  fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 20,
-                  background: c.disponibile ? "#E6F4EC" : "#FBEAE5", color: c.disponibile ? "#2F8F5B" : "#B4472E",
-                }}>{c.disponibile ? "Disponibile" : "In uso"}</span>
+                <div style={{ fontFamily: "monospace", fontSize: 11, background: "#0A0B0D", color: "#C9A24B", border: "1px solid #2A2E34", display: "inline-block", padding: "2px 6px", borderRadius: 4 }}>{c.targa}</div>
+                <span style={{ fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 20, background: stato.color + "22", color: stato.color }}>{stato.label}</span>
               </div>
               <div style={{ fontSize: 14, fontWeight: 600, marginTop: 8 }}>{c.marca} {c.modello}</div>
-              {attiva && (
-                <div style={{ fontSize: 12, color: "#8D9099", marginTop: 4 }}>
-                  Da {client ? `${client.nome} ${client.cognome}` : "cliente"} · dal {new Date(attiva.dataInizio).toLocaleDateString("it-IT")}
+              <div style={{ fontSize: 11.5, color: "#8D9099", marginTop: 2 }}>{LOANER_FUEL_LABEL[c.carburante]} · {c.km != null ? `${c.km.toLocaleString("it-IT")} km` : "km n/d"}</div>
+              {c.prenotazioneAttiva && (
+                <div style={{ fontSize: 12, color: "#8D9099", marginTop: 6 }}>
+                  {c.prenotazioneAttiva.client.nome} {c.prenotazioneAttiva.client.cognome} · dal {new Date(c.prenotazioneAttiva.dataInizioPrevista).toLocaleDateString("it-IT")}
                 </div>
               )}
             </div>
@@ -2542,7 +2646,6 @@ function AutoSostitutiveView({ api }) {
         <LoanerCarDetailModal
           carId={selectedId}
           api={api}
-          clients={clients}
           onClose={() => setSelectedId(null)}
           onChanged={load}
         />
@@ -2552,79 +2655,288 @@ function AutoSostitutiveView({ api }) {
 }
 
 function NewLoanerCarForm({ api, onDone, onCancel }) {
-  const [form, setForm] = useState({ targa: "", marca: "", modello: "" });
+  const [form, setForm] = useState({ targa: "", marca: "", modello: "", km: "", carburante: "BENZINA", tariffaGiornalieraCents: "", assicurazioneScadenza: "", revisioneScadenza: "", manutenzioneScadenza: "" });
   const [error, setError] = useState(null);
+  const [saving, setSaving] = useState(false);
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
   const submit = async () => {
+    if (!form.targa.trim() || !form.marca.trim() || !form.modello.trim()) { setError("Compila targa, marca e modello."); return; }
     setError(null);
+    setSaving(true);
     try {
-      await api("/api/loaner-cars", { method: "POST", body: JSON.stringify(form) });
+      await api("/api/loaner-cars", {
+        method: "POST",
+        body: JSON.stringify({
+          targa: form.targa.trim(), marca: form.marca.trim(), modello: form.modello.trim(), carburante: form.carburante,
+          km: form.km !== "" ? Number(form.km) : undefined,
+          tariffaGiornalieraCents: form.tariffaGiornalieraCents !== "" ? Math.round(Number(form.tariffaGiornalieraCents) * 100) : undefined,
+          assicurazioneScadenza: form.assicurazioneScadenza ? new Date(form.assicurazioneScadenza).toISOString() : undefined,
+          revisioneScadenza: form.revisioneScadenza ? new Date(form.revisioneScadenza).toISOString() : undefined,
+          manutenzioneScadenza: form.manutenzioneScadenza ? new Date(form.manutenzioneScadenza).toISOString() : undefined,
+        }),
+      });
       onDone();
     } catch (e) {
       setError(e.message);
-    }
+    } finally { setSaving(false); }
   };
 
   return (
     <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 16, marginBottom: 16 }}>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 10 }}>
         <Field label="Targa" value={form.targa} onChange={set("targa")} />
         <Field label="Marca" value={form.marca} onChange={set("marca")} />
         <Field label="Modello" value={form.modello} onChange={set("modello")} />
+        <Field label="Km attuali" type="number" value={form.km} onChange={set("km")} />
+        <div>
+          <label style={{ display: "block", fontSize: 11, color: "#8D9099", marginBottom: 4 }}>Carburante</label>
+          <select value={form.carburante} onChange={set("carburante")} style={{ width: "100%", padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC", fontSize: 13 }}>
+            {Object.keys(LOANER_FUEL_LABEL).map((f) => <option key={f} value={f}>{LOANER_FUEL_LABEL[f]}</option>)}
+          </select>
+        </div>
+        <Field label="Tariffa giornaliera (€)" type="number" value={form.tariffaGiornalieraCents} onChange={set("tariffaGiornalieraCents")} />
+        <Field label="Scadenza assicurazione" type="date" value={form.assicurazioneScadenza} onChange={set("assicurazioneScadenza")} />
+        <Field label="Scadenza revisione" type="date" value={form.revisioneScadenza} onChange={set("revisioneScadenza")} />
+        <Field label="Prossima manutenzione" type="date" value={form.manutenzioneScadenza} onChange={set("manutenzioneScadenza")} />
       </div>
       {error && <div style={{ color: "#B4472E", fontSize: 12, marginBottom: 8 }}>{error}</div>}
       <div style={{ display: "flex", gap: 8 }}>
-        <button onClick={submit} style={{ padding: "7px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 13 }}>Salva</button>
+        <button onClick={submit} disabled={saving} style={{ padding: "7px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 13, fontWeight: 600 }}>{saving ? "Salvataggio…" : "Salva"}</button>
         <button onClick={onCancel} style={{ padding: "7px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", fontSize: 13 }}>Annulla</button>
       </div>
     </div>
   );
 }
 
-function LoanerCarDetailModal({ carId, api, clients, onClose, onChanged }) {
+function NuovaPrenotazioneForm({ carId, api, clients, vehicles, onDone, onCancel }) {
+  const [form, setForm] = useState({ clientId: "", vehicleId: "", dataInizioPrevista: "", dataFinePrevista: "" });
+  const [error, setError] = useState(null);
+  const [avviso, setAvviso] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+
+  const submit = async () => {
+    if (!form.clientId || !form.dataInizioPrevista) { setError("Seleziona cliente e data inizio prevista."); return; }
+    setError(null);
+    setSaving(true);
+    try {
+      const res = await api(`/api/loaner-cars/${carId}/prenotazioni`, {
+        method: "POST",
+        body: JSON.stringify({
+          clientId: form.clientId, vehicleId: form.vehicleId || undefined,
+          dataInizioPrevista: new Date(form.dataInizioPrevista).toISOString(),
+          dataFinePrevista: form.dataFinePrevista ? new Date(form.dataFinePrevista).toISOString() : undefined,
+        }),
+      });
+      if (res.sovrapposizioneRilevata) setAvviso("Attenzione: questa prenotazione si sovrappone a un'altra già attiva sulla stessa auto.");
+      onDone();
+    } catch (e) { setError(e.message); } finally { setSaving(false); }
+  };
+
+  return (
+    <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 10, padding: 12, marginBottom: 12 }}>
+      <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 8 }}>Nuova prenotazione</div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 8 }}>
+        <select value={form.clientId} onChange={set("clientId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+          <option value="">Cliente…</option>
+          {clients.map((c) => <option key={c.id} value={c.id}>{c.nome} {c.cognome}</option>)}
+        </select>
+        <select value={form.vehicleId} onChange={set("vehicleId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+          <option value="">Pratica collegata (opzionale)…</option>
+          {vehicles.map((v) => <option key={v.id} value={v.id}>{v.marca} {v.modello} — {v.targa}</option>)}
+        </select>
+        <input type="datetime-local" value={form.dataInizioPrevista} onChange={set("dataInizioPrevista")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }} />
+        <input type="datetime-local" value={form.dataFinePrevista} onChange={set("dataFinePrevista")} placeholder="Fine prevista (opzionale)" style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }} />
+      </div>
+      {error && <div style={{ color: "#E5806B", fontSize: 12, marginBottom: 8 }}>{error}</div>}
+      {avviso && <div style={{ color: "#C9A24B", fontSize: 12, marginBottom: 8 }}>{avviso}</div>}
+      <div style={{ display: "flex", gap: 8 }}>
+        <button onClick={submit} disabled={saving} style={{ padding: "7px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 12.5, fontWeight: 600 }}>{saving ? "Salvataggio…" : "Prenota"}</button>
+        <button onClick={onCancel} style={{ padding: "7px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>Annulla</button>
+      </div>
+    </div>
+  );
+}
+
+function ConsegnaForm({ bookingId, api, onDone, onCancel }) {
+  const [kmIniziali, setKmIniziali] = useState("");
+  const [carburanteIniziale, setCarburanteIniziale] = useState("PIENO");
+  const [foto, setFoto] = useState([]);
+  const [mostraFirma, setMostraFirma] = useState(false);
+  const [error, setError] = useState(null);
+  const [saving, setSaving] = useState(false);
+
+  const confermaConFirma = async (firmaDataUrl, nome) => {
+    if (!kmIniziali) { setError("Indica i km di consegna."); setMostraFirma(false); return; }
+    setError(null);
+    setSaving(true);
+    try {
+      const body = new FormData();
+      body.append("kmIniziali", kmIniziali);
+      body.append("carburanteIniziale", carburanteIniziale);
+      body.append("firmaClienteDataUrl", firmaDataUrl);
+      body.append("firmatarioNome", nome);
+      foto.forEach((f) => body.append("foto", f));
+      await api(`/api/loaner-cars/prenotazioni/${bookingId}/consegna`, { method: "POST", body });
+      onDone();
+    } catch (e) { setError(e.message); setMostraFirma(false); } finally { setSaving(false); }
+  };
+
+  return (
+    <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 10, padding: 12, marginTop: 8 }}>
+      <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 8 }}>Consegna al cliente</div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 8 }}>
+        <input type="number" placeholder="Km consegna" value={kmIniziali} onChange={(e) => setKmIniziali(e.target.value)} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }} />
+        <select value={carburanteIniziale} onChange={(e) => setCarburanteIniziale(e.target.value)} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+          {Object.keys(LOANER_FUEL_LEVEL_LABEL).map((k) => <option key={k} value={k}>{LOANER_FUEL_LEVEL_LABEL[k]}</option>)}
+        </select>
+      </div>
+      <input type="file" accept="image/*" multiple capture="environment" onChange={(e) => setFoto(Array.from(e.target.files))} style={{ fontSize: 11.5, color: "#8D9099", marginBottom: 8 }} />
+      {error && <div style={{ color: "#E5806B", fontSize: 12, marginBottom: 8 }}>{error}</div>}
+      <div style={{ display: "flex", gap: 8 }}>
+        <button onClick={() => setMostraFirma(true)} disabled={saving || !kmIniziali} style={{ padding: "7px 14px", borderRadius: 8, border: "none", background: "#2F8F5B", color: "#fff", fontSize: 12.5, fontWeight: 600 }}>{saving ? "Salvataggio…" : "Firma e consegna"}</button>
+        <button onClick={onCancel} style={{ padding: "7px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>Annulla</button>
+      </div>
+      {mostraFirma && (
+        <FirmaModal titolo="Firma cliente" sottotitolo="Il cliente conferma di ricevere l'auto sostitutiva nelle condizioni fotografate." onSalva={confermaConFirma} onAnnulla={() => setMostraFirma(false)} salvando={saving} errore={error} />
+      )}
+    </div>
+  );
+}
+
+function RestituzioneForm({ bookingId, api, onDone, onCancel }) {
+  const [form, setForm] = useState({ kmFinali: "", carburanteFinale: "PIENO", danniRiscontrati: "", noteRestituzione: "" });
+  const [foto, setFoto] = useState([]);
+  const [error, setError] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+
+  const submit = async () => {
+    if (!form.kmFinali) { setError("Indica i km di restituzione."); return; }
+    setError(null);
+    setSaving(true);
+    try {
+      const body = new FormData();
+      body.append("kmFinali", form.kmFinali);
+      body.append("carburanteFinale", form.carburanteFinale);
+      if (form.danniRiscontrati) body.append("danniRiscontrati", form.danniRiscontrati);
+      if (form.noteRestituzione) body.append("noteRestituzione", form.noteRestituzione);
+      foto.forEach((f) => body.append("foto", f));
+      await api(`/api/loaner-cars/prenotazioni/${bookingId}/restituzione`, { method: "POST", body });
+      onDone();
+    } catch (e) { setError(e.message); } finally { setSaving(false); }
+  };
+
+  return (
+    <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 10, padding: 12, marginTop: 8 }}>
+      <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 8 }}>Registra restituzione</div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 8 }}>
+        <input type="number" placeholder="Km restituzione" value={form.kmFinali} onChange={set("kmFinali")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }} />
+        <select value={form.carburanteFinale} onChange={set("carburanteFinale")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+          {Object.keys(LOANER_FUEL_LEVEL_LABEL).map((k) => <option key={k} value={k}>{LOANER_FUEL_LEVEL_LABEL[k]}</option>)}
+        </select>
+      </div>
+      <textarea placeholder="Eventuali danni riscontrati" value={form.danniRiscontrati} onChange={set("danniRiscontrati")} rows={2} style={{ width: "100%", padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, marginBottom: 8, boxSizing: "border-box", fontFamily: "inherit" }} />
+      <textarea placeholder="Note" value={form.noteRestituzione} onChange={set("noteRestituzione")} rows={2} style={{ width: "100%", padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, marginBottom: 8, boxSizing: "border-box", fontFamily: "inherit" }} />
+      <input type="file" accept="image/*" multiple capture="environment" onChange={(e) => setFoto(Array.from(e.target.files))} style={{ fontSize: 11.5, color: "#8D9099", marginBottom: 8 }} />
+      {error && <div style={{ color: "#E5806B", fontSize: 12, marginBottom: 8 }}>{error}</div>}
+      <div style={{ display: "flex", gap: 8 }}>
+        <button onClick={submit} disabled={saving} style={{ padding: "7px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 12.5, fontWeight: 600 }}>{saving ? "Salvataggio…" : "Conferma restituzione"}</button>
+        <button onClick={onCancel} style={{ padding: "7px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>Annulla</button>
+      </div>
+    </div>
+  );
+}
+
+function PrenotazioneRow({ booking, api, onChanged }) {
+  const [azione, setAzione] = useState(null); // "consegna" | "restituzione" | null
+  const [attribuendo, setAttribuendo] = useState(false);
+  const [error, setError] = useState(null);
+
+  const annulla = async () => {
+    if (!confirm("Annullare questa prenotazione?")) return;
+    try { await api(`/api/loaner-cars/prenotazioni/${booking.id}/annulla`, { method: "POST" }); onChanged(); } catch (e) { setError(e.message); }
+  };
+  const attribuisci = async () => {
+    setAttribuendo(true);
+    setError(null);
+    try { await api(`/api/loaner-cars/prenotazioni/${booking.id}/attribuisci-profit`, { method: "POST" }); onChanged(); }
+    catch (e) { setError(e.message); } finally { setAttribuendo(false); }
+  };
+
+  const stato = LOANER_STATO_STYLE[booking.stato] || LOANER_STATO_STYLE.PRENOTATA;
+
+  return (
+    <div style={{ border: "1px solid #2A2E34", borderRadius: 10, padding: 10, marginBottom: 8 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
+        <div>
+          <div style={{ fontSize: 13, fontWeight: 700 }}>{booking.client?.nome} {booking.client?.cognome}</div>
+          {booking.vehicle && <div style={{ fontSize: 11.5, color: "#8D9099" }}>Pratica: {booking.vehicle.marca} {booking.vehicle.modello} · {booking.vehicle.targa}</div>}
+          <div style={{ fontSize: 11.5, color: "#8D9099" }}>
+            {new Date(booking.dataInizioPrevista).toLocaleDateString("it-IT")}{booking.dataFinePrevista ? ` → ${new Date(booking.dataFinePrevista).toLocaleDateString("it-IT")}` : ""}
+          </div>
+        </div>
+        <span style={{ fontSize: 10.5, fontWeight: 700, padding: "2px 8px", borderRadius: 20, background: stato.color + "22", color: stato.color, whiteSpace: "nowrap" }}>{stato.label}</span>
+      </div>
+
+      {booking.stato === "ASSEGNATA" && (
+        <div style={{ fontSize: 11.5, color: "#8D9099", marginTop: 6 }}>Consegnata il {new Date(booking.dataConsegna).toLocaleString("it-IT")} · km {booking.kmIniziali} · {LOANER_FUEL_LEVEL_LABEL[booking.carburanteIniziale]}</div>
+      )}
+      {booking.stato === "RESTITUITA" && (
+        <div style={{ fontSize: 11.5, color: "#8D9099", marginTop: 6 }}>
+          Restituita il {new Date(booking.dataRestituzione).toLocaleString("it-IT")} · km {booking.kmFinali} · {LOANER_FUEL_LEVEL_LABEL[booking.carburanteFinale]}
+          {booking.danniRiscontrati && <div style={{ color: "#E5806B", marginTop: 2 }}>Danni: {booking.danniRiscontrati}</div>}
+          {booking.costoInternoCents != null && <div style={{ marginTop: 2 }}>Costo interno: <strong>{euroDaCents(booking.costoInternoCents)}</strong></div>}
+        </div>
+      )}
+
+      {error && <div style={{ color: "#E5806B", fontSize: 11.5, marginTop: 6 }}>{error}</div>}
+
+      <div style={{ display: "flex", gap: 8, marginTop: 8, flexWrap: "wrap" }}>
+        {booking.stato === "PRENOTATA" && (
+          <>
+            <button onClick={() => setAzione(azione === "consegna" ? null : "consegna")} style={{ padding: "5px 10px", borderRadius: 6, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 11 }}>Consegna</button>
+            <button onClick={annulla} style={{ padding: "5px 10px", borderRadius: 6, border: "1px solid #2A2E34", background: "#15171B", color: "#B4472E", fontSize: 11 }}>Annulla prenotazione</button>
+          </>
+        )}
+        {booking.stato === "ASSEGNATA" && (
+          <button onClick={() => setAzione(azione === "restituzione" ? null : "restituzione")} style={{ padding: "5px 10px", borderRadius: 6, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 11 }}>Registra restituzione</button>
+        )}
+        {booking.stato === "RESTITUITA" && booking.vehicle && booking.costoInternoCents != null && !booking.attribuitoProfitRecordId && (
+          <button onClick={attribuisci} disabled={attribuendo} style={{ padding: "5px 10px", borderRadius: 6, border: "1px solid #C9A24B", background: "transparent", color: "#C9A24B", fontSize: 11 }}>{attribuendo ? "Attribuzione…" : "Attribuisci a Profit Tracker"}</button>
+        )}
+        {booking.attribuitoProfitRecordId && <span style={{ fontSize: 11, color: "#2F8F5B" }}>✓ Attribuito al Profit Tracker</span>}
+      </div>
+
+      {azione === "consegna" && <ConsegnaForm bookingId={booking.id} api={api} onDone={() => { setAzione(null); onChanged(); }} onCancel={() => setAzione(null)} />}
+      {azione === "restituzione" && <RestituzioneForm bookingId={booking.id} api={api} onDone={() => { setAzione(null); onChanged(); }} onCancel={() => setAzione(null)} />}
+    </div>
+  );
+}
+
+function LoanerCarDetailModal({ carId, api, onClose, onChanged }) {
   const [car, setCar] = useState(null);
+  const [clients, setClients] = useState([]);
+  const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [clientId, setClientId] = useState("");
-  const [saving, setSaving] = useState(false);
+  const [mostraPrenota, setMostraPrenota] = useState(false);
 
   const load = useCallback(() => {
     setLoading(true);
-    api(`/api/loaner-cars/${carId}`).then(setCar).catch((e) => setError(e.message)).finally(() => setLoading(false));
+    Promise.all([api(`/api/loaner-cars/${carId}`), api("/api/clients"), api("/api/vehicles")])
+      .then(([c, cl, v]) => { setCar(c); setClients(cl); setVehicles(v); })
+      .catch((e) => setError(e.message))
+      .finally(() => setLoading(false));
   }, [api, carId]);
 
   useEffect(load, [load]);
 
-  const prenotazioneAttiva = car?.bookings?.find((b) => !b.dataFine);
+  const aggiorna = () => { load(); onChanged(); };
 
-  const assegna = async () => {
-    if (!clientId) return;
-    setError(null);
-    setSaving(true);
-    try {
-      await api(`/api/loaner-cars/${carId}/bookings`, { method: "POST", body: JSON.stringify({ clientId }) });
-      await load();
-      onChanged();
-    } catch (e) {
-      setError(e.message);
-    } finally {
-      setSaving(false);
-    }
-  };
-
-  const registraRientro = async () => {
-    setError(null);
-    setSaving(true);
-    try {
-      await api(`/api/loaner-cars/${carId}/rientro`, { method: "PATCH" });
-      await load();
-      onChanged();
-    } catch (e) {
-      setError(e.message);
-    } finally {
-      setSaving(false);
-    }
+  const cambiaStatoManuale = async (statoManuale) => {
+    try { await api(`/api/loaner-cars/${carId}`, { method: "PATCH", body: JSON.stringify({ statoManuale }) }); aggiorna(); } catch (e) { setError(e.message); }
   };
 
   const elimina = async () => {
@@ -2641,17 +2953,18 @@ function LoanerCarDetailModal({ carId, api, clients, onClose, onChanged }) {
   return (
     <div onClick={onClose} style={{
       position: "fixed", inset: 0, background: "rgba(27,26,23,0.5)", display: "flex",
-      alignItems: "center", justifyContent: "center", zIndex: 50,
+      alignItems: "center", justifyContent: "center", zIndex: 50, padding: 16,
     }}>
       <div onClick={(e) => e.stopPropagation()} style={{
-        background: "#15171B", borderRadius: 16, width: 480, maxHeight: "85vh", overflowY: "auto", padding: 24,
+        background: "#15171B", borderRadius: 16, width: 560, maxWidth: "100%", maxHeight: "88vh", overflowY: "auto", padding: 24,
       }}>
         {loading || !car ? <Loading /> : (
           <>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 4 }}>
               <div>
-                <div style={{ fontFamily: "monospace", fontSize: 12, background: "#F1EFE8", display: "inline-block", padding: "2px 7px", borderRadius: 5 }}>{car.targa}</div>
+                <div style={{ fontFamily: "monospace", fontSize: 12, background: "#0A0B0D", color: "#C9A24B", border: "1px solid #2A2E34", display: "inline-block", padding: "2px 7px", borderRadius: 5 }}>{car.targa}</div>
                 <h2 style={{ fontSize: 18, fontWeight: 700, margin: "8px 0 2px" }}>{car.marca} {car.modello}</h2>
+                <div style={{ fontSize: 12, color: "#8D9099" }}>{LOANER_FUEL_LABEL[car.carburante]} · {car.km != null ? `${car.km.toLocaleString("it-IT")} km` : "km n/d"} · tariffa {car.tariffaGiornalieraCents != null ? `${euroDaCents(car.tariffaGiornalieraCents)}/giorno` : "non impostata"}</div>
               </div>
               <button onClick={onClose} style={{
                 border: "none", background: "#F1EFE8", width: 28, height: 28, borderRadius: 8, fontSize: 15, color: "#4A4842",
@@ -2660,64 +2973,39 @@ function LoanerCarDetailModal({ carId, api, clients, onClose, onChanged }) {
 
             {error && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 13, padding: 10, borderRadius: 8, marginTop: 12 }}>{error}</div>}
 
-            <div style={{ marginTop: 20 }}>
-              {prenotazioneAttiva ? (
-                <div style={{ background: "#FBEAE5", borderRadius: 10, padding: 12 }}>
-                  <div style={{ fontSize: 12, color: "#8D9099", marginBottom: 4 }}>Attualmente assegnata a</div>
-                  <div style={{ fontSize: 14, fontWeight: 700 }}>
-                    {(() => {
-                      const cl = clients.find((c) => c.id === prenotazioneAttiva.clientId);
-                      return cl ? `${cl.nome} ${cl.cognome}` : "Cliente";
-                    })()}
-                  </div>
-                  <div style={{ fontSize: 12, color: "#8D9099" }}>dal {new Date(prenotazioneAttiva.dataInizio).toLocaleDateString("it-IT")}</div>
-                  <button disabled={saving} onClick={registraRientro} style={{
-                    marginTop: 10, padding: "8px 14px", borderRadius: 8, border: "none", background: "#2F8F5B", color: "#15171B", fontSize: 13, fontWeight: 600,
-                  }}>Registra rientro</button>
-                </div>
+            <div style={{ display: "flex", gap: 8, marginTop: 16, flexWrap: "wrap" }}>
+              <span style={{ fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 20, background: (LOANER_STATO_STYLE[car.stato] || {}).color + "22", color: (LOANER_STATO_STYLE[car.stato] || {}).color }}>{(LOANER_STATO_STYLE[car.stato] || {}).label}</span>
+              {car.statoManuale ? (
+                <button onClick={() => cambiaStatoManuale(null)} style={{ padding: "4px 10px", borderRadius: 6, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC", fontSize: 11 }}>Rimetti disponibile</button>
               ) : (
-                <div style={{ background: "#0A0B0D", borderRadius: 10, padding: 12 }}>
-                  <div style={{ fontSize: 12, color: "#8D9099", marginBottom: 8 }}>Assegna a un cliente</div>
-                  <div style={{ display: "flex", gap: 8 }}>
-                    <select value={clientId} onChange={(e) => setClientId(e.target.value)} style={{
-                      flex: 1, padding: 8, borderRadius: 8, border: "1px solid #2A2E34", fontSize: 13,
-                    }}>
-                      <option value="">Seleziona cliente…</option>
-                      {clients.map((c) => <option key={c.id} value={c.id}>{c.nome} {c.cognome}</option>)}
-                    </select>
-                    <button disabled={saving || !clientId} onClick={assegna} style={{
-                      padding: "8px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 13, fontWeight: 600,
-                    }}>Assegna</button>
-                  </div>
-                </div>
+                <>
+                  <button onClick={() => cambiaStatoManuale("MANUTENZIONE")} style={{ padding: "4px 10px", borderRadius: 6, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC", fontSize: 11 }}>Segna in manutenzione</button>
+                  <button onClick={() => cambiaStatoManuale("NON_DISPONIBILE")} style={{ padding: "4px 10px", borderRadius: 6, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC", fontSize: 11 }}>Segna non disponibile</button>
+                </>
               )}
             </div>
 
-            {car.bookings && car.bookings.length > 0 && (
-              <>
-                <h3 style={{ fontSize: 13, fontWeight: 700, marginTop: 24, marginBottom: 10 }}>Storico utilizzi</h3>
-                <div style={{ border: "1px solid #2A2E34", borderRadius: 10, overflow: "hidden" }}>
-                  {car.bookings.map((b, i) => {
-                    const cl = clients.find((c) => c.id === b.clientId);
-                    return (
-                      <div key={b.id} style={{
-                        display: "flex", justifyContent: "space-between", padding: "8px 12px", fontSize: 12,
-                        borderTop: i === 0 ? "none" : "1px solid #F1EFE8",
-                      }}>
-                        <span>{cl ? `${cl.nome} ${cl.cognome}` : "Cliente"}</span>
-                        <span style={{ color: "#8D9099" }}>
-                          {new Date(b.dataInizio).toLocaleDateString("it-IT")}
-                          {b.dataFine ? ` → ${new Date(b.dataFine).toLocaleDateString("it-IT")}` : " (in corso)"}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </>
+            {(car.assicurazioneScadenza || car.revisioneScadenza || car.manutenzioneScadenza) && (
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, marginTop: 14, fontSize: 11.5, color: "#D9D6CE" }}>
+                <div>Assicurazione<br /><strong>{car.assicurazioneScadenza ? new Date(car.assicurazioneScadenza).toLocaleDateString("it-IT") : "—"}</strong></div>
+                <div>Revisione<br /><strong>{car.revisioneScadenza ? new Date(car.revisioneScadenza).toLocaleDateString("it-IT") : "—"}</strong></div>
+                <div>Manutenzione<br /><strong>{car.manutenzioneScadenza ? new Date(car.manutenzioneScadenza).toLocaleDateString("it-IT") : "—"}</strong></div>
+              </div>
             )}
 
+            <h3 style={{ fontSize: 13, fontWeight: 700, marginTop: 22, marginBottom: 10 }}>Calendario e prenotazioni</h3>
+            {!mostraPrenota ? (
+              <button onClick={() => setMostraPrenota(true)} style={{ padding: "7px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 12.5, fontWeight: 600, marginBottom: 10 }}>+ Nuova prenotazione</button>
+            ) : (
+              <NuovaPrenotazioneForm carId={carId} api={api} clients={clients} vehicles={vehicles} onDone={() => { setMostraPrenota(false); aggiorna(); }} onCancel={() => setMostraPrenota(false)} />
+            )}
+
+            {(car.bookings || []).length === 0 ? (
+              <div style={{ fontSize: 12, color: "#8D9099" }}>Nessuna prenotazione ancora.</div>
+            ) : car.bookings.map((b) => <PrenotazioneRow key={b.id} booking={b} api={api} onChanged={aggiorna} />)}
+
             <button onClick={elimina} style={{
-              marginTop: 20, padding: "7px 14px", borderRadius: 8, border: "1px solid #FBEAE5", background: "#15171B", color: "#B4472E", fontSize: 12,
+              marginTop: 16, padding: "7px 14px", borderRadius: 8, border: "1px solid #FBEAE5", background: "#15171B", color: "#B4472E", fontSize: 12,
             }}>Elimina auto</button>
           </>
         )}

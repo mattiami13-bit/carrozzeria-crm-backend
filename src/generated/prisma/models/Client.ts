@@ -260,6 +260,7 @@ export type ClientWhereInput = {
   documents?: Prisma.DocumentListRelationFilter
   appointments?: Prisma.AppointmentListRelationFilter
   sinistri?: Prisma.SinistroListRelationFilter
+  loanerBookings?: Prisma.LoanerBookingListRelationFilter
   whatsappMessages?: Prisma.WhatsappMessageListRelationFilter
 }
 
@@ -284,6 +285,7 @@ export type ClientOrderByWithRelationInput = {
   documents?: Prisma.DocumentOrderByRelationAggregateInput
   appointments?: Prisma.AppointmentOrderByRelationAggregateInput
   sinistri?: Prisma.SinistroOrderByRelationAggregateInput
+  loanerBookings?: Prisma.LoanerBookingOrderByRelationAggregateInput
   whatsappMessages?: Prisma.WhatsappMessageOrderByRelationAggregateInput
 }
 
@@ -311,6 +313,7 @@ export type ClientWhereUniqueInput = Prisma.AtLeast<{
   documents?: Prisma.DocumentListRelationFilter
   appointments?: Prisma.AppointmentListRelationFilter
   sinistri?: Prisma.SinistroListRelationFilter
+  loanerBookings?: Prisma.LoanerBookingListRelationFilter
   whatsappMessages?: Prisma.WhatsappMessageListRelationFilter
 }, "id">
 
@@ -374,6 +377,7 @@ export type ClientCreateInput = {
   documents?: Prisma.DocumentCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutClientInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutClientInput
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutClientInput
 }
 
@@ -397,6 +401,7 @@ export type ClientUncheckedCreateInput = {
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutClientInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutClientInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutClientInput
 }
 
@@ -420,6 +425,7 @@ export type ClientUpdateInput = {
   documents?: Prisma.DocumentUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutClientNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutClientNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutClientNestedInput
 }
 
@@ -443,6 +449,7 @@ export type ClientUncheckedUpdateInput = {
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutClientNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutClientNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutClientNestedInput
 }
 
@@ -637,6 +644,20 @@ export type ClientUpdateOneRequiredWithoutQuotesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClientUpdateToOneWithWhereWithoutQuotesInput, Prisma.ClientUpdateWithoutQuotesInput>, Prisma.ClientUncheckedUpdateWithoutQuotesInput>
 }
 
+export type ClientCreateNestedOneWithoutLoanerBookingsInput = {
+  create?: Prisma.XOR<Prisma.ClientCreateWithoutLoanerBookingsInput, Prisma.ClientUncheckedCreateWithoutLoanerBookingsInput>
+  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutLoanerBookingsInput
+  connect?: Prisma.ClientWhereUniqueInput
+}
+
+export type ClientUpdateOneRequiredWithoutLoanerBookingsNestedInput = {
+  create?: Prisma.XOR<Prisma.ClientCreateWithoutLoanerBookingsInput, Prisma.ClientUncheckedCreateWithoutLoanerBookingsInput>
+  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutLoanerBookingsInput
+  upsert?: Prisma.ClientUpsertWithoutLoanerBookingsInput
+  connect?: Prisma.ClientWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ClientUpdateToOneWithWhereWithoutLoanerBookingsInput, Prisma.ClientUpdateWithoutLoanerBookingsInput>, Prisma.ClientUncheckedUpdateWithoutLoanerBookingsInput>
+}
+
 export type ClientCreateNestedOneWithoutAppointmentsInput = {
   create?: Prisma.XOR<Prisma.ClientCreateWithoutAppointmentsInput, Prisma.ClientUncheckedCreateWithoutAppointmentsInput>
   connectOrCreate?: Prisma.ClientCreateOrConnectWithoutAppointmentsInput
@@ -714,6 +735,7 @@ export type ClientCreateWithoutTenantInput = {
   documents?: Prisma.DocumentCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutClientInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutClientInput
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutClientInput
 }
 
@@ -736,6 +758,7 @@ export type ClientUncheckedCreateWithoutTenantInput = {
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutClientInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutClientInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutClientInput
 }
 
@@ -804,6 +827,7 @@ export type ClientCreateWithoutVehiclesInput = {
   documents?: Prisma.DocumentCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutClientInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutClientInput
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutClientInput
 }
 
@@ -826,6 +850,7 @@ export type ClientUncheckedCreateWithoutVehiclesInput = {
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutClientInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutClientInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutClientInput
 }
 
@@ -864,6 +889,7 @@ export type ClientUpdateWithoutVehiclesInput = {
   documents?: Prisma.DocumentUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutClientNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutClientNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutClientNestedInput
 }
 
@@ -886,6 +912,7 @@ export type ClientUncheckedUpdateWithoutVehiclesInput = {
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutClientNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutClientNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutClientNestedInput
 }
 
@@ -908,6 +935,7 @@ export type ClientCreateWithoutQuotesInput = {
   documents?: Prisma.DocumentCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutClientInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutClientInput
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutClientInput
 }
 
@@ -930,6 +958,7 @@ export type ClientUncheckedCreateWithoutQuotesInput = {
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutClientInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutClientInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutClientInput
 }
 
@@ -968,6 +997,7 @@ export type ClientUpdateWithoutQuotesInput = {
   documents?: Prisma.DocumentUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutClientNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutClientNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutClientNestedInput
 }
 
@@ -987,6 +1017,115 @@ export type ClientUncheckedUpdateWithoutQuotesInput = {
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutClientNestedInput
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutClientNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutClientNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutClientNestedInput
+}
+
+export type ClientCreateWithoutLoanerBookingsInput = {
+  id?: string
+  nome: string
+  cognome: string
+  telefono?: string | null
+  email?: string | null
+  codiceFiscale?: string | null
+  partitaIva?: string | null
+  indirizzo?: string | null
+  noteInterne?: string | null
+  createdAt?: Date | string
+  notificheWhatsappConsenso?: boolean
+  notificheWhatsappConsensoAt?: Date | string | null
+  notificheWhatsappAttive?: boolean
+  tenant: Prisma.TenantCreateNestedOneWithoutClientsInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutClientInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutClientInput
+  documents?: Prisma.DocumentCreateNestedManyWithoutClientInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutClientInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutClientInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutClientInput
+}
+
+export type ClientUncheckedCreateWithoutLoanerBookingsInput = {
+  id?: string
+  tenantId: string
+  nome: string
+  cognome: string
+  telefono?: string | null
+  email?: string | null
+  codiceFiscale?: string | null
+  partitaIva?: string | null
+  indirizzo?: string | null
+  noteInterne?: string | null
+  createdAt?: Date | string
+  notificheWhatsappConsenso?: boolean
+  notificheWhatsappConsensoAt?: Date | string | null
+  notificheWhatsappAttive?: boolean
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutClientInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutClientInput
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutClientInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutClientInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutClientInput
+}
+
+export type ClientCreateOrConnectWithoutLoanerBookingsInput = {
+  where: Prisma.ClientWhereUniqueInput
+  create: Prisma.XOR<Prisma.ClientCreateWithoutLoanerBookingsInput, Prisma.ClientUncheckedCreateWithoutLoanerBookingsInput>
+}
+
+export type ClientUpsertWithoutLoanerBookingsInput = {
+  update: Prisma.XOR<Prisma.ClientUpdateWithoutLoanerBookingsInput, Prisma.ClientUncheckedUpdateWithoutLoanerBookingsInput>
+  create: Prisma.XOR<Prisma.ClientCreateWithoutLoanerBookingsInput, Prisma.ClientUncheckedCreateWithoutLoanerBookingsInput>
+  where?: Prisma.ClientWhereInput
+}
+
+export type ClientUpdateToOneWithWhereWithoutLoanerBookingsInput = {
+  where?: Prisma.ClientWhereInput
+  data: Prisma.XOR<Prisma.ClientUpdateWithoutLoanerBookingsInput, Prisma.ClientUncheckedUpdateWithoutLoanerBookingsInput>
+}
+
+export type ClientUpdateWithoutLoanerBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codiceFiscale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  indirizzo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteInterne?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutClientsNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutClientNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutClientNestedInput
+  documents?: Prisma.DocumentUpdateManyWithoutClientNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutClientNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutClientNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutClientNestedInput
+}
+
+export type ClientUncheckedUpdateWithoutLoanerBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codiceFiscale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  indirizzo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noteInterne?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutClientNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutClientNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutClientNestedInput
@@ -1012,6 +1151,7 @@ export type ClientCreateWithoutAppointmentsInput = {
   quotes?: Prisma.QuoteCreateNestedManyWithoutClientInput
   documents?: Prisma.DocumentCreateNestedManyWithoutClientInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutClientInput
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutClientInput
 }
 
@@ -1034,6 +1174,7 @@ export type ClientUncheckedCreateWithoutAppointmentsInput = {
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutClientInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutClientInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutClientInput
 }
 
@@ -1072,6 +1213,7 @@ export type ClientUpdateWithoutAppointmentsInput = {
   quotes?: Prisma.QuoteUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUpdateManyWithoutClientNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutClientNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutClientNestedInput
 }
 
@@ -1094,6 +1236,7 @@ export type ClientUncheckedUpdateWithoutAppointmentsInput = {
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutClientNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutClientNestedInput
 }
 
@@ -1116,6 +1259,7 @@ export type ClientCreateWithoutDocumentsInput = {
   quotes?: Prisma.QuoteCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutClientInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutClientInput
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutClientInput
 }
 
@@ -1138,6 +1282,7 @@ export type ClientUncheckedCreateWithoutDocumentsInput = {
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutClientInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutClientInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutClientInput
 }
 
@@ -1176,6 +1321,7 @@ export type ClientUpdateWithoutDocumentsInput = {
   quotes?: Prisma.QuoteUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutClientNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutClientNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutClientNestedInput
 }
 
@@ -1198,6 +1344,7 @@ export type ClientUncheckedUpdateWithoutDocumentsInput = {
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutClientNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutClientNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutClientNestedInput
 }
 
@@ -1220,6 +1367,7 @@ export type ClientCreateWithoutSinistriInput = {
   quotes?: Prisma.QuoteCreateNestedManyWithoutClientInput
   documents?: Prisma.DocumentCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutClientInput
   whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutClientInput
 }
 
@@ -1242,6 +1390,7 @@ export type ClientUncheckedCreateWithoutSinistriInput = {
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutClientInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutClientInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutClientInput
 }
 
@@ -1280,6 +1429,7 @@ export type ClientUpdateWithoutSinistriInput = {
   quotes?: Prisma.QuoteUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutClientNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutClientNestedInput
 }
 
@@ -1302,6 +1452,7 @@ export type ClientUncheckedUpdateWithoutSinistriInput = {
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutClientNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutClientNestedInput
 }
 
@@ -1325,6 +1476,7 @@ export type ClientCreateWithoutWhatsappMessagesInput = {
   documents?: Prisma.DocumentCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutClientInput
   sinistri?: Prisma.SinistroCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateWithoutWhatsappMessagesInput = {
@@ -1347,6 +1499,7 @@ export type ClientUncheckedCreateWithoutWhatsappMessagesInput = {
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutClientInput
   sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutClientInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientCreateOrConnectWithoutWhatsappMessagesInput = {
@@ -1385,6 +1538,7 @@ export type ClientUpdateWithoutWhatsappMessagesInput = {
   documents?: Prisma.DocumentUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutClientNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateWithoutWhatsappMessagesInput = {
@@ -1407,6 +1561,7 @@ export type ClientUncheckedUpdateWithoutWhatsappMessagesInput = {
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutClientNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientCreateManyTenantInput = {
@@ -1444,6 +1599,7 @@ export type ClientUpdateWithoutTenantInput = {
   documents?: Prisma.DocumentUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutClientNestedInput
   sinistri?: Prisma.SinistroUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutClientNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutClientNestedInput
 }
 
@@ -1466,6 +1622,7 @@ export type ClientUncheckedUpdateWithoutTenantInput = {
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutClientNestedInput
   sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutClientNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutClientNestedInput
   whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutClientNestedInput
 }
 
@@ -1496,6 +1653,7 @@ export type ClientCountOutputType = {
   documents: number
   appointments: number
   sinistri: number
+  loanerBookings: number
   whatsappMessages: number
 }
 
@@ -1505,6 +1663,7 @@ export type ClientCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   documents?: boolean | ClientCountOutputTypeCountDocumentsArgs
   appointments?: boolean | ClientCountOutputTypeCountAppointmentsArgs
   sinistri?: boolean | ClientCountOutputTypeCountSinistriArgs
+  loanerBookings?: boolean | ClientCountOutputTypeCountLoanerBookingsArgs
   whatsappMessages?: boolean | ClientCountOutputTypeCountWhatsappMessagesArgs
 }
 
@@ -1556,6 +1715,13 @@ export type ClientCountOutputTypeCountSinistriArgs<ExtArgs extends runtime.Types
 /**
  * ClientCountOutputType without action
  */
+export type ClientCountOutputTypeCountLoanerBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LoanerBookingWhereInput
+}
+
+/**
+ * ClientCountOutputType without action
+ */
 export type ClientCountOutputTypeCountWhatsappMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.WhatsappMessageWhereInput
 }
@@ -1582,6 +1748,7 @@ export type ClientSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   documents?: boolean | Prisma.Client$documentsArgs<ExtArgs>
   appointments?: boolean | Prisma.Client$appointmentsArgs<ExtArgs>
   sinistri?: boolean | Prisma.Client$sinistriArgs<ExtArgs>
+  loanerBookings?: boolean | Prisma.Client$loanerBookingsArgs<ExtArgs>
   whatsappMessages?: boolean | Prisma.Client$whatsappMessagesArgs<ExtArgs>
   _count?: boolean | Prisma.ClientCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["client"]>
@@ -1647,6 +1814,7 @@ export type ClientInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   documents?: boolean | Prisma.Client$documentsArgs<ExtArgs>
   appointments?: boolean | Prisma.Client$appointmentsArgs<ExtArgs>
   sinistri?: boolean | Prisma.Client$sinistriArgs<ExtArgs>
+  loanerBookings?: boolean | Prisma.Client$loanerBookingsArgs<ExtArgs>
   whatsappMessages?: boolean | Prisma.Client$whatsappMessagesArgs<ExtArgs>
   _count?: boolean | Prisma.ClientCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1666,6 +1834,7 @@ export type $ClientPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     documents: Prisma.$DocumentPayload<ExtArgs>[]
     appointments: Prisma.$AppointmentPayload<ExtArgs>[]
     sinistri: Prisma.$SinistroPayload<ExtArgs>[]
+    loanerBookings: Prisma.$LoanerBookingPayload<ExtArgs>[]
     whatsappMessages: Prisma.$WhatsappMessagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -2083,6 +2252,7 @@ export interface Prisma__ClientClient<T, Null = never, ExtArgs extends runtime.T
   documents<T extends Prisma.Client$documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   appointments<T extends Prisma.Client$appointmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$appointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sinistri<T extends Prisma.Client$sinistriArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$sinistriArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SinistroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  loanerBookings<T extends Prisma.Client$loanerBookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$loanerBookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoanerBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   whatsappMessages<T extends Prisma.Client$whatsappMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$whatsappMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WhatsappMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2645,6 +2815,30 @@ export type Client$sinistriArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.SinistroScalarFieldEnum | Prisma.SinistroScalarFieldEnum[]
+}
+
+/**
+ * Client.loanerBookings
+ */
+export type Client$loanerBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LoanerBooking
+   */
+  select?: Prisma.LoanerBookingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LoanerBooking
+   */
+  omit?: Prisma.LoanerBookingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LoanerBookingInclude<ExtArgs> | null
+  where?: Prisma.LoanerBookingWhereInput
+  orderBy?: Prisma.LoanerBookingOrderByWithRelationInput | Prisma.LoanerBookingOrderByWithRelationInput[]
+  cursor?: Prisma.LoanerBookingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LoanerBookingScalarFieldEnum | Prisma.LoanerBookingScalarFieldEnum[]
 }
 
 /**

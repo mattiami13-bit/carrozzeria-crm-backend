@@ -1,0 +1,34 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import {prisma} from '../src/lib/prisma.js';
+import {briefingRouter} from '../src/routes/briefing.js';
+import {ensureBriefings} from '../src/lib/briefing-service.js';
+process.env.JWT_SECRET='isolated-briefing-tests';let role='ADMIN',writes=0;
+prisma.user.findFirst=async({where})=>{assert.equal(where.tenantId,'a');assert.equal(where.attivo,true);return role?{ruolo:role}:null;};
+prisma.briefingReport.findFirst=async({where})=>{assert.equal(where.tenantId,'a');return where.id==='mine'?{id:'mine',data:{actions:[{key:'a'}]}}:null;};
+prisma.briefingResolution.upsert=async({create,update})=>{writes++;assert.equal(create.reportId,'mine');assert.equal(create.userId,'u');assert.deepEqual(update,{});return create;};
+prisma.briefingSettings.upsert=async({where})=>{writes++;assert.equal(where.tenantId,'a');};
+const app=express();app.use(express.json());app.use('/briefing',briefingRouter);app.use((e,req,res,next)=>res.status(500).json({error:e.message}));const server=app.listen(0,'127.0.0.1');await new Promise(r=>server.once('listening',r));
+const call=(path,body,auth=true,method='POST')=>fetch(`http://127.0.0.1:${server.address().port}/briefing${path}`,{method,headers:{'Content-Type':'application/json',...(auth?{Authorization:'Bearer '+jwt.sign({sub:'u',tenantId:'a',role:'ADMIN'},process.env.JWT_SECRET)}:{})},body:JSON.stringify(body)});
+test('API: ruolo reale, tenant, validazione, risoluzione esplicita e idempotente',async()=>{try{
+ assert.equal((await call('/mine/resolve',{},false)).status,401);
+ for(role of ['TECNICO','ACCETTATORE','AMMINISTRAZIONE',null])assert.equal((await call('/mine/resolve',{})).status,403);
+ role='ADMIN';assert.equal((await call('/mine/resolve',{actionKey:'a',note:''})).status,400);
+ assert.equal((await call('/foreign/resolve',{actionKey:'a',note:'Gestito'})).status,404);
+ assert.equal((await call('/mine/resolve',{actionKey:'unknown',note:'Gestito'})).status,404);
+ assert.equal((await call('/settings',{morningTime:'25:00'},true,'PUT')).status,400);assert.equal(writes,0);
+ const r=await call('/mine/resolve',{actionKey:'a',note:'Verificato nella pratica'});assert.equal(r.status,200);assert.equal(r.headers.get('cache-control'),'no-store');assert.equal(writes,1);
+ }finally{await new Promise(r=>server.close(r));}});
+test('Worker: snapshot unico, isolamento dati, retry dopo errore senza scritture operative',async()=>{
+ const reports=new Map();let fail=true,creates=0;
+ prisma.briefingSettings.findUnique=async({where})=>{assert.equal(where.tenantId,'a');return null;};
+ prisma.briefingReport.findUnique=async({where})=>reports.get(JSON.stringify(where.tenantId_day_kind))||null;
+ prisma.briefingReport.create=async({data})=>{creates++;if(fail){fail=false;throw Object.assign(new Error('retry'),{code:'TEST'});}const key=JSON.stringify({tenantId:data.tenantId,day:data.day,kind:data.kind});if(reports.has(key))throw Object.assign(new Error('duplicate'),{code:'P2002'});reports.set(key,data);return data;};
+ for(const model of ['vehicle','trackedPart','workOrder','user','appointment'])prisma[model].findMany=async({where})=>{assert.equal(where.tenantId,'a');return [];};
+ prisma.delaySettings.findUnique=async({where})=>{assert.equal(where.tenantId,'a');return null;};
+ prisma.$transaction=async(fn,opts)=>{assert.equal(opts.isolationLevel,'RepeatableRead');return fn(prisma);};
+ const now=new Date('2026-09-14T10:00Z');await assert.rejects(ensureBriefings('a',now));await Promise.all([ensureBriefings('a',now),ensureBriefings('a',now)]);assert.equal(reports.size,1);const before=creates;await ensureBriefings('a',now);assert.equal(creates,before);
+ await prisma.$disconnect();
+});

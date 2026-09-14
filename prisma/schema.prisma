@@ -44,6 +44,8 @@ model Tenant {
   consentiLavorazioniSimultanee Boolean @default(false)
   createdAt      DateTime  @default(now())
 
+  briefingSettings BriefingSettings?
+  briefings BriefingReport[]
   delaySettings DelaySettings?
   delayPlans DelayPlan[]
   delayForecasts DelayForecast[]
@@ -82,6 +84,9 @@ model Tenant {
   qcCheckResults    QcCheckResult[]
   qcNonConformita   QcNonConformita[]
   qcEventi          QcEvento[]
+  loanerCarPhotos    LoanerCarPhoto[]
+  loanerBookings     LoanerBooking[]
+  loanerBookingPhotos LoanerBookingPhoto[]
 
 
   @@map("tenants")
@@ -135,6 +140,7 @@ model User {
   qcNonConformitaResponsabile QcNonConformita[]      @relation("QcNonConformitaResponsabile")
   qcNonConformitaCreate      QcNonConformita[]       @relation("QcNonConformitaCreata")
   qcEventiAttore             QcEvento[]              @relation("QcEventoAttore")
+  loanerBookingsCreate       LoanerBooking[]
 
   @@index([tenantId])
   @@map("users")
@@ -180,6 +186,7 @@ model Client {
   documents    Document[]
   appointments Appointment[]
   sinistri     Sinistro[]
+  loanerBookings LoanerBooking[]
   whatsappMessages WhatsappMessage[]
 
   @@index([tenantId])
@@ -245,6 +252,7 @@ model Vehicle {
   portalDocuments PortalDocument[]
   workOrders WorkOrder[]
   qcInspections QcInspection[]
+  loanerBookings LoanerBooking[]
 
   @@index([tenantId])
   @@index([tenantId, targa])
@@ -685,32 +693,176 @@ enum OrderStatus {
 // AUTO SOSTITUTIVE
 // -----------------------------
 
+enum LoanerFuelType {
+  BENZINA
+  DIESEL
+  GPL
+  METANO
+  ELETTRICA
+  IBRIDA
+}
+
+enum LoanerFuelLevel {
+  VUOTO
+  UN_QUARTO
+  META
+  TRE_QUARTI
+  PIENO
+}
+
+// Solo i due stati che non derivano dalle prenotazioni: DISPONIBILE/
+// PRENOTATA/ASSEGNATA si calcolano sempre dalle prenotazioni stesse (mai
+// duplicati in un campo a parte, per non rischiare che vadano fuori
+// sincrono), MANUTENZIONE e NON_DISPONIBILE sono invece decisioni dello
+// staff che nessuna prenotazione può dedurre da sola.
+enum LoanerCarStatoManuale {
+  MANUTENZIONE
+  NON_DISPONIBILE
+}
+
 model LoanerCar {
   id       String @id @default(cuid())
   tenantId String
   tenant   Tenant @relation(fields: [tenantId], references: [id])
 
-  targa       String
-  marca       String
-  modello     String
+  targa   String
+  marca   String
+  modello String
+  km      Int?
+  carburante LoanerFuelType @default(BENZINA)
+
+  assicurazioneScadenza DateTime?
+  revisioneScadenza     DateTime?
+  manutenzioneScadenza  DateTime?
+  note                  String?   @db.Text
+
+  // Tariffa giornaliera interna (centesimi): base per calcolare il costo
+  // interno di un utilizzo, da poter attribuire alla pratica nel Profit
+  // Tracker. Nullo finché lo staff non la imposta: nessun costo stimato
+  // senza un valore inserito esplicitamente.
+  tariffaGiornalieraCents Int?
+
+  statoManuale LoanerCarStatoManuale?
+
+  // Deprecato: sostituito dallo stato calcolato da prenotazioni +
+  // statoManuale. Mantenuto per compatibilità con dati/integrazioni
+  // esistenti, aggiornato in automatico dalle route ma mai più letto
+  // come fonte di verità da questo modulo.
   disponibile Boolean @default(true)
 
   bookings LoanerBooking[]
+  photos   LoanerCarPhoto[]
+
+  createdAt DateTime @default(now())
 
   @@index([tenantId])
   @@map("loaner_cars")
 }
 
-model LoanerBooking {
-  id          String    @id @default(cuid())
+model LoanerCarPhoto {
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
   loanerCarId String
   loanerCar   LoanerCar @relation(fields: [loanerCarId], references: [id])
 
-  clientId   String
-  dataInizio DateTime
-  dataFine   DateTime?
+  content Bytes
+  mime    String
+  size    Int
 
+  createdAt DateTime @default(now())
+
+  @@index([tenantId])
+  @@index([loanerCarId])
+  @@map("loaner_car_photos")
+}
+
+enum LoanerBookingStato {
+  PRENOTATA
+  ASSEGNATA
+  RESTITUITA
+  ANNULLATA
+}
+
+enum LoanerPhotoFase {
+  CONSEGNA
+  RESTITUZIONE
+}
+
+model LoanerBooking {
+  id          String    @id @default(cuid())
+  tenantId    String
+  tenant      Tenant    @relation(fields: [tenantId], references: [id])
+  loanerCarId String
+  loanerCar   LoanerCar @relation(fields: [loanerCarId], references: [id])
+
+  clientId String
+  client   Client  @relation(fields: [clientId], references: [id])
+  // Pratica per cui viene data l'auto sostitutiva (es. il veicolo del
+  // cliente è in carrozzeria): facoltativo, non tutte le prenotazioni
+  // nascono da una pratica interna.
+  vehicleId String?
+  vehicle   Vehicle? @relation(fields: [vehicleId], references: [id])
+
+  // Calendario disponibilità: intervallo previsto della prenotazione,
+  // indipendente da quando l'auto viene fisicamente consegnata/resa.
+  dataInizioPrevista DateTime
+  dataFinePrevista   DateTime?
+
+  dataConsegna        DateTime?
+  kmIniziali          Int?
+  carburanteIniziale  LoanerFuelLevel?
+  firmaClienteDataUrl String?          @db.Text
+  firmatarioNome      String?
+
+  dataRestituzione  DateTime?
+  kmFinali          Int?
+  carburanteFinale  LoanerFuelLevel?
+  danniRiscontrati  String?           @db.Text
+  noteRestituzione  String?           @db.Text
+
+  // Costo interno calcolato (in centesimi) per il periodo di utilizzo:
+  // esposto per poterlo attribuire manualmente come costo "sostitutiva"
+  // sulla pratica nel Profit Tracker (mai scritto lì in automatico).
+  costoInternoCents        Int?
+  attribuitoProfitRecordId String?
+
+  stato LoanerBookingStato @default(PRENOTATA)
+
+  creataDaId String?
+  creataDa   User?   @relation(fields: [creataDaId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  photos LoanerBookingPhoto[]
+
+  @@index([tenantId])
+  @@index([loanerCarId])
+  @@index([vehicleId])
+  @@index([clientId])
   @@map("loaner_bookings")
+}
+
+model LoanerBookingPhoto {
+  id       String @id @default(cuid())
+  tenantId String
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  bookingId String
+  booking   LoanerBooking @relation(fields: [bookingId], references: [id])
+
+  fase    LoanerPhotoFase
+  content Bytes
+  mime    String
+  size    Int
+
+  createdAt DateTime @default(now())
+
+  @@index([tenantId])
+  @@index([bookingId])
+  @@map("loaner_booking_photos")
 }
 
 // -----------------------------
@@ -1524,4 +1676,35 @@ model QcEvento {
   @@index([tenantId])
   @@index([inspectionId])
   @@map("qc_eventi")
+}
+
+model BriefingSettings {
+ tenantId String @id
+ tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+ data Json
+ updatedAt DateTime @updatedAt
+ @@map("briefing_settings")
+}
+model BriefingReport {
+ id String @id @default(cuid())
+ tenantId String
+ tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+ day String
+ kind String
+ data Json
+ createdAt DateTime @default(now())
+ resolutions BriefingResolution[]
+ @@unique([tenantId, day, kind])
+ @@map("briefing_reports")
+}
+model BriefingResolution {
+ id String @id @default(cuid())
+ reportId String
+ report BriefingReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+ actionKey String
+ userId String
+ note String
+ createdAt DateTime @default(now())
+ @@unique([reportId, actionKey])
+ @@map("briefing_resolutions")
 }

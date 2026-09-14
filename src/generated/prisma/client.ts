@@ -132,10 +132,20 @@ export type SupplierOrderItem = Prisma.SupplierOrderItemModel
  */
 export type LoanerCar = Prisma.LoanerCarModel
 /**
+ * Model LoanerCarPhoto
+ * 
+ */
+export type LoanerCarPhoto = Prisma.LoanerCarPhotoModel
+/**
  * Model LoanerBooking
  * 
  */
 export type LoanerBooking = Prisma.LoanerBookingModel
+/**
+ * Model LoanerBookingPhoto
+ * 
+ */
+export type LoanerBookingPhoto = Prisma.LoanerBookingPhotoModel
 /**
  * Model Appointment
  * 
@@ -291,3 +301,18 @@ export type QcNonConformita = Prisma.QcNonConformitaModel
  * 
  */
 export type QcEvento = Prisma.QcEventoModel
+/**
+ * Model BriefingSettings
+ * 
+ */
+export type BriefingSettings = Prisma.BriefingSettingsModel
+/**
+ * Model BriefingReport
+ * 
+ */
+export type BriefingReport = Prisma.BriefingReportModel
+/**
+ * Model BriefingResolution
+ * 
+ */
+export type BriefingResolution = Prisma.BriefingResolutionModel

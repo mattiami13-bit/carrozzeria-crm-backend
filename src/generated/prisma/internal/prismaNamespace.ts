@@ -415,7 +415,9 @@ export const ModelName = {
   SupplierOrder: 'SupplierOrder',
   SupplierOrderItem: 'SupplierOrderItem',
   LoanerCar: 'LoanerCar',
+  LoanerCarPhoto: 'LoanerCarPhoto',
   LoanerBooking: 'LoanerBooking',
+  LoanerBookingPhoto: 'LoanerBookingPhoto',
   Appointment: 'Appointment',
   Document: 'Document',
   TimeEntry: 'TimeEntry',
@@ -446,7 +448,10 @@ export const ModelName = {
   QcInspection: 'QcInspection',
   QcCheckResult: 'QcCheckResult',
   QcNonConformita: 'QcNonConformita',
-  QcEvento: 'QcEvento'
+  QcEvento: 'QcEvento',
+  BriefingSettings: 'BriefingSettings',
+  BriefingReport: 'BriefingReport',
+  BriefingResolution: 'BriefingResolution'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -462,7 +467,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerBooking" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage" | "qcChecklistItem" | "qcInspection" | "qcCheckResult" | "qcNonConformita" | "qcEvento"
+    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerCarPhoto" | "loanerBooking" | "loanerBookingPhoto" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage" | "qcChecklistItem" | "qcInspection" | "qcCheckResult" | "qcNonConformita" | "qcEvento" | "briefingSettings" | "briefingReport" | "briefingResolution"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1798,6 +1803,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    LoanerCarPhoto: {
+      payload: Prisma.$LoanerCarPhotoPayload<ExtArgs>
+      fields: Prisma.LoanerCarPhotoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LoanerCarPhotoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerCarPhotoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LoanerCarPhotoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerCarPhotoPayload>
+        }
+        findFirst: {
+          args: Prisma.LoanerCarPhotoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerCarPhotoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LoanerCarPhotoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerCarPhotoPayload>
+        }
+        findMany: {
+          args: Prisma.LoanerCarPhotoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerCarPhotoPayload>[]
+        }
+        create: {
+          args: Prisma.LoanerCarPhotoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerCarPhotoPayload>
+        }
+        createMany: {
+          args: Prisma.LoanerCarPhotoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LoanerCarPhotoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerCarPhotoPayload>[]
+        }
+        delete: {
+          args: Prisma.LoanerCarPhotoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerCarPhotoPayload>
+        }
+        update: {
+          args: Prisma.LoanerCarPhotoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerCarPhotoPayload>
+        }
+        deleteMany: {
+          args: Prisma.LoanerCarPhotoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LoanerCarPhotoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LoanerCarPhotoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerCarPhotoPayload>[]
+        }
+        upsert: {
+          args: Prisma.LoanerCarPhotoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerCarPhotoPayload>
+        }
+        aggregate: {
+          args: Prisma.LoanerCarPhotoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLoanerCarPhoto>
+        }
+        groupBy: {
+          args: Prisma.LoanerCarPhotoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LoanerCarPhotoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LoanerCarPhotoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LoanerCarPhotoCountAggregateOutputType> | number
+        }
+      }
+    }
     LoanerBooking: {
       payload: Prisma.$LoanerBookingPayload<ExtArgs>
       fields: Prisma.LoanerBookingFieldRefs
@@ -1869,6 +1948,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.LoanerBookingCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.LoanerBookingCountAggregateOutputType> | number
+        }
+      }
+    }
+    LoanerBookingPhoto: {
+      payload: Prisma.$LoanerBookingPhotoPayload<ExtArgs>
+      fields: Prisma.LoanerBookingPhotoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LoanerBookingPhotoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerBookingPhotoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LoanerBookingPhotoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerBookingPhotoPayload>
+        }
+        findFirst: {
+          args: Prisma.LoanerBookingPhotoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerBookingPhotoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LoanerBookingPhotoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerBookingPhotoPayload>
+        }
+        findMany: {
+          args: Prisma.LoanerBookingPhotoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerBookingPhotoPayload>[]
+        }
+        create: {
+          args: Prisma.LoanerBookingPhotoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerBookingPhotoPayload>
+        }
+        createMany: {
+          args: Prisma.LoanerBookingPhotoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LoanerBookingPhotoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerBookingPhotoPayload>[]
+        }
+        delete: {
+          args: Prisma.LoanerBookingPhotoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerBookingPhotoPayload>
+        }
+        update: {
+          args: Prisma.LoanerBookingPhotoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerBookingPhotoPayload>
+        }
+        deleteMany: {
+          args: Prisma.LoanerBookingPhotoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LoanerBookingPhotoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LoanerBookingPhotoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerBookingPhotoPayload>[]
+        }
+        upsert: {
+          args: Prisma.LoanerBookingPhotoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoanerBookingPhotoPayload>
+        }
+        aggregate: {
+          args: Prisma.LoanerBookingPhotoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLoanerBookingPhoto>
+        }
+        groupBy: {
+          args: Prisma.LoanerBookingPhotoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LoanerBookingPhotoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LoanerBookingPhotoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LoanerBookingPhotoCountAggregateOutputType> | number
         }
       }
     }
@@ -4166,6 +4319,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    BriefingSettings: {
+      payload: Prisma.$BriefingSettingsPayload<ExtArgs>
+      fields: Prisma.BriefingSettingsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BriefingSettingsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingSettingsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BriefingSettingsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingSettingsPayload>
+        }
+        findFirst: {
+          args: Prisma.BriefingSettingsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingSettingsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BriefingSettingsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingSettingsPayload>
+        }
+        findMany: {
+          args: Prisma.BriefingSettingsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingSettingsPayload>[]
+        }
+        create: {
+          args: Prisma.BriefingSettingsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingSettingsPayload>
+        }
+        createMany: {
+          args: Prisma.BriefingSettingsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BriefingSettingsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingSettingsPayload>[]
+        }
+        delete: {
+          args: Prisma.BriefingSettingsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingSettingsPayload>
+        }
+        update: {
+          args: Prisma.BriefingSettingsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingSettingsPayload>
+        }
+        deleteMany: {
+          args: Prisma.BriefingSettingsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BriefingSettingsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BriefingSettingsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingSettingsPayload>[]
+        }
+        upsert: {
+          args: Prisma.BriefingSettingsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingSettingsPayload>
+        }
+        aggregate: {
+          args: Prisma.BriefingSettingsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBriefingSettings>
+        }
+        groupBy: {
+          args: Prisma.BriefingSettingsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BriefingSettingsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BriefingSettingsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BriefingSettingsCountAggregateOutputType> | number
+        }
+      }
+    }
+    BriefingReport: {
+      payload: Prisma.$BriefingReportPayload<ExtArgs>
+      fields: Prisma.BriefingReportFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BriefingReportFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingReportPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BriefingReportFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingReportPayload>
+        }
+        findFirst: {
+          args: Prisma.BriefingReportFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingReportPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BriefingReportFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingReportPayload>
+        }
+        findMany: {
+          args: Prisma.BriefingReportFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingReportPayload>[]
+        }
+        create: {
+          args: Prisma.BriefingReportCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingReportPayload>
+        }
+        createMany: {
+          args: Prisma.BriefingReportCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BriefingReportCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingReportPayload>[]
+        }
+        delete: {
+          args: Prisma.BriefingReportDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingReportPayload>
+        }
+        update: {
+          args: Prisma.BriefingReportUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingReportPayload>
+        }
+        deleteMany: {
+          args: Prisma.BriefingReportDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BriefingReportUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BriefingReportUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingReportPayload>[]
+        }
+        upsert: {
+          args: Prisma.BriefingReportUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingReportPayload>
+        }
+        aggregate: {
+          args: Prisma.BriefingReportAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBriefingReport>
+        }
+        groupBy: {
+          args: Prisma.BriefingReportGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BriefingReportGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BriefingReportCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BriefingReportCountAggregateOutputType> | number
+        }
+      }
+    }
+    BriefingResolution: {
+      payload: Prisma.$BriefingResolutionPayload<ExtArgs>
+      fields: Prisma.BriefingResolutionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BriefingResolutionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingResolutionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BriefingResolutionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingResolutionPayload>
+        }
+        findFirst: {
+          args: Prisma.BriefingResolutionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingResolutionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BriefingResolutionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingResolutionPayload>
+        }
+        findMany: {
+          args: Prisma.BriefingResolutionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingResolutionPayload>[]
+        }
+        create: {
+          args: Prisma.BriefingResolutionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingResolutionPayload>
+        }
+        createMany: {
+          args: Prisma.BriefingResolutionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BriefingResolutionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingResolutionPayload>[]
+        }
+        delete: {
+          args: Prisma.BriefingResolutionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingResolutionPayload>
+        }
+        update: {
+          args: Prisma.BriefingResolutionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingResolutionPayload>
+        }
+        deleteMany: {
+          args: Prisma.BriefingResolutionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BriefingResolutionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BriefingResolutionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingResolutionPayload>[]
+        }
+        upsert: {
+          args: Prisma.BriefingResolutionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BriefingResolutionPayload>
+        }
+        aggregate: {
+          args: Prisma.BriefingResolutionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBriefingResolution>
+        }
+        groupBy: {
+          args: Prisma.BriefingResolutionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BriefingResolutionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BriefingResolutionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BriefingResolutionCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -4506,21 +4881,75 @@ export const LoanerCarScalarFieldEnum = {
   targa: 'targa',
   marca: 'marca',
   modello: 'modello',
-  disponibile: 'disponibile'
+  km: 'km',
+  carburante: 'carburante',
+  assicurazioneScadenza: 'assicurazioneScadenza',
+  revisioneScadenza: 'revisioneScadenza',
+  manutenzioneScadenza: 'manutenzioneScadenza',
+  note: 'note',
+  tariffaGiornalieraCents: 'tariffaGiornalieraCents',
+  statoManuale: 'statoManuale',
+  disponibile: 'disponibile',
+  createdAt: 'createdAt'
 } as const
 
 export type LoanerCarScalarFieldEnum = (typeof LoanerCarScalarFieldEnum)[keyof typeof LoanerCarScalarFieldEnum]
 
 
+export const LoanerCarPhotoScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  loanerCarId: 'loanerCarId',
+  content: 'content',
+  mime: 'mime',
+  size: 'size',
+  createdAt: 'createdAt'
+} as const
+
+export type LoanerCarPhotoScalarFieldEnum = (typeof LoanerCarPhotoScalarFieldEnum)[keyof typeof LoanerCarPhotoScalarFieldEnum]
+
+
 export const LoanerBookingScalarFieldEnum = {
   id: 'id',
+  tenantId: 'tenantId',
   loanerCarId: 'loanerCarId',
   clientId: 'clientId',
-  dataInizio: 'dataInizio',
-  dataFine: 'dataFine'
+  vehicleId: 'vehicleId',
+  dataInizioPrevista: 'dataInizioPrevista',
+  dataFinePrevista: 'dataFinePrevista',
+  dataConsegna: 'dataConsegna',
+  kmIniziali: 'kmIniziali',
+  carburanteIniziale: 'carburanteIniziale',
+  firmaClienteDataUrl: 'firmaClienteDataUrl',
+  firmatarioNome: 'firmatarioNome',
+  dataRestituzione: 'dataRestituzione',
+  kmFinali: 'kmFinali',
+  carburanteFinale: 'carburanteFinale',
+  danniRiscontrati: 'danniRiscontrati',
+  noteRestituzione: 'noteRestituzione',
+  costoInternoCents: 'costoInternoCents',
+  attribuitoProfitRecordId: 'attribuitoProfitRecordId',
+  stato: 'stato',
+  creataDaId: 'creataDaId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type LoanerBookingScalarFieldEnum = (typeof LoanerBookingScalarFieldEnum)[keyof typeof LoanerBookingScalarFieldEnum]
+
+
+export const LoanerBookingPhotoScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  bookingId: 'bookingId',
+  fase: 'fase',
+  content: 'content',
+  mime: 'mime',
+  size: 'size',
+  createdAt: 'createdAt'
+} as const
+
+export type LoanerBookingPhotoScalarFieldEnum = (typeof LoanerBookingPhotoScalarFieldEnum)[keyof typeof LoanerBookingPhotoScalarFieldEnum]
 
 
 export const AppointmentScalarFieldEnum = {
@@ -4983,6 +5412,39 @@ export const QcEventoScalarFieldEnum = {
 export type QcEventoScalarFieldEnum = (typeof QcEventoScalarFieldEnum)[keyof typeof QcEventoScalarFieldEnum]
 
 
+export const BriefingSettingsScalarFieldEnum = {
+  tenantId: 'tenantId',
+  data: 'data',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BriefingSettingsScalarFieldEnum = (typeof BriefingSettingsScalarFieldEnum)[keyof typeof BriefingSettingsScalarFieldEnum]
+
+
+export const BriefingReportScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  day: 'day',
+  kind: 'kind',
+  data: 'data',
+  createdAt: 'createdAt'
+} as const
+
+export type BriefingReportScalarFieldEnum = (typeof BriefingReportScalarFieldEnum)[keyof typeof BriefingReportScalarFieldEnum]
+
+
+export const BriefingResolutionScalarFieldEnum = {
+  id: 'id',
+  reportId: 'reportId',
+  actionKey: 'actionKey',
+  userId: 'userId',
+  note: 'note',
+  createdAt: 'createdAt'
+} as const
+
+export type BriefingResolutionScalarFieldEnum = (typeof BriefingResolutionScalarFieldEnum)[keyof typeof BriefingResolutionScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -5265,6 +5727,76 @@ export type EnumOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pris
  * Reference to a field of type 'OrderStatus[]'
  */
 export type ListEnumOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrderStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'LoanerFuelType'
+ */
+export type EnumLoanerFuelTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanerFuelType'>
+    
+
+
+/**
+ * Reference to a field of type 'LoanerFuelType[]'
+ */
+export type ListEnumLoanerFuelTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanerFuelType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'LoanerCarStatoManuale'
+ */
+export type EnumLoanerCarStatoManualeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanerCarStatoManuale'>
+    
+
+
+/**
+ * Reference to a field of type 'LoanerCarStatoManuale[]'
+ */
+export type ListEnumLoanerCarStatoManualeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanerCarStatoManuale[]'>
+    
+
+
+/**
+ * Reference to a field of type 'LoanerFuelLevel'
+ */
+export type EnumLoanerFuelLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanerFuelLevel'>
+    
+
+
+/**
+ * Reference to a field of type 'LoanerFuelLevel[]'
+ */
+export type ListEnumLoanerFuelLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanerFuelLevel[]'>
+    
+
+
+/**
+ * Reference to a field of type 'LoanerBookingStato'
+ */
+export type EnumLoanerBookingStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanerBookingStato'>
+    
+
+
+/**
+ * Reference to a field of type 'LoanerBookingStato[]'
+ */
+export type ListEnumLoanerBookingStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanerBookingStato[]'>
+    
+
+
+/**
+ * Reference to a field of type 'LoanerPhotoFase'
+ */
+export type EnumLoanerPhotoFaseFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanerPhotoFase'>
+    
+
+
+/**
+ * Reference to a field of type 'LoanerPhotoFase[]'
+ */
+export type ListEnumLoanerPhotoFaseFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LoanerPhotoFase[]'>
     
 
 
@@ -5618,7 +6150,9 @@ export type GlobalOmitConfig = {
   supplierOrder?: Prisma.SupplierOrderOmit
   supplierOrderItem?: Prisma.SupplierOrderItemOmit
   loanerCar?: Prisma.LoanerCarOmit
+  loanerCarPhoto?: Prisma.LoanerCarPhotoOmit
   loanerBooking?: Prisma.LoanerBookingOmit
+  loanerBookingPhoto?: Prisma.LoanerBookingPhotoOmit
   appointment?: Prisma.AppointmentOmit
   document?: Prisma.DocumentOmit
   timeEntry?: Prisma.TimeEntryOmit
@@ -5650,6 +6184,9 @@ export type GlobalOmitConfig = {
   qcCheckResult?: Prisma.QcCheckResultOmit
   qcNonConformita?: Prisma.QcNonConformitaOmit
   qcEvento?: Prisma.QcEventoOmit
+  briefingSettings?: Prisma.BriefingSettingsOmit
+  briefingReport?: Prisma.BriefingReportOmit
+  briefingResolution?: Prisma.BriefingResolutionOmit
 }
 
 /* Types for Logging */

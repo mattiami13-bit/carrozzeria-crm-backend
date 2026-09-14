@@ -1,0 +1,1490 @@
+[
+  {
+    "file": "src/index.js",
+    "encoding": "utf-8",
+    "lines": 115,
+    "sha256": "a9299ccfe64de38a8cb76b5f829505033ac6c3c94c8b62d8dd2310fba388f561",
+    "routes": [],
+    "env": [
+      "BRIEFING_WORKER",
+      "CRM_PREVIEW",
+      "DELAY_WORKER",
+      "PORT"
+    ],
+    "reviewMarkers": [
+      {
+        "line": 46,
+        "text": "app.use(cors());"
+      }
+    ]
+  },
+  {
+    "file": "src/lib/briefing-service.js",
+    "encoding": "utf-8",
+    "lines": 40,
+    "sha256": "a984069d4808b2bf4db49a799a3999454c1e867eb18454ff84a4798f27bb895a",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/briefing.js",
+    "encoding": "utf-8",
+    "lines": 60,
+    "sha256": "aa1902f1e51e3cfab94ef8da21c49b94c96069006a6118538aaebe691a6e9c9f",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/delay-service.js",
+    "encoding": "utf-8",
+    "lines": 54,
+    "sha256": "a798696255c4a74bfca35322e42a5b1d181fb33ff88d2b85c71ee99021eab301",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/delay.js",
+    "encoding": "utf-8",
+    "lines": 138,
+    "sha256": "9b2fd425fa8fb41b2d3448cabb17e76de514c158f491f727f2860299c6becf99",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/executive.js",
+    "encoding": "cp1252",
+    "lines": 87,
+    "sha256": "cc9bed240169e934090594956c8f70da85aa830f9485fa5701c354c37d90ff0a",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/notifiche.js",
+    "encoding": "utf-8",
+    "lines": 148,
+    "sha256": "58ec8aadcb3227a0141c44e0394f92b8bf716e4160e80d81e0c0d04b274749ba",
+    "routes": [],
+    "env": [
+      "RESEND_API_KEY",
+      "TWILIO_ACCOUNT_SID",
+      "TWILIO_AUTH_TOKEN",
+      "TWILIO_WHATSAPP_NUMBER"
+    ],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/parts-tracking-service.js",
+    "encoding": "utf-8",
+    "lines": 73,
+    "sha256": "a561e1f456cdbbed5fe95e79a9d2cece62101dabb35fd24c238695947cff9f25",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/parts-tracking.js",
+    "encoding": "utf-8",
+    "lines": 58,
+    "sha256": "5b5ca7823f918772daccc01e401d0f155fb5c5f88cb716e4504004f95fabb7e2",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/photo-dossier.js",
+    "encoding": "utf-8",
+    "lines": 45,
+    "sha256": "82b57ced347162d38719a731ee9b91e7821e3c028607744cbef5991b83675e4b",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": [
+      {
+        "line": 7,
+        "text": "export async function buildPhotoDossier({tenant,vehicle,photos,parts=[],quotes=[],audience='CLIENTE',comparison=null,loadImage}){"
+      }
+    ]
+  },
+  {
+    "file": "src/lib/photo-timeline-service.js",
+    "encoding": "utf-8",
+    "lines": 45,
+    "sha256": "19df8e26b32612801b4bcaa639e61d96d048e0d52beaa6dbfe52d0ebde25d481",
+    "routes": [],
+    "env": [
+      "ANTHROPIC_API_KEY",
+      "PHOTO_AI_MODEL",
+      "SUPABASE_URL"
+    ],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/photo-timeline.js",
+    "encoding": "utf-8",
+    "lines": 20,
+    "sha256": "04416f2d02295445b9ec8f38ed7c374ef815bbd3c0f49ce7707341fecf83452f",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/portaleHelper.js",
+    "encoding": "utf-8",
+    "lines": 21,
+    "sha256": "00443414d70a005603c3f200ce134859a7e0cff848082043087435014c317118",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/prisma.js",
+    "encoding": "utf-8",
+    "lines": 7,
+    "sha256": "66c884464c21d84f2dbf67319129585784e8f9bf91c8bd6fbb1e17495c02d768",
+    "routes": [],
+    "env": [
+      "DATABASE_URL"
+    ],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/profit.js",
+    "encoding": "utf-8",
+    "lines": 60,
+    "sha256": "045e08cef4c366fd05b296812883996f02f54554fcf80bb2c9a54d860401d1d3",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/qc.js",
+    "encoding": "utf-8",
+    "lines": 38,
+    "sha256": "6bf4f77341d8a7504348776f50ea6f874abec47415c8832a4e90e6aa2573da3f",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/supabase.js",
+    "encoding": "utf-8",
+    "lines": 12,
+    "sha256": "f7a5e3afd4a54439db2751e14784d3bd76f7968edacac60a30bc5eaddcf075f5",
+    "routes": [],
+    "env": [
+      "SUPABASE_SERVICE_ROLE_KEY",
+      "SUPABASE_URL"
+    ],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/whatsapp.js",
+    "encoding": "utf-8",
+    "lines": 178,
+    "sha256": "28653409cbbce77e9b6462cbd13efedd9989d2e87c3790c99148c89673534f92",
+    "routes": [],
+    "env": [
+      "TWILIO_ACCOUNT_SID",
+      "TWILIO_AUTH_TOKEN",
+      "TWILIO_WHATSAPP_CONTENT_SID",
+      "TWILIO_WHATSAPP_NUMBER",
+      "TWILIO_WHATSAPP_STATUS_CALLBACK_URL"
+    ],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/lib/work-orders.js",
+    "encoding": "utf-8",
+    "lines": 48,
+    "sha256": "cd75c18973ce69787242698073b6ec4c0e6f4d17725929e290a7651c156d081b",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/middleware/audit.js",
+    "encoding": "utf-8",
+    "lines": 39,
+    "sha256": "17f8121822ade88b7c95fd0425a83416842e2a69a41f06a96440f3d6794cf7bf",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": [
+      {
+        "line": 30,
+        "text": "metodo: req.method,"
+      }
+    ]
+  },
+  {
+    "file": "src/middleware/auth.js",
+    "encoding": "utf-8",
+    "lines": 44,
+    "sha256": "d0aad685f8b97917f8ba82841cc8f0293795a4fc72e39dedb1a3d768e3e468f3",
+    "routes": [],
+    "env": [
+      "JWT_SECRET"
+    ],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/appointments.js",
+    "encoding": "utf-8",
+    "lines": 147,
+    "sha256": "d3a6a0971787612d6c21ea708d9dc6b69b63eef09e129de9c1251201d0ee8ae4",
+    "routes": [
+      [
+        "appointmentsRouter",
+        "get",
+        "/"
+      ],
+      [
+        "appointmentsRouter",
+        "get",
+        "/:id"
+      ],
+      [
+        "appointmentsRouter",
+        "post",
+        "/"
+      ],
+      [
+        "appointmentsRouter",
+        "put",
+        "/:id"
+      ],
+      [
+        "appointmentsRouter",
+        "delete",
+        "/:id"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/assistente.js",
+    "encoding": "utf-8",
+    "lines": 335,
+    "sha256": "eccc9941941f98658ad458468b8bfc475b1ea107e9480802e0044377b916cfeb",
+    "routes": [
+      [
+        "assistenteRouter",
+        "post",
+        "/chiedi"
+      ],
+      [
+        "assistenteRouter",
+        "get",
+        "/utilizzo"
+      ]
+    ],
+    "env": [
+      "ANTHROPIC_API_KEY"
+    ],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/auth.js",
+    "encoding": "utf-8",
+    "lines": 93,
+    "sha256": "a7d7fe30f582ea126a2362014f5a8ccab1f697762887f7a0b0eaefb0958e8f50",
+    "routes": [
+      [
+        "authRouter",
+        "post",
+        "/register"
+      ],
+      [
+        "authRouter",
+        "post",
+        "/login"
+      ]
+    ],
+    "env": [
+      "JWT_EXPIRES_IN",
+      "JWT_SECRET"
+    ],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/briefing.js",
+    "encoding": "utf-8",
+    "lines": 33,
+    "sha256": "76e811ee53af3bd42ac6a4ccd2b46dd68f2a9cb77710b962a15a982b1925cce9",
+    "routes": [
+      [
+        "briefingRouter",
+        "get",
+        "/"
+      ],
+      [
+        "briefingRouter",
+        "put",
+        "/settings"
+      ],
+      [
+        "briefingRouter",
+        "post",
+        "/:id/resolve"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/clients.js",
+    "encoding": "utf-8",
+    "lines": 86,
+    "sha256": "003a8da792019390f4e9cb2a84586042ee367ecd12f6da0e3336f1425bace631",
+    "routes": [
+      [
+        "clientsRouter",
+        "get",
+        "/"
+      ],
+      [
+        "clientsRouter",
+        "get",
+        "/:id"
+      ],
+      [
+        "clientsRouter",
+        "post",
+        "/"
+      ],
+      [
+        "clientsRouter",
+        "patch",
+        "/:id"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/copilot.js",
+    "encoding": "utf-8",
+    "lines": 429,
+    "sha256": "3c3721d3835785a6f44406d1652feae726f6395bcf1dd4e8f74ce5335a6257d7",
+    "routes": [
+      [
+        "copilotRouter",
+        "post",
+        "/chiedi"
+      ],
+      [
+        "copilotRouter",
+        "get",
+        "/utilizzo"
+      ]
+    ],
+    "env": [
+      "ANTHROPIC_API_KEY"
+    ],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/damageAssistant.js",
+    "encoding": "utf-8",
+    "lines": 330,
+    "sha256": "47a2108309ef920082c7669786a21810286853b12d91fa9233f06ac740f2f521",
+    "routes": [
+      [
+        "damageAssistantRouter",
+        "get",
+        "/"
+      ],
+      [
+        "damageAssistantRouter",
+        "post",
+        "/analizza"
+      ],
+      [
+        "damageAssistantRouter",
+        "post",
+        "/bozza-preventivo"
+      ],
+      [
+        "damageItemsRouter",
+        "patch",
+        "/:id"
+      ],
+      [
+        "damageItemsRouter",
+        "delete",
+        "/:id"
+      ]
+    ],
+    "env": [
+      "ANTHROPIC_API_KEY"
+    ],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/dashboard.js",
+    "encoding": "utf-8",
+    "lines": 186,
+    "sha256": "46ba9185495c9565ea1639038fa2e68cd3b501028b5c144c6373ef2523984d77",
+    "routes": [
+      [
+        "dashboardRouter",
+        "get",
+        "/summary"
+      ],
+      [
+        "dashboardRouter",
+        "get",
+        "/fatturato-mensile"
+      ],
+      [
+        "dashboardRouter",
+        "get",
+        "/margini-ricambi"
+      ],
+      [
+        "dashboardRouter",
+        "get",
+        "/tempi-lavorazione"
+      ],
+      [
+        "dashboardRouter",
+        "get",
+        "/utilizzo-ia"
+      ],
+      [
+        "dashboardRouter",
+        "get",
+        "/registro-attivita"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": [
+      {
+        "line": 181,
+        "text": "metodo: l.metodo,"
+      }
+    ]
+  },
+  {
+    "file": "src/routes/delay.js",
+    "encoding": "utf-8",
+    "lines": 76,
+    "sha256": "49ab01c98aeb7c3614d2fff2befb852aac5b2d864aa093c870163e02aa7175b9",
+    "routes": [
+      [
+        "delayRouter",
+        "get",
+        "/settings"
+      ],
+      [
+        "delayRouter",
+        "put",
+        "/settings"
+      ],
+      [
+        "delayRouter",
+        "get",
+        "/dashboard"
+      ],
+      [
+        "delayRouter",
+        "get",
+        "/vehicles/:id"
+      ],
+      [
+        "delayRouter",
+        "put",
+        "/vehicles/:id"
+      ],
+      [
+        "delayRouter",
+        "post",
+        "/vehicles/:id/decisions"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/executive.js",
+    "encoding": "utf-8",
+    "lines": 25,
+    "sha256": "b1c3529ce3b1f0f588c5e0e2307ea4c473022e23c28d5134855f607d63eb42c5",
+    "routes": [
+      [
+        "executiveRouter",
+        "get",
+        "/"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/insuranceGap.js",
+    "encoding": "utf-8",
+    "lines": 462,
+    "sha256": "6b49ae7af03d3162fc37f021682e8930bd578773976340408173e2e2261fcef0",
+    "routes": [
+      [
+        "insuranceGapRouter",
+        "get",
+        "/"
+      ],
+      [
+        "insuranceGapRouter",
+        "get",
+        "/:analysisId/documento"
+      ],
+      [
+        "insuranceGapRouter",
+        "post",
+        "/analizza"
+      ],
+      [
+        "insuranceGapRouter",
+        "delete",
+        "/:analysisId"
+      ],
+      [
+        "insuranceGapRouter",
+        "post",
+        "/:analysisId/richiesta-integrazione"
+      ],
+      [
+        "insuranceGapItemsRouter",
+        "patch",
+        "/:id"
+      ],
+      [
+        "insuranceGapSuggestionsRouter",
+        "patch",
+        "/:id"
+      ]
+    ],
+    "env": [
+      "ANTHROPIC_API_KEY"
+    ],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/liveDashboard.js",
+    "encoding": "utf-8",
+    "lines": 114,
+    "sha256": "75c1dda11249e648c9b87dd846a74b70f0c151119d2a35e37c2f12c9cfca4632",
+    "routes": [
+      [
+        "liveDashboardRouter",
+        "get",
+        "/"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/loanerCars.js",
+    "encoding": "utf-8",
+    "lines": 134,
+    "sha256": "5ae2438d10593e99e1b18726c37195654ec6b04319ab3ca0840d3bf93a46dce6",
+    "routes": [
+      [
+        "loanerCarsRouter",
+        "get",
+        "/"
+      ],
+      [
+        "loanerCarsRouter",
+        "get",
+        "/:id"
+      ],
+      [
+        "loanerCarsRouter",
+        "post",
+        "/"
+      ],
+      [
+        "loanerCarsRouter",
+        "patch",
+        "/:id"
+      ],
+      [
+        "loanerCarsRouter",
+        "delete",
+        "/:id"
+      ],
+      [
+        "loanerCarsRouter",
+        "post",
+        "/:id/bookings"
+      ],
+      [
+        "loanerCarsRouter",
+        "patch",
+        "/:id/rientro"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/parts.js",
+    "encoding": "utf-8",
+    "lines": 143,
+    "sha256": "46be4b5801728b9e33033b448bc8ca1a8854cc7791bcfa5a70798ccae8a546c3",
+    "routes": [
+      [
+        "partsRouter",
+        "get",
+        "/"
+      ],
+      [
+        "partsRouter",
+        "get",
+        "/:id"
+      ],
+      [
+        "partsRouter",
+        "post",
+        "/"
+      ],
+      [
+        "partsRouter",
+        "patch",
+        "/:id"
+      ],
+      [
+        "partsRouter",
+        "delete",
+        "/:id"
+      ],
+      [
+        "partsRouter",
+        "post",
+        "/:id/movements"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/partsTracking.js",
+    "encoding": "utf-8",
+    "lines": 84,
+    "sha256": "160cbb179767b36240408d80904639bd709c9b197ae95faffb614ae186c2acb2",
+    "routes": [
+      [
+        "partsTrackingRouter",
+        "get",
+        "/dashboard"
+      ],
+      [
+        "partsTrackingRouter",
+        "get",
+        "/vehicles/:id"
+      ],
+      [
+        "partsTrackingRouter",
+        "post",
+        "/vehicles/:id"
+      ],
+      [
+        "partsTrackingRouter",
+        "put",
+        "/parts/:partId"
+      ],
+      [
+        "partsTrackingRouter",
+        "post",
+        "/parts/:partId/status"
+      ],
+      [
+        "partsTrackingRouter",
+        "post",
+        "/parts/:partId/documents"
+      ],
+      [
+        "partsTrackingRouter",
+        "get",
+        "/documents/:docId"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/photos.js",
+    "encoding": "utf-8",
+    "lines": 121,
+    "sha256": "b81db95c9e00f8e87128cae54a7318a9a02102d857c8f0984fc27340305038f9",
+    "routes": [
+      [
+        "photosRouter",
+        "post",
+        "/vehicles/:vehicleId/photos"
+      ],
+      [
+        "photosRouter",
+        "patch",
+        "/photos/:id/visibilita"
+      ],
+      [
+        "photosRouter",
+        "delete",
+        "/photos/:id"
+      ]
+    ],
+    "env": [
+      "SUPABASE_URL"
+    ],
+    "reviewMarkers": [
+      {
+        "line": 75,
+        "text": "const {data:originalUrlData}=supabase.storage.from(PHOTOS_BUCKET).getPublicUrl(path);"
+      },
+      {
+        "line": 76,
+        "text": "const {data:publicUrlData}=supabase.storage.from(PHOTOS_BUCKET).getPublicUrl(previewPath);"
+      }
+    ]
+  },
+  {
+    "file": "src/routes/photoTimeline.js",
+    "encoding": "utf-8",
+    "lines": 39,
+    "sha256": "e2dd0eb2d2ffb7ead577da844bcbe8f7b23cf5257baefe9b9d4650dc4d0381ce",
+    "routes": [
+      [
+        "photoTimelineRouter",
+        "get",
+        "/vehicles/:id"
+      ],
+      [
+        "photoTimelineRouter",
+        "patch",
+        "/photos/:id"
+      ],
+      [
+        "photoTimelineRouter",
+        "post",
+        "/photos/:id/suggest"
+      ],
+      [
+        "photoTimelineRouter",
+        "post",
+        "/vehicles/:id/dossier"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": [
+      {
+        "line": 7,
+        "text": "import {buildPhotoDossier} from '../lib/photo-dossier.js';"
+      },
+      {
+        "line": 37,
+        "text": "const pdf=await buildPhotoDossier({tenant,vehicle,photos,parts,quotes:vehicle.quotes,audience:parsed.data.audience,comparison:cmp,loadImage:async p=>normalizePhoto(await readPhotoImage(p,tenantId))});"
+      }
+    ]
+  },
+  {
+    "file": "src/routes/portale.js",
+    "encoding": "utf-8",
+    "lines": 376,
+    "sha256": "92d0b0a57339915d252bbc95dfef1df95a50b79b70c9361fb1350bf9443ab745",
+    "routes": [
+      [
+        "portaleRouter",
+        "post",
+        "/genera/:vehicleId"
+      ],
+      [
+        "portaleRouter",
+        "post",
+        "/revoca/:vehicleId"
+      ],
+      [
+        "portaleRouter",
+        "get",
+        "/:token"
+      ],
+      [
+        "portaleRouter",
+        "post",
+        "/:token/preventivi/:quoteId/firma"
+      ],
+      [
+        "portaleRouter",
+        "get",
+        "/:token/documenti/:id/scarica"
+      ],
+      [
+        "portaleRouter",
+        "post",
+        "/:token/documenti/:id/firma"
+      ],
+      [
+        "portaleRouter",
+        "post",
+        "/:token/contatta"
+      ],
+      [
+        "portaleRouter",
+        "post",
+        "/:token/prenota-ritiro"
+      ],
+      [
+        "portalDocumentsRouter",
+        "post",
+        "/"
+      ],
+      [
+        "portalDocumentsRouter",
+        "get",
+        "/"
+      ],
+      [
+        "portalDocumentItemRouter",
+        "delete",
+        "/:id"
+      ],
+      [
+        "portalActionsRouter",
+        "get",
+        "/"
+      ],
+      [
+        "portalActionItemRouter",
+        "patch",
+        "/:id"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/profit.js",
+    "encoding": "utf-8",
+    "lines": 64,
+    "sha256": "6b457d39767b9b7cd99e5b5ceb3f49092c707985fe55415f168f0c07388db5e0",
+    "routes": [
+      [
+        "profitRouter",
+        "get",
+        "/settings"
+      ],
+      [
+        "profitRouter",
+        "put",
+        "/settings"
+      ],
+      [
+        "profitRouter",
+        "get",
+        "/dashboard"
+      ],
+      [
+        "profitRouter",
+        "get",
+        "/vehicles/:id"
+      ],
+      [
+        "profitRouter",
+        "put",
+        "/vehicles/:id"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/qc.js",
+    "encoding": "utf-8",
+    "lines": 364,
+    "sha256": "6b1089d5ff51963a7be4b4b21626c466a774fad3e27e639ab1d76a7c1c9e8f5f",
+    "routes": [
+      [
+        "qcTemplateRouter",
+        "get",
+        "/"
+      ],
+      [
+        "qcTemplateRouter",
+        "put",
+        "/:chiave"
+      ],
+      [
+        "qcTemplateRouter",
+        "post",
+        "/"
+      ],
+      [
+        "qcTemplateRouter",
+        "delete",
+        "/:chiave"
+      ],
+      [
+        "vehicleQcRouter",
+        "get",
+        "/"
+      ],
+      [
+        "vehicleQcRouter",
+        "post",
+        "/"
+      ],
+      [
+        "qcInspectionRouter",
+        "get",
+        "/:id"
+      ],
+      [
+        "qcInspectionRouter",
+        "patch",
+        "/:id/esiti/:chiave"
+      ],
+      [
+        "qcInspectionRouter",
+        "post",
+        "/:id/approva"
+      ],
+      [
+        "qcInspectionRouter",
+        "get",
+        "/:id/eventi"
+      ],
+      [
+        "qcInspectionRouter",
+        "post",
+        "/:id/non-conformita"
+      ],
+      [
+        "qcInspectionRouter",
+        "get",
+        "/:id/non-conformita"
+      ],
+      [
+        "qcNonConformitaRouter",
+        "patch",
+        "/:id"
+      ],
+      [
+        "qcNonConformitaRouter",
+        "get",
+        "/:id/fotografia"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/quotes.js",
+    "encoding": "utf-8",
+    "lines": 253,
+    "sha256": "ba663c0e682259224afcae8651c5396874dc32771f3b81c242ea28fe1674ef97",
+    "routes": [
+      [
+        "quotesRouter",
+        "get",
+        "/"
+      ],
+      [
+        "quotesRouter",
+        "post",
+        "/"
+      ],
+      [
+        "quotesRouter",
+        "patch",
+        "/:id/stato"
+      ],
+      [
+        "quotesRouter",
+        "post",
+        "/:id/firma"
+      ],
+      [
+        "quotesRouter",
+        "get",
+        "/:id/pdf"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/sinistri.js",
+    "encoding": "utf-8",
+    "lines": 120,
+    "sha256": "420ef75023b420de72f1eb9fc59e642484eeac297ae48f2c7f5fe4d94dc239a4",
+    "routes": [
+      [
+        "sinistriRouter",
+        "get",
+        "/"
+      ],
+      [
+        "sinistriRouter",
+        "get",
+        "/:id"
+      ],
+      [
+        "sinistriRouter",
+        "post",
+        "/"
+      ],
+      [
+        "sinistriRouter",
+        "patch",
+        "/:id"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/supplierOrders.js",
+    "encoding": "utf-8",
+    "lines": 150,
+    "sha256": "c739c1ef6c8c0998704bba43e70471bdbb98d5b5a960273b82eb1af1f06ef5b4",
+    "routes": [
+      [
+        "supplierOrdersRouter",
+        "get",
+        "/"
+      ],
+      [
+        "supplierOrdersRouter",
+        "get",
+        "/:id"
+      ],
+      [
+        "supplierOrdersRouter",
+        "post",
+        "/"
+      ],
+      [
+        "supplierOrdersRouter",
+        "patch",
+        "/:id/stato"
+      ],
+      [
+        "supplierOrdersRouter",
+        "patch",
+        "/:id/items/:itemId/ricevi"
+      ],
+      [
+        "supplierOrdersRouter",
+        "delete",
+        "/:id"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/users.js",
+    "encoding": "utf-8",
+    "lines": 70,
+    "sha256": "2f3a5b3a3a197baec8c3dc9e94e38bebf65ab2d9cf4c7320e5bf7607e667e03e",
+    "routes": [
+      [
+        "usersRouter",
+        "get",
+        "/"
+      ],
+      [
+        "usersRouter",
+        "post",
+        "/"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/vehicles.js",
+    "encoding": "utf-8",
+    "lines": 374,
+    "sha256": "aad994123f272a51b1ad643710ccad6c4b177a7c438e98aa8e9f17ec6775deaa",
+    "routes": [
+      [
+        "vehiclesRouter",
+        "get",
+        "/"
+      ],
+      [
+        "vehiclesRouter",
+        "get",
+        "/:id"
+      ],
+      [
+        "vehiclesRouter",
+        "post",
+        "/"
+      ],
+      [
+        "vehiclesRouter",
+        "patch",
+        "/:id/stage"
+      ],
+      [
+        "vehiclesRouter",
+        "patch",
+        "/:id"
+      ],
+      [
+        "vehiclesRouter",
+        "post",
+        "/:id/analizza-danni"
+      ],
+      [
+        "vehiclesRouter",
+        "post",
+        "/:id/firma-consegna"
+      ]
+    ],
+    "env": [
+      "ANTHROPIC_API_KEY"
+    ],
+    "reviewMarkers": [
+      {
+        "line": 62,
+        "text": "tecnico: true,"
+      },
+      {
+        "line": 314,
+        "text": "include: { client: true, tecnico: true, photos: { select:legacyPhotoSelect, orderBy: { createdAt: \"asc\" } }, quotes: true },"
+      }
+    ]
+  },
+  {
+    "file": "src/routes/whatsapp.js",
+    "encoding": "utf-8",
+    "lines": 153,
+    "sha256": "1a68e2624067b947ff545dae5564bda499692310ebc0cb369dd738e409d8816c",
+    "routes": [
+      [
+        "whatsappRouter",
+        "get",
+        "/templates"
+      ],
+      [
+        "whatsappRouter",
+        "put",
+        "/templates/:evento"
+      ],
+      [
+        "whatsappRouter",
+        "get",
+        "/vehicles/:vehicleId/messages"
+      ],
+      [
+        "whatsappRouter",
+        "post",
+        "/vehicles/:vehicleId/ricambio-ritardo"
+      ],
+      [
+        "whatsappWebhookRouter",
+        "post",
+        "/status"
+      ],
+      [
+        "whatsappWebhookRouter",
+        "post",
+        "/inbound"
+      ]
+    ],
+    "env": [
+      "TWILIO_AUTH_TOKEN"
+    ],
+    "reviewMarkers": []
+  },
+  {
+    "file": "src/routes/workOrders.js",
+    "encoding": "utf-8",
+    "lines": 345,
+    "sha256": "e04c26ca755bc73b6a0de7baf0ff8d2840b7f7eff08f862d0998d272728a683b",
+    "routes": [
+      [
+        "vehicleWorkOrdersRouter",
+        "post",
+        "/"
+      ],
+      [
+        "vehicleWorkOrdersRouter",
+        "get",
+        "/"
+      ],
+      [
+        "vehicleOreLavorateRouter",
+        "get",
+        "/"
+      ],
+      [
+        "workOrdersRouter",
+        "get",
+        "/mie"
+      ],
+      [
+        "workOrdersRouter",
+        "get",
+        "/impostazioni"
+      ],
+      [
+        "workOrdersRouter",
+        "patch",
+        "/impostazioni"
+      ],
+      [
+        "workOrdersRouter",
+        "get",
+        "/kpi/tecnici"
+      ],
+      [
+        "workOrdersRouter",
+        "get",
+        "/kpi/reparti"
+      ],
+      [
+        "workOrdersRouter",
+        "patch",
+        "/:id"
+      ],
+      [
+        "workOrdersRouter",
+        "delete",
+        "/:id"
+      ],
+      [
+        "workOrdersRouter",
+        "post",
+        "/:id/inizia"
+      ],
+      [
+        "workOrdersRouter",
+        "post",
+        "/:id/pausa"
+      ],
+      [
+        "workOrdersRouter",
+        "post",
+        "/:id/termina"
+      ],
+      [
+        "workOrdersRouter",
+        "get",
+        "/:id/eventi"
+      ],
+      [
+        "workOrderTimeEntriesRouter",
+        "patch",
+        "/:id"
+      ]
+    ],
+    "env": [],
+    "reviewMarkers": []
+  },
+  {
+    "file": "prisma/schema.prisma",
+    "encoding": "utf-8",
+    "lines": 1704,
+    "sha256": "8aa2801b0b24a08658490c05c2b8342484d5ae92c484deff4de6aeba9becc1fe",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": [
+      {
+        "line": 1249,
+        "text": "metodo     String"
+      }
+    ]
+  },
+  {
+    "file": "frontend/carrozzeria-crm-app.html",
+    "encoding": "utf-8",
+    "lines": 5568,
+    "sha256": "986352f46de4ed45f8e1c08a44957e005e8bd4613573fc6624278d6e6d15207c",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": [
+      {
+        "line": 837,
+        "text": "<input value={nome} onChange={(e) => setNome(e.target.value)} placeholder=\"Nome e cognome\" style={{"
+      },
+      {
+        "line": 1105,
+        "text": "placeholder=\"Tipologia danno\""
+      },
+      {
+        "line": 1124,
+        "text": "placeholder=\"Lavorazione suggerita\""
+      },
+      {
+        "line": 1486,
+        "text": "<input type=\"number\" step=\"0.01\" value={valore(\"quantitaAssicurazione\") ?? \"\"} placeholder=\"qtà\""
+      },
+      {
+        "line": 1490,
+        "text": "<input type=\"number\" step=\"0.01\" value={valore(\"prezzoUnitarioAssicurazione\") ?? \"\"} placeholder=\"prezzo\""
+      },
+      {
+        "line": 1609,
+        "text": "<label style={{display:\"block\",margin:\"14px 0\"}}>Motivo della rettifica / cambio stato<input maxLength=\"1000\" value={reason} onInput={e=>setReason(e.target.value)} placeholder=\"Obbligatorio per salti "
+      },
+      {
+        "line": 2039,
+        "text": "<input placeholder=\"Marca\" value={form.marca} onChange={set(\"marca\")} style={{ padding: 8, borderRadius: 8, border: \"1px solid #2A2E34\" }} />"
+      },
+      {
+        "line": 2040,
+        "text": "<input placeholder=\"Modello\" value={form.modello} onChange={set(\"modello\")} style={{ padding: 8, borderRadius: 8, border: \"1px solid #2A2E34\" }} />"
+      },
+      {
+        "line": 2041,
+        "text": "<input placeholder=\"Targa\" value={form.targa} onChange={set(\"targa\")} style={{ padding: 8, borderRadius: 8, border: \"1px solid #2A2E34\" }} />"
+      },
+      {
+        "line": 2253,
+        "text": "placeholder=\"IVA %\" style={{ padding: 8, borderRadius: 8, border: \"1px solid #2A2E34\" }} />"
+      },
+      {
+        "line": 2262,
+        "text": "<input placeholder=\"Descrizione\" value={it.descrizione} onChange={(e) => setItem(idx, \"descrizione\", e.target.value)}"
+      },
+      {
+        "line": 2264,
+        "text": "<input type=\"number\" placeholder=\"Qtà\" value={it.quantita} onChange={(e) => setItem(idx, \"quantita\", e.target.value)}"
+      },
+      {
+        "line": 2266,
+        "text": "<input type=\"number\" placeholder=\"Prezzo €\" value={it.prezzoUnitario} onChange={(e) => setItem(idx, \"prezzoUnitario\", e.target.value)}"
+      },
+      {
+        "line": 2328,
+        "text": "placeholder=\"Cerca per codice o descrizione…\""
+      },
+      {
+        "line": 2954,
+        "text": "<input placeholder=\"Descrizione\" value={it.descrizione} onChange={(e) => setItem(idx, \"descrizione\", e.target.value)}"
+      },
+      {
+        "line": 2956,
+        "text": "<input type=\"number\" placeholder=\"Qtà\" value={it.quantitaOrdinata} onChange={(e) => setItem(idx, \"quantitaOrdinata\", e.target.value)}"
+      },
+      {
+        "line": 2958,
+        "text": "<input type=\"number\" placeholder=\"Prezzo €\" value={it.prezzoUnitario} onChange={(e) => setItem(idx, \"prezzoUnitario\", e.target.value)}"
+      },
+      {
+        "line": 3961,
+        "text": "<input placeholder=\"Motivo della correzione (obbligatorio)\" value={motivo} onChange={(e) => setMotivo(e.target.value)} style={{ width: \"100%\", padding: 6, borderRadius: 6, border: \"1px solid #2A2E34\","
+      },
+      {
+        "line": 4069,
+        "text": "<input placeholder=\"Lavorazione (es. Sostituzione paraurti)\" value={form.titolo} onChange={set(\"titolo\")} style={{ width: \"100%\", padding: 8, borderRadius: 8, border: \"1px solid #2A2E34\", background: "
+      },
+      {
+        "line": 4080,
+        "text": "<input type=\"number\" step=\"0.5\" min=\"0\" placeholder=\"Ore previste\" value={form.oreStimate} onChange={set(\"oreStimate\")} style={{ padding: 8, borderRadius: 8, border: \"1px solid #2A2E34\", background: \""
+      },
+      {
+        "line": 4083,
+        "text": "<textarea placeholder=\"Note tecniche per il tecnico\" value={form.noteTecniche} onChange={set(\"noteTecniche\")} rows={2} style={{ width: \"100%\", padding: 8, borderRadius: 8, border: \"1px solid #2A2E34\","
+      },
+      {
+        "line": 4432,
+        "text": "<textarea placeholder=\"Descrizione\" value={form.descrizione} onChange={set(\"descrizione\")} rows={2} style={{ width: \"100%\", padding: 8, borderRadius: 8, border: \"1px solid #2A2E34\", background: \"#1517"
+      },
+      {
+        "line": 4442,
+        "text": "<textarea placeholder=\"Azione correttiva\" value={form.azioneCorrettiva} onChange={set(\"azioneCorrettiva\")} rows={2} style={{ width: \"100%\", padding: 8, borderRadius: 8, border: \"1px solid #2A2E34\", ba"
+      },
+      {
+        "line": 4663,
+        "text": "<input placeholder=\"Nuova voce personalizzata…\" value={nuovaEtichetta} onChange={(e) => setNuovaEtichetta(e.target.value)} style={{ flex: 1, maxWidth: 320, padding: 8, borderRadius: 8, border: \"1px so"
+      },
+      {
+        "line": 4777,
+        "text": "<input placeholder=\"Nome\" value={form.nome} onChange={set(\"nome\")} style={{ padding: 9, borderRadius: 8, border: \"1px solid #2A2E34\" }} />"
+      },
+      {
+        "line": 4778,
+        "text": "<input placeholder=\"Cognome\" value={form.cognome} onChange={set(\"cognome\")} style={{ padding: 9, borderRadius: 8, border: \"1px solid #2A2E34\" }} />"
+      },
+      {
+        "line": 4779,
+        "text": "<input placeholder=\"Telefono\" value={form.telefono} onChange={set(\"telefono\")} style={{ padding: 9, borderRadius: 8, border: \"1px solid #2A2E34\" }} />"
+      },
+      {
+        "line": 4780,
+        "text": "<input placeholder=\"Email\" value={form.email} onChange={set(\"email\")} style={{ padding: 9, borderRadius: 8, border: \"1px solid #2A2E34\" }} />"
+      },
+      {
+        "line": 4781,
+        "text": "<input placeholder=\"Codice fiscale\" value={form.codiceFiscale} onChange={set(\"codiceFiscale\")} style={{ padding: 9, borderRadius: 8, border: \"1px solid #2A2E34\" }} />"
+      },
+      {
+        "line": 4782,
+        "text": "<input placeholder=\"Indirizzo\" value={form.indirizzo} onChange={set(\"indirizzo\")} style={{ padding: 9, borderRadius: 8, border: \"1px solid #2A2E34\" }} />"
+      },
+      {
+        "line": 4830,
+        "text": "<input placeholder=\"Nome\" value={form.nome} onChange={set(\"nome\")} style={{ padding: 8, borderRadius: 8, border: \"1px solid #2A2E34\" }} />"
+      },
+      {
+        "line": 4831,
+        "text": "<input placeholder=\"Cognome\" value={form.cognome} onChange={set(\"cognome\")} style={{ padding: 8, borderRadius: 8, border: \"1px solid #2A2E34\" }} />"
+      },
+      {
+        "line": 4832,
+        "text": "<input placeholder=\"Telefono\" value={form.telefono} onChange={set(\"telefono\")} style={{ padding: 8, borderRadius: 8, border: \"1px solid #2A2E34\" }} />"
+      },
+      {
+        "line": 4833,
+        "text": "<input placeholder=\"Email\" value={form.email} onChange={set(\"email\")} style={{ padding: 8, borderRadius: 8, border: \"1px solid #2A2E34\" }} />"
+      },
+      {
+        "line": 4907,
+        "text": "<input placeholder=\"Cerca per numero pratica, targa, cliente…\" value={search} onChange={(e) => setSearch(e.target.value)}"
+      },
+      {
+        "line": 5355,
+        "text": "placeholder=\"Chiedi al Copilot…\""
+      },
+      {
+        "line": 5445,
+        "text": "placeholder=\"Scrivi una domanda…\""
+      },
+      {
+        "line": 5508,
+        "text": "}}>{l.metodo}</div>"
+      }
+    ]
+  },
+  {
+    "file": "public/portale/index.html",
+    "encoding": "utf-8",
+    "lines": 354,
+    "sha256": "a2133b1ba19b2706c2314726ff9d60fa0f05784ef8e65738ffe41cf986a8349d",
+    "routes": [],
+    "env": [],
+    "reviewMarkers": [
+      {
+        "line": 89,
+        "text": "<input id=\"firmaNome\" class=\"firma-input\" type=\"text\" placeholder=\"Il tuo nome e cognome\" />"
+      },
+      {
+        "line": 222,
+        "text": "<textarea id=\"messaggioContatto\" placeholder=\"Scrivi un messaggio allo staff…\"></textarea>"
+      },
+      {
+        "line": 230,
+        "text": "<textarea id=\"noteRitiro\" placeholder=\"Note (opzionale)\"></textarea>"
+      }
+    ]
+  }
+]

@@ -20,8 +20,20 @@ export type LoanerCarModel = runtime.Types.Result.DefaultSelection<Prisma.$Loane
 
 export type AggregateLoanerCar = {
   _count: LoanerCarCountAggregateOutputType | null
+  _avg: LoanerCarAvgAggregateOutputType | null
+  _sum: LoanerCarSumAggregateOutputType | null
   _min: LoanerCarMinAggregateOutputType | null
   _max: LoanerCarMaxAggregateOutputType | null
+}
+
+export type LoanerCarAvgAggregateOutputType = {
+  km: number | null
+  tariffaGiornalieraCents: number | null
+}
+
+export type LoanerCarSumAggregateOutputType = {
+  km: number | null
+  tariffaGiornalieraCents: number | null
 }
 
 export type LoanerCarMinAggregateOutputType = {
@@ -30,7 +42,16 @@ export type LoanerCarMinAggregateOutputType = {
   targa: string | null
   marca: string | null
   modello: string | null
+  km: number | null
+  carburante: $Enums.LoanerFuelType | null
+  assicurazioneScadenza: Date | null
+  revisioneScadenza: Date | null
+  manutenzioneScadenza: Date | null
+  note: string | null
+  tariffaGiornalieraCents: number | null
+  statoManuale: $Enums.LoanerCarStatoManuale | null
   disponibile: boolean | null
+  createdAt: Date | null
 }
 
 export type LoanerCarMaxAggregateOutputType = {
@@ -39,7 +60,16 @@ export type LoanerCarMaxAggregateOutputType = {
   targa: string | null
   marca: string | null
   modello: string | null
+  km: number | null
+  carburante: $Enums.LoanerFuelType | null
+  assicurazioneScadenza: Date | null
+  revisioneScadenza: Date | null
+  manutenzioneScadenza: Date | null
+  note: string | null
+  tariffaGiornalieraCents: number | null
+  statoManuale: $Enums.LoanerCarStatoManuale | null
   disponibile: boolean | null
+  createdAt: Date | null
 }
 
 export type LoanerCarCountAggregateOutputType = {
@@ -48,10 +78,29 @@ export type LoanerCarCountAggregateOutputType = {
   targa: number
   marca: number
   modello: number
+  km: number
+  carburante: number
+  assicurazioneScadenza: number
+  revisioneScadenza: number
+  manutenzioneScadenza: number
+  note: number
+  tariffaGiornalieraCents: number
+  statoManuale: number
   disponibile: number
+  createdAt: number
   _all: number
 }
 
+
+export type LoanerCarAvgAggregateInputType = {
+  km?: true
+  tariffaGiornalieraCents?: true
+}
+
+export type LoanerCarSumAggregateInputType = {
+  km?: true
+  tariffaGiornalieraCents?: true
+}
 
 export type LoanerCarMinAggregateInputType = {
   id?: true
@@ -59,7 +108,16 @@ export type LoanerCarMinAggregateInputType = {
   targa?: true
   marca?: true
   modello?: true
+  km?: true
+  carburante?: true
+  assicurazioneScadenza?: true
+  revisioneScadenza?: true
+  manutenzioneScadenza?: true
+  note?: true
+  tariffaGiornalieraCents?: true
+  statoManuale?: true
   disponibile?: true
+  createdAt?: true
 }
 
 export type LoanerCarMaxAggregateInputType = {
@@ -68,7 +126,16 @@ export type LoanerCarMaxAggregateInputType = {
   targa?: true
   marca?: true
   modello?: true
+  km?: true
+  carburante?: true
+  assicurazioneScadenza?: true
+  revisioneScadenza?: true
+  manutenzioneScadenza?: true
+  note?: true
+  tariffaGiornalieraCents?: true
+  statoManuale?: true
   disponibile?: true
+  createdAt?: true
 }
 
 export type LoanerCarCountAggregateInputType = {
@@ -77,7 +144,16 @@ export type LoanerCarCountAggregateInputType = {
   targa?: true
   marca?: true
   modello?: true
+  km?: true
+  carburante?: true
+  assicurazioneScadenza?: true
+  revisioneScadenza?: true
+  manutenzioneScadenza?: true
+  note?: true
+  tariffaGiornalieraCents?: true
+  statoManuale?: true
   disponibile?: true
+  createdAt?: true
   _all?: true
 }
 
@@ -119,6 +195,18 @@ export type LoanerCarAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inte
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: LoanerCarAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: LoanerCarSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: LoanerCarMinAggregateInputType
@@ -149,6 +237,8 @@ export type LoanerCarGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   _count?: LoanerCarCountAggregateInputType | true
+  _avg?: LoanerCarAvgAggregateInputType
+  _sum?: LoanerCarSumAggregateInputType
   _min?: LoanerCarMinAggregateInputType
   _max?: LoanerCarMaxAggregateInputType
 }
@@ -159,8 +249,19 @@ export type LoanerCarGroupByOutputType = {
   targa: string
   marca: string
   modello: string
+  km: number | null
+  carburante: $Enums.LoanerFuelType
+  assicurazioneScadenza: Date | null
+  revisioneScadenza: Date | null
+  manutenzioneScadenza: Date | null
+  note: string | null
+  tariffaGiornalieraCents: number | null
+  statoManuale: $Enums.LoanerCarStatoManuale | null
   disponibile: boolean
+  createdAt: Date
   _count: LoanerCarCountAggregateOutputType | null
+  _avg: LoanerCarAvgAggregateOutputType | null
+  _sum: LoanerCarSumAggregateOutputType | null
   _min: LoanerCarMinAggregateOutputType | null
   _max: LoanerCarMaxAggregateOutputType | null
 }
@@ -189,9 +290,19 @@ export type LoanerCarWhereInput = {
   targa?: Prisma.StringFilter<"LoanerCar"> | string
   marca?: Prisma.StringFilter<"LoanerCar"> | string
   modello?: Prisma.StringFilter<"LoanerCar"> | string
+  km?: Prisma.IntNullableFilter<"LoanerCar"> | number | null
+  carburante?: Prisma.EnumLoanerFuelTypeFilter<"LoanerCar"> | $Enums.LoanerFuelType
+  assicurazioneScadenza?: Prisma.DateTimeNullableFilter<"LoanerCar"> | Date | string | null
+  revisioneScadenza?: Prisma.DateTimeNullableFilter<"LoanerCar"> | Date | string | null
+  manutenzioneScadenza?: Prisma.DateTimeNullableFilter<"LoanerCar"> | Date | string | null
+  note?: Prisma.StringNullableFilter<"LoanerCar"> | string | null
+  tariffaGiornalieraCents?: Prisma.IntNullableFilter<"LoanerCar"> | number | null
+  statoManuale?: Prisma.EnumLoanerCarStatoManualeNullableFilter<"LoanerCar"> | $Enums.LoanerCarStatoManuale | null
   disponibile?: Prisma.BoolFilter<"LoanerCar"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"LoanerCar"> | Date | string
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   bookings?: Prisma.LoanerBookingListRelationFilter
+  photos?: Prisma.LoanerCarPhotoListRelationFilter
 }
 
 export type LoanerCarOrderByWithRelationInput = {
@@ -200,9 +311,19 @@ export type LoanerCarOrderByWithRelationInput = {
   targa?: Prisma.SortOrder
   marca?: Prisma.SortOrder
   modello?: Prisma.SortOrder
+  km?: Prisma.SortOrderInput | Prisma.SortOrder
+  carburante?: Prisma.SortOrder
+  assicurazioneScadenza?: Prisma.SortOrderInput | Prisma.SortOrder
+  revisioneScadenza?: Prisma.SortOrderInput | Prisma.SortOrder
+  manutenzioneScadenza?: Prisma.SortOrderInput | Prisma.SortOrder
+  note?: Prisma.SortOrderInput | Prisma.SortOrder
+  tariffaGiornalieraCents?: Prisma.SortOrderInput | Prisma.SortOrder
+  statoManuale?: Prisma.SortOrderInput | Prisma.SortOrder
   disponibile?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   tenant?: Prisma.TenantOrderByWithRelationInput
   bookings?: Prisma.LoanerBookingOrderByRelationAggregateInput
+  photos?: Prisma.LoanerCarPhotoOrderByRelationAggregateInput
 }
 
 export type LoanerCarWhereUniqueInput = Prisma.AtLeast<{
@@ -214,9 +335,19 @@ export type LoanerCarWhereUniqueInput = Prisma.AtLeast<{
   targa?: Prisma.StringFilter<"LoanerCar"> | string
   marca?: Prisma.StringFilter<"LoanerCar"> | string
   modello?: Prisma.StringFilter<"LoanerCar"> | string
+  km?: Prisma.IntNullableFilter<"LoanerCar"> | number | null
+  carburante?: Prisma.EnumLoanerFuelTypeFilter<"LoanerCar"> | $Enums.LoanerFuelType
+  assicurazioneScadenza?: Prisma.DateTimeNullableFilter<"LoanerCar"> | Date | string | null
+  revisioneScadenza?: Prisma.DateTimeNullableFilter<"LoanerCar"> | Date | string | null
+  manutenzioneScadenza?: Prisma.DateTimeNullableFilter<"LoanerCar"> | Date | string | null
+  note?: Prisma.StringNullableFilter<"LoanerCar"> | string | null
+  tariffaGiornalieraCents?: Prisma.IntNullableFilter<"LoanerCar"> | number | null
+  statoManuale?: Prisma.EnumLoanerCarStatoManualeNullableFilter<"LoanerCar"> | $Enums.LoanerCarStatoManuale | null
   disponibile?: Prisma.BoolFilter<"LoanerCar"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"LoanerCar"> | Date | string
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   bookings?: Prisma.LoanerBookingListRelationFilter
+  photos?: Prisma.LoanerCarPhotoListRelationFilter
 }, "id">
 
 export type LoanerCarOrderByWithAggregationInput = {
@@ -225,10 +356,21 @@ export type LoanerCarOrderByWithAggregationInput = {
   targa?: Prisma.SortOrder
   marca?: Prisma.SortOrder
   modello?: Prisma.SortOrder
+  km?: Prisma.SortOrderInput | Prisma.SortOrder
+  carburante?: Prisma.SortOrder
+  assicurazioneScadenza?: Prisma.SortOrderInput | Prisma.SortOrder
+  revisioneScadenza?: Prisma.SortOrderInput | Prisma.SortOrder
+  manutenzioneScadenza?: Prisma.SortOrderInput | Prisma.SortOrder
+  note?: Prisma.SortOrderInput | Prisma.SortOrder
+  tariffaGiornalieraCents?: Prisma.SortOrderInput | Prisma.SortOrder
+  statoManuale?: Prisma.SortOrderInput | Prisma.SortOrder
   disponibile?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   _count?: Prisma.LoanerCarCountOrderByAggregateInput
+  _avg?: Prisma.LoanerCarAvgOrderByAggregateInput
   _max?: Prisma.LoanerCarMaxOrderByAggregateInput
   _min?: Prisma.LoanerCarMinOrderByAggregateInput
+  _sum?: Prisma.LoanerCarSumOrderByAggregateInput
 }
 
 export type LoanerCarScalarWhereWithAggregatesInput = {
@@ -240,7 +382,16 @@ export type LoanerCarScalarWhereWithAggregatesInput = {
   targa?: Prisma.StringWithAggregatesFilter<"LoanerCar"> | string
   marca?: Prisma.StringWithAggregatesFilter<"LoanerCar"> | string
   modello?: Prisma.StringWithAggregatesFilter<"LoanerCar"> | string
+  km?: Prisma.IntNullableWithAggregatesFilter<"LoanerCar"> | number | null
+  carburante?: Prisma.EnumLoanerFuelTypeWithAggregatesFilter<"LoanerCar"> | $Enums.LoanerFuelType
+  assicurazioneScadenza?: Prisma.DateTimeNullableWithAggregatesFilter<"LoanerCar"> | Date | string | null
+  revisioneScadenza?: Prisma.DateTimeNullableWithAggregatesFilter<"LoanerCar"> | Date | string | null
+  manutenzioneScadenza?: Prisma.DateTimeNullableWithAggregatesFilter<"LoanerCar"> | Date | string | null
+  note?: Prisma.StringNullableWithAggregatesFilter<"LoanerCar"> | string | null
+  tariffaGiornalieraCents?: Prisma.IntNullableWithAggregatesFilter<"LoanerCar"> | number | null
+  statoManuale?: Prisma.EnumLoanerCarStatoManualeNullableWithAggregatesFilter<"LoanerCar"> | $Enums.LoanerCarStatoManuale | null
   disponibile?: Prisma.BoolWithAggregatesFilter<"LoanerCar"> | boolean
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"LoanerCar"> | Date | string
 }
 
 export type LoanerCarCreateInput = {
@@ -248,9 +399,19 @@ export type LoanerCarCreateInput = {
   targa: string
   marca: string
   modello: string
+  km?: number | null
+  carburante?: $Enums.LoanerFuelType
+  assicurazioneScadenza?: Date | string | null
+  revisioneScadenza?: Date | string | null
+  manutenzioneScadenza?: Date | string | null
+  note?: string | null
+  tariffaGiornalieraCents?: number | null
+  statoManuale?: $Enums.LoanerCarStatoManuale | null
   disponibile?: boolean
+  createdAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutLoanerCarsInput
   bookings?: Prisma.LoanerBookingCreateNestedManyWithoutLoanerCarInput
+  photos?: Prisma.LoanerCarPhotoCreateNestedManyWithoutLoanerCarInput
 }
 
 export type LoanerCarUncheckedCreateInput = {
@@ -259,8 +420,18 @@ export type LoanerCarUncheckedCreateInput = {
   targa: string
   marca: string
   modello: string
+  km?: number | null
+  carburante?: $Enums.LoanerFuelType
+  assicurazioneScadenza?: Date | string | null
+  revisioneScadenza?: Date | string | null
+  manutenzioneScadenza?: Date | string | null
+  note?: string | null
+  tariffaGiornalieraCents?: number | null
+  statoManuale?: $Enums.LoanerCarStatoManuale | null
   disponibile?: boolean
+  createdAt?: Date | string
   bookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutLoanerCarInput
+  photos?: Prisma.LoanerCarPhotoUncheckedCreateNestedManyWithoutLoanerCarInput
 }
 
 export type LoanerCarUpdateInput = {
@@ -268,9 +439,19 @@ export type LoanerCarUpdateInput = {
   targa?: Prisma.StringFieldUpdateOperationsInput | string
   marca?: Prisma.StringFieldUpdateOperationsInput | string
   modello?: Prisma.StringFieldUpdateOperationsInput | string
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburante?: Prisma.EnumLoanerFuelTypeFieldUpdateOperationsInput | $Enums.LoanerFuelType
+  assicurazioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  revisioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  manutenzioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tariffaGiornalieraCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  statoManuale?: Prisma.NullableEnumLoanerCarStatoManualeFieldUpdateOperationsInput | $Enums.LoanerCarStatoManuale | null
   disponibile?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutLoanerCarsNestedInput
   bookings?: Prisma.LoanerBookingUpdateManyWithoutLoanerCarNestedInput
+  photos?: Prisma.LoanerCarPhotoUpdateManyWithoutLoanerCarNestedInput
 }
 
 export type LoanerCarUncheckedUpdateInput = {
@@ -279,8 +460,18 @@ export type LoanerCarUncheckedUpdateInput = {
   targa?: Prisma.StringFieldUpdateOperationsInput | string
   marca?: Prisma.StringFieldUpdateOperationsInput | string
   modello?: Prisma.StringFieldUpdateOperationsInput | string
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburante?: Prisma.EnumLoanerFuelTypeFieldUpdateOperationsInput | $Enums.LoanerFuelType
+  assicurazioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  revisioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  manutenzioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tariffaGiornalieraCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  statoManuale?: Prisma.NullableEnumLoanerCarStatoManualeFieldUpdateOperationsInput | $Enums.LoanerCarStatoManuale | null
   disponibile?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutLoanerCarNestedInput
+  photos?: Prisma.LoanerCarPhotoUncheckedUpdateManyWithoutLoanerCarNestedInput
 }
 
 export type LoanerCarCreateManyInput = {
@@ -289,7 +480,16 @@ export type LoanerCarCreateManyInput = {
   targa: string
   marca: string
   modello: string
+  km?: number | null
+  carburante?: $Enums.LoanerFuelType
+  assicurazioneScadenza?: Date | string | null
+  revisioneScadenza?: Date | string | null
+  manutenzioneScadenza?: Date | string | null
+  note?: string | null
+  tariffaGiornalieraCents?: number | null
+  statoManuale?: $Enums.LoanerCarStatoManuale | null
   disponibile?: boolean
+  createdAt?: Date | string
 }
 
 export type LoanerCarUpdateManyMutationInput = {
@@ -297,7 +497,16 @@ export type LoanerCarUpdateManyMutationInput = {
   targa?: Prisma.StringFieldUpdateOperationsInput | string
   marca?: Prisma.StringFieldUpdateOperationsInput | string
   modello?: Prisma.StringFieldUpdateOperationsInput | string
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburante?: Prisma.EnumLoanerFuelTypeFieldUpdateOperationsInput | $Enums.LoanerFuelType
+  assicurazioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  revisioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  manutenzioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tariffaGiornalieraCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  statoManuale?: Prisma.NullableEnumLoanerCarStatoManualeFieldUpdateOperationsInput | $Enums.LoanerCarStatoManuale | null
   disponibile?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type LoanerCarUncheckedUpdateManyInput = {
@@ -306,7 +515,16 @@ export type LoanerCarUncheckedUpdateManyInput = {
   targa?: Prisma.StringFieldUpdateOperationsInput | string
   marca?: Prisma.StringFieldUpdateOperationsInput | string
   modello?: Prisma.StringFieldUpdateOperationsInput | string
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburante?: Prisma.EnumLoanerFuelTypeFieldUpdateOperationsInput | $Enums.LoanerFuelType
+  assicurazioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  revisioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  manutenzioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tariffaGiornalieraCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  statoManuale?: Prisma.NullableEnumLoanerCarStatoManualeFieldUpdateOperationsInput | $Enums.LoanerCarStatoManuale | null
   disponibile?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type LoanerCarListRelationFilter = {
@@ -325,7 +543,21 @@ export type LoanerCarCountOrderByAggregateInput = {
   targa?: Prisma.SortOrder
   marca?: Prisma.SortOrder
   modello?: Prisma.SortOrder
+  km?: Prisma.SortOrder
+  carburante?: Prisma.SortOrder
+  assicurazioneScadenza?: Prisma.SortOrder
+  revisioneScadenza?: Prisma.SortOrder
+  manutenzioneScadenza?: Prisma.SortOrder
+  note?: Prisma.SortOrder
+  tariffaGiornalieraCents?: Prisma.SortOrder
+  statoManuale?: Prisma.SortOrder
   disponibile?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+}
+
+export type LoanerCarAvgOrderByAggregateInput = {
+  km?: Prisma.SortOrder
+  tariffaGiornalieraCents?: Prisma.SortOrder
 }
 
 export type LoanerCarMaxOrderByAggregateInput = {
@@ -334,7 +566,16 @@ export type LoanerCarMaxOrderByAggregateInput = {
   targa?: Prisma.SortOrder
   marca?: Prisma.SortOrder
   modello?: Prisma.SortOrder
+  km?: Prisma.SortOrder
+  carburante?: Prisma.SortOrder
+  assicurazioneScadenza?: Prisma.SortOrder
+  revisioneScadenza?: Prisma.SortOrder
+  manutenzioneScadenza?: Prisma.SortOrder
+  note?: Prisma.SortOrder
+  tariffaGiornalieraCents?: Prisma.SortOrder
+  statoManuale?: Prisma.SortOrder
   disponibile?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type LoanerCarMinOrderByAggregateInput = {
@@ -343,7 +584,21 @@ export type LoanerCarMinOrderByAggregateInput = {
   targa?: Prisma.SortOrder
   marca?: Prisma.SortOrder
   modello?: Prisma.SortOrder
+  km?: Prisma.SortOrder
+  carburante?: Prisma.SortOrder
+  assicurazioneScadenza?: Prisma.SortOrder
+  revisioneScadenza?: Prisma.SortOrder
+  manutenzioneScadenza?: Prisma.SortOrder
+  note?: Prisma.SortOrder
+  tariffaGiornalieraCents?: Prisma.SortOrder
+  statoManuale?: Prisma.SortOrder
   disponibile?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+}
+
+export type LoanerCarSumOrderByAggregateInput = {
+  km?: Prisma.SortOrder
+  tariffaGiornalieraCents?: Prisma.SortOrder
 }
 
 export type LoanerCarScalarRelationFilter = {
@@ -393,6 +648,28 @@ export type LoanerCarUncheckedUpdateManyWithoutTenantNestedInput = {
   deleteMany?: Prisma.LoanerCarScalarWhereInput | Prisma.LoanerCarScalarWhereInput[]
 }
 
+export type EnumLoanerFuelTypeFieldUpdateOperationsInput = {
+  set?: $Enums.LoanerFuelType
+}
+
+export type NullableEnumLoanerCarStatoManualeFieldUpdateOperationsInput = {
+  set?: $Enums.LoanerCarStatoManuale | null
+}
+
+export type LoanerCarCreateNestedOneWithoutPhotosInput = {
+  create?: Prisma.XOR<Prisma.LoanerCarCreateWithoutPhotosInput, Prisma.LoanerCarUncheckedCreateWithoutPhotosInput>
+  connectOrCreate?: Prisma.LoanerCarCreateOrConnectWithoutPhotosInput
+  connect?: Prisma.LoanerCarWhereUniqueInput
+}
+
+export type LoanerCarUpdateOneRequiredWithoutPhotosNestedInput = {
+  create?: Prisma.XOR<Prisma.LoanerCarCreateWithoutPhotosInput, Prisma.LoanerCarUncheckedCreateWithoutPhotosInput>
+  connectOrCreate?: Prisma.LoanerCarCreateOrConnectWithoutPhotosInput
+  upsert?: Prisma.LoanerCarUpsertWithoutPhotosInput
+  connect?: Prisma.LoanerCarWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LoanerCarUpdateToOneWithWhereWithoutPhotosInput, Prisma.LoanerCarUpdateWithoutPhotosInput>, Prisma.LoanerCarUncheckedUpdateWithoutPhotosInput>
+}
+
 export type LoanerCarCreateNestedOneWithoutBookingsInput = {
   create?: Prisma.XOR<Prisma.LoanerCarCreateWithoutBookingsInput, Prisma.LoanerCarUncheckedCreateWithoutBookingsInput>
   connectOrCreate?: Prisma.LoanerCarCreateOrConnectWithoutBookingsInput
@@ -412,8 +689,18 @@ export type LoanerCarCreateWithoutTenantInput = {
   targa: string
   marca: string
   modello: string
+  km?: number | null
+  carburante?: $Enums.LoanerFuelType
+  assicurazioneScadenza?: Date | string | null
+  revisioneScadenza?: Date | string | null
+  manutenzioneScadenza?: Date | string | null
+  note?: string | null
+  tariffaGiornalieraCents?: number | null
+  statoManuale?: $Enums.LoanerCarStatoManuale | null
   disponibile?: boolean
+  createdAt?: Date | string
   bookings?: Prisma.LoanerBookingCreateNestedManyWithoutLoanerCarInput
+  photos?: Prisma.LoanerCarPhotoCreateNestedManyWithoutLoanerCarInput
 }
 
 export type LoanerCarUncheckedCreateWithoutTenantInput = {
@@ -421,8 +708,18 @@ export type LoanerCarUncheckedCreateWithoutTenantInput = {
   targa: string
   marca: string
   modello: string
+  km?: number | null
+  carburante?: $Enums.LoanerFuelType
+  assicurazioneScadenza?: Date | string | null
+  revisioneScadenza?: Date | string | null
+  manutenzioneScadenza?: Date | string | null
+  note?: string | null
+  tariffaGiornalieraCents?: number | null
+  statoManuale?: $Enums.LoanerCarStatoManuale | null
   disponibile?: boolean
+  createdAt?: Date | string
   bookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutLoanerCarInput
+  photos?: Prisma.LoanerCarPhotoUncheckedCreateNestedManyWithoutLoanerCarInput
 }
 
 export type LoanerCarCreateOrConnectWithoutTenantInput = {
@@ -460,7 +757,108 @@ export type LoanerCarScalarWhereInput = {
   targa?: Prisma.StringFilter<"LoanerCar"> | string
   marca?: Prisma.StringFilter<"LoanerCar"> | string
   modello?: Prisma.StringFilter<"LoanerCar"> | string
+  km?: Prisma.IntNullableFilter<"LoanerCar"> | number | null
+  carburante?: Prisma.EnumLoanerFuelTypeFilter<"LoanerCar"> | $Enums.LoanerFuelType
+  assicurazioneScadenza?: Prisma.DateTimeNullableFilter<"LoanerCar"> | Date | string | null
+  revisioneScadenza?: Prisma.DateTimeNullableFilter<"LoanerCar"> | Date | string | null
+  manutenzioneScadenza?: Prisma.DateTimeNullableFilter<"LoanerCar"> | Date | string | null
+  note?: Prisma.StringNullableFilter<"LoanerCar"> | string | null
+  tariffaGiornalieraCents?: Prisma.IntNullableFilter<"LoanerCar"> | number | null
+  statoManuale?: Prisma.EnumLoanerCarStatoManualeNullableFilter<"LoanerCar"> | $Enums.LoanerCarStatoManuale | null
   disponibile?: Prisma.BoolFilter<"LoanerCar"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"LoanerCar"> | Date | string
+}
+
+export type LoanerCarCreateWithoutPhotosInput = {
+  id?: string
+  targa: string
+  marca: string
+  modello: string
+  km?: number | null
+  carburante?: $Enums.LoanerFuelType
+  assicurazioneScadenza?: Date | string | null
+  revisioneScadenza?: Date | string | null
+  manutenzioneScadenza?: Date | string | null
+  note?: string | null
+  tariffaGiornalieraCents?: number | null
+  statoManuale?: $Enums.LoanerCarStatoManuale | null
+  disponibile?: boolean
+  createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutLoanerCarsInput
+  bookings?: Prisma.LoanerBookingCreateNestedManyWithoutLoanerCarInput
+}
+
+export type LoanerCarUncheckedCreateWithoutPhotosInput = {
+  id?: string
+  tenantId: string
+  targa: string
+  marca: string
+  modello: string
+  km?: number | null
+  carburante?: $Enums.LoanerFuelType
+  assicurazioneScadenza?: Date | string | null
+  revisioneScadenza?: Date | string | null
+  manutenzioneScadenza?: Date | string | null
+  note?: string | null
+  tariffaGiornalieraCents?: number | null
+  statoManuale?: $Enums.LoanerCarStatoManuale | null
+  disponibile?: boolean
+  createdAt?: Date | string
+  bookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutLoanerCarInput
+}
+
+export type LoanerCarCreateOrConnectWithoutPhotosInput = {
+  where: Prisma.LoanerCarWhereUniqueInput
+  create: Prisma.XOR<Prisma.LoanerCarCreateWithoutPhotosInput, Prisma.LoanerCarUncheckedCreateWithoutPhotosInput>
+}
+
+export type LoanerCarUpsertWithoutPhotosInput = {
+  update: Prisma.XOR<Prisma.LoanerCarUpdateWithoutPhotosInput, Prisma.LoanerCarUncheckedUpdateWithoutPhotosInput>
+  create: Prisma.XOR<Prisma.LoanerCarCreateWithoutPhotosInput, Prisma.LoanerCarUncheckedCreateWithoutPhotosInput>
+  where?: Prisma.LoanerCarWhereInput
+}
+
+export type LoanerCarUpdateToOneWithWhereWithoutPhotosInput = {
+  where?: Prisma.LoanerCarWhereInput
+  data: Prisma.XOR<Prisma.LoanerCarUpdateWithoutPhotosInput, Prisma.LoanerCarUncheckedUpdateWithoutPhotosInput>
+}
+
+export type LoanerCarUpdateWithoutPhotosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburante?: Prisma.EnumLoanerFuelTypeFieldUpdateOperationsInput | $Enums.LoanerFuelType
+  assicurazioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  revisioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  manutenzioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tariffaGiornalieraCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  statoManuale?: Prisma.NullableEnumLoanerCarStatoManualeFieldUpdateOperationsInput | $Enums.LoanerCarStatoManuale | null
+  disponibile?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutLoanerCarsNestedInput
+  bookings?: Prisma.LoanerBookingUpdateManyWithoutLoanerCarNestedInput
+}
+
+export type LoanerCarUncheckedUpdateWithoutPhotosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  targa?: Prisma.StringFieldUpdateOperationsInput | string
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modello?: Prisma.StringFieldUpdateOperationsInput | string
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburante?: Prisma.EnumLoanerFuelTypeFieldUpdateOperationsInput | $Enums.LoanerFuelType
+  assicurazioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  revisioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  manutenzioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tariffaGiornalieraCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  statoManuale?: Prisma.NullableEnumLoanerCarStatoManualeFieldUpdateOperationsInput | $Enums.LoanerCarStatoManuale | null
+  disponibile?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutLoanerCarNestedInput
 }
 
 export type LoanerCarCreateWithoutBookingsInput = {
@@ -468,8 +866,18 @@ export type LoanerCarCreateWithoutBookingsInput = {
   targa: string
   marca: string
   modello: string
+  km?: number | null
+  carburante?: $Enums.LoanerFuelType
+  assicurazioneScadenza?: Date | string | null
+  revisioneScadenza?: Date | string | null
+  manutenzioneScadenza?: Date | string | null
+  note?: string | null
+  tariffaGiornalieraCents?: number | null
+  statoManuale?: $Enums.LoanerCarStatoManuale | null
   disponibile?: boolean
+  createdAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutLoanerCarsInput
+  photos?: Prisma.LoanerCarPhotoCreateNestedManyWithoutLoanerCarInput
 }
 
 export type LoanerCarUncheckedCreateWithoutBookingsInput = {
@@ -478,7 +886,17 @@ export type LoanerCarUncheckedCreateWithoutBookingsInput = {
   targa: string
   marca: string
   modello: string
+  km?: number | null
+  carburante?: $Enums.LoanerFuelType
+  assicurazioneScadenza?: Date | string | null
+  revisioneScadenza?: Date | string | null
+  manutenzioneScadenza?: Date | string | null
+  note?: string | null
+  tariffaGiornalieraCents?: number | null
+  statoManuale?: $Enums.LoanerCarStatoManuale | null
   disponibile?: boolean
+  createdAt?: Date | string
+  photos?: Prisma.LoanerCarPhotoUncheckedCreateNestedManyWithoutLoanerCarInput
 }
 
 export type LoanerCarCreateOrConnectWithoutBookingsInput = {
@@ -502,8 +920,18 @@ export type LoanerCarUpdateWithoutBookingsInput = {
   targa?: Prisma.StringFieldUpdateOperationsInput | string
   marca?: Prisma.StringFieldUpdateOperationsInput | string
   modello?: Prisma.StringFieldUpdateOperationsInput | string
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburante?: Prisma.EnumLoanerFuelTypeFieldUpdateOperationsInput | $Enums.LoanerFuelType
+  assicurazioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  revisioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  manutenzioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tariffaGiornalieraCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  statoManuale?: Prisma.NullableEnumLoanerCarStatoManualeFieldUpdateOperationsInput | $Enums.LoanerCarStatoManuale | null
   disponibile?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutLoanerCarsNestedInput
+  photos?: Prisma.LoanerCarPhotoUpdateManyWithoutLoanerCarNestedInput
 }
 
 export type LoanerCarUncheckedUpdateWithoutBookingsInput = {
@@ -512,7 +940,17 @@ export type LoanerCarUncheckedUpdateWithoutBookingsInput = {
   targa?: Prisma.StringFieldUpdateOperationsInput | string
   marca?: Prisma.StringFieldUpdateOperationsInput | string
   modello?: Prisma.StringFieldUpdateOperationsInput | string
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburante?: Prisma.EnumLoanerFuelTypeFieldUpdateOperationsInput | $Enums.LoanerFuelType
+  assicurazioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  revisioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  manutenzioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tariffaGiornalieraCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  statoManuale?: Prisma.NullableEnumLoanerCarStatoManualeFieldUpdateOperationsInput | $Enums.LoanerCarStatoManuale | null
   disponibile?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  photos?: Prisma.LoanerCarPhotoUncheckedUpdateManyWithoutLoanerCarNestedInput
 }
 
 export type LoanerCarCreateManyTenantInput = {
@@ -520,7 +958,16 @@ export type LoanerCarCreateManyTenantInput = {
   targa: string
   marca: string
   modello: string
+  km?: number | null
+  carburante?: $Enums.LoanerFuelType
+  assicurazioneScadenza?: Date | string | null
+  revisioneScadenza?: Date | string | null
+  manutenzioneScadenza?: Date | string | null
+  note?: string | null
+  tariffaGiornalieraCents?: number | null
+  statoManuale?: $Enums.LoanerCarStatoManuale | null
   disponibile?: boolean
+  createdAt?: Date | string
 }
 
 export type LoanerCarUpdateWithoutTenantInput = {
@@ -528,8 +975,18 @@ export type LoanerCarUpdateWithoutTenantInput = {
   targa?: Prisma.StringFieldUpdateOperationsInput | string
   marca?: Prisma.StringFieldUpdateOperationsInput | string
   modello?: Prisma.StringFieldUpdateOperationsInput | string
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburante?: Prisma.EnumLoanerFuelTypeFieldUpdateOperationsInput | $Enums.LoanerFuelType
+  assicurazioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  revisioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  manutenzioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tariffaGiornalieraCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  statoManuale?: Prisma.NullableEnumLoanerCarStatoManualeFieldUpdateOperationsInput | $Enums.LoanerCarStatoManuale | null
   disponibile?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.LoanerBookingUpdateManyWithoutLoanerCarNestedInput
+  photos?: Prisma.LoanerCarPhotoUpdateManyWithoutLoanerCarNestedInput
 }
 
 export type LoanerCarUncheckedUpdateWithoutTenantInput = {
@@ -537,8 +994,18 @@ export type LoanerCarUncheckedUpdateWithoutTenantInput = {
   targa?: Prisma.StringFieldUpdateOperationsInput | string
   marca?: Prisma.StringFieldUpdateOperationsInput | string
   modello?: Prisma.StringFieldUpdateOperationsInput | string
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburante?: Prisma.EnumLoanerFuelTypeFieldUpdateOperationsInput | $Enums.LoanerFuelType
+  assicurazioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  revisioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  manutenzioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tariffaGiornalieraCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  statoManuale?: Prisma.NullableEnumLoanerCarStatoManualeFieldUpdateOperationsInput | $Enums.LoanerCarStatoManuale | null
   disponibile?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutLoanerCarNestedInput
+  photos?: Prisma.LoanerCarPhotoUncheckedUpdateManyWithoutLoanerCarNestedInput
 }
 
 export type LoanerCarUncheckedUpdateManyWithoutTenantInput = {
@@ -546,7 +1013,16 @@ export type LoanerCarUncheckedUpdateManyWithoutTenantInput = {
   targa?: Prisma.StringFieldUpdateOperationsInput | string
   marca?: Prisma.StringFieldUpdateOperationsInput | string
   modello?: Prisma.StringFieldUpdateOperationsInput | string
+  km?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  carburante?: Prisma.EnumLoanerFuelTypeFieldUpdateOperationsInput | $Enums.LoanerFuelType
+  assicurazioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  revisioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  manutenzioneScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tariffaGiornalieraCents?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  statoManuale?: Prisma.NullableEnumLoanerCarStatoManualeFieldUpdateOperationsInput | $Enums.LoanerCarStatoManuale | null
   disponibile?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -556,10 +1032,12 @@ export type LoanerCarUncheckedUpdateManyWithoutTenantInput = {
 
 export type LoanerCarCountOutputType = {
   bookings: number
+  photos: number
 }
 
 export type LoanerCarCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bookings?: boolean | LoanerCarCountOutputTypeCountBookingsArgs
+  photos?: boolean | LoanerCarCountOutputTypeCountPhotosArgs
 }
 
 /**
@@ -579,6 +1057,13 @@ export type LoanerCarCountOutputTypeCountBookingsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.LoanerBookingWhereInput
 }
 
+/**
+ * LoanerCarCountOutputType without action
+ */
+export type LoanerCarCountOutputTypeCountPhotosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LoanerCarPhotoWhereInput
+}
+
 
 export type LoanerCarSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -586,9 +1071,19 @@ export type LoanerCarSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   targa?: boolean
   marca?: boolean
   modello?: boolean
+  km?: boolean
+  carburante?: boolean
+  assicurazioneScadenza?: boolean
+  revisioneScadenza?: boolean
+  manutenzioneScadenza?: boolean
+  note?: boolean
+  tariffaGiornalieraCents?: boolean
+  statoManuale?: boolean
   disponibile?: boolean
+  createdAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   bookings?: boolean | Prisma.LoanerCar$bookingsArgs<ExtArgs>
+  photos?: boolean | Prisma.LoanerCar$photosArgs<ExtArgs>
   _count?: boolean | Prisma.LoanerCarCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["loanerCar"]>
 
@@ -598,7 +1093,16 @@ export type LoanerCarSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   targa?: boolean
   marca?: boolean
   modello?: boolean
+  km?: boolean
+  carburante?: boolean
+  assicurazioneScadenza?: boolean
+  revisioneScadenza?: boolean
+  manutenzioneScadenza?: boolean
+  note?: boolean
+  tariffaGiornalieraCents?: boolean
+  statoManuale?: boolean
   disponibile?: boolean
+  createdAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["loanerCar"]>
 
@@ -608,7 +1112,16 @@ export type LoanerCarSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   targa?: boolean
   marca?: boolean
   modello?: boolean
+  km?: boolean
+  carburante?: boolean
+  assicurazioneScadenza?: boolean
+  revisioneScadenza?: boolean
+  manutenzioneScadenza?: boolean
+  note?: boolean
+  tariffaGiornalieraCents?: boolean
+  statoManuale?: boolean
   disponibile?: boolean
+  createdAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["loanerCar"]>
 
@@ -618,13 +1131,23 @@ export type LoanerCarSelectScalar = {
   targa?: boolean
   marca?: boolean
   modello?: boolean
+  km?: boolean
+  carburante?: boolean
+  assicurazioneScadenza?: boolean
+  revisioneScadenza?: boolean
+  manutenzioneScadenza?: boolean
+  note?: boolean
+  tariffaGiornalieraCents?: boolean
+  statoManuale?: boolean
   disponibile?: boolean
+  createdAt?: boolean
 }
 
-export type LoanerCarOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "targa" | "marca" | "modello" | "disponibile", ExtArgs["result"]["loanerCar"]>
+export type LoanerCarOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "targa" | "marca" | "modello" | "km" | "carburante" | "assicurazioneScadenza" | "revisioneScadenza" | "manutenzioneScadenza" | "note" | "tariffaGiornalieraCents" | "statoManuale" | "disponibile" | "createdAt", ExtArgs["result"]["loanerCar"]>
 export type LoanerCarInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   bookings?: boolean | Prisma.LoanerCar$bookingsArgs<ExtArgs>
+  photos?: boolean | Prisma.LoanerCar$photosArgs<ExtArgs>
   _count?: boolean | Prisma.LoanerCarCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type LoanerCarIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -639,6 +1162,7 @@ export type $LoanerCarPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   objects: {
     tenant: Prisma.$TenantPayload<ExtArgs>
     bookings: Prisma.$LoanerBookingPayload<ExtArgs>[]
+    photos: Prisma.$LoanerCarPhotoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -646,7 +1170,16 @@ export type $LoanerCarPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     targa: string
     marca: string
     modello: string
+    km: number | null
+    carburante: $Enums.LoanerFuelType
+    assicurazioneScadenza: Date | null
+    revisioneScadenza: Date | null
+    manutenzioneScadenza: Date | null
+    note: string | null
+    tariffaGiornalieraCents: number | null
+    statoManuale: $Enums.LoanerCarStatoManuale | null
     disponibile: boolean
+    createdAt: Date
   }, ExtArgs["result"]["loanerCar"]>
   composites: {}
 }
@@ -1043,6 +1576,7 @@ export interface Prisma__LoanerCarClient<T, Null = never, ExtArgs extends runtim
   readonly [Symbol.toStringTag]: "PrismaPromise"
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   bookings<T extends Prisma.LoanerCar$bookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LoanerCar$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoanerBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  photos<T extends Prisma.LoanerCar$photosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LoanerCar$photosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoanerCarPhotoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1077,7 +1611,16 @@ export interface LoanerCarFieldRefs {
   readonly targa: Prisma.FieldRef<"LoanerCar", 'String'>
   readonly marca: Prisma.FieldRef<"LoanerCar", 'String'>
   readonly modello: Prisma.FieldRef<"LoanerCar", 'String'>
+  readonly km: Prisma.FieldRef<"LoanerCar", 'Int'>
+  readonly carburante: Prisma.FieldRef<"LoanerCar", 'LoanerFuelType'>
+  readonly assicurazioneScadenza: Prisma.FieldRef<"LoanerCar", 'DateTime'>
+  readonly revisioneScadenza: Prisma.FieldRef<"LoanerCar", 'DateTime'>
+  readonly manutenzioneScadenza: Prisma.FieldRef<"LoanerCar", 'DateTime'>
+  readonly note: Prisma.FieldRef<"LoanerCar", 'String'>
+  readonly tariffaGiornalieraCents: Prisma.FieldRef<"LoanerCar", 'Int'>
+  readonly statoManuale: Prisma.FieldRef<"LoanerCar", 'LoanerCarStatoManuale'>
   readonly disponibile: Prisma.FieldRef<"LoanerCar", 'Boolean'>
+  readonly createdAt: Prisma.FieldRef<"LoanerCar", 'DateTime'>
 }
     
 
@@ -1500,6 +2043,30 @@ export type LoanerCar$bookingsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.LoanerBookingScalarFieldEnum | Prisma.LoanerBookingScalarFieldEnum[]
+}
+
+/**
+ * LoanerCar.photos
+ */
+export type LoanerCar$photosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LoanerCarPhoto
+   */
+  select?: Prisma.LoanerCarPhotoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LoanerCarPhoto
+   */
+  omit?: Prisma.LoanerCarPhotoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LoanerCarPhotoInclude<ExtArgs> | null
+  where?: Prisma.LoanerCarPhotoWhereInput
+  orderBy?: Prisma.LoanerCarPhotoOrderByWithRelationInput | Prisma.LoanerCarPhotoOrderByWithRelationInput[]
+  cursor?: Prisma.LoanerCarPhotoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LoanerCarPhotoScalarFieldEnum | Prisma.LoanerCarPhotoScalarFieldEnum[]
 }
 
 /**

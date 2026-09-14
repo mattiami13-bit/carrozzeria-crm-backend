@@ -69,7 +69,9 @@ export const ModelName = {
   SupplierOrder: 'SupplierOrder',
   SupplierOrderItem: 'SupplierOrderItem',
   LoanerCar: 'LoanerCar',
+  LoanerCarPhoto: 'LoanerCarPhoto',
   LoanerBooking: 'LoanerBooking',
+  LoanerBookingPhoto: 'LoanerBookingPhoto',
   Appointment: 'Appointment',
   Document: 'Document',
   TimeEntry: 'TimeEntry',
@@ -100,7 +102,10 @@ export const ModelName = {
   QcInspection: 'QcInspection',
   QcCheckResult: 'QcCheckResult',
   QcNonConformita: 'QcNonConformita',
-  QcEvento: 'QcEvento'
+  QcEvento: 'QcEvento',
+  BriefingSettings: 'BriefingSettings',
+  BriefingReport: 'BriefingReport',
+  BriefingResolution: 'BriefingResolution'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -420,21 +425,75 @@ export const LoanerCarScalarFieldEnum = {
   targa: 'targa',
   marca: 'marca',
   modello: 'modello',
-  disponibile: 'disponibile'
+  km: 'km',
+  carburante: 'carburante',
+  assicurazioneScadenza: 'assicurazioneScadenza',
+  revisioneScadenza: 'revisioneScadenza',
+  manutenzioneScadenza: 'manutenzioneScadenza',
+  note: 'note',
+  tariffaGiornalieraCents: 'tariffaGiornalieraCents',
+  statoManuale: 'statoManuale',
+  disponibile: 'disponibile',
+  createdAt: 'createdAt'
 } as const
 
 export type LoanerCarScalarFieldEnum = (typeof LoanerCarScalarFieldEnum)[keyof typeof LoanerCarScalarFieldEnum]
 
 
+export const LoanerCarPhotoScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  loanerCarId: 'loanerCarId',
+  content: 'content',
+  mime: 'mime',
+  size: 'size',
+  createdAt: 'createdAt'
+} as const
+
+export type LoanerCarPhotoScalarFieldEnum = (typeof LoanerCarPhotoScalarFieldEnum)[keyof typeof LoanerCarPhotoScalarFieldEnum]
+
+
 export const LoanerBookingScalarFieldEnum = {
   id: 'id',
+  tenantId: 'tenantId',
   loanerCarId: 'loanerCarId',
   clientId: 'clientId',
-  dataInizio: 'dataInizio',
-  dataFine: 'dataFine'
+  vehicleId: 'vehicleId',
+  dataInizioPrevista: 'dataInizioPrevista',
+  dataFinePrevista: 'dataFinePrevista',
+  dataConsegna: 'dataConsegna',
+  kmIniziali: 'kmIniziali',
+  carburanteIniziale: 'carburanteIniziale',
+  firmaClienteDataUrl: 'firmaClienteDataUrl',
+  firmatarioNome: 'firmatarioNome',
+  dataRestituzione: 'dataRestituzione',
+  kmFinali: 'kmFinali',
+  carburanteFinale: 'carburanteFinale',
+  danniRiscontrati: 'danniRiscontrati',
+  noteRestituzione: 'noteRestituzione',
+  costoInternoCents: 'costoInternoCents',
+  attribuitoProfitRecordId: 'attribuitoProfitRecordId',
+  stato: 'stato',
+  creataDaId: 'creataDaId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type LoanerBookingScalarFieldEnum = (typeof LoanerBookingScalarFieldEnum)[keyof typeof LoanerBookingScalarFieldEnum]
+
+
+export const LoanerBookingPhotoScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  bookingId: 'bookingId',
+  fase: 'fase',
+  content: 'content',
+  mime: 'mime',
+  size: 'size',
+  createdAt: 'createdAt'
+} as const
+
+export type LoanerBookingPhotoScalarFieldEnum = (typeof LoanerBookingPhotoScalarFieldEnum)[keyof typeof LoanerBookingPhotoScalarFieldEnum]
 
 
 export const AppointmentScalarFieldEnum = {
@@ -895,6 +954,39 @@ export const QcEventoScalarFieldEnum = {
 } as const
 
 export type QcEventoScalarFieldEnum = (typeof QcEventoScalarFieldEnum)[keyof typeof QcEventoScalarFieldEnum]
+
+
+export const BriefingSettingsScalarFieldEnum = {
+  tenantId: 'tenantId',
+  data: 'data',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BriefingSettingsScalarFieldEnum = (typeof BriefingSettingsScalarFieldEnum)[keyof typeof BriefingSettingsScalarFieldEnum]
+
+
+export const BriefingReportScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  day: 'day',
+  kind: 'kind',
+  data: 'data',
+  createdAt: 'createdAt'
+} as const
+
+export type BriefingReportScalarFieldEnum = (typeof BriefingReportScalarFieldEnum)[keyof typeof BriefingReportScalarFieldEnum]
+
+
+export const BriefingResolutionScalarFieldEnum = {
+  id: 'id',
+  reportId: 'reportId',
+  actionKey: 'actionKey',
+  userId: 'userId',
+  note: 'note',
+  createdAt: 'createdAt'
+} as const
+
+export type BriefingResolutionScalarFieldEnum = (typeof BriefingResolutionScalarFieldEnum)[keyof typeof BriefingResolutionScalarFieldEnum]
 
 
 export const SortOrder = {
