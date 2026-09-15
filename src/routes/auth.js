@@ -8,6 +8,7 @@ import { requireAuth } from "../middleware/auth.js";
 import { inviaEmailBenvenuto, inviaEmailVerifica, inviaEmailResetPassword } from "../lib/email.js";
 import { creaNotificaUtente } from "../lib/notificheInApp.js";
 import { LEGAL_DOCS_VERSION } from "../lib/legal.js";
+import { loginLimiter, registerLimiter, emailActionLimiter } from "../middleware/rateLimit.js";
 
 export const authRouter = Router();
 
@@ -32,7 +33,7 @@ const registerSchema = z.object({
 
 // Crea un nuovo tenant (carrozzeria) con il suo utente ADMIN e avvia
 // automaticamente la prova gratuita di 30 giorni.
-authRouter.post("/register", async (req, res) => {
+authRouter.post("/register", registerLimiter, async (req, res) => {
   const parsed = registerSchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).json({ error: parsed.error.flatten() });
@@ -94,7 +95,7 @@ const loginSchema = z.object({
   password: z.string(),
 });
 
-authRouter.post("/login", async (req, res) => {
+authRouter.post("/login", loginLimiter, async (req, res) => {
   const parsed = loginSchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).json({ error: parsed.error.flatten() });
@@ -182,7 +183,7 @@ const reinviaVerificaPubblicoSchema = z.object({ email: z.string().email() });
 // ottenere un JWT per chiamare l'endpoint sopra. Stessa protezione
 // anti-enumerazione di /password-dimenticata: risposta identica a
 // prescindere dal fatto che l'email esista o sia già verificata.
-authRouter.post("/reinvia-verifica-email", async (req, res) => {
+authRouter.post("/reinvia-verifica-email", emailActionLimiter, async (req, res) => {
   const parsed = reinviaVerificaPubblicoSchema.safeParse(req.body);
   if (!parsed.success) return res.status(400).json({ error: "Email non valida" });
 
@@ -201,7 +202,7 @@ const passwordDimenticataSchema = z.object({ email: z.string().email() });
 // Risposta identica indipendentemente dal fatto che l'email esista o
 // meno: evita che questo endpoint venga usato per scoprire quali email
 // sono registrate sulla piattaforma (user enumeration).
-authRouter.post("/password-dimenticata", async (req, res) => {
+authRouter.post("/password-dimenticata", emailActionLimiter, async (req, res) => {
   const parsed = passwordDimenticataSchema.safeParse(req.body);
   if (!parsed.success) return res.status(400).json({ error: "Email non valida" });
 
@@ -229,7 +230,7 @@ const resetPasswordSchema = z.object({
   password: z.string().min(8),
 });
 
-authRouter.post("/reset-password", async (req, res) => {
+authRouter.post("/reset-password", loginLimiter, async (req, res) => {
   const parsed = resetPasswordSchema.safeParse(req.body);
   if (!parsed.success) return res.status(400).json({ error: parsed.error.flatten() });
 

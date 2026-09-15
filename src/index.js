@@ -40,13 +40,40 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Fail-fast: senza un JWT_SECRET robusto, jsonwebtoken firmerebbe/verificherebbe
+// comunque i token (con un valore undefined o debole), esponendo un rischio di
+// forgery scoperto solo in produzione. Meglio non avviarsi affatto.
+if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32) {
+  console.error("JWT_SECRET mancante o troppo corto (minimo 32 caratteri): impostalo nelle variabili d'ambiente prima di avviare il server.");
+  process.exit(1);
+}
+
 const app = express();
 // Dietro il proxy di Railway: serve per ricostruire correttamente
 // protocollo/host pubblici (link portale nei messaggi, validazione firma
-// webhook Twilio).
-app.set("trust proxy", true);
+// webhook Twilio). "1" (un solo hop, non "true"/tutti) perché altrimenti
+// un client potrebbe falsificare X-Forwarded-For per aggirare il rate
+// limiting basato su IP.
+app.set("trust proxy", 1);
 
-app.use(cors());
+// Origini ammesse per le richieste browser: il dominio pubblico e, in
+// sviluppo, localhost. L'auth è Bearer JWT (mai cookie), quindi CORS non è
+// la barriera di sicurezza primaria, ma restringerlo riduce comunque la
+// superficie a siti di terze parti che riusano un token trafugato.
+const allowedOrigins = (process.env.CORS_ORIGINS || "https://www.rifless.it,https://rifless.it,http://localhost:3000,http://localhost:5173,http://localhost:4310")
+  .split(",")
+  .map((o) => o.trim())
+  .filter(Boolean);
+app.use(cors({
+  origin(origin, callback) {
+    // Nessun header Origin (curl, richieste server-to-server, webhook): consentito.
+    // Origin "null": il gestionale viene aperto oggi come file HTML locale
+    // (file://), che il browser marca così — è l'uso reale attuale dell'app,
+    // non va bloccato.
+    if (!origin || origin === "null" || allowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error("Origine non consentita da CORS"));
+  },
+}));
 app.use("/api/profit", express.json({limit:"1mb"}));
 app.use("/api/photo-timeline", express.json({limit:"1mb"}));
 app.use("/api/parts-tracking", express.json({limit:"1mb"}));
