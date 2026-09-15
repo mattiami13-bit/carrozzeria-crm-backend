@@ -13,6 +13,7 @@ import { supplierOrdersRouter } from "./routes/supplierOrders.js";
 import { dashboardRouter } from "./routes/dashboard.js";
 import { briefingRouter } from './routes/briefing.js';
 import { startBriefingWorker } from './lib/briefing-service.js';
+import { startPhotoBackupWorker } from './lib/photo-backup-service.js';
 import { executiveRouter } from "./routes/executive.js";
 import { photosRouter } from "./routes/photos.js";
 import { appointmentsRouter } from "./routes/appointments.js";
@@ -163,4 +164,5 @@ app.listen(port, () => {
   console.log(`API in ascolto su http://localhost:${port}`);
   if (process.env.DELAY_WORKER !== "0") startDelayWorker();
   if (process.env.BRIEFING_WORKER !== "0") startBriefingWorker();
+  if (process.env.PHOTO_BACKUP_WORKER !== "0") startPhotoBackupWorker();
 });

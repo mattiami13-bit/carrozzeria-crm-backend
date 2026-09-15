@@ -10,3 +10,9 @@ export const supabase = createClient(
 );
 
 export const PHOTOS_BUCKET = "vehicle-photos";
+
+// Copia di sicurezza indipendente del bucket foto (punto 22, backup):
+// stesso progetto Supabase, ma un secondo bucket separato, così una
+// cancellazione/corruzione accidentale del bucket principale non
+// comporta la perdita delle foto. Vedi src/lib/photo-backup-service.js.
+export const PHOTOS_BACKUP_BUCKET = "vehicle-photos-backup";

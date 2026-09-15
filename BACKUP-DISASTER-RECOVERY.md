@@ -19,10 +19,9 @@ disattivato, è perché lo è davvero, non un'omissione.
 Nota importante: i documenti (`PortalDocument`, `TrackedPartDocument`,
 `LoanerCarPhoto`, `LoanerBookingPhoto`, `QcNonConformita.fotografia`) sono
 salvati come byte direttamente nelle tabelle Postgres, **non** su Supabase
-Storage — quindi il backup del database li copre per intero. Solo le foto
-del veicolo caricate dal modulo principale (`Photo.url`) vivono su Storage
-e sono l'unica categoria di dati NON coperta dal backup automatico (vedi
-sotto).
+Storage — quindi il backup del database li copre per intero. Le foto del
+veicolo caricate dal modulo principale (`Photo.url`) vivono invece su
+Storage, e sono coperte da un backup dedicato descritto qui sotto.
 
 ## Database (Postgres / Supabase) — backup automatico ATTIVO
 
@@ -45,30 +44,41 @@ Verificato in Supabase → Database → Backups:
   su un progetto separato senza toccare quello in produzione — utile per
   verificare un backup senza rischi prima di un ripristino reale.
 
-## Foto veicoli (Supabase Storage) — backup automatico NON ATTIVO
+## Foto veicoli (Supabase Storage) — backup automatico ATTIVO (dal 15/09/2026)
 
-Verificato: Supabase stessa segnala esplicitamente che **i backup del
-database non includono gli oggetti dello Storage** (il database contiene
-solo i metadati/URL, non i file). Non esiste oggi alcun meccanismo di
-backup automatico configurato per il bucket `vehicle-photos`.
+Supabase segnala esplicitamente che **i backup del database non
+includono gli oggetti dello Storage** (il database contiene solo i
+metadati/URL, non i file) — motivo per cui è stato costruito un
+meccanismo dedicato:
 
-**Questo è un rischio reale e concreto**, non teorico: sono le fotografie
-dei danni e delle lavorazioni, con valore probatorio/assicurativo. Se il
-bucket venisse svuotato per errore o corrotto, quelle foto sarebbero perse
-in modo definitivo, senza possibilità di recupero.
-
-Non è stata costruita una soluzione automatica in questa sessione — farlo
-bene (copia periodica su un secondo bucket/provider, con la sua stessa
-retention da gestire) è un intervento a sé, non improvvisato in coda ad
-altro lavoro. Mitigazioni possibili da valutare, in ordine di sforzo
-crescente:
-1. Abilitare il versioning/backup nativo se Supabase lo introduce per lo
-   Storage (al momento non disponibile su questo piano).
-2. Script pianificato che copia periodicamente il bucket su un secondo
-   bucket Supabase o su un provider diverso (Cloudflare R2, Backblaze B2).
-3. Regola di retention "soft-delete" lato applicazione (non cancellare mai
-   fisicamente una foto, solo nasconderla) come ulteriore rete di sicurezza
-   indipendente dal backup infrastrutturale.
+- **Come funziona**: un worker in-process (`src/lib/photo-backup-service.js`,
+  avviato da `index.js` se `PHOTO_BACKUP_WORKER` non è `"0"`) copia ogni
+  6 ore ogni file del bucket `vehicle-photos` in un secondo bucket
+  separato, `vehicle-photos-backup` (stesso progetto Supabase, entrambi
+  privati). Idempotente: ricopia solo i file non ancora presenti nel
+  backup, quindi non rifà lavoro già fatto.
+- **Deliberatamente "solo aggiunta"**: se una foto viene cancellata dal
+  bucket principale (es. `DELETE /api/photos/:id`), NON viene rimossa
+  anche dal backup. Protegge quindi anche da una cancellazione
+  accidentale o un bug applicativo, non solo da un guasto tecnico.
+- **Verificato con un test reale** (`tests/photo-backup.test.js`) contro
+  Supabase vero: copia effettiva, idempotenza (una seconda esecuzione
+  non ricopia nulla), e sopravvivenza della copia di backup a una
+  cancellazione dell'originale.
+- **Limite onesto**: essendo un secondo bucket nello **stesso** progetto
+  Supabase, non protegge da un disastro che colpisse l'intero progetto
+  Supabase (es. account compromesso, chiusura dell'account, incidente
+  esteso al provider). Per una protezione realmente indipendente
+  servirebbe un secondo provider (Cloudflare R2, Backblaze B2, ecc.),
+  che richiede la creazione di un nuovo account e relative credenziali —
+  non fatto qui, da valutare come passo successivo se si vuole coprire
+  anche questo scenario, più raro ma non impossibile.
+- **Ripristino**: in caso di perdita dal bucket principale, i file
+  restano nel bucket `vehicle-photos-backup` con lo stesso percorso
+  (`tenantId/vehicleId/nomefile`) — un ripristino consiste nel ricopiarli
+  indietro (stesso meccanismo di `sincronizzaBackupFoto`, invertito) o,
+  per un incidente limitato, scaricarli manualmente dalla dashboard
+  Supabase Storage.
 
 ## Codice, migrazioni, configurazione
 
@@ -125,14 +135,18 @@ crescente:
 
 ### Scenario C: bucket foto (`vehicle-photos`) svuotato o corrotto
 
-Oggi **non recuperabile** oltre a quanto eventualmente presente nella
-cache del browser dei client o in copie locali sui dispositivi di chi ha
-scattato le foto. Questo è esattamente il rischio descritto sopra — motivo
-per cui è segnalato come priorità, non solo annotato.
+Recuperabile dal bucket di backup `vehicle-photos-backup` (stesso
+progetto Supabase), a patto che il worker abbia già eseguito almeno una
+sincronizzazione dopo il caricamento delle foto interessate (intervallo
+massimo: 6 ore). Non recuperabile solo per le foto caricate negli ultimi
+minuti prima dell'incidente, prima del prossimo ciclo del worker.
 
 ## Cosa NON è vero (per essere onesti fino in fondo)
 
-- Non esiste oggi un backup automatico delle foto veicolo.
+- Il backup delle foto veicolo protegge da cancellazione/corruzione del
+  bucket principale, ma NON da un disastro che colpisse l'intero
+  progetto Supabase (stesso provider, stesso account): non è un backup
+  su infrastruttura indipendente.
 - Non esiste Point-in-Time Recovery sul database (solo snapshot giornalieri).
 - Non è mai stato eseguito un vero test di restore end-to-end in questa
   sessione (verificare che un ripristino funzioni davvero, prima di
