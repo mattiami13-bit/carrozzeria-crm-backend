@@ -62,6 +62,7 @@ app.use(auditLogger);
 if (process.env.CRM_PREVIEW === "1") app.use("/crm", express.static(path.join(__dirname, "..", "frontend")));
 
 app.get("/health", (req, res) => res.json({ ok: true }));
+app.use("/", express.static(path.join(__dirname, "..", "public", "home")));
 app.use("/portale", express.static(path.join(__dirname, "..", "public", "portale")));
 app.use("/verifica-email", express.static(path.join(__dirname, "..", "public", "verifica-email")));
 app.use("/reset-password", express.static(path.join(__dirname, "..", "public", "reset-password")));
