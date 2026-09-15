@@ -38,6 +38,9 @@ import { billingRouter, billingWebhookRouter } from "./routes/billing.js";
 import { auditLogger } from "./middleware/audit.js";
 import { maintenanceMode } from "./middleware/maintenance.js";
 import { requireAbbonamentoAttivo } from "./middleware/subscription.js";
+import { latencyLogger } from "./middleware/latency.js";
+import { clientErrorsRouter } from "./routes/clientErrors.js";
+import { statoSalute } from "./lib/health.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -88,8 +91,14 @@ app.use("/api/whatsapp/webhook", express.urlencoded({ extended: false }));
 app.use("/api/billing/webhook", express.raw({ type: "application/json" }));
 app.use(express.json());
 app.use(auditLogger);
+app.use(latencyLogger);
 
-app.get("/health", (req, res) => res.json({ ok: true }));
+// Health endpoint "vero": verifica davvero il database (la dipendenza
+// più critica) invece di rispondere sempre ok — vedi src/lib/health.js.
+app.get("/health", async (req, res) => {
+  const stato = await statoSalute();
+  res.status(stato.ok ? 200 : 503).json(stato);
+});
 app.use(maintenanceMode);
 
 if (process.env.CRM_PREVIEW === "1") app.use("/crm", express.static(path.join(__dirname, "..", "frontend")));
@@ -119,6 +128,7 @@ app.use("/api/billing", billingRouter);
 app.use("/api/gdpr", gdprRouter);
 app.use("/api/whatsapp/webhook", whatsappWebhookRouter);
 app.use("/api/portale", portaleRouter);
+app.use("/api/client-errors", clientErrorsRouter);
 
 // Punto 23 (subscription required): da qui in giù, un tenant con
 // abbonamento scaduto/non attivo riceve 402 invece di poter continuare

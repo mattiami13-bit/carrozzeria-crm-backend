@@ -23,7 +23,8 @@
     "test:security": "node --test tests/security.test.js",
     "test:audit-log": "node --test tests/audit-log.test.js",
     "test:photo-backup": "node --test tests/photo-backup.test.js",
-    "test:subscription": "node --test tests/subscription-enforcement.test.js"
+    "test:subscription": "node --test tests/subscription-enforcement.test.js",
+    "test:monitoring": "node --test tests/monitoring.test.js"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",
