@@ -104,6 +104,16 @@ authRouter.post("/login", async (req, res) => {
     return res.status(401).json({ error: "Credenziali non valide" });
   }
 
+  // Il controllo password viene prima di questo, così un tentativo con
+  // password sbagliata non rivela mai se l'account esiste ed è solo da
+  // verificare: resta un generico "Credenziali non valide".
+  if (!user.emailVerificata) {
+    return res.status(403).json({
+      error: "Email non verificata. Controlla la tua casella di posta o richiedi un nuovo link di verifica.",
+      emailNonVerificata: true,
+    });
+  }
+
   const token = signToken(user, user.tenantId);
   res.json({
     token,
@@ -133,14 +143,7 @@ authRouter.get("/verifica-email", async (req, res) => {
   res.json({ ok: true });
 });
 
-// Permette di richiedere una nuova email di verifica se la precedente è
-// scaduta o non è mai arrivata (richiede login: evita che chiunque possa
-// far ripartire invii massivi su email altrui).
-authRouter.post("/reinvia-verifica", requireAuth, async (req, res) => {
-  const user = await prisma.user.findUnique({ where: { id: req.auth.userId } });
-  if (!user) return res.status(404).json({ error: "Utente non trovato" });
-  if (user.emailVerificata) return res.json({ ok: true, giaVerificata: true });
-
+async function rigeneraEInviaVerifica(user, req) {
   const emailVerificaToken = generaToken();
   const emailVerificaScadenza = new Date(Date.now() + VERIFICA_EMAIL_VALIDITA_MS);
   await prisma.user.update({
@@ -150,8 +153,40 @@ authRouter.post("/reinvia-verifica", requireAuth, async (req, res) => {
 
   const baseUrl = `${req.protocol}://${req.get("host")}`;
   const verificaUrl = `${baseUrl}/verifica-email/?token=${emailVerificaToken}`;
-  const esito = await inviaEmailVerifica({ email: user.email, nome: user.nome, verificaUrl });
+  return inviaEmailVerifica({ email: user.email, nome: user.nome, verificaUrl });
+}
+
+// Permette di richiedere una nuova email di verifica se la precedente è
+// scaduta o non è mai arrivata (richiede login: usata da un utente già
+// autenticato ma non ancora verificato in un contesto interno).
+authRouter.post("/reinvia-verifica", requireAuth, async (req, res) => {
+  const user = await prisma.user.findUnique({ where: { id: req.auth.userId } });
+  if (!user) return res.status(404).json({ error: "Utente non trovato" });
+  if (user.emailVerificata) return res.json({ ok: true, giaVerificata: true });
+
+  const esito = await rigeneraEInviaVerifica(user, req);
   res.json({ ok: esito.ok });
+});
+
+const reinviaVerificaPubblicoSchema = z.object({ email: z.string().email() });
+
+// Variante SENZA autenticazione: da quando il login è bloccato per gli
+// account non verificati, un utente in questa situazione non ha modo di
+// ottenere un JWT per chiamare l'endpoint sopra. Stessa protezione
+// anti-enumerazione di /password-dimenticata: risposta identica a
+// prescindere dal fatto che l'email esista o sia già verificata.
+authRouter.post("/reinvia-verifica-email", async (req, res) => {
+  const parsed = reinviaVerificaPubblicoSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: "Email non valida" });
+
+  const user = await prisma.user.findUnique({ where: { email: parsed.data.email } });
+  if (user && user.attivo && !user.emailVerificata) {
+    rigeneraEInviaVerifica(user, req).catch((err) =>
+      console.error("[auth] Errore invio reinvio verifica:", err.message)
+    );
+  }
+
+  res.json({ ok: true, messaggio: "Se l'email esiste e non è ancora verificata, riceverai a breve un nuovo link di verifica." });
 });
 
 const passwordDimenticataSchema = z.object({ email: z.string().email() });

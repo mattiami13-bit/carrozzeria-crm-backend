@@ -62,6 +62,43 @@ test("Verifica email, reset password e cambio password", async (t) => {
       assert.ok(user.emailVerificaScadenza > new Date(), "il token deve avere una scadenza futura");
     });
 
+    await t.test("login è bloccato finché l'email non è verificata, anche con password corretta", async () => {
+      const res = await call("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify({ email: `auth.test.${suffix}@example.invalid`, password: "Test1234!Auth" }),
+      });
+      assert.equal(res.status, 403);
+      const data = await res.json();
+      assert.equal(data.emailNonVerificata, true);
+    });
+
+    await t.test("login con password sbagliata su un account non verificato resta un generico 401 (no info leak)", async () => {
+      const res = await call("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify({ email: `auth.test.${suffix}@example.invalid`, password: "PasswordSbagliata!" }),
+      });
+      assert.equal(res.status, 401);
+    });
+
+    await t.test("reinvia-verifica-email (pubblico, senza login) risponde uguale per email esistenti/inesistenti/già verificate", async () => {
+      const resEsistente = await call("/api/auth/reinvia-verifica-email", {
+        method: "POST",
+        body: JSON.stringify({ email: `auth.test.${suffix}@example.invalid` }),
+      });
+      const resInesistente = await call("/api/auth/reinvia-verifica-email", {
+        method: "POST",
+        body: JSON.stringify({ email: `non.esiste.${suffix}@example.invalid` }),
+      });
+      assert.equal(resEsistente.status, 200);
+      assert.equal(resInesistente.status, 200);
+      const dataEsistente = await resEsistente.json();
+      const dataInesistente = await resInesistente.json();
+      assert.equal(dataEsistente.messaggio, dataInesistente.messaggio);
+
+      const user = await prisma.user.findUnique({ where: { email: `auth.test.${suffix}@example.invalid` } });
+      assert.ok(user.emailVerificaToken, "un nuovo token di verifica deve essere stato generato dall'endpoint pubblico");
+    });
+
     await t.test("verifica email con token errato viene rifiutata", async () => {
       const res = await call("/api/auth/verifica-email?token=token-inventato-non-esistente");
       assert.equal(res.status, 400);

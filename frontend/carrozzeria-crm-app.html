@@ -173,6 +173,7 @@ function AuthScreen({ onAuth, connError, setConnError }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [notice, setNotice] = useState(null);
+  const [emailDaVerificare, setEmailDaVerificare] = useState(null);
   const api = useApi(null);
 
   const [form, setForm] = useState({
@@ -196,7 +197,10 @@ function AuthScreen({ onAuth, connError, setConnError }) {
       onAuth(data.token, data.user);
     } catch (e) {
       if (e.message.includes("Failed to fetch")) setConnError(true);
-      else setError(e.message);
+      else if (e.message.includes("Email non verificata")) {
+        setEmailDaVerificare(form.email);
+        setMode("verifica-necessaria");
+      } else setError(e.message);
     } finally {
       setLoading(false);
     }
@@ -208,6 +212,16 @@ function AuthScreen({ onAuth, connError, setConnError }) {
         api={api}
         connError={connError}
         onBack={() => { setMode("login"); setError(null); setNotice(null); }}
+      />
+    );
+  }
+
+  if (mode === "verifica-necessaria") {
+    return (
+      <VerificaNecessariaScreen
+        api={api}
+        email={emailDaVerificare}
+        onBack={() => { setMode("login"); setError(null); }}
       />
     );
   }
@@ -318,6 +332,55 @@ function PasswordDimenticataScreen({ api, onBack }) {
 
         <button onClick={onBack} style={{
           width: "100%", marginTop: 12, padding: "9px 0", borderRadius: 10, border: "1px solid #2A2E34",
+          background: "transparent", color: "#F3F1EC", fontWeight: 600, fontSize: 13,
+        }}>← Torna al login</button>
+      </div>
+    </div>
+  );
+}
+
+function VerificaNecessariaScreen({ api, email, onBack }) {
+  const [loading, setLoading] = useState(false);
+  const [inviata, setInviata] = useState(false);
+
+  const reinvia = async () => {
+    setLoading(true);
+    try {
+      await api("/api/auth/reinvia-verifica-email", { method: "POST", body: JSON.stringify({ email }) });
+      setInviata(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ width: 380, background: "#15171B", border: "1px solid #2A2E34", borderRadius: 16, padding: 32, textAlign: "center" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 20 }}>
+          <img src={LOGO_ICON} alt="Rifless" style={{ width: 28, height: 28, borderRadius: 8, objectFit: "cover" }} />
+          <span style={{ fontWeight: 700, fontSize: 17 }}>Rifless</span>
+        </div>
+
+        <div style={{ fontSize: 30, marginBottom: 10 }}>✉️</div>
+        <h2 style={{ fontSize: 16, margin: "0 0 8px" }}>Verifica la tua email</h2>
+        <p style={{ fontSize: 13, color: "#8D9099", lineHeight: 1.55, margin: "0 0 20px" }}>
+          L'account con email <strong style={{ color: "#F3F1EC" }}>{email}</strong> non ha ancora confermato l'indirizzo email.
+          Controlla la posta (anche lo spam) e clicca il link ricevuto per poter accedere.
+        </p>
+
+        {inviata ? (
+          <div style={{ background: "#16261E", color: "#6FBF8E", fontSize: 13, padding: 12, borderRadius: 10, border: "1px solid #2A4A3A", marginBottom: 16 }}>
+            Se l'account esiste e non è ancora verificato, un nuovo link è in arrivo.
+          </div>
+        ) : (
+          <button onClick={reinvia} disabled={loading} style={{
+            width: "100%", padding: "11px 0", borderRadius: 10, border: "none",
+            background: "#2F80ED", color: "#FFFFFF", fontWeight: 600, fontSize: 14, marginBottom: 12,
+          }}>{loading ? "Invio…" : "Reinvia email di verifica"}</button>
+        )}
+
+        <button onClick={onBack} style={{
+          width: "100%", padding: "9px 0", borderRadius: 10, border: "1px solid #2A2E34",
           background: "transparent", color: "#F3F1EC", fontWeight: 600, fontSize: 13,
         }}>← Torna al login</button>
       </div>
