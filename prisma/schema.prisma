@@ -116,6 +116,12 @@ model User {
   attivo       Boolean  @default(true)
   createdAt    DateTime @default(now())
 
+  emailVerificata        Boolean   @default(false)
+  emailVerificaToken      String?   @unique
+  emailVerificaScadenza   DateTime?
+  resetPasswordToken      String?   @unique
+  resetPasswordScadenza   DateTime?
+
   vehiclesAssegnati   Vehicle[]      @relation("TecnicoAssegnato")
   stageChanges        StageHistory[]
   timeEntries         TimeEntry[]

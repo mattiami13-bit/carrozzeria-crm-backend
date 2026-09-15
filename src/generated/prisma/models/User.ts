@@ -34,6 +34,11 @@ export type UserMinAggregateOutputType = {
   ruolo: $Enums.Role | null
   attivo: boolean | null
   createdAt: Date | null
+  emailVerificata: boolean | null
+  emailVerificaToken: string | null
+  emailVerificaScadenza: Date | null
+  resetPasswordToken: string | null
+  resetPasswordScadenza: Date | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -46,6 +51,11 @@ export type UserMaxAggregateOutputType = {
   ruolo: $Enums.Role | null
   attivo: boolean | null
   createdAt: Date | null
+  emailVerificata: boolean | null
+  emailVerificaToken: string | null
+  emailVerificaScadenza: Date | null
+  resetPasswordToken: string | null
+  resetPasswordScadenza: Date | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -58,6 +68,11 @@ export type UserCountAggregateOutputType = {
   ruolo: number
   attivo: number
   createdAt: number
+  emailVerificata: number
+  emailVerificaToken: number
+  emailVerificaScadenza: number
+  resetPasswordToken: number
+  resetPasswordScadenza: number
   _all: number
 }
 
@@ -72,6 +87,11 @@ export type UserMinAggregateInputType = {
   ruolo?: true
   attivo?: true
   createdAt?: true
+  emailVerificata?: true
+  emailVerificaToken?: true
+  emailVerificaScadenza?: true
+  resetPasswordToken?: true
+  resetPasswordScadenza?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -84,6 +104,11 @@ export type UserMaxAggregateInputType = {
   ruolo?: true
   attivo?: true
   createdAt?: true
+  emailVerificata?: true
+  emailVerificaToken?: true
+  emailVerificaScadenza?: true
+  resetPasswordToken?: true
+  resetPasswordScadenza?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -96,6 +121,11 @@ export type UserCountAggregateInputType = {
   ruolo?: true
   attivo?: true
   createdAt?: true
+  emailVerificata?: true
+  emailVerificaToken?: true
+  emailVerificaScadenza?: true
+  resetPasswordToken?: true
+  resetPasswordScadenza?: true
   _all?: true
 }
 
@@ -181,6 +211,11 @@ export type UserGroupByOutputType = {
   ruolo: $Enums.Role
   attivo: boolean
   createdAt: Date
+  emailVerificata: boolean
+  emailVerificaToken: string | null
+  emailVerificaScadenza: Date | null
+  resetPasswordToken: string | null
+  resetPasswordScadenza: Date | null
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -214,6 +249,11 @@ export type UserWhereInput = {
   ruolo?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   attivo?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  emailVerificata?: Prisma.BoolFilter<"User"> | boolean
+  emailVerificaToken?: Prisma.StringNullableFilter<"User"> | string | null
+  emailVerificaScadenza?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  resetPasswordToken?: Prisma.StringNullableFilter<"User"> | string | null
+  resetPasswordScadenza?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   vehiclesAssegnati?: Prisma.VehicleListRelationFilter
   stageChanges?: Prisma.StageHistoryListRelationFilter
@@ -252,6 +292,11 @@ export type UserOrderByWithRelationInput = {
   ruolo?: Prisma.SortOrder
   attivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  emailVerificata?: Prisma.SortOrder
+  emailVerificaToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailVerificaScadenza?: Prisma.SortOrderInput | Prisma.SortOrder
+  resetPasswordToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  resetPasswordScadenza?: Prisma.SortOrderInput | Prisma.SortOrder
   tenant?: Prisma.TenantOrderByWithRelationInput
   vehiclesAssegnati?: Prisma.VehicleOrderByRelationAggregateInput
   stageChanges?: Prisma.StageHistoryOrderByRelationAggregateInput
@@ -283,6 +328,8 @@ export type UserOrderByWithRelationInput = {
 export type UserWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   email?: string
+  emailVerificaToken?: string
+  resetPasswordToken?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
@@ -293,6 +340,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   ruolo?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   attivo?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  emailVerificata?: Prisma.BoolFilter<"User"> | boolean
+  emailVerificaScadenza?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  resetPasswordScadenza?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   vehiclesAssegnati?: Prisma.VehicleListRelationFilter
   stageChanges?: Prisma.StageHistoryListRelationFilter
@@ -319,7 +369,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   qcNonConformitaCreate?: Prisma.QcNonConformitaListRelationFilter
   qcEventiAttore?: Prisma.QcEventoListRelationFilter
   loanerBookingsCreate?: Prisma.LoanerBookingListRelationFilter
-}, "id" | "email">
+}, "id" | "email" | "emailVerificaToken" | "resetPasswordToken">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -331,6 +381,11 @@ export type UserOrderByWithAggregationInput = {
   ruolo?: Prisma.SortOrder
   attivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  emailVerificata?: Prisma.SortOrder
+  emailVerificaToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailVerificaScadenza?: Prisma.SortOrderInput | Prisma.SortOrder
+  resetPasswordToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  resetPasswordScadenza?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -349,6 +404,11 @@ export type UserScalarWhereWithAggregatesInput = {
   ruolo?: Prisma.EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
   attivo?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  emailVerificata?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  emailVerificaToken?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  emailVerificaScadenza?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  resetPasswordToken?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  resetPasswordScadenza?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
 }
 
 export type UserCreateInput = {
@@ -360,6 +420,11 @@ export type UserCreateInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -398,6 +463,11 @@ export type UserUncheckedCreateInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -434,6 +504,11 @@ export type UserUpdateInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -472,6 +547,11 @@ export type UserUncheckedUpdateInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -509,6 +589,11 @@ export type UserCreateManyInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -520,6 +605,11 @@ export type UserUpdateManyMutationInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -532,6 +622,11 @@ export type UserUncheckedUpdateManyInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type UserListRelationFilter = {
@@ -554,6 +649,11 @@ export type UserCountOrderByAggregateInput = {
   ruolo?: Prisma.SortOrder
   attivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  emailVerificata?: Prisma.SortOrder
+  emailVerificaToken?: Prisma.SortOrder
+  emailVerificaScadenza?: Prisma.SortOrder
+  resetPasswordToken?: Prisma.SortOrder
+  resetPasswordScadenza?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -566,6 +666,11 @@ export type UserMaxOrderByAggregateInput = {
   ruolo?: Prisma.SortOrder
   attivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  emailVerificata?: Prisma.SortOrder
+  emailVerificaToken?: Prisma.SortOrder
+  emailVerificaScadenza?: Prisma.SortOrder
+  resetPasswordToken?: Prisma.SortOrder
+  resetPasswordScadenza?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -578,6 +683,11 @@ export type UserMinOrderByAggregateInput = {
   ruolo?: Prisma.SortOrder
   attivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  emailVerificata?: Prisma.SortOrder
+  emailVerificaToken?: Prisma.SortOrder
+  emailVerificaScadenza?: Prisma.SortOrder
+  resetPasswordToken?: Prisma.SortOrder
+  resetPasswordScadenza?: Prisma.SortOrder
 }
 
 export type UserNullableScalarRelationFilter = {
@@ -1039,6 +1149,11 @@ export type UserCreateWithoutTenantInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
@@ -1075,6 +1190,11 @@ export type UserUncheckedCreateWithoutTenantInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -1141,6 +1261,11 @@ export type UserScalarWhereInput = {
   ruolo?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   attivo?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  emailVerificata?: Prisma.BoolFilter<"User"> | boolean
+  emailVerificaToken?: Prisma.StringNullableFilter<"User"> | string | null
+  emailVerificaScadenza?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  resetPasswordToken?: Prisma.StringNullableFilter<"User"> | string | null
+  resetPasswordScadenza?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
 }
 
 export type UserCreateWithoutVehiclesAssegnatiInput = {
@@ -1152,6 +1277,11 @@ export type UserCreateWithoutVehiclesAssegnatiInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
@@ -1189,6 +1319,11 @@ export type UserUncheckedCreateWithoutVehiclesAssegnatiInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
@@ -1240,6 +1375,11 @@ export type UserUpdateWithoutVehiclesAssegnatiInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
@@ -1277,6 +1417,11 @@ export type UserUncheckedUpdateWithoutVehiclesAssegnatiInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
@@ -1312,6 +1457,11 @@ export type UserCreateWithoutStageChangesInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
@@ -1349,6 +1499,11 @@ export type UserUncheckedCreateWithoutStageChangesInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
@@ -1400,6 +1555,11 @@ export type UserUpdateWithoutStageChangesInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
@@ -1437,6 +1597,11 @@ export type UserUncheckedUpdateWithoutStageChangesInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
@@ -1472,6 +1637,11 @@ export type UserCreateWithoutAnalisiDanniCreateInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -1509,6 +1679,11 @@ export type UserUncheckedCreateWithoutAnalisiDanniCreateInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -1560,6 +1735,11 @@ export type UserUpdateWithoutAnalisiDanniCreateInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -1597,6 +1777,11 @@ export type UserUncheckedUpdateWithoutAnalisiDanniCreateInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -1632,6 +1817,11 @@ export type UserCreateWithoutCorrezioniDanniInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -1669,6 +1859,11 @@ export type UserUncheckedCreateWithoutCorrezioniDanniInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -1720,6 +1915,11 @@ export type UserUpdateWithoutCorrezioniDanniInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -1757,6 +1957,11 @@ export type UserUncheckedUpdateWithoutCorrezioniDanniInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -1792,6 +1997,11 @@ export type UserCreateWithoutAnalisiGapCreateInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -1829,6 +2039,11 @@ export type UserUncheckedCreateWithoutAnalisiGapCreateInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -1880,6 +2095,11 @@ export type UserUpdateWithoutAnalisiGapCreateInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -1917,6 +2137,11 @@ export type UserUncheckedUpdateWithoutAnalisiGapCreateInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -1952,6 +2177,11 @@ export type UserCreateWithoutCorrezioniGapAssicurazioneInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -1989,6 +2219,11 @@ export type UserUncheckedCreateWithoutCorrezioniGapAssicurazioneInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -2040,6 +2275,11 @@ export type UserUpdateWithoutCorrezioniGapAssicurazioneInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -2077,6 +2317,11 @@ export type UserUncheckedUpdateWithoutCorrezioniGapAssicurazioneInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -2112,6 +2357,11 @@ export type UserCreateWithoutLoanerBookingsCreateInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -2149,6 +2399,11 @@ export type UserUncheckedCreateWithoutLoanerBookingsCreateInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -2200,6 +2455,11 @@ export type UserUpdateWithoutLoanerBookingsCreateInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -2237,6 +2497,11 @@ export type UserUncheckedUpdateWithoutLoanerBookingsCreateInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -2272,6 +2537,11 @@ export type UserCreateWithoutAppuntamentiTecnicoInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -2309,6 +2579,11 @@ export type UserUncheckedCreateWithoutAppuntamentiTecnicoInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -2360,6 +2635,11 @@ export type UserUpdateWithoutAppuntamentiTecnicoInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -2397,6 +2677,11 @@ export type UserUncheckedUpdateWithoutAppuntamentiTecnicoInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -2432,6 +2717,11 @@ export type UserCreateWithoutTimeEntriesInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -2469,6 +2759,11 @@ export type UserUncheckedCreateWithoutTimeEntriesInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
@@ -2520,6 +2815,11 @@ export type UserUpdateWithoutTimeEntriesInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -2557,6 +2857,11 @@ export type UserUncheckedUpdateWithoutTimeEntriesInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
@@ -2592,6 +2897,11 @@ export type UserCreateWithoutPortalActionsGestiteInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -2629,6 +2939,11 @@ export type UserUncheckedCreateWithoutPortalActionsGestiteInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -2680,6 +2995,11 @@ export type UserUpdateWithoutPortalActionsGestiteInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -2717,6 +3037,11 @@ export type UserUncheckedUpdateWithoutPortalActionsGestiteInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -2752,6 +3077,11 @@ export type UserCreateWithoutWorkOrdersAssegnatiInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -2789,6 +3119,11 @@ export type UserUncheckedCreateWithoutWorkOrdersAssegnatiInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -2829,6 +3164,11 @@ export type UserCreateWithoutWorkOrdersCreatiInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -2866,6 +3206,11 @@ export type UserUncheckedCreateWithoutWorkOrdersCreatiInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -2917,6 +3262,11 @@ export type UserUpdateWithoutWorkOrdersAssegnatiInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -2954,6 +3304,11 @@ export type UserUncheckedUpdateWithoutWorkOrdersAssegnatiInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -3000,6 +3355,11 @@ export type UserUpdateWithoutWorkOrdersCreatiInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -3037,6 +3397,11 @@ export type UserUncheckedUpdateWithoutWorkOrdersCreatiInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -3072,6 +3437,11 @@ export type UserCreateWithoutWorkOrderTimeEntriesInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -3109,6 +3479,11 @@ export type UserUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -3149,6 +3524,11 @@ export type UserCreateWithoutWorkOrderTimeCorrezioniInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -3186,6 +3566,11 @@ export type UserUncheckedCreateWithoutWorkOrderTimeCorrezioniInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -3237,6 +3622,11 @@ export type UserUpdateWithoutWorkOrderTimeEntriesInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -3274,6 +3664,11 @@ export type UserUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -3320,6 +3715,11 @@ export type UserUpdateWithoutWorkOrderTimeCorrezioniInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -3357,6 +3757,11 @@ export type UserUncheckedUpdateWithoutWorkOrderTimeCorrezioniInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -3392,6 +3797,11 @@ export type UserCreateWithoutWorkOrderEventiAttoreInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -3429,6 +3839,11 @@ export type UserUncheckedCreateWithoutWorkOrderEventiAttoreInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -3480,6 +3895,11 @@ export type UserUpdateWithoutWorkOrderEventiAttoreInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -3517,6 +3937,11 @@ export type UserUncheckedUpdateWithoutWorkOrderEventiAttoreInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -3552,6 +3977,11 @@ export type UserCreateWithoutPortalDocumentiCaricatiInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -3589,6 +4019,11 @@ export type UserUncheckedCreateWithoutPortalDocumentiCaricatiInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -3640,6 +4075,11 @@ export type UserUpdateWithoutPortalDocumentiCaricatiInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -3677,6 +4117,11 @@ export type UserUncheckedUpdateWithoutPortalDocumentiCaricatiInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -3712,6 +4157,11 @@ export type UserCreateWithoutAuditLogsInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -3749,6 +4199,11 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -3800,6 +4255,11 @@ export type UserUpdateWithoutAuditLogsInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -3837,6 +4297,11 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -3872,6 +4337,11 @@ export type UserCreateWithoutWhatsappTemplateAggiornatiInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -3909,6 +4379,11 @@ export type UserUncheckedCreateWithoutWhatsappTemplateAggiornatiInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -3960,6 +4435,11 @@ export type UserUpdateWithoutWhatsappTemplateAggiornatiInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -3997,6 +4477,11 @@ export type UserUncheckedUpdateWithoutWhatsappTemplateAggiornatiInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -4032,6 +4517,11 @@ export type UserCreateWithoutWhatsappMessaggiInviatiInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -4069,6 +4559,11 @@ export type UserUncheckedCreateWithoutWhatsappMessaggiInviatiInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -4120,6 +4615,11 @@ export type UserUpdateWithoutWhatsappMessaggiInviatiInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -4157,6 +4657,11 @@ export type UserUncheckedUpdateWithoutWhatsappMessaggiInviatiInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -4192,6 +4697,11 @@ export type UserCreateWithoutQcIspezioniIniziateInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -4229,6 +4739,11 @@ export type UserUncheckedCreateWithoutQcIspezioniIniziateInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -4269,6 +4784,11 @@ export type UserCreateWithoutQcIspezioniApprovateInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -4306,6 +4826,11 @@ export type UserUncheckedCreateWithoutQcIspezioniApprovateInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -4357,6 +4882,11 @@ export type UserUpdateWithoutQcIspezioniIniziateInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -4394,6 +4924,11 @@ export type UserUncheckedUpdateWithoutQcIspezioniIniziateInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -4440,6 +4975,11 @@ export type UserUpdateWithoutQcIspezioniApprovateInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -4477,6 +5017,11 @@ export type UserUncheckedUpdateWithoutQcIspezioniApprovateInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -4512,6 +5057,11 @@ export type UserCreateWithoutQcEsitiAggiornatiInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -4549,6 +5099,11 @@ export type UserUncheckedCreateWithoutQcEsitiAggiornatiInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -4600,6 +5155,11 @@ export type UserUpdateWithoutQcEsitiAggiornatiInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -4637,6 +5197,11 @@ export type UserUncheckedUpdateWithoutQcEsitiAggiornatiInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -4672,6 +5237,11 @@ export type UserCreateWithoutQcNonConformitaResponsabileInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -4709,6 +5279,11 @@ export type UserUncheckedCreateWithoutQcNonConformitaResponsabileInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -4749,6 +5324,11 @@ export type UserCreateWithoutQcNonConformitaCreateInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -4786,6 +5366,11 @@ export type UserUncheckedCreateWithoutQcNonConformitaCreateInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -4837,6 +5422,11 @@ export type UserUpdateWithoutQcNonConformitaResponsabileInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -4874,6 +5464,11 @@ export type UserUncheckedUpdateWithoutQcNonConformitaResponsabileInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -4920,6 +5515,11 @@ export type UserUpdateWithoutQcNonConformitaCreateInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -4957,6 +5557,11 @@ export type UserUncheckedUpdateWithoutQcNonConformitaCreateInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -4992,6 +5597,11 @@ export type UserCreateWithoutQcEventiAttoreInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -5029,6 +5639,11 @@ export type UserUncheckedCreateWithoutQcEventiAttoreInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -5080,6 +5695,11 @@ export type UserUpdateWithoutQcEventiAttoreInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -5117,6 +5737,11 @@ export type UserUncheckedUpdateWithoutQcEventiAttoreInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -5152,6 +5777,11 @@ export type UserCreateManyTenantInput = {
   ruolo?: $Enums.Role
   attivo?: boolean
   createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
 }
 
 export type UserUpdateWithoutTenantInput = {
@@ -5163,6 +5793,11 @@ export type UserUpdateWithoutTenantInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
@@ -5199,6 +5834,11 @@ export type UserUncheckedUpdateWithoutTenantInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -5235,6 +5875,11 @@ export type UserUncheckedUpdateManyWithoutTenantInput = {
   ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -5494,6 +6139,11 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   ruolo?: boolean
   attivo?: boolean
   createdAt?: boolean
+  emailVerificata?: boolean
+  emailVerificaToken?: boolean
+  emailVerificaScadenza?: boolean
+  resetPasswordToken?: boolean
+  resetPasswordScadenza?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   vehiclesAssegnati?: boolean | Prisma.User$vehiclesAssegnatiArgs<ExtArgs>
   stageChanges?: boolean | Prisma.User$stageChangesArgs<ExtArgs>
@@ -5533,6 +6183,11 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   ruolo?: boolean
   attivo?: boolean
   createdAt?: boolean
+  emailVerificata?: boolean
+  emailVerificaToken?: boolean
+  emailVerificaScadenza?: boolean
+  resetPasswordToken?: boolean
+  resetPasswordScadenza?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -5546,6 +6201,11 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   ruolo?: boolean
   attivo?: boolean
   createdAt?: boolean
+  emailVerificata?: boolean
+  emailVerificaToken?: boolean
+  emailVerificaScadenza?: boolean
+  resetPasswordToken?: boolean
+  resetPasswordScadenza?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -5559,9 +6219,14 @@ export type UserSelectScalar = {
   ruolo?: boolean
   attivo?: boolean
   createdAt?: boolean
+  emailVerificata?: boolean
+  emailVerificaToken?: boolean
+  emailVerificaScadenza?: boolean
+  resetPasswordToken?: boolean
+  resetPasswordScadenza?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "nome" | "cognome" | "email" | "passwordHash" | "ruolo" | "attivo" | "createdAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "nome" | "cognome" | "email" | "passwordHash" | "ruolo" | "attivo" | "createdAt" | "emailVerificata" | "emailVerificaToken" | "emailVerificaScadenza" | "resetPasswordToken" | "resetPasswordScadenza", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   vehiclesAssegnati?: boolean | Prisma.User$vehiclesAssegnatiArgs<ExtArgs>
@@ -5638,6 +6303,11 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     ruolo: $Enums.Role
     attivo: boolean
     createdAt: Date
+    emailVerificata: boolean
+    emailVerificaToken: string | null
+    emailVerificaScadenza: Date | null
+    resetPasswordToken: string | null
+    resetPasswordScadenza: Date | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -6096,6 +6766,11 @@ export interface UserFieldRefs {
   readonly ruolo: Prisma.FieldRef<"User", 'Role'>
   readonly attivo: Prisma.FieldRef<"User", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly emailVerificata: Prisma.FieldRef<"User", 'Boolean'>
+  readonly emailVerificaToken: Prisma.FieldRef<"User", 'String'>
+  readonly emailVerificaScadenza: Prisma.FieldRef<"User", 'DateTime'>
+  readonly resetPasswordToken: Prisma.FieldRef<"User", 'String'>
+  readonly resetPasswordScadenza: Prisma.FieldRef<"User", 'DateTime'>
 }
     
 

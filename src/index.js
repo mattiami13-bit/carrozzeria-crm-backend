@@ -57,6 +57,8 @@ if (process.env.CRM_PREVIEW === "1") app.use("/crm", express.static(path.join(__
 
 app.get("/health", (req, res) => res.json({ ok: true }));
 app.use("/portale", express.static(path.join(__dirname, "..", "public", "portale")));
+app.use("/verifica-email", express.static(path.join(__dirname, "..", "public", "verifica-email")));
+app.use("/reset-password", express.static(path.join(__dirname, "..", "public", "reset-password")));
 
 app.use("/api/auth", authRouter);
 app.use("/api/clients", clientsRouter);

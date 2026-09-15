@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Rifless — Reimposta password</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 16px; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif; background: #0A0B0D; color: #F3F1EC;
+  }
+  .card { width: 100%; max-width: 380px; background: #15171B; border: 1px solid #2A2E34; border-radius: 16px; padding: 32px; }
+  h1 { font-size: 18px; margin: 0 0 8px; text-align: center; }
+  p { font-size: 13.5px; color: #A8A29B; line-height: 1.55; margin: 0 0 20px; text-align: center; }
+  .icona { font-size: 34px; margin-bottom: 14px; text-align: center; }
+  label { display: block; font-size: 11px; color: #8D9099; margin-bottom: 4px; }
+  input { width: 100%; padding: 10px 11px; border-radius: 8px; border: 1px solid #2A2E34; background: #0A0B0D; color: #F3F1EC; font-size: 14px; margin-bottom: 14px; }
+  button { width: 100%; padding: 12px 0; border-radius: 10px; border: none; background: #2F80ED; color: #FFFFFF; font-weight: 600; font-size: 14px; cursor: pointer; }
+  button:disabled { opacity: 0.5; }
+  .errore { background: #2A1A1A; color: #E5806B; padding: 10px 12px; border-radius: 8px; font-size: 13px; border: 1px solid #4A2A2A; margin-bottom: 14px; }
+  .suggerimento { font-size: 12.5px; color: #6B6963; margin-top: 16px; text-align: center; }
+</style>
+</head>
+<body>
+  <div class="card" id="app">
+    <h1>Reimposta la password</h1>
+    <p>Scegli una nuova password per il tuo account Rifless.</p>
+    <div id="errore"></div>
+    <form id="form">
+      <label for="password">Nuova password</label>
+      <input type="password" id="password" minlength="8" required placeholder="Almeno 8 caratteri">
+      <label for="conferma">Conferma password</label>
+      <input type="password" id="conferma" minlength="8" required placeholder="Ripeti la password">
+      <button type="submit" id="submit">Reimposta password</button>
+    </form>
+  </div>
+
+  <script>
+    const API = ["127.0.0.1", "localhost"].includes(window.location.hostname) && window.location.port === "4310"
+      ? window.location.origin
+      : "https://carrozzeria-crm-backend-production.up.railway.app";
+
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+    const app = document.getElementById("app");
+
+    function mostraStato(icona, titolo, testo) {
+      app.innerHTML = `
+        <div class="icona">${icona}</div>
+        <h1>${titolo}</h1>
+        <p>${testo}</p>
+        <p class="suggerimento">Puoi chiudere questa pagina e tornare al gestionale.</p>
+      `;
+    }
+
+    if (!token) {
+      mostraStato("⚠️", "Link non valido", "Manca il codice di reset nel link. Richiedi un nuovo link dalla schermata di accesso.");
+    } else {
+      const form = document.getElementById("form");
+      const erroreBox = document.getElementById("errore");
+      const submitBtn = document.getElementById("submit");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        erroreBox.innerHTML = "";
+        const password = document.getElementById("password").value;
+        const conferma = document.getElementById("conferma").value;
+
+        if (password.length < 8) {
+          erroreBox.innerHTML = '<div class="errore">La password deve avere almeno 8 caratteri.</div>';
+          return;
+        }
+        if (password !== conferma) {
+          erroreBox.innerHTML = '<div class="errore">Le due password non coincidono.</div>';
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Attendere…";
+        try {
+          const res = await fetch(`${API}/api/auth/reset-password`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token, password }),
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) throw new Error(data.error ? JSON.stringify(data.error) : "Errore durante il reset");
+          mostraStato("✅", "Password aggiornata", "La tua password è stata reimpostata. Ora puoi accedere al gestionale con la nuova password.");
+        } catch (err) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Reimposta password";
+          erroreBox.innerHTML = `<div class="errore">${err.message.includes("scaduto") || err.message.includes("valido") ? err.message : "Il link potrebbe essere scaduto o non valido. Richiedine uno nuovo."}</div>`;
+        }
+      });
+    }
+  </script>
+</body>
+</html>

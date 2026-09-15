@@ -152,10 +152,19 @@ async function downloadQuotePdf(token, quoteId, filename) {
 }
 function App() {
   const [token, setToken] = useState(null);
+  const [user, setUser] = useState(null);
   const [connError, setConnError] = useState(false);
 
-  if (!token) return <AuthScreen onAuth={setToken} connError={connError} setConnError={setConnError} />;
-  return <Dashboard token={token} onLogout={() => setToken(null)} />;
+  const onAuth = (t, u) => { setToken(t); setUser(u || null); };
+
+  if (!token) return <AuthScreen onAuth={onAuth} connError={connError} setConnError={setConnError} />;
+  return (
+    <Dashboard
+      token={token}
+      user={user}
+      onLogout={() => { setToken(null); setUser(null); }}
+    />
+  );
 }
 
 /* ---------------- LOGIN / REGISTER ---------------- */
@@ -163,6 +172,7 @@ function AuthScreen({ onAuth, connError, setConnError }) {
   const [mode, setMode] = useState("login");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [notice, setNotice] = useState(null);
   const api = useApi(null);
 
   const [form, setForm] = useState({
@@ -183,7 +193,7 @@ function AuthScreen({ onAuth, connError, setConnError }) {
       const path = mode === "login" ? "/api/auth/login" : "/api/auth/register";
       const body = mode === "login" ? { email: form.email, password: form.password } : form;
       const data = await api(path, { method: "POST", body: JSON.stringify(body) });
-      onAuth(data.token);
+      onAuth(data.token, data.user);
     } catch (e) {
       if (e.message.includes("Failed to fetch")) setConnError(true);
       else setError(e.message);
@@ -191,6 +201,16 @@ function AuthScreen({ onAuth, connError, setConnError }) {
       setLoading(false);
     }
   };
+
+  if (mode === "password-dimenticata") {
+    return (
+      <PasswordDimenticataScreen
+        api={api}
+        connError={connError}
+        onBack={() => { setMode("login"); setError(null); setNotice(null); }}
+      />
+    );
+  }
 
   return (
     <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -225,6 +245,14 @@ function AuthScreen({ onAuth, connError, setConnError }) {
         <Field label="Email" value={form.email} onChange={set("email")} />
         <Field label="Password" type="password" value={form.password} onChange={set("password")} />
 
+        {mode === "login" && (
+          <div style={{ textAlign: "right", marginTop: -6, marginBottom: 14 }}>
+            <button onClick={() => setMode("password-dimenticata")} style={{
+              background: "none", border: "none", color: "#8D9099", fontSize: 12, cursor: "pointer", padding: 0,
+            }}>Password dimenticata?</button>
+          </div>
+        )}
+
         {error && <div style={{ color: "#B4472E", fontSize: 13, marginBottom: 8 }}>{error}</div>}
 
         <button onClick={submit} disabled={loading} style={{
@@ -233,6 +261,65 @@ function AuthScreen({ onAuth, connError, setConnError }) {
         }}>
           {loading ? "Attendere…" : mode === "login" ? "Accedi" : "Crea carrozzeria"}
         </button>
+      </div>
+    </div>
+  );
+}
+
+function PasswordDimenticataScreen({ api, onBack }) {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [messaggio, setMessaggio] = useState(null);
+  const [error, setError] = useState(null);
+
+  const submit = async () => {
+    if (!email.trim()) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await api("/api/auth/password-dimenticata", { method: "POST", body: JSON.stringify({ email: email.trim() }) });
+      setMessaggio(data.messaggio || "Se l'email esiste, riceverai a breve le istruzioni per reimpostare la password.");
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ width: 380, background: "#15171B", border: "1px solid #2A2E34", borderRadius: 16, padding: 32 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 24 }}>
+          <img src={LOGO_ICON} alt="Rifless" style={{ width: 28, height: 28, borderRadius: 8, objectFit: "cover" }} />
+          <span style={{ fontWeight: 700, fontSize: 17 }}>Rifless</span>
+        </div>
+
+        <h2 style={{ fontSize: 15, margin: "0 0 6px" }}>Password dimenticata</h2>
+
+        {messaggio ? (
+          <div style={{ background: "#16261E", color: "#6FBF8E", fontSize: 13, padding: 12, borderRadius: 10, border: "1px solid #2A4A3A", marginBottom: 16 }}>
+            {messaggio}
+          </div>
+        ) : (
+          <>
+            <p style={{ fontSize: 12.5, color: "#8D9099", margin: "0 0 16px", lineHeight: 1.5 }}>
+              Inserisci l'email del tuo account: ti invieremo un link per reimpostare la password.
+            </p>
+            <Field label="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            {error && <div style={{ color: "#B4472E", fontSize: 13, marginBottom: 8 }}>{error}</div>}
+            <button onClick={submit} disabled={loading} style={{
+              width: "100%", marginTop: 8, padding: "11px 0", borderRadius: 10, border: "none",
+              background: "#F3F1EC", color: "#15171B", fontWeight: 600, fontSize: 14,
+            }}>
+              {loading ? "Invio…" : "Invia link di reset"}
+            </button>
+          </>
+        )}
+
+        <button onClick={onBack} style={{
+          width: "100%", marginTop: 12, padding: "9px 0", borderRadius: 10, border: "1px solid #2A2E34",
+          background: "transparent", color: "#F3F1EC", fontWeight: 600, fontSize: 13,
+        }}>← Torna al login</button>
       </div>
     </div>
   );
@@ -301,10 +388,11 @@ function DashboardTecnico({ token, onLogout }) {
   );
 }
 
-function Dashboard({ token, onLogout }) {
+function Dashboard({ token, user, onLogout }) {
   const [tab, setTab] = useState(()=>decodificaRuolo(token)==="ADMIN"?"executive":"dashboard");
   const [sinistriClientFilter, setSinistriClientFilter] = useState(null);
   const [copilotOpenVehicleId, setCopilotOpenVehicleId] = useState(null);
+  const [cambiaPasswordAperto, setCambiaPasswordAperto] = useState(false);
   const api = useApi(token);
   const ruolo = decodificaRuolo(token);
 
@@ -346,12 +434,18 @@ function Dashboard({ token, onLogout }) {
             fontWeight: tab === n.key ? 600 : 500, fontSize: 14,
           }}>{n.label}</button>
         ))}
-        <button onClick={onLogout} style={{
+        <button onClick={() => setCambiaPasswordAperto(true)} style={{
           width: "100%", textAlign: "left", padding: "9px 12px", borderRadius: 8, border: "none", marginTop: 20,
+          background: "transparent", color: "#8D9099", fontSize: 13,
+        }}>Cambia password</button>
+        <button onClick={onLogout} style={{
+          width: "100%", textAlign: "left", padding: "9px 12px", borderRadius: 8, border: "none",
           background: "transparent", color: "#B4472E", fontSize: 13,
         }}>Esci</button>
       </aside>
       <main style={{ flex: 1, padding: "28px 32px", overflowY: "auto" }}>
+        {user && user.emailVerificata === false && <VerificaEmailBanner api={api} />}
+        {cambiaPasswordAperto && <CambiaPasswordModal api={api} onClose={() => setCambiaPasswordAperto(false)} />}
         {tab === "executive" && ruolo === "ADMIN" && <><MorningBriefing api={api} onOpen={apriPraticaVeicolo} /><ExecutiveDashboard api={api} onOpen={apriPraticaVeicolo} /></>}
         {tab === "dashboard" && <><DashboardView api={api} ruolo={ruolo} /><PartsDashboard api={api} onOpen={apriPraticaVeicolo} compact /></>}
         {tab === "parts-tracking" && <PartsDashboard api={api} onOpen={apriPraticaVeicolo} />}
@@ -387,6 +481,106 @@ function Dashboard({ token, onLogout }) {
         {tab === "kpi-tecnici" && ["ADMIN", "AMMINISTRAZIONE"].includes(ruolo) && <KpiTecniciView api={api} ruolo={ruolo} />}
       </main>
       <AiCopilot api={api} onNavigateTab={setTab} onApriPraticaVeicolo={apriPraticaVeicolo} />
+    </div>
+  );
+}
+
+// Promemoria non bloccante mostrato finché l'account non ha verificato
+// l'email: non impedisce l'uso del gestionale, solo invita a farlo.
+function VerificaEmailBanner({ api }) {
+  const [nascosta, setNascosta] = useState(false);
+  const [stato, setStato] = useState("idle"); // idle | invio | inviata | errore
+
+  if (nascosta) return null;
+
+  const reinvia = async () => {
+    setStato("invio");
+    try {
+      await api("/api/auth/reinvia-verifica", { method: "POST" });
+      setStato("inviata");
+    } catch {
+      setStato("errore");
+    }
+  };
+
+  return (
+    <div style={{
+      display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap",
+      background: "#1B1500", border: "1px solid #4A3A00", color: "#C9A24B", fontSize: 13, padding: "10px 14px",
+      borderRadius: 10, marginBottom: 18,
+    }}>
+      <span>
+        ✉️ Email non ancora verificata.
+        {stato === "inviata" ? " Controlla la posta: abbiamo inviato un nuovo link." :
+         stato === "errore" ? " Invio non riuscito, riprova tra poco." : " Controlla la posta o richiedi un nuovo link."}
+      </span>
+      <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
+        <button onClick={reinvia} disabled={stato === "invio" || stato === "inviata"} style={{
+          padding: "5px 10px", borderRadius: 6, border: "1px solid #C9A24B", background: "transparent", color: "#C9A24B", fontSize: 12,
+        }}>{stato === "invio" ? "Invio…" : stato === "inviata" ? "Inviata" : "Reinvia email"}</button>
+        <button onClick={() => setNascosta(true)} style={{
+          padding: "5px 8px", borderRadius: 6, border: "none", background: "transparent", color: "#8D9099", fontSize: 12,
+        }}>✕</button>
+      </div>
+    </div>
+  );
+}
+
+function CambiaPasswordModal({ api, onClose }) {
+  const [passwordAttuale, setPasswordAttuale] = useState("");
+  const [nuovaPassword, setNuovaPassword] = useState("");
+  const [conferma, setConferma] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [fatto, setFatto] = useState(false);
+
+  const submit = async () => {
+    setError(null);
+    if (nuovaPassword.length < 8) return setError("La nuova password deve avere almeno 8 caratteri.");
+    if (nuovaPassword !== conferma) return setError("Le due password non coincidono.");
+    setLoading(true);
+    try {
+      await api("/api/auth/cambia-password", { method: "POST", body: JSON.stringify({ passwordAttuale, nuovaPassword }) });
+      setFatto(true);
+    } catch (e) {
+      setError(e.message.includes("non corretta") ? "Password attuale non corretta." : e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, background: "rgba(27,26,23,0.5)", display: "flex",
+      alignItems: "center", justifyContent: "center", zIndex: 55,
+    }}>
+      <div onClick={(e) => e.stopPropagation()} style={{
+        background: "#15171B", borderRadius: 16, width: 360, padding: 24, border: "1px solid #2A2E34",
+      }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+          <h2 style={{ fontSize: 16, fontWeight: 700, margin: 0 }}>Cambia password</h2>
+          <button onClick={onClose} style={{
+            border: "none", background: "#0A0B0D", width: 26, height: 26, borderRadius: 7, fontSize: 13, color: "#8D9099",
+          }}>✕</button>
+        </div>
+
+        {fatto ? (
+          <div style={{ background: "#16261E", color: "#6FBF8E", fontSize: 13, padding: 12, borderRadius: 10, border: "1px solid #2A4A3A" }}>
+            Password aggiornata con successo.
+          </div>
+        ) : (
+          <>
+            <Field label="Password attuale" type="password" value={passwordAttuale} onChange={(e) => setPasswordAttuale(e.target.value)} />
+            <Field label="Nuova password" type="password" value={nuovaPassword} onChange={(e) => setNuovaPassword(e.target.value)} />
+            <Field label="Conferma nuova password" type="password" value={conferma} onChange={(e) => setConferma(e.target.value)} />
+            {error && <div style={{ color: "#B4472E", fontSize: 13, marginBottom: 8 }}>{error}</div>}
+            <button onClick={submit} disabled={loading} style={{
+              width: "100%", marginTop: 8, padding: "11px 0", borderRadius: 10, border: "none",
+              background: "#2F80ED", color: "#FFFFFF", fontWeight: 600, fontSize: 14,
+            }}>{loading ? "Attendere…" : "Aggiorna password"}</button>
+          </>
+        )}
+      </div>
     </div>
   );
 }

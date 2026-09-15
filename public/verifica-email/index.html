@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Rifless — Verifica email</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 16px; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif; background: #0A0B0D; color: #F3F1EC;
+  }
+  .card { width: 100%; max-width: 380px; background: #15171B; border: 1px solid #2A2E34; border-radius: 16px; padding: 32px; text-align: center; }
+  h1 { font-size: 18px; margin: 0 0 12px; }
+  p { font-size: 14px; color: #A8A29B; line-height: 1.55; margin: 0 0 20px; }
+  .icona { font-size: 34px; margin-bottom: 14px; }
+  .suggerimento { font-size: 12.5px; color: #6B6963; margin: 0; }
+</style>
+</head>
+<body>
+  <div class="card" id="app">
+    <div class="icona">…</div>
+    <h1>Verifica in corso</h1>
+    <p>Un attimo, stiamo confermando la tua email.</p>
+  </div>
+
+  <script>
+    const API = ["127.0.0.1", "localhost"].includes(window.location.hostname) && window.location.port === "4310"
+      ? window.location.origin
+      : "https://carrozzeria-crm-backend-production.up.railway.app";
+
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+    const app = document.getElementById("app");
+
+    function mostra(icona, titolo, testo) {
+      app.innerHTML = `
+        <div class="icona">${icona}</div>
+        <h1>${titolo}</h1>
+        <p>${testo}</p>
+        <p class="suggerimento">Puoi chiudere questa pagina e tornare al gestionale.</p>
+      `;
+    }
+
+    if (!token) {
+      mostra("⚠️", "Link non valido", "Manca il codice di verifica nel link. Controlla di aver cliccato il link completo ricevuto via email.");
+    } else {
+      fetch(`${API}/api/auth/verifica-email?token=${encodeURIComponent(token)}`)
+        .then((r) => r.json().then((data) => ({ ok: r.ok, data })))
+        .then(({ ok, data }) => {
+          if (ok) {
+            mostra("✅", "Email verificata", "Il tuo indirizzo email è stato confermato. Ora puoi accedere al gestionale.");
+          } else {
+            mostra("⚠️", "Link non valido o scaduto", data.error || "Richiedi una nuova email di verifica dal gestionale.");
+          }
+        })
+        .catch(() => {
+          mostra("⚠️", "Errore di connessione", "Non riusciamo a contattare il server. Riprova tra qualche istante.");
+        });
+    }
+  </script>
+</body>
+</html>

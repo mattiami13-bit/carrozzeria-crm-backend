@@ -1,0 +1,88 @@
+import { Resend } from "resend";
+
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+const MITTENTE = "Rifless <notifiche@rifless.it>";
+
+// Wrapper minimo di stile per email transazionali: layout a card centrata,
+// leggibile anche senza CSS esterno (i client email non caricano <style>
+// affidabilmente), pulsante di invito all'azione in blu brand.
+function layoutEmail({ titolo, corpoHtml, ctaLabel, ctaUrl }) {
+  return `<!DOCTYPE html>
+<html lang="it">
+<body style="margin:0;padding:24px 16px;background:#F1EFE8;font-family:-apple-system,Segoe UI,Roboto,sans-serif;">
+  <table role="presentation" width="100%" style="max-width:480px;margin:0 auto;background:#FFFFFF;border-radius:14px;overflow:hidden;border:1px solid #E4E1D8;">
+    <tr><td style="background:#0A0B0D;padding:20px 28px;">
+      <span style="color:#FFFFFF;font-size:18px;font-weight:700;letter-spacing:0.02em;">Rifless</span>
+    </td></tr>
+    <tr><td style="padding:28px;">
+      <h1 style="margin:0 0 14px;font-size:19px;color:#15171B;">${titolo}</h1>
+      <div style="font-size:14.5px;line-height:1.6;color:#3A3D42;">${corpoHtml}</div>
+      ${ctaUrl ? `
+      <table role="presentation" style="margin-top:22px;">
+        <tr><td style="border-radius:9px;background:#2F80ED;">
+          <a href="${ctaUrl}" style="display:inline-block;padding:12px 22px;color:#FFFFFF;text-decoration:none;font-weight:600;font-size:14px;">${ctaLabel}</a>
+        </td></tr>
+      </table>
+      <div style="margin-top:14px;font-size:12px;color:#8D9099;word-break:break-all;">Se il pulsante non funziona, copia questo link nel browser:<br>${ctaUrl}</div>` : ""}
+    </td></tr>
+    <tr><td style="padding:16px 28px;background:#F8F7F3;font-size:11.5px;color:#A8A29B;">
+      Rifless — il gestionale per carrozzerie. Se non hai richiesto questa email, puoi ignorarla.
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
+async function inviaConRetry({ to, subject, html, text }, tentativi = 2) {
+  if (!resend) {
+    console.warn(`[email] RESEND_API_KEY assente, email non inviata a ${to} (${subject})`);
+    return { ok: false, motivo: "provider non configurato" };
+  }
+  let ultimoErrore = null;
+  for (let tentativo = 1; tentativo <= tentativi; tentativo++) {
+    try {
+      const { data, error } = await resend.emails.send({ from: MITTENTE, to, subject, html, text });
+      if (error) throw new Error(JSON.stringify(error));
+      console.log(`[email] Inviata a ${to} (${subject}), id: ${data?.id}, tentativo ${tentativo}`);
+      return { ok: true, id: data?.id };
+    } catch (err) {
+      ultimoErrore = err;
+      console.error(`[email] Tentativo ${tentativo}/${tentativi} fallito verso ${to} (${subject}):`, err.message);
+      if (tentativo < tentativi) await new Promise((r) => setTimeout(r, 500 * tentativo));
+    }
+  }
+  return { ok: false, motivo: ultimoErrore?.message };
+}
+
+export async function inviaEmailBenvenuto({ email, nome, ragioneSociale, verificaUrl }) {
+  const html = layoutEmail({
+    titolo: `Benvenuto su Rifless, ${nome}`,
+    corpoHtml: `<p>L'account per <strong>${ragioneSociale}</strong> è stato creato. Prima di iniziare, conferma il tuo indirizzo email cliccando il pulsante qui sotto.</p>`,
+    ctaLabel: "Verifica la tua email",
+    ctaUrl: verificaUrl,
+  });
+  const text = `Benvenuto su Rifless, ${nome}. L'account per ${ragioneSociale} è stato creato. Verifica la tua email: ${verificaUrl}`;
+  return inviaConRetry({ to: email, subject: "Benvenuto su Rifless — verifica la tua email", html, text });
+}
+
+export async function inviaEmailVerifica({ email, nome, verificaUrl }) {
+  const html = layoutEmail({
+    titolo: "Verifica la tua email",
+    corpoHtml: `<p>Ciao ${nome}, conferma il tuo indirizzo email per completare l'attivazione dell'account Rifless.</p>`,
+    ctaLabel: "Verifica la tua email",
+    ctaUrl: verificaUrl,
+  });
+  const text = `Ciao ${nome}, verifica la tua email: ${verificaUrl}`;
+  return inviaConRetry({ to: email, subject: "Verifica la tua email Rifless", html, text });
+}
+
+export async function inviaEmailResetPassword({ email, nome, resetUrl }) {
+  const html = layoutEmail({
+    titolo: "Reimposta la password",
+    corpoHtml: `<p>Ciao ${nome}, abbiamo ricevuto una richiesta di reset della password del tuo account Rifless. Il link è valido per 1 ora. Se non sei stato tu, ignora questa email: la password attuale resta invariata.</p>`,
+    ctaLabel: "Reimposta password",
+    ctaUrl: resetUrl,
+  });
+  const text = `Ciao ${nome}, reimposta la password (valido 1 ora): ${resetUrl}`;
+  return inviaConRetry({ to: email, subject: "Reimposta la password Rifless", html, text });
+}
