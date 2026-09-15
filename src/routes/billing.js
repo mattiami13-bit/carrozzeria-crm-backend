@@ -128,6 +128,12 @@ billingRouter.post("/checkout", requireRole("ADMIN"), async (req, res) => {
         metadata: { tenantId: tenant.id, piano, periodicita, earlyAdopter: String(earlyAdopterApplicato) },
       },
       metadata: { tenantId: tenant.id, piano, periodicita, earlyAdopter: String(earlyAdopterApplicato) },
+      // Managed Payments di Stripe richiederebbe un tax_code su ogni
+      // prodotto per calcolare l'imposta automaticamente; i nostri prezzi
+      // sono già mostrati "IVA esclusa" e gestiti a parte, quindi lo
+      // disattiviamo su queste sessioni invece di configurare tax_code
+      // su 9 prodotti per una funzione che non usiamo ancora.
+      managed_payments: { enabled: false },
     });
     res.json({ url: session.url });
   } catch (err) {
