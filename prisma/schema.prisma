@@ -87,6 +87,7 @@ model Tenant {
   loanerCarPhotos    LoanerCarPhoto[]
   loanerBookings     LoanerBooking[]
   loanerBookingPhotos LoanerBookingPhoto[]
+  notifications      Notification[]
 
 
   @@map("tenants")
@@ -147,6 +148,7 @@ model User {
   qcNonConformitaCreate      QcNonConformita[]       @relation("QcNonConformitaCreata")
   qcEventiAttore             QcEvento[]              @relation("QcEventoAttore")
   loanerBookingsCreate       LoanerBooking[]
+  notifications              Notification[]
 
   @@index([tenantId])
   @@map("users")
@@ -1713,4 +1715,35 @@ model BriefingResolution {
  createdAt DateTime @default(now())
  @@unique([reportId, actionKey])
  @@map("briefing_resolutions")
+}
+
+enum NotificationCategoria {
+  SISTEMA
+  PRATICHE
+  RICAMBI
+  CLIENTI
+  PAGAMENTI
+  AI
+  SICUREZZA
+}
+
+// Notifica in-app personale (una riga per destinatario, anche quando lo
+// stesso evento va a più utenti): così "segna come letta" riguarda solo
+// chi l'ha letta, non l'evento in sé.
+model Notification {
+  id        String                @id @default(cuid())
+  tenantId  String
+  tenant    Tenant                @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  categoria NotificationCategoria
+  titolo    String
+  messaggio String
+  link      Json?
+  letta     Boolean               @default(false)
+  createdAt DateTime              @default(now())
+
+  @@index([tenantId, userId, letta])
+  @@index([tenantId, userId, createdAt])
+  @@map("notifications")
 }

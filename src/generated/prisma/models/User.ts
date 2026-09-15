@@ -280,6 +280,7 @@ export type UserWhereInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaListRelationFilter
   qcEventiAttore?: Prisma.QcEventoListRelationFilter
   loanerBookingsCreate?: Prisma.LoanerBookingListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -323,6 +324,7 @@ export type UserOrderByWithRelationInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaOrderByRelationAggregateInput
   qcEventiAttore?: Prisma.QcEventoOrderByRelationAggregateInput
   loanerBookingsCreate?: Prisma.LoanerBookingOrderByRelationAggregateInput
+  notifications?: Prisma.NotificationOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -369,6 +371,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   qcNonConformitaCreate?: Prisma.QcNonConformitaListRelationFilter
   qcEventiAttore?: Prisma.QcEventoListRelationFilter
   loanerBookingsCreate?: Prisma.LoanerBookingListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
 }, "id" | "email" | "emailVerificaToken" | "resetPasswordToken">
 
 export type UserOrderByWithAggregationInput = {
@@ -451,6 +454,7 @@ export type UserCreateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -493,6 +497,7 @@ export type UserUncheckedCreateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -535,6 +540,7 @@ export type UserUpdateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -577,6 +583,7 @@ export type UserUncheckedUpdateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -1140,6 +1147,20 @@ export type UserUpdateOneWithoutQcEventiAttoreNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutQcEventiAttoreInput, Prisma.UserUpdateWithoutQcEventiAttoreInput>, Prisma.UserUncheckedUpdateWithoutQcEventiAttoreInput>
 }
 
+export type UserCreateNestedOneWithoutNotificationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificationsInput
+  upsert?: Prisma.UserUpsertWithoutNotificationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificationsInput, Prisma.UserUpdateWithoutNotificationsInput>, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
+}
+
 export type UserCreateWithoutTenantInput = {
   id?: string
   nome: string
@@ -1179,6 +1200,7 @@ export type UserCreateWithoutTenantInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTenantInput = {
@@ -1220,6 +1242,7 @@ export type UserUncheckedCreateWithoutTenantInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTenantInput = {
@@ -1307,6 +1330,7 @@ export type UserCreateWithoutVehiclesAssegnatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutVehiclesAssegnatiInput = {
@@ -1348,6 +1372,7 @@ export type UserUncheckedCreateWithoutVehiclesAssegnatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutVehiclesAssegnatiInput = {
@@ -1405,6 +1430,7 @@ export type UserUpdateWithoutVehiclesAssegnatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVehiclesAssegnatiInput = {
@@ -1446,6 +1472,7 @@ export type UserUncheckedUpdateWithoutVehiclesAssegnatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutStageChangesInput = {
@@ -1487,6 +1514,7 @@ export type UserCreateWithoutStageChangesInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutStageChangesInput = {
@@ -1528,6 +1556,7 @@ export type UserUncheckedCreateWithoutStageChangesInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutStageChangesInput = {
@@ -1585,6 +1614,7 @@ export type UserUpdateWithoutStageChangesInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStageChangesInput = {
@@ -1626,6 +1656,7 @@ export type UserUncheckedUpdateWithoutStageChangesInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAnalisiDanniCreateInput = {
@@ -1667,6 +1698,7 @@ export type UserCreateWithoutAnalisiDanniCreateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAnalisiDanniCreateInput = {
@@ -1708,6 +1740,7 @@ export type UserUncheckedCreateWithoutAnalisiDanniCreateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAnalisiDanniCreateInput = {
@@ -1765,6 +1798,7 @@ export type UserUpdateWithoutAnalisiDanniCreateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAnalisiDanniCreateInput = {
@@ -1806,6 +1840,7 @@ export type UserUncheckedUpdateWithoutAnalisiDanniCreateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCorrezioniDanniInput = {
@@ -1847,6 +1882,7 @@ export type UserCreateWithoutCorrezioniDanniInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCorrezioniDanniInput = {
@@ -1888,6 +1924,7 @@ export type UserUncheckedCreateWithoutCorrezioniDanniInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCorrezioniDanniInput = {
@@ -1945,6 +1982,7 @@ export type UserUpdateWithoutCorrezioniDanniInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCorrezioniDanniInput = {
@@ -1986,6 +2024,7 @@ export type UserUncheckedUpdateWithoutCorrezioniDanniInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAnalisiGapCreateInput = {
@@ -2027,6 +2066,7 @@ export type UserCreateWithoutAnalisiGapCreateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAnalisiGapCreateInput = {
@@ -2068,6 +2108,7 @@ export type UserUncheckedCreateWithoutAnalisiGapCreateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAnalisiGapCreateInput = {
@@ -2125,6 +2166,7 @@ export type UserUpdateWithoutAnalisiGapCreateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAnalisiGapCreateInput = {
@@ -2166,6 +2208,7 @@ export type UserUncheckedUpdateWithoutAnalisiGapCreateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCorrezioniGapAssicurazioneInput = {
@@ -2207,6 +2250,7 @@ export type UserCreateWithoutCorrezioniGapAssicurazioneInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCorrezioniGapAssicurazioneInput = {
@@ -2248,6 +2292,7 @@ export type UserUncheckedCreateWithoutCorrezioniGapAssicurazioneInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCorrezioniGapAssicurazioneInput = {
@@ -2305,6 +2350,7 @@ export type UserUpdateWithoutCorrezioniGapAssicurazioneInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCorrezioniGapAssicurazioneInput = {
@@ -2346,6 +2392,7 @@ export type UserUncheckedUpdateWithoutCorrezioniGapAssicurazioneInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutLoanerBookingsCreateInput = {
@@ -2387,6 +2434,7 @@ export type UserCreateWithoutLoanerBookingsCreateInput = {
   qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutLoanerBookingsCreateInput = {
@@ -2428,6 +2476,7 @@ export type UserUncheckedCreateWithoutLoanerBookingsCreateInput = {
   qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutLoanerBookingsCreateInput = {
@@ -2485,6 +2534,7 @@ export type UserUpdateWithoutLoanerBookingsCreateInput = {
   qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLoanerBookingsCreateInput = {
@@ -2526,6 +2576,7 @@ export type UserUncheckedUpdateWithoutLoanerBookingsCreateInput = {
   qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAppuntamentiTecnicoInput = {
@@ -2567,6 +2618,7 @@ export type UserCreateWithoutAppuntamentiTecnicoInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAppuntamentiTecnicoInput = {
@@ -2608,6 +2660,7 @@ export type UserUncheckedCreateWithoutAppuntamentiTecnicoInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAppuntamentiTecnicoInput = {
@@ -2665,6 +2718,7 @@ export type UserUpdateWithoutAppuntamentiTecnicoInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAppuntamentiTecnicoInput = {
@@ -2706,6 +2760,7 @@ export type UserUncheckedUpdateWithoutAppuntamentiTecnicoInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTimeEntriesInput = {
@@ -2747,6 +2802,7 @@ export type UserCreateWithoutTimeEntriesInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTimeEntriesInput = {
@@ -2788,6 +2844,7 @@ export type UserUncheckedCreateWithoutTimeEntriesInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTimeEntriesInput = {
@@ -2845,6 +2902,7 @@ export type UserUpdateWithoutTimeEntriesInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTimeEntriesInput = {
@@ -2886,6 +2944,7 @@ export type UserUncheckedUpdateWithoutTimeEntriesInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPortalActionsGestiteInput = {
@@ -2927,6 +2986,7 @@ export type UserCreateWithoutPortalActionsGestiteInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPortalActionsGestiteInput = {
@@ -2968,6 +3028,7 @@ export type UserUncheckedCreateWithoutPortalActionsGestiteInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPortalActionsGestiteInput = {
@@ -3025,6 +3086,7 @@ export type UserUpdateWithoutPortalActionsGestiteInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPortalActionsGestiteInput = {
@@ -3066,6 +3128,7 @@ export type UserUncheckedUpdateWithoutPortalActionsGestiteInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWorkOrdersAssegnatiInput = {
@@ -3107,6 +3170,7 @@ export type UserCreateWithoutWorkOrdersAssegnatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrdersAssegnatiInput = {
@@ -3148,6 +3212,7 @@ export type UserUncheckedCreateWithoutWorkOrdersAssegnatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrdersAssegnatiInput = {
@@ -3194,6 +3259,7 @@ export type UserCreateWithoutWorkOrdersCreatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrdersCreatiInput = {
@@ -3235,6 +3301,7 @@ export type UserUncheckedCreateWithoutWorkOrdersCreatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrdersCreatiInput = {
@@ -3292,6 +3359,7 @@ export type UserUpdateWithoutWorkOrdersAssegnatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrdersAssegnatiInput = {
@@ -3333,6 +3401,7 @@ export type UserUncheckedUpdateWithoutWorkOrdersAssegnatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutWorkOrdersCreatiInput = {
@@ -3385,6 +3454,7 @@ export type UserUpdateWithoutWorkOrdersCreatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrdersCreatiInput = {
@@ -3426,6 +3496,7 @@ export type UserUncheckedUpdateWithoutWorkOrdersCreatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWorkOrderTimeEntriesInput = {
@@ -3467,6 +3538,7 @@ export type UserCreateWithoutWorkOrderTimeEntriesInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
@@ -3508,6 +3580,7 @@ export type UserUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrderTimeEntriesInput = {
@@ -3554,6 +3627,7 @@ export type UserCreateWithoutWorkOrderTimeCorrezioniInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrderTimeCorrezioniInput = {
@@ -3595,6 +3669,7 @@ export type UserUncheckedCreateWithoutWorkOrderTimeCorrezioniInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrderTimeCorrezioniInput = {
@@ -3652,6 +3727,7 @@ export type UserUpdateWithoutWorkOrderTimeEntriesInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
@@ -3693,6 +3769,7 @@ export type UserUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutWorkOrderTimeCorrezioniInput = {
@@ -3745,6 +3822,7 @@ export type UserUpdateWithoutWorkOrderTimeCorrezioniInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrderTimeCorrezioniInput = {
@@ -3786,6 +3864,7 @@ export type UserUncheckedUpdateWithoutWorkOrderTimeCorrezioniInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWorkOrderEventiAttoreInput = {
@@ -3827,6 +3906,7 @@ export type UserCreateWithoutWorkOrderEventiAttoreInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrderEventiAttoreInput = {
@@ -3868,6 +3948,7 @@ export type UserUncheckedCreateWithoutWorkOrderEventiAttoreInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrderEventiAttoreInput = {
@@ -3925,6 +4006,7 @@ export type UserUpdateWithoutWorkOrderEventiAttoreInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrderEventiAttoreInput = {
@@ -3966,6 +4048,7 @@ export type UserUncheckedUpdateWithoutWorkOrderEventiAttoreInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPortalDocumentiCaricatiInput = {
@@ -4007,6 +4090,7 @@ export type UserCreateWithoutPortalDocumentiCaricatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPortalDocumentiCaricatiInput = {
@@ -4048,6 +4132,7 @@ export type UserUncheckedCreateWithoutPortalDocumentiCaricatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPortalDocumentiCaricatiInput = {
@@ -4105,6 +4190,7 @@ export type UserUpdateWithoutPortalDocumentiCaricatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPortalDocumentiCaricatiInput = {
@@ -4146,6 +4232,7 @@ export type UserUncheckedUpdateWithoutPortalDocumentiCaricatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -4187,6 +4274,7 @@ export type UserCreateWithoutAuditLogsInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -4228,6 +4316,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -4285,6 +4374,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -4326,6 +4416,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWhatsappTemplateAggiornatiInput = {
@@ -4367,6 +4458,7 @@ export type UserCreateWithoutWhatsappTemplateAggiornatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWhatsappTemplateAggiornatiInput = {
@@ -4408,6 +4500,7 @@ export type UserUncheckedCreateWithoutWhatsappTemplateAggiornatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWhatsappTemplateAggiornatiInput = {
@@ -4465,6 +4558,7 @@ export type UserUpdateWithoutWhatsappTemplateAggiornatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWhatsappTemplateAggiornatiInput = {
@@ -4506,6 +4600,7 @@ export type UserUncheckedUpdateWithoutWhatsappTemplateAggiornatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWhatsappMessaggiInviatiInput = {
@@ -4547,6 +4642,7 @@ export type UserCreateWithoutWhatsappMessaggiInviatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWhatsappMessaggiInviatiInput = {
@@ -4588,6 +4684,7 @@ export type UserUncheckedCreateWithoutWhatsappMessaggiInviatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWhatsappMessaggiInviatiInput = {
@@ -4645,6 +4742,7 @@ export type UserUpdateWithoutWhatsappMessaggiInviatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWhatsappMessaggiInviatiInput = {
@@ -4686,6 +4784,7 @@ export type UserUncheckedUpdateWithoutWhatsappMessaggiInviatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutQcIspezioniIniziateInput = {
@@ -4727,6 +4826,7 @@ export type UserCreateWithoutQcIspezioniIniziateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutQcIspezioniIniziateInput = {
@@ -4768,6 +4868,7 @@ export type UserUncheckedCreateWithoutQcIspezioniIniziateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutQcIspezioniIniziateInput = {
@@ -4814,6 +4915,7 @@ export type UserCreateWithoutQcIspezioniApprovateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutQcIspezioniApprovateInput = {
@@ -4855,6 +4957,7 @@ export type UserUncheckedCreateWithoutQcIspezioniApprovateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutQcIspezioniApprovateInput = {
@@ -4912,6 +5015,7 @@ export type UserUpdateWithoutQcIspezioniIniziateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutQcIspezioniIniziateInput = {
@@ -4953,6 +5057,7 @@ export type UserUncheckedUpdateWithoutQcIspezioniIniziateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutQcIspezioniApprovateInput = {
@@ -5005,6 +5110,7 @@ export type UserUpdateWithoutQcIspezioniApprovateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutQcIspezioniApprovateInput = {
@@ -5046,6 +5152,7 @@ export type UserUncheckedUpdateWithoutQcIspezioniApprovateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutQcEsitiAggiornatiInput = {
@@ -5087,6 +5194,7 @@ export type UserCreateWithoutQcEsitiAggiornatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutQcEsitiAggiornatiInput = {
@@ -5128,6 +5236,7 @@ export type UserUncheckedCreateWithoutQcEsitiAggiornatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutQcEsitiAggiornatiInput = {
@@ -5185,6 +5294,7 @@ export type UserUpdateWithoutQcEsitiAggiornatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutQcEsitiAggiornatiInput = {
@@ -5226,6 +5336,7 @@ export type UserUncheckedUpdateWithoutQcEsitiAggiornatiInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutQcNonConformitaResponsabileInput = {
@@ -5267,6 +5378,7 @@ export type UserCreateWithoutQcNonConformitaResponsabileInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutQcNonConformitaResponsabileInput = {
@@ -5308,6 +5420,7 @@ export type UserUncheckedCreateWithoutQcNonConformitaResponsabileInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutQcNonConformitaResponsabileInput = {
@@ -5354,6 +5467,7 @@ export type UserCreateWithoutQcNonConformitaCreateInput = {
   qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutQcNonConformitaCreateInput = {
@@ -5395,6 +5509,7 @@ export type UserUncheckedCreateWithoutQcNonConformitaCreateInput = {
   qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutQcNonConformitaCreateInput = {
@@ -5452,6 +5567,7 @@ export type UserUpdateWithoutQcNonConformitaResponsabileInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutQcNonConformitaResponsabileInput = {
@@ -5493,6 +5609,7 @@ export type UserUncheckedUpdateWithoutQcNonConformitaResponsabileInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutQcNonConformitaCreateInput = {
@@ -5545,6 +5662,7 @@ export type UserUpdateWithoutQcNonConformitaCreateInput = {
   qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutQcNonConformitaCreateInput = {
@@ -5586,6 +5704,7 @@ export type UserUncheckedUpdateWithoutQcNonConformitaCreateInput = {
   qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutQcEventiAttoreInput = {
@@ -5627,6 +5746,7 @@ export type UserCreateWithoutQcEventiAttoreInput = {
   qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutQcEventiAttoreInput = {
@@ -5668,6 +5788,7 @@ export type UserUncheckedCreateWithoutQcEventiAttoreInput = {
   qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutQcEventiAttoreInput = {
@@ -5725,6 +5846,7 @@ export type UserUpdateWithoutQcEventiAttoreInput = {
   qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutQcEventiAttoreInput = {
@@ -5765,6 +5887,191 @@ export type UserUncheckedUpdateWithoutQcEventiAttoreInput = {
   qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
   qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutNotificationsInput = {
+  id?: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
+  loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+}
+
+export type UserUncheckedCreateWithoutNotificationsInput = {
+  id?: string
+  tenantId: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
+  vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
+  loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+}
+
+export type UserCreateOrConnectWithoutNotificationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+}
+
+export type UserUpsertWithoutNotificationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutNotificationsInput, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutNotificationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutNotificationsInput, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type UserUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
+  vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
+  loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+}
+
+export type UserUncheckedUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
 }
 
@@ -5823,6 +6130,7 @@ export type UserUpdateWithoutTenantInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTenantInput = {
@@ -5864,6 +6172,7 @@ export type UserUncheckedUpdateWithoutTenantInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutTenantInput = {
@@ -5913,6 +6222,7 @@ export type UserCountOutputType = {
   qcNonConformitaCreate: number
   qcEventiAttore: number
   loanerBookingsCreate: number
+  notifications: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5941,6 +6251,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   qcNonConformitaCreate?: boolean | UserCountOutputTypeCountQcNonConformitaCreateArgs
   qcEventiAttore?: boolean | UserCountOutputTypeCountQcEventiAttoreArgs
   loanerBookingsCreate?: boolean | UserCountOutputTypeCountLoanerBookingsCreateArgs
+  notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
 }
 
 /**
@@ -6128,6 +6439,13 @@ export type UserCountOutputTypeCountLoanerBookingsCreateArgs<ExtArgs extends run
   where?: Prisma.LoanerBookingWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -6170,6 +6488,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   qcNonConformitaCreate?: boolean | Prisma.User$qcNonConformitaCreateArgs<ExtArgs>
   qcEventiAttore?: boolean | Prisma.User$qcEventiAttoreArgs<ExtArgs>
   loanerBookingsCreate?: boolean | Prisma.User$loanerBookingsCreateArgs<ExtArgs>
+  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -6254,6 +6573,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   qcNonConformitaCreate?: boolean | Prisma.User$qcNonConformitaCreateArgs<ExtArgs>
   qcEventiAttore?: boolean | Prisma.User$qcEventiAttoreArgs<ExtArgs>
   loanerBookingsCreate?: boolean | Prisma.User$loanerBookingsCreateArgs<ExtArgs>
+  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -6292,6 +6612,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     qcNonConformitaCreate: Prisma.$QcNonConformitaPayload<ExtArgs>[]
     qcEventiAttore: Prisma.$QcEventoPayload<ExtArgs>[]
     loanerBookingsCreate: Prisma.$LoanerBookingPayload<ExtArgs>[]
+    notifications: Prisma.$NotificationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -6728,6 +7049,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   qcNonConformitaCreate<T extends Prisma.User$qcNonConformitaCreateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$qcNonConformitaCreateArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcNonConformitaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   qcEventiAttore<T extends Prisma.User$qcEventiAttoreArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$qcEventiAttoreArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcEventoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   loanerBookingsCreate<T extends Prisma.User$loanerBookingsCreateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$loanerBookingsCreateArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoanerBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7769,6 +8091,30 @@ export type User$loanerBookingsCreateArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.LoanerBookingScalarFieldEnum | Prisma.LoanerBookingScalarFieldEnum[]
+}
+
+/**
+ * User.notifications
+ */
+export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notification
+   */
+  select?: Prisma.NotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notification
+   */
+  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationInclude<ExtArgs> | null
+  where?: Prisma.NotificationWhereInput
+  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
 }
 
 /**

@@ -105,7 +105,8 @@ export const ModelName = {
   QcEvento: 'QcEvento',
   BriefingSettings: 'BriefingSettings',
   BriefingReport: 'BriefingReport',
-  BriefingResolution: 'BriefingResolution'
+  BriefingResolution: 'BriefingResolution',
+  Notification: 'Notification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -992,6 +993,21 @@ export const BriefingResolutionScalarFieldEnum = {
 } as const
 
 export type BriefingResolutionScalarFieldEnum = (typeof BriefingResolutionScalarFieldEnum)[keyof typeof BriefingResolutionScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  userId: 'userId',
+  categoria: 'categoria',
+  titolo: 'titolo',
+  messaggio: 'messaggio',
+  link: 'link',
+  letta: 'letta',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
 export const SortOrder = {

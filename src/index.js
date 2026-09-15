@@ -31,6 +31,7 @@ import { portaleRouter, portalDocumentsRouter, portalActionsRouter, portalDocume
 import { vehicleWorkOrdersRouter, workOrdersRouter, workOrderTimeEntriesRouter, vehicleOreLavorateRouter } from "./routes/workOrders.js";
 import { liveDashboardRouter } from "./routes/liveDashboard.js";
 import { qcTemplateRouter, vehicleQcRouter, qcInspectionRouter, qcNonConformitaRouter } from "./routes/qc.js";
+import { notificheRouter } from "./routes/notifiche.js";
 import { auditLogger } from "./middleware/audit.js";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -101,6 +102,7 @@ app.use("/api/dashboard", dashboardRouter);
 app.use("/api", photosRouter);
 app.use("/api/appointments", appointmentsRouter);
 app.use("/api/users", usersRouter);
+app.use("/api/notifiche", notificheRouter);
 
 // Gestione errori centralizzata: qualsiasi errore non gestito nelle
 // route arriva qui invece di far crashare il processo.

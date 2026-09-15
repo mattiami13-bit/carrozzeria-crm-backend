@@ -5,6 +5,7 @@ import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
 import { enqueueNotification } from "../lib/notifiche.js";
 import { inviaComunicazioneWhatsapp } from "../lib/whatsapp.js";
+import { creaNotificaRuoli } from "../lib/notificheInApp.js";
 
 export const quotesRouter = Router();
 quotesRouter.use(requireAuth);
@@ -100,6 +101,15 @@ quotesRouter.patch("/:id/stato", async (req, res) => {
       const baseUrl = `${req.protocol}://${req.get("host")}`;
       await enqueueNotification(vehicle, "ATTESA_APPROVAZIONE", baseUrl);
       await inviaComunicazioneWhatsapp(vehicle, "ATTESA_APPROVAZIONE", baseUrl, req.auth.userId);
+
+      creaNotificaRuoli({
+        tenantId: quote.tenantId,
+        ruoli: ["ADMIN", "AMMINISTRAZIONE"],
+        categoria: "PRATICHE",
+        titolo: "Preventivo in attesa di approvazione",
+        messaggio: `Preventivo per ${vehicle.marca} ${vehicle.modello} (targa ${vehicle.targa}) inviato al cliente, in attesa di approvazione.`,
+        link: { tab: "preventivi" },
+      }).catch((err) => console.error("[notifiche] Errore creazione notifica preventivo inviato:", err.message));
     }
   }
 

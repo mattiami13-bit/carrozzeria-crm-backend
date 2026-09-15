@@ -296,3 +296,16 @@ export const QcEventoTipo = {
 } as const
 
 export type QcEventoTipo = (typeof QcEventoTipo)[keyof typeof QcEventoTipo]
+
+
+export const NotificationCategoria = {
+  SISTEMA: 'SISTEMA',
+  PRATICHE: 'PRATICHE',
+  RICAMBI: 'RICAMBI',
+  CLIENTI: 'CLIENTI',
+  PAGAMENTI: 'PAGAMENTI',
+  AI: 'AI',
+  SICUREZZA: 'SICUREZZA'
+} as const
+
+export type NotificationCategoria = (typeof NotificationCategoria)[keyof typeof NotificationCategoria]

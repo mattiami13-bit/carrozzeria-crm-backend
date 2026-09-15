@@ -6,6 +6,7 @@ import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth } from "../middleware/auth.js";
 import { inviaEmailBenvenuto, inviaEmailVerifica, inviaEmailResetPassword } from "../lib/email.js";
+import { creaNotificaUtente } from "../lib/notificheInApp.js";
 
 export const authRouter = Router();
 
@@ -237,6 +238,14 @@ authRouter.post("/reset-password", async (req, res) => {
     data: { passwordHash, resetPasswordToken: null, resetPasswordScadenza: null },
   });
 
+  creaNotificaUtente({
+    tenantId: user.tenantId,
+    userId: user.id,
+    categoria: "SICUREZZA",
+    titolo: "Password reimpostata",
+    messaggio: "La password del tuo account è stata reimpostata tramite il link di reset. Se non sei stato tu, contatta subito l'amministratore.",
+  }).catch((err) => console.error("[notifiche] Errore creazione notifica reset password:", err.message));
+
   res.json({ ok: true });
 });
 
@@ -257,6 +266,14 @@ authRouter.post("/cambia-password", requireAuth, async (req, res) => {
 
   const passwordHash = await bcrypt.hash(parsed.data.nuovaPassword, 12);
   await prisma.user.update({ where: { id: user.id }, data: { passwordHash } });
+
+  creaNotificaUtente({
+    tenantId: user.tenantId,
+    userId: user.id,
+    categoria: "SICUREZZA",
+    titolo: "Password modificata",
+    messaggio: "Hai cambiato la password del tuo account.",
+  }).catch((err) => console.error("[notifiche] Errore creazione notifica cambio password:", err.message));
 
   res.json({ ok: true });
 });

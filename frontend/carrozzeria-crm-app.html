@@ -429,6 +429,149 @@ const NAV_BASE = [
   { key: "clienti", label: "Clienti" },
 ];
 
+const NOTIFICA_CATEGORIE = [
+  { key: null, label: "Tutte" },
+  { key: "SISTEMA", label: "Sistema" },
+  { key: "PRATICHE", label: "Pratiche" },
+  { key: "RICAMBI", label: "Ricambi" },
+  { key: "CLIENTI", label: "Clienti" },
+  { key: "PAGAMENTI", label: "Pagamenti" },
+  { key: "AI", label: "AI" },
+  { key: "SICUREZZA", label: "Sicurezza" },
+];
+const NOTIFICA_ICONA = {
+  SISTEMA: "⚙️", PRATICHE: "📋", RICAMBI: "🔧", CLIENTI: "👤", PAGAMENTI: "💳", AI: "✨", SICUREZZA: "🔒",
+};
+
+function NotificationBell({ api, onApri }) {
+  const [aperto, setAperto] = useState(false);
+  const [nonLette, setNonLette] = useState(0);
+  const [notifiche, setNotifiche] = useState([]);
+  const [categoria, setCategoria] = useState(null);
+  const [caricando, setCaricando] = useState(false);
+  const ref = useRef(null);
+
+  const caricaCount = useCallback(async () => {
+    try {
+      const data = await api("/api/notifiche/non-lette/count");
+      setNonLette(data.count);
+    } catch {}
+  }, [api]);
+
+  const caricaLista = useCallback(async (cat) => {
+    setCaricando(true);
+    try {
+      const qs = cat ? `?categoria=${cat}` : "";
+      const data = await api(`/api/notifiche${qs}`);
+      setNotifiche(data.notifiche);
+    } catch {} finally {
+      setCaricando(false);
+    }
+  }, [api]);
+
+  useEffect(() => {
+    caricaCount();
+    const interval = setInterval(caricaCount, 60000);
+    return () => clearInterval(interval);
+  }, [caricaCount]);
+
+  useEffect(() => {
+    if (aperto) caricaLista(categoria);
+  }, [aperto, categoria, caricaLista]);
+
+  useEffect(() => {
+    const onClickFuori = (e) => { if (ref.current && !ref.current.contains(e.target)) setAperto(false); };
+    document.addEventListener("mousedown", onClickFuori);
+    return () => document.removeEventListener("mousedown", onClickFuori);
+  }, []);
+
+  const apriNotifica = async (n) => {
+    if (!n.letta) {
+      try {
+        await api(`/api/notifiche/${n.id}/letta`, { method: "PATCH" });
+        setNotifiche((list) => list.map((x) => (x.id === n.id ? { ...x, letta: true } : x)));
+        setNonLette((c) => Math.max(0, c - 1));
+      } catch {}
+    }
+    if (n.link) onApri(n.link);
+    setAperto(false);
+  };
+
+  const segnaTutteLette = async () => {
+    try {
+      await api("/api/notifiche/segna-tutte-lette", { method: "POST" });
+      setNotifiche((list) => list.map((x) => ({ ...x, letta: true })));
+      setNonLette(0);
+    } catch {}
+  };
+
+  return (
+    <div ref={ref} style={{ position: "relative" }}>
+      <button onClick={() => setAperto((a) => !a)} style={{
+        position: "relative", width: 32, height: 32, borderRadius: 8, border: "1px solid #2A2E34",
+        background: "#0A0B0D", color: "#F3F1EC", fontSize: 15, cursor: "pointer",
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}>
+        🔔
+        {nonLette > 0 && (
+          <span style={{
+            position: "absolute", top: -4, right: -4, minWidth: 16, height: 16, padding: "0 3px", borderRadius: 8,
+            background: "#B4472E", color: "#fff", fontSize: 9.5, fontWeight: 700,
+            display: "flex", alignItems: "center", justifyContent: "center",
+          }}>{nonLette > 99 ? "99+" : nonLette}</span>
+        )}
+      </button>
+
+      {aperto && (
+        <div style={{
+          position: "absolute", top: 38, right: 0, width: 340, maxHeight: 440, overflowY: "auto",
+          background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, boxShadow: "0 12px 32px rgba(0,0,0,0.4)",
+          zIndex: 70,
+        }}>
+          <div style={{ padding: "12px 14px", borderBottom: "1px solid #2A2E34", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span style={{ fontSize: 13, fontWeight: 700 }}>Notifiche</span>
+            <button onClick={segnaTutteLette} style={{
+              background: "none", border: "none", color: "#2F80ED", fontSize: 11.5, cursor: "pointer", padding: 0,
+            }}>Segna tutte come lette</button>
+          </div>
+
+          <div style={{ display: "flex", gap: 4, padding: "8px 10px", overflowX: "auto", borderBottom: "1px solid #2A2E34" }}>
+            {NOTIFICA_CATEGORIE.map((c) => (
+              <button key={c.label} onClick={() => setCategoria(c.key)} style={{
+                flexShrink: 0, padding: "4px 9px", borderRadius: 20, border: "1px solid #2A2E34", fontSize: 11,
+                background: categoria === c.key ? "#2F80ED" : "transparent",
+                color: categoria === c.key ? "#fff" : "#8D9099", cursor: "pointer",
+              }}>{c.label}</button>
+            ))}
+          </div>
+
+          <div>
+            {caricando && <div style={{ padding: 20, textAlign: "center", fontSize: 12, color: "#8D9099" }}>Caricamento…</div>}
+            {!caricando && notifiche.length === 0 && (
+              <div style={{ padding: 24, textAlign: "center", fontSize: 12.5, color: "#8D9099" }}>Nessuna notifica.</div>
+            )}
+            {notifiche.map((n) => (
+              <div key={n.id} onClick={() => apriNotifica(n)} style={{
+                padding: "11px 14px", borderBottom: "1px solid #2A2E34", cursor: "pointer",
+                background: n.letta ? "transparent" : "#1B1E23",
+                display: "flex", gap: 10,
+              }}>
+                <div style={{ fontSize: 15, flexShrink: 0 }}>{NOTIFICA_ICONA[n.categoria] || "🔔"}</div>
+                <div style={{ minWidth: 0 }}>
+                  <div style={{ fontSize: 12.5, fontWeight: n.letta ? 500 : 700, color: "#F3F1EC" }}>{n.titolo}</div>
+                  <div style={{ fontSize: 11.5, color: "#8D9099", marginTop: 2, lineHeight: 1.4 }}>{n.messaggio}</div>
+                  <div style={{ fontSize: 10.5, color: "#5A5E66", marginTop: 4 }}>{new Date(n.createdAt).toLocaleString("it-IT")}</div>
+                </div>
+                {!n.letta && <div style={{ width: 7, height: 7, borderRadius: 99, background: "#2F80ED", flexShrink: 0, marginTop: 4 }} />}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // Modalità Tecnico: shell minimale pensata per smartphone/tablet in
 // officina — niente sidebar con 15 voci, solo "I miei lavori" a schermo
 // intero. Un tecnico può comunque avere altri ruoli in futuro: la
@@ -442,7 +585,10 @@ function DashboardTecnico({ token, onLogout }) {
           <img src={LOGO_ICON} alt="Rifless" style={{ width: 22, height: 22, borderRadius: 6, objectFit: "cover" }} />
           <span style={{ fontWeight: 700, fontSize: 15, color: "#F3F1EC" }}>I miei lavori</span>
         </div>
-        <button onClick={onLogout} style={{ padding: "7px 12px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#B4472E", fontSize: 12.5, fontWeight: 600 }}>Esci</button>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <NotificationBell api={api} onApri={() => {}} />
+          <button onClick={onLogout} style={{ padding: "7px 12px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#B4472E", fontSize: 12.5, fontWeight: 600 }}>Esci</button>
+        </div>
       </div>
       <div style={{ padding: 14, maxWidth: 560, margin: "0 auto" }}>
         <TecnicoLavoriView api={api} token={token} />
@@ -486,9 +632,18 @@ function Dashboard({ token, user, onLogout }) {
   return (
     <div className="crm-shell" style={{ minHeight: "100vh", display: "flex" }}>
       <aside style={{ width: 220, borderRight: "1px solid #2A2E34", background: "#15171B", padding: "20px 12px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "0 8px", marginBottom: 24 }}>
-          <img src={LOGO_ICON} alt="Rifless" style={{ width: 24, height: 24, borderRadius: 6, objectFit: "cover" }} />
-          <span style={{ fontWeight: 700, fontSize: 15 }}>Rifless</span>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 8px", marginBottom: 24 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <img src={LOGO_ICON} alt="Rifless" style={{ width: 24, height: 24, borderRadius: 6, objectFit: "cover" }} />
+            <span style={{ fontWeight: 700, fontSize: 15 }}>Rifless</span>
+          </div>
+          <NotificationBell
+            api={api}
+            onApri={(link) => {
+              if (link?.tab === "veicoli" && link.vehicleId) apriPraticaVeicolo(link.vehicleId);
+              else if (link?.tab) setTab(link.tab);
+            }}
+          />
         </div>
         {nav.map((n) => (
           <button key={n.key} onClick={() => setTab(n.key)} style={{

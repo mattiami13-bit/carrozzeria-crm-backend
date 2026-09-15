@@ -2,6 +2,7 @@ import { Router } from "express";
 import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
+import { creaNotificaRuoli } from "../lib/notificheInApp.js";
 
 export const partsRouter = Router();
 partsRouter.use(requireAuth);
@@ -138,6 +139,20 @@ partsRouter.post("/:id/movements", async (req, res) => {
       data: { giacenza: { increment: delta } },
     }),
   ]);
+
+  // Notifica solo quando lo scarico fa scendere la giacenza AL/SOTTO la
+  // scorta minima per la prima volta: evita di rimandare la stessa
+  // notifica a ogni scarico successivo finché resta bassa.
+  if (tipo === "SCARICO" && part.giacenza > part.scortaMinima && updatedPart.giacenza <= updatedPart.scortaMinima) {
+    creaNotificaRuoli({
+      tenantId: updatedPart.tenantId,
+      ruoli: ["ADMIN", "AMMINISTRAZIONE"],
+      categoria: "RICAMBI",
+      titolo: "Scorta minima raggiunta",
+      messaggio: `${updatedPart.descrizione} (${updatedPart.codice}) è sceso a ${updatedPart.giacenza} pz, sotto/pari alla scorta minima di ${updatedPart.scortaMinima}.`,
+      link: { tab: "magazzino" },
+    }).catch((err) => console.error("[notifiche] Errore creazione notifica scorta minima:", err.message));
+  }
 
   res.status(201).json({ movement, part: updatedPart });
 });

@@ -316,3 +316,8 @@ export type BriefingReport = Prisma.BriefingReportModel
  * 
  */
 export type BriefingResolution = Prisma.BriefingResolutionModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel

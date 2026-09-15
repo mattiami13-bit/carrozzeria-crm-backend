@@ -2,6 +2,7 @@ import { Router } from "express";
 import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
+import { creaNotificaRuoli } from "../lib/notificheInApp.js";
 
 // AI Damage Assistant: modulo nuovo e separato dalla vecchia "Stima danni
 // IA" (Vehicle.stimaIA, vedi vehicles.js POST /:id/analizza-danni), che
@@ -213,6 +214,16 @@ Questa è solo una prima valutazione automatica di supporto: l'operatore la rive
 
     return tx.damageAnalysis.findUnique({ where: { id: created.id }, include: { items: { orderBy: { createdAt: "asc" } } } });
   });
+
+  creaNotificaRuoli({
+    tenantId,
+    ruoli: ["ADMIN", "AMMINISTRAZIONE"],
+    categoria: "AI",
+    titolo: "Analisi danni AI completata",
+    messaggio: `L'AI Damage Assistant ha rilevato ${analysis.items.length} danno/i su ${vehicle.marca} ${vehicle.modello} (targa ${vehicle.targa}), da rivedere e confermare.`,
+    link: { tab: "veicoli", vehicleId: vehicle.id },
+    escludiUserId: req.auth.userId,
+  }).catch((err) => console.error("[notifiche] Errore creazione notifica analisi danni AI:", err.message));
 
   res.status(201).json(analysis);
 });

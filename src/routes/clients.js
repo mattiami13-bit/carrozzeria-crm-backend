@@ -2,6 +2,7 @@ import { Router } from "express";
 import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
+import { creaNotificaRuoli } from "../lib/notificheInApp.js";
 
 export const clientsRouter = Router();
 clientsRouter.use(requireAuth);
@@ -62,6 +63,17 @@ clientsRouter.post("/", async (req, res) => {
   const client = await prisma.client.create({
     data: { ...parsed.data, ...tenantScope(req) },
   });
+
+  creaNotificaRuoli({
+    tenantId: client.tenantId,
+    ruoli: ["ADMIN", "AMMINISTRAZIONE"],
+    categoria: "CLIENTI",
+    titolo: "Nuovo cliente registrato",
+    messaggio: `${client.nome} ${client.cognome} è stato aggiunto all'anagrafica clienti.`,
+    link: { tab: "clienti" },
+    escludiUserId: req.auth.userId,
+  }).catch((err) => console.error("[notifiche] Errore creazione notifica nuovo cliente:", err.message));
+
   res.status(201).json(client);
 });
 
