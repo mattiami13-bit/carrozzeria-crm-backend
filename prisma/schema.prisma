@@ -1305,9 +1305,22 @@ model AuditLog {
   metodo     String
   percorso   String
   statusCode Int
+
+  // Punto 21 del prompt SaaS: oltre al log HTTP generico sopra, un'etichetta
+  // semantica leggibile ("login", "password modificata", "piano cambiato"...)
+  // per le azioni rilevanti, l'id della risorsa toccata quando deducibile
+  // dall'URL, l'IP del chiamante, e metadata essenziali — MAI password,
+  // token, dati di pagamento o altri segreti (vedi audit.js: solo un
+  // elenco esplicito di campi sicuri viene scritto qui, mai req.body intero).
+  azione     String?
+  risorsaId  String?
+  ip         String?
+  metadata   Json?
+
   createdAt  DateTime @default(now())
 
   @@index([tenantId, createdAt])
+  @@index([tenantId, azione, createdAt])
   @@map("audit_logs")
 }
 

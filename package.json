@@ -20,7 +20,8 @@
     "test:notifiche": "node --test tests/notifiche.test.js",
     "test:gdpr": "node --test tests/gdpr.test.js",
     "test:billing": "node --test tests/billing.test.js",
-    "test:security": "node --test tests/security.test.js"
+    "test:security": "node --test tests/security.test.js",
+    "test:audit-log": "node --test tests/audit-log.test.js"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",

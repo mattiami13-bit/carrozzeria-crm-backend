@@ -710,6 +710,10 @@ export const AuditLogScalarFieldEnum = {
   metodo: 'metodo',
   percorso: 'percorso',
   statusCode: 'statusCode',
+  azione: 'azione',
+  risorsaId: 'risorsaId',
+  ip: 'ip',
+  metadata: 'metadata',
   createdAt: 'createdAt'
 } as const
 
