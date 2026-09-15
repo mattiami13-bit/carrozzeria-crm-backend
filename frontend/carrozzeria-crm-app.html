@@ -426,7 +426,7 @@ function Field({ label, value, onChange, type = "text" }) {
     <div style={{ marginBottom: 12 }}>
       <label style={{ display: "block", fontSize: 11, color: "#8D9099", marginBottom: 4 }}>{label}</label>
       <input type={type} value={value} onChange={onChange} style={{
-        width: "100%", padding: "9px 10px", borderRadius: 8, border: "1px solid #2A2E34", fontSize: 14,
+        width: "100%", minWidth: 0, boxSizing: "border-box", padding: "9px 10px", borderRadius: 8, border: "1px solid #2A2E34", fontSize: 14,
       }} />
     </div>
   );
@@ -2722,14 +2722,14 @@ function NewVehicleForm({ clients, api, onDone, onCancel }) {
 
   return (
     <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 16, marginBottom: 16 }}>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
-        <select value={form.clientId} onChange={set("clientId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 10 }}>
+        <select value={form.clientId} onChange={set("clientId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0 }}>
           {clients.length === 0 && <option value="">Crea prima un cliente</option>}
           {clients.map((c) => <option key={c.id} value={c.id}>{c.nome} {c.cognome}</option>)}
         </select>
-        <input placeholder="Marca" value={form.marca} onChange={set("marca")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34" }} />
-        <input placeholder="Modello" value={form.modello} onChange={set("modello")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34" }} />
-        <input placeholder="Targa" value={form.targa} onChange={set("targa")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34" }} />
+        <input placeholder="Marca" value={form.marca} onChange={set("marca")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0 }} />
+        <input placeholder="Modello" value={form.modello} onChange={set("modello")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0 }} />
+        <input placeholder="Targa" value={form.targa} onChange={set("targa")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0 }} />
       </div>
       {error && <div style={{ color: "#B4472E", fontSize: 12, marginTop: 8 }}>{error}</div>}
       <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
@@ -2931,17 +2931,17 @@ function NewQuoteForm({ clients, vehicles, api, onDone, onCancel }) {
 
   return (
     <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 16, marginBottom: 16 }}>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 120px", gap: 10, marginBottom: 14 }}>
-        <select value={clientId} onChange={(e) => setClientId(e.target.value)} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 10, marginBottom: 14 }}>
+        <select value={clientId} onChange={(e) => setClientId(e.target.value)} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }}>
           {clients.length === 0 && <option value="">Crea prima un cliente</option>}
           {clients.map((c) => <option key={c.id} value={c.id}>{c.nome} {c.cognome}</option>)}
         </select>
-        <select value={vehicleId} onChange={(e) => setVehicleId(e.target.value)} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34" }}>
+        <select value={vehicleId} onChange={(e) => setVehicleId(e.target.value)} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }}>
           {vehicles.length === 0 && <option value="">Crea prima un veicolo</option>}
           {vehicles.map((v) => <option key={v.id} value={v.id}>{v.marca} {v.modello} — {v.targa}</option>)}
         </select>
         <input type="number" value={aliquotaIva} onChange={(e) => setAliquotaIva(e.target.value)}
-          placeholder="IVA %" style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34" }} />
+          placeholder="IVA %" style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }} />
       </div>
 
       <div style={{ fontSize: 12, fontWeight: 700, color: "#4A4842", marginBottom: 8 }}>Voci</div>
@@ -3375,7 +3375,7 @@ function NewLoanerCarForm({ api, onDone, onCancel }) {
 
   return (
     <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 16, marginBottom: 16 }}>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 10 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: 10, marginBottom: 10 }}>
         <Field label="Targa" value={form.targa} onChange={set("targa")} />
         <Field label="Marca" value={form.marca} onChange={set("marca")} />
         <Field label="Modello" value={form.modello} onChange={set("modello")} />
@@ -4968,17 +4968,17 @@ function NuovaLavorazioneForm({ vehicleId, api, tecnici, onDone, onCancel }) {
   return (
     <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 10, padding: 12, marginBottom: 12 }}>
       <input placeholder="Lavorazione (es. Sostituzione paraurti)" value={form.titolo} onChange={set("titolo")} style={{ width: "100%", padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, marginBottom: 8, boxSizing: "border-box" }} />
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 8 }}>
-        <select value={form.reparto} onChange={set("reparto")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 8, marginBottom: 8 }}>
+        <select value={form.reparto} onChange={set("reparto")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, minWidth: 0, boxSizing: "border-box" }}>
           {Object.keys(REPARTO_LABEL).map((r) => <option key={r} value={r}>{REPARTO_LABEL[r]}</option>)}
         </select>
-        <select value={form.tecnicoId} onChange={set("tecnicoId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+        <select value={form.tecnicoId} onChange={set("tecnicoId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, minWidth: 0, boxSizing: "border-box" }}>
           {tecnici.map((t) => <option key={t.id} value={t.id}>{t.nome} {t.cognome}</option>)}
         </select>
-        <select value={form.priorita} onChange={set("priorita")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+        <select value={form.priorita} onChange={set("priorita")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, minWidth: 0, boxSizing: "border-box" }}>
           {Object.keys(PRIORITA_STYLE).map((p) => <option key={p} value={p}>{PRIORITA_STYLE[p].label}</option>)}
         </select>
-        <input type="number" step="0.5" min="0" placeholder="Ore previste" value={form.oreStimate} onChange={set("oreStimate")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }} />
+        <input type="number" step="0.5" min="0" placeholder="Ore previste" value={form.oreStimate} onChange={set("oreStimate")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, minWidth: 0, boxSizing: "border-box" }} />
       </div>
       <input type="datetime-local" value={form.dataConsegna} onChange={set("dataConsegna")} style={{ width: "100%", padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, marginBottom: 8, boxSizing: "border-box" }} />
       <textarea placeholder="Note tecniche per il tecnico" value={form.noteTecniche} onChange={set("noteTecniche")} rows={2} style={{ width: "100%", padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, marginBottom: 8, boxSizing: "border-box", fontFamily: "inherit" }} />
@@ -5790,11 +5790,11 @@ const [form, setForm] = useState({ nome: "", cognome: "", telefono: "", email: "
 
   return (
     <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 16, marginBottom: 16 }}>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
-        <input placeholder="Nome" value={form.nome} onChange={set("nome")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34" }} />
-        <input placeholder="Cognome" value={form.cognome} onChange={set("cognome")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34" }} />
-        <input placeholder="Telefono" value={form.telefono} onChange={set("telefono")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34" }} />
-        <input placeholder="Email" value={form.email} onChange={set("email")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34" }} />
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 10 }}>
+        <input placeholder="Nome" value={form.nome} onChange={set("nome")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }} />
+        <input placeholder="Cognome" value={form.cognome} onChange={set("cognome")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }} />
+        <input placeholder="Telefono" value={form.telefono} onChange={set("telefono")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }} />
+        <input placeholder="Email" value={form.email} onChange={set("email")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }} />
       </div>
       {error && <div style={{ color: "#B4472E", fontSize: 12, marginTop: 8 }}>{error}</div>}
       <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
@@ -5993,20 +5993,20 @@ function NewSinistroForm({ clients, vehicles, defaultClientId, api, onDone, onCa
 
   return (
     <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 16, marginBottom: 16 }}>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 10 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 10, marginBottom: 10 }}>
         <select value={clientId} onChange={(e) => { setClientId(e.target.value); setVehicleId(""); }}
-          style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34" }}>
+          style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }}>
           {clients.length === 0 && <option value="">Crea prima un cliente</option>}
           {clients.map((c) => <option key={c.id} value={c.id}>{c.nome} {c.cognome}</option>)}
         </select>
         <select value={vehicleId} onChange={(e) => setVehicleId(e.target.value)}
-          style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34" }}>
+          style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }}>
           <option value="">Nessun veicolo collegato (facoltativo)</option>
           {veicoliCliente.map((v) => <option key={v.id} value={v.id}>{v.marca} {v.modello} — {v.targa}</option>)}
         </select>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 10 }}>
         <Field label="Numero pratica" value={numeroPratica} onChange={(e) => setNumeroPratica(e.target.value)} />
         <Field label="Compagnia assicurativa" value={compagniaAssicurativa} onChange={(e) => setCompagniaAssicurativa(e.target.value)} />
         <Field label="Perito" value={perito} onChange={(e) => setPerito(e.target.value)} />
@@ -6014,7 +6014,7 @@ function NewSinistroForm({ clients, vehicles, defaultClientId, api, onDone, onCa
       </div>
 
       <div style={{ fontSize: 12, fontWeight: 700, color: "#4A4842", margin: "4px 0 8px" }}>Importi</div>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 10 }}>
         <Field label="Importo totale €" type="number" value={importoTotale} onChange={(e) => setImportoTotale(e.target.value)} />
         <Field label="Franchigia %" type="number" value={franchigiaPercentuale} onChange={(e) => setFranchigiaPercentuale(e.target.value)} />
         <Field label="Franchigia € (correggibile)" type="number" value={franchigiaImporto}
