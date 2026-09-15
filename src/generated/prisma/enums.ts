@@ -12,11 +12,32 @@
 export const Plan = {
   TRIAL: 'TRIAL',
   STARTER: 'STARTER',
-  PROFESSIONAL: 'PROFESSIONAL',
-  ENTERPRISE: 'ENTERPRISE'
+  PRO: 'PRO',
+  PREMIUM_AI: 'PREMIUM_AI'
 } as const
 
 export type Plan = (typeof Plan)[keyof typeof Plan]
+
+
+export const SubscriptionStatus = {
+  TRIALING: 'TRIALING',
+  ACTIVE: 'ACTIVE',
+  PAST_DUE: 'PAST_DUE',
+  CANCELED: 'CANCELED',
+  UNPAID: 'UNPAID',
+  INCOMPLETE: 'INCOMPLETE',
+  SUSPENDED: 'SUSPENDED'
+} as const
+
+export type SubscriptionStatus = (typeof SubscriptionStatus)[keyof typeof SubscriptionStatus]
+
+
+export const FatturazionePeriodicita = {
+  MENSILE: 'MENSILE',
+  ANNUALE: 'ANNUALE'
+} as const
+
+export type FatturazionePeriodicita = (typeof FatturazionePeriodicita)[keyof typeof FatturazionePeriodicita]
 
 
 export const Role = {

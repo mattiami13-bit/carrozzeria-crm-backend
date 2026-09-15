@@ -18,7 +18,8 @@
     "test:tenant-isolation": "node --test tests/tenant-isolation.test.js",
     "test:auth-email": "node --test tests/auth-email.test.js",
     "test:notifiche": "node --test tests/notifiche.test.js",
-    "test:gdpr": "node --test tests/gdpr.test.js"
+    "test:gdpr": "node --test tests/gdpr.test.js",
+    "test:billing": "node --test tests/billing.test.js"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",
@@ -34,6 +35,7 @@
     "pg": "^8.23.0",
     "resend": "^6.18.1",
     "sharp": "^0.35.4",
+    "stripe": "^22.6.2",
     "twilio": "^6.0.2",
     "zod": "^3.23.8"
   },

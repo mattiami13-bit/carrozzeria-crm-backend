@@ -38,6 +38,19 @@ model Tenant {
   trialEndsAt    DateTime?
   limiteAnalisiIAMensile Int?
   limiteAssistenteIAMensile Int?
+
+  // Billing (Stripe). Nessuna di queste colonne contiene mai un segreto:
+  // sono identificativi pubblici (customer/subscription/price id) o stati,
+  // mai chiavi API. Le chiavi vivono solo in variabili d'ambiente.
+  stripeCustomerId       String?                 @unique
+  stripeSubscriptionId   String?                 @unique
+  subscriptionStatus     SubscriptionStatus      @default(TRIALING)
+  fatturazionePeriodicita FatturazionePeriodicita @default(MENSILE)
+  currentPeriodEnd       DateTime?
+  cancelAtPeriodEnd      Boolean                 @default(false)
+  utentiExtra            Int                     @default(0)
+  creditiAIAcquistati    Int                     @default(0)
+  earlyAdopter           Boolean                 @default(false)
   // Modalità Tecnico: di default un tecnico non può avere due lavorazioni
   // IN_CORSO insieme (evita di sommare per errore ore su due pratiche);
   // l'admin può abilitarlo esplicitamente per i casi in cui serve davvero.
@@ -97,8 +110,23 @@ model Tenant {
 enum Plan {
   TRIAL
   STARTER
-  PROFESSIONAL
-  ENTERPRISE
+  PRO
+  PREMIUM_AI
+}
+
+enum SubscriptionStatus {
+  TRIALING
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  UNPAID
+  INCOMPLETE
+  SUSPENDED
+}
+
+enum FatturazionePeriodicita {
+  MENSILE
+  ANNUALE
 }
 
 // -----------------------------
@@ -1793,4 +1821,16 @@ model GdprRichiesta {
 
   @@index([tenantId, stato])
   @@map("gdpr_richieste")
+}
+
+// Idempotenza webhook Stripe: l'id evento Stripe è globalmente univoco,
+// quindi se un webhook viene consegnato più volte (Stripe lo fa apposta,
+// "at least once delivery") il secondo tentativo trova la riga già
+// presente e non riapplica l'effetto una seconda volta.
+model StripeWebhookEvent {
+  id          String   @id
+  tipo        String
+  processedAt DateTime @default(now())
+
+  @@map("stripe_webhook_events")
 }

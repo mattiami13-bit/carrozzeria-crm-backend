@@ -615,6 +615,7 @@ function Dashboard({ token, user, onLogout }) {
   const [copilotOpenVehicleId, setCopilotOpenVehicleId] = useState(null);
   const [cambiaPasswordAperto, setCambiaPasswordAperto] = useState(false);
   const [privacyDatiAperto, setPrivacyDatiAperto] = useState(false);
+  const [pianoFatturazioneAperto, setPianoFatturazioneAperto] = useState(false);
   const api = useApi(token);
   const ruolo = decodificaRuolo(token);
 
@@ -675,6 +676,12 @@ function Dashboard({ token, user, onLogout }) {
             background: "transparent", color: "#8D9099", fontSize: 13,
           }}>Privacy e dati</button>
         )}
+        {ruolo === "ADMIN" && (
+          <button onClick={() => setPianoFatturazioneAperto(true)} style={{
+            width: "100%", textAlign: "left", padding: "9px 12px", borderRadius: 8, border: "none",
+            background: "transparent", color: "#8D9099", fontSize: 13,
+          }}>Piano e fatturazione</button>
+        )}
         <button onClick={onLogout} style={{
           width: "100%", textAlign: "left", padding: "9px 12px", borderRadius: 8, border: "none",
           background: "transparent", color: "#B4472E", fontSize: 13,
@@ -684,6 +691,7 @@ function Dashboard({ token, user, onLogout }) {
         {user && user.emailVerificata === false && <VerificaEmailBanner api={api} />}
         {cambiaPasswordAperto && <CambiaPasswordModal api={api} onClose={() => setCambiaPasswordAperto(false)} />}
         {privacyDatiAperto && <PrivacyDatiModal api={api} onClose={() => setPrivacyDatiAperto(false)} />}
+        {pianoFatturazioneAperto && <PianoFatturazioneModal api={api} onClose={() => setPianoFatturazioneAperto(false)} />}
         {tab === "executive" && ruolo === "ADMIN" && <><MorningBriefing api={api} onOpen={apriPraticaVeicolo} /><ExecutiveDashboard api={api} onOpen={apriPraticaVeicolo} /></>}
         {tab === "dashboard" && <><DashboardView api={api} ruolo={ruolo} /><PartsDashboard api={api} onOpen={apriPraticaVeicolo} compact /></>}
         {tab === "parts-tracking" && <PartsDashboard api={api} onOpen={apriPraticaVeicolo} />}
@@ -917,6 +925,132 @@ function PrivacyDatiModal({ api, onClose }) {
             }}>Richiedi cancellazione account</button>
           )}
         </div>
+      </div>
+    </div>
+  );
+}
+
+const STATO_ABBONAMENTO_LABEL = {
+  TRIALING: "In prova gratuita", ACTIVE: "Attivo", PAST_DUE: "Pagamento in ritardo",
+  CANCELED: "Cancellato", UNPAID: "Non pagato", INCOMPLETE: "Da completare", SUSPENDED: "Sospeso",
+};
+const eurocentsToLabel = (cents) => (cents / 100).toLocaleString("it-IT", { style: "currency", currency: "EUR" });
+
+function PianoFatturazioneModal({ api, onClose }) {
+  const [stato, setStato] = useState(null);
+  const [piani, setPiani] = useState(null);
+  const [periodicita, setPeriodicita] = useState("MENSILE");
+  const [loading, setLoading] = useState(true);
+  const [azionando, setAzionando] = useState(null);
+  const [errore, setErrore] = useState(null);
+
+  useEffect(() => {
+    Promise.all([api("/api/billing/stato"), api("/api/billing/piani")])
+      .then(([s, p]) => { setStato(s); setPiani(p); })
+      .catch((e) => setErrore(e.message))
+      .finally(() => setLoading(false));
+  }, [api]);
+
+  const cambiaPiano = async (pianoKey) => {
+    setAzionando(pianoKey);
+    setErrore(null);
+    try {
+      const data = await api("/api/billing/checkout", { method: "POST", body: JSON.stringify({ piano: pianoKey, periodicita }) });
+      window.location.href = data.url;
+    } catch (e) {
+      setErrore(e.message.includes("non configurat") ? "I pagamenti non sono ancora configurati su questa piattaforma." : e.message);
+    } finally {
+      setAzionando(null);
+    }
+  };
+
+  const apriPortale = async () => {
+    setAzionando("portale");
+    setErrore(null);
+    try {
+      const data = await api("/api/billing/portal", { method: "POST", body: JSON.stringify({}) });
+      window.location.href = data.url;
+    } catch (e) {
+      setErrore(e.message.includes("non configurat") || e.message.includes("Nessun abbonamento") ? "Nessun metodo di pagamento da gestire ancora: attiva prima un piano." : e.message);
+    } finally {
+      setAzionando(null);
+    }
+  };
+
+  return (
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, background: "rgba(27,26,23,0.5)", display: "flex",
+      alignItems: "center", justifyContent: "center", zIndex: 55, padding: 16,
+    }}>
+      <div onClick={(e) => e.stopPropagation()} style={{
+        background: "#15171B", borderRadius: 16, width: 680, maxWidth: "100%", maxHeight: "88vh", overflowY: "auto",
+        padding: 24, border: "1px solid #2A2E34",
+      }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+          <h2 style={{ fontSize: 16, fontWeight: 700, margin: 0 }}>Piano e fatturazione</h2>
+          <button onClick={onClose} style={{
+            border: "none", background: "#0A0B0D", width: 26, height: 26, borderRadius: 7, fontSize: 13, color: "#8D9099",
+          }}>✕</button>
+        </div>
+
+        {loading ? <Loading /> : (
+          <>
+            {stato && (
+              <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 10, padding: 14, marginBottom: 18, display: "flex", flexWrap: "wrap", gap: 16 }}>
+                <div><div style={{ fontSize: 11, color: "#8D9099" }}>Piano attuale</div><div style={{ fontSize: 14, fontWeight: 700 }}>{stato.piano}</div></div>
+                <div><div style={{ fontSize: 11, color: "#8D9099" }}>Stato</div><div style={{ fontSize: 14, fontWeight: 700 }}>{STATO_ABBONAMENTO_LABEL[stato.subscriptionStatus] || stato.subscriptionStatus}</div></div>
+                <div><div style={{ fontSize: 11, color: "#8D9099" }}>Utenti</div><div style={{ fontSize: 14, fontWeight: 700 }}>{stato.utentiUsati}{stato.utentiInclusi ? ` / ${stato.utentiInclusi}` : ""}</div></div>
+                {stato.currentPeriodEnd && (
+                  <div><div style={{ fontSize: 11, color: "#8D9099" }}>{stato.cancelAtPeriodEnd ? "Termina il" : "Rinnovo"}</div><div style={{ fontSize: 14, fontWeight: 700 }}>{new Date(stato.currentPeriodEnd).toLocaleDateString("it-IT")}</div></div>
+                )}
+                {stato.hasStripeCustomer && (
+                  <button onClick={apriPortale} disabled={azionando === "portale"} style={{
+                    marginLeft: "auto", padding: "8px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "transparent", color: "#F3F1EC", fontSize: 12.5, alignSelf: "center",
+                  }}>{azionando === "portale" ? "Apertura…" : "Gestisci pagamento e fatture"}</button>
+                )}
+              </div>
+            )}
+
+            {errore && <div style={{ background: "#2A1A1A", color: "#E5806B", fontSize: 12.5, padding: 10, borderRadius: 8, marginBottom: 14 }}>{errore}</div>}
+
+            <div style={{ display: "flex", gap: 4, marginBottom: 16, background: "#0A0B0D", borderRadius: 10, padding: 4, width: 220 }}>
+              {["MENSILE", "ANNUALE"].map((p) => (
+                <button key={p} onClick={() => setPeriodicita(p)} style={{
+                  flex: 1, padding: "7px 0", borderRadius: 8, border: "none", fontSize: 12.5, fontWeight: 600,
+                  background: periodicita === p ? "#F3F1EC" : "transparent", color: periodicita === p ? "#15171B" : "#8D9099",
+                }}>{p === "MENSILE" ? "Mensile" : "Annuale"}</button>
+              ))}
+            </div>
+
+            {piani && (
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12 }}>
+                {piani.piani.map((p) => (
+                  <div key={p.key} style={{
+                    border: p.evidenziato ? "1.5px solid #2F80ED" : "1px solid #2A2E34", borderRadius: 12, padding: 14,
+                    background: stato?.piano === p.key ? "#1B2430" : "#0A0B0D", position: "relative",
+                  }}>
+                    {p.badge && <div style={{ position: "absolute", top: -9, left: 12, background: "#2F80ED", color: "#fff", fontSize: 9.5, fontWeight: 700, padding: "2px 8px", borderRadius: 20 }}>{p.badge}</div>}
+                    <div style={{ fontSize: 13, fontWeight: 700, marginTop: 4 }}>{p.nome}</div>
+                    <div style={{ fontSize: 20, fontWeight: 700, margin: "6px 0 2px" }}>
+                      {eurocentsToLabel(periodicita === "ANNUALE" ? p.prezzoAnnualeCents : p.prezzoMensileCents)}
+                      <span style={{ fontSize: 11, color: "#8D9099", fontWeight: 500 }}>/{periodicita === "ANNUALE" ? "anno" : "mese"}</span>
+                    </div>
+                    <div style={{ fontSize: 11, color: "#8D9099", marginBottom: 10 }}>+IVA · {p.utentiInclusi} utenti inclusi</div>
+                    <button
+                      onClick={() => cambiaPiano(p.key)}
+                      disabled={azionando === p.key || stato?.piano === p.key}
+                      style={{
+                        width: "100%", padding: "8px 0", borderRadius: 8, border: "none", fontSize: 12.5, fontWeight: 600,
+                        background: stato?.piano === p.key ? "#2A2E34" : "#2F80ED", color: stato?.piano === p.key ? "#8D9099" : "#fff",
+                      }}
+                    >{stato?.piano === p.key ? "Piano attuale" : azionando === p.key ? "Attendere…" : "Attiva"}</button>
+                  </div>
+                ))}
+              </div>
+            )}
+            <p style={{ fontSize: 11, color: "#5A5E66", marginTop: 14 }}>Prezzi IVA esclusa. Il pagamento avviene su una pagina sicura ospitata da Stripe: il gestionale non gestisce mai direttamente i dati della carta.</p>
+          </>
+        )}
       </div>
     </div>
   );

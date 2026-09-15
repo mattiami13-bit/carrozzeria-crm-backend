@@ -107,7 +107,8 @@ export const ModelName = {
   BriefingReport: 'BriefingReport',
   BriefingResolution: 'BriefingResolution',
   Notification: 'Notification',
-  GdprRichiesta: 'GdprRichiesta'
+  GdprRichiesta: 'GdprRichiesta',
+  StripeWebhookEvent: 'StripeWebhookEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -134,6 +135,15 @@ export const TenantScalarFieldEnum = {
   trialEndsAt: 'trialEndsAt',
   limiteAnalisiIAMensile: 'limiteAnalisiIAMensile',
   limiteAssistenteIAMensile: 'limiteAssistenteIAMensile',
+  stripeCustomerId: 'stripeCustomerId',
+  stripeSubscriptionId: 'stripeSubscriptionId',
+  subscriptionStatus: 'subscriptionStatus',
+  fatturazionePeriodicita: 'fatturazionePeriodicita',
+  currentPeriodEnd: 'currentPeriodEnd',
+  cancelAtPeriodEnd: 'cancelAtPeriodEnd',
+  utentiExtra: 'utentiExtra',
+  creditiAIAcquistati: 'creditiAIAcquistati',
+  earlyAdopter: 'earlyAdopter',
   consentiLavorazioniSimultanee: 'consentiLavorazioniSimultanee',
   createdAt: 'createdAt'
 } as const
@@ -1028,6 +1038,15 @@ export const GdprRichiestaScalarFieldEnum = {
 } as const
 
 export type GdprRichiestaScalarFieldEnum = (typeof GdprRichiestaScalarFieldEnum)[keyof typeof GdprRichiestaScalarFieldEnum]
+
+
+export const StripeWebhookEventScalarFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  processedAt: 'processedAt'
+} as const
+
+export type StripeWebhookEventScalarFieldEnum = (typeof StripeWebhookEventScalarFieldEnum)[keyof typeof StripeWebhookEventScalarFieldEnum]
 
 
 export const SortOrder = {

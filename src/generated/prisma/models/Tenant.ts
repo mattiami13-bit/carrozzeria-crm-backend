@@ -29,11 +29,15 @@ export type AggregateTenant = {
 export type TenantAvgAggregateOutputType = {
   limiteAnalisiIAMensile: number | null
   limiteAssistenteIAMensile: number | null
+  utentiExtra: number | null
+  creditiAIAcquistati: number | null
 }
 
 export type TenantSumAggregateOutputType = {
   limiteAnalisiIAMensile: number | null
   limiteAssistenteIAMensile: number | null
+  utentiExtra: number | null
+  creditiAIAcquistati: number | null
 }
 
 export type TenantMinAggregateOutputType = {
@@ -44,6 +48,15 @@ export type TenantMinAggregateOutputType = {
   trialEndsAt: Date | null
   limiteAnalisiIAMensile: number | null
   limiteAssistenteIAMensile: number | null
+  stripeCustomerId: string | null
+  stripeSubscriptionId: string | null
+  subscriptionStatus: $Enums.SubscriptionStatus | null
+  fatturazionePeriodicita: $Enums.FatturazionePeriodicita | null
+  currentPeriodEnd: Date | null
+  cancelAtPeriodEnd: boolean | null
+  utentiExtra: number | null
+  creditiAIAcquistati: number | null
+  earlyAdopter: boolean | null
   consentiLavorazioniSimultanee: boolean | null
   createdAt: Date | null
 }
@@ -56,6 +69,15 @@ export type TenantMaxAggregateOutputType = {
   trialEndsAt: Date | null
   limiteAnalisiIAMensile: number | null
   limiteAssistenteIAMensile: number | null
+  stripeCustomerId: string | null
+  stripeSubscriptionId: string | null
+  subscriptionStatus: $Enums.SubscriptionStatus | null
+  fatturazionePeriodicita: $Enums.FatturazionePeriodicita | null
+  currentPeriodEnd: Date | null
+  cancelAtPeriodEnd: boolean | null
+  utentiExtra: number | null
+  creditiAIAcquistati: number | null
+  earlyAdopter: boolean | null
   consentiLavorazioniSimultanee: boolean | null
   createdAt: Date | null
 }
@@ -68,6 +90,15 @@ export type TenantCountAggregateOutputType = {
   trialEndsAt: number
   limiteAnalisiIAMensile: number
   limiteAssistenteIAMensile: number
+  stripeCustomerId: number
+  stripeSubscriptionId: number
+  subscriptionStatus: number
+  fatturazionePeriodicita: number
+  currentPeriodEnd: number
+  cancelAtPeriodEnd: number
+  utentiExtra: number
+  creditiAIAcquistati: number
+  earlyAdopter: number
   consentiLavorazioniSimultanee: number
   createdAt: number
   _all: number
@@ -77,11 +108,15 @@ export type TenantCountAggregateOutputType = {
 export type TenantAvgAggregateInputType = {
   limiteAnalisiIAMensile?: true
   limiteAssistenteIAMensile?: true
+  utentiExtra?: true
+  creditiAIAcquistati?: true
 }
 
 export type TenantSumAggregateInputType = {
   limiteAnalisiIAMensile?: true
   limiteAssistenteIAMensile?: true
+  utentiExtra?: true
+  creditiAIAcquistati?: true
 }
 
 export type TenantMinAggregateInputType = {
@@ -92,6 +127,15 @@ export type TenantMinAggregateInputType = {
   trialEndsAt?: true
   limiteAnalisiIAMensile?: true
   limiteAssistenteIAMensile?: true
+  stripeCustomerId?: true
+  stripeSubscriptionId?: true
+  subscriptionStatus?: true
+  fatturazionePeriodicita?: true
+  currentPeriodEnd?: true
+  cancelAtPeriodEnd?: true
+  utentiExtra?: true
+  creditiAIAcquistati?: true
+  earlyAdopter?: true
   consentiLavorazioniSimultanee?: true
   createdAt?: true
 }
@@ -104,6 +148,15 @@ export type TenantMaxAggregateInputType = {
   trialEndsAt?: true
   limiteAnalisiIAMensile?: true
   limiteAssistenteIAMensile?: true
+  stripeCustomerId?: true
+  stripeSubscriptionId?: true
+  subscriptionStatus?: true
+  fatturazionePeriodicita?: true
+  currentPeriodEnd?: true
+  cancelAtPeriodEnd?: true
+  utentiExtra?: true
+  creditiAIAcquistati?: true
+  earlyAdopter?: true
   consentiLavorazioniSimultanee?: true
   createdAt?: true
 }
@@ -116,6 +169,15 @@ export type TenantCountAggregateInputType = {
   trialEndsAt?: true
   limiteAnalisiIAMensile?: true
   limiteAssistenteIAMensile?: true
+  stripeCustomerId?: true
+  stripeSubscriptionId?: true
+  subscriptionStatus?: true
+  fatturazionePeriodicita?: true
+  currentPeriodEnd?: true
+  cancelAtPeriodEnd?: true
+  utentiExtra?: true
+  creditiAIAcquistati?: true
+  earlyAdopter?: true
   consentiLavorazioniSimultanee?: true
   createdAt?: true
   _all?: true
@@ -215,6 +277,15 @@ export type TenantGroupByOutputType = {
   trialEndsAt: Date | null
   limiteAnalisiIAMensile: number | null
   limiteAssistenteIAMensile: number | null
+  stripeCustomerId: string | null
+  stripeSubscriptionId: string | null
+  subscriptionStatus: $Enums.SubscriptionStatus
+  fatturazionePeriodicita: $Enums.FatturazionePeriodicita
+  currentPeriodEnd: Date | null
+  cancelAtPeriodEnd: boolean
+  utentiExtra: number
+  creditiAIAcquistati: number
+  earlyAdopter: boolean
   consentiLavorazioniSimultanee: boolean
   createdAt: Date
   _count: TenantCountAggregateOutputType | null
@@ -250,6 +321,15 @@ export type TenantWhereInput = {
   trialEndsAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   limiteAnalisiIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
   limiteAssistenteIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
+  stripeCustomerId?: Prisma.StringNullableFilter<"Tenant"> | string | null
+  stripeSubscriptionId?: Prisma.StringNullableFilter<"Tenant"> | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFilter<"Tenant"> | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFilter<"Tenant"> | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFilter<"Tenant"> | boolean
+  utentiExtra?: Prisma.IntFilter<"Tenant"> | number
+  creditiAIAcquistati?: Prisma.IntFilter<"Tenant"> | number
+  earlyAdopter?: Prisma.BoolFilter<"Tenant"> | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFilter<"Tenant"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   briefingSettings?: Prisma.XOR<Prisma.BriefingSettingsNullableScalarRelationFilter, Prisma.BriefingSettingsWhereInput> | null
@@ -307,6 +387,15 @@ export type TenantOrderByWithRelationInput = {
   trialEndsAt?: Prisma.SortOrderInput | Prisma.SortOrder
   limiteAnalisiIAMensile?: Prisma.SortOrderInput | Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrderInput | Prisma.SortOrder
+  stripeCustomerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  stripeSubscriptionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionStatus?: Prisma.SortOrder
+  fatturazionePeriodicita?: Prisma.SortOrder
+  currentPeriodEnd?: Prisma.SortOrderInput | Prisma.SortOrder
+  cancelAtPeriodEnd?: Prisma.SortOrder
+  utentiExtra?: Prisma.SortOrder
+  creditiAIAcquistati?: Prisma.SortOrder
+  earlyAdopter?: Prisma.SortOrder
   consentiLavorazioniSimultanee?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   briefingSettings?: Prisma.BriefingSettingsOrderByWithRelationInput
@@ -359,6 +448,8 @@ export type TenantOrderByWithRelationInput = {
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   partitaIva?: string
+  stripeCustomerId?: string
+  stripeSubscriptionId?: string
   AND?: Prisma.TenantWhereInput | Prisma.TenantWhereInput[]
   OR?: Prisma.TenantWhereInput[]
   NOT?: Prisma.TenantWhereInput | Prisma.TenantWhereInput[]
@@ -367,6 +458,13 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   trialEndsAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   limiteAnalisiIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
   limiteAssistenteIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFilter<"Tenant"> | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFilter<"Tenant"> | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFilter<"Tenant"> | boolean
+  utentiExtra?: Prisma.IntFilter<"Tenant"> | number
+  creditiAIAcquistati?: Prisma.IntFilter<"Tenant"> | number
+  earlyAdopter?: Prisma.BoolFilter<"Tenant"> | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFilter<"Tenant"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   briefingSettings?: Prisma.XOR<Prisma.BriefingSettingsNullableScalarRelationFilter, Prisma.BriefingSettingsWhereInput> | null
@@ -414,7 +512,7 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
   gdprRichieste?: Prisma.GdprRichiestaListRelationFilter
-}, "id" | "partitaIva">
+}, "id" | "partitaIva" | "stripeCustomerId" | "stripeSubscriptionId">
 
 export type TenantOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -424,6 +522,15 @@ export type TenantOrderByWithAggregationInput = {
   trialEndsAt?: Prisma.SortOrderInput | Prisma.SortOrder
   limiteAnalisiIAMensile?: Prisma.SortOrderInput | Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrderInput | Prisma.SortOrder
+  stripeCustomerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  stripeSubscriptionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionStatus?: Prisma.SortOrder
+  fatturazionePeriodicita?: Prisma.SortOrder
+  currentPeriodEnd?: Prisma.SortOrderInput | Prisma.SortOrder
+  cancelAtPeriodEnd?: Prisma.SortOrder
+  utentiExtra?: Prisma.SortOrder
+  creditiAIAcquistati?: Prisma.SortOrder
+  earlyAdopter?: Prisma.SortOrder
   consentiLavorazioniSimultanee?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.TenantCountOrderByAggregateInput
@@ -444,6 +551,15 @@ export type TenantScalarWhereWithAggregatesInput = {
   trialEndsAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Tenant"> | Date | string | null
   limiteAnalisiIAMensile?: Prisma.IntNullableWithAggregatesFilter<"Tenant"> | number | null
   limiteAssistenteIAMensile?: Prisma.IntNullableWithAggregatesFilter<"Tenant"> | number | null
+  stripeCustomerId?: Prisma.StringNullableWithAggregatesFilter<"Tenant"> | string | null
+  stripeSubscriptionId?: Prisma.StringNullableWithAggregatesFilter<"Tenant"> | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusWithAggregatesFilter<"Tenant"> | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaWithAggregatesFilter<"Tenant"> | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.DateTimeNullableWithAggregatesFilter<"Tenant"> | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolWithAggregatesFilter<"Tenant"> | boolean
+  utentiExtra?: Prisma.IntWithAggregatesFilter<"Tenant"> | number
+  creditiAIAcquistati?: Prisma.IntWithAggregatesFilter<"Tenant"> | number
+  earlyAdopter?: Prisma.BoolWithAggregatesFilter<"Tenant"> | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolWithAggregatesFilter<"Tenant"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Tenant"> | Date | string
 }
@@ -456,6 +572,15 @@ export type TenantCreateInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -513,6 +638,15 @@ export type TenantUncheckedCreateInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -570,6 +704,15 @@ export type TenantUpdateInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -627,6 +770,15 @@ export type TenantUncheckedUpdateInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -684,6 +836,15 @@ export type TenantCreateManyInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
 }
@@ -696,6 +857,15 @@ export type TenantUpdateManyMutationInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -708,6 +878,15 @@ export type TenantUncheckedUpdateManyInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -720,6 +899,15 @@ export type TenantCountOrderByAggregateInput = {
   trialEndsAt?: Prisma.SortOrder
   limiteAnalisiIAMensile?: Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrder
+  stripeCustomerId?: Prisma.SortOrder
+  stripeSubscriptionId?: Prisma.SortOrder
+  subscriptionStatus?: Prisma.SortOrder
+  fatturazionePeriodicita?: Prisma.SortOrder
+  currentPeriodEnd?: Prisma.SortOrder
+  cancelAtPeriodEnd?: Prisma.SortOrder
+  utentiExtra?: Prisma.SortOrder
+  creditiAIAcquistati?: Prisma.SortOrder
+  earlyAdopter?: Prisma.SortOrder
   consentiLavorazioniSimultanee?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -727,6 +915,8 @@ export type TenantCountOrderByAggregateInput = {
 export type TenantAvgOrderByAggregateInput = {
   limiteAnalisiIAMensile?: Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrder
+  utentiExtra?: Prisma.SortOrder
+  creditiAIAcquistati?: Prisma.SortOrder
 }
 
 export type TenantMaxOrderByAggregateInput = {
@@ -737,6 +927,15 @@ export type TenantMaxOrderByAggregateInput = {
   trialEndsAt?: Prisma.SortOrder
   limiteAnalisiIAMensile?: Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrder
+  stripeCustomerId?: Prisma.SortOrder
+  stripeSubscriptionId?: Prisma.SortOrder
+  subscriptionStatus?: Prisma.SortOrder
+  fatturazionePeriodicita?: Prisma.SortOrder
+  currentPeriodEnd?: Prisma.SortOrder
+  cancelAtPeriodEnd?: Prisma.SortOrder
+  utentiExtra?: Prisma.SortOrder
+  creditiAIAcquistati?: Prisma.SortOrder
+  earlyAdopter?: Prisma.SortOrder
   consentiLavorazioniSimultanee?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -749,6 +948,15 @@ export type TenantMinOrderByAggregateInput = {
   trialEndsAt?: Prisma.SortOrder
   limiteAnalisiIAMensile?: Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrder
+  stripeCustomerId?: Prisma.SortOrder
+  stripeSubscriptionId?: Prisma.SortOrder
+  subscriptionStatus?: Prisma.SortOrder
+  fatturazionePeriodicita?: Prisma.SortOrder
+  currentPeriodEnd?: Prisma.SortOrder
+  cancelAtPeriodEnd?: Prisma.SortOrder
+  utentiExtra?: Prisma.SortOrder
+  creditiAIAcquistati?: Prisma.SortOrder
+  earlyAdopter?: Prisma.SortOrder
   consentiLavorazioniSimultanee?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -756,6 +964,8 @@ export type TenantMinOrderByAggregateInput = {
 export type TenantSumOrderByAggregateInput = {
   limiteAnalisiIAMensile?: Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrder
+  utentiExtra?: Prisma.SortOrder
+  creditiAIAcquistati?: Prisma.SortOrder
 }
 
 export type TenantScalarRelationFilter = {
@@ -787,8 +997,24 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type EnumSubscriptionStatusFieldUpdateOperationsInput = {
+  set?: $Enums.SubscriptionStatus
+}
+
+export type EnumFatturazionePeriodicitaFieldUpdateOperationsInput = {
+  set?: $Enums.FatturazionePeriodicita
+}
+
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -1433,6 +1659,15 @@ export type TenantCreateWithoutUsersInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -1489,6 +1724,15 @@ export type TenantUncheckedCreateWithoutUsersInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -1561,6 +1805,15 @@ export type TenantUpdateWithoutUsersInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -1617,6 +1870,15 @@ export type TenantUncheckedUpdateWithoutUsersInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -1673,6 +1935,15 @@ export type TenantCreateWithoutClientsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -1729,6 +2000,15 @@ export type TenantUncheckedCreateWithoutClientsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -1801,6 +2081,15 @@ export type TenantUpdateWithoutClientsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -1857,6 +2146,15 @@ export type TenantUncheckedUpdateWithoutClientsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -1913,6 +2211,15 @@ export type TenantCreateWithoutVehiclesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -1969,6 +2276,15 @@ export type TenantUncheckedCreateWithoutVehiclesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -2041,6 +2357,15 @@ export type TenantUpdateWithoutVehiclesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -2097,6 +2422,15 @@ export type TenantUncheckedUpdateWithoutVehiclesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -2153,6 +2487,15 @@ export type TenantCreateWithoutQuotesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -2209,6 +2552,15 @@ export type TenantUncheckedCreateWithoutQuotesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -2281,6 +2633,15 @@ export type TenantUpdateWithoutQuotesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -2337,6 +2698,15 @@ export type TenantUncheckedUpdateWithoutQuotesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -2393,6 +2763,15 @@ export type TenantCreateWithoutDamageAnalysesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -2449,6 +2828,15 @@ export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -2521,6 +2909,15 @@ export type TenantUpdateWithoutDamageAnalysesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -2577,6 +2974,15 @@ export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -2633,6 +3039,15 @@ export type TenantCreateWithoutDamageItemsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -2689,6 +3104,15 @@ export type TenantUncheckedCreateWithoutDamageItemsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -2761,6 +3185,15 @@ export type TenantUpdateWithoutDamageItemsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -2817,6 +3250,15 @@ export type TenantUncheckedUpdateWithoutDamageItemsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -2873,6 +3315,15 @@ export type TenantCreateWithoutInsuranceGapAnalysesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -2929,6 +3380,15 @@ export type TenantUncheckedCreateWithoutInsuranceGapAnalysesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -3001,6 +3461,15 @@ export type TenantUpdateWithoutInsuranceGapAnalysesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -3057,6 +3526,15 @@ export type TenantUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -3113,6 +3591,15 @@ export type TenantCreateWithoutInsuranceGapItemsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -3169,6 +3656,15 @@ export type TenantUncheckedCreateWithoutInsuranceGapItemsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -3241,6 +3737,15 @@ export type TenantUpdateWithoutInsuranceGapItemsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -3297,6 +3802,15 @@ export type TenantUncheckedUpdateWithoutInsuranceGapItemsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -3353,6 +3867,15 @@ export type TenantCreateWithoutInsuranceGapSuggestionsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -3409,6 +3932,15 @@ export type TenantUncheckedCreateWithoutInsuranceGapSuggestionsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -3481,6 +4013,15 @@ export type TenantUpdateWithoutInsuranceGapSuggestionsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -3537,6 +4078,15 @@ export type TenantUncheckedUpdateWithoutInsuranceGapSuggestionsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -3593,6 +4143,15 @@ export type TenantCreateWithoutPartsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -3649,6 +4208,15 @@ export type TenantUncheckedCreateWithoutPartsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -3721,6 +4289,15 @@ export type TenantUpdateWithoutPartsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -3777,6 +4354,15 @@ export type TenantUncheckedUpdateWithoutPartsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -3833,6 +4419,15 @@ export type TenantCreateWithoutSupplierOrdersInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -3889,6 +4484,15 @@ export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -3961,6 +4565,15 @@ export type TenantUpdateWithoutSupplierOrdersInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -4017,6 +4630,15 @@ export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -4073,6 +4695,15 @@ export type TenantCreateWithoutLoanerCarsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -4129,6 +4760,15 @@ export type TenantUncheckedCreateWithoutLoanerCarsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -4201,6 +4841,15 @@ export type TenantUpdateWithoutLoanerCarsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -4257,6 +4906,15 @@ export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -4313,6 +4971,15 @@ export type TenantCreateWithoutLoanerCarPhotosInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -4369,6 +5036,15 @@ export type TenantUncheckedCreateWithoutLoanerCarPhotosInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -4441,6 +5117,15 @@ export type TenantUpdateWithoutLoanerCarPhotosInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -4497,6 +5182,15 @@ export type TenantUncheckedUpdateWithoutLoanerCarPhotosInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -4553,6 +5247,15 @@ export type TenantCreateWithoutLoanerBookingsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -4609,6 +5312,15 @@ export type TenantUncheckedCreateWithoutLoanerBookingsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -4681,6 +5393,15 @@ export type TenantUpdateWithoutLoanerBookingsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -4737,6 +5458,15 @@ export type TenantUncheckedUpdateWithoutLoanerBookingsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -4793,6 +5523,15 @@ export type TenantCreateWithoutLoanerBookingPhotosInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -4849,6 +5588,15 @@ export type TenantUncheckedCreateWithoutLoanerBookingPhotosInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -4921,6 +5669,15 @@ export type TenantUpdateWithoutLoanerBookingPhotosInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -4977,6 +5734,15 @@ export type TenantUncheckedUpdateWithoutLoanerBookingPhotosInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -5033,6 +5799,15 @@ export type TenantCreateWithoutAppointmentsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -5089,6 +5864,15 @@ export type TenantUncheckedCreateWithoutAppointmentsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -5161,6 +5945,15 @@ export type TenantUpdateWithoutAppointmentsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -5217,6 +6010,15 @@ export type TenantUncheckedUpdateWithoutAppointmentsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -5273,6 +6075,15 @@ export type TenantCreateWithoutSinistriInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -5329,6 +6140,15 @@ export type TenantUncheckedCreateWithoutSinistriInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -5401,6 +6221,15 @@ export type TenantUpdateWithoutSinistriInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -5457,6 +6286,15 @@ export type TenantUncheckedUpdateWithoutSinistriInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -5513,6 +6351,15 @@ export type TenantCreateWithoutPortalAccessesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -5569,6 +6416,15 @@ export type TenantUncheckedCreateWithoutPortalAccessesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -5641,6 +6497,15 @@ export type TenantUpdateWithoutPortalAccessesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -5697,6 +6562,15 @@ export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -5753,6 +6627,15 @@ export type TenantCreateWithoutPortalActionsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -5809,6 +6692,15 @@ export type TenantUncheckedCreateWithoutPortalActionsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -5881,6 +6773,15 @@ export type TenantUpdateWithoutPortalActionsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -5937,6 +6838,15 @@ export type TenantUncheckedUpdateWithoutPortalActionsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -5993,6 +6903,15 @@ export type TenantCreateWithoutWorkOrdersInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -6049,6 +6968,15 @@ export type TenantUncheckedCreateWithoutWorkOrdersInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -6121,6 +7049,15 @@ export type TenantUpdateWithoutWorkOrdersInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -6177,6 +7114,15 @@ export type TenantUncheckedUpdateWithoutWorkOrdersInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -6233,6 +7179,15 @@ export type TenantCreateWithoutWorkOrderTimeEntriesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -6289,6 +7244,15 @@ export type TenantUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -6361,6 +7325,15 @@ export type TenantUpdateWithoutWorkOrderTimeEntriesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -6417,6 +7390,15 @@ export type TenantUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -6473,6 +7455,15 @@ export type TenantCreateWithoutWorkOrderEventiInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -6529,6 +7520,15 @@ export type TenantUncheckedCreateWithoutWorkOrderEventiInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -6601,6 +7601,15 @@ export type TenantUpdateWithoutWorkOrderEventiInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -6657,6 +7666,15 @@ export type TenantUncheckedUpdateWithoutWorkOrderEventiInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -6713,6 +7731,15 @@ export type TenantCreateWithoutPortalDocumentsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -6769,6 +7796,15 @@ export type TenantUncheckedCreateWithoutPortalDocumentsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -6841,6 +7877,15 @@ export type TenantUpdateWithoutPortalDocumentsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -6897,6 +7942,15 @@ export type TenantUncheckedUpdateWithoutPortalDocumentsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -6953,6 +8007,15 @@ export type TenantCreateWithoutAiAnalysesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -7009,6 +8072,15 @@ export type TenantUncheckedCreateWithoutAiAnalysesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -7081,6 +8153,15 @@ export type TenantUpdateWithoutAiAnalysesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -7137,6 +8218,15 @@ export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -7193,6 +8283,15 @@ export type TenantCreateWithoutAssistantLogsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -7249,6 +8348,15 @@ export type TenantUncheckedCreateWithoutAssistantLogsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -7321,6 +8429,15 @@ export type TenantUpdateWithoutAssistantLogsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -7377,6 +8494,15 @@ export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -7433,6 +8559,15 @@ export type TenantCreateWithoutProfitRecordsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -7489,6 +8624,15 @@ export type TenantUncheckedCreateWithoutProfitRecordsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -7561,6 +8705,15 @@ export type TenantUpdateWithoutProfitRecordsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -7617,6 +8770,15 @@ export type TenantUncheckedUpdateWithoutProfitRecordsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -7673,6 +8835,15 @@ export type TenantCreateWithoutProfitSettingsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -7729,6 +8900,15 @@ export type TenantUncheckedCreateWithoutProfitSettingsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -7801,6 +8981,15 @@ export type TenantUpdateWithoutProfitSettingsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -7857,6 +9046,15 @@ export type TenantUncheckedUpdateWithoutProfitSettingsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -7913,6 +9111,15 @@ export type TenantCreateWithoutDelaySettingsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -7969,6 +9176,15 @@ export type TenantUncheckedCreateWithoutDelaySettingsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -8041,6 +9257,15 @@ export type TenantUpdateWithoutDelaySettingsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -8097,6 +9322,15 @@ export type TenantUncheckedUpdateWithoutDelaySettingsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -8153,6 +9387,15 @@ export type TenantCreateWithoutDelayPlansInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -8209,6 +9452,15 @@ export type TenantUncheckedCreateWithoutDelayPlansInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -8281,6 +9533,15 @@ export type TenantUpdateWithoutDelayPlansInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -8337,6 +9598,15 @@ export type TenantUncheckedUpdateWithoutDelayPlansInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -8393,6 +9663,15 @@ export type TenantCreateWithoutDelayForecastsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -8449,6 +9728,15 @@ export type TenantUncheckedCreateWithoutDelayForecastsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -8521,6 +9809,15 @@ export type TenantUpdateWithoutDelayForecastsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -8577,6 +9874,15 @@ export type TenantUncheckedUpdateWithoutDelayForecastsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -8633,6 +9939,15 @@ export type TenantCreateWithoutDelayDecisionsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -8689,6 +10004,15 @@ export type TenantUncheckedCreateWithoutDelayDecisionsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -8761,6 +10085,15 @@ export type TenantUpdateWithoutDelayDecisionsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -8817,6 +10150,15 @@ export type TenantUncheckedUpdateWithoutDelayDecisionsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -8873,6 +10215,15 @@ export type TenantCreateWithoutTrackedPartsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -8929,6 +10280,15 @@ export type TenantUncheckedCreateWithoutTrackedPartsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -9001,6 +10361,15 @@ export type TenantUpdateWithoutTrackedPartsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -9057,6 +10426,15 @@ export type TenantUncheckedUpdateWithoutTrackedPartsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -9113,6 +10491,15 @@ export type TenantCreateWithoutPartBlocksInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -9169,6 +10556,15 @@ export type TenantUncheckedCreateWithoutPartBlocksInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -9241,6 +10637,15 @@ export type TenantUpdateWithoutPartBlocksInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -9297,6 +10702,15 @@ export type TenantUncheckedUpdateWithoutPartBlocksInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -9353,6 +10767,15 @@ export type TenantCreateWithoutPartDocumentsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -9409,6 +10832,15 @@ export type TenantUncheckedCreateWithoutPartDocumentsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -9481,6 +10913,15 @@ export type TenantUpdateWithoutPartDocumentsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -9537,6 +10978,15 @@ export type TenantUncheckedUpdateWithoutPartDocumentsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -9593,6 +11043,15 @@ export type TenantCreateWithoutWhatsappTemplatesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -9649,6 +11108,15 @@ export type TenantUncheckedCreateWithoutWhatsappTemplatesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -9721,6 +11189,15 @@ export type TenantUpdateWithoutWhatsappTemplatesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -9777,6 +11254,15 @@ export type TenantUncheckedUpdateWithoutWhatsappTemplatesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -9833,6 +11319,15 @@ export type TenantCreateWithoutWhatsappMessagesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -9889,6 +11384,15 @@ export type TenantUncheckedCreateWithoutWhatsappMessagesInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -9961,6 +11465,15 @@ export type TenantUpdateWithoutWhatsappMessagesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -10017,6 +11530,15 @@ export type TenantUncheckedUpdateWithoutWhatsappMessagesInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -10073,6 +11595,15 @@ export type TenantCreateWithoutQcChecklistItemsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -10129,6 +11660,15 @@ export type TenantUncheckedCreateWithoutQcChecklistItemsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -10201,6 +11741,15 @@ export type TenantUpdateWithoutQcChecklistItemsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -10257,6 +11806,15 @@ export type TenantUncheckedUpdateWithoutQcChecklistItemsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -10313,6 +11871,15 @@ export type TenantCreateWithoutQcInspectionsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -10369,6 +11936,15 @@ export type TenantUncheckedCreateWithoutQcInspectionsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -10441,6 +12017,15 @@ export type TenantUpdateWithoutQcInspectionsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -10497,6 +12082,15 @@ export type TenantUncheckedUpdateWithoutQcInspectionsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -10553,6 +12147,15 @@ export type TenantCreateWithoutQcCheckResultsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -10609,6 +12212,15 @@ export type TenantUncheckedCreateWithoutQcCheckResultsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -10681,6 +12293,15 @@ export type TenantUpdateWithoutQcCheckResultsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -10737,6 +12358,15 @@ export type TenantUncheckedUpdateWithoutQcCheckResultsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -10793,6 +12423,15 @@ export type TenantCreateWithoutQcNonConformitaInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -10849,6 +12488,15 @@ export type TenantUncheckedCreateWithoutQcNonConformitaInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -10921,6 +12569,15 @@ export type TenantUpdateWithoutQcNonConformitaInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -10977,6 +12634,15 @@ export type TenantUncheckedUpdateWithoutQcNonConformitaInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -11033,6 +12699,15 @@ export type TenantCreateWithoutQcEventiInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -11089,6 +12764,15 @@ export type TenantUncheckedCreateWithoutQcEventiInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -11161,6 +12845,15 @@ export type TenantUpdateWithoutQcEventiInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -11217,6 +12910,15 @@ export type TenantUncheckedUpdateWithoutQcEventiInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -11273,6 +12975,15 @@ export type TenantCreateWithoutBriefingSettingsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefings?: Prisma.BriefingReportCreateNestedManyWithoutTenantInput
@@ -11329,6 +13040,15 @@ export type TenantUncheckedCreateWithoutBriefingSettingsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefings?: Prisma.BriefingReportUncheckedCreateNestedManyWithoutTenantInput
@@ -11401,6 +13121,15 @@ export type TenantUpdateWithoutBriefingSettingsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefings?: Prisma.BriefingReportUpdateManyWithoutTenantNestedInput
@@ -11457,6 +13186,15 @@ export type TenantUncheckedUpdateWithoutBriefingSettingsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefings?: Prisma.BriefingReportUncheckedUpdateManyWithoutTenantNestedInput
@@ -11513,6 +13251,15 @@ export type TenantCreateWithoutBriefingsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -11569,6 +13316,15 @@ export type TenantUncheckedCreateWithoutBriefingsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -11641,6 +13397,15 @@ export type TenantUpdateWithoutBriefingsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -11697,6 +13462,15 @@ export type TenantUncheckedUpdateWithoutBriefingsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -11753,6 +13527,15 @@ export type TenantCreateWithoutNotificationsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -11809,6 +13592,15 @@ export type TenantUncheckedCreateWithoutNotificationsInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -11881,6 +13673,15 @@ export type TenantUpdateWithoutNotificationsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -11937,6 +13738,15 @@ export type TenantUncheckedUpdateWithoutNotificationsInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -11993,6 +13803,15 @@ export type TenantCreateWithoutGdprRichiesteInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
@@ -12049,6 +13868,15 @@ export type TenantUncheckedCreateWithoutGdprRichiesteInput = {
   trialEndsAt?: Date | string | null
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
@@ -12121,6 +13949,15 @@ export type TenantUpdateWithoutGdprRichiesteInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
@@ -12177,6 +14014,15 @@ export type TenantUncheckedUpdateWithoutGdprRichiesteInput = {
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
   consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
@@ -12633,6 +14479,15 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   trialEndsAt?: boolean
   limiteAnalisiIAMensile?: boolean
   limiteAssistenteIAMensile?: boolean
+  stripeCustomerId?: boolean
+  stripeSubscriptionId?: boolean
+  subscriptionStatus?: boolean
+  fatturazionePeriodicita?: boolean
+  currentPeriodEnd?: boolean
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: boolean
+  creditiAIAcquistati?: boolean
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: boolean
   briefingSettings?: boolean | Prisma.Tenant$briefingSettingsArgs<ExtArgs>
@@ -12691,6 +14546,15 @@ export type TenantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   trialEndsAt?: boolean
   limiteAnalisiIAMensile?: boolean
   limiteAssistenteIAMensile?: boolean
+  stripeCustomerId?: boolean
+  stripeSubscriptionId?: boolean
+  subscriptionStatus?: boolean
+  fatturazionePeriodicita?: boolean
+  currentPeriodEnd?: boolean
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: boolean
+  creditiAIAcquistati?: boolean
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["tenant"]>
@@ -12703,6 +14567,15 @@ export type TenantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   trialEndsAt?: boolean
   limiteAnalisiIAMensile?: boolean
   limiteAssistenteIAMensile?: boolean
+  stripeCustomerId?: boolean
+  stripeSubscriptionId?: boolean
+  subscriptionStatus?: boolean
+  fatturazionePeriodicita?: boolean
+  currentPeriodEnd?: boolean
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: boolean
+  creditiAIAcquistati?: boolean
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["tenant"]>
@@ -12715,11 +14588,20 @@ export type TenantSelectScalar = {
   trialEndsAt?: boolean
   limiteAnalisiIAMensile?: boolean
   limiteAssistenteIAMensile?: boolean
+  stripeCustomerId?: boolean
+  stripeSubscriptionId?: boolean
+  subscriptionStatus?: boolean
+  fatturazionePeriodicita?: boolean
+  currentPeriodEnd?: boolean
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: boolean
+  creditiAIAcquistati?: boolean
+  earlyAdopter?: boolean
   consentiLavorazioniSimultanee?: boolean
   createdAt?: boolean
 }
 
-export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ragioneSociale" | "partitaIva" | "piano" | "trialEndsAt" | "limiteAnalisiIAMensile" | "limiteAssistenteIAMensile" | "consentiLavorazioniSimultanee" | "createdAt", ExtArgs["result"]["tenant"]>
+export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ragioneSociale" | "partitaIva" | "piano" | "trialEndsAt" | "limiteAnalisiIAMensile" | "limiteAssistenteIAMensile" | "stripeCustomerId" | "stripeSubscriptionId" | "subscriptionStatus" | "fatturazionePeriodicita" | "currentPeriodEnd" | "cancelAtPeriodEnd" | "utentiExtra" | "creditiAIAcquistati" | "earlyAdopter" | "consentiLavorazioniSimultanee" | "createdAt", ExtArgs["result"]["tenant"]>
 export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   briefingSettings?: boolean | Prisma.Tenant$briefingSettingsArgs<ExtArgs>
   briefings?: boolean | Prisma.Tenant$briefingsArgs<ExtArgs>
@@ -12828,6 +14710,15 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     trialEndsAt: Date | null
     limiteAnalisiIAMensile: number | null
     limiteAssistenteIAMensile: number | null
+    stripeCustomerId: string | null
+    stripeSubscriptionId: string | null
+    subscriptionStatus: $Enums.SubscriptionStatus
+    fatturazionePeriodicita: $Enums.FatturazionePeriodicita
+    currentPeriodEnd: Date | null
+    cancelAtPeriodEnd: boolean
+    utentiExtra: number
+    creditiAIAcquistati: number
+    earlyAdopter: boolean
     consentiLavorazioniSimultanee: boolean
     createdAt: Date
   }, ExtArgs["result"]["tenant"]>
@@ -13305,6 +15196,15 @@ export interface TenantFieldRefs {
   readonly trialEndsAt: Prisma.FieldRef<"Tenant", 'DateTime'>
   readonly limiteAnalisiIAMensile: Prisma.FieldRef<"Tenant", 'Int'>
   readonly limiteAssistenteIAMensile: Prisma.FieldRef<"Tenant", 'Int'>
+  readonly stripeCustomerId: Prisma.FieldRef<"Tenant", 'String'>
+  readonly stripeSubscriptionId: Prisma.FieldRef<"Tenant", 'String'>
+  readonly subscriptionStatus: Prisma.FieldRef<"Tenant", 'SubscriptionStatus'>
+  readonly fatturazionePeriodicita: Prisma.FieldRef<"Tenant", 'FatturazionePeriodicita'>
+  readonly currentPeriodEnd: Prisma.FieldRef<"Tenant", 'DateTime'>
+  readonly cancelAtPeriodEnd: Prisma.FieldRef<"Tenant", 'Boolean'>
+  readonly utentiExtra: Prisma.FieldRef<"Tenant", 'Int'>
+  readonly creditiAIAcquistati: Prisma.FieldRef<"Tenant", 'Int'>
+  readonly earlyAdopter: Prisma.FieldRef<"Tenant", 'Boolean'>
   readonly consentiLavorazioniSimultanee: Prisma.FieldRef<"Tenant", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Tenant", 'DateTime'>
 }

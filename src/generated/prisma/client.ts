@@ -326,3 +326,8 @@ export type Notification = Prisma.NotificationModel
  * 
  */
 export type GdprRichiesta = Prisma.GdprRichiestaModel
+/**
+ * Model StripeWebhookEvent
+ * 
+ */
+export type StripeWebhookEvent = Prisma.StripeWebhookEventModel

@@ -33,6 +33,7 @@ import { liveDashboardRouter } from "./routes/liveDashboard.js";
 import { qcTemplateRouter, vehicleQcRouter, qcInspectionRouter, qcNonConformitaRouter } from "./routes/qc.js";
 import { notificheRouter } from "./routes/notifiche.js";
 import { gdprRouter } from "./routes/gdpr.js";
+import { billingRouter, billingWebhookRouter } from "./routes/billing.js";
 import { auditLogger } from "./middleware/audit.js";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -52,6 +53,9 @@ app.use("/api/parts-tracking", express.json({limit:"1mb"}));
 app.use("/api/delay", express.json({limit:"1mb"}));
 // Twilio invia i webhook come form url-encoded, non JSON.
 app.use("/api/whatsapp/webhook", express.urlencoded({ extended: false }));
+// Stripe firma il BODY GREZZO: deve restare non parsato come JSON fino a
+// dopo la verifica della firma dentro billingWebhookRouter.
+app.use("/api/billing/webhook", express.raw({ type: "application/json" }));
 app.use(express.json());
 app.use(auditLogger);
 
@@ -65,6 +69,8 @@ app.use("/privacy", express.static(path.join(__dirname, "..", "public", "privacy
 app.use("/cookie", express.static(path.join(__dirname, "..", "public", "cookie")));
 app.use("/termini", express.static(path.join(__dirname, "..", "public", "termini")));
 app.use("/dpa", express.static(path.join(__dirname, "..", "public", "dpa")));
+app.use("/billing/successo", express.static(path.join(__dirname, "..", "public", "billing-successo")));
+app.use("/billing/annullato", express.static(path.join(__dirname, "..", "public", "billing-annullato")));
 
 app.use("/api/auth", authRouter);
 app.use("/api/clients", clientsRouter);
@@ -104,11 +110,18 @@ app.use("/api/supplier-orders", supplierOrdersRouter);
 app.use("/api/executive", executiveRouter);
 app.use("/api/briefing", briefingRouter);
 app.use("/api/dashboard", dashboardRouter);
+app.use("/api/notifiche", notificheRouter);
+app.use("/api/gdpr", gdprRouter);
+app.use("/api/billing/webhook", billingWebhookRouter);
+// billingRouter va montato PRIMA di "/api", photosRouter qui sotto:
+// photosRouter applica requireAuth senza filtro di percorso, quindi
+// intercetterebbe (con 401) anche le rotte pubbliche di billing come
+// GET /api/billing/piani se fosse raggiunto per primo — l'ordine di
+// registrazione dei middleware in Express decide chi vede la richiesta.
+app.use("/api/billing", billingRouter);
 app.use("/api", photosRouter);
 app.use("/api/appointments", appointmentsRouter);
 app.use("/api/users", usersRouter);
-app.use("/api/notifiche", notificheRouter);
-app.use("/api/gdpr", gdprRouter);
 
 // Gestione errori centralizzata: qualsiasi errore non gestito nelle
 // route arriva qui invece di far crashare il processo.
