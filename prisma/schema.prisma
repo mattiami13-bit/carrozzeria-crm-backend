@@ -88,6 +88,7 @@ model Tenant {
   loanerBookings     LoanerBooking[]
   loanerBookingPhotos LoanerBookingPhoto[]
   notifications      Notification[]
+  gdprRichieste      GdprRichiesta[]
 
 
   @@map("tenants")
@@ -123,6 +124,12 @@ model User {
   resetPasswordToken      String?   @unique
   resetPasswordScadenza   DateTime?
 
+  // GDPR: versione dei Termini/Privacy accettati in fase di registrazione
+  // e quando (obbligatorio al punto 18 del prompt SaaS — "versione
+  // Termini/Privacy" con timestamp).
+  condizioniAccettateVersione String?
+  condizioniAccettateAt       DateTime?
+
   vehiclesAssegnati   Vehicle[]      @relation("TecnicoAssegnato")
   stageChanges        StageHistory[]
   timeEntries         TimeEntry[]
@@ -149,6 +156,7 @@ model User {
   qcEventiAttore             QcEvento[]              @relation("QcEventoAttore")
   loanerBookingsCreate       LoanerBooking[]
   notifications              Notification[]
+  gdprRichieste              GdprRichiesta[]
 
   @@index([tenantId])
   @@map("users")
@@ -188,6 +196,12 @@ model Client {
   notificheWhatsappConsenso   Boolean   @default(false)
   notificheWhatsappConsensoAt DateTime?
   notificheWhatsappAttive     Boolean   @default(true)
+
+  // GDPR: a seguito di una richiesta di cancellazione, i dati identificativi
+  // vengono anonimizzati (non cancellati) per non rompere pratiche/preventivi
+  // già collegati, necessari per obblighi contabili/di garanzia.
+  datiAnonimizzati Boolean   @default(false)
+  anonimizzatoAt   DateTime?
 
   vehicles     Vehicle[]
   quotes       Quote[]
@@ -1746,4 +1760,37 @@ model Notification {
   @@index([tenantId, userId, letta])
   @@index([tenantId, userId, createdAt])
   @@map("notifications")
+}
+
+enum GdprRichiestaTipo {
+  CANCELLAZIONE_ACCOUNT
+  CANCELLAZIONE_CLIENTE
+  EXPORT_DATI
+}
+
+enum GdprRichiestaStato {
+  IN_ATTESA
+  COMPLETATA
+  RIFIUTATA
+}
+
+// Registro delle richieste GDPR (cancellazione, export): non esegue mai
+// da sola una cancellazione distruttiva dell'intera organizzazione — è
+// una coda verificabile, in attesa di un pannello super-admin (punto 13,
+// non ancora costruito) che la processi con controllo umano.
+model GdprRichiesta {
+  id            String              @id @default(cuid())
+  tenantId      String
+  tenant        Tenant              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  tipo          GdprRichiestaTipo
+  stato         GdprRichiestaStato  @default(IN_ATTESA)
+  richiedenteId String
+  richiedente   User                @relation(fields: [richiedenteId], references: [id])
+  clienteId     String?
+  note          String?
+  createdAt     DateTime            @default(now())
+  risoltoAt     DateTime?
+
+  @@index([tenantId, stato])
+  @@map("gdpr_richieste")
 }

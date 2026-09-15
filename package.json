@@ -17,7 +17,8 @@
     "test:briefing": "node --test tests/briefing.test.js tests/briefing-api.test.js && node tests/check-frontend.cjs",
     "test:tenant-isolation": "node --test tests/tenant-isolation.test.js",
     "test:auth-email": "node --test tests/auth-email.test.js",
-    "test:notifiche": "node --test tests/notifiche.test.js"
+    "test:notifiche": "node --test tests/notifiche.test.js",
+    "test:gdpr": "node --test tests/gdpr.test.js"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",

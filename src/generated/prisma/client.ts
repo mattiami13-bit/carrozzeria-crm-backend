@@ -321,3 +321,8 @@ export type BriefingResolution = Prisma.BriefingResolutionModel
  * 
  */
 export type Notification = Prisma.NotificationModel
+/**
+ * Model GdprRichiesta
+ * 
+ */
+export type GdprRichiesta = Prisma.GdprRichiestaModel

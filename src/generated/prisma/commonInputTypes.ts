@@ -902,6 +902,40 @@ export type EnumNotificationCategoriaWithAggregatesFilter<$PrismaModel = never> 
   _max?: Prisma.NestedEnumNotificationCategoriaFilter<$PrismaModel>
 }
 
+export type EnumGdprRichiestaTipoFilter<$PrismaModel = never> = {
+  equals?: $Enums.GdprRichiestaTipo | Prisma.EnumGdprRichiestaTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.GdprRichiestaTipo[] | Prisma.ListEnumGdprRichiestaTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GdprRichiestaTipo[] | Prisma.ListEnumGdprRichiestaTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGdprRichiestaTipoFilter<$PrismaModel> | $Enums.GdprRichiestaTipo
+}
+
+export type EnumGdprRichiestaStatoFilter<$PrismaModel = never> = {
+  equals?: $Enums.GdprRichiestaStato | Prisma.EnumGdprRichiestaStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.GdprRichiestaStato[] | Prisma.ListEnumGdprRichiestaStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GdprRichiestaStato[] | Prisma.ListEnumGdprRichiestaStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGdprRichiestaStatoFilter<$PrismaModel> | $Enums.GdprRichiestaStato
+}
+
+export type EnumGdprRichiestaTipoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GdprRichiestaTipo | Prisma.EnumGdprRichiestaTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.GdprRichiestaTipo[] | Prisma.ListEnumGdprRichiestaTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GdprRichiestaTipo[] | Prisma.ListEnumGdprRichiestaTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGdprRichiestaTipoWithAggregatesFilter<$PrismaModel> | $Enums.GdprRichiestaTipo
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGdprRichiestaTipoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGdprRichiestaTipoFilter<$PrismaModel>
+}
+
+export type EnumGdprRichiestaStatoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GdprRichiestaStato | Prisma.EnumGdprRichiestaStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.GdprRichiestaStato[] | Prisma.ListEnumGdprRichiestaStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GdprRichiestaStato[] | Prisma.ListEnumGdprRichiestaStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGdprRichiestaStatoWithAggregatesFilter<$PrismaModel> | $Enums.GdprRichiestaStato
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGdprRichiestaStatoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGdprRichiestaStatoFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -1747,6 +1781,40 @@ export type NestedEnumNotificationCategoriaWithAggregatesFilter<$PrismaModel = n
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumNotificationCategoriaFilter<$PrismaModel>
   _max?: Prisma.NestedEnumNotificationCategoriaFilter<$PrismaModel>
+}
+
+export type NestedEnumGdprRichiestaTipoFilter<$PrismaModel = never> = {
+  equals?: $Enums.GdprRichiestaTipo | Prisma.EnumGdprRichiestaTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.GdprRichiestaTipo[] | Prisma.ListEnumGdprRichiestaTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GdprRichiestaTipo[] | Prisma.ListEnumGdprRichiestaTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGdprRichiestaTipoFilter<$PrismaModel> | $Enums.GdprRichiestaTipo
+}
+
+export type NestedEnumGdprRichiestaStatoFilter<$PrismaModel = never> = {
+  equals?: $Enums.GdprRichiestaStato | Prisma.EnumGdprRichiestaStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.GdprRichiestaStato[] | Prisma.ListEnumGdprRichiestaStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GdprRichiestaStato[] | Prisma.ListEnumGdprRichiestaStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGdprRichiestaStatoFilter<$PrismaModel> | $Enums.GdprRichiestaStato
+}
+
+export type NestedEnumGdprRichiestaTipoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GdprRichiestaTipo | Prisma.EnumGdprRichiestaTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.GdprRichiestaTipo[] | Prisma.ListEnumGdprRichiestaTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GdprRichiestaTipo[] | Prisma.ListEnumGdprRichiestaTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGdprRichiestaTipoWithAggregatesFilter<$PrismaModel> | $Enums.GdprRichiestaTipo
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGdprRichiestaTipoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGdprRichiestaTipoFilter<$PrismaModel>
+}
+
+export type NestedEnumGdprRichiestaStatoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GdprRichiestaStato | Prisma.EnumGdprRichiestaStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.GdprRichiestaStato[] | Prisma.ListEnumGdprRichiestaStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GdprRichiestaStato[] | Prisma.ListEnumGdprRichiestaStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGdprRichiestaStatoWithAggregatesFilter<$PrismaModel> | $Enums.GdprRichiestaStato
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGdprRichiestaStatoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGdprRichiestaStatoFilter<$PrismaModel>
 }
 
 

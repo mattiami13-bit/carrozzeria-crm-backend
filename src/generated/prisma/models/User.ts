@@ -39,6 +39,8 @@ export type UserMinAggregateOutputType = {
   emailVerificaScadenza: Date | null
   resetPasswordToken: string | null
   resetPasswordScadenza: Date | null
+  condizioniAccettateVersione: string | null
+  condizioniAccettateAt: Date | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -56,6 +58,8 @@ export type UserMaxAggregateOutputType = {
   emailVerificaScadenza: Date | null
   resetPasswordToken: string | null
   resetPasswordScadenza: Date | null
+  condizioniAccettateVersione: string | null
+  condizioniAccettateAt: Date | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -73,6 +77,8 @@ export type UserCountAggregateOutputType = {
   emailVerificaScadenza: number
   resetPasswordToken: number
   resetPasswordScadenza: number
+  condizioniAccettateVersione: number
+  condizioniAccettateAt: number
   _all: number
 }
 
@@ -92,6 +98,8 @@ export type UserMinAggregateInputType = {
   emailVerificaScadenza?: true
   resetPasswordToken?: true
   resetPasswordScadenza?: true
+  condizioniAccettateVersione?: true
+  condizioniAccettateAt?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -109,6 +117,8 @@ export type UserMaxAggregateInputType = {
   emailVerificaScadenza?: true
   resetPasswordToken?: true
   resetPasswordScadenza?: true
+  condizioniAccettateVersione?: true
+  condizioniAccettateAt?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -126,6 +136,8 @@ export type UserCountAggregateInputType = {
   emailVerificaScadenza?: true
   resetPasswordToken?: true
   resetPasswordScadenza?: true
+  condizioniAccettateVersione?: true
+  condizioniAccettateAt?: true
   _all?: true
 }
 
@@ -216,6 +228,8 @@ export type UserGroupByOutputType = {
   emailVerificaScadenza: Date | null
   resetPasswordToken: string | null
   resetPasswordScadenza: Date | null
+  condizioniAccettateVersione: string | null
+  condizioniAccettateAt: Date | null
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -254,6 +268,8 @@ export type UserWhereInput = {
   emailVerificaScadenza?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   resetPasswordToken?: Prisma.StringNullableFilter<"User"> | string | null
   resetPasswordScadenza?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  condizioniAccettateVersione?: Prisma.StringNullableFilter<"User"> | string | null
+  condizioniAccettateAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   vehiclesAssegnati?: Prisma.VehicleListRelationFilter
   stageChanges?: Prisma.StageHistoryListRelationFilter
@@ -281,6 +297,7 @@ export type UserWhereInput = {
   qcEventiAttore?: Prisma.QcEventoListRelationFilter
   loanerBookingsCreate?: Prisma.LoanerBookingListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
+  gdprRichieste?: Prisma.GdprRichiestaListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -298,6 +315,8 @@ export type UserOrderByWithRelationInput = {
   emailVerificaScadenza?: Prisma.SortOrderInput | Prisma.SortOrder
   resetPasswordToken?: Prisma.SortOrderInput | Prisma.SortOrder
   resetPasswordScadenza?: Prisma.SortOrderInput | Prisma.SortOrder
+  condizioniAccettateVersione?: Prisma.SortOrderInput | Prisma.SortOrder
+  condizioniAccettateAt?: Prisma.SortOrderInput | Prisma.SortOrder
   tenant?: Prisma.TenantOrderByWithRelationInput
   vehiclesAssegnati?: Prisma.VehicleOrderByRelationAggregateInput
   stageChanges?: Prisma.StageHistoryOrderByRelationAggregateInput
@@ -325,6 +344,7 @@ export type UserOrderByWithRelationInput = {
   qcEventiAttore?: Prisma.QcEventoOrderByRelationAggregateInput
   loanerBookingsCreate?: Prisma.LoanerBookingOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
+  gdprRichieste?: Prisma.GdprRichiestaOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -345,6 +365,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   emailVerificata?: Prisma.BoolFilter<"User"> | boolean
   emailVerificaScadenza?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   resetPasswordScadenza?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  condizioniAccettateVersione?: Prisma.StringNullableFilter<"User"> | string | null
+  condizioniAccettateAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   vehiclesAssegnati?: Prisma.VehicleListRelationFilter
   stageChanges?: Prisma.StageHistoryListRelationFilter
@@ -372,6 +394,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   qcEventiAttore?: Prisma.QcEventoListRelationFilter
   loanerBookingsCreate?: Prisma.LoanerBookingListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
+  gdprRichieste?: Prisma.GdprRichiestaListRelationFilter
 }, "id" | "email" | "emailVerificaToken" | "resetPasswordToken">
 
 export type UserOrderByWithAggregationInput = {
@@ -389,6 +412,8 @@ export type UserOrderByWithAggregationInput = {
   emailVerificaScadenza?: Prisma.SortOrderInput | Prisma.SortOrder
   resetPasswordToken?: Prisma.SortOrderInput | Prisma.SortOrder
   resetPasswordScadenza?: Prisma.SortOrderInput | Prisma.SortOrder
+  condizioniAccettateVersione?: Prisma.SortOrderInput | Prisma.SortOrder
+  condizioniAccettateAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -412,6 +437,8 @@ export type UserScalarWhereWithAggregatesInput = {
   emailVerificaScadenza?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   resetPasswordToken?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   resetPasswordScadenza?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  condizioniAccettateVersione?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  condizioniAccettateAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
 }
 
 export type UserCreateInput = {
@@ -428,6 +455,8 @@ export type UserCreateInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -455,6 +484,7 @@ export type UserCreateInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -472,6 +502,8 @@ export type UserUncheckedCreateInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -498,6 +530,7 @@ export type UserUncheckedCreateInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUpdateInput = {
@@ -514,6 +547,8 @@ export type UserUpdateInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -541,6 +576,7 @@ export type UserUpdateInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -558,6 +594,8 @@ export type UserUncheckedUpdateInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -584,6 +622,7 @@ export type UserUncheckedUpdateInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -601,6 +640,8 @@ export type UserCreateManyInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -617,6 +658,8 @@ export type UserUpdateManyMutationInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -634,6 +677,8 @@ export type UserUncheckedUpdateManyInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type UserListRelationFilter = {
@@ -661,6 +706,8 @@ export type UserCountOrderByAggregateInput = {
   emailVerificaScadenza?: Prisma.SortOrder
   resetPasswordToken?: Prisma.SortOrder
   resetPasswordScadenza?: Prisma.SortOrder
+  condizioniAccettateVersione?: Prisma.SortOrder
+  condizioniAccettateAt?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -678,6 +725,8 @@ export type UserMaxOrderByAggregateInput = {
   emailVerificaScadenza?: Prisma.SortOrder
   resetPasswordToken?: Prisma.SortOrder
   resetPasswordScadenza?: Prisma.SortOrder
+  condizioniAccettateVersione?: Prisma.SortOrder
+  condizioniAccettateAt?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -695,6 +744,8 @@ export type UserMinOrderByAggregateInput = {
   emailVerificaScadenza?: Prisma.SortOrder
   resetPasswordToken?: Prisma.SortOrder
   resetPasswordScadenza?: Prisma.SortOrder
+  condizioniAccettateVersione?: Prisma.SortOrder
+  condizioniAccettateAt?: Prisma.SortOrder
 }
 
 export type UserNullableScalarRelationFilter = {
@@ -1161,6 +1212,20 @@ export type UserUpdateOneRequiredWithoutNotificationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificationsInput, Prisma.UserUpdateWithoutNotificationsInput>, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
 }
 
+export type UserCreateNestedOneWithoutGdprRichiesteInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutGdprRichiesteInput, Prisma.UserUncheckedCreateWithoutGdprRichiesteInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGdprRichiesteInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutGdprRichiesteNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutGdprRichiesteInput, Prisma.UserUncheckedCreateWithoutGdprRichiesteInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGdprRichiesteInput
+  upsert?: Prisma.UserUpsertWithoutGdprRichiesteInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutGdprRichiesteInput, Prisma.UserUpdateWithoutGdprRichiesteInput>, Prisma.UserUncheckedUpdateWithoutGdprRichiesteInput>
+}
+
 export type UserCreateWithoutTenantInput = {
   id?: string
   nome: string
@@ -1175,6 +1240,8 @@ export type UserCreateWithoutTenantInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
@@ -1201,6 +1268,7 @@ export type UserCreateWithoutTenantInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutTenantInput = {
@@ -1217,6 +1285,8 @@ export type UserUncheckedCreateWithoutTenantInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -1243,6 +1313,7 @@ export type UserUncheckedCreateWithoutTenantInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutTenantInput = {
@@ -1289,6 +1360,8 @@ export type UserScalarWhereInput = {
   emailVerificaScadenza?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   resetPasswordToken?: Prisma.StringNullableFilter<"User"> | string | null
   resetPasswordScadenza?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  condizioniAccettateVersione?: Prisma.StringNullableFilter<"User"> | string | null
+  condizioniAccettateAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
 }
 
 export type UserCreateWithoutVehiclesAssegnatiInput = {
@@ -1305,6 +1378,8 @@ export type UserCreateWithoutVehiclesAssegnatiInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
@@ -1331,6 +1406,7 @@ export type UserCreateWithoutVehiclesAssegnatiInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutVehiclesAssegnatiInput = {
@@ -1348,6 +1424,8 @@ export type UserUncheckedCreateWithoutVehiclesAssegnatiInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
@@ -1373,6 +1451,7 @@ export type UserUncheckedCreateWithoutVehiclesAssegnatiInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutVehiclesAssegnatiInput = {
@@ -1405,6 +1484,8 @@ export type UserUpdateWithoutVehiclesAssegnatiInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
@@ -1431,6 +1512,7 @@ export type UserUpdateWithoutVehiclesAssegnatiInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVehiclesAssegnatiInput = {
@@ -1448,6 +1530,8 @@ export type UserUncheckedUpdateWithoutVehiclesAssegnatiInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
@@ -1473,6 +1557,7 @@ export type UserUncheckedUpdateWithoutVehiclesAssegnatiInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutStageChangesInput = {
@@ -1489,6 +1574,8 @@ export type UserCreateWithoutStageChangesInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
@@ -1515,6 +1602,7 @@ export type UserCreateWithoutStageChangesInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutStageChangesInput = {
@@ -1532,6 +1620,8 @@ export type UserUncheckedCreateWithoutStageChangesInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
@@ -1557,6 +1647,7 @@ export type UserUncheckedCreateWithoutStageChangesInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutStageChangesInput = {
@@ -1589,6 +1680,8 @@ export type UserUpdateWithoutStageChangesInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
@@ -1615,6 +1708,7 @@ export type UserUpdateWithoutStageChangesInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStageChangesInput = {
@@ -1632,6 +1726,8 @@ export type UserUncheckedUpdateWithoutStageChangesInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
@@ -1657,6 +1753,7 @@ export type UserUncheckedUpdateWithoutStageChangesInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutAnalisiDanniCreateInput = {
@@ -1673,6 +1770,8 @@ export type UserCreateWithoutAnalisiDanniCreateInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -1699,6 +1798,7 @@ export type UserCreateWithoutAnalisiDanniCreateInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutAnalisiDanniCreateInput = {
@@ -1716,6 +1816,8 @@ export type UserUncheckedCreateWithoutAnalisiDanniCreateInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -1741,6 +1843,7 @@ export type UserUncheckedCreateWithoutAnalisiDanniCreateInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutAnalisiDanniCreateInput = {
@@ -1773,6 +1876,8 @@ export type UserUpdateWithoutAnalisiDanniCreateInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -1799,6 +1904,7 @@ export type UserUpdateWithoutAnalisiDanniCreateInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAnalisiDanniCreateInput = {
@@ -1816,6 +1922,8 @@ export type UserUncheckedUpdateWithoutAnalisiDanniCreateInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -1841,6 +1949,7 @@ export type UserUncheckedUpdateWithoutAnalisiDanniCreateInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutCorrezioniDanniInput = {
@@ -1857,6 +1966,8 @@ export type UserCreateWithoutCorrezioniDanniInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -1883,6 +1994,7 @@ export type UserCreateWithoutCorrezioniDanniInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutCorrezioniDanniInput = {
@@ -1900,6 +2012,8 @@ export type UserUncheckedCreateWithoutCorrezioniDanniInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -1925,6 +2039,7 @@ export type UserUncheckedCreateWithoutCorrezioniDanniInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutCorrezioniDanniInput = {
@@ -1957,6 +2072,8 @@ export type UserUpdateWithoutCorrezioniDanniInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -1983,6 +2100,7 @@ export type UserUpdateWithoutCorrezioniDanniInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCorrezioniDanniInput = {
@@ -2000,6 +2118,8 @@ export type UserUncheckedUpdateWithoutCorrezioniDanniInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -2025,6 +2145,7 @@ export type UserUncheckedUpdateWithoutCorrezioniDanniInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutAnalisiGapCreateInput = {
@@ -2041,6 +2162,8 @@ export type UserCreateWithoutAnalisiGapCreateInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -2067,6 +2190,7 @@ export type UserCreateWithoutAnalisiGapCreateInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutAnalisiGapCreateInput = {
@@ -2084,6 +2208,8 @@ export type UserUncheckedCreateWithoutAnalisiGapCreateInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -2109,6 +2235,7 @@ export type UserUncheckedCreateWithoutAnalisiGapCreateInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutAnalisiGapCreateInput = {
@@ -2141,6 +2268,8 @@ export type UserUpdateWithoutAnalisiGapCreateInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -2167,6 +2296,7 @@ export type UserUpdateWithoutAnalisiGapCreateInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAnalisiGapCreateInput = {
@@ -2184,6 +2314,8 @@ export type UserUncheckedUpdateWithoutAnalisiGapCreateInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -2209,6 +2341,7 @@ export type UserUncheckedUpdateWithoutAnalisiGapCreateInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutCorrezioniGapAssicurazioneInput = {
@@ -2225,6 +2358,8 @@ export type UserCreateWithoutCorrezioniGapAssicurazioneInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -2251,6 +2386,7 @@ export type UserCreateWithoutCorrezioniGapAssicurazioneInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutCorrezioniGapAssicurazioneInput = {
@@ -2268,6 +2404,8 @@ export type UserUncheckedCreateWithoutCorrezioniGapAssicurazioneInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -2293,6 +2431,7 @@ export type UserUncheckedCreateWithoutCorrezioniGapAssicurazioneInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutCorrezioniGapAssicurazioneInput = {
@@ -2325,6 +2464,8 @@ export type UserUpdateWithoutCorrezioniGapAssicurazioneInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -2351,6 +2492,7 @@ export type UserUpdateWithoutCorrezioniGapAssicurazioneInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCorrezioniGapAssicurazioneInput = {
@@ -2368,6 +2510,8 @@ export type UserUncheckedUpdateWithoutCorrezioniGapAssicurazioneInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -2393,6 +2537,7 @@ export type UserUncheckedUpdateWithoutCorrezioniGapAssicurazioneInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutLoanerBookingsCreateInput = {
@@ -2409,6 +2554,8 @@ export type UserCreateWithoutLoanerBookingsCreateInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -2435,6 +2582,7 @@ export type UserCreateWithoutLoanerBookingsCreateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutLoanerBookingsCreateInput = {
@@ -2452,6 +2600,8 @@ export type UserUncheckedCreateWithoutLoanerBookingsCreateInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -2477,6 +2627,7 @@ export type UserUncheckedCreateWithoutLoanerBookingsCreateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutLoanerBookingsCreateInput = {
@@ -2509,6 +2660,8 @@ export type UserUpdateWithoutLoanerBookingsCreateInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -2535,6 +2688,7 @@ export type UserUpdateWithoutLoanerBookingsCreateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLoanerBookingsCreateInput = {
@@ -2552,6 +2706,8 @@ export type UserUncheckedUpdateWithoutLoanerBookingsCreateInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -2577,6 +2733,7 @@ export type UserUncheckedUpdateWithoutLoanerBookingsCreateInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutAppuntamentiTecnicoInput = {
@@ -2593,6 +2750,8 @@ export type UserCreateWithoutAppuntamentiTecnicoInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -2619,6 +2778,7 @@ export type UserCreateWithoutAppuntamentiTecnicoInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutAppuntamentiTecnicoInput = {
@@ -2636,6 +2796,8 @@ export type UserUncheckedCreateWithoutAppuntamentiTecnicoInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -2661,6 +2823,7 @@ export type UserUncheckedCreateWithoutAppuntamentiTecnicoInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutAppuntamentiTecnicoInput = {
@@ -2693,6 +2856,8 @@ export type UserUpdateWithoutAppuntamentiTecnicoInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -2719,6 +2884,7 @@ export type UserUpdateWithoutAppuntamentiTecnicoInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAppuntamentiTecnicoInput = {
@@ -2736,6 +2902,8 @@ export type UserUncheckedUpdateWithoutAppuntamentiTecnicoInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -2761,6 +2929,7 @@ export type UserUncheckedUpdateWithoutAppuntamentiTecnicoInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutTimeEntriesInput = {
@@ -2777,6 +2946,8 @@ export type UserCreateWithoutTimeEntriesInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -2803,6 +2974,7 @@ export type UserCreateWithoutTimeEntriesInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutTimeEntriesInput = {
@@ -2820,6 +2992,8 @@ export type UserUncheckedCreateWithoutTimeEntriesInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
@@ -2845,6 +3019,7 @@ export type UserUncheckedCreateWithoutTimeEntriesInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutTimeEntriesInput = {
@@ -2877,6 +3052,8 @@ export type UserUpdateWithoutTimeEntriesInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -2903,6 +3080,7 @@ export type UserUpdateWithoutTimeEntriesInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTimeEntriesInput = {
@@ -2920,6 +3098,8 @@ export type UserUncheckedUpdateWithoutTimeEntriesInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
@@ -2945,6 +3125,7 @@ export type UserUncheckedUpdateWithoutTimeEntriesInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutPortalActionsGestiteInput = {
@@ -2961,6 +3142,8 @@ export type UserCreateWithoutPortalActionsGestiteInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -2987,6 +3170,7 @@ export type UserCreateWithoutPortalActionsGestiteInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutPortalActionsGestiteInput = {
@@ -3004,6 +3188,8 @@ export type UserUncheckedCreateWithoutPortalActionsGestiteInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -3029,6 +3215,7 @@ export type UserUncheckedCreateWithoutPortalActionsGestiteInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutPortalActionsGestiteInput = {
@@ -3061,6 +3248,8 @@ export type UserUpdateWithoutPortalActionsGestiteInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -3087,6 +3276,7 @@ export type UserUpdateWithoutPortalActionsGestiteInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPortalActionsGestiteInput = {
@@ -3104,6 +3294,8 @@ export type UserUncheckedUpdateWithoutPortalActionsGestiteInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -3129,6 +3321,7 @@ export type UserUncheckedUpdateWithoutPortalActionsGestiteInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutWorkOrdersAssegnatiInput = {
@@ -3145,6 +3338,8 @@ export type UserCreateWithoutWorkOrdersAssegnatiInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -3171,6 +3366,7 @@ export type UserCreateWithoutWorkOrdersAssegnatiInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrdersAssegnatiInput = {
@@ -3188,6 +3384,8 @@ export type UserUncheckedCreateWithoutWorkOrdersAssegnatiInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -3213,6 +3411,7 @@ export type UserUncheckedCreateWithoutWorkOrdersAssegnatiInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrdersAssegnatiInput = {
@@ -3234,6 +3433,8 @@ export type UserCreateWithoutWorkOrdersCreatiInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -3260,6 +3461,7 @@ export type UserCreateWithoutWorkOrdersCreatiInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrdersCreatiInput = {
@@ -3277,6 +3479,8 @@ export type UserUncheckedCreateWithoutWorkOrdersCreatiInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -3302,6 +3506,7 @@ export type UserUncheckedCreateWithoutWorkOrdersCreatiInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrdersCreatiInput = {
@@ -3334,6 +3539,8 @@ export type UserUpdateWithoutWorkOrdersAssegnatiInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -3360,6 +3567,7 @@ export type UserUpdateWithoutWorkOrdersAssegnatiInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrdersAssegnatiInput = {
@@ -3377,6 +3585,8 @@ export type UserUncheckedUpdateWithoutWorkOrdersAssegnatiInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -3402,6 +3612,7 @@ export type UserUncheckedUpdateWithoutWorkOrdersAssegnatiInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUpsertWithoutWorkOrdersCreatiInput = {
@@ -3429,6 +3640,8 @@ export type UserUpdateWithoutWorkOrdersCreatiInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -3455,6 +3668,7 @@ export type UserUpdateWithoutWorkOrdersCreatiInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrdersCreatiInput = {
@@ -3472,6 +3686,8 @@ export type UserUncheckedUpdateWithoutWorkOrdersCreatiInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -3497,6 +3713,7 @@ export type UserUncheckedUpdateWithoutWorkOrdersCreatiInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutWorkOrderTimeEntriesInput = {
@@ -3513,6 +3730,8 @@ export type UserCreateWithoutWorkOrderTimeEntriesInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -3539,6 +3758,7 @@ export type UserCreateWithoutWorkOrderTimeEntriesInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
@@ -3556,6 +3776,8 @@ export type UserUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -3581,6 +3803,7 @@ export type UserUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrderTimeEntriesInput = {
@@ -3602,6 +3825,8 @@ export type UserCreateWithoutWorkOrderTimeCorrezioniInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -3628,6 +3853,7 @@ export type UserCreateWithoutWorkOrderTimeCorrezioniInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrderTimeCorrezioniInput = {
@@ -3645,6 +3871,8 @@ export type UserUncheckedCreateWithoutWorkOrderTimeCorrezioniInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -3670,6 +3898,7 @@ export type UserUncheckedCreateWithoutWorkOrderTimeCorrezioniInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrderTimeCorrezioniInput = {
@@ -3702,6 +3931,8 @@ export type UserUpdateWithoutWorkOrderTimeEntriesInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -3728,6 +3959,7 @@ export type UserUpdateWithoutWorkOrderTimeEntriesInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
@@ -3745,6 +3977,8 @@ export type UserUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -3770,6 +4004,7 @@ export type UserUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUpsertWithoutWorkOrderTimeCorrezioniInput = {
@@ -3797,6 +4032,8 @@ export type UserUpdateWithoutWorkOrderTimeCorrezioniInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -3823,6 +4060,7 @@ export type UserUpdateWithoutWorkOrderTimeCorrezioniInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrderTimeCorrezioniInput = {
@@ -3840,6 +4078,8 @@ export type UserUncheckedUpdateWithoutWorkOrderTimeCorrezioniInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -3865,6 +4105,7 @@ export type UserUncheckedUpdateWithoutWorkOrderTimeCorrezioniInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutWorkOrderEventiAttoreInput = {
@@ -3881,6 +4122,8 @@ export type UserCreateWithoutWorkOrderEventiAttoreInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -3907,6 +4150,7 @@ export type UserCreateWithoutWorkOrderEventiAttoreInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrderEventiAttoreInput = {
@@ -3924,6 +4168,8 @@ export type UserUncheckedCreateWithoutWorkOrderEventiAttoreInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -3949,6 +4195,7 @@ export type UserUncheckedCreateWithoutWorkOrderEventiAttoreInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrderEventiAttoreInput = {
@@ -3981,6 +4228,8 @@ export type UserUpdateWithoutWorkOrderEventiAttoreInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -4007,6 +4256,7 @@ export type UserUpdateWithoutWorkOrderEventiAttoreInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrderEventiAttoreInput = {
@@ -4024,6 +4274,8 @@ export type UserUncheckedUpdateWithoutWorkOrderEventiAttoreInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -4049,6 +4301,7 @@ export type UserUncheckedUpdateWithoutWorkOrderEventiAttoreInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutPortalDocumentiCaricatiInput = {
@@ -4065,6 +4318,8 @@ export type UserCreateWithoutPortalDocumentiCaricatiInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -4091,6 +4346,7 @@ export type UserCreateWithoutPortalDocumentiCaricatiInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutPortalDocumentiCaricatiInput = {
@@ -4108,6 +4364,8 @@ export type UserUncheckedCreateWithoutPortalDocumentiCaricatiInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -4133,6 +4391,7 @@ export type UserUncheckedCreateWithoutPortalDocumentiCaricatiInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutPortalDocumentiCaricatiInput = {
@@ -4165,6 +4424,8 @@ export type UserUpdateWithoutPortalDocumentiCaricatiInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -4191,6 +4452,7 @@ export type UserUpdateWithoutPortalDocumentiCaricatiInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPortalDocumentiCaricatiInput = {
@@ -4208,6 +4470,8 @@ export type UserUncheckedUpdateWithoutPortalDocumentiCaricatiInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -4233,6 +4497,7 @@ export type UserUncheckedUpdateWithoutPortalDocumentiCaricatiInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -4249,6 +4514,8 @@ export type UserCreateWithoutAuditLogsInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -4275,6 +4542,7 @@ export type UserCreateWithoutAuditLogsInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -4292,6 +4560,8 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -4317,6 +4587,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -4349,6 +4620,8 @@ export type UserUpdateWithoutAuditLogsInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -4375,6 +4648,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -4392,6 +4666,8 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -4417,6 +4693,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutWhatsappTemplateAggiornatiInput = {
@@ -4433,6 +4710,8 @@ export type UserCreateWithoutWhatsappTemplateAggiornatiInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -4459,6 +4738,7 @@ export type UserCreateWithoutWhatsappTemplateAggiornatiInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutWhatsappTemplateAggiornatiInput = {
@@ -4476,6 +4756,8 @@ export type UserUncheckedCreateWithoutWhatsappTemplateAggiornatiInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -4501,6 +4783,7 @@ export type UserUncheckedCreateWithoutWhatsappTemplateAggiornatiInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutWhatsappTemplateAggiornatiInput = {
@@ -4533,6 +4816,8 @@ export type UserUpdateWithoutWhatsappTemplateAggiornatiInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -4559,6 +4844,7 @@ export type UserUpdateWithoutWhatsappTemplateAggiornatiInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWhatsappTemplateAggiornatiInput = {
@@ -4576,6 +4862,8 @@ export type UserUncheckedUpdateWithoutWhatsappTemplateAggiornatiInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -4601,6 +4889,7 @@ export type UserUncheckedUpdateWithoutWhatsappTemplateAggiornatiInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutWhatsappMessaggiInviatiInput = {
@@ -4617,6 +4906,8 @@ export type UserCreateWithoutWhatsappMessaggiInviatiInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -4643,6 +4934,7 @@ export type UserCreateWithoutWhatsappMessaggiInviatiInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutWhatsappMessaggiInviatiInput = {
@@ -4660,6 +4952,8 @@ export type UserUncheckedCreateWithoutWhatsappMessaggiInviatiInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -4685,6 +4979,7 @@ export type UserUncheckedCreateWithoutWhatsappMessaggiInviatiInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutWhatsappMessaggiInviatiInput = {
@@ -4717,6 +5012,8 @@ export type UserUpdateWithoutWhatsappMessaggiInviatiInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -4743,6 +5040,7 @@ export type UserUpdateWithoutWhatsappMessaggiInviatiInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWhatsappMessaggiInviatiInput = {
@@ -4760,6 +5058,8 @@ export type UserUncheckedUpdateWithoutWhatsappMessaggiInviatiInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -4785,6 +5085,7 @@ export type UserUncheckedUpdateWithoutWhatsappMessaggiInviatiInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutQcIspezioniIniziateInput = {
@@ -4801,6 +5102,8 @@ export type UserCreateWithoutQcIspezioniIniziateInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -4827,6 +5130,7 @@ export type UserCreateWithoutQcIspezioniIniziateInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutQcIspezioniIniziateInput = {
@@ -4844,6 +5148,8 @@ export type UserUncheckedCreateWithoutQcIspezioniIniziateInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -4869,6 +5175,7 @@ export type UserUncheckedCreateWithoutQcIspezioniIniziateInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutQcIspezioniIniziateInput = {
@@ -4890,6 +5197,8 @@ export type UserCreateWithoutQcIspezioniApprovateInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -4916,6 +5225,7 @@ export type UserCreateWithoutQcIspezioniApprovateInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutQcIspezioniApprovateInput = {
@@ -4933,6 +5243,8 @@ export type UserUncheckedCreateWithoutQcIspezioniApprovateInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -4958,6 +5270,7 @@ export type UserUncheckedCreateWithoutQcIspezioniApprovateInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutQcIspezioniApprovateInput = {
@@ -4990,6 +5303,8 @@ export type UserUpdateWithoutQcIspezioniIniziateInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -5016,6 +5331,7 @@ export type UserUpdateWithoutQcIspezioniIniziateInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutQcIspezioniIniziateInput = {
@@ -5033,6 +5349,8 @@ export type UserUncheckedUpdateWithoutQcIspezioniIniziateInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -5058,6 +5376,7 @@ export type UserUncheckedUpdateWithoutQcIspezioniIniziateInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUpsertWithoutQcIspezioniApprovateInput = {
@@ -5085,6 +5404,8 @@ export type UserUpdateWithoutQcIspezioniApprovateInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -5111,6 +5432,7 @@ export type UserUpdateWithoutQcIspezioniApprovateInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutQcIspezioniApprovateInput = {
@@ -5128,6 +5450,8 @@ export type UserUncheckedUpdateWithoutQcIspezioniApprovateInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -5153,6 +5477,7 @@ export type UserUncheckedUpdateWithoutQcIspezioniApprovateInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutQcEsitiAggiornatiInput = {
@@ -5169,6 +5494,8 @@ export type UserCreateWithoutQcEsitiAggiornatiInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -5195,6 +5522,7 @@ export type UserCreateWithoutQcEsitiAggiornatiInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutQcEsitiAggiornatiInput = {
@@ -5212,6 +5540,8 @@ export type UserUncheckedCreateWithoutQcEsitiAggiornatiInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -5237,6 +5567,7 @@ export type UserUncheckedCreateWithoutQcEsitiAggiornatiInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutQcEsitiAggiornatiInput = {
@@ -5269,6 +5600,8 @@ export type UserUpdateWithoutQcEsitiAggiornatiInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -5295,6 +5628,7 @@ export type UserUpdateWithoutQcEsitiAggiornatiInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutQcEsitiAggiornatiInput = {
@@ -5312,6 +5646,8 @@ export type UserUncheckedUpdateWithoutQcEsitiAggiornatiInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -5337,6 +5673,7 @@ export type UserUncheckedUpdateWithoutQcEsitiAggiornatiInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutQcNonConformitaResponsabileInput = {
@@ -5353,6 +5690,8 @@ export type UserCreateWithoutQcNonConformitaResponsabileInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -5379,6 +5718,7 @@ export type UserCreateWithoutQcNonConformitaResponsabileInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutQcNonConformitaResponsabileInput = {
@@ -5396,6 +5736,8 @@ export type UserUncheckedCreateWithoutQcNonConformitaResponsabileInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -5421,6 +5763,7 @@ export type UserUncheckedCreateWithoutQcNonConformitaResponsabileInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutQcNonConformitaResponsabileInput = {
@@ -5442,6 +5785,8 @@ export type UserCreateWithoutQcNonConformitaCreateInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -5468,6 +5813,7 @@ export type UserCreateWithoutQcNonConformitaCreateInput = {
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutQcNonConformitaCreateInput = {
@@ -5485,6 +5831,8 @@ export type UserUncheckedCreateWithoutQcNonConformitaCreateInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -5510,6 +5858,7 @@ export type UserUncheckedCreateWithoutQcNonConformitaCreateInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutQcNonConformitaCreateInput = {
@@ -5542,6 +5891,8 @@ export type UserUpdateWithoutQcNonConformitaResponsabileInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -5568,6 +5919,7 @@ export type UserUpdateWithoutQcNonConformitaResponsabileInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutQcNonConformitaResponsabileInput = {
@@ -5585,6 +5937,8 @@ export type UserUncheckedUpdateWithoutQcNonConformitaResponsabileInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -5610,6 +5964,7 @@ export type UserUncheckedUpdateWithoutQcNonConformitaResponsabileInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUpsertWithoutQcNonConformitaCreateInput = {
@@ -5637,6 +5992,8 @@ export type UserUpdateWithoutQcNonConformitaCreateInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -5663,6 +6020,7 @@ export type UserUpdateWithoutQcNonConformitaCreateInput = {
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutQcNonConformitaCreateInput = {
@@ -5680,6 +6038,8 @@ export type UserUncheckedUpdateWithoutQcNonConformitaCreateInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -5705,6 +6065,7 @@ export type UserUncheckedUpdateWithoutQcNonConformitaCreateInput = {
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutQcEventiAttoreInput = {
@@ -5721,6 +6082,8 @@ export type UserCreateWithoutQcEventiAttoreInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -5747,6 +6110,7 @@ export type UserCreateWithoutQcEventiAttoreInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutQcEventiAttoreInput = {
@@ -5764,6 +6128,8 @@ export type UserUncheckedCreateWithoutQcEventiAttoreInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -5789,6 +6155,7 @@ export type UserUncheckedCreateWithoutQcEventiAttoreInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutQcEventiAttoreInput = {
@@ -5821,6 +6188,8 @@ export type UserUpdateWithoutQcEventiAttoreInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -5847,6 +6216,7 @@ export type UserUpdateWithoutQcEventiAttoreInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutQcEventiAttoreInput = {
@@ -5864,6 +6234,8 @@ export type UserUncheckedUpdateWithoutQcEventiAttoreInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -5889,6 +6261,7 @@ export type UserUncheckedUpdateWithoutQcEventiAttoreInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -5905,6 +6278,8 @@ export type UserCreateWithoutNotificationsInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
   vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
@@ -5931,6 +6306,7 @@ export type UserCreateWithoutNotificationsInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -5948,6 +6324,8 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
   stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
   timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
@@ -5973,6 +6351,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
   qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutRichiedenteInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -6005,6 +6384,8 @@ export type UserUpdateWithoutNotificationsInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
@@ -6031,6 +6412,7 @@ export type UserUpdateWithoutNotificationsInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -6048,6 +6430,8 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -6073,9 +6457,10 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
   qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
   loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
 }
 
-export type UserCreateManyTenantInput = {
+export type UserCreateWithoutGdprRichiesteInput = {
   id?: string
   nome: string
   cognome: string
@@ -6089,9 +6474,99 @@ export type UserCreateManyTenantInput = {
   emailVerificaScadenza?: Date | string | null
   resetPasswordToken?: string | null
   resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  vehiclesAssegnati?: Prisma.VehicleCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoCreateNestedManyWithoutAttoreInput
+  loanerBookingsCreate?: Prisma.LoanerBookingCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
-export type UserUpdateWithoutTenantInput = {
+export type UserUncheckedCreateWithoutGdprRichiesteInput = {
+  id?: string
+  tenantId: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
+  vehiclesAssegnati?: Prisma.VehicleUncheckedCreateNestedManyWithoutTecnicoInput
+  stageChanges?: Prisma.StageHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  timeEntries?: Prisma.TimeEntryUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTecnicoInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniDanni?: Prisma.DamageItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutCreatoDaInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutModificatoDaInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutInviatoDaInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedCreateNestedManyWithoutGestitaDaInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutCaricatoDaInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatoDaInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTecnicoInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutCorrezioneDaInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutAttoreInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutIniziataDaInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutApprovatoDaInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutAggiornatoDaInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutResponsabileInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutCreataDaInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedCreateNestedManyWithoutAttoreInput
+  loanerBookingsCreate?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutCreataDaInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutGdprRichiesteInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutGdprRichiesteInput, Prisma.UserUncheckedCreateWithoutGdprRichiesteInput>
+}
+
+export type UserUpsertWithoutGdprRichiesteInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutGdprRichiesteInput, Prisma.UserUncheckedUpdateWithoutGdprRichiesteInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutGdprRichiesteInput, Prisma.UserUncheckedCreateWithoutGdprRichiesteInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutGdprRichiesteInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutGdprRichiesteInput, Prisma.UserUncheckedUpdateWithoutGdprRichiesteInput>
+}
+
+export type UserUpdateWithoutGdprRichiesteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cognome?: Prisma.StringFieldUpdateOperationsInput | string
@@ -6105,6 +6580,9 @@ export type UserUpdateWithoutTenantInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
   vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
@@ -6133,8 +6611,9 @@ export type UserUpdateWithoutTenantInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutTenantInput = {
+export type UserUncheckedUpdateWithoutGdprRichiesteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cognome?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -6147,6 +6626,8 @@ export type UserUncheckedUpdateWithoutTenantInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
   stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
   timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
@@ -6175,6 +6656,114 @@ export type UserUncheckedUpdateWithoutTenantInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
+export type UserCreateManyTenantInput = {
+  id?: string
+  nome: string
+  cognome: string
+  email: string
+  passwordHash: string
+  ruolo?: $Enums.Role
+  attivo?: boolean
+  createdAt?: Date | string
+  emailVerificata?: boolean
+  emailVerificaToken?: string | null
+  emailVerificaScadenza?: Date | string | null
+  resetPasswordToken?: string | null
+  resetPasswordScadenza?: Date | string | null
+  condizioniAccettateVersione?: string | null
+  condizioniAccettateAt?: Date | string | null
+}
+
+export type UserUpdateWithoutTenantInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  vehiclesAssegnati?: Prisma.VehicleUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUpdateManyWithoutAttoreNestedInput
+  loanerBookingsCreate?: Prisma.LoanerBookingUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutRichiedenteNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTenantInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cognome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  ruolo?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  attivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emailVerificata?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailVerificaToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  vehiclesAssegnati?: Prisma.VehicleUncheckedUpdateManyWithoutTecnicoNestedInput
+  stageChanges?: Prisma.StageHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  timeEntries?: Prisma.TimeEntryUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  appuntamentiTecnico?: Prisma.AppointmentUncheckedUpdateManyWithoutTecnicoNestedInput
+  analisiDanniCreate?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniDanni?: Prisma.DamageItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  analisiGapCreate?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutCreatoDaNestedInput
+  correzioniGapAssicurazione?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutModificatoDaNestedInput
+  whatsappTemplateAggiornati?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  whatsappMessaggiInviati?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutInviatoDaNestedInput
+  portalActionsGestite?: Prisma.PortalActionUncheckedUpdateManyWithoutGestitaDaNestedInput
+  portalDocumentiCaricati?: Prisma.PortalDocumentUncheckedUpdateManyWithoutCaricatoDaNestedInput
+  workOrdersAssegnati?: Prisma.WorkOrderUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrdersCreati?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatoDaNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTecnicoNestedInput
+  workOrderTimeCorrezioni?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutCorrezioneDaNestedInput
+  workOrderEventiAttore?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  qcIspezioniIniziate?: Prisma.QcInspectionUncheckedUpdateManyWithoutIniziataDaNestedInput
+  qcIspezioniApprovate?: Prisma.QcInspectionUncheckedUpdateManyWithoutApprovatoDaNestedInput
+  qcEsitiAggiornati?: Prisma.QcCheckResultUncheckedUpdateManyWithoutAggiornatoDaNestedInput
+  qcNonConformitaResponsabile?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutResponsabileNestedInput
+  qcNonConformitaCreate?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutCreataDaNestedInput
+  qcEventiAttore?: Prisma.QcEventoUncheckedUpdateManyWithoutAttoreNestedInput
+  loanerBookingsCreate?: Prisma.LoanerBookingUncheckedUpdateManyWithoutCreataDaNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutRichiedenteNestedInput
+}
+
 export type UserUncheckedUpdateManyWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
@@ -6189,6 +6778,8 @@ export type UserUncheckedUpdateManyWithoutTenantInput = {
   emailVerificaScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   resetPasswordToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resetPasswordScadenza?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  condizioniAccettateVersione?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condizioniAccettateAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -6223,6 +6814,7 @@ export type UserCountOutputType = {
   qcEventiAttore: number
   loanerBookingsCreate: number
   notifications: number
+  gdprRichieste: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -6252,6 +6844,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   qcEventiAttore?: boolean | UserCountOutputTypeCountQcEventiAttoreArgs
   loanerBookingsCreate?: boolean | UserCountOutputTypeCountLoanerBookingsCreateArgs
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+  gdprRichieste?: boolean | UserCountOutputTypeCountGdprRichiesteArgs
 }
 
 /**
@@ -6446,6 +7039,13 @@ export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.NotificationWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountGdprRichiesteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GdprRichiestaWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -6462,6 +7062,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   emailVerificaScadenza?: boolean
   resetPasswordToken?: boolean
   resetPasswordScadenza?: boolean
+  condizioniAccettateVersione?: boolean
+  condizioniAccettateAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   vehiclesAssegnati?: boolean | Prisma.User$vehiclesAssegnatiArgs<ExtArgs>
   stageChanges?: boolean | Prisma.User$stageChangesArgs<ExtArgs>
@@ -6489,6 +7091,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   qcEventiAttore?: boolean | Prisma.User$qcEventiAttoreArgs<ExtArgs>
   loanerBookingsCreate?: boolean | Prisma.User$loanerBookingsCreateArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  gdprRichieste?: boolean | Prisma.User$gdprRichiesteArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -6507,6 +7110,8 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   emailVerificaScadenza?: boolean
   resetPasswordToken?: boolean
   resetPasswordScadenza?: boolean
+  condizioniAccettateVersione?: boolean
+  condizioniAccettateAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -6525,6 +7130,8 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   emailVerificaScadenza?: boolean
   resetPasswordToken?: boolean
   resetPasswordScadenza?: boolean
+  condizioniAccettateVersione?: boolean
+  condizioniAccettateAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -6543,9 +7150,11 @@ export type UserSelectScalar = {
   emailVerificaScadenza?: boolean
   resetPasswordToken?: boolean
   resetPasswordScadenza?: boolean
+  condizioniAccettateVersione?: boolean
+  condizioniAccettateAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "nome" | "cognome" | "email" | "passwordHash" | "ruolo" | "attivo" | "createdAt" | "emailVerificata" | "emailVerificaToken" | "emailVerificaScadenza" | "resetPasswordToken" | "resetPasswordScadenza", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "nome" | "cognome" | "email" | "passwordHash" | "ruolo" | "attivo" | "createdAt" | "emailVerificata" | "emailVerificaToken" | "emailVerificaScadenza" | "resetPasswordToken" | "resetPasswordScadenza" | "condizioniAccettateVersione" | "condizioniAccettateAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   vehiclesAssegnati?: boolean | Prisma.User$vehiclesAssegnatiArgs<ExtArgs>
@@ -6574,6 +7183,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   qcEventiAttore?: boolean | Prisma.User$qcEventiAttoreArgs<ExtArgs>
   loanerBookingsCreate?: boolean | Prisma.User$loanerBookingsCreateArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  gdprRichieste?: boolean | Prisma.User$gdprRichiesteArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -6613,6 +7223,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     qcEventiAttore: Prisma.$QcEventoPayload<ExtArgs>[]
     loanerBookingsCreate: Prisma.$LoanerBookingPayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
+    gdprRichieste: Prisma.$GdprRichiestaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -6629,6 +7240,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     emailVerificaScadenza: Date | null
     resetPasswordToken: string | null
     resetPasswordScadenza: Date | null
+    condizioniAccettateVersione: string | null
+    condizioniAccettateAt: Date | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -7050,6 +7663,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   qcEventiAttore<T extends Prisma.User$qcEventiAttoreArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$qcEventiAttoreArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcEventoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   loanerBookingsCreate<T extends Prisma.User$loanerBookingsCreateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$loanerBookingsCreateArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoanerBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  gdprRichieste<T extends Prisma.User$gdprRichiesteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$gdprRichiesteArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GdprRichiestaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7093,6 +7707,8 @@ export interface UserFieldRefs {
   readonly emailVerificaScadenza: Prisma.FieldRef<"User", 'DateTime'>
   readonly resetPasswordToken: Prisma.FieldRef<"User", 'String'>
   readonly resetPasswordScadenza: Prisma.FieldRef<"User", 'DateTime'>
+  readonly condizioniAccettateVersione: Prisma.FieldRef<"User", 'String'>
+  readonly condizioniAccettateAt: Prisma.FieldRef<"User", 'DateTime'>
 }
     
 
@@ -8115,6 +8731,30 @@ export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
+}
+
+/**
+ * User.gdprRichieste
+ */
+export type User$gdprRichiesteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GdprRichiesta
+   */
+  select?: Prisma.GdprRichiestaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GdprRichiesta
+   */
+  omit?: Prisma.GdprRichiestaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GdprRichiestaInclude<ExtArgs> | null
+  where?: Prisma.GdprRichiestaWhereInput
+  orderBy?: Prisma.GdprRichiestaOrderByWithRelationInput | Prisma.GdprRichiestaOrderByWithRelationInput[]
+  cursor?: Prisma.GdprRichiestaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GdprRichiestaScalarFieldEnum | Prisma.GdprRichiestaScalarFieldEnum[]
 }
 
 /**

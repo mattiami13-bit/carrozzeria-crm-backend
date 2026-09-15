@@ -174,6 +174,7 @@ function AuthScreen({ onAuth, connError, setConnError }) {
   const [error, setError] = useState(null);
   const [notice, setNotice] = useState(null);
   const [emailDaVerificare, setEmailDaVerificare] = useState(null);
+  const [condizioniAccettate, setCondizioniAccettate] = useState(false);
   const api = useApi(null);
 
   const [form, setForm] = useState({
@@ -192,7 +193,7 @@ function AuthScreen({ onAuth, connError, setConnError }) {
     setConnError(false);
     try {
       const path = mode === "login" ? "/api/auth/login" : "/api/auth/register";
-      const body = mode === "login" ? { email: form.email, password: form.password } : form;
+      const body = mode === "login" ? { email: form.email, password: form.password } : { ...form, condizioniAccettate };
       const data = await api(path, { method: "POST", body: JSON.stringify(body) });
       onAuth(data.token, data.user);
     } catch (e) {
@@ -259,6 +260,16 @@ function AuthScreen({ onAuth, connError, setConnError }) {
         <Field label="Email" value={form.email} onChange={set("email")} />
         <Field label="Password" type="password" value={form.password} onChange={set("password")} />
 
+        {mode === "register" && (
+          <label style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 12, color: "#8D9099", marginBottom: 14, cursor: "pointer", lineHeight: 1.5 }}>
+            <input type="checkbox" checked={condizioniAccettate} onChange={(e) => setCondizioniAccettate(e.target.checked)} style={{ marginTop: 2 }} />
+            <span>
+              Accetto i <a href={`${API}/termini/`} target="_blank" rel="noopener" style={{ color: "#2F80ED" }}>Termini e Condizioni</a> e
+              {" "}l'<a href={`${API}/privacy/`} target="_blank" rel="noopener" style={{ color: "#2F80ED" }}>Informativa Privacy</a>
+            </span>
+          </label>
+        )}
+
         {mode === "login" && (
           <div style={{ textAlign: "right", marginTop: -6, marginBottom: 14 }}>
             <button onClick={() => setMode("password-dimenticata")} style={{
@@ -269,9 +280,10 @@ function AuthScreen({ onAuth, connError, setConnError }) {
 
         {error && <div style={{ color: "#B4472E", fontSize: 13, marginBottom: 8 }}>{error}</div>}
 
-        <button onClick={submit} disabled={loading} style={{
+        <button onClick={submit} disabled={loading || (mode === "register" && !condizioniAccettate)} style={{
           width: "100%", marginTop: 8, padding: "11px 0", borderRadius: 10, border: "none",
           background: "#F3F1EC", color: "#15171B", fontWeight: 600, fontSize: 14,
+          opacity: mode === "register" && !condizioniAccettate ? 0.5 : 1,
         }}>
           {loading ? "Attendere…" : mode === "login" ? "Accedi" : "Crea carrozzeria"}
         </button>
@@ -602,6 +614,7 @@ function Dashboard({ token, user, onLogout }) {
   const [sinistriClientFilter, setSinistriClientFilter] = useState(null);
   const [copilotOpenVehicleId, setCopilotOpenVehicleId] = useState(null);
   const [cambiaPasswordAperto, setCambiaPasswordAperto] = useState(false);
+  const [privacyDatiAperto, setPrivacyDatiAperto] = useState(false);
   const api = useApi(token);
   const ruolo = decodificaRuolo(token);
 
@@ -656,6 +669,12 @@ function Dashboard({ token, user, onLogout }) {
           width: "100%", textAlign: "left", padding: "9px 12px", borderRadius: 8, border: "none", marginTop: 20,
           background: "transparent", color: "#8D9099", fontSize: 13,
         }}>Cambia password</button>
+        {ruolo === "ADMIN" && (
+          <button onClick={() => setPrivacyDatiAperto(true)} style={{
+            width: "100%", textAlign: "left", padding: "9px 12px", borderRadius: 8, border: "none",
+            background: "transparent", color: "#8D9099", fontSize: 13,
+          }}>Privacy e dati</button>
+        )}
         <button onClick={onLogout} style={{
           width: "100%", textAlign: "left", padding: "9px 12px", borderRadius: 8, border: "none",
           background: "transparent", color: "#B4472E", fontSize: 13,
@@ -664,6 +683,7 @@ function Dashboard({ token, user, onLogout }) {
       <main style={{ flex: 1, padding: "28px 32px", overflowY: "auto" }}>
         {user && user.emailVerificata === false && <VerificaEmailBanner api={api} />}
         {cambiaPasswordAperto && <CambiaPasswordModal api={api} onClose={() => setCambiaPasswordAperto(false)} />}
+        {privacyDatiAperto && <PrivacyDatiModal api={api} onClose={() => setPrivacyDatiAperto(false)} />}
         {tab === "executive" && ruolo === "ADMIN" && <><MorningBriefing api={api} onOpen={apriPraticaVeicolo} /><ExecutiveDashboard api={api} onOpen={apriPraticaVeicolo} /></>}
         {tab === "dashboard" && <><DashboardView api={api} ruolo={ruolo} /><PartsDashboard api={api} onOpen={apriPraticaVeicolo} compact /></>}
         {tab === "parts-tracking" && <PartsDashboard api={api} onOpen={apriPraticaVeicolo} />}
@@ -690,7 +710,7 @@ function Dashboard({ token, user, onLogout }) {
             onClearClientFilter={() => setSinistriClientFilter(null)}
           />
         )}
-        {tab === "clienti" && <ClientiView api={api} onOpenSinistri={apriSinistriCliente} />}
+        {tab === "clienti" && <ClientiView api={api} ruolo={ruolo} onOpenSinistri={apriSinistriCliente} />}
         {tab === "registro" && ruolo === "ADMIN" && <RegistroAttivitaView api={api} />}
         {tab === "whatsapp" && ruolo === "ADMIN" && <WhatsappSettingsView api={api} />}
         {tab === "qc-checklist" && ruolo === "ADMIN" && <QcChecklistSettingsView api={api} />}
@@ -798,6 +818,105 @@ function CambiaPasswordModal({ api, onClose }) {
             }}>{loading ? "Attendere…" : "Aggiorna password"}</button>
           </>
         )}
+      </div>
+    </div>
+  );
+}
+
+function PrivacyDatiModal({ api, onClose }) {
+  const [esportando, setEsportando] = useState(false);
+  const [errore, setErrore] = useState(null);
+  const [richiestaCancellazione, setRichiestaCancellazione] = useState(false);
+  const [cancellazioneInviata, setCancellazioneInviata] = useState(false);
+  const [inviandoCancellazione, setInviandoCancellazione] = useState(false);
+
+  const esporta = async () => {
+    setEsportando(true);
+    setErrore(null);
+    try {
+      const blob = await api("/api/gdpr/export", { responseType: "blob" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `export-dati-rifless-${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      setErrore(e.message);
+    } finally {
+      setEsportando(false);
+    }
+  };
+
+  const confermaCancellazione = async () => {
+    setInviandoCancellazione(true);
+    setErrore(null);
+    try {
+      await api("/api/gdpr/richiesta-cancellazione-account", { method: "POST", body: JSON.stringify({}) });
+      setCancellazioneInviata(true);
+      setRichiestaCancellazione(false);
+    } catch (e) {
+      setErrore(e.message);
+    } finally {
+      setInviandoCancellazione(false);
+    }
+  };
+
+  return (
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, background: "rgba(27,26,23,0.5)", display: "flex",
+      alignItems: "center", justifyContent: "center", zIndex: 55,
+    }}>
+      <div onClick={(e) => e.stopPropagation()} style={{
+        background: "#15171B", borderRadius: 16, width: 420, padding: 24, border: "1px solid #2A2E34",
+      }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+          <h2 style={{ fontSize: 16, fontWeight: 700, margin: 0 }}>Privacy e dati</h2>
+          <button onClick={onClose} style={{
+            border: "none", background: "#0A0B0D", width: 26, height: 26, borderRadius: 7, fontSize: 13, color: "#8D9099",
+          }}>✕</button>
+        </div>
+
+        {errore && <div style={{ color: "#B4472E", fontSize: 13, marginBottom: 12 }}>{errore}</div>}
+
+        <div style={{ marginBottom: 20 }}>
+          <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 4 }}>Esporta tutti i dati</div>
+          <p style={{ fontSize: 12, color: "#8D9099", margin: "0 0 10px", lineHeight: 1.5 }}>
+            Scarica un file con i dati operativi principali della carrozzeria (clienti, veicoli, preventivi, sinistri, appuntamenti).
+          </p>
+          <button onClick={esporta} disabled={esportando} style={{
+            padding: "9px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "transparent", color: "#F3F1EC", fontSize: 13,
+          }}>{esportando ? "Esportazione…" : "Esporta tutti i dati"}</button>
+        </div>
+
+        <div style={{ borderTop: "1px solid #2A2E34", paddingTop: 18 }}>
+          <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 4, color: "#B4472E" }}>Richiedi cancellazione account</div>
+          <p style={{ fontSize: 12, color: "#8D9099", margin: "0 0 10px", lineHeight: 1.5 }}>
+            Registra una richiesta di cancellazione dell'intera organizzazione. Non elimina nulla immediatamente: viene elaborata manualmente.
+          </p>
+
+          {cancellazioneInviata ? (
+            <div style={{ background: "#16261E", color: "#6FBF8E", fontSize: 12.5, padding: 10, borderRadius: 8, border: "1px solid #2A4A3A" }}>
+              Richiesta registrata. Nessun dato è stato ancora eliminato.
+            </div>
+          ) : richiestaCancellazione ? (
+            <div>
+              <p style={{ fontSize: 12.5, color: "#F3F1EC", marginBottom: 10 }}>Confermi di voler registrare la richiesta di cancellazione?</p>
+              <div style={{ display: "flex", gap: 8 }}>
+                <button onClick={confermaCancellazione} disabled={inviandoCancellazione} style={{
+                  padding: "8px 14px", borderRadius: 8, border: "none", background: "#B4472E", color: "#fff", fontSize: 12.5, fontWeight: 600,
+                }}>{inviandoCancellazione ? "Invio…" : "Sì, conferma richiesta"}</button>
+                <button onClick={() => setRichiestaCancellazione(false)} style={{
+                  padding: "8px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "transparent", color: "#8D9099", fontSize: 12.5,
+                }}>Annulla</button>
+              </div>
+            </div>
+          ) : (
+            <button onClick={() => setRichiestaCancellazione(true)} style={{
+              padding: "9px 14px", borderRadius: 8, border: "1px solid #4A2A2A", background: "transparent", color: "#B4472E", fontSize: 13,
+            }}>Richiedi cancellazione account</button>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -5294,7 +5413,7 @@ function QcChecklistSettingsView({ api }) {
   );
 }
 
-function ClientiView({ api, onOpenSinistri }) {
+function ClientiView({ api, ruolo, onOpenSinistri }) {
   const [clients, setClients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -5343,6 +5462,7 @@ function ClientiView({ api, onOpenSinistri }) {
         <ClientDetailModal
           clientId={selectedId}
           api={api}
+          ruolo={ruolo}
           onClose={() => setSelectedId(null)}
           onSaved={() => { setSelectedId(null); load(); }}
         />
@@ -5350,11 +5470,45 @@ function ClientiView({ api, onOpenSinistri }) {
     </div>
   );
 }
-function ClientDetailModal({ clientId, api, onClose, onSaved }) {
+function ClientDetailModal({ clientId, api, ruolo, onClose, onSaved }) {
   const [form, setForm] = useState(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
+  const [esportando, setEsportando] = useState(false);
+  const [confermaCancellazione, setConfermaCancellazione] = useState(false);
+  const [cancellando, setCancellando] = useState(false);
+
+  const esportaCliente = async () => {
+    setEsportando(true);
+    setError(null);
+    try {
+      const blob = await api(`/api/clients/${clientId}/export`, { responseType: "blob" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `export-cliente-${clientId.slice(-6)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setEsportando(false);
+    }
+  };
+
+  const richiediCancellazione = async () => {
+    setCancellando(true);
+    setError(null);
+    try {
+      await api(`/api/clients/${clientId}/richiesta-cancellazione`, { method: "POST", body: JSON.stringify({}) });
+      onSaved();
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setCancellando(false);
+    }
+  };
 
   useEffect(() => {
     api(`/api/clients/${clientId}`).then((c) => {
@@ -5420,6 +5574,34 @@ function ClientDetailModal({ clientId, api, onClose, onSaved }) {
                 <span>Notifiche automatiche attive per questo cliente (disattivabile in qualsiasi momento senza revocare il consenso).</span>
               </label>
             </div>
+
+            {["ADMIN", "AMMINISTRAZIONE"].includes(ruolo) && (
+              <div style={{ marginTop: 16, padding: 12, borderRadius: 10, border: "1px solid #2A2E34" }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: "#8D9099", marginBottom: 8 }}>Privacy e dati (GDPR)</div>
+                <button onClick={esportaCliente} disabled={esportando} style={{
+                  padding: "7px 12px", borderRadius: 7, border: "1px solid #2A2E34", background: "transparent", color: "#F3F1EC", fontSize: 12, marginRight: 8,
+                }}>{esportando ? "Esportazione…" : "Esporta dati cliente"}</button>
+
+                {ruolo === "ADMIN" && !confermaCancellazione && (
+                  <button onClick={() => setConfermaCancellazione(true)} style={{
+                    padding: "7px 12px", borderRadius: 7, border: "1px solid #4A2A2A", background: "transparent", color: "#B4472E", fontSize: 12,
+                  }}>Richiedi cancellazione dati</button>
+                )}
+                {confermaCancellazione && (
+                  <div style={{ marginTop: 10 }}>
+                    <p style={{ fontSize: 12, color: "#F3F1EC", marginBottom: 8 }}>
+                      Confermi? Nome, contatti e dati fiscali del cliente verranno anonimizzati in modo permanente. Veicoli e preventivi collegati restano per obblighi contabili/di garanzia.
+                    </p>
+                    <button onClick={richiediCancellazione} disabled={cancellando} style={{
+                      padding: "7px 12px", borderRadius: 7, border: "none", background: "#B4472E", color: "#fff", fontSize: 12, fontWeight: 600, marginRight: 8,
+                    }}>{cancellando ? "Elaborazione…" : "Sì, anonimizza"}</button>
+                    <button onClick={() => setConfermaCancellazione(false)} style={{
+                      padding: "7px 12px", borderRadius: 7, border: "1px solid #2A2E34", background: "transparent", color: "#8D9099", fontSize: 12,
+                    }}>Annulla</button>
+                  </div>
+                )}
+              </div>
+            )}
 
             {error && <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 12, padding: 10, borderRadius: 8, marginTop: 12 }}>{error}</div>}
 

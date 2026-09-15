@@ -39,6 +39,8 @@ export type ClientMinAggregateOutputType = {
   notificheWhatsappConsenso: boolean | null
   notificheWhatsappConsensoAt: Date | null
   notificheWhatsappAttive: boolean | null
+  datiAnonimizzati: boolean | null
+  anonimizzatoAt: Date | null
 }
 
 export type ClientMaxAggregateOutputType = {
@@ -56,6 +58,8 @@ export type ClientMaxAggregateOutputType = {
   notificheWhatsappConsenso: boolean | null
   notificheWhatsappConsensoAt: Date | null
   notificheWhatsappAttive: boolean | null
+  datiAnonimizzati: boolean | null
+  anonimizzatoAt: Date | null
 }
 
 export type ClientCountAggregateOutputType = {
@@ -73,6 +77,8 @@ export type ClientCountAggregateOutputType = {
   notificheWhatsappConsenso: number
   notificheWhatsappConsensoAt: number
   notificheWhatsappAttive: number
+  datiAnonimizzati: number
+  anonimizzatoAt: number
   _all: number
 }
 
@@ -92,6 +98,8 @@ export type ClientMinAggregateInputType = {
   notificheWhatsappConsenso?: true
   notificheWhatsappConsensoAt?: true
   notificheWhatsappAttive?: true
+  datiAnonimizzati?: true
+  anonimizzatoAt?: true
 }
 
 export type ClientMaxAggregateInputType = {
@@ -109,6 +117,8 @@ export type ClientMaxAggregateInputType = {
   notificheWhatsappConsenso?: true
   notificheWhatsappConsensoAt?: true
   notificheWhatsappAttive?: true
+  datiAnonimizzati?: true
+  anonimizzatoAt?: true
 }
 
 export type ClientCountAggregateInputType = {
@@ -126,6 +136,8 @@ export type ClientCountAggregateInputType = {
   notificheWhatsappConsenso?: true
   notificheWhatsappConsensoAt?: true
   notificheWhatsappAttive?: true
+  datiAnonimizzati?: true
+  anonimizzatoAt?: true
   _all?: true
 }
 
@@ -216,6 +228,8 @@ export type ClientGroupByOutputType = {
   notificheWhatsappConsenso: boolean
   notificheWhatsappConsensoAt: Date | null
   notificheWhatsappAttive: boolean
+  datiAnonimizzati: boolean
+  anonimizzatoAt: Date | null
   _count: ClientCountAggregateOutputType | null
   _min: ClientMinAggregateOutputType | null
   _max: ClientMaxAggregateOutputType | null
@@ -254,6 +268,8 @@ export type ClientWhereInput = {
   notificheWhatsappConsenso?: Prisma.BoolFilter<"Client"> | boolean
   notificheWhatsappConsensoAt?: Prisma.DateTimeNullableFilter<"Client"> | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFilter<"Client"> | boolean
+  datiAnonimizzati?: Prisma.BoolFilter<"Client"> | boolean
+  anonimizzatoAt?: Prisma.DateTimeNullableFilter<"Client"> | Date | string | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   vehicles?: Prisma.VehicleListRelationFilter
   quotes?: Prisma.QuoteListRelationFilter
@@ -279,6 +295,8 @@ export type ClientOrderByWithRelationInput = {
   notificheWhatsappConsenso?: Prisma.SortOrder
   notificheWhatsappConsensoAt?: Prisma.SortOrderInput | Prisma.SortOrder
   notificheWhatsappAttive?: Prisma.SortOrder
+  datiAnonimizzati?: Prisma.SortOrder
+  anonimizzatoAt?: Prisma.SortOrderInput | Prisma.SortOrder
   tenant?: Prisma.TenantOrderByWithRelationInput
   vehicles?: Prisma.VehicleOrderByRelationAggregateInput
   quotes?: Prisma.QuoteOrderByRelationAggregateInput
@@ -307,6 +325,8 @@ export type ClientWhereUniqueInput = Prisma.AtLeast<{
   notificheWhatsappConsenso?: Prisma.BoolFilter<"Client"> | boolean
   notificheWhatsappConsensoAt?: Prisma.DateTimeNullableFilter<"Client"> | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFilter<"Client"> | boolean
+  datiAnonimizzati?: Prisma.BoolFilter<"Client"> | boolean
+  anonimizzatoAt?: Prisma.DateTimeNullableFilter<"Client"> | Date | string | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   vehicles?: Prisma.VehicleListRelationFilter
   quotes?: Prisma.QuoteListRelationFilter
@@ -332,6 +352,8 @@ export type ClientOrderByWithAggregationInput = {
   notificheWhatsappConsenso?: Prisma.SortOrder
   notificheWhatsappConsensoAt?: Prisma.SortOrderInput | Prisma.SortOrder
   notificheWhatsappAttive?: Prisma.SortOrder
+  datiAnonimizzati?: Prisma.SortOrder
+  anonimizzatoAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ClientCountOrderByAggregateInput
   _max?: Prisma.ClientMaxOrderByAggregateInput
   _min?: Prisma.ClientMinOrderByAggregateInput
@@ -355,6 +377,8 @@ export type ClientScalarWhereWithAggregatesInput = {
   notificheWhatsappConsenso?: Prisma.BoolWithAggregatesFilter<"Client"> | boolean
   notificheWhatsappConsensoAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Client"> | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolWithAggregatesFilter<"Client"> | boolean
+  datiAnonimizzati?: Prisma.BoolWithAggregatesFilter<"Client"> | boolean
+  anonimizzatoAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Client"> | Date | string | null
 }
 
 export type ClientCreateInput = {
@@ -371,6 +395,8 @@ export type ClientCreateInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutClientsInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutClientInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutClientInput
@@ -396,6 +422,8 @@ export type ClientUncheckedCreateInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutClientInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutClientInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
@@ -419,6 +447,8 @@ export type ClientUpdateInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutClientsNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutClientNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutClientNestedInput
@@ -444,6 +474,8 @@ export type ClientUncheckedUpdateInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutClientNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
@@ -468,6 +500,8 @@ export type ClientCreateManyInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
 }
 
 export type ClientUpdateManyMutationInput = {
@@ -484,6 +518,8 @@ export type ClientUpdateManyMutationInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ClientUncheckedUpdateManyInput = {
@@ -501,6 +537,8 @@ export type ClientUncheckedUpdateManyInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ClientListRelationFilter = {
@@ -528,6 +566,8 @@ export type ClientCountOrderByAggregateInput = {
   notificheWhatsappConsenso?: Prisma.SortOrder
   notificheWhatsappConsensoAt?: Prisma.SortOrder
   notificheWhatsappAttive?: Prisma.SortOrder
+  datiAnonimizzati?: Prisma.SortOrder
+  anonimizzatoAt?: Prisma.SortOrder
 }
 
 export type ClientMaxOrderByAggregateInput = {
@@ -545,6 +585,8 @@ export type ClientMaxOrderByAggregateInput = {
   notificheWhatsappConsenso?: Prisma.SortOrder
   notificheWhatsappConsensoAt?: Prisma.SortOrder
   notificheWhatsappAttive?: Prisma.SortOrder
+  datiAnonimizzati?: Prisma.SortOrder
+  anonimizzatoAt?: Prisma.SortOrder
 }
 
 export type ClientMinOrderByAggregateInput = {
@@ -562,6 +604,8 @@ export type ClientMinOrderByAggregateInput = {
   notificheWhatsappConsenso?: Prisma.SortOrder
   notificheWhatsappConsensoAt?: Prisma.SortOrder
   notificheWhatsappAttive?: Prisma.SortOrder
+  datiAnonimizzati?: Prisma.SortOrder
+  anonimizzatoAt?: Prisma.SortOrder
 }
 
 export type ClientScalarRelationFilter = {
@@ -730,6 +774,8 @@ export type ClientCreateWithoutTenantInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   vehicles?: Prisma.VehicleCreateNestedManyWithoutClientInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutClientInput
   documents?: Prisma.DocumentCreateNestedManyWithoutClientInput
@@ -753,6 +799,8 @@ export type ClientUncheckedCreateWithoutTenantInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutClientInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutClientInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
@@ -806,6 +854,8 @@ export type ClientScalarWhereInput = {
   notificheWhatsappConsenso?: Prisma.BoolFilter<"Client"> | boolean
   notificheWhatsappConsensoAt?: Prisma.DateTimeNullableFilter<"Client"> | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFilter<"Client"> | boolean
+  datiAnonimizzati?: Prisma.BoolFilter<"Client"> | boolean
+  anonimizzatoAt?: Prisma.DateTimeNullableFilter<"Client"> | Date | string | null
 }
 
 export type ClientCreateWithoutVehiclesInput = {
@@ -822,6 +872,8 @@ export type ClientCreateWithoutVehiclesInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutClientsInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutClientInput
   documents?: Prisma.DocumentCreateNestedManyWithoutClientInput
@@ -846,6 +898,8 @@ export type ClientUncheckedCreateWithoutVehiclesInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutClientInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutClientInput
@@ -884,6 +938,8 @@ export type ClientUpdateWithoutVehiclesInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutClientsNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUpdateManyWithoutClientNestedInput
@@ -908,6 +964,8 @@ export type ClientUncheckedUpdateWithoutVehiclesInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutClientNestedInput
@@ -930,6 +988,8 @@ export type ClientCreateWithoutQuotesInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutClientsInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutClientInput
   documents?: Prisma.DocumentCreateNestedManyWithoutClientInput
@@ -954,6 +1014,8 @@ export type ClientUncheckedCreateWithoutQuotesInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutClientInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutClientInput
@@ -992,6 +1054,8 @@ export type ClientUpdateWithoutQuotesInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutClientsNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUpdateManyWithoutClientNestedInput
@@ -1016,6 +1080,8 @@ export type ClientUncheckedUpdateWithoutQuotesInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutClientNestedInput
@@ -1038,6 +1104,8 @@ export type ClientCreateWithoutLoanerBookingsInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutClientsInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutClientInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutClientInput
@@ -1062,6 +1130,8 @@ export type ClientUncheckedCreateWithoutLoanerBookingsInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutClientInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutClientInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
@@ -1100,6 +1170,8 @@ export type ClientUpdateWithoutLoanerBookingsInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutClientsNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutClientNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutClientNestedInput
@@ -1124,6 +1196,8 @@ export type ClientUncheckedUpdateWithoutLoanerBookingsInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutClientNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
@@ -1146,6 +1220,8 @@ export type ClientCreateWithoutAppointmentsInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutClientsInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutClientInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutClientInput
@@ -1170,6 +1246,8 @@ export type ClientUncheckedCreateWithoutAppointmentsInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutClientInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutClientInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
@@ -1208,6 +1286,8 @@ export type ClientUpdateWithoutAppointmentsInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutClientsNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutClientNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutClientNestedInput
@@ -1232,6 +1312,8 @@ export type ClientUncheckedUpdateWithoutAppointmentsInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutClientNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
@@ -1254,6 +1336,8 @@ export type ClientCreateWithoutDocumentsInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutClientsInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutClientInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutClientInput
@@ -1278,6 +1362,8 @@ export type ClientUncheckedCreateWithoutDocumentsInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutClientInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutClientInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutClientInput
@@ -1316,6 +1402,8 @@ export type ClientUpdateWithoutDocumentsInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutClientsNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutClientNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutClientNestedInput
@@ -1340,6 +1428,8 @@ export type ClientUncheckedUpdateWithoutDocumentsInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutClientNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutClientNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutClientNestedInput
@@ -1362,6 +1452,8 @@ export type ClientCreateWithoutSinistriInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutClientsInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutClientInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutClientInput
@@ -1386,6 +1478,8 @@ export type ClientUncheckedCreateWithoutSinistriInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutClientInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutClientInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
@@ -1424,6 +1518,8 @@ export type ClientUpdateWithoutSinistriInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutClientsNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutClientNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutClientNestedInput
@@ -1448,6 +1544,8 @@ export type ClientUncheckedUpdateWithoutSinistriInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutClientNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
@@ -1470,6 +1568,8 @@ export type ClientCreateWithoutWhatsappMessagesInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   tenant: Prisma.TenantCreateNestedOneWithoutClientsInput
   vehicles?: Prisma.VehicleCreateNestedManyWithoutClientInput
   quotes?: Prisma.QuoteCreateNestedManyWithoutClientInput
@@ -1494,6 +1594,8 @@ export type ClientUncheckedCreateWithoutWhatsappMessagesInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
   vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutClientInput
   quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutClientInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutClientInput
@@ -1532,6 +1634,8 @@ export type ClientUpdateWithoutWhatsappMessagesInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tenant?: Prisma.TenantUpdateOneRequiredWithoutClientsNestedInput
   vehicles?: Prisma.VehicleUpdateManyWithoutClientNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutClientNestedInput
@@ -1556,6 +1660,8 @@ export type ClientUncheckedUpdateWithoutWhatsappMessagesInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutClientNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
@@ -1578,6 +1684,8 @@ export type ClientCreateManyTenantInput = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: Date | string | null
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: Date | string | null
 }
 
 export type ClientUpdateWithoutTenantInput = {
@@ -1594,6 +1702,8 @@ export type ClientUpdateWithoutTenantInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehicles?: Prisma.VehicleUpdateManyWithoutClientNestedInput
   quotes?: Prisma.QuoteUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUpdateManyWithoutClientNestedInput
@@ -1617,6 +1727,8 @@ export type ClientUncheckedUpdateWithoutTenantInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutClientNestedInput
   quotes?: Prisma.QuoteUncheckedUpdateManyWithoutClientNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutClientNestedInput
@@ -1640,6 +1752,8 @@ export type ClientUncheckedUpdateManyWithoutTenantInput = {
   notificheWhatsappConsenso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notificheWhatsappConsensoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notificheWhatsappAttive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  datiAnonimizzati?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  anonimizzatoAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -1742,6 +1856,8 @@ export type ClientSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: boolean
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   vehicles?: boolean | Prisma.Client$vehiclesArgs<ExtArgs>
   quotes?: boolean | Prisma.Client$quotesArgs<ExtArgs>
@@ -1768,6 +1884,8 @@ export type ClientSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: boolean
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["client"]>
 
@@ -1786,6 +1904,8 @@ export type ClientSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: boolean
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["client"]>
 
@@ -1804,9 +1924,11 @@ export type ClientSelectScalar = {
   notificheWhatsappConsenso?: boolean
   notificheWhatsappConsensoAt?: boolean
   notificheWhatsappAttive?: boolean
+  datiAnonimizzati?: boolean
+  anonimizzatoAt?: boolean
 }
 
-export type ClientOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "nome" | "cognome" | "telefono" | "email" | "codiceFiscale" | "partitaIva" | "indirizzo" | "noteInterne" | "createdAt" | "notificheWhatsappConsenso" | "notificheWhatsappConsensoAt" | "notificheWhatsappAttive", ExtArgs["result"]["client"]>
+export type ClientOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "nome" | "cognome" | "telefono" | "email" | "codiceFiscale" | "partitaIva" | "indirizzo" | "noteInterne" | "createdAt" | "notificheWhatsappConsenso" | "notificheWhatsappConsensoAt" | "notificheWhatsappAttive" | "datiAnonimizzati" | "anonimizzatoAt", ExtArgs["result"]["client"]>
 export type ClientInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   vehicles?: boolean | Prisma.Client$vehiclesArgs<ExtArgs>
@@ -1852,6 +1974,8 @@ export type $ClientPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     notificheWhatsappConsenso: boolean
     notificheWhatsappConsensoAt: Date | null
     notificheWhatsappAttive: boolean
+    datiAnonimizzati: boolean
+    anonimizzatoAt: Date | null
   }, ExtArgs["result"]["client"]>
   composites: {}
 }
@@ -2297,6 +2421,8 @@ export interface ClientFieldRefs {
   readonly notificheWhatsappConsenso: Prisma.FieldRef<"Client", 'Boolean'>
   readonly notificheWhatsappConsensoAt: Prisma.FieldRef<"Client", 'DateTime'>
   readonly notificheWhatsappAttive: Prisma.FieldRef<"Client", 'Boolean'>
+  readonly datiAnonimizzati: Prisma.FieldRef<"Client", 'Boolean'>
+  readonly anonimizzatoAt: Prisma.FieldRef<"Client", 'DateTime'>
 }
     
 

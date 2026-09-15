@@ -7,6 +7,7 @@ import { prisma } from "../lib/prisma.js";
 import { requireAuth } from "../middleware/auth.js";
 import { inviaEmailBenvenuto, inviaEmailVerifica, inviaEmailResetPassword } from "../lib/email.js";
 import { creaNotificaUtente } from "../lib/notificheInApp.js";
+import { LEGAL_DOCS_VERSION } from "../lib/legal.js";
 
 export const authRouter = Router();
 
@@ -24,6 +25,9 @@ const registerSchema = z.object({
   cognomeAdmin: z.string().min(1),
   email: z.string().email(),
   password: z.string().min(8),
+  condizioniAccettate: z.literal(true, {
+    errorMap: () => ({ message: "Devi accettare Termini e Condizioni e l'Informativa Privacy per registrarti" }),
+  }),
 });
 
 // Crea un nuovo tenant (carrozzeria) con il suo utente ADMIN e avvia
@@ -59,6 +63,8 @@ authRouter.post("/register", async (req, res) => {
           ruolo: "ADMIN",
           emailVerificaToken,
           emailVerificaScadenza,
+          condizioniAccettateVersione: LEGAL_DOCS_VERSION,
+          condizioniAccettateAt: new Date(),
         },
       },
     },

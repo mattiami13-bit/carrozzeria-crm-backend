@@ -309,3 +309,21 @@ export const NotificationCategoria = {
 } as const
 
 export type NotificationCategoria = (typeof NotificationCategoria)[keyof typeof NotificationCategoria]
+
+
+export const GdprRichiestaTipo = {
+  CANCELLAZIONE_ACCOUNT: 'CANCELLAZIONE_ACCOUNT',
+  CANCELLAZIONE_CLIENTE: 'CANCELLAZIONE_CLIENTE',
+  EXPORT_DATI: 'EXPORT_DATI'
+} as const
+
+export type GdprRichiestaTipo = (typeof GdprRichiestaTipo)[keyof typeof GdprRichiestaTipo]
+
+
+export const GdprRichiestaStato = {
+  IN_ATTESA: 'IN_ATTESA',
+  COMPLETATA: 'COMPLETATA',
+  RIFIUTATA: 'RIFIUTATA'
+} as const
+
+export type GdprRichiestaStato = (typeof GdprRichiestaStato)[keyof typeof GdprRichiestaStato]

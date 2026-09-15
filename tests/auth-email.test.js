@@ -50,6 +50,7 @@ test("Verifica email, reset password e cambio password", async (t) => {
           cognomeAdmin: "Verdi",
           email: `auth.test.${suffix}@example.invalid`,
           password: "Test1234!Auth",
+          condizioniAccettate: true,
         }),
       });
       assert.equal(res.status, 201);
@@ -60,6 +61,24 @@ test("Verifica email, reset password e cambio password", async (t) => {
       const user = await prisma.user.findUnique({ where: { email: `auth.test.${suffix}@example.invalid` } });
       assert.ok(user.emailVerificaToken, "il token di verifica deve essere stato generato");
       assert.ok(user.emailVerificaScadenza > new Date(), "il token deve avere una scadenza futura");
+      assert.ok(user.condizioniAccettateVersione, "la versione dei Termini/Privacy accettati deve essere registrata (GDPR)");
+      assert.ok(user.condizioniAccettateAt, "il timestamp di accettazione deve essere registrato (GDPR)");
+    });
+
+    await t.test("register senza aver accettato Termini/Privacy viene rifiutato", async () => {
+      const res = await call("/api/auth/register", {
+        method: "POST",
+        body: JSON.stringify({
+          ragioneSociale: `Auth Test Senza Consenso ${suffix}`,
+          nomeAdmin: "Anna",
+          cognomeAdmin: "Verdi",
+          email: `auth.test.senzaconsenso.${suffix}@example.invalid`,
+          password: "Test1234!Auth",
+        }),
+      });
+      assert.equal(res.status, 400);
+      const utente = await prisma.user.findUnique({ where: { email: `auth.test.senzaconsenso.${suffix}@example.invalid` } });
+      assert.equal(utente, null, "nessun account deve essere creato senza accettazione");
     });
 
     await t.test("login è bloccato finché l'email non è verificata, anche con password corretta", async () => {

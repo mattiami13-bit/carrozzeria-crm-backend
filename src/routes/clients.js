@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
-import { requireAuth, tenantScope } from "../middleware/auth.js";
+import { requireAuth, requireRole, tenantScope } from "../middleware/auth.js";
 import { creaNotificaRuoli } from "../lib/notificheInApp.js";
 
 export const clientsRouter = Router();
@@ -95,4 +95,73 @@ clientsRouter.patch("/:id", async (req, res) => {
 
   const client = await prisma.client.findUnique({ where: { id: req.params.id } });
   res.json(client);
+});
+
+// GET /api/clients/:id/export — diritto alla portabilità dei dati (GDPR):
+// tutto ciò che il gestionale sa su QUESTO cliente specifico, in un unico
+// file scaricabile. Non include foto/documenti binari inline, solo i
+// loro metadati.
+clientsRouter.get("/:id/export", requireRole("ADMIN", "AMMINISTRAZIONE"), async (req, res) => {
+  const client = await prisma.client.findFirst({
+    where: { id: req.params.id, ...tenantScope(req) },
+    include: {
+      vehicles: true,
+      quotes: { include: { items: true } },
+      documents: { select: { id: true, nome: true, createdAt: true } },
+      appointments: true,
+      sinistri: true,
+      loanerBookings: true,
+    },
+  });
+  if (!client) return res.status(404).json({ error: "Cliente non trovato" });
+
+  const export_ = {
+    generatoIl: new Date().toISOString(),
+    cliente: client,
+    nota: "Export dei dati personali di questo cliente ai sensi del diritto alla portabilità (GDPR art. 20). Foto e documenti binari non sono inclusi inline, solo i loro metadati.",
+  };
+
+  await prisma.gdprRichiesta.create({
+    data: { tenantId: client.tenantId, tipo: "EXPORT_DATI", stato: "COMPLETATA", richiedenteId: req.auth.userId, clienteId: client.id, risoltoAt: new Date() },
+  });
+
+  res.setHeader("Content-Type", "application/json");
+  res.setHeader("Content-Disposition", `attachment; filename="export-cliente-${client.id.slice(-6)}.json"`);
+  res.json(export_);
+});
+
+// POST /api/clients/:id/richiesta-cancellazione — anonimizza (non
+// cancella) i dati identificativi del cliente: veicoli/preventivi/
+// sinistri collegati restano intatti per obblighi contabili e di
+// garanzia, ma non sono più riconducibili a una persona identificabile.
+clientsRouter.post("/:id/richiesta-cancellazione", requireRole("ADMIN"), async (req, res) => {
+  const client = await prisma.client.findFirst({ where: { id: req.params.id, ...tenantScope(req) } });
+  if (!client) return res.status(404).json({ error: "Cliente non trovato" });
+  if (client.datiAnonimizzati) return res.json({ ok: true, giaAnonimizzato: true });
+
+  const anonimizzatoAt = new Date();
+  const anonimizzato = await prisma.client.update({
+    where: { id: client.id },
+    data: {
+      nome: "Cliente",
+      cognome: "rimosso su richiesta GDPR",
+      telefono: null,
+      email: null,
+      codiceFiscale: null,
+      partitaIva: null,
+      indirizzo: null,
+      noteInterne: null,
+      notificheWhatsappConsenso: false,
+      notificheWhatsappConsensoAt: null,
+      notificheWhatsappAttive: false,
+      datiAnonimizzati: true,
+      anonimizzatoAt,
+    },
+  });
+
+  await prisma.gdprRichiesta.create({
+    data: { tenantId: client.tenantId, tipo: "CANCELLAZIONE_CLIENTE", stato: "COMPLETATA", richiedenteId: req.auth.userId, clienteId: client.id, risoltoAt: anonimizzatoAt },
+  });
+
+  res.json({ ok: true, cliente: anonimizzato });
 });

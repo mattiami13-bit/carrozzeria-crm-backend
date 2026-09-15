@@ -106,7 +106,8 @@ export const ModelName = {
   BriefingSettings: 'BriefingSettings',
   BriefingReport: 'BriefingReport',
   BriefingResolution: 'BriefingResolution',
-  Notification: 'Notification'
+  Notification: 'Notification',
+  GdprRichiesta: 'GdprRichiesta'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -154,7 +155,9 @@ export const UserScalarFieldEnum = {
   emailVerificaToken: 'emailVerificaToken',
   emailVerificaScadenza: 'emailVerificaScadenza',
   resetPasswordToken: 'resetPasswordToken',
-  resetPasswordScadenza: 'resetPasswordScadenza'
+  resetPasswordScadenza: 'resetPasswordScadenza',
+  condizioniAccettateVersione: 'condizioniAccettateVersione',
+  condizioniAccettateAt: 'condizioniAccettateAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -174,7 +177,9 @@ export const ClientScalarFieldEnum = {
   createdAt: 'createdAt',
   notificheWhatsappConsenso: 'notificheWhatsappConsenso',
   notificheWhatsappConsensoAt: 'notificheWhatsappConsensoAt',
-  notificheWhatsappAttive: 'notificheWhatsappAttive'
+  notificheWhatsappAttive: 'notificheWhatsappAttive',
+  datiAnonimizzati: 'datiAnonimizzati',
+  anonimizzatoAt: 'anonimizzatoAt'
 } as const
 
 export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
@@ -1008,6 +1013,21 @@ export const NotificationScalarFieldEnum = {
 } as const
 
 export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+export const GdprRichiestaScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  tipo: 'tipo',
+  stato: 'stato',
+  richiedenteId: 'richiedenteId',
+  clienteId: 'clienteId',
+  note: 'note',
+  createdAt: 'createdAt',
+  risoltoAt: 'risoltoAt'
+} as const
+
+export type GdprRichiestaScalarFieldEnum = (typeof GdprRichiestaScalarFieldEnum)[keyof typeof GdprRichiestaScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -32,6 +32,7 @@ import { vehicleWorkOrdersRouter, workOrdersRouter, workOrderTimeEntriesRouter, 
 import { liveDashboardRouter } from "./routes/liveDashboard.js";
 import { qcTemplateRouter, vehicleQcRouter, qcInspectionRouter, qcNonConformitaRouter } from "./routes/qc.js";
 import { notificheRouter } from "./routes/notifiche.js";
+import { gdprRouter } from "./routes/gdpr.js";
 import { auditLogger } from "./middleware/audit.js";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -60,6 +61,10 @@ app.get("/health", (req, res) => res.json({ ok: true }));
 app.use("/portale", express.static(path.join(__dirname, "..", "public", "portale")));
 app.use("/verifica-email", express.static(path.join(__dirname, "..", "public", "verifica-email")));
 app.use("/reset-password", express.static(path.join(__dirname, "..", "public", "reset-password")));
+app.use("/privacy", express.static(path.join(__dirname, "..", "public", "privacy")));
+app.use("/cookie", express.static(path.join(__dirname, "..", "public", "cookie")));
+app.use("/termini", express.static(path.join(__dirname, "..", "public", "termini")));
+app.use("/dpa", express.static(path.join(__dirname, "..", "public", "dpa")));
 
 app.use("/api/auth", authRouter);
 app.use("/api/clients", clientsRouter);
@@ -103,6 +108,7 @@ app.use("/api", photosRouter);
 app.use("/api/appointments", appointmentsRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/notifiche", notificheRouter);
+app.use("/api/gdpr", gdprRouter);
 
 // Gestione errori centralizzata: qualsiasi errore non gestito nelle
 // route arriva qui invece di far crashare il processo.

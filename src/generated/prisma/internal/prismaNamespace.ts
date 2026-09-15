@@ -452,7 +452,8 @@ export const ModelName = {
   BriefingSettings: 'BriefingSettings',
   BriefingReport: 'BriefingReport',
   BriefingResolution: 'BriefingResolution',
-  Notification: 'Notification'
+  Notification: 'Notification',
+  GdprRichiesta: 'GdprRichiesta'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -468,7 +469,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerCarPhoto" | "loanerBooking" | "loanerBookingPhoto" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage" | "qcChecklistItem" | "qcInspection" | "qcCheckResult" | "qcNonConformita" | "qcEvento" | "briefingSettings" | "briefingReport" | "briefingResolution" | "notification"
+    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerCarPhoto" | "loanerBooking" | "loanerBookingPhoto" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage" | "qcChecklistItem" | "qcInspection" | "qcCheckResult" | "qcNonConformita" | "qcEvento" | "briefingSettings" | "briefingReport" | "briefingResolution" | "notification" | "gdprRichiesta"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -4616,6 +4617,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    GdprRichiesta: {
+      payload: Prisma.$GdprRichiestaPayload<ExtArgs>
+      fields: Prisma.GdprRichiestaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GdprRichiestaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprRichiestaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GdprRichiestaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprRichiestaPayload>
+        }
+        findFirst: {
+          args: Prisma.GdprRichiestaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprRichiestaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GdprRichiestaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprRichiestaPayload>
+        }
+        findMany: {
+          args: Prisma.GdprRichiestaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprRichiestaPayload>[]
+        }
+        create: {
+          args: Prisma.GdprRichiestaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprRichiestaPayload>
+        }
+        createMany: {
+          args: Prisma.GdprRichiestaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GdprRichiestaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprRichiestaPayload>[]
+        }
+        delete: {
+          args: Prisma.GdprRichiestaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprRichiestaPayload>
+        }
+        update: {
+          args: Prisma.GdprRichiestaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprRichiestaPayload>
+        }
+        deleteMany: {
+          args: Prisma.GdprRichiestaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GdprRichiestaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GdprRichiestaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprRichiestaPayload>[]
+        }
+        upsert: {
+          args: Prisma.GdprRichiestaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GdprRichiestaPayload>
+        }
+        aggregate: {
+          args: Prisma.GdprRichiestaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGdprRichiesta>
+        }
+        groupBy: {
+          args: Prisma.GdprRichiestaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GdprRichiestaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GdprRichiestaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GdprRichiestaCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -4684,7 +4759,9 @@ export const UserScalarFieldEnum = {
   emailVerificaToken: 'emailVerificaToken',
   emailVerificaScadenza: 'emailVerificaScadenza',
   resetPasswordToken: 'resetPasswordToken',
-  resetPasswordScadenza: 'resetPasswordScadenza'
+  resetPasswordScadenza: 'resetPasswordScadenza',
+  condizioniAccettateVersione: 'condizioniAccettateVersione',
+  condizioniAccettateAt: 'condizioniAccettateAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -4704,7 +4781,9 @@ export const ClientScalarFieldEnum = {
   createdAt: 'createdAt',
   notificheWhatsappConsenso: 'notificheWhatsappConsenso',
   notificheWhatsappConsensoAt: 'notificheWhatsappConsensoAt',
-  notificheWhatsappAttive: 'notificheWhatsappAttive'
+  notificheWhatsappAttive: 'notificheWhatsappAttive',
+  datiAnonimizzati: 'datiAnonimizzati',
+  anonimizzatoAt: 'anonimizzatoAt'
 } as const
 
 export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
@@ -5540,6 +5619,21 @@ export const NotificationScalarFieldEnum = {
 export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
+export const GdprRichiestaScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  tipo: 'tipo',
+  stato: 'stato',
+  richiedenteId: 'richiedenteId',
+  clienteId: 'clienteId',
+  note: 'note',
+  createdAt: 'createdAt',
+  risoltoAt: 'risoltoAt'
+} as const
+
+export type GdprRichiestaScalarFieldEnum = (typeof GdprRichiestaScalarFieldEnum)[keyof typeof GdprRichiestaScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -6078,6 +6172,34 @@ export type ListEnumNotificationCategoriaFieldRefInput<$PrismaModel> = FieldRefI
 
 
 /**
+ * Reference to a field of type 'GdprRichiestaTipo'
+ */
+export type EnumGdprRichiestaTipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GdprRichiestaTipo'>
+    
+
+
+/**
+ * Reference to a field of type 'GdprRichiestaTipo[]'
+ */
+export type ListEnumGdprRichiestaTipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GdprRichiestaTipo[]'>
+    
+
+
+/**
+ * Reference to a field of type 'GdprRichiestaStato'
+ */
+export type EnumGdprRichiestaStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GdprRichiestaStato'>
+    
+
+
+/**
+ * Reference to a field of type 'GdprRichiestaStato[]'
+ */
+export type ListEnumGdprRichiestaStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GdprRichiestaStato[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -6297,6 +6419,7 @@ export type GlobalOmitConfig = {
   briefingReport?: Prisma.BriefingReportOmit
   briefingResolution?: Prisma.BriefingResolutionOmit
   notification?: Prisma.NotificationOmit
+  gdprRichiesta?: Prisma.GdprRichiestaOmit
 }
 
 /* Types for Logging */
