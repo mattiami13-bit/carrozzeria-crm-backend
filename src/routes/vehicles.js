@@ -1,4 +1,5 @@
-import { legacyPhotoSelect } from '../lib/photo-timeline.js';
+import { legacyPhotoSelect, signPhotos } from '../lib/photo-timeline.js';
+import { readPhotoImage } from '../lib/photo-timeline-service.js';
 import { Router } from "express";
 import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
@@ -67,6 +68,7 @@ vehiclesRouter.get("/:id", async (req, res) => {
     },
   });
   if (!vehicle) return res.status(404).json({ error: "Veicolo non trovato" });
+  vehicle.photos = await signPhotos(vehicle.photos, req.auth.tenantId);
   res.json(vehicle);
 });
 
@@ -268,13 +270,10 @@ vehiclesRouter.post("/:id/analizza-danni", async (req, res) => {
   const imageBlocks = [];
   for (const photo of vehicle.photos) {
     try {
-      const imgRes = await fetch(photo.url);
-      if (!imgRes.ok) continue;
-      const contentType = imgRes.headers.get("content-type") || "image/jpeg";
-      const buffer = Buffer.from(await imgRes.arrayBuffer());
+      const buffer = await readPhotoImage(photo, tenantId);
       imageBlocks.push({
         type: "image",
-        source: { type: "base64", media_type: contentType, data: buffer.toString("base64") },
+        source: { type: "base64", media_type: "image/jpeg", data: buffer.toString("base64") },
       });
     } catch (e) {
       // Foto non raggiungibile: la saltiamo, non blocchiamo l'intera analisi.
@@ -338,6 +337,7 @@ Sii prudente: è una stima preliminare da foto, non una perizia definitiva. Se l
     }),
   ]);
 
+  updated.photos = await signPhotos(updated.photos, tenantId);
   res.json(updated);
 });
 

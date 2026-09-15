@@ -1,4 +1,5 @@
 import {z} from 'zod';
+import {supabase,PHOTOS_BUCKET} from './supabase.js';
 export const PHOTO_CATEGORIES={ACCETTAZIONE:'Accettazione',DANNI_INIZIALI:'Danni iniziali',SMONTAGGIO:'Smontaggio',DANNI_NASCOSTI:'Danni nascosti',RIPARAZIONE:'Riparazione',PREPARAZIONE:'Preparazione',VERNICIATURA:'Verniciatura',RIMONTAGGIO:'Rimontaggio',CONTROLLO_QUALITA:'Controllo qualità',CONSEGNA:'Consegna'};
 export const categorySchema=z.enum(Object.keys(PHOTO_CATEGORIES));
 export const markerSchema=z.object({x:z.number().min(0).max(1),y:z.number().min(0).max(1),w:z.number().positive().max(1),h:z.number().positive().max(1),label:z.string().max(100)}).strict().refine(m=>m.x+m.w<=1.000001&&m.y+m.h<=1.000001,'Evidenziazione fuori dalla fotografia');
@@ -18,3 +19,28 @@ export function dossierPhotos(photos,ids){if(ids==null)return sortedPhotos(photo
 
 export const legacyPhotoSelect={id:true,vehicleId:true,fase:true,url:true,createdAt:true,visibilePortale:true};
 export function publicPhoto(p){return {id:p.id,vehicleId:p.vehicleId,fase:p.fase,url:p.url,createdAt:p.createdAt};}
+
+// Le foto sono su un bucket Storage privato: un URL pubblico permanente
+// darebbe accesso per sempre a chiunque lo ottenga (log, referrer, link
+// condivisi). Firmiamo un URL a breve scadenza solo quando la foto viene
+// effettivamente restituita a un client, mai memorizzato.
+const SIGNED_URL_TTL_SECONDS = 60 * 60;
+async function signedUrlFor(photo,url,tenantId){
+ if(!url)return null;
+ try{
+  const path=photoStoragePath({...photo,url},tenantId,process.env.SUPABASE_URL,PHOTOS_BUCKET);
+  const {data,error}=await supabase.storage.from(PHOTOS_BUCKET).createSignedUrl(path,SIGNED_URL_TTL_SECONDS);
+  if(error||!data)return null;
+  return data.signedUrl;
+ }catch{return null;}
+}
+export async function signPhoto(photo,tenantId){
+ const url=await signedUrlFor(photo,photo.url,tenantId);
+ let timeline=photo.timeline;
+ if(timeline?.originalUrl){
+  const originalUrl=await signedUrlFor(photo,timeline.originalUrl,tenantId);
+  timeline={...timeline,originalUrl};
+ }
+ return {...photo,url,timeline};
+}
+export function signPhotos(photos,tenantId){return Promise.all(photos.map(p=>signPhoto(p,tenantId)));}

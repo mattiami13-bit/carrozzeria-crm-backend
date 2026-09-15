@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import 'dotenv/config';
 import {PHOTO_CATEGORIES,photoMeta,phaseForCategory,photoStoragePath,dossierPhotos,timelineEditSchema,suggestionSchema} from '../src/lib/photo-timeline.js';
 test('dieci categorie e compatibilità prima/durante/dopo',()=>{assert.equal(Object.keys(PHOTO_CATEGORIES).length,10);assert.equal(phaseForCategory('DANNI_INIZIALI'),'PRIMA');assert.equal(phaseForCategory('DANNI_NASCOSTI'),'DURANTE');assert.equal(phaseForCategory('CONSEGNA'),'DOPO');assert.equal(phaseForCategory(null,'PRIMA'),'PRIMA');assert.equal(photoMeta({}).authorName,null);});
 test('rettifiche manuali non permettono autore o AI inventati',()=>{const d={category:'DANNI_NASCOSTI',capturedAt:null,notes:'Danno',internalNotes:'Riservato',workDescription:'Smontaggio',markers:[{x:.1,y:.2,w:.2,h:.3,label:'Danno'}]};assert.ok(timelineEditSchema.safeParse(d).success);assert.equal(timelineEditSchema.safeParse({...d,authorName:'Falso'}).success,false);assert.equal(timelineEditSchema.safeParse({...d,markers:[{x:.9,y:0,w:.2,h:.3,label:''}]}).success,false);assert.equal(suggestionSchema.safeParse({category:'ALTRO',confidence:100,reason:''}).success,false);});

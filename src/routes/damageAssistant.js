@@ -3,6 +3,7 @@ import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
 import { creaNotificaRuoli } from "../lib/notificheInApp.js";
+import { readPhotoImage } from "../lib/photo-timeline-service.js";
 
 // AI Damage Assistant: modulo nuovo e separato dalla vecchia "Stima danni
 // IA" (Vehicle.stimaIA, vedi vehicles.js POST /:id/analizza-danni), che
@@ -97,13 +98,10 @@ damageAssistantRouter.post("/analizza", async (req, res) => {
   const imageBlocks = [];
   for (const photo of photos) {
     try {
-      const imgRes = await fetch(photo.url);
-      if (!imgRes.ok) continue;
-      const contentType = imgRes.headers.get("content-type") || "image/jpeg";
-      const buffer = Buffer.from(await imgRes.arrayBuffer());
+      const buffer = await readPhotoImage(photo, tenantId);
       imageBlocks.push({
         type: "image",
-        source: { type: "base64", media_type: contentType, data: buffer.toString("base64") },
+        source: { type: "base64", media_type: "image/jpeg", data: buffer.toString("base64") },
       });
     } catch (e) {
       // Foto non raggiungibile: la saltiamo, non blocchiamo l'intera analisi.

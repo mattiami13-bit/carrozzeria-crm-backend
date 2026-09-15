@@ -2,7 +2,7 @@ import {Router} from 'express';
 import {z} from 'zod';
 import {prisma} from '../lib/prisma.js';
 import {requireAuth} from '../middleware/auth.js';
-import {PHOTO_CATEGORIES,photoMeta,sortedPhotos,phaseForCategory,timelineEditSchema,dossierPhotos} from '../lib/photo-timeline.js';
+import {PHOTO_CATEGORIES,photoMeta,sortedPhotos,phaseForCategory,timelineEditSchema,dossierPhotos,signPhotos,signPhoto} from '../lib/photo-timeline.js';
 import {savePhotoSuggestion,readPhotoImage,normalizePhoto} from '../lib/photo-timeline-service.js';
 import {buildPhotoDossier} from '../lib/photo-dossier.js';
 export const photoTimelineRouter=Router();const wrap=fn=>(req,res,next)=>Promise.resolve(fn(req,res,next)).catch(next);
@@ -11,7 +11,7 @@ photoTimelineRouter.use(wrap(async(req,res,next)=>{const u=await prisma.user.fin
 const scope=req=>({tenantId:req.auth.tenantId,...(req.photoRole==='TECNICO'?{tecnicoId:req.auth.userId}:{})});
 photoTimelineRouter.get('/vehicles/:id',wrap(async(req,res)=>{
  const vehicle=await prisma.vehicle.findFirst({where:{id:req.params.id,...scope(req)},include:{photos:true}});if(!vehicle)return res.status(404).json({error:'Pratica non disponibile'});
- res.json({photos:sortedPhotos(vehicle.photos),categories:PHOTO_CATEGORIES,canExport:true});
+ res.json({photos:await signPhotos(sortedPhotos(vehicle.photos),req.auth.tenantId),categories:PHOTO_CATEGORIES,canExport:true});
 }));
 photoTimelineRouter.patch('/photos/:id',wrap(async(req,res)=>{
  const parsed=z.object({version:z.number().int().positive(),data:timelineEditSchema}).strict().safeParse(req.body);if(!parsed.success)return res.status(400).json({error:parsed.error.flatten()});
@@ -20,12 +20,12 @@ photoTimelineRouter.patch('/photos/:id',wrap(async(req,res)=>{
  const result=await prisma.$transaction(async tx=>{
   const data={...photoMeta(p),...parsed.data.data};const changed=await tx.photo.updateMany({where:{id:p.id,timelineVersion:parsed.data.version},data:{timeline:data,fase:phaseForCategory(data.category,p.fase),timelineVersion:{increment:1}}});if(!changed.count)return null;
   await tx.photoTimelineEdit.create({data:{photoId:p.id,actorId:req.auth.userId,before:photoMeta(p),after:data}});return tx.photo.findUnique({where:{id:p.id}});
- });if(!result)return res.status(409).json({error:'Foto aggiornata da un altro operatore. Ricarica prima di salvare.'});res.json(result);
+ });if(!result)return res.status(409).json({error:'Foto aggiornata da un altro operatore. Ricarica prima di salvare.'});res.json(await signPhoto(result,req.auth.tenantId));
 }));
 photoTimelineRouter.post('/photos/:id/suggest',wrap(async(req,res)=>{
  const p=await prisma.photo.findFirst({where:{id:req.params.id,vehicle:scope(req)}});if(!p)return res.status(404).json({error:'Foto non disponibile'});
- if(photoMeta(p).ai?.status==='ready')return res.json(p);
- const result=await savePhotoSuggestion(p,req.auth.tenantId);res.json(result);
+ if(photoMeta(p).ai?.status==='ready')return res.json(await signPhoto(p,req.auth.tenantId));
+ const result=await savePhotoSuggestion(p,req.auth.tenantId);res.json(await signPhoto(result,req.auth.tenantId));
 }));
 photoTimelineRouter.post('/vehicles/:id/dossier',wrap(async(req,res)=>{
  const parsed=z.object({audience:z.enum(['CLIENTE','ASSICURAZIONE','INTERNO']),photoIds:z.array(z.string()).min(1).max(80).optional(),comparison:z.object({before:z.string(),after:z.string()}).strict().optional()}).strict().safeParse(req.body);if(!parsed.success)return res.status(400).json({error:'Seleziona da 1 a 80 foto e un destinatario valido'});

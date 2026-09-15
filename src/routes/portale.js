@@ -1,4 +1,4 @@
-import { publicPhoto, legacyPhotoSelect } from '../lib/photo-timeline.js';
+import { publicPhoto, legacyPhotoSelect, signPhotos } from '../lib/photo-timeline.js';
 import { Router } from "express";
 import crypto from "crypto";
 import multer from "multer";
@@ -179,7 +179,7 @@ portaleRouter.get("/:token", limitatoreLettura, wrap(async (req, res) => {
     numeroPratica: numeroPraticaDi(vehicle),
     cliente: vehicle.client,
     workflow: workflowDi(vehicle.stage),
-    foto: vehicle.photos.map(publicPhoto),
+    foto: (await signPhotos(vehicle.photos, access.tenantId)).map(publicPhoto),
     storicoStage: vehicle.stageHistory,
     preventivi: vehicle.quotes.map((q, i) => ({ ...q, tipo: i === 0 ? "PREVENTIVO" : "INTEGRAZIONE" })),
     documenti: vehicle.portalDocuments,

@@ -1,5 +1,5 @@
 import sharp from 'sharp';
-import { categorySchema,phaseForCategory,photoStoragePath } from '../lib/photo-timeline.js';
+import { categorySchema,phaseForCategory,photoStoragePath,signPhoto } from '../lib/photo-timeline.js';
 import { savePhotoSuggestion,normalizePhoto } from '../lib/photo-timeline-service.js';
 import { Router } from "express";
 import multer from "multer";
@@ -86,7 +86,7 @@ photosRouter.post("/vehicles/:vehicleId/photos", upload.single("file"), wrap(asy
 
   }catch(e){await supabase.storage.from(PHOTOS_BUCKET).remove([path,previewPath]);throw e;}
   try{photo=await savePhotoSuggestion(photo,req.auth.tenantId,req.file.buffer)||photo;}catch{ /* Preserve a successful upload if AI metadata cannot be saved. */ }
-  res.status(201).json(photo);
+  res.status(201).json(await signPhoto(photo,req.auth.tenantId));
 }));
 
 // PATCH /api/photos/:id/visibilita — mostra/nascondi una foto nel portale
