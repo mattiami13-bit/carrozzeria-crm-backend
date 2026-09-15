@@ -26,6 +26,21 @@ export function requireAuth(req, res, next) {
   }
 }
 
+// Come requireAuth ma non blocca mai la richiesta: restituisce tenantId
+// se il Bearer token è presente e valido, altrimenti null. Usata dal
+// controllo abbonamento (che deve "vedere" il tenantId quando c'è, ma
+// lasciare che sia requireAuth — più a valle nella stessa rotta — a
+// gestire un token mancante/non valido con il consueto 401).
+export function tenantIdOpzionale(req) {
+  const header = req.headers.authorization;
+  if (!header?.startsWith("Bearer ")) return null;
+  try {
+    return jwt.verify(header.slice("Bearer ".length), process.env.JWT_SECRET).tenantId || null;
+  } catch {
+    return null;
+  }
+}
+
 // Da usare dopo requireAuth per limitare una route a determinati ruoli.
 // Esempio: requireRole("ADMIN", "AMMINISTRAZIONE")
 export function requireRole(...allowedRoles) {
