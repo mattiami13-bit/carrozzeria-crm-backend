@@ -213,6 +213,12 @@ test("Billing: piani pubblici, stato, e webhook Stripe (firma, idempotenza, effe
       const aggiornato = await prisma.tenant.findUnique({ where: { id: tenant.id } });
       assert.equal(aggiornato.subscriptionStatus, "PAST_DUE");
 
+      // La notifica viene creata "fire and forget" (non attesa dal webhook,
+      // apposta: Stripe non deve aspettare una scrittura extra per la
+      // risposta 200) — piccola attesa perché possa completarsi prima del
+      // controllo, altrimenti il test è intermittente per una corsa
+      // innocua, non per un bug.
+      await new Promise((r) => setTimeout(r, 200));
       const notifiche = await prisma.notification.findMany({ where: { tenantId: tenant.id, categoria: "PAGAMENTI", userId: admin.id } });
       assert.ok(notifiche.some((n) => n.titolo.includes("Pagamento non riuscito")));
     });

@@ -938,6 +938,7 @@ model Appointment {
   tecnico   User?    @relation("TecnicoAppuntamento", fields: [tecnicoId], references: [id])
 
   @@index([tenantId])
+  @@index([tenantId, inizio])
   @@map("appointments")
 }
 

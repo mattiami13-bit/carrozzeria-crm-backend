@@ -18,21 +18,24 @@ const appointmentSchema = z.object({
 });
 
 // GET /api/appointments?from=2026-07-27&to=2026-08-02
-// Restituisce gli appuntamenti nell'intervallo di date richiesto (per la vista calendario).
-// Se from/to non sono passati, restituisce tutti gli appuntamenti del tenant.
+// Restituisce gli appuntamenti nell'intervallo di date richiesto (per la
+// vista calendario, che passa sempre from/to). Se from/to non sono
+// passati, restituisce una finestra ragionevole intorno a oggi (-30/+60
+// giorni) invece dell'intero storico del tenant, che altrimenti
+// crescerebbe senza limite nel tempo — con un "take" come rete di
+// sicurezza aggiuntiva in ogni caso.
 appointmentsRouter.get("/", async (req, res) => {
   const { from, to } = req.query;
+  const oggi = new Date();
+  const defaultDa = new Date(oggi.getTime() - 30 * 24 * 60 * 60 * 1000);
+  const defaultA = new Date(oggi.getTime() + 60 * 24 * 60 * 60 * 1000);
   const appointments = await prisma.appointment.findMany({
     where: {
       ...tenantScope(req),
-      ...(from || to
-        ? {
-            inizio: {
-              ...(from ? { gte: new Date(String(from)) } : {}),
-              ...(to ? { lte: new Date(String(to)) } : {}),
-            },
-          }
-        : {}),
+      inizio: {
+        gte: from ? new Date(String(from)) : defaultDa,
+        lte: to ? new Date(String(to)) : defaultA,
+      },
     },
     include: {
       client: { select: { id: true, nome: true, cognome: true, telefono: true } },
@@ -40,6 +43,7 @@ appointmentsRouter.get("/", async (req, res) => {
       tecnico: { select: { id: true, nome: true, cognome: true } },
     },
     orderBy: { inizio: "asc" },
+    take: 2000,
   });
   res.json(appointments);
 });

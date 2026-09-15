@@ -50,6 +50,12 @@ vehiclesRouter.get("/", async (req, res) => {
       tecnico: { select: { nome: true, cognome: true } },
       _count: { select: { photos: true } },
     },
+    // Vista elenco/board: stimaIA (JSON IA) e firmaConsegnaDataUrl (firma
+    // come data URL base64) sono dati da vista dettaglio, mai usati qui
+    // (verificato: VehicleDetailModal fa la sua chiamata separata a
+    // GET /api/vehicles/:id, che li restituisce) — su un elenco di molti
+    // veicoli pesano inutilmente sulla risposta.
+    omit: { stimaIA: true, firmaConsegnaDataUrl: true },
     orderBy: { updatedAt: "desc" },
   });
   res.json(vehicles);

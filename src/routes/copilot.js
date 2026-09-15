@@ -98,7 +98,7 @@ const clienteRif = (c) => ({
 // il Copilot non può creare, modificare o cancellare nulla, né vedere dati
 // di un'altra carrozzeria. `raccogli` registra i record realmente
 // consultati (chiave tipo:id) per costruire i "riferimenti" in risposta.
-function creaStrumenti(tenantId, ruolo, raccogli, userId) {
+export function creaStrumenti(tenantId, ruolo, raccogli, userId) {
   return {
     riepilogo_dashboard: async () => {
       const [inOfficina, prontaConsegna, attesaRicambi, preventiviInviati, preventiviAccettati, quotesAccettati] =
@@ -174,24 +174,45 @@ function creaStrumenti(tenantId, ruolo, raccogli, userId) {
       });
       if (veicoli.length === 0) return { errore: "Nessun veicolo trovato con questi criteri." };
 
-      const risultato = [];
-      for (const v of veicoli) {
-        raccogli(veicoloRif(v));
-        const record = await prisma.profitRecord.findFirst({where:{tenantId,vehicleId:v.id}});
-        const settings = await prisma.profitSettings.findUnique({where:{tenantId}}) ?? PROFIT_DEFAULTS;
-        const tracked=await prisma.trackedPart.findMany({where:{tenantId,vehicleId:v.id}});
-        risultato.push({veicolo:`${v.marca} ${v.modello} (${v.targa})`, profitTracker:record ? calculateProfit(partsProfitData(record.data,tracked).data,v.quotes,settings) : null,
-          nota:record ? "Importi in centesimi di euro; dichiarare se provvisorio. Ricavo previsto, non incassi." : "Profit Tracker non compilato: margine non disponibile."});
+      const veicoloIds = veicoli.map((v) => v.id);
+      const [settings, recordsList, trackedList] = await Promise.all([
+        prisma.profitSettings.findUnique({ where: { tenantId } }),
+        prisma.profitRecord.findMany({ where: { tenantId, vehicleId: { in: veicoloIds } } }),
+        prisma.trackedPart.findMany({ where: { tenantId, vehicleId: { in: veicoloIds } } }),
+      ]);
+      const settingsEffettivi = settings ?? PROFIT_DEFAULTS;
+      const recordPerVeicolo = new Map(recordsList.map((r) => [r.vehicleId, r]));
+      const trackedPerVeicolo = new Map();
+      for (const t of trackedList) {
+        if (!trackedPerVeicolo.has(t.vehicleId)) trackedPerVeicolo.set(t.vehicleId, []);
+        trackedPerVeicolo.get(t.vehicleId).push(t);
       }
+
+      const risultato = veicoli.map((v) => {
+        raccogli(veicoloRif(v));
+        const record = recordPerVeicolo.get(v.id);
+        const tracked = trackedPerVeicolo.get(v.id) ?? [];
+        return {
+          veicolo: `${v.marca} ${v.modello} (${v.targa})`,
+          profitTracker: record ? calculateProfit(partsProfitData(record.data, tracked).data, v.quotes, settingsEffettivi) : null,
+          nota: record ? "Importi in centesimi di euro; dichiarare se provvisorio. Ricavo previsto, non incassi." : "Profit Tracker non compilato: margine non disponibile.",
+        };
+      });
       return risultato;
     },
 
     preventivi_marginalita_bassa: async ({ sogliaPercento = 20 } = {}) => {
       const settings = await prisma.profitSettings.findUnique({where:{tenantId}}) ?? PROFIT_DEFAULTS;
       const records = await prisma.profitRecord.findMany({where:{tenantId,vehicle:{tenantId}},include:{vehicle:{include:{quotes:true,client:true}}}});
+      const trackedList = await prisma.trackedPart.findMany({ where: { tenantId, vehicleId: { in: records.map((r) => r.vehicleId) } } });
+      const trackedPerVeicolo = new Map();
+      for (const t of trackedList) {
+        if (!trackedPerVeicolo.has(t.vehicleId)) trackedPerVeicolo.set(t.vehicleId, []);
+        trackedPerVeicolo.get(t.vehicleId).push(t);
+      }
       const risultato = [];
       for(const record of records) {
-        const tracked=await prisma.trackedPart.findMany({where:{tenantId,vehicleId:record.vehicleId}});
+        const tracked = trackedPerVeicolo.get(record.vehicleId) ?? [];
         const m = calculateProfit(partsProfitData(record.data,tracked).data,record.vehicle.quotes,settings);
         if(m.actualPercent !== null && m.actualPercent < sogliaPercento) {
           const ref = veicoloRif(record.vehicle); raccogli(ref);
@@ -239,19 +260,23 @@ function creaStrumenti(tenantId, ruolo, raccogli, userId) {
       const inizioGiorno = new Date(); inizioGiorno.setHours(0, 0, 0, 0);
       const fineGiorno = new Date(); fineGiorno.setHours(23, 59, 59, 999);
       const tecnici = await prisma.user.findMany({ where: { tenantId, ruolo: "TECNICO", attivo: true } });
-      const risultato = [];
-      for (const t of tecnici) {
-        const appuntamenti = await prisma.appointment.findMany({
-          where: { tenantId, tecnicoId: t.id, inizio: { gte: inizioGiorno, lte: fineGiorno } },
-          orderBy: { inizio: "asc" },
-        });
-        risultato.push({
+      const appuntamentiTutti = await prisma.appointment.findMany({
+        where: { tenantId, tecnicoId: { in: tecnici.map((t) => t.id) }, inizio: { gte: inizioGiorno, lte: fineGiorno } },
+        orderBy: { inizio: "asc" },
+      });
+      const appuntamentiPerTecnico = new Map();
+      for (const a of appuntamentiTutti) {
+        if (!appuntamentiPerTecnico.has(a.tecnicoId)) appuntamentiPerTecnico.set(a.tecnicoId, []);
+        appuntamentiPerTecnico.get(a.tecnicoId).push(a);
+      }
+      return tecnici.map((t) => {
+        const appuntamenti = appuntamentiPerTecnico.get(t.id) ?? [];
+        return {
           tecnico: `${t.nome} ${t.cognome}`,
           appuntamentiOggi: appuntamenti.map((a) => ({ titolo: a.titolo, inizio: a.inizio, fine: a.fine })),
           libero: appuntamenti.length === 0,
-        });
-      }
-      return risultato;
+        };
+      });
     },
 
     fatturato_mensile: async () => {
