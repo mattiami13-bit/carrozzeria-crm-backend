@@ -11,6 +11,14 @@ import {
 
 export const billingRouter = Router();
 
+// Dalle API Stripe più recenti (2025+), il fine periodo non è più sulla
+// subscription stessa ma sul suo primo item — vale per abbonamenti con
+// una sola riga come i nostri.
+function finePeriodo(subscription) {
+  const secs = subscription.items?.data?.[0]?.current_period_end;
+  return secs ? new Date(secs * 1000) : null;
+}
+
 // Il webhook usa la firma sul BODY GREZZO (raw), quindi la sua route va
 // montata PRIMA di express.json() globale — vedi src/index.js, dove
 // riceve express.raw() dedicato solo per questo percorso.
@@ -246,7 +254,7 @@ async function gestisciCheckoutCompletato(session) {
       piano: piano || undefined,
       fatturazionePeriodicita: periodicita || undefined,
       subscriptionStatus: statoDaStripe(subscription.status),
-      currentPeriodEnd: subscription.current_period_end ? new Date(subscription.current_period_end * 1000) : null,
+      currentPeriodEnd: finePeriodo(subscription),
       cancelAtPeriodEnd: subscription.cancel_at_period_end,
       earlyAdopter: earlyAdopterRichiesto || undefined,
     },
@@ -279,7 +287,7 @@ async function gestisciSubscriptionAggiornata(subscription) {
     data: {
       stripeSubscriptionId: subscription.id,
       subscriptionStatus: statoDaStripe(subscription.status),
-      currentPeriodEnd: subscription.current_period_end ? new Date(subscription.current_period_end * 1000) : null,
+      currentPeriodEnd: finePeriodo(subscription),
       cancelAtPeriodEnd: subscription.cancel_at_period_end,
       ...(risolto ? { piano: risolto.piano, fatturazionePeriodicita: risolto.periodicita } : {}),
     },
