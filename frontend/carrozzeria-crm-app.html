@@ -5496,7 +5496,7 @@ function AiCopilot({ api, onNavigateTab, onApriPraticaVeicolo }) {
     <>
       {aperto && (
         <div style={{
-          position: "fixed", bottom: 88, left: 24, width: 400, maxWidth: "calc(100vw - 48px)", height: 560,
+          position: "fixed", bottom: 88, right: 24, width: 400, maxWidth: "calc(100vw - 48px)", height: 560,
           maxHeight: "calc(100vh - 120px)", background: "#15171B", borderRadius: 16, border: "1px solid #2A2E34",
           boxShadow: "0 12px 32px rgba(27,26,23,0.18)", display: "flex", flexDirection: "column", zIndex: 61,
         }}>
@@ -5577,7 +5577,7 @@ function AiCopilot({ api, onNavigateTab, onApriPraticaVeicolo }) {
       )}
 
       <button onClick={() => setAperto((a) => !a)} style={{
-        position: "fixed", bottom: 24, left: 24, padding: "0 18px", height: 52, borderRadius: 26,
+        position: "fixed", bottom: 24, right: 24, padding: "0 18px", height: 52, borderRadius: 26,
         background: "#2F80ED", color: "#15171B", border: "none", fontSize: 14, fontWeight: 700,
         boxShadow: "0 8px 20px rgba(27,26,23,0.25)", zIndex: 61, cursor: "pointer",
         display: "flex", alignItems: "center", gap: 8,
