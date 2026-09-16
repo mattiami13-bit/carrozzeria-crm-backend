@@ -77,7 +77,7 @@ app.use(helmet({ contentSecurityPolicy: false, crossOriginEmbedderPolicy: false 
 // sviluppo, localhost. L'auth è Bearer JWT (mai cookie), quindi CORS non è
 // la barriera di sicurezza primaria, ma restringerlo riduce comunque la
 // superficie a siti di terze parti che riusano un token trafugato.
-const allowedOrigins = (process.env.CORS_ORIGINS || "https://www.rifless.it,https://rifless.it,http://localhost:3000,http://localhost:5173,http://localhost:4310")
+const allowedOrigins = (process.env.CORS_ORIGINS || "https://www.rifless.it,https://rifless.it,https://app.rifless.it,http://localhost:3000,http://localhost:5173,http://localhost:4310")
   .split(",")
   .map((o) => o.trim())
   .filter(Boolean);
@@ -113,6 +113,19 @@ app.get("/health", async (req, res) => {
 app.use(maintenanceMode);
 
 if (process.env.CRM_PREVIEW === "1") app.use("/crm", express.static(path.join(__dirname, "..", "frontend")));
+
+// Punto 33 (dominio e URL): struttura www.DOMINIO.it (sito commerciale,
+// sotto) / app.DOMINIO.it (gestionale, qui). Un solo servizio Express
+// serve entrambi gli host: quale contenuto rispondere dipende
+// dall'header Host della richiesta, non da un secondo deployment.
+// APP_HOSTNAME è configurabile (mai un dominio scritto a mano nel
+// codice), con default sul dominio pubblico reale.
+const appHostname = process.env.APP_HOSTNAME || "app.rifless.it";
+const frontendFile = path.join(__dirname, "..", "frontend", "carrozzeria-crm-app.html");
+app.get("/", (req, res, next) => {
+  if (req.hostname !== appHostname) return next();
+  res.sendFile(frontendFile);
+});
 
 app.use("/", express.static(path.join(__dirname, "..", "public", "home")));
 app.use("/portale", express.static(path.join(__dirname, "..", "public", "portale")));

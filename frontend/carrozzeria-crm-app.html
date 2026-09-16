@@ -73,7 +73,19 @@
 const { useState, useEffect, useCallback, useRef, useMemo } = React;
 
 /* ---------------- CONFIG ---------------- */
-const API = ["127.0.0.1", "localhost"].includes(window.location.hostname) && window.location.port === "4310" ? window.location.origin : "https://carrozzeria-crm-backend-production.up.railway.app";
+// Punto 33 (dominio e URL): mai un dominio scritto a mano. Se il
+// gestionale gira online (su qualunque host: app.rifless.it, l'anteprima
+// interna, o un dominio futuro), l'API è sempre sullo stesso backend che
+// lo serve, quindi stessa origine. Il fallback assoluto serve solo per
+// l'unico caso in cui non c'è un'origine di rete: il file aperto
+// localmente come file:// (uso reale oggi, vedi il commento CORS in
+// src/index.js) — lì punta al dominio pubblico definitivo.
+const API = (() => {
+  const { hostname, port, origin } = window.location;
+  if (["127.0.0.1", "localhost"].includes(hostname) && port === "4310") return origin;
+  if (origin && origin !== "null") return origin;
+  return "https://www.rifless.it";
+})();
 
 // Punto 24 (monitoring, "errori frontend"): senza questo, un errore
 // JavaScript nel browser del cliente è invisibile a chiunque. "best

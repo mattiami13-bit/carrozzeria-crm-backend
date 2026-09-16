@@ -109,3 +109,47 @@ di annunciare/vendere il prodotto va fatto così:
 Fino ad allora il sito è pubblico e funzionante, ma qualsiasi checkout
 resta in modalità test — va bene per continuare a testare, non per
 vendere davvero.
+
+## Punto 33: dominio e URL
+
+Struttura prevista: `www.rifless.it` = sito commerciale,
+`app.rifless.it` = gestionale, eventualmente `status.rifless.it` in
+futuro. Nessun dominio è mai scritto a mano nel codice — sempre da
+variabili d'ambiente (`CORS_ORIGINS`, `APP_HOSTNAME`) o derivato a
+runtime da `req`/`window.location`.
+
+**Trovato e corretto oggi**: il gestionale (`carrozzeria-crm-app.html`)
+aveva l'URL dell'API scritto a mano
+(`https://carrozzeria-crm-backend-production.up.railway.app`, il
+vecchio dominio Railway) invece di usare il dominio corrente — esatto
+contrario di quanto richiede questo punto. Ora l'API usa sempre la
+stessa origine da cui il gestionale viene servito (funziona
+automaticamente su qualsiasi host, presente o futuro), con un unico
+fallback assoluto (`https://www.rifless.it`) per l'unico caso senza
+un'origine di rete: il file aperto localmente (`file://`).
+
+**Predisposto lato codice**: lo stesso servizio Express ora risponde
+con il gestionale (non più solo con il sito commerciale) quando la
+richiesta arriva con host `app.rifless.it` (configurabile con
+`APP_HOSTNAME`) — verificato in locale con una richiesta `Host:
+app.rifless.it` che restituisce correttamente il gestionale invece del
+sito. **Manca solo il collegamento del dominio stesso**, che richiede
+due azioni nei tuoi account (non posso farle: la prima richiede login,
+la seconda l'accesso al pannello del tuo registrar):
+
+1. **Railway** → progetto `intelligent-light` → servizio
+   `carrozzeria-crm-backend` → tab Settings → Networking → "Custom
+   Domain" → aggiungi `app.rifless.it`. Railway mostrerà un valore CNAME
+   specifico per questo dominio (diverso da quello già usato per
+   `www.rifless.it`).
+2. **Dal pannello DNS del tuo registrar** (dove hai già configurato
+   `www.rifless.it`): aggiungi un record CNAME con host `app` che punta
+   al valore mostrato da Railway al passo 1.
+
+Fatto questo (la propagazione DNS può richiedere qualche minuto),
+`https://app.rifless.it` servirà il gestionale — fammelo sapere e
+verifico.
+
+`status.rifless.it` non è stato predisposto: nessuna pagina di stato
+esiste ancora oggi (il prompt lo definisce "eventuale") — intervento a
+sé se in futuro vorrai una status page pubblica.
