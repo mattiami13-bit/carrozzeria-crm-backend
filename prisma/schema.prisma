@@ -1967,3 +1967,18 @@ model Ticket {
   @@index([tenantId, stato])
   @@map("tickets")
 }
+
+// Punto 38 (changelog, "NOVITÀ"): "NON inventare storico release" — la
+// tabella nasce deliberatamente vuota (nessun seed), pubblicata solo
+// dal super-admin quando qualcosa spedisce davvero. Stesso pattern di
+// FaqItem: contenuto in database, non testo statico nell'HTML.
+model ChangelogEntry {
+  id          String   @id @default(cuid())
+  titolo      String
+  descrizione String
+  data        DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("changelog_entries")
+}

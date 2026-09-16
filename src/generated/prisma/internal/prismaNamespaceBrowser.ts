@@ -112,7 +112,8 @@ export const ModelName = {
   SuperAdmin: 'SuperAdmin',
   Lead: 'Lead',
   FaqItem: 'FaqItem',
-  Ticket: 'Ticket'
+  Ticket: 'Ticket',
+  ChangelogEntry: 'ChangelogEntry'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1113,6 +1114,18 @@ export const TicketScalarFieldEnum = {
 } as const
 
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
+
+
+export const ChangelogEntryScalarFieldEnum = {
+  id: 'id',
+  titolo: 'titolo',
+  descrizione: 'descrizione',
+  data: 'data',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ChangelogEntryScalarFieldEnum = (typeof ChangelogEntryScalarFieldEnum)[keyof typeof ChangelogEntryScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -327,3 +327,8 @@ export type FaqItem = Prisma.FaqItemModel
  * 
  */
 export type Ticket = Prisma.TicketModel
+/**
+ * Model ChangelogEntry
+ * 
+ */
+export type ChangelogEntry = Prisma.ChangelogEntryModel

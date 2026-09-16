@@ -46,6 +46,7 @@ import { clientErrorsRouter } from "./routes/clientErrors.js";
 import { contattiRouter } from "./routes/contatti.js";
 import { demoRouter } from "./routes/demo.js";
 import { faqRouter } from "./routes/faq.js";
+import { changelogRouter } from "./routes/changelog.js";
 import { supportRouter } from "./routes/support.js";
 import { statoSalute } from "./lib/health.js";
 import path from "path";
@@ -135,6 +136,7 @@ app.use("/", express.static(path.join(__dirname, "..", "public", "home")));
 app.use("/contatti", express.static(path.join(__dirname, "..", "public", "contatti")));
 app.use("/demo", express.static(path.join(__dirname, "..", "public", "demo")));
 app.use("/faq", express.static(path.join(__dirname, "..", "public", "faq")));
+app.use("/novita", express.static(path.join(__dirname, "..", "public", "novita")));
 app.use("/portale", express.static(path.join(__dirname, "..", "public", "portale")));
 app.use("/verifica-email", express.static(path.join(__dirname, "..", "public", "verifica-email")));
 app.use("/reset-password", express.static(path.join(__dirname, "..", "public", "reset-password")));
@@ -164,6 +166,7 @@ app.use("/api/client-errors", clientErrorsRouter);
 app.use("/api/contatti", contattiRouter);
 app.use("/api/demo", demoRouter);
 app.use("/api/faq", faqRouter);
+app.use("/api/changelog", changelogRouter);
 // Punto 37 (supporto cliente): montata PRIMA del gate abbonamento come
 // auth/billing/gdpr sopra — un tenant bloccato (trial scaduto,
 // abbonamento cancellato) deve poter comunque chiedere aiuto, non solo

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Rifless — Novità</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px 16px 48px; min-height: 100vh;
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif; background: #0A0B0D; color: #F3F1EC;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; font-weight: 700; font-size: 16px; }
+  .brand img { width: 26px; height: 26px; border-radius: 6px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  p.intro { font-size: 14px; color: #A8A29B; line-height: 1.55; margin: 0 0 28px; }
+  .voce { border-left: 2px solid #2A2E34; padding: 2px 0 22px 18px; margin-bottom: 4px; }
+  .data { font-size: 12px; color: #6B6963; margin-bottom: 4px; }
+  .titolo { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .descrizione { font-size: 13.5px; color: #C4C8D0; line-height: 1.6; }
+  .stato { text-align: center; color: #6B6963; font-size: 13.5px; padding: 40px 0; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand"><img src="/logo-icon.png" alt="Rifless"> Rifless</div>
+    <h1>Novità</h1>
+    <p class="intro">Cosa cambia in Rifless, mano a mano che succede davvero.</p>
+    <div id="lista"><div class="stato">Caricamento…</div></div>
+  </div>
+
+  <script>
+    const API = window.location.origin;
+    const lista = document.getElementById("lista");
+
+    fetch(`${API}/api/changelog`)
+      .then((res) => { if (!res.ok) throw new Error(); return res.json(); })
+      .then((voci) => {
+        if (!voci.length) {
+          lista.innerHTML = '<div class="stato">Non ci sono ancora novità pubblicate.</div>';
+          return;
+        }
+        lista.innerHTML = voci.map((v) => `
+          <div class="voce">
+            <div class="data">${new Date(v.data).toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" })}</div>
+            <div class="titolo">${v.titolo}</div>
+            <div class="descrizione">${v.descrizione}</div>
+          </div>
+        `).join("");
+      })
+      .catch(() => {
+        lista.innerHTML = '<div class="stato">Non siamo riusciti a caricare le novità. Riprova tra poco.</div>';
+      });
+  </script>
+</body>
+</html>

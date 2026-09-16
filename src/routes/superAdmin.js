@@ -136,6 +136,45 @@ superAdminRouter.delete("/faq/:id", async (req, res) => {
   res.status(204).end();
 });
 
+// Punto 38 (changelog): CRUD completo, riservato al super-admin — la
+// tabella nasce vuota (nessuno storico inventato) e cresce solo quando
+// qualcosa spedisce davvero. Stesso pattern del CRUD FAQ sopra.
+superAdminRouter.get("/changelog", async (req, res) => {
+  const voci = await prisma.changelogEntry.findMany({ orderBy: { data: "desc" } });
+  res.json(voci);
+});
+
+const changelogSchema = z.object({
+  titolo: z.string().trim().min(1).max(200),
+  descrizione: z.string().trim().min(1).max(3000),
+  data: z.coerce.date().optional(),
+});
+
+superAdminRouter.post("/changelog", async (req, res) => {
+  const parsed = changelogSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: "Dati non validi", dettagli: parsed.error.flatten() });
+  const voce = await prisma.changelogEntry.create({ data: parsed.data });
+  res.status(201).json(voce);
+});
+
+const changelogUpdateSchema = changelogSchema.partial();
+
+superAdminRouter.patch("/changelog/:id", async (req, res) => {
+  const parsed = changelogUpdateSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: "Dati non validi", dettagli: parsed.error.flatten() });
+  const esistente = await prisma.changelogEntry.findUnique({ where: { id: req.params.id } });
+  if (!esistente) return res.status(404).json({ error: "Voce non trovata" });
+  const aggiornata = await prisma.changelogEntry.update({ where: { id: req.params.id }, data: parsed.data });
+  res.json(aggiornata);
+});
+
+superAdminRouter.delete("/changelog/:id", async (req, res) => {
+  const esistente = await prisma.changelogEntry.findUnique({ where: { id: req.params.id } });
+  if (!esistente) return res.status(404).json({ error: "Voce non trovata" });
+  await prisma.changelogEntry.delete({ where: { id: req.params.id } });
+  res.status(204).end();
+});
+
 // Punto 37 (supporto cliente): visibilità su tutti i ticket di tutti i
 // tenant, chi li apre non ha modo di vederli gestiti da nessun'altra
 // parte oggi (nessun pannello super-admin ancora — vedi SUPER-ADMIN.md).

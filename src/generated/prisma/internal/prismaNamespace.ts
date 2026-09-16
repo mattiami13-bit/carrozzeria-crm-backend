@@ -458,7 +458,8 @@ export const ModelName = {
   SuperAdmin: 'SuperAdmin',
   Lead: 'Lead',
   FaqItem: 'FaqItem',
-  Ticket: 'Ticket'
+  Ticket: 'Ticket',
+  ChangelogEntry: 'ChangelogEntry'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -474,7 +475,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerCarPhoto" | "loanerBooking" | "loanerBookingPhoto" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage" | "qcChecklistItem" | "qcInspection" | "qcCheckResult" | "qcNonConformita" | "qcEvento" | "briefingSettings" | "briefingReport" | "briefingResolution" | "notification" | "gdprRichiesta" | "stripeWebhookEvent" | "superAdmin" | "lead" | "faqItem" | "ticket"
+    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerCarPhoto" | "loanerBooking" | "loanerBookingPhoto" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage" | "qcChecklistItem" | "qcInspection" | "qcCheckResult" | "qcNonConformita" | "qcEvento" | "briefingSettings" | "briefingReport" | "briefingResolution" | "notification" | "gdprRichiesta" | "stripeWebhookEvent" | "superAdmin" | "lead" | "faqItem" | "ticket" | "changelogEntry"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -5066,6 +5067,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ChangelogEntry: {
+      payload: Prisma.$ChangelogEntryPayload<ExtArgs>
+      fields: Prisma.ChangelogEntryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ChangelogEntryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChangelogEntryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ChangelogEntryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChangelogEntryPayload>
+        }
+        findFirst: {
+          args: Prisma.ChangelogEntryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChangelogEntryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ChangelogEntryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChangelogEntryPayload>
+        }
+        findMany: {
+          args: Prisma.ChangelogEntryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChangelogEntryPayload>[]
+        }
+        create: {
+          args: Prisma.ChangelogEntryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChangelogEntryPayload>
+        }
+        createMany: {
+          args: Prisma.ChangelogEntryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ChangelogEntryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChangelogEntryPayload>[]
+        }
+        delete: {
+          args: Prisma.ChangelogEntryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChangelogEntryPayload>
+        }
+        update: {
+          args: Prisma.ChangelogEntryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChangelogEntryPayload>
+        }
+        deleteMany: {
+          args: Prisma.ChangelogEntryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ChangelogEntryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ChangelogEntryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChangelogEntryPayload>[]
+        }
+        upsert: {
+          args: Prisma.ChangelogEntryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChangelogEntryPayload>
+        }
+        aggregate: {
+          args: Prisma.ChangelogEntryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateChangelogEntry>
+        }
+        groupBy: {
+          args: Prisma.ChangelogEntryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChangelogEntryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ChangelogEntryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChangelogEntryCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -6089,6 +6164,18 @@ export const TicketScalarFieldEnum = {
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
 
 
+export const ChangelogEntryScalarFieldEnum = {
+  id: 'id',
+  titolo: 'titolo',
+  descrizione: 'descrizione',
+  data: 'data',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ChangelogEntryScalarFieldEnum = (typeof ChangelogEntryScalarFieldEnum)[keyof typeof ChangelogEntryScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -6978,6 +7065,7 @@ export type GlobalOmitConfig = {
   lead?: Prisma.LeadOmit
   faqItem?: Prisma.FaqItemOmit
   ticket?: Prisma.TicketOmit
+  changelogEntry?: Prisma.ChangelogEntryOmit
 }
 
 /* Types for Logging */
