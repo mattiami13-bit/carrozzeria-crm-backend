@@ -368,3 +368,32 @@ export const LeadStato = {
 } as const
 
 export type LeadStato = (typeof LeadStato)[keyof typeof LeadStato]
+
+
+export const TicketCategoria = {
+  SUPPORTO: 'SUPPORTO',
+  BUG: 'BUG',
+  FUNZIONALITA: 'FUNZIONALITA'
+} as const
+
+export type TicketCategoria = (typeof TicketCategoria)[keyof typeof TicketCategoria]
+
+
+export const TicketPriorita = {
+  BASSA: 'BASSA',
+  MEDIA: 'MEDIA',
+  ALTA: 'ALTA',
+  URGENTE: 'URGENTE'
+} as const
+
+export type TicketPriorita = (typeof TicketPriorita)[keyof typeof TicketPriorita]
+
+
+export const TicketStato = {
+  APERTO: 'APERTO',
+  IN_LAVORAZIONE: 'IN_LAVORAZIONE',
+  RISOLTO: 'RISOLTO',
+  CHIUSO: 'CHIUSO'
+} as const
+
+export type TicketStato = (typeof TicketStato)[keyof typeof TicketStato]

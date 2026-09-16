@@ -636,6 +636,7 @@ function NotificationBell({ api, onApri }) {
 // semplificazione scatta solo se il ruolo è ESATTAMENTE "TECNICO".
 function DashboardTecnico({ token, onLogout }) {
   const api = useApi(token);
+  const [aiutoSupportoAperto, setAiutoSupportoAperto] = useState(false);
   return (
     <div style={{ minHeight: "100vh", background: "#0A0B0D" }}>
       <div style={{ position: "sticky", top: 0, zIndex: 10, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", background: "#15171B", borderBottom: "1px solid #2A2E34" }}>
@@ -645,12 +646,14 @@ function DashboardTecnico({ token, onLogout }) {
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <NotificationBell api={api} onApri={() => {}} />
+          <button onClick={() => setAiutoSupportoAperto(true)} style={{ padding: "7px 12px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#8D9099", fontSize: 12.5, fontWeight: 600 }}>Aiuto</button>
           <button onClick={onLogout} style={{ padding: "7px 12px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#B4472E", fontSize: 12.5, fontWeight: 600 }}>Esci</button>
         </div>
       </div>
       <div style={{ padding: 14, maxWidth: 560, margin: "0 auto" }}>
         <TecnicoLavoriView api={api} token={token} />
       </div>
+      {aiutoSupportoAperto && <AiutoSupportoModal api={api} onClose={() => setAiutoSupportoAperto(false)} />}
     </div>
   );
 }
@@ -662,6 +665,7 @@ function Dashboard({ token, user, onLogout }) {
   const [cambiaPasswordAperto, setCambiaPasswordAperto] = useState(false);
   const [privacyDatiAperto, setPrivacyDatiAperto] = useState(false);
   const [pianoFatturazioneAperto, setPianoFatturazioneAperto] = useState(false);
+  const [aiutoSupportoAperto, setAiutoSupportoAperto] = useState(false);
   const api = useApi(token);
   const ruolo = decodificaRuolo(token);
 
@@ -716,6 +720,10 @@ function Dashboard({ token, user, onLogout }) {
           width: "100%", textAlign: "left", padding: "9px 12px", borderRadius: 8, border: "none", marginTop: 20,
           background: "transparent", color: "#8D9099", fontSize: 13,
         }}>Cambia password</button>
+        <button onClick={() => setAiutoSupportoAperto(true)} style={{
+          width: "100%", textAlign: "left", padding: "9px 12px", borderRadius: 8, border: "none",
+          background: "transparent", color: "#8D9099", fontSize: 13,
+        }}>Aiuto e supporto</button>
         {ruolo === "ADMIN" && (
           <button onClick={() => setPrivacyDatiAperto(true)} style={{
             width: "100%", textAlign: "left", padding: "9px 12px", borderRadius: 8, border: "none",
@@ -738,6 +746,7 @@ function Dashboard({ token, user, onLogout }) {
         {cambiaPasswordAperto && <CambiaPasswordModal api={api} onClose={() => setCambiaPasswordAperto(false)} />}
         {privacyDatiAperto && <PrivacyDatiModal api={api} onClose={() => setPrivacyDatiAperto(false)} />}
         {pianoFatturazioneAperto && <PianoFatturazioneModal api={api} onClose={() => setPianoFatturazioneAperto(false)} />}
+        {aiutoSupportoAperto && <AiutoSupportoModal api={api} onClose={() => setAiutoSupportoAperto(false)} />}
         {tab === "executive" && ruolo === "ADMIN" && <><MorningBriefing api={api} onOpen={apriPraticaVeicolo} /><ExecutiveDashboard api={api} onOpen={apriPraticaVeicolo} /></>}
         {tab === "dashboard" && <><DashboardView api={api} ruolo={ruolo} /><PartsDashboard api={api} onOpen={apriPraticaVeicolo} compact /></>}
         {tab === "parts-tracking" && <PartsDashboard api={api} onOpen={apriPraticaVeicolo} />}
@@ -1097,6 +1106,200 @@ function PianoFatturazioneModal({ api, onClose }) {
             <p style={{ fontSize: 11, color: "#5A5E66", marginTop: 14 }}>Prezzi IVA esclusa. Il pagamento avviene su una pagina sicura ospitata da Stripe: il gestionale non gestisce mai direttamente i dati della carta.</p>
           </>
         )}
+      </div>
+    </div>
+  );
+}
+
+// Punto 37 (supporto cliente): "AIUTO E SUPPORTO" con FAQ, guide,
+// contatta supporto / segnala problema / richiedi funzione (un unico
+// modulo Ticket, la categoria scelta li distingue) e lo storico dei
+// ticket del proprio tenant.
+const TICKET_CATEGORIE = [
+  { key: "SUPPORTO", label: "Contatta supporto" },
+  { key: "BUG", label: "Segnala un problema" },
+  { key: "FUNZIONALITA", label: "Richiedi una funzione" },
+];
+const TICKET_STATO_LABEL = { APERTO: "Aperto", IN_LAVORAZIONE: "In lavorazione", RISOLTO: "Risolto", CHIUSO: "Chiuso" };
+const TICKET_STATO_COLORE = { APERTO: "#E5B84B", IN_LAVORAZIONE: "#2F80ED", RISOLTO: "#6FBF8E", CHIUSO: "#8D9099" };
+
+function FaqAccordion({ api }) {
+  const [faq, setFaq] = useState(null);
+  const [aperta, setAperta] = useState(null);
+  const [errore, setErrore] = useState(null);
+
+  useEffect(() => {
+    api("/api/faq").then(setFaq).catch((e) => setErrore(e.message));
+  }, [api]);
+
+  if (errore) return <div style={{ color: "#B4472E", fontSize: 13 }}>{errore}</div>;
+  if (!faq) return <Loading />;
+  if (!faq.length) return <p style={{ fontSize: 13, color: "#8D9099" }}>Nessuna domanda disponibile al momento.</p>;
+
+  return (
+    <div>
+      {faq.map((f) => (
+        <div key={f.id} style={{ border: "1px solid #2A2E34", borderRadius: 10, marginBottom: 8, overflow: "hidden" }}>
+          <button onClick={() => setAperta(aperta === f.id ? null : f.id)} style={{
+            width: "100%", textAlign: "left", padding: "12px 14px", background: "none", border: "none",
+            color: "#F3F1EC", fontSize: 13.5, fontWeight: 600, display: "flex", justifyContent: "space-between", gap: 10,
+          }}>
+            <span>{f.domanda}</span>
+            <span style={{ color: "#8D9099" }}>{aperta === f.id ? "−" : "+"}</span>
+          </button>
+          {aperta === f.id && (
+            <div style={{ padding: "0 14px 14px", fontSize: 13, color: "#C4C8D0", lineHeight: 1.55 }}>{f.risposta}</div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function GuideSupporto() {
+  // Contenuto onesto e verificabile: solo le sezioni che esistono
+  // davvero nella barra laterale, nessuna funzione descritta che non
+  // sia già costruita (coerente con "NON inventare" del punto 38).
+  const guide = [
+    { titolo: "Dashboard", testo: "Panoramica delle pratiche aperte e degli indicatori principali della carrozzeria." },
+    { titolo: "Veicoli", testo: "Anagrafica veicoli, foto, documenti e avanzamento di ogni pratica, dall'ingresso alla consegna." },
+    { titolo: "Preventivi", testo: "Crea, invia e tieni traccia dello stato dei preventivi per ogni pratica." },
+    { titolo: "Magazzino", testo: "Gestione ricambi, scorte minime e collegamento ai lavori che li utilizzano." },
+    { titolo: "Calendario", testo: "Appuntamenti e scadenze, collegati alle pratiche e ai clienti corrispondenti." },
+    { titolo: "Clienti", testo: "Anagrafica clienti, storico veicoli e comunicazioni collegate." },
+  ];
+  return (
+    <div>
+      <p style={{ fontSize: 12.5, color: "#8D9099", marginBottom: 14 }}>Guide rapide alle sezioni principali del gestionale. Contenuti più approfonditi arriveranno nel tempo.</p>
+      {guide.map((g) => (
+        <div key={g.titolo} style={{ marginBottom: 14 }}>
+          <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 2 }}>{g.titolo}</div>
+          <div style={{ fontSize: 12.5, color: "#C4C8D0", lineHeight: 1.5 }}>{g.testo}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function NuovoTicketForm({ api, onCreato }) {
+  const [categoria, setCategoria] = useState("SUPPORTO");
+  const [priorita, setPriorita] = useState("MEDIA");
+  const [messaggio, setMessaggio] = useState("");
+  const [inviando, setInviando] = useState(false);
+  const [errore, setErrore] = useState(null);
+
+  const invia = async () => {
+    if (!messaggio.trim()) { setErrore("Scrivi un messaggio prima di inviare."); return; }
+    setInviando(true);
+    setErrore(null);
+    try {
+      await api("/api/support/ticket", { method: "POST", body: JSON.stringify({ categoria, priorita, messaggio: messaggio.trim() }) });
+      setMessaggio("");
+      onCreato();
+    } catch (e) {
+      setErrore(e.message);
+    } finally {
+      setInviando(false);
+    }
+  };
+
+  return (
+    <div>
+      <div style={{ display: "flex", gap: 4, marginBottom: 12, background: "#0A0B0D", borderRadius: 10, padding: 4 }}>
+        {TICKET_CATEGORIE.map((c) => (
+          <button key={c.key} onClick={() => setCategoria(c.key)} style={{
+            flex: 1, padding: "7px 4px", borderRadius: 8, border: "none", fontSize: 11.5, fontWeight: 600,
+            background: categoria === c.key ? "#F3F1EC" : "transparent", color: categoria === c.key ? "#15171B" : "#8D9099",
+          }}>{c.label}</button>
+        ))}
+      </div>
+      <label style={{ display: "block", fontSize: 11, color: "#8D9099", marginBottom: 4 }}>Priorità</label>
+      <select value={priorita} onChange={(e) => setPriorita(e.target.value)} style={{
+        width: "100%", padding: "9px 10px", borderRadius: 8, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC", fontSize: 13, marginBottom: 12,
+      }}>
+        {["BASSA", "MEDIA", "ALTA", "URGENTE"].map((p) => <option key={p} value={p}>{p.charAt(0) + p.slice(1).toLowerCase()}</option>)}
+      </select>
+      <label style={{ display: "block", fontSize: 11, color: "#8D9099", marginBottom: 4 }}>Messaggio</label>
+      <textarea value={messaggio} onChange={(e) => setMessaggio(e.target.value)} rows={5} maxLength={4000} style={{
+        width: "100%", padding: "9px 10px", borderRadius: 8, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC", fontSize: 13, marginBottom: 12, fontFamily: "inherit", resize: "vertical",
+      }} />
+      {errore && <div style={{ background: "#2A1A1A", color: "#E5806B", fontSize: 12.5, padding: 10, borderRadius: 8, marginBottom: 12 }}>{errore}</div>}
+      <button onClick={invia} disabled={inviando} style={{
+        padding: "10px 16px", borderRadius: 8, border: "none", background: "#2F80ED", color: "#fff", fontSize: 13, fontWeight: 600,
+      }}>{inviando ? "Invio…" : "Invia richiesta"}</button>
+    </div>
+  );
+}
+
+function ElencoTicket({ api, refreshKey }) {
+  const [ticket, setTicket] = useState(null);
+  const [errore, setErrore] = useState(null);
+
+  useEffect(() => {
+    api("/api/support/ticket").then(setTicket).catch((e) => setErrore(e.message));
+  }, [api, refreshKey]);
+
+  if (errore) return <div style={{ color: "#B4472E", fontSize: 13 }}>{errore}</div>;
+  if (!ticket) return <Loading />;
+  if (!ticket.length) return <p style={{ fontSize: 13, color: "#8D9099" }}>Nessuna richiesta inviata finora.</p>;
+
+  return (
+    <div>
+      {ticket.map((t) => (
+        <div key={t.id} style={{ border: "1px solid #2A2E34", borderRadius: 10, padding: 12, marginBottom: 8 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6, gap: 8 }}>
+            <span style={{ fontSize: 12, fontWeight: 600, color: "#8D9099" }}>
+              {TICKET_CATEGORIE.find((c) => c.key === t.categoria)?.label || t.categoria} · {t.user.nome} {t.user.cognome}
+            </span>
+            <span style={{ fontSize: 11, fontWeight: 700, color: TICKET_STATO_COLORE[t.stato], flexShrink: 0 }}>{TICKET_STATO_LABEL[t.stato]}</span>
+          </div>
+          <div style={{ fontSize: 13, color: "#F3F1EC", lineHeight: 1.5, marginBottom: 6 }}>{t.messaggio}</div>
+          <div style={{ fontSize: 11, color: "#5A5E66" }}>{new Date(t.createdAt).toLocaleString("it-IT")} · Priorità {t.priorita.charAt(0) + t.priorita.slice(1).toLowerCase()}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AiutoSupportoModal({ api, onClose }) {
+  const [sezione, setSezione] = useState("faq");
+  const [refreshKey, setRefreshKey] = useState(0);
+  const SEZIONI = [
+    { key: "faq", label: "FAQ" },
+    { key: "guide", label: "Guide" },
+    { key: "nuovo", label: "Nuova richiesta" },
+    { key: "storico", label: "Le mie richieste" },
+  ];
+
+  return (
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, background: "rgba(27,26,23,0.5)", display: "flex",
+      alignItems: "center", justifyContent: "center", zIndex: 55, padding: 16,
+    }}>
+      <div onClick={(e) => e.stopPropagation()} style={{
+        background: "#15171B", borderRadius: 16, width: 560, maxWidth: "100%", maxHeight: "88vh", overflowY: "auto",
+        padding: 24, border: "1px solid #2A2E34",
+      }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+          <h2 style={{ fontSize: 16, fontWeight: 700, margin: 0 }}>Aiuto e supporto</h2>
+          <button onClick={onClose} style={{
+            border: "none", background: "#0A0B0D", width: 26, height: 26, borderRadius: 7, fontSize: 13, color: "#8D9099",
+          }}>✕</button>
+        </div>
+
+        <div style={{ display: "flex", gap: 4, marginBottom: 18, background: "#0A0B0D", borderRadius: 10, padding: 4, flexWrap: "wrap" }}>
+          {SEZIONI.map((s) => (
+            <button key={s.key} onClick={() => setSezione(s.key)} style={{
+              flex: "1 1 auto", padding: "7px 8px", borderRadius: 8, border: "none", fontSize: 12, fontWeight: 600,
+              background: sezione === s.key ? "#F3F1EC" : "transparent", color: sezione === s.key ? "#15171B" : "#8D9099",
+            }}>{s.label}</button>
+          ))}
+        </div>
+
+        {sezione === "faq" && <FaqAccordion api={api} />}
+        {sezione === "guide" && <GuideSupporto />}
+        {sezione === "nuovo" && <NuovoTicketForm api={api} onCreato={() => { setRefreshKey((k) => k + 1); setSezione("storico"); }} />}
+        {sezione === "storico" && <ElencoTicket api={api} refreshKey={refreshKey} />}
       </div>
     </div>
   );

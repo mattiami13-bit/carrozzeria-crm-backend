@@ -36,6 +36,7 @@
     "test:contatti": "node --test tests/contatti.test.js",
     "test:demo": "node --test tests/demo.test.js",
     "test:faq": "node --test tests/faq.test.js",
+    "test:support": "node --test tests/support.test.js",
     "seed:demo": "node scripts/seed-demo-tenant.mjs",
     "seed:demo:reset": "node scripts/seed-demo-tenant.mjs --reset",
     "seed:super-admin": "node scripts/seed-super-admin.mjs",

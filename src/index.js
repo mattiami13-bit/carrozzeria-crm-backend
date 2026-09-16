@@ -46,6 +46,7 @@ import { clientErrorsRouter } from "./routes/clientErrors.js";
 import { contattiRouter } from "./routes/contatti.js";
 import { demoRouter } from "./routes/demo.js";
 import { faqRouter } from "./routes/faq.js";
+import { supportRouter } from "./routes/support.js";
 import { statoSalute } from "./lib/health.js";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -163,6 +164,11 @@ app.use("/api/client-errors", clientErrorsRouter);
 app.use("/api/contatti", contattiRouter);
 app.use("/api/demo", demoRouter);
 app.use("/api/faq", faqRouter);
+// Punto 37 (supporto cliente): montata PRIMA del gate abbonamento come
+// auth/billing/gdpr sopra — un tenant bloccato (trial scaduto,
+// abbonamento cancellato) deve poter comunque chiedere aiuto, non solo
+// chi è già pagante.
+app.use("/api/support", supportRouter);
 
 // Punto 23 (subscription required): da qui in giù, un tenant con
 // abbonamento scaduto/non attivo riceve 402 invece di poter continuare

@@ -457,7 +457,8 @@ export const ModelName = {
   StripeWebhookEvent: 'StripeWebhookEvent',
   SuperAdmin: 'SuperAdmin',
   Lead: 'Lead',
-  FaqItem: 'FaqItem'
+  FaqItem: 'FaqItem',
+  Ticket: 'Ticket'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -473,7 +474,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerCarPhoto" | "loanerBooking" | "loanerBookingPhoto" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage" | "qcChecklistItem" | "qcInspection" | "qcCheckResult" | "qcNonConformita" | "qcEvento" | "briefingSettings" | "briefingReport" | "briefingResolution" | "notification" | "gdprRichiesta" | "stripeWebhookEvent" | "superAdmin" | "lead" | "faqItem"
+    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerCarPhoto" | "loanerBooking" | "loanerBookingPhoto" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage" | "qcChecklistItem" | "qcInspection" | "qcCheckResult" | "qcNonConformita" | "qcEvento" | "briefingSettings" | "briefingReport" | "briefingResolution" | "notification" | "gdprRichiesta" | "stripeWebhookEvent" | "superAdmin" | "lead" | "faqItem" | "ticket"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -4991,6 +4992,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Ticket: {
+      payload: Prisma.$TicketPayload<ExtArgs>
+      fields: Prisma.TicketFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TicketFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TicketFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketPayload>
+        }
+        findFirst: {
+          args: Prisma.TicketFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TicketFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketPayload>
+        }
+        findMany: {
+          args: Prisma.TicketFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketPayload>[]
+        }
+        create: {
+          args: Prisma.TicketCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketPayload>
+        }
+        createMany: {
+          args: Prisma.TicketCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TicketCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketPayload>[]
+        }
+        delete: {
+          args: Prisma.TicketDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketPayload>
+        }
+        update: {
+          args: Prisma.TicketUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketPayload>
+        }
+        deleteMany: {
+          args: Prisma.TicketDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TicketUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TicketUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketPayload>[]
+        }
+        upsert: {
+          args: Prisma.TicketUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TicketPayload>
+        }
+        aggregate: {
+          args: Prisma.TicketAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTicket>
+        }
+        groupBy: {
+          args: Prisma.TicketGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TicketGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TicketCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TicketCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -5999,6 +6074,21 @@ export const FaqItemScalarFieldEnum = {
 export type FaqItemScalarFieldEnum = (typeof FaqItemScalarFieldEnum)[keyof typeof FaqItemScalarFieldEnum]
 
 
+export const TicketScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  userId: 'userId',
+  categoria: 'categoria',
+  priorita: 'priorita',
+  messaggio: 'messaggio',
+  stato: 'stato',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -6621,6 +6711,48 @@ export type ListEnumLeadStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
 
 
 /**
+ * Reference to a field of type 'TicketCategoria'
+ */
+export type EnumTicketCategoriaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketCategoria'>
+    
+
+
+/**
+ * Reference to a field of type 'TicketCategoria[]'
+ */
+export type ListEnumTicketCategoriaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketCategoria[]'>
+    
+
+
+/**
+ * Reference to a field of type 'TicketPriorita'
+ */
+export type EnumTicketPrioritaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketPriorita'>
+    
+
+
+/**
+ * Reference to a field of type 'TicketPriorita[]'
+ */
+export type ListEnumTicketPrioritaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketPriorita[]'>
+    
+
+
+/**
+ * Reference to a field of type 'TicketStato'
+ */
+export type EnumTicketStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketStato'>
+    
+
+
+/**
+ * Reference to a field of type 'TicketStato[]'
+ */
+export type ListEnumTicketStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketStato[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -6845,6 +6977,7 @@ export type GlobalOmitConfig = {
   superAdmin?: Prisma.SuperAdminOmit
   lead?: Prisma.LeadOmit
   faqItem?: Prisma.FaqItemOmit
+  ticket?: Prisma.TicketOmit
 }
 
 /* Types for Logging */

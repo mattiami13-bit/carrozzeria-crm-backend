@@ -103,6 +103,26 @@ export async function inviaNotificaLeadCommerciale({ nome, cognome, carrozzeria,
   });
 }
 
+const CATEGORIA_LABEL = { SUPPORTO: "Richiesta di supporto", BUG: "Segnalazione problema", FUNZIONALITA: "Richiesta funzionalità" };
+
+// Punto 37 (supporto cliente): notifica interna best-effort per ogni
+// nuovo ticket, stesso destinatario dei lead commerciali — non è un
+// pubblico diverso, è sempre chi gestisce la piattaforma.
+export async function inviaNotificaTicket({ ragioneSociale, categoria, priorita, messaggio, utente }) {
+  const titolo = `${CATEGORIA_LABEL[categoria] || "Nuovo ticket"} — ${ragioneSociale}`;
+  const righe = [
+    `Carrozzeria: ${ragioneSociale}`,
+    `Da: ${utente}`,
+    `Priorità: ${priorita}`,
+    `Messaggio: ${messaggio}`,
+  ];
+  const html = layoutEmail({
+    titolo,
+    corpoHtml: `<p>${righe.map((r) => r.replace(/</g, "&lt;")).join("<br>")}</p>`,
+  });
+  return inviaConRetry({ to: DESTINATARIO_LEAD, subject: titolo, html, text: righe.join("\n") });
+}
+
 export async function inviaEmailResetPassword({ email, nome, resetUrl }) {
   const html = layoutEmail({
     titolo: "Reimposta la password",

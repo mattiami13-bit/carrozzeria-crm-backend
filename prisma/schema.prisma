@@ -107,6 +107,7 @@ model Tenant {
   loanerBookingPhotos LoanerBookingPhoto[]
   notifications      Notification[]
   gdprRichieste      GdprRichiesta[]
+  tickets            Ticket[]
 
 
   @@map("tenants")
@@ -190,6 +191,7 @@ model User {
   loanerBookingsCreate       LoanerBooking[]
   notifications              Notification[]
   gdprRichieste              GdprRichiesta[]
+  tickets                    Ticket[]
 
   @@index([tenantId])
   @@map("users")
@@ -1923,4 +1925,45 @@ model FaqItem {
   updatedAt DateTime @updatedAt
 
   @@map("faq_items")
+}
+
+// Punto 37 (supporto cliente): "contatta supporto", "segnala problema"
+// e "richiedi funzione" sono la stessa entità (un ticket) con categoria
+// diversa, non tre sistemi separati — coerente con come punto 34/35
+// condividono Lead con un campo "origine".
+enum TicketCategoria {
+  SUPPORTO
+  BUG
+  FUNZIONALITA
+}
+
+enum TicketPriorita {
+  BASSA
+  MEDIA
+  ALTA
+  URGENTE
+}
+
+enum TicketStato {
+  APERTO
+  IN_LAVORAZIONE
+  RISOLTO
+  CHIUSO
+}
+
+model Ticket {
+  id         String          @id @default(cuid())
+  tenantId   String
+  tenant     Tenant          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User            @relation(fields: [userId], references: [id])
+  categoria  TicketCategoria
+  priorita   TicketPriorita  @default(MEDIA)
+  messaggio  String
+  stato      TicketStato     @default(APERTO)
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+
+  @@index([tenantId, stato])
+  @@map("tickets")
 }

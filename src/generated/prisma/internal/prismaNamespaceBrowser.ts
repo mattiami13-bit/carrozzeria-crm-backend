@@ -111,7 +111,8 @@ export const ModelName = {
   StripeWebhookEvent: 'StripeWebhookEvent',
   SuperAdmin: 'SuperAdmin',
   Lead: 'Lead',
-  FaqItem: 'FaqItem'
+  FaqItem: 'FaqItem',
+  Ticket: 'Ticket'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1097,6 +1098,21 @@ export const FaqItemScalarFieldEnum = {
 } as const
 
 export type FaqItemScalarFieldEnum = (typeof FaqItemScalarFieldEnum)[keyof typeof FaqItemScalarFieldEnum]
+
+
+export const TicketScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  userId: 'userId',
+  categoria: 'categoria',
+  priorita: 'priorita',
+  messaggio: 'messaggio',
+  stato: 'stato',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
 
 
 export const SortOrder = {

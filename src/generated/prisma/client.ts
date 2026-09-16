@@ -346,3 +346,8 @@ export type Lead = Prisma.LeadModel
  * 
  */
 export type FaqItem = Prisma.FaqItemModel
+/**
+ * Model Ticket
+ * 
+ */
+export type Ticket = Prisma.TicketModel

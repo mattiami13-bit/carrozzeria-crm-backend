@@ -7,6 +7,7 @@ import { requireSuperAdmin } from "../middleware/superAdmin.js";
 import { loginLimiter } from "../middleware/rateLimit.js";
 
 const STATI_LEAD = ["NUOVO", "CONTATTATO", "DEMO", "TRIAL", "CLIENTE", "PERSO"];
+const STATI_TICKET = ["APERTO", "IN_LAVORAZIONE", "RISOLTO", "CHIUSO"];
 
 // Punto 31: rotte di livello piattaforma, separate e parallele a
 // /api/auth — mai montate dietro requireAuth/tenantScope (vedi
@@ -133,6 +134,38 @@ superAdminRouter.delete("/faq/:id", async (req, res) => {
   if (!esistente) return res.status(404).json({ error: "Voce FAQ non trovata" });
   await prisma.faqItem.delete({ where: { id: req.params.id } });
   res.status(204).end();
+});
+
+// Punto 37 (supporto cliente): visibilità su tutti i ticket di tutti i
+// tenant, chi li apre non ha modo di vederli gestiti da nessun'altra
+// parte oggi (nessun pannello super-admin ancora — vedi SUPER-ADMIN.md).
+superAdminRouter.get("/tickets", async (req, res) => {
+  const { stato } = req.query;
+  if (stato !== undefined && !STATI_TICKET.includes(stato)) {
+    return res.status(400).json({ error: "Stato non valido" });
+  }
+  const tickets = await prisma.ticket.findMany({
+    where: stato ? { stato } : undefined,
+    include: {
+      tenant: { select: { ragioneSociale: true } },
+      user: { select: { nome: true, cognome: true, email: true } },
+    },
+    orderBy: { createdAt: "desc" },
+  });
+  res.json(tickets);
+});
+
+const cambiaStatoTicketSchema = z.object({ stato: z.enum(STATI_TICKET) });
+
+superAdminRouter.patch("/tickets/:id/stato", async (req, res) => {
+  const parsed = cambiaStatoTicketSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: "Stato non valido" });
+
+  const ticket = await prisma.ticket.findUnique({ where: { id: req.params.id } });
+  if (!ticket) return res.status(404).json({ error: "Ticket non trovato" });
+
+  const aggiornato = await prisma.ticket.update({ where: { id: req.params.id }, data: { stato: parsed.data.stato } });
+  res.json(aggiornato);
 });
 
 superAdminRouter.get("/gdpr-richieste", async (req, res) => {

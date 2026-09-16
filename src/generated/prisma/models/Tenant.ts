@@ -385,6 +385,7 @@ export type TenantWhereInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
   gdprRichieste?: Prisma.GdprRichiestaListRelationFilter
+  tickets?: Prisma.TicketListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -452,6 +453,7 @@ export type TenantOrderByWithRelationInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
   gdprRichieste?: Prisma.GdprRichiestaOrderByRelationAggregateInput
+  tickets?: Prisma.TicketOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -522,6 +524,7 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
   gdprRichieste?: Prisma.GdprRichiestaListRelationFilter
+  tickets?: Prisma.TicketListRelationFilter
 }, "id" | "partitaIva" | "stripeCustomerId" | "stripeSubscriptionId">
 
 export type TenantOrderByWithAggregationInput = {
@@ -641,6 +644,7 @@ export type TenantCreateInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -708,6 +712,7 @@ export type TenantUncheckedCreateInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -775,6 +780,7 @@ export type TenantUpdateInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -842,6 +848,7 @@ export type TenantUncheckedUpdateInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -1673,6 +1680,20 @@ export type TenantUpdateOneRequiredWithoutGdprRichiesteNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutGdprRichiesteInput, Prisma.TenantUpdateWithoutGdprRichiesteInput>, Prisma.TenantUncheckedUpdateWithoutGdprRichiesteInput>
 }
 
+export type TenantCreateNestedOneWithoutTicketsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutTicketsInput, Prisma.TenantUncheckedCreateWithoutTicketsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutTicketsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutTicketsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutTicketsInput, Prisma.TenantUncheckedCreateWithoutTicketsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutTicketsInput
+  upsert?: Prisma.TenantUpsertWithoutTicketsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutTicketsInput, Prisma.TenantUpdateWithoutTicketsInput>, Prisma.TenantUncheckedUpdateWithoutTicketsInput>
+}
+
 export type TenantCreateWithoutUsersInput = {
   id?: string
   ragioneSociale: string
@@ -1737,6 +1758,7 @@ export type TenantCreateWithoutUsersInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutUsersInput = {
@@ -1803,6 +1825,7 @@ export type TenantUncheckedCreateWithoutUsersInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutUsersInput = {
@@ -1885,6 +1908,7 @@ export type TenantUpdateWithoutUsersInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutUsersInput = {
@@ -1951,6 +1975,7 @@ export type TenantUncheckedUpdateWithoutUsersInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutClientsInput = {
@@ -2017,6 +2042,7 @@ export type TenantCreateWithoutClientsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutClientsInput = {
@@ -2083,6 +2109,7 @@ export type TenantUncheckedCreateWithoutClientsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutClientsInput = {
@@ -2165,6 +2192,7 @@ export type TenantUpdateWithoutClientsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutClientsInput = {
@@ -2231,6 +2259,7 @@ export type TenantUncheckedUpdateWithoutClientsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutVehiclesInput = {
@@ -2297,6 +2326,7 @@ export type TenantCreateWithoutVehiclesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutVehiclesInput = {
@@ -2363,6 +2393,7 @@ export type TenantUncheckedCreateWithoutVehiclesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutVehiclesInput = {
@@ -2445,6 +2476,7 @@ export type TenantUpdateWithoutVehiclesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutVehiclesInput = {
@@ -2511,6 +2543,7 @@ export type TenantUncheckedUpdateWithoutVehiclesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQuotesInput = {
@@ -2577,6 +2610,7 @@ export type TenantCreateWithoutQuotesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQuotesInput = {
@@ -2643,6 +2677,7 @@ export type TenantUncheckedCreateWithoutQuotesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQuotesInput = {
@@ -2725,6 +2760,7 @@ export type TenantUpdateWithoutQuotesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQuotesInput = {
@@ -2791,6 +2827,7 @@ export type TenantUncheckedUpdateWithoutQuotesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDamageAnalysesInput = {
@@ -2857,6 +2894,7 @@ export type TenantCreateWithoutDamageAnalysesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
@@ -2923,6 +2961,7 @@ export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDamageAnalysesInput = {
@@ -3005,6 +3044,7 @@ export type TenantUpdateWithoutDamageAnalysesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
@@ -3071,6 +3111,7 @@ export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDamageItemsInput = {
@@ -3137,6 +3178,7 @@ export type TenantCreateWithoutDamageItemsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDamageItemsInput = {
@@ -3203,6 +3245,7 @@ export type TenantUncheckedCreateWithoutDamageItemsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDamageItemsInput = {
@@ -3285,6 +3328,7 @@ export type TenantUpdateWithoutDamageItemsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDamageItemsInput = {
@@ -3351,6 +3395,7 @@ export type TenantUncheckedUpdateWithoutDamageItemsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInsuranceGapAnalysesInput = {
@@ -3417,6 +3462,7 @@ export type TenantCreateWithoutInsuranceGapAnalysesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInsuranceGapAnalysesInput = {
@@ -3483,6 +3529,7 @@ export type TenantUncheckedCreateWithoutInsuranceGapAnalysesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInsuranceGapAnalysesInput = {
@@ -3565,6 +3612,7 @@ export type TenantUpdateWithoutInsuranceGapAnalysesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
@@ -3631,6 +3679,7 @@ export type TenantUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInsuranceGapItemsInput = {
@@ -3697,6 +3746,7 @@ export type TenantCreateWithoutInsuranceGapItemsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInsuranceGapItemsInput = {
@@ -3763,6 +3813,7 @@ export type TenantUncheckedCreateWithoutInsuranceGapItemsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInsuranceGapItemsInput = {
@@ -3845,6 +3896,7 @@ export type TenantUpdateWithoutInsuranceGapItemsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInsuranceGapItemsInput = {
@@ -3911,6 +3963,7 @@ export type TenantUncheckedUpdateWithoutInsuranceGapItemsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInsuranceGapSuggestionsInput = {
@@ -3977,6 +4030,7 @@ export type TenantCreateWithoutInsuranceGapSuggestionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInsuranceGapSuggestionsInput = {
@@ -4043,6 +4097,7 @@ export type TenantUncheckedCreateWithoutInsuranceGapSuggestionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInsuranceGapSuggestionsInput = {
@@ -4125,6 +4180,7 @@ export type TenantUpdateWithoutInsuranceGapSuggestionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInsuranceGapSuggestionsInput = {
@@ -4191,6 +4247,7 @@ export type TenantUncheckedUpdateWithoutInsuranceGapSuggestionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartsInput = {
@@ -4257,6 +4314,7 @@ export type TenantCreateWithoutPartsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartsInput = {
@@ -4323,6 +4381,7 @@ export type TenantUncheckedCreateWithoutPartsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartsInput = {
@@ -4405,6 +4464,7 @@ export type TenantUpdateWithoutPartsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartsInput = {
@@ -4471,6 +4531,7 @@ export type TenantUncheckedUpdateWithoutPartsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSupplierOrdersInput = {
@@ -4537,6 +4598,7 @@ export type TenantCreateWithoutSupplierOrdersInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
@@ -4603,6 +4665,7 @@ export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSupplierOrdersInput = {
@@ -4685,6 +4748,7 @@ export type TenantUpdateWithoutSupplierOrdersInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
@@ -4751,6 +4815,7 @@ export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutLoanerCarsInput = {
@@ -4817,6 +4882,7 @@ export type TenantCreateWithoutLoanerCarsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutLoanerCarsInput = {
@@ -4883,6 +4949,7 @@ export type TenantUncheckedCreateWithoutLoanerCarsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutLoanerCarsInput = {
@@ -4965,6 +5032,7 @@ export type TenantUpdateWithoutLoanerCarsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
@@ -5031,6 +5099,7 @@ export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutLoanerCarPhotosInput = {
@@ -5097,6 +5166,7 @@ export type TenantCreateWithoutLoanerCarPhotosInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutLoanerCarPhotosInput = {
@@ -5163,6 +5233,7 @@ export type TenantUncheckedCreateWithoutLoanerCarPhotosInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutLoanerCarPhotosInput = {
@@ -5245,6 +5316,7 @@ export type TenantUpdateWithoutLoanerCarPhotosInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutLoanerCarPhotosInput = {
@@ -5311,6 +5383,7 @@ export type TenantUncheckedUpdateWithoutLoanerCarPhotosInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutLoanerBookingsInput = {
@@ -5377,6 +5450,7 @@ export type TenantCreateWithoutLoanerBookingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutLoanerBookingsInput = {
@@ -5443,6 +5517,7 @@ export type TenantUncheckedCreateWithoutLoanerBookingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutLoanerBookingsInput = {
@@ -5525,6 +5600,7 @@ export type TenantUpdateWithoutLoanerBookingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutLoanerBookingsInput = {
@@ -5591,6 +5667,7 @@ export type TenantUncheckedUpdateWithoutLoanerBookingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutLoanerBookingPhotosInput = {
@@ -5657,6 +5734,7 @@ export type TenantCreateWithoutLoanerBookingPhotosInput = {
   loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutLoanerBookingPhotosInput = {
@@ -5723,6 +5801,7 @@ export type TenantUncheckedCreateWithoutLoanerBookingPhotosInput = {
   loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutLoanerBookingPhotosInput = {
@@ -5805,6 +5884,7 @@ export type TenantUpdateWithoutLoanerBookingPhotosInput = {
   loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutLoanerBookingPhotosInput = {
@@ -5871,6 +5951,7 @@ export type TenantUncheckedUpdateWithoutLoanerBookingPhotosInput = {
   loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAppointmentsInput = {
@@ -5937,6 +6018,7 @@ export type TenantCreateWithoutAppointmentsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAppointmentsInput = {
@@ -6003,6 +6085,7 @@ export type TenantUncheckedCreateWithoutAppointmentsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAppointmentsInput = {
@@ -6085,6 +6168,7 @@ export type TenantUpdateWithoutAppointmentsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAppointmentsInput = {
@@ -6151,6 +6235,7 @@ export type TenantUncheckedUpdateWithoutAppointmentsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSinistriInput = {
@@ -6217,6 +6302,7 @@ export type TenantCreateWithoutSinistriInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSinistriInput = {
@@ -6283,6 +6369,7 @@ export type TenantUncheckedCreateWithoutSinistriInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSinistriInput = {
@@ -6365,6 +6452,7 @@ export type TenantUpdateWithoutSinistriInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSinistriInput = {
@@ -6431,6 +6519,7 @@ export type TenantUncheckedUpdateWithoutSinistriInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPortalAccessesInput = {
@@ -6497,6 +6586,7 @@ export type TenantCreateWithoutPortalAccessesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPortalAccessesInput = {
@@ -6563,6 +6653,7 @@ export type TenantUncheckedCreateWithoutPortalAccessesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPortalAccessesInput = {
@@ -6645,6 +6736,7 @@ export type TenantUpdateWithoutPortalAccessesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
@@ -6711,6 +6803,7 @@ export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPortalActionsInput = {
@@ -6777,6 +6870,7 @@ export type TenantCreateWithoutPortalActionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPortalActionsInput = {
@@ -6843,6 +6937,7 @@ export type TenantUncheckedCreateWithoutPortalActionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPortalActionsInput = {
@@ -6925,6 +7020,7 @@ export type TenantUpdateWithoutPortalActionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPortalActionsInput = {
@@ -6991,6 +7087,7 @@ export type TenantUncheckedUpdateWithoutPortalActionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWorkOrdersInput = {
@@ -7057,6 +7154,7 @@ export type TenantCreateWithoutWorkOrdersInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWorkOrdersInput = {
@@ -7123,6 +7221,7 @@ export type TenantUncheckedCreateWithoutWorkOrdersInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWorkOrdersInput = {
@@ -7205,6 +7304,7 @@ export type TenantUpdateWithoutWorkOrdersInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWorkOrdersInput = {
@@ -7271,6 +7371,7 @@ export type TenantUncheckedUpdateWithoutWorkOrdersInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWorkOrderTimeEntriesInput = {
@@ -7337,6 +7438,7 @@ export type TenantCreateWithoutWorkOrderTimeEntriesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
@@ -7403,6 +7505,7 @@ export type TenantUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWorkOrderTimeEntriesInput = {
@@ -7485,6 +7588,7 @@ export type TenantUpdateWithoutWorkOrderTimeEntriesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
@@ -7551,6 +7655,7 @@ export type TenantUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWorkOrderEventiInput = {
@@ -7617,6 +7722,7 @@ export type TenantCreateWithoutWorkOrderEventiInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWorkOrderEventiInput = {
@@ -7683,6 +7789,7 @@ export type TenantUncheckedCreateWithoutWorkOrderEventiInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWorkOrderEventiInput = {
@@ -7765,6 +7872,7 @@ export type TenantUpdateWithoutWorkOrderEventiInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWorkOrderEventiInput = {
@@ -7831,6 +7939,7 @@ export type TenantUncheckedUpdateWithoutWorkOrderEventiInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPortalDocumentsInput = {
@@ -7897,6 +8006,7 @@ export type TenantCreateWithoutPortalDocumentsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPortalDocumentsInput = {
@@ -7963,6 +8073,7 @@ export type TenantUncheckedCreateWithoutPortalDocumentsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPortalDocumentsInput = {
@@ -8045,6 +8156,7 @@ export type TenantUpdateWithoutPortalDocumentsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPortalDocumentsInput = {
@@ -8111,6 +8223,7 @@ export type TenantUncheckedUpdateWithoutPortalDocumentsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAiAnalysesInput = {
@@ -8177,6 +8290,7 @@ export type TenantCreateWithoutAiAnalysesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAiAnalysesInput = {
@@ -8243,6 +8357,7 @@ export type TenantUncheckedCreateWithoutAiAnalysesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAiAnalysesInput = {
@@ -8325,6 +8440,7 @@ export type TenantUpdateWithoutAiAnalysesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
@@ -8391,6 +8507,7 @@ export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAssistantLogsInput = {
@@ -8457,6 +8574,7 @@ export type TenantCreateWithoutAssistantLogsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAssistantLogsInput = {
@@ -8523,6 +8641,7 @@ export type TenantUncheckedCreateWithoutAssistantLogsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAssistantLogsInput = {
@@ -8605,6 +8724,7 @@ export type TenantUpdateWithoutAssistantLogsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
@@ -8671,6 +8791,7 @@ export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutProfitRecordsInput = {
@@ -8737,6 +8858,7 @@ export type TenantCreateWithoutProfitRecordsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutProfitRecordsInput = {
@@ -8803,6 +8925,7 @@ export type TenantUncheckedCreateWithoutProfitRecordsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutProfitRecordsInput = {
@@ -8885,6 +9008,7 @@ export type TenantUpdateWithoutProfitRecordsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutProfitRecordsInput = {
@@ -8951,6 +9075,7 @@ export type TenantUncheckedUpdateWithoutProfitRecordsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutProfitSettingsInput = {
@@ -9017,6 +9142,7 @@ export type TenantCreateWithoutProfitSettingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutProfitSettingsInput = {
@@ -9083,6 +9209,7 @@ export type TenantUncheckedCreateWithoutProfitSettingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutProfitSettingsInput = {
@@ -9165,6 +9292,7 @@ export type TenantUpdateWithoutProfitSettingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutProfitSettingsInput = {
@@ -9231,6 +9359,7 @@ export type TenantUncheckedUpdateWithoutProfitSettingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelaySettingsInput = {
@@ -9297,6 +9426,7 @@ export type TenantCreateWithoutDelaySettingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelaySettingsInput = {
@@ -9363,6 +9493,7 @@ export type TenantUncheckedCreateWithoutDelaySettingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelaySettingsInput = {
@@ -9445,6 +9576,7 @@ export type TenantUpdateWithoutDelaySettingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelaySettingsInput = {
@@ -9511,6 +9643,7 @@ export type TenantUncheckedUpdateWithoutDelaySettingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelayPlansInput = {
@@ -9577,6 +9710,7 @@ export type TenantCreateWithoutDelayPlansInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelayPlansInput = {
@@ -9643,6 +9777,7 @@ export type TenantUncheckedCreateWithoutDelayPlansInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelayPlansInput = {
@@ -9725,6 +9860,7 @@ export type TenantUpdateWithoutDelayPlansInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelayPlansInput = {
@@ -9791,6 +9927,7 @@ export type TenantUncheckedUpdateWithoutDelayPlansInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelayForecastsInput = {
@@ -9857,6 +9994,7 @@ export type TenantCreateWithoutDelayForecastsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelayForecastsInput = {
@@ -9923,6 +10061,7 @@ export type TenantUncheckedCreateWithoutDelayForecastsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelayForecastsInput = {
@@ -10005,6 +10144,7 @@ export type TenantUpdateWithoutDelayForecastsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelayForecastsInput = {
@@ -10071,6 +10211,7 @@ export type TenantUncheckedUpdateWithoutDelayForecastsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelayDecisionsInput = {
@@ -10137,6 +10278,7 @@ export type TenantCreateWithoutDelayDecisionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelayDecisionsInput = {
@@ -10203,6 +10345,7 @@ export type TenantUncheckedCreateWithoutDelayDecisionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelayDecisionsInput = {
@@ -10285,6 +10428,7 @@ export type TenantUpdateWithoutDelayDecisionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelayDecisionsInput = {
@@ -10351,6 +10495,7 @@ export type TenantUncheckedUpdateWithoutDelayDecisionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutTrackedPartsInput = {
@@ -10417,6 +10562,7 @@ export type TenantCreateWithoutTrackedPartsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutTrackedPartsInput = {
@@ -10483,6 +10629,7 @@ export type TenantUncheckedCreateWithoutTrackedPartsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutTrackedPartsInput = {
@@ -10565,6 +10712,7 @@ export type TenantUpdateWithoutTrackedPartsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutTrackedPartsInput = {
@@ -10631,6 +10779,7 @@ export type TenantUncheckedUpdateWithoutTrackedPartsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartBlocksInput = {
@@ -10697,6 +10846,7 @@ export type TenantCreateWithoutPartBlocksInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartBlocksInput = {
@@ -10763,6 +10913,7 @@ export type TenantUncheckedCreateWithoutPartBlocksInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartBlocksInput = {
@@ -10845,6 +10996,7 @@ export type TenantUpdateWithoutPartBlocksInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartBlocksInput = {
@@ -10911,6 +11063,7 @@ export type TenantUncheckedUpdateWithoutPartBlocksInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartDocumentsInput = {
@@ -10977,6 +11130,7 @@ export type TenantCreateWithoutPartDocumentsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartDocumentsInput = {
@@ -11043,6 +11197,7 @@ export type TenantUncheckedCreateWithoutPartDocumentsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartDocumentsInput = {
@@ -11125,6 +11280,7 @@ export type TenantUpdateWithoutPartDocumentsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartDocumentsInput = {
@@ -11191,6 +11347,7 @@ export type TenantUncheckedUpdateWithoutPartDocumentsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWhatsappTemplatesInput = {
@@ -11257,6 +11414,7 @@ export type TenantCreateWithoutWhatsappTemplatesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWhatsappTemplatesInput = {
@@ -11323,6 +11481,7 @@ export type TenantUncheckedCreateWithoutWhatsappTemplatesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWhatsappTemplatesInput = {
@@ -11405,6 +11564,7 @@ export type TenantUpdateWithoutWhatsappTemplatesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWhatsappTemplatesInput = {
@@ -11471,6 +11631,7 @@ export type TenantUncheckedUpdateWithoutWhatsappTemplatesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWhatsappMessagesInput = {
@@ -11537,6 +11698,7 @@ export type TenantCreateWithoutWhatsappMessagesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWhatsappMessagesInput = {
@@ -11603,6 +11765,7 @@ export type TenantUncheckedCreateWithoutWhatsappMessagesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWhatsappMessagesInput = {
@@ -11685,6 +11848,7 @@ export type TenantUpdateWithoutWhatsappMessagesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWhatsappMessagesInput = {
@@ -11751,6 +11915,7 @@ export type TenantUncheckedUpdateWithoutWhatsappMessagesInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQcChecklistItemsInput = {
@@ -11817,6 +11982,7 @@ export type TenantCreateWithoutQcChecklistItemsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQcChecklistItemsInput = {
@@ -11883,6 +12049,7 @@ export type TenantUncheckedCreateWithoutQcChecklistItemsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQcChecklistItemsInput = {
@@ -11965,6 +12132,7 @@ export type TenantUpdateWithoutQcChecklistItemsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQcChecklistItemsInput = {
@@ -12031,6 +12199,7 @@ export type TenantUncheckedUpdateWithoutQcChecklistItemsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQcInspectionsInput = {
@@ -12097,6 +12266,7 @@ export type TenantCreateWithoutQcInspectionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQcInspectionsInput = {
@@ -12163,6 +12333,7 @@ export type TenantUncheckedCreateWithoutQcInspectionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQcInspectionsInput = {
@@ -12245,6 +12416,7 @@ export type TenantUpdateWithoutQcInspectionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQcInspectionsInput = {
@@ -12311,6 +12483,7 @@ export type TenantUncheckedUpdateWithoutQcInspectionsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQcCheckResultsInput = {
@@ -12377,6 +12550,7 @@ export type TenantCreateWithoutQcCheckResultsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQcCheckResultsInput = {
@@ -12443,6 +12617,7 @@ export type TenantUncheckedCreateWithoutQcCheckResultsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQcCheckResultsInput = {
@@ -12525,6 +12700,7 @@ export type TenantUpdateWithoutQcCheckResultsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQcCheckResultsInput = {
@@ -12591,6 +12767,7 @@ export type TenantUncheckedUpdateWithoutQcCheckResultsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQcNonConformitaInput = {
@@ -12657,6 +12834,7 @@ export type TenantCreateWithoutQcNonConformitaInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQcNonConformitaInput = {
@@ -12723,6 +12901,7 @@ export type TenantUncheckedCreateWithoutQcNonConformitaInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQcNonConformitaInput = {
@@ -12805,6 +12984,7 @@ export type TenantUpdateWithoutQcNonConformitaInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQcNonConformitaInput = {
@@ -12871,6 +13051,7 @@ export type TenantUncheckedUpdateWithoutQcNonConformitaInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQcEventiInput = {
@@ -12937,6 +13118,7 @@ export type TenantCreateWithoutQcEventiInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQcEventiInput = {
@@ -13003,6 +13185,7 @@ export type TenantUncheckedCreateWithoutQcEventiInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQcEventiInput = {
@@ -13085,6 +13268,7 @@ export type TenantUpdateWithoutQcEventiInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQcEventiInput = {
@@ -13151,6 +13335,7 @@ export type TenantUncheckedUpdateWithoutQcEventiInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBriefingSettingsInput = {
@@ -13217,6 +13402,7 @@ export type TenantCreateWithoutBriefingSettingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBriefingSettingsInput = {
@@ -13283,6 +13469,7 @@ export type TenantUncheckedCreateWithoutBriefingSettingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBriefingSettingsInput = {
@@ -13365,6 +13552,7 @@ export type TenantUpdateWithoutBriefingSettingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBriefingSettingsInput = {
@@ -13431,6 +13619,7 @@ export type TenantUncheckedUpdateWithoutBriefingSettingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBriefingsInput = {
@@ -13497,6 +13686,7 @@ export type TenantCreateWithoutBriefingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBriefingsInput = {
@@ -13563,6 +13753,7 @@ export type TenantUncheckedCreateWithoutBriefingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBriefingsInput = {
@@ -13645,6 +13836,7 @@ export type TenantUpdateWithoutBriefingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBriefingsInput = {
@@ -13711,6 +13903,7 @@ export type TenantUncheckedUpdateWithoutBriefingsInput = {
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutNotificationsInput = {
@@ -13777,6 +13970,7 @@ export type TenantCreateWithoutNotificationsInput = {
   loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutNotificationsInput = {
@@ -13843,6 +14037,7 @@ export type TenantUncheckedCreateWithoutNotificationsInput = {
   loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutNotificationsInput = {
@@ -13925,6 +14120,7 @@ export type TenantUpdateWithoutNotificationsInput = {
   loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutNotificationsInput = {
@@ -13991,6 +14187,7 @@ export type TenantUncheckedUpdateWithoutNotificationsInput = {
   loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutGdprRichiesteInput = {
@@ -14057,6 +14254,7 @@ export type TenantCreateWithoutGdprRichiesteInput = {
   loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutGdprRichiesteInput = {
@@ -14123,6 +14321,7 @@ export type TenantUncheckedCreateWithoutGdprRichiesteInput = {
   loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutGdprRichiesteInput = {
@@ -14205,6 +14404,7 @@ export type TenantUpdateWithoutGdprRichiesteInput = {
   loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutGdprRichiesteInput = {
@@ -14271,6 +14471,291 @@ export type TenantUncheckedUpdateWithoutGdprRichiesteInput = {
   loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
   loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutTicketsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  isDemo?: boolean
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
+  briefings?: Prisma.BriefingReportCreateNestedManyWithoutTenantInput
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
+  loanerCarPhotos?: Prisma.LoanerCarPhotoCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
+  loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutTicketsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  isDemo?: boolean
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
+  briefings?: Prisma.BriefingReportUncheckedCreateNestedManyWithoutTenantInput
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
+  loanerCarPhotos?: Prisma.LoanerCarPhotoUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutTicketsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutTicketsInput, Prisma.TenantUncheckedCreateWithoutTicketsInput>
+}
+
+export type TenantUpsertWithoutTicketsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutTicketsInput, Prisma.TenantUncheckedUpdateWithoutTicketsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutTicketsInput, Prisma.TenantUncheckedCreateWithoutTicketsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutTicketsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutTicketsInput, Prisma.TenantUncheckedUpdateWithoutTicketsInput>
+}
+
+export type TenantUpdateWithoutTicketsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
+  briefings?: Prisma.BriefingReportUpdateManyWithoutTenantNestedInput
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
+  loanerCarPhotos?: Prisma.LoanerCarPhotoUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
+  loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutTicketsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  briefings?: Prisma.BriefingReportUncheckedUpdateManyWithoutTenantNestedInput
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCarPhotos?: Prisma.LoanerCarPhotoUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 
@@ -14321,6 +14806,7 @@ export type TenantCountOutputType = {
   loanerBookingPhotos: number
   notifications: number
   gdprRichieste: number
+  tickets: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -14366,6 +14852,7 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   loanerBookingPhotos?: boolean | TenantCountOutputTypeCountLoanerBookingPhotosArgs
   notifications?: boolean | TenantCountOutputTypeCountNotificationsArgs
   gdprRichieste?: boolean | TenantCountOutputTypeCountGdprRichiesteArgs
+  tickets?: boolean | TenantCountOutputTypeCountTicketsArgs
 }
 
 /**
@@ -14672,6 +15159,13 @@ export type TenantCountOutputTypeCountGdprRichiesteArgs<ExtArgs extends runtime.
   where?: Prisma.GdprRichiestaWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountTicketsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TicketWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -14738,6 +15232,7 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   loanerBookingPhotos?: boolean | Prisma.Tenant$loanerBookingPhotosArgs<ExtArgs>
   notifications?: boolean | Prisma.Tenant$notificationsArgs<ExtArgs>
   gdprRichieste?: boolean | Prisma.Tenant$gdprRichiesteArgs<ExtArgs>
+  tickets?: boolean | Prisma.Tenant$ticketsArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -14854,6 +15349,7 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   loanerBookingPhotos?: boolean | Prisma.Tenant$loanerBookingPhotosArgs<ExtArgs>
   notifications?: boolean | Prisma.Tenant$notificationsArgs<ExtArgs>
   gdprRichieste?: boolean | Prisma.Tenant$gdprRichiesteArgs<ExtArgs>
+  tickets?: boolean | Prisma.Tenant$ticketsArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -14907,6 +15403,7 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     loanerBookingPhotos: Prisma.$LoanerBookingPhotoPayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
     gdprRichieste: Prisma.$GdprRichiestaPayload<ExtArgs>[]
+    tickets: Prisma.$TicketPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -15367,6 +15864,7 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   loanerBookingPhotos<T extends Prisma.Tenant$loanerBookingPhotosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$loanerBookingPhotosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LoanerBookingPhotoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.Tenant$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   gdprRichieste<T extends Prisma.Tenant$gdprRichiesteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$gdprRichiesteArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GdprRichiestaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tickets<T extends Prisma.Tenant$ticketsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16870,6 +17368,30 @@ export type Tenant$gdprRichiesteArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.GdprRichiestaScalarFieldEnum | Prisma.GdprRichiestaScalarFieldEnum[]
+}
+
+/**
+ * Tenant.tickets
+ */
+export type Tenant$ticketsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Ticket
+   */
+  select?: Prisma.TicketSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Ticket
+   */
+  omit?: Prisma.TicketOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TicketInclude<ExtArgs> | null
+  where?: Prisma.TicketWhereInput
+  orderBy?: Prisma.TicketOrderByWithRelationInput | Prisma.TicketOrderByWithRelationInput[]
+  cursor?: Prisma.TicketWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TicketScalarFieldEnum | Prisma.TicketScalarFieldEnum[]
 }
 
 /**
