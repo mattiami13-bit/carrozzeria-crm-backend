@@ -110,7 +110,8 @@ export const ModelName = {
   GdprRichiesta: 'GdprRichiesta',
   StripeWebhookEvent: 'StripeWebhookEvent',
   SuperAdmin: 'SuperAdmin',
-  Lead: 'Lead'
+  Lead: 'Lead',
+  FaqItem: 'FaqItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1083,6 +1084,19 @@ export const LeadScalarFieldEnum = {
 } as const
 
 export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
+
+
+export const FaqItemScalarFieldEnum = {
+  id: 'id',
+  domanda: 'domanda',
+  risposta: 'risposta',
+  ordine: 'ordine',
+  attiva: 'attiva',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FaqItemScalarFieldEnum = (typeof FaqItemScalarFieldEnum)[keyof typeof FaqItemScalarFieldEnum]
 
 
 export const SortOrder = {

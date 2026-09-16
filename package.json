@@ -35,9 +35,11 @@
     "test:super-admin": "node --test tests/super-admin.test.js",
     "test:contatti": "node --test tests/contatti.test.js",
     "test:demo": "node --test tests/demo.test.js",
+    "test:faq": "node --test tests/faq.test.js",
     "seed:demo": "node scripts/seed-demo-tenant.mjs",
     "seed:demo:reset": "node scripts/seed-demo-tenant.mjs --reset",
-    "seed:super-admin": "node scripts/seed-super-admin.mjs"
+    "seed:super-admin": "node scripts/seed-super-admin.mjs",
+    "seed:faq": "node scripts/seed-faq.mjs"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",

@@ -95,6 +95,46 @@ superAdminRouter.patch("/leads/:id/stato", async (req, res) => {
   res.json(aggiornato);
 });
 
+// Punto 36 (FAQ modificabile): CRUD completo, riservato al super-admin
+// — la pagina pubblica /faq legge solo GET /api/faq (voci attive). Qui
+// si vedono anche quelle disattivate, per poterle riattivare.
+superAdminRouter.get("/faq", async (req, res) => {
+  const faq = await prisma.faqItem.findMany({ orderBy: { ordine: "asc" } });
+  res.json(faq);
+});
+
+const faqSchema = z.object({
+  domanda: z.string().trim().min(1).max(300),
+  risposta: z.string().trim().min(1).max(3000),
+  ordine: z.number().int().optional(),
+  attiva: z.boolean().optional(),
+});
+
+superAdminRouter.post("/faq", async (req, res) => {
+  const parsed = faqSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: "Dati non validi", dettagli: parsed.error.flatten() });
+  const faq = await prisma.faqItem.create({ data: parsed.data });
+  res.status(201).json(faq);
+});
+
+const faqUpdateSchema = faqSchema.partial();
+
+superAdminRouter.patch("/faq/:id", async (req, res) => {
+  const parsed = faqUpdateSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: "Dati non validi", dettagli: parsed.error.flatten() });
+  const esistente = await prisma.faqItem.findUnique({ where: { id: req.params.id } });
+  if (!esistente) return res.status(404).json({ error: "Voce FAQ non trovata" });
+  const aggiornata = await prisma.faqItem.update({ where: { id: req.params.id }, data: parsed.data });
+  res.json(aggiornata);
+});
+
+superAdminRouter.delete("/faq/:id", async (req, res) => {
+  const esistente = await prisma.faqItem.findUnique({ where: { id: req.params.id } });
+  if (!esistente) return res.status(404).json({ error: "Voce FAQ non trovata" });
+  await prisma.faqItem.delete({ where: { id: req.params.id } });
+  res.status(204).end();
+});
+
 superAdminRouter.get("/gdpr-richieste", async (req, res) => {
   const richieste = await prisma.gdprRichiesta.findMany({
     where: { stato: "IN_ATTESA" },

@@ -1909,3 +1909,18 @@ model Lead {
 
   @@map("leads")
 }
+
+// Punto 36 (FAQ): "Crea FAQ modificabile" — in un database, non testo
+// statico nell'HTML, altrimenti ogni modifica richiederebbe un
+// redeploy del codice invece che una chiamata API dal super-admin.
+model FaqItem {
+  id        String   @id @default(cuid())
+  domanda   String
+  risposta  String
+  ordine    Int      @default(0)
+  attiva    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("faq_items")
+}

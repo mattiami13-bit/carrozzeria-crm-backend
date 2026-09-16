@@ -82,8 +82,12 @@ export const PIANI = {
 };
 
 // TRIAL non è un piano acquistabile: è uno stato temporaneo. Finché dura,
-// un tenant ha le entitlement del piano consigliato in prova.
-export const TRIAL_GIORNI = 14;
+// un tenant ha le entitlement del piano consigliato in prova. Nessun
+// codice legge oggi questa costante (la durata reale è calcolata
+// direttamente in routes/auth.js alla registrazione): tenuta allineata
+// qui comunque, trovata disallineata (diceva 14 invece di 30) durante
+// la verifica delle risposte reali per la FAQ del punto 36.
+export const TRIAL_GIORNI = 30;
 export const TRIAL_PIANO = "PRO";
 
 export const SETUP_FEE_CENTS = 19900;

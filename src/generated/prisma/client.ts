@@ -341,3 +341,8 @@ export type SuperAdmin = Prisma.SuperAdminModel
  * 
  */
 export type Lead = Prisma.LeadModel
+/**
+ * Model FaqItem
+ * 
+ */
+export type FaqItem = Prisma.FaqItemModel
