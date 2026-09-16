@@ -116,6 +116,19 @@ const stageOf = (key) => STAGES.find((s) => s.key === key) || STAGES[0];
 const euro = (n) => Number(n || 0).toLocaleString("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
 
 /* ---------------- API HELPER ---------------- */
+// Converte un errore del server in un messaggio leggibile: una stringa
+// (la maggior parte delle rotte) resta com'è; un errore di validazione
+// Zod (oggetto {formErrors, fieldErrors}) viene tradotto nei singoli
+// messaggi invece di essere mostrato come JSON grezzo all'utente.
+function messaggioErrore(err) {
+  if (typeof err === "string") return err;
+  if (err && typeof err === "object") {
+    const messaggi = [...(err.formErrors || []), ...Object.values(err.fieldErrors || {}).flat()];
+    if (messaggi.length) return messaggi.join(" · ");
+  }
+  return "Errore di rete";
+}
+
 function useApi(token) {
   return useCallback(async (path, options = {}) => {
     const {responseType,...fetchOptions}=options;
@@ -130,7 +143,7 @@ function useApi(token) {
     });
     if(res.ok&&responseType==="blob")return res.blob();
     const data = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(data.error ? JSON.stringify(data.error) : "Errore di rete");
+    if (!res.ok) throw new Error(messaggioErrore(data.error));
     return data;
   }, [token]);
 }
@@ -408,7 +421,7 @@ function VerificaNecessariaScreen({ api, email, onBack }) {
         ) : (
           <button onClick={reinvia} disabled={loading} style={{
             width: "100%", padding: "11px 0", borderRadius: 10, border: "none",
-            background: "#2F80ED", color: "#FFFFFF", fontWeight: 600, fontSize: 14, marginBottom: 12,
+            background: "#2F80ED", color: "#15171B", fontWeight: 600, fontSize: 14, marginBottom: 12,
           }}>{loading ? "Invio…" : "Reinvia email di verifica"}</button>
         )}
 
@@ -843,7 +856,7 @@ function CambiaPasswordModal({ api, onClose }) {
             {error && <div style={{ color: "#B4472E", fontSize: 13, marginBottom: 8 }}>{error}</div>}
             <button onClick={submit} disabled={loading} style={{
               width: "100%", marginTop: 8, padding: "11px 0", borderRadius: 10, border: "none",
-              background: "#2F80ED", color: "#FFFFFF", fontWeight: 600, fontSize: 14,
+              background: "#2F80ED", color: "#15171B", fontWeight: 600, fontSize: 14,
             }}>{loading ? "Attendere…" : "Aggiorna password"}</button>
           </>
         )}
@@ -1050,7 +1063,7 @@ function PianoFatturazioneModal({ api, onClose }) {
                     border: p.evidenziato ? "1.5px solid #2F80ED" : "1px solid #2A2E34", borderRadius: 12, padding: 14,
                     background: stato?.piano === p.key ? "#1B2430" : "#0A0B0D", position: "relative",
                   }}>
-                    {p.badge && <div style={{ position: "absolute", top: -9, left: 12, background: "#2F80ED", color: "#fff", fontSize: 9.5, fontWeight: 700, padding: "2px 8px", borderRadius: 20 }}>{p.badge}</div>}
+                    {p.badge && <div style={{ position: "absolute", top: -9, left: 12, background: "#2F80ED", color: "#15171B", fontSize: 9.5, fontWeight: 700, padding: "2px 8px", borderRadius: 20 }}>{p.badge}</div>}
                     <div style={{ fontSize: 13, fontWeight: 700, marginTop: 4 }}>{p.nome}</div>
                     <div style={{ fontSize: 20, fontWeight: 700, margin: "6px 0 2px" }}>
                       {eurocentsToLabel(periodicita === "ANNUALE" ? p.prezzoAnnualeCents : p.prezzoMensileCents)}
@@ -1424,7 +1437,7 @@ function VeicoliView({ api, token, openVehicleId, onVehicleOpened }) {
               </div>
               <div style={{ padding: 8, display: "flex", flexDirection: "column", gap: 8, minHeight: 60 }}>
                 {items.map((v) => (
-                  <div key={v.id} onClick={() => setSelectedId(v.id)} style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 10, padding: 10, cursor: "pointer" }}>
+                  <div key={v.id} role="button" tabIndex={0} aria-label={`Apri pratica ${v.marca} ${v.modello}, targa ${v.targa}`} onClick={() => setSelectedId(v.id)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedId(v.id); } }} style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 10, padding: 10, cursor: "pointer" }}>
                     <div style={{ fontFamily: "monospace", fontSize: 11, background: "#1B1E23", color: "#2F80ED", border: "1px solid #2A2E34", display: "inline-block", padding: "2px 6px", borderRadius: 4 }}>{v.targa}</div>
                     <div style={{ fontSize: 13, fontWeight: 600, marginTop: 6 }}>{v.marca} {v.modello}</div>
                     <div style={{ fontSize: 11, color: "#8D9099" }}>{v.client?.nome} {v.client?.cognome}</div>
@@ -2723,13 +2736,13 @@ function NewVehicleForm({ clients, api, onDone, onCancel }) {
   return (
     <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 16, marginBottom: 16 }}>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 10 }}>
-        <select value={form.clientId} onChange={set("clientId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0 }}>
+        <select aria-label="Cliente" value={form.clientId} onChange={set("clientId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0 }}>
           {clients.length === 0 && <option value="">Crea prima un cliente</option>}
           {clients.map((c) => <option key={c.id} value={c.id}>{c.nome} {c.cognome}</option>)}
         </select>
-        <input placeholder="Marca" value={form.marca} onChange={set("marca")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0 }} />
-        <input placeholder="Modello" value={form.modello} onChange={set("modello")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0 }} />
-        <input placeholder="Targa" value={form.targa} onChange={set("targa")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0 }} />
+        <input aria-label="Marca" placeholder="Marca" value={form.marca} onChange={set("marca")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0 }} />
+        <input aria-label="Modello" placeholder="Modello" value={form.modello} onChange={set("modello")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0 }} />
+        <input aria-label="Targa" placeholder="Targa" value={form.targa} onChange={set("targa")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0 }} />
       </div>
       {error && <div style={{ color: "#B4472E", fontSize: 12, marginTop: 8 }}>{error}</div>}
       <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
@@ -2932,11 +2945,11 @@ function NewQuoteForm({ clients, vehicles, api, onDone, onCancel }) {
   return (
     <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 16, marginBottom: 16 }}>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 10, marginBottom: 14 }}>
-        <select value={clientId} onChange={(e) => setClientId(e.target.value)} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }}>
+        <select aria-label="Cliente" value={clientId} onChange={(e) => setClientId(e.target.value)} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }}>
           {clients.length === 0 && <option value="">Crea prima un cliente</option>}
           {clients.map((c) => <option key={c.id} value={c.id}>{c.nome} {c.cognome}</option>)}
         </select>
-        <select value={vehicleId} onChange={(e) => setVehicleId(e.target.value)} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }}>
+        <select aria-label="Veicolo" value={vehicleId} onChange={(e) => setVehicleId(e.target.value)} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }}>
           {vehicles.length === 0 && <option value="">Crea prima un veicolo</option>}
           {vehicles.map((v) => <option key={v.id} value={v.id}>{v.marca} {v.modello} — {v.targa}</option>)}
         </select>
@@ -2950,7 +2963,7 @@ function NewQuoteForm({ clients, vehicles, api, onDone, onCancel }) {
           <select value={it.tipo} onChange={(e) => setItem(idx, "tipo", e.target.value)} style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13 }}>
             {QUOTE_ITEM_TIPI.map((t) => <option key={t.key} value={t.key}>{t.label}</option>)}
           </select>
-          <input placeholder="Descrizione" value={it.descrizione} onChange={(e) => setItem(idx, "descrizione", e.target.value)}
+          <input aria-label="Descrizione" placeholder="Descrizione" value={it.descrizione} onChange={(e) => setItem(idx, "descrizione", e.target.value)}
             style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13 }} />
           <input type="number" placeholder="Qtà" value={it.quantita} onChange={(e) => setItem(idx, "quantita", e.target.value)}
             style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13 }} />
@@ -3037,7 +3050,7 @@ function MagazzinoView({ api }) {
           {parts.map((p, i) => {
             const sottoScorta = p.giacenza <= p.scortaMinima;
             return (
-              <div key={p.id} onClick={() => setSelectedId(p.id)} style={{
+              <div key={p.id} role="button" tabIndex={0} onClick={() => setSelectedId(p.id)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedId(p.id); } }} style={{
                 display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", cursor: "pointer",
                 borderTop: i === 0 ? "none" : "1px solid #F1EFE8",
               }}>
@@ -3314,7 +3327,7 @@ function AutoSostitutiveView({ api }) {
         {cars.map((c) => {
           const stato = LOANER_STATO_STYLE[c.stato] || LOANER_STATO_STYLE.DISPONIBILE;
           return (
-            <div key={c.id} onClick={() => setSelectedId(c.id)} style={{
+            <div key={c.id} role="button" tabIndex={0} onClick={() => setSelectedId(c.id)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedId(c.id); } }} style={{
               background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 14, cursor: "pointer",
             }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
@@ -3429,11 +3442,11 @@ function NuovaPrenotazioneForm({ carId, api, clients, vehicles, onDone, onCancel
     <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 10, padding: 12, marginBottom: 12 }}>
       <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 8 }}>Nuova prenotazione</div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 8 }}>
-        <select value={form.clientId} onChange={set("clientId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+        <select aria-label="Cliente" value={form.clientId} onChange={set("clientId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
           <option value="">Cliente…</option>
           {clients.map((c) => <option key={c.id} value={c.id}>{c.nome} {c.cognome}</option>)}
         </select>
-        <select value={form.vehicleId} onChange={set("vehicleId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
+        <select aria-label="Veicolo" value={form.vehicleId} onChange={set("vehicleId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }}>
           <option value="">Pratica collegata (opzionale)…</option>
           {vehicles.map((v) => <option key={v.id} value={v.id}>{v.marca} {v.modello} — {v.targa}</option>)}
         </select>
@@ -3760,7 +3773,7 @@ function OrdiniFornitoriView({ api }) {
         {orders.map((o, i) => {
           const s = orderStatoOf(o.stato);
           return (
-            <div key={o.id} onClick={() => setSelectedId(o.id)} style={{
+            <div key={o.id} role="button" tabIndex={0} onClick={() => setSelectedId(o.id)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedId(o.id); } }} style={{
               display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", cursor: "pointer",
               borderTop: i === 0 ? "none" : "1px solid #F1EFE8",
             }}>
@@ -3852,7 +3865,7 @@ function NewSupplierOrderForm({ parts, api, onDone, onCancel }) {
             <option value="">Ricambio non a magazzino</option>
             {parts.map((p) => <option key={p.id} value={p.id}>{p.codice} — {p.descrizione}</option>)}
           </select>
-          <input placeholder="Descrizione" value={it.descrizione} onChange={(e) => setItem(idx, "descrizione", e.target.value)}
+          <input aria-label="Descrizione" placeholder="Descrizione" value={it.descrizione} onChange={(e) => setItem(idx, "descrizione", e.target.value)}
             style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13 }} />
           <input type="number" placeholder="Qtà" value={it.quantitaOrdinata} onChange={(e) => setItem(idx, "quantitaOrdinata", e.target.value)}
             style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13 }} />
@@ -4859,7 +4872,7 @@ function CorrezioneTempoForm({ entry, api, onDone, onCancel }) {
         <input type="datetime-local" value={inizio} onChange={(e) => setInizio(e.target.value)} style={{ flex: 1, padding: 6, borderRadius: 6, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12 }} />
         <input type="datetime-local" value={fine} onChange={(e) => setFine(e.target.value)} style={{ flex: 1, padding: 6, borderRadius: 6, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12 }} />
       </div>
-      <input placeholder="Motivo della correzione (obbligatorio)" value={motivo} onChange={(e) => setMotivo(e.target.value)} style={{ width: "100%", padding: 6, borderRadius: 6, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12, marginBottom: 6, boxSizing: "border-box" }} />
+      <input aria-label="Motivo della correzione (obbligatorio)" placeholder="Motivo della correzione (obbligatorio)" value={motivo} onChange={(e) => setMotivo(e.target.value)} style={{ width: "100%", padding: 6, borderRadius: 6, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12, marginBottom: 6, boxSizing: "border-box" }} />
       {error && <div style={{ color: "#E5806B", fontSize: 11.5, marginBottom: 6 }}>{error}</div>}
       <div style={{ display: "flex", gap: 6 }}>
         <button onClick={salva} disabled={salvando} style={{ padding: "5px 10px", borderRadius: 6, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 11.5, fontWeight: 600 }}>{salvando ? "Salvataggio…" : "Salva correzione"}</button>
@@ -4967,15 +4980,15 @@ function NuovaLavorazioneForm({ vehicleId, api, tecnici, onDone, onCancel }) {
 
   return (
     <div style={{ background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 10, padding: 12, marginBottom: 12 }}>
-      <input placeholder="Lavorazione (es. Sostituzione paraurti)" value={form.titolo} onChange={set("titolo")} style={{ width: "100%", padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, marginBottom: 8, boxSizing: "border-box" }} />
+      <input aria-label="Lavorazione (es. Sostituzione paraurti)" placeholder="Lavorazione (es. Sostituzione paraurti)" value={form.titolo} onChange={set("titolo")} style={{ width: "100%", padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, marginBottom: 8, boxSizing: "border-box" }} />
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 8, marginBottom: 8 }}>
-        <select value={form.reparto} onChange={set("reparto")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, minWidth: 0, boxSizing: "border-box" }}>
+        <select aria-label="Reparto" value={form.reparto} onChange={set("reparto")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, minWidth: 0, boxSizing: "border-box" }}>
           {Object.keys(REPARTO_LABEL).map((r) => <option key={r} value={r}>{REPARTO_LABEL[r]}</option>)}
         </select>
-        <select value={form.tecnicoId} onChange={set("tecnicoId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, minWidth: 0, boxSizing: "border-box" }}>
+        <select aria-label="Tecnico assegnato" value={form.tecnicoId} onChange={set("tecnicoId")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, minWidth: 0, boxSizing: "border-box" }}>
           {tecnici.map((t) => <option key={t.id} value={t.id}>{t.nome} {t.cognome}</option>)}
         </select>
-        <select value={form.priorita} onChange={set("priorita")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, minWidth: 0, boxSizing: "border-box" }}>
+        <select aria-label="Priorità" value={form.priorita} onChange={set("priorita")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, minWidth: 0, boxSizing: "border-box" }}>
           {Object.keys(PRIORITA_STYLE).map((p) => <option key={p} value={p}>{PRIORITA_STYLE[p].label}</option>)}
         </select>
         <input type="number" step="0.5" min="0" placeholder="Ore previste" value={form.oreStimate} onChange={set("oreStimate")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5, minWidth: 0, boxSizing: "border-box" }} />
@@ -5561,7 +5574,7 @@ function QcChecklistSettingsView({ api }) {
       </div>
 
       <div style={{ display: "flex", gap: 8 }}>
-        <input placeholder="Nuova voce personalizzata…" value={nuovaEtichetta} onChange={(e) => setNuovaEtichetta(e.target.value)} style={{ flex: 1, maxWidth: 320, padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }} />
+        <input aria-label="Nuova voce personalizzata…" placeholder="Nuova voce personalizzata…" value={nuovaEtichetta} onChange={(e) => setNuovaEtichetta(e.target.value)} style={{ flex: 1, maxWidth: 320, padding: 8, borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", color: "#F3F1EC", fontSize: 12.5 }} />
         <button onClick={aggiungi} style={{ padding: "8px 14px", borderRadius: 8, border: "none", background: "#F3F1EC", color: "#15171B", fontSize: 12.5, fontWeight: 600 }}>+ Aggiungi voce</button>
       </div>
     </div>
@@ -5597,7 +5610,7 @@ function ClientiView({ api, ruolo, onOpenSinistri }) {
       <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, overflow: "hidden" }}>
         {clients.length === 0 && <div style={{ padding: 20, fontSize: 13, color: "#8D9099" }}>Nessun cliente ancora.</div>}
         {clients.map((c, i) => (
-          <div key={c.id} onClick={() => setSelectedId(c.id)} style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", borderTop: i === 0 ? "none" : "1px solid #F1EFE8", cursor: "pointer" }}>
+          <div key={c.id} role="button" tabIndex={0} onClick={() => setSelectedId(c.id)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedId(c.id); } }} style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", borderTop: i === 0 ? "none" : "1px solid #F1EFE8", cursor: "pointer" }}>
             <div style={{ width: 32, height: 32, borderRadius: 99, background: "#1B1E23", border: "1px solid #2A2E34", color: "#2F80ED", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700 }}>
   {c.nome[0]}{c.cognome[0]}
 </div>
@@ -5710,12 +5723,12 @@ function ClientDetailModal({ clientId, api, ruolo, onClose, onSaved }) {
         {loading || !form ? <Loading /> : (
           <>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <input placeholder="Nome" value={form.nome} onChange={set("nome")} style={{ padding: 9, borderRadius: 8, border: "1px solid #2A2E34" }} />
-              <input placeholder="Cognome" value={form.cognome} onChange={set("cognome")} style={{ padding: 9, borderRadius: 8, border: "1px solid #2A2E34" }} />
-              <input placeholder="Telefono" value={form.telefono} onChange={set("telefono")} style={{ padding: 9, borderRadius: 8, border: "1px solid #2A2E34" }} />
-              <input placeholder="Email" value={form.email} onChange={set("email")} style={{ padding: 9, borderRadius: 8, border: "1px solid #2A2E34" }} />
-              <input placeholder="Codice fiscale" value={form.codiceFiscale} onChange={set("codiceFiscale")} style={{ padding: 9, borderRadius: 8, border: "1px solid #2A2E34" }} />
-              <input placeholder="Indirizzo" value={form.indirizzo} onChange={set("indirizzo")} style={{ padding: 9, borderRadius: 8, border: "1px solid #2A2E34" }} />
+              <input aria-label="Nome" placeholder="Nome" value={form.nome} onChange={set("nome")} style={{ padding: 9, borderRadius: 8, border: "1px solid #2A2E34" }} />
+              <input aria-label="Cognome" placeholder="Cognome" value={form.cognome} onChange={set("cognome")} style={{ padding: 9, borderRadius: 8, border: "1px solid #2A2E34" }} />
+              <input aria-label="Telefono" placeholder="Telefono" value={form.telefono} onChange={set("telefono")} style={{ padding: 9, borderRadius: 8, border: "1px solid #2A2E34" }} />
+              <input aria-label="Email" placeholder="Email" value={form.email} onChange={set("email")} style={{ padding: 9, borderRadius: 8, border: "1px solid #2A2E34" }} />
+              <input aria-label="Codice fiscale" placeholder="Codice fiscale" value={form.codiceFiscale} onChange={set("codiceFiscale")} style={{ padding: 9, borderRadius: 8, border: "1px solid #2A2E34" }} />
+              <input aria-label="Indirizzo" placeholder="Indirizzo" value={form.indirizzo} onChange={set("indirizzo")} style={{ padding: 9, borderRadius: 8, border: "1px solid #2A2E34" }} />
             </div>
 
             <div style={{ marginTop: 16, padding: 12, borderRadius: 10, border: "1px solid #2A2E34", background: "#1B1E23" }}>
@@ -5791,10 +5804,10 @@ const [form, setForm] = useState({ nome: "", cognome: "", telefono: "", email: "
   return (
     <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 16, marginBottom: 16 }}>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 10 }}>
-        <input placeholder="Nome" value={form.nome} onChange={set("nome")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }} />
-        <input placeholder="Cognome" value={form.cognome} onChange={set("cognome")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }} />
-        <input placeholder="Telefono" value={form.telefono} onChange={set("telefono")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }} />
-        <input placeholder="Email" value={form.email} onChange={set("email")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }} />
+        <input aria-label="Nome" placeholder="Nome" value={form.nome} onChange={set("nome")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }} />
+        <input aria-label="Cognome" placeholder="Cognome" value={form.cognome} onChange={set("cognome")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }} />
+        <input aria-label="Telefono" placeholder="Telefono" value={form.telefono} onChange={set("telefono")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }} />
+        <input aria-label="Email" placeholder="Email" value={form.email} onChange={set("email")} style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }} />
       </div>
       {error && <div style={{ color: "#B4472E", fontSize: 12, marginTop: 8 }}>{error}</div>}
       <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
@@ -5868,7 +5881,7 @@ function SinistriView({ api, ruolo, clientFilter, onClearClientFilter }) {
       )}
 
       <div style={{ display: "flex", gap: 8, marginBottom: 16, flexWrap: "wrap", alignItems: "center" }}>
-        <input placeholder="Cerca per numero pratica, targa, cliente…" value={search} onChange={(e) => setSearch(e.target.value)}
+        <input aria-label="Cerca per numero pratica, targa, cliente…" placeholder="Cerca per numero pratica, targa, cliente…" value={search} onChange={(e) => setSearch(e.target.value)}
           style={{ padding: "7px 10px", borderRadius: 8, border: "1px solid #2A2E34", fontSize: 13, minWidth: 240, background: "#1B1E23", color: "#F3F1EC" }} />
         <button onClick={() => setFiltroStato("")} style={{
           padding: "6px 12px", borderRadius: 20, border: "1px solid #2A2E34", fontSize: 12,
@@ -5901,7 +5914,7 @@ function SinistriView({ api, ruolo, clientFilter, onClearClientFilter }) {
           const st = sinistroStatoOf(s.stato);
           const residuo = Number(s.importoTotale || 0) - Number(s.pagatoAssicurazione || 0) - Number(s.pagatoCliente || 0);
           return (
-            <div key={s.id} onClick={() => setSelectedId(s.id)} style={{
+            <div key={s.id} role="button" tabIndex={0} onClick={() => setSelectedId(s.id)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedId(s.id); } }} style={{
               display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", cursor: "pointer",
               borderTop: i === 0 ? "none" : "1px solid #F1EFE8",
             }}>
@@ -5994,12 +6007,12 @@ function NewSinistroForm({ clients, vehicles, defaultClientId, api, onDone, onCa
   return (
     <div style={{ background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, padding: 16, marginBottom: 16 }}>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 10, marginBottom: 10 }}>
-        <select value={clientId} onChange={(e) => { setClientId(e.target.value); setVehicleId(""); }}
+        <select aria-label="Cliente" value={clientId} onChange={(e) => { setClientId(e.target.value); setVehicleId(""); }}
           style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }}>
           {clients.length === 0 && <option value="">Crea prima un cliente</option>}
           {clients.map((c) => <option key={c.id} value={c.id}>{c.nome} {c.cognome}</option>)}
         </select>
-        <select value={vehicleId} onChange={(e) => setVehicleId(e.target.value)}
+        <select aria-label="Veicolo collegato" value={vehicleId} onChange={(e) => setVehicleId(e.target.value)}
           style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }}>
           <option value="">Nessun veicolo collegato (facoltativo)</option>
           {veicoliCliente.map((v) => <option key={v.id} value={v.id}>{v.marca} {v.modello} — {v.targa}</option>)}
