@@ -70,9 +70,53 @@ comportamento reale, trova bug che un audit di codice da solo non vede:
 
 - **Super-admin**: non testabile perché non esiste ancora un pannello
   super-admin (elencato tra le funzionalità non ancora costruite).
-- **Matrice billing completa** (tutti i piani × periodicità, Early
-  Adopter, tetto 30 redemption, blocco downgrade sopra soglia utenti —
-  quest'ultimo **non è nemmeno implementato**, un downgrade oggi
-  riduce il piano senza controllare quanti utenti attivi ha il
-  tenant): esplicitamente compito del punto 30 del prompt
-  ("TEST BILLING OBBLIGATORI"), non duplicato qui.
+
+## Punto 30 — Test billing obbligatori
+
+Vedi `tests/billing-checklist.test.js` (17 casi) + `billing.test.js` +
+`billing-plan-changes.test.js`: copre l'intera checklist del prompt —
+prezzi per tutti e 6 i piani/periodicità, trial Pro, Early Adopter
+(prezzo, tetto 30 redemption, setup fee gratuita), setup fee normale,
+upgrade/downgrade, blocco downgrade sopra soglia utenti, crediti AI,
+pagamento riuscito/fallito, rinnovo, cancellazione a fine periodo,
+riattivazione, webhook duplicato, entitlement aggiornati subito dopo
+il cambio piano, quota IA mensile (verifica statica, stesso limite già
+noto per il Copilot: richiede ANTHROPIC_API_KEY non disponibile in
+locale), retention dati dopo cancellazione.
+
+Scrivere questi test ha fatto emergere ancora gap reali, non solo
+buchi di copertura:
+
+- **Blocco downgrade sopra soglia utenti**: non esisteva per niente —
+  un downgrade a un piano con meno utenti inclusi veniva accettato
+  senza controlli. Implementato in `POST /api/billing/checkout`
+  (confronta gli utenti attivi con quelli inclusi nel piano di
+  destinazione, 409 se sopra soglia).
+- **Crediti AI: nessun modo per comprarli** — il prezzo Stripe era già
+  configurato (`STRIPE_PRICE_AI_CREDITI_PACK`) ma nessuna rotta lo
+  usava. Aggiunto `POST /api/billing/crediti-ai` (acquisto una tantum,
+  mode "payment") + gestione del webhook corrispondente (accredita
+  `creditiAIAcquistati`, mai tocca piano/stato abbonamento).
+- **Setup fee non gratuita per Early Adopter**: il costo di attivazione
+  di 199€ veniva addebitato anche a chi aderiva alla promo Early
+  Adopter (che dovrebbe includerlo gratis). Corretto: la setup fee non
+  si aggiunge più quando `earlyAdopter: true`.
+
+### Genuinamente non implementato (non testato perché non esiste)
+
+- **"Utente extra"**: `Tenant.utentiExtra` e `UTENTE_EXTRA_MENSILE_CENTS`
+  esistono solo come configurazione/visualizzazione — non c'è nessuna
+  rotta per comprare davvero un posto utente aggiuntivo. A differenza
+  dei crediti AI (acquisto una tantum, semplice), un utente extra è
+  concettualmente un addebito ricorrente aggiunto all'abbonamento
+  esistente (un "subscription item" separato in Stripe), un meccanismo
+  diverso e più delicato da implementare bene — e richiede prima un
+  nuovo Price Stripe dedicato, che non esiste ancora
+  (`.env.example` non ha una variabile per questo). Non costruito né
+  testato in questa sessione: da trattare come intervento a sé.
+- **Scadenza automatica della promo Early Adopter dopo 12 mesi**
+  (`EARLY_ADOPTER.mesiDurata`): il prezzo scontato resta fisso finché
+  qualcuno non lo cambia manualmente — non esiste nessun meccanismo
+  (job pianificato o subscription schedule Stripe) che lo riporti al
+  prezzo pieno dopo 12 mesi. Il campo `mesiDurata` è oggi solo
+  documentazione, non applicato.

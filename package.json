@@ -31,6 +31,7 @@
     "test:rbac": "node --test tests/rbac.test.js",
     "test:photos-upload": "node --test tests/photos-upload.test.js",
     "test:billing-plan-changes": "node --test tests/billing-plan-changes.test.js",
+    "test:billing-checklist": "node --test tests/billing-checklist.test.js",
     "seed:demo": "node scripts/seed-demo-tenant.mjs",
     "seed:demo:reset": "node scripts/seed-demo-tenant.mjs --reset"
   },

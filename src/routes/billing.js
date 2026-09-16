@@ -93,6 +93,23 @@ billingRouter.post("/checkout", requireRole("ADMIN"), async (req, res) => {
   const tenant = await prisma.tenant.findUnique({ where: { id: req.auth.tenantId } });
   if (!tenant) return res.status(404).json({ error: "Organizzazione non trovata" });
 
+  // Blocco downgrade (e in generale ogni cambio piano) se gli utenti
+  // attivi superano quelli inclusi nel piano di destinazione: attivarlo
+  // lascerebbe il tenant con più utenti di quanti il piano ne preveda,
+  // senza un modo pulito per capire chi disattivare automaticamente.
+  if (tenant.piano !== piano) {
+    const pianoNuovo = PIANI[piano];
+    const utentiUsati = await prisma.user.count({ where: { tenantId: tenant.id, attivo: true } });
+    const utentiInclusiNuovoPiano = pianoNuovo.utentiInclusi + tenant.utentiExtra;
+    if (utentiUsati > utentiInclusiNuovoPiano) {
+      return res.status(409).json({
+        error: `Il piano ${pianoNuovo.nome} include ${utentiInclusiNuovoPiano} utenti, ma ne hai ${utentiUsati} attivi. Disattiva gli utenti in eccesso prima di cambiare piano.`,
+        utentiUsati,
+        utentiInclusi: utentiInclusiNuovoPiano,
+      });
+    }
+  }
+
   let priceId;
   let earlyAdopterApplicato = false;
   if (earlyAdopter) {
@@ -118,9 +135,10 @@ billingRouter.post("/checkout", requireRole("ADMIN"), async (req, res) => {
 
   // Il costo di attivazione si applica solo a chi non ha mai avuto un
   // cliente Stripe collegato (cioè non ha mai completato un checkout
-  // prima d'ora), coerente con "applicato solo a nuovi clienti".
+  // prima d'ora), coerente con "applicato solo a nuovi clienti" — MA
+  // è sempre gratuito per la promo Early Adopter, parte dell'offerta.
   const setupFeePriceId = process.env.STRIPE_PRICE_SETUP_FEE;
-  if (!tenant.stripeCustomerId && setupFeePriceId) {
+  if (!tenant.stripeCustomerId && setupFeePriceId && !earlyAdopterApplicato) {
     lineItems.push({ price: setupFeePriceId, quantity: 1 });
   }
 
@@ -146,6 +164,44 @@ billingRouter.post("/checkout", requireRole("ADMIN"), async (req, res) => {
     res.json({ url: session.url });
   } catch (err) {
     console.error("[billing] Errore creazione checkout session:", err.message);
+    res.status(502).json({ error: "Errore nella comunicazione con Stripe. Riprova tra qualche istante." });
+  }
+});
+
+// POST /api/billing/crediti-ai — acquisto una tantum di un pacchetto di
+// crediti AI aggiuntivi (mode "payment", non un abbonamento: si paga una
+// volta sola, i crediti si sommano a quelli già disponibili, non scadono
+// a fine mese). Richiede che il tenant abbia già un cliente Stripe (cioè
+// un piano attivo): non ha senso comprare crediti AI senza un abbonamento.
+billingRouter.post("/crediti-ai", requireRole("ADMIN"), async (req, res) => {
+  if (!stripeConfigurato()) {
+    return res.status(501).json({ error: "Pagamenti non ancora configurati." });
+  }
+  const tenant = await prisma.tenant.findUnique({ where: { id: req.auth.tenantId } });
+  if (!tenant) return res.status(404).json({ error: "Organizzazione non trovata" });
+  if (!tenant.stripeCustomerId) {
+    return res.status(400).json({ error: "Attiva prima un piano: i crediti AI si aggiungono a un abbonamento esistente." });
+  }
+
+  const priceId = process.env[AI_CREDITI_PACK.stripePriceEnv];
+  if (!priceId) {
+    return res.status(501).json({ error: "Prezzo del pacchetto crediti AI non configurato. Manca la variabile d'ambiente su Railway." });
+  }
+
+  const baseUrl = `${req.protocol}://${req.get("host")}`;
+  try {
+    const session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      line_items: [{ price: priceId, quantity: 1 }],
+      customer: tenant.stripeCustomerId,
+      success_url: `${baseUrl}/billing/successo?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/billing/annullato`,
+      metadata: { tenantId: tenant.id, tipo: "crediti_ai", crediti: String(AI_CREDITI_PACK.crediti) },
+      managed_payments: { enabled: false },
+    });
+    res.json({ url: session.url });
+  } catch (err) {
+    console.error("[billing] Errore creazione checkout crediti AI:", err.message);
     res.status(502).json({ error: "Errore nella comunicazione con Stripe. Riprova tra qualche istante." });
   }
 });
@@ -239,6 +295,23 @@ async function gestisciCheckoutCompletato(session) {
     console.warn("[billing] checkout.session.completed senza tenantId nei metadata, ignorato");
     return;
   }
+
+  // Acquisto una tantum di crediti AI (mode "payment", non un
+  // abbonamento): si somma ai crediti già presenti, non tocca piano o
+  // stato dell'abbonamento.
+  if (session.metadata?.tipo === "crediti_ai") {
+    const crediti = Number(session.metadata.crediti) || 0;
+    await prisma.tenant.update({
+      where: { id: tenantId },
+      data: { creditiAIAcquistati: { increment: crediti } },
+    });
+    creaNotificaRuoli({
+      tenantId, ruoli: ["ADMIN"], categoria: "PAGAMENTI",
+      titolo: "Crediti AI acquistati", messaggio: `${crediti} crediti AI aggiunti al tuo account.`,
+    }).catch((err) => console.error("[billing] Errore notifica crediti AI:", err.message));
+    return;
+  }
+
   if (session.mode !== "subscription" || !session.subscription) return;
 
   const subscription = await stripe.subscriptions.retrieve(session.subscription);
