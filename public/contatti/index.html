@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Rifless — Contatti commerciali</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px 16px; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif; background: #0A0B0D; color: #F3F1EC;
+  }
+  .card { width: 100%; max-width: 460px; background: #15171B; border: 1px solid #2A2E34; border-radius: 16px; padding: 32px; }
+  .brand { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-weight: 700; font-size: 16px; }
+  .brand img { width: 26px; height: 26px; border-radius: 6px; }
+  h1 { font-size: 19px; margin: 0 0 8px; }
+  p.intro { font-size: 13.5px; color: #A8A29B; line-height: 1.55; margin: 0 0 22px; }
+  .riga { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  label { display: block; font-size: 11px; color: #8D9099; margin-bottom: 4px; }
+  input, textarea { width: 100%; min-width: 0; padding: 10px 11px; border-radius: 8px; border: 1px solid #2A2E34; background: #0A0B0D; color: #F3F1EC; font-size: 14px; margin-bottom: 14px; font-family: inherit; }
+  textarea { resize: vertical; min-height: 80px; }
+  .honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  button { width: 100%; padding: 12px 0; border-radius: 10px; border: none; background: #2F80ED; color: #FFFFFF; font-weight: 600; font-size: 14px; cursor: pointer; }
+  button:disabled { opacity: 0.5; }
+  .errore { background: #2A1A1A; color: #E5806B; padding: 10px 12px; border-radius: 8px; font-size: 13px; border: 1px solid #4A2A2A; margin-bottom: 14px; }
+  .icona { font-size: 34px; margin-bottom: 14px; text-align: center; }
+  .successo h1, .successo p { text-align: center; }
+  .suggerimento { font-size: 12.5px; color: #6B6963; margin-top: 16px; text-align: center; }
+  @media (max-width: 420px) { .riga { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+  <div class="card" id="app">
+    <div class="brand"><img src="/logo-icon.png" alt="Rifless"> Rifless</div>
+    <h1>Parliamo della tua carrozzeria</h1>
+    <p class="intro">Raccontaci qualcosa in più: ti rispondiamo il prima possibile.</p>
+    <div id="errore"></div>
+    <form id="form">
+      <div class="riga">
+        <div>
+          <label for="nome">Nome *</label>
+          <input type="text" id="nome" name="nome" required maxlength="100">
+        </div>
+        <div>
+          <label for="cognome">Cognome</label>
+          <input type="text" id="cognome" name="cognome" maxlength="100">
+        </div>
+      </div>
+      <label for="carrozzeria">Carrozzeria *</label>
+      <input type="text" id="carrozzeria" name="carrozzeria" required maxlength="150">
+      <div class="riga">
+        <div>
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+          <label for="telefono">Telefono</label>
+          <input type="tel" id="telefono" name="telefono" maxlength="30">
+        </div>
+      </div>
+      <label for="numeroDipendenti">Numero dipendenti</label>
+      <input type="number" id="numeroDipendenti" name="numeroDipendenti" min="0" max="100000">
+      <label for="messaggio">Messaggio</label>
+      <textarea id="messaggio" name="messaggio" maxlength="2000"></textarea>
+      <div class="honeypot" aria-hidden="true">
+        <label for="sitoWeb">Non compilare questo campo</label>
+        <input type="text" id="sitoWeb" name="sitoWeb" tabindex="-1" autocomplete="off">
+      </div>
+      <button type="submit" id="submit">Invia richiesta</button>
+    </form>
+  </div>
+
+  <script>
+    const API = window.location.origin;
+    const app = document.getElementById("app");
+    const form = document.getElementById("form");
+    const erroreBox = document.getElementById("errore");
+    const submitBtn = document.getElementById("submit");
+
+    function mostraSuccesso() {
+      app.classList.add("successo");
+      app.innerHTML = `
+        <div class="icona">✅</div>
+        <h1>Richiesta inviata</h1>
+        <p>Grazie, ti risponderemo il prima possibile.</p>
+        <p class="suggerimento"><a href="/" style="color:#8D9099;">Torna alla home</a></p>
+      `;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      erroreBox.innerHTML = "";
+
+      const fd = new FormData(form);
+      const numeroDipendenti = fd.get("numeroDipendenti");
+      const body = {
+        nome: fd.get("nome"),
+        cognome: fd.get("cognome") || undefined,
+        carrozzeria: fd.get("carrozzeria"),
+        email: fd.get("email"),
+        telefono: fd.get("telefono") || undefined,
+        numeroDipendenti: numeroDipendenti ? Number(numeroDipendenti) : undefined,
+        messaggio: fd.get("messaggio") || undefined,
+        sitoWeb: fd.get("sitoWeb") || "",
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Invio…";
+      try {
+        const res = await fetch(`${API}/api/contatti`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(res.status === 429 ? data.error : "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
+        }
+        mostraSuccesso();
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Invia richiesta";
+        erroreBox.innerHTML = `<div class="errore">${err.message}</div>`;
+      }
+    });
+  </script>
+</body>
+</html>

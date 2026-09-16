@@ -76,6 +76,33 @@ export async function inviaEmailVerifica({ email, nome, verificaUrl }) {
   return inviaConRetry({ to: email, subject: "Verifica la tua email Rifless", html, text });
 }
 
+// Destinatario interno per lead commerciali (contatti, richieste demo):
+// mai hardcoded, configurabile perché in futuro potrebbe non essere
+// più l'indirizzo del solo proprietario.
+const DESTINATARIO_LEAD = process.env.CONTATTI_EMAIL_DESTINATARIO || "info@rifless.it";
+
+export async function inviaNotificaLeadCommerciale({ nome, cognome, carrozzeria, email, telefono, numeroDipendenti, messaggio, origine }) {
+  const righe = [
+    `Nome: ${nome}${cognome ? ` ${cognome}` : ""}`,
+    `Carrozzeria: ${carrozzeria}`,
+    `Email: ${email}`,
+    telefono ? `Telefono: ${telefono}` : null,
+    numeroDipendenti != null ? `Numero dipendenti: ${numeroDipendenti}` : null,
+    messaggio ? `Messaggio: ${messaggio}` : null,
+  ].filter(Boolean);
+  const testo = righe.join("\n");
+  const html = layoutEmail({
+    titolo: origine === "DEMO" ? "Nuova richiesta demo" : "Nuovo contatto commerciale",
+    corpoHtml: `<p>${righe.map((r) => r.replace(/</g, "&lt;")).join("<br>")}</p>`,
+  });
+  return inviaConRetry({
+    to: DESTINATARIO_LEAD,
+    subject: origine === "DEMO" ? `Richiesta demo — ${carrozzeria}` : `Nuovo contatto — ${carrozzeria}`,
+    html,
+    text: testo,
+  });
+}
+
 export async function inviaEmailResetPassword({ email, nome, resetUrl }) {
   const html = layoutEmail({
     titolo: "Reimposta la password",

@@ -13,6 +13,7 @@ import bcrypt from "bcryptjs";
 import "dotenv/config";
 
 process.env.JWT_SECRET = process.env.JWT_SECRET || "isolated-notifiche-test-secret";
+delete process.env.RESEND_API_KEY;
 
 const { prisma } = await import("../src/lib/prisma.js");
 const { notificheRouter } = await import("../src/routes/notifiche.js");

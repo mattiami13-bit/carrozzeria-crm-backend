@@ -25,3 +25,14 @@ export const emailActionLimiter = rateLimit({
   legacyHeaders: false,
   message: { error: "Troppe richieste. Riprova tra qualche minuto." },
 });
+
+// Punto 34/35 (form pubblici senza autenticazione: contatti, richiesta
+// demo): più permissivo di loginLimiter perché non protegge contro il
+// brute-force di una password, solo contro l'invio massivo automatico.
+export const leadFormLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  limit: 8,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Troppe richieste da questo indirizzo. Riprova tra qualche ora." },
+});

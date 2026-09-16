@@ -970,6 +970,40 @@ export type EnumGdprRichiestaStatoWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumGdprRichiestaStatoFilter<$PrismaModel>
 }
 
+export type EnumLeadOrigineFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadOrigine | Prisma.EnumLeadOrigineFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadOrigine[] | Prisma.ListEnumLeadOrigineFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadOrigine[] | Prisma.ListEnumLeadOrigineFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadOrigineFilter<$PrismaModel> | $Enums.LeadOrigine
+}
+
+export type EnumLeadStatoFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadStato | Prisma.EnumLeadStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadStato[] | Prisma.ListEnumLeadStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadStato[] | Prisma.ListEnumLeadStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadStatoFilter<$PrismaModel> | $Enums.LeadStato
+}
+
+export type EnumLeadOrigineWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadOrigine | Prisma.EnumLeadOrigineFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadOrigine[] | Prisma.ListEnumLeadOrigineFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadOrigine[] | Prisma.ListEnumLeadOrigineFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadOrigineWithAggregatesFilter<$PrismaModel> | $Enums.LeadOrigine
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadOrigineFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadOrigineFilter<$PrismaModel>
+}
+
+export type EnumLeadStatoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadStato | Prisma.EnumLeadStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadStato[] | Prisma.ListEnumLeadStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadStato[] | Prisma.ListEnumLeadStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadStatoWithAggregatesFilter<$PrismaModel> | $Enums.LeadStato
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadStatoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadStatoFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -1883,6 +1917,40 @@ export type NestedEnumGdprRichiestaStatoWithAggregatesFilter<$PrismaModel = neve
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumGdprRichiestaStatoFilter<$PrismaModel>
   _max?: Prisma.NestedEnumGdprRichiestaStatoFilter<$PrismaModel>
+}
+
+export type NestedEnumLeadOrigineFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadOrigine | Prisma.EnumLeadOrigineFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadOrigine[] | Prisma.ListEnumLeadOrigineFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadOrigine[] | Prisma.ListEnumLeadOrigineFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadOrigineFilter<$PrismaModel> | $Enums.LeadOrigine
+}
+
+export type NestedEnumLeadStatoFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadStato | Prisma.EnumLeadStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadStato[] | Prisma.ListEnumLeadStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadStato[] | Prisma.ListEnumLeadStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadStatoFilter<$PrismaModel> | $Enums.LeadStato
+}
+
+export type NestedEnumLeadOrigineWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadOrigine | Prisma.EnumLeadOrigineFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadOrigine[] | Prisma.ListEnumLeadOrigineFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadOrigine[] | Prisma.ListEnumLeadOrigineFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadOrigineWithAggregatesFilter<$PrismaModel> | $Enums.LeadOrigine
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadOrigineFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadOrigineFilter<$PrismaModel>
+}
+
+export type NestedEnumLeadStatoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadStato | Prisma.EnumLeadStatoFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadStato[] | Prisma.ListEnumLeadStatoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadStato[] | Prisma.ListEnumLeadStatoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadStatoWithAggregatesFilter<$PrismaModel> | $Enums.LeadStato
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadStatoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadStatoFilter<$PrismaModel>
 }
 
 

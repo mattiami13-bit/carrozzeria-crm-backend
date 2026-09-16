@@ -11,6 +11,7 @@ import bcrypt from "bcryptjs";
 import "dotenv/config";
 
 process.env.JWT_SECRET = process.env.JWT_SECRET || "isolated-subscription-test-secret";
+delete process.env.RESEND_API_KEY;
 
 const { prisma } = await import("../src/lib/prisma.js");
 const { requireAbbonamentoAttivo } = await import("../src/middleware/subscription.js");

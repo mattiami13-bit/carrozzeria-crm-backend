@@ -348,3 +348,23 @@ export const GdprRichiestaStato = {
 } as const
 
 export type GdprRichiestaStato = (typeof GdprRichiestaStato)[keyof typeof GdprRichiestaStato]
+
+
+export const LeadOrigine = {
+  CONTATTO: 'CONTATTO',
+  DEMO: 'DEMO'
+} as const
+
+export type LeadOrigine = (typeof LeadOrigine)[keyof typeof LeadOrigine]
+
+
+export const LeadStato = {
+  NUOVO: 'NUOVO',
+  CONTATTATO: 'CONTATTATO',
+  DEMO: 'DEMO',
+  TRIAL: 'TRIAL',
+  CLIENTE: 'CLIENTE',
+  PERSO: 'PERSO'
+} as const
+
+export type LeadStato = (typeof LeadStato)[keyof typeof LeadStato]

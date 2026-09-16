@@ -25,9 +25,10 @@
   </div>
 
   <script>
-    const API = ["127.0.0.1", "localhost"].includes(window.location.hostname) && window.location.port === "4310"
-      ? window.location.origin
-      : "https://carrozzeria-crm-backend-production.up.railway.app";
+    // Pagina servita sempre da questo stesso backend (mai come file
+    // locale): l'API è sempre la stessa origine, nessun dominio da
+    // scrivere a mano (punto 33).
+    const API = window.location.origin;
 
     const params = new URLSearchParams(window.location.search);
     const token = params.get("token");

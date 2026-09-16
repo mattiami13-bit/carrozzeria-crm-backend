@@ -1872,3 +1872,40 @@ model SuperAdmin {
 
   @@map("super_admins")
 }
+
+// Punto 34 (contatti commerciali) e punto 35 (richiesta demo): un solo
+// modello per entrambe le origini, non due tabelle parallele — sono lo
+// stesso concetto (un contatto commerciale in ingresso) con un modulo
+// diverso e un campo "origine" a distinguerle. Gli stati sono quelli
+// esatti richiesti dal punto 35 (pipeline vendita vista dal super-admin,
+// non ancora costruita — vedi punto 35), definiti già qui per evitare
+// una seconda migrazione quando arriverà.
+enum LeadOrigine {
+  CONTATTO
+  DEMO
+}
+
+enum LeadStato {
+  NUOVO
+  CONTATTATO
+  DEMO
+  TRIAL
+  CLIENTE
+  PERSO
+}
+
+model Lead {
+  id               String      @id @default(cuid())
+  nome             String
+  cognome          String?
+  carrozzeria      String
+  email            String
+  telefono         String?
+  numeroDipendenti Int?
+  messaggio        String?
+  origine          LeadOrigine
+  stato            LeadStato   @default(NUOVO)
+  createdAt        DateTime    @default(now())
+
+  @@map("leads")
+}

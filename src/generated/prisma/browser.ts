@@ -312,3 +312,8 @@ export type StripeWebhookEvent = Prisma.StripeWebhookEventModel
  * 
  */
 export type SuperAdmin = Prisma.SuperAdminModel
+/**
+ * Model Lead
+ * 
+ */
+export type Lead = Prisma.LeadModel

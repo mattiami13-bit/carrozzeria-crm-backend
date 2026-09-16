@@ -11,6 +11,9 @@ import bcrypt from "bcryptjs";
 import "dotenv/config";
 
 process.env.JWT_SECRET = process.env.JWT_SECRET || "isolated-audit-test-secret";
+// Non inviare email vere durante i test, anche se RESEND_API_KEY è
+// configurata nell'.env locale per l'uso manuale.
+delete process.env.RESEND_API_KEY;
 
 const { prisma } = await import("../src/lib/prisma.js");
 const { authRouter } = await import("../src/routes/auth.js");

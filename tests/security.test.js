@@ -10,6 +10,7 @@ import cors from "cors";
 import "dotenv/config";
 
 process.env.JWT_SECRET = process.env.JWT_SECRET || "isolated-security-test-secret";
+delete process.env.RESEND_API_KEY;
 
 const { authRouter } = await import("../src/routes/auth.js");
 const { loginLimiter } = await import("../src/middleware/rateLimit.js");

@@ -1,8 +1,10 @@
 // Verifica email, password dimenticata/reset e cambio password: usa
 // l'app HTTP vera (stesso router montato da src/index.js) contro il
 // database reale, dati creati e ripuliti a fine test. RESEND_API_KEY
-// non è configurata in locale, quindi l'invio email è un no-op
-// controllato (vedi src/lib/email.js) e non blocca i test.
+// viene disattivata esplicitamente qui sotto per questo processo di
+// test, anche se è configurata nell'.env locale per l'uso manuale:
+// l'invio email diventa un no-op controllato (vedi src/lib/email.js) e
+// non blocca i test né manda email vere.
 
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -11,6 +13,7 @@ import bcrypt from "bcryptjs";
 import "dotenv/config";
 
 process.env.JWT_SECRET = process.env.JWT_SECRET || "isolated-auth-test-secret";
+delete process.env.RESEND_API_KEY;
 
 const { prisma } = await import("../src/lib/prisma.js");
 const { authRouter } = await import("../src/routes/auth.js");
