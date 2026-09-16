@@ -49,7 +49,7 @@ insuranceGapSuggestionsRouter.use(requireFinancial);
 
 // Stessa quota/piano delle altre analisi IA (foto danni, Copilot): stessa
 // risorsa concettuale, un solo contatore mensile per tenant.
-const LIMITE_ANALISI_IA_DEFAULT = { TRIAL: 5, STARTER: 20, PROFESSIONAL: 100, ENTERPRISE: 500 };
+const LIMITE_ANALISI_IA_DEFAULT = { TRIAL: 5, STARTER: 20, PRO: 100, PREMIUM_AI: 500 };
 async function contaAnalisiIAQuestoMese(tenantId) {
   const inizioMese = new Date();
   inizioMese.setDate(1);

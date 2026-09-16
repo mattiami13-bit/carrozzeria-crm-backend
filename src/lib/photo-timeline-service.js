@@ -17,7 +17,7 @@ export async function suggestPhotoCategory(photo,tenantId,buffer){
   reservation=await prisma.$transaction(async tx=>{
    await tx.$queryRaw`SELECT id FROM tenants WHERE id=${tenantId} FOR UPDATE`;
    const tenant=await tx.tenant.findUnique({where:{id:tenantId}}),start=new Date();start.setUTCDate(1);start.setUTCHours(0,0,0,0);
-   const limit=tenant.limiteAnalisiIAMensile??({TRIAL:5,STARTER:20,PROFESSIONAL:100,ENTERPRISE:500}[tenant.piano]??0);
+   const limit=tenant.limiteAnalisiIAMensile??({TRIAL:5,STARTER:20,PRO:100,PREMIUM_AI:500}[tenant.piano]??0);
    if(await tx.aiAnalysisLog.count({where:{tenantId,createdAt:{gte:start}}})>=limit)return null;
    return tx.aiAnalysisLog.create({data:{tenantId,vehicleId:photo.vehicleId}});
   });

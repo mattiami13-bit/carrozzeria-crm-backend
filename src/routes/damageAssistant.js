@@ -26,8 +26,8 @@ const TIPO_VOCE_VALUES = ["MANODOPERA", "RICAMBIO", "VERNICE", "ALTRO"];
 const LIMITE_ANALISI_IA_DEFAULT = {
   TRIAL: 5,
   STARTER: 20,
-  PROFESSIONAL: 100,
-  ENTERPRISE: 500,
+  PRO: 100,
+  PREMIUM_AI: 500,
 };
 
 async function contaAnalisiIAQuestoMese(tenantId) {

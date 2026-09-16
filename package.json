@@ -27,6 +27,10 @@
     "test:monitoring": "node --test tests/monitoring.test.js",
     "test:performance": "node --test tests/copilot-performance.test.js tests/appointments-pagination.test.js",
     "test:demo-seed": "node --test tests/demo-seed.test.js",
+    "test:feature-entitlement": "node --test tests/feature-entitlement.test.js",
+    "test:rbac": "node --test tests/rbac.test.js",
+    "test:photos-upload": "node --test tests/photos-upload.test.js",
+    "test:billing-plan-changes": "node --test tests/billing-plan-changes.test.js",
     "seed:demo": "node scripts/seed-demo-tenant.mjs",
     "seed:demo:reset": "node scripts/seed-demo-tenant.mjs --reset"
   },

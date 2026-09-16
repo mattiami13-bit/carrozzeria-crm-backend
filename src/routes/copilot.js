@@ -29,7 +29,7 @@ copilotRouter.use((req,res,next)=>{
 // ("fai una domanda in linguaggio naturale sui tuoi dati"), quindi condivide
 // il contatore AiAssistantLog e Tenant.limiteAssistenteIAMensile invece di
 // introdurne uno nuovo e frammentare la quota tra due assistenti simili.
-const LIMITE_ASSISTENTE_DEFAULT = { TRIAL: 20, STARTER: 100, PROFESSIONAL: 500, ENTERPRISE: 2000 };
+const LIMITE_ASSISTENTE_DEFAULT = { TRIAL: 20, STARTER: 100, PRO: 500, PREMIUM_AI: 2000 };
 
 async function contaDomandeQuestoMese(tenantId) {
   const inizioMese = new Date();

@@ -23,7 +23,9 @@ const upload = multer({
   limits: { fileSize: 10 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     if (!file.mimetype.startsWith("image/")) {
-      return cb(new Error("Sono ammesse solo immagini"));
+      const err = new Error("Sono ammesse solo immagini");
+      err.tipoFileNonValido = true;
+      return cb(err);
     }
     cb(null, true);
   },
@@ -118,4 +120,8 @@ photosRouter.delete("/photos/:id", wrap(async (req, res) => {
   res.status(204).send();
 }));
 
-photosRouter.use((err,req,res,next)=>{if(err instanceof multer.MulterError)return res.status(400).json({error:"Foto troppo grande: massimo 10 MB per file"});next(err);});
+photosRouter.use((err,req,res,next)=>{
+  if(err instanceof multer.MulterError)return res.status(400).json({error:"Foto troppo grande: massimo 10 MB per file"});
+  if(err?.tipoFileNonValido)return res.status(400).json({error:err.message});
+  next(err);
+});

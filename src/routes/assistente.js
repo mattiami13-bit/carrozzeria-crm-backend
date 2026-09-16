@@ -12,8 +12,8 @@ assistenteRouter.use(requireAuth);
 const LIMITE_ASSISTENTE_DEFAULT = {
   TRIAL: 20,
   STARTER: 100,
-  PROFESSIONAL: 500,
-  ENTERPRISE: 2000,
+  PRO: 500,
+  PREMIUM_AI: 2000,
 };
 
 async function contaDomandeQuestoMese(tenantId) {
