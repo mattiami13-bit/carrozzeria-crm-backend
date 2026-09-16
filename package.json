@@ -38,6 +38,8 @@
     "test:faq": "node --test tests/faq.test.js",
     "test:support": "node --test tests/support.test.js",
     "test:changelog": "node --test tests/changelog.test.js",
+    "test:feature-flags": "node --test tests/feature-flags.test.js",
+    "seed:feature-flags": "node scripts/seed-feature-flags.mjs",
     "seed:demo": "node scripts/seed-demo-tenant.mjs",
     "seed:demo:reset": "node scripts/seed-demo-tenant.mjs --reset",
     "seed:super-admin": "node scripts/seed-super-admin.mjs",

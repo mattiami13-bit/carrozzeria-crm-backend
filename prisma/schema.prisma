@@ -108,6 +108,7 @@ model Tenant {
   notifications      Notification[]
   gdprRichieste      GdprRichiesta[]
   tickets            Ticket[]
+  featureFlagOverride FeatureFlagTenantOverride[]
 
 
   @@map("tenants")
@@ -1981,4 +1982,42 @@ model ChangelogEntry {
   updatedAt   DateTime @updatedAt
 
   @@map("changelog_entries")
+}
+
+// Punto 39 (feature flag centralizzate): distinte da "features" in
+// lib/billing/piani.js — quelle rispondono a "cosa include il tuo
+// abbonamento" (billing), queste a "questo codice è acceso in questo
+// momento" (rollout/kill-switch operativo), indipendente dal piano.
+// Quattro livelli di attivazione, valutati dal più specifico al più
+// generale in lib/featureFlags.js:
+//   1. override per singolo tenant (FeatureFlagTenantOverride) — vince
+//      sempre, in entrambe le direzioni (forza acceso O spento);
+//   2. ambiente (array vuoto = tutti gli ambienti);
+//   3. interruttore globale;
+//   4. piani inclusi (array vuoto = nessuna restrizione di piano).
+model FeatureFlag {
+  id                   String                      @id @default(cuid())
+  chiave               String                      @unique
+  descrizione          String?
+  abilitataGlobalmente Boolean                      @default(true)
+  piani                Plan[]
+  ambienti             String[]
+  createdAt            DateTime                     @default(now())
+  updatedAt            DateTime                     @updatedAt
+  overrideTenant       FeatureFlagTenantOverride[]
+
+  @@map("feature_flags")
+}
+
+model FeatureFlagTenantOverride {
+  id            String      @id @default(cuid())
+  featureFlagId String
+  featureFlag   FeatureFlag @relation(fields: [featureFlagId], references: [id], onDelete: Cascade)
+  tenantId      String
+  tenant        Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  abilitata     Boolean
+  createdAt     DateTime    @default(now())
+
+  @@unique([featureFlagId, tenantId])
+  @@map("feature_flag_tenant_overrides")
 }

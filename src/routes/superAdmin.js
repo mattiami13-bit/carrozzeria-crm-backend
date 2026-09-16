@@ -8,6 +8,7 @@ import { loginLimiter } from "../middleware/rateLimit.js";
 
 const STATI_LEAD = ["NUOVO", "CONTATTATO", "DEMO", "TRIAL", "CLIENTE", "PERSO"];
 const STATI_TICKET = ["APERTO", "IN_LAVORAZIONE", "RISOLTO", "CHIUSO"];
+const PIANI_VALIDI = ["TRIAL", "STARTER", "PRO", "PREMIUM_AI"];
 
 // Punto 31: rotte di livello piattaforma, separate e parallele a
 // /api/auth — mai montate dietro requireAuth/tenantScope (vedi
@@ -217,4 +218,78 @@ superAdminRouter.get("/gdpr-richieste", async (req, res) => {
     orderBy: { createdAt: "asc" },
   });
   res.json(richieste);
+});
+
+// Punto 39 (feature flag centralizzate): CRUD del flag stesso più la
+// gestione degli override per singolo tenant — vedi il commento sul
+// modello FeatureFlag in schema.prisma per i 4 livelli di attivazione
+// e lib/featureFlags.js per come vengono valutati.
+superAdminRouter.get("/feature-flags", async (req, res) => {
+  const flags = await prisma.featureFlag.findMany({
+    include: { overrideTenant: { include: { tenant: { select: { ragioneSociale: true } } } } },
+    orderBy: { chiave: "asc" },
+  });
+  res.json(flags);
+});
+
+const featureFlagSchema = z.object({
+  chiave: z.string().trim().min(1).max(100).regex(/^[a-z0-9_]+$/, "Usa solo lettere minuscole, numeri e underscore"),
+  descrizione: z.string().trim().max(500).optional(),
+  abilitataGlobalmente: z.boolean().optional(),
+  piani: z.array(z.enum(PIANI_VALIDI)).optional(),
+  ambienti: z.array(z.string().trim().min(1)).optional(),
+});
+
+superAdminRouter.post("/feature-flags", async (req, res) => {
+  const parsed = featureFlagSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: "Dati non validi", dettagli: parsed.error.flatten() });
+  const esistente = await prisma.featureFlag.findUnique({ where: { chiave: parsed.data.chiave } });
+  if (esistente) return res.status(409).json({ error: "Esiste già un flag con questa chiave" });
+  const flag = await prisma.featureFlag.create({ data: parsed.data });
+  res.status(201).json(flag);
+});
+
+const featureFlagUpdateSchema = featureFlagSchema.omit({ chiave: true }).partial();
+
+superAdminRouter.patch("/feature-flags/:id", async (req, res) => {
+  const parsed = featureFlagUpdateSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: "Dati non validi", dettagli: parsed.error.flatten() });
+  const esistente = await prisma.featureFlag.findUnique({ where: { id: req.params.id } });
+  if (!esistente) return res.status(404).json({ error: "Flag non trovato" });
+  const aggiornato = await prisma.featureFlag.update({ where: { id: req.params.id }, data: parsed.data });
+  res.json(aggiornato);
+});
+
+superAdminRouter.delete("/feature-flags/:id", async (req, res) => {
+  const esistente = await prisma.featureFlag.findUnique({ where: { id: req.params.id } });
+  if (!esistente) return res.status(404).json({ error: "Flag non trovato" });
+  await prisma.featureFlag.delete({ where: { id: req.params.id } });
+  res.status(204).end();
+});
+
+const overrideSchema = z.object({ tenantId: z.string().min(1), abilitata: z.boolean() });
+
+superAdminRouter.put("/feature-flags/:id/override", async (req, res) => {
+  const parsed = overrideSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: "Dati non validi", dettagli: parsed.error.flatten() });
+  const flag = await prisma.featureFlag.findUnique({ where: { id: req.params.id } });
+  if (!flag) return res.status(404).json({ error: "Flag non trovato" });
+  const tenant = await prisma.tenant.findUnique({ where: { id: parsed.data.tenantId } });
+  if (!tenant) return res.status(404).json({ error: "Tenant non trovato" });
+
+  const override = await prisma.featureFlagTenantOverride.upsert({
+    where: { featureFlagId_tenantId: { featureFlagId: flag.id, tenantId: parsed.data.tenantId } },
+    create: { featureFlagId: flag.id, tenantId: parsed.data.tenantId, abilitata: parsed.data.abilitata },
+    update: { abilitata: parsed.data.abilitata },
+  });
+  res.json(override);
+});
+
+superAdminRouter.delete("/feature-flags/:id/override/:tenantId", async (req, res) => {
+  const esistente = await prisma.featureFlagTenantOverride.findUnique({
+    where: { featureFlagId_tenantId: { featureFlagId: req.params.id, tenantId: req.params.tenantId } },
+  });
+  if (!esistente) return res.status(404).json({ error: "Override non trovato" });
+  await prisma.featureFlagTenantOverride.delete({ where: { id: esistente.id } });
+  res.status(204).end();
 });

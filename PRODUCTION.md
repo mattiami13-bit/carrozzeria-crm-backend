@@ -20,6 +20,11 @@ Non esiste un ambiente "staging" separato: non è mai stato necessario
 finora, dato che ogni punto del prompt viene verificato prima in
 locale/con test automatici e poi live in produzione dopo ogni push.
 
+`APP_ENV` (punto 39, feature flag) identifica l'ambiente corrente solo
+per la restrizione opzionale "ambienti" di un flag — non imposta nessun
+comportamento diverso nel resto del codice. Non impostata in produzione
+oggi: usa il default `"production"`.
+
 Il codice non contiene mai URL, domini o segreti hardcoded: tutto
 arriva da variabili d'ambiente lette a runtime (vedi `.env.example`).
 Non c'è un branch `if (NODE_ENV === "production")` da nessuna parte nel

@@ -332,3 +332,13 @@ export type Ticket = Prisma.TicketModel
  * 
  */
 export type ChangelogEntry = Prisma.ChangelogEntryModel
+/**
+ * Model FeatureFlag
+ * 
+ */
+export type FeatureFlag = Prisma.FeatureFlagModel
+/**
+ * Model FeatureFlagTenantOverride
+ * 
+ */
+export type FeatureFlagTenantOverride = Prisma.FeatureFlagTenantOverrideModel

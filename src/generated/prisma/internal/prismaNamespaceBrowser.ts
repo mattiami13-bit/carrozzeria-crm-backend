@@ -113,7 +113,9 @@ export const ModelName = {
   Lead: 'Lead',
   FaqItem: 'FaqItem',
   Ticket: 'Ticket',
-  ChangelogEntry: 'ChangelogEntry'
+  ChangelogEntry: 'ChangelogEntry',
+  FeatureFlag: 'FeatureFlag',
+  FeatureFlagTenantOverride: 'FeatureFlagTenantOverride'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1126,6 +1128,31 @@ export const ChangelogEntryScalarFieldEnum = {
 } as const
 
 export type ChangelogEntryScalarFieldEnum = (typeof ChangelogEntryScalarFieldEnum)[keyof typeof ChangelogEntryScalarFieldEnum]
+
+
+export const FeatureFlagScalarFieldEnum = {
+  id: 'id',
+  chiave: 'chiave',
+  descrizione: 'descrizione',
+  abilitataGlobalmente: 'abilitataGlobalmente',
+  piani: 'piani',
+  ambienti: 'ambienti',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FeatureFlagScalarFieldEnum = (typeof FeatureFlagScalarFieldEnum)[keyof typeof FeatureFlagScalarFieldEnum]
+
+
+export const FeatureFlagTenantOverrideScalarFieldEnum = {
+  id: 'id',
+  featureFlagId: 'featureFlagId',
+  tenantId: 'tenantId',
+  abilitata: 'abilitata',
+  createdAt: 'createdAt'
+} as const
+
+export type FeatureFlagTenantOverrideScalarFieldEnum = (typeof FeatureFlagTenantOverrideScalarFieldEnum)[keyof typeof FeatureFlagTenantOverrideScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -41,6 +41,7 @@ import { auditLogger } from "./middleware/audit.js";
 import { maintenanceMode } from "./middleware/maintenance.js";
 import { requireAbbonamentoAttivo } from "./middleware/subscription.js";
 import { requireFeature } from "./middleware/feature.js";
+import { requireFlag } from "./middleware/featureFlag.js";
 import { latencyLogger } from "./middleware/latency.js";
 import { clientErrorsRouter } from "./routes/clientErrors.js";
 import { contattiRouter } from "./routes/contatti.js";
@@ -190,7 +191,16 @@ app.use("/api/assistente", assistenteRouter);
 // lib/billing/piani.js, la fonte unica di cosa include ogni piano.
 app.use("/api/vehicles/:vehicleId/damage-assistant", requireFeature("ai_damage"), damageAssistantRouter);
 app.use("/api/damage-items", requireFeature("ai_damage"), damageItemsRouter);
-app.use("/api/copilot", requireFeature("ai_copilot"), copilotRouter);
+// Punto 39: oltre al gate di billing (requireFeature, "il piano lo
+// include?"), il Copilot ha anche un flag operativo — un interruttore
+// indipendente dal piano, per spegnerlo su un tenant o globalmente
+// senza toccare il codice se il provider AI ha un problema o i costi
+// vanno fuori controllo (vedi punto 41). isFeatureEnabled è fail-closed
+// (un flag mancante blocca, non lascia passare): il flag "ai_copilot_attivo"
+// va seedato attivo PRIMA che questa riga arrivi in produzione, altrimenti
+// spegnerebbe il Copilot per errore — vedi scripts/seed-feature-flags.mjs,
+// già eseguito contro il database di produzione in questo stesso commit.
+app.use("/api/copilot", requireFeature("ai_copilot"), requireFlag("ai_copilot_attivo"), copilotRouter);
 app.use("/api/vehicles/:vehicleId/insurance-gap", requireFeature("insurance_gap"), insuranceGapRouter);
 app.use("/api/insurance-gap-items", requireFeature("insurance_gap"), insuranceGapItemsRouter);
 app.use("/api/insurance-gap-suggestions", requireFeature("insurance_gap"), insuranceGapSuggestionsRouter);
