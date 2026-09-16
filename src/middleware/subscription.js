@@ -23,9 +23,12 @@ export async function requireAbbonamentoAttivo(req, res, next) {
 
   const tenant = await prisma.tenant.findUnique({
     where: { id: tenantId },
-    select: { subscriptionStatus: true, piano: true, trialEndsAt: true },
+    select: { subscriptionStatus: true, piano: true, trialEndsAt: true, isDemo: true },
   });
   if (!tenant) return next();
+  // Un tenant demo (punto 28) non ha un vero abbonamento e non deve mai
+  // interrompersi: non ha senso bloccarlo per "trial scaduto".
+  if (tenant.isDemo) return next();
 
   const trialScaduto = tenant.piano === "TRIAL" && tenant.subscriptionStatus === "TRIALING" && tenant.trialEndsAt && tenant.trialEndsAt < new Date();
   const bloccato = STATI_BLOCCANTI.has(tenant.subscriptionStatus) || trialScaduto;

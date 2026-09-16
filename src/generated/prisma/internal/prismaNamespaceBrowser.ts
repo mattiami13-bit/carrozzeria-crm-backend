@@ -133,6 +133,7 @@ export const TenantScalarFieldEnum = {
   partitaIva: 'partitaIva',
   piano: 'piano',
   trialEndsAt: 'trialEndsAt',
+  isDemo: 'isDemo',
   limiteAnalisiIAMensile: 'limiteAnalisiIAMensile',
   limiteAssistenteIAMensile: 'limiteAssistenteIAMensile',
   stripeCustomerId: 'stripeCustomerId',

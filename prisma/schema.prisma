@@ -36,6 +36,11 @@ model Tenant {
   partitaIva     String?   @unique
   piano          Plan      @default(TRIAL)
   trialEndsAt    DateTime?
+  // Punto 28 (dati demo): un tenant creato dallo script di seed demo, mai
+  // da una registrazione reale. Serve a: escluderlo dal blocco abbonamento
+  // scaduto (una demo non deve mai interrompersi), ed è la barriera che lo
+  // script di seed controlla per rifiutarsi di scrivere su un tenant vero.
+  isDemo         Boolean   @default(false)
   limiteAnalisiIAMensile Int?
   limiteAssistenteIAMensile Int?
 

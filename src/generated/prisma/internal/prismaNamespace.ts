@@ -4811,6 +4811,7 @@ export const TenantScalarFieldEnum = {
   partitaIva: 'partitaIva',
   piano: 'piano',
   trialEndsAt: 'trialEndsAt',
+  isDemo: 'isDemo',
   limiteAnalisiIAMensile: 'limiteAnalisiIAMensile',
   limiteAssistenteIAMensile: 'limiteAssistenteIAMensile',
   stripeCustomerId: 'stripeCustomerId',
@@ -5828,6 +5829,13 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -5866,13 +5874,6 @@ export type EnumFatturazionePeriodicitaFieldRefInput<$PrismaModel> = FieldRefInp
  * Reference to a field of type 'FatturazionePeriodicita[]'
  */
 export type ListEnumFatturazionePeriodicitaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FatturazionePeriodicita[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

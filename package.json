@@ -25,7 +25,10 @@
     "test:photo-backup": "node --test tests/photo-backup.test.js",
     "test:subscription": "node --test tests/subscription-enforcement.test.js",
     "test:monitoring": "node --test tests/monitoring.test.js",
-    "test:performance": "node --test tests/copilot-performance.test.js tests/appointments-pagination.test.js"
+    "test:performance": "node --test tests/copilot-performance.test.js tests/appointments-pagination.test.js",
+    "test:demo-seed": "node --test tests/demo-seed.test.js",
+    "seed:demo": "node scripts/seed-demo-tenant.mjs",
+    "seed:demo:reset": "node scripts/seed-demo-tenant.mjs --reset"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",
