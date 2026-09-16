@@ -132,7 +132,7 @@ export async function inviaLinkPortale(vehicle, link) {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: "Ombra CRM <onboarding@resend.dev>",
+      from: "Rifless <notifiche@rifless.it>",
       to: client.email,
       subject: "Segui la tua auto in tempo reale",
       text: testo,

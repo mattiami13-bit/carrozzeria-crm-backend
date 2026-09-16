@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import helmet from "helmet";
 import { photoTimelineRouter } from './routes/photoTimeline.js';
 
 import { authRouter } from "./routes/auth.js";
@@ -63,6 +64,14 @@ const app = express();
 // un client potrebbe falsificare X-Forwarded-For per aggirare il rate
 // limiting basato su IP.
 app.set("trust proxy", 1);
+
+// Header di sicurezza di base per la produzione (punto 32). CSP e
+// Cross-Origin-Embedder-Policy sono disattivati deliberatamente: le
+// pagine statiche (portale, verifica email, reset password) usano
+// script inline e caricano risorse cross-origin (foto firmate da
+// Supabase Storage), e una CSP di default li romperebbe senza un
+// intervento dedicato pagina per pagina — non l'oggetto di questo punto.
+app.use(helmet({ contentSecurityPolicy: false, crossOriginEmbedderPolicy: false }));
 
 // Origini ammesse per le richieste browser: il dominio pubblico e, in
 // sviluppo, localhost. L'auth è Bearer JWT (mai cookie), quindi CORS non è
@@ -199,6 +208,15 @@ app.use((req, res) => {
 // (una riga JSON) sul server — mai dettagli interni (stack, SQL, path
 // del filesystem) nella risposta al client, solo un messaggio generico.
 app.use((err, req, res, next) => {
+  // Un'origine CORS rifiutata non è un errore del server: prima di
+  // questo fix arrivava fin qui come qualsiasi altro errore e veniva
+  // risposta 500 e loggata come un crash, mentre è solo una richiesta
+  // browser bloccata correttamente (bot, scanner, o un sito di terzi
+  // che riusa un token trafugato) — non deve inquinare i log/allarmi
+  // di monitoraggio del punto 24 con falsi positivi.
+  if (err.message === "Origine non consentita da CORS") {
+    return res.status(403).json({ error: err.message });
+  }
   console.error(JSON.stringify({
     livello: "error",
     timestamp: new Date().toISOString(),
