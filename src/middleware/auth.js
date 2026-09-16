@@ -15,6 +15,14 @@ export function requireAuth(req, res, next) {
   const token = header.slice("Bearer ".length);
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
+    // Un token senza tenantId (es. un token super-admin, punto 31) non
+    // deve MAI passare da qui: tenantScope(req) lo trasformerebbe in
+    // where:{tenantId:undefined}, che Prisma tratta come "nessun filtro"
+    // — restituendo i dati di TUTTI i tenant invece di 401. Fail-closed,
+    // non un caso limite da tollerare.
+    if (!payload.tenantId) {
+      return res.status(401).json({ error: "Token non valido per questo contesto" });
+    }
     req.auth = {
       userId: payload.sub,
       tenantId: payload.tenantId,

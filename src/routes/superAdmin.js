@@ -1,0 +1,77 @@
+import { Router } from "express";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { z } from "zod";
+import { prisma } from "../lib/prisma.js";
+import { requireSuperAdmin } from "../middleware/superAdmin.js";
+import { loginLimiter } from "../middleware/rateLimit.js";
+
+// Punto 31: rotte di livello piattaforma, separate e parallele a
+// /api/auth — mai montate dietro requireAuth/tenantScope (vedi
+// middleware/superAdmin.js). Deliberatamente minime: la seed procedure
+// e l'autenticazione sono il compito del punto 31; il pannello
+// completo è un intervento a sé (vedi SUPER-ADMIN.md). Le due rotte di
+// sola lettura qui sotto bastano a dimostrare che il meccanismo
+// funziona davvero end-to-end, non solo "si logga e basta".
+export const superAdminRouter = Router();
+
+const loginSchema = z.object({ email: z.string().email(), password: z.string() });
+
+superAdminRouter.post("/login", loginLimiter, async (req, res) => {
+  const parsed = loginSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: "Credenziali non valide" });
+  const { email, password } = parsed.data;
+
+  const superAdmin = await prisma.superAdmin.findUnique({ where: { email } });
+  if (!superAdmin || !superAdmin.attivo) {
+    return res.status(401).json({ error: "Credenziali non valide" });
+  }
+  const valido = await bcrypt.compare(password, superAdmin.passwordHash);
+  if (!valido) {
+    return res.status(401).json({ error: "Credenziali non valide" });
+  }
+
+  await prisma.superAdmin.update({ where: { id: superAdmin.id }, data: { ultimoAccessoAt: new Date() } });
+
+  // Token deliberatamente SENZA tenantId: è ciò che lo distingue da un
+  // token utente normale e che middleware/auth.js rifiuta esplicitamente
+  // se qualcuno provasse a riusarlo su una rotta tenant-scoped.
+  const token = jwt.sign({ sub: superAdmin.id, email: superAdmin.email, superAdmin: true }, process.env.JWT_SECRET, { expiresIn: "4h" });
+  res.json({ token, superAdmin: { id: superAdmin.id, email: superAdmin.email } });
+});
+
+superAdminRouter.use(requireSuperAdmin);
+
+// GET /api/super-admin/tenants — visibilità su tutte le carrozzerie,
+// senza dati operativi (mai clienti/veicoli/preventivi): solo lo stato
+// di abbonamento e utilizzo essenziale per la gestione della piattaforma.
+superAdminRouter.get("/tenants", async (req, res) => {
+  const tenants = await prisma.tenant.findMany({
+    select: {
+      id: true, ragioneSociale: true, piano: true, subscriptionStatus: true,
+      isDemo: true, trialEndsAt: true, createdAt: true,
+      _count: { select: { users: true, clients: true, vehicles: true } },
+    },
+    orderBy: { createdAt: "desc" },
+  });
+  res.json(tenants);
+});
+
+// GET /api/super-admin/gdpr-richieste — coda delle richieste GDPR in
+// attesa su TUTTI i tenant (cancellazione account, ecc.): oggi queste
+// richieste vengono solo registrate da ogni tenant (vedi routes/gdpr.js),
+// senza nessun modo per un umano di vederle ed elaborarle. Questa è la
+// prima rotta che le rende visibili — l'elaborazione vera e propria
+// (eseguire la cancellazione) resta un intervento manuale e deliberato,
+// non automatizzato da questa rotta.
+superAdminRouter.get("/gdpr-richieste", async (req, res) => {
+  const richieste = await prisma.gdprRichiesta.findMany({
+    where: { stato: "IN_ATTESA" },
+    include: {
+      tenant: { select: { ragioneSociale: true } },
+      richiedente: { select: { nome: true, cognome: true, email: true } },
+    },
+    orderBy: { createdAt: "asc" },
+  });
+  res.json(richieste);
+});

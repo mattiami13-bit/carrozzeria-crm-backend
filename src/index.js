@@ -4,6 +4,7 @@ import cors from "cors";
 import { photoTimelineRouter } from './routes/photoTimeline.js';
 
 import { authRouter } from "./routes/auth.js";
+import { superAdminRouter } from "./routes/superAdmin.js";
 import { clientsRouter } from "./routes/clients.js";
 import { vehiclesRouter } from "./routes/vehicles.js";
 import { quotesRouter } from "./routes/quotes.js";
@@ -124,6 +125,7 @@ app.use("/billing/annullato", express.static(path.join(__dirname, "..", "public"
 // intercettata da uno di questi router non raggiunge mai il middleware
 // successivo.
 app.use("/api/auth", authRouter);
+app.use("/api/super-admin", superAdminRouter);
 app.use("/api/billing/webhook", billingWebhookRouter);
 app.use("/api/billing", billingRouter);
 app.use("/api/gdpr", gdprRouter);

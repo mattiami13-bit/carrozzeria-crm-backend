@@ -307,3 +307,8 @@ export type GdprRichiesta = Prisma.GdprRichiestaModel
  * 
  */
 export type StripeWebhookEvent = Prisma.StripeWebhookEventModel
+/**
+ * Model SuperAdmin
+ * 
+ */
+export type SuperAdmin = Prisma.SuperAdminModel

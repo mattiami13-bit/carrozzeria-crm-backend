@@ -1853,3 +1853,22 @@ model StripeWebhookEvent {
 
   @@map("stripe_webhook_events")
 }
+
+// Punto 31 (seed super-admin): account di livello piattaforma, mai
+// legato a un tenant — gestisce Rifless stessa (elenco tenant, code
+// GDPR in attesa, ecc.), non i dati di una singola carrozzeria.
+// Deliberatamente un modello separato da User, non un flag su di esso:
+// User è progettato per essere sempre dentro un tenant (tenantId
+// obbligatorio), mescolare i due concetti avrebbe reso troppo facile
+// un errore che lascia un token senza tenantId passare per le rotte
+// tenant-scoped (vedi il controllo esplicito in middleware/auth.js).
+model SuperAdmin {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  attivo       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  ultimoAccessoAt DateTime?
+
+  @@map("super_admins")
+}
