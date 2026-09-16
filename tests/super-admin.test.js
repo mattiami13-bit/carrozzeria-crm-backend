@@ -52,6 +52,7 @@ test("Super-admin: login, boundary di sicurezza, e sola-lettura sui dati di piat
     data: { tenantId: tenant.id, nome: "A", cognome: "B", email: `su.${suffix}@example.invalid`, passwordHash: tenantPasswordHash, ruolo: "ADMIN", emailVerificata: true },
   });
   const tenantToken = jwt.sign({ sub: tenantUser.id, tenantId: tenant.id, role: "ADMIN" }, process.env.JWT_SECRET, { expiresIn: "1h" });
+  let leadId;
 
   try {
     let superAdminToken;
@@ -96,6 +97,60 @@ test("Super-admin: login, boundary di sicurezza, e sola-lettura sui dati di piat
       assert.ok(Array.isArray(await res.json()));
     });
 
+    await t.test("punto 35: GET /api/super-admin/leads vede i Lead di entrambe le origini (contatti e demo)", async () => {
+      const lead = await prisma.lead.create({
+        data: { nome: "Test", carrozzeria: `Lead Test ${suffix}`, email: `lead.${suffix}@example.invalid`, origine: "DEMO" },
+      });
+      leadId = lead.id;
+      const res = await fetch(`${base}/api/super-admin/leads`, { headers: { Authorization: `Bearer ${superAdminToken}` } });
+      assert.equal(res.status, 200);
+      const data = await res.json();
+      assert.ok(data.some((l) => l.id === leadId));
+    });
+
+    await t.test("punto 35: filtro per stato funziona, stato non valido è rifiutato", async () => {
+      const ok = await fetch(`${base}/api/super-admin/leads?stato=NUOVO`, { headers: { Authorization: `Bearer ${superAdminToken}` } });
+      assert.equal(ok.status, 200);
+      assert.ok((await ok.json()).every((l) => l.stato === "NUOVO"));
+
+      const invalido = await fetch(`${base}/api/super-admin/leads?stato=INVENTATO`, { headers: { Authorization: `Bearer ${superAdminToken}` } });
+      assert.equal(invalido.status, 400);
+    });
+
+    await t.test("punto 35: PATCH /api/super-admin/leads/:id/stato fa avanzare la pipeline (NUOVO → CONTATTATO → DEMO → TRIAL → CLIENTE)", async () => {
+      for (const stato of ["CONTATTATO", "DEMO", "TRIAL", "CLIENTE"]) {
+        const res = await fetch(`${base}/api/super-admin/leads/${leadId}/stato`, {
+          method: "PATCH", headers: { Authorization: `Bearer ${superAdminToken}`, "Content-Type": "application/json" },
+          body: JSON.stringify({ stato }),
+        });
+        assert.equal(res.status, 200);
+        assert.equal((await res.json()).stato, stato);
+      }
+    });
+
+    await t.test("punto 35: stato non valido nel PATCH è rifiutato, Lead inesistente dà 404", async () => {
+      const statoInvalido = await fetch(`${base}/api/super-admin/leads/${leadId}/stato`, {
+        method: "PATCH", headers: { Authorization: `Bearer ${superAdminToken}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ stato: "INVENTATO" }),
+      });
+      assert.equal(statoInvalido.status, 400);
+
+      const nonEsistente = await fetch(`${base}/api/super-admin/leads/id-che-non-esiste/stato`, {
+        method: "PATCH", headers: { Authorization: `Bearer ${superAdminToken}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ stato: "PERSO" }),
+      });
+      assert.equal(nonEsistente.status, 404);
+    });
+
+    await t.test("punto 35: token tenant normale non può leggere né modificare i Lead", async () => {
+      assert.equal((await fetch(`${base}/api/super-admin/leads`, { headers: { Authorization: `Bearer ${tenantToken}` } })).status, 401);
+      const res = await fetch(`${base}/api/super-admin/leads/${leadId}/stato`, {
+        method: "PATCH", headers: { Authorization: `Bearer ${tenantToken}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ stato: "PERSO" }),
+      });
+      assert.equal(res.status, 401);
+    });
+
     await t.test("BOUNDARY 1: token super-admin su rotta tenant-scoped (/api/clients) deve essere rifiutato, mai trattato come nessun filtro tenant", async () => {
       const res = await fetch(`${base}/api/clients`, { headers: { Authorization: `Bearer ${superAdminToken}` } });
       assert.equal(res.status, 401);
@@ -129,5 +184,6 @@ test("Super-admin: login, boundary di sicurezza, e sola-lettura sui dati di piat
     await prisma.user.delete({ where: { id: tenantUser.id } }).catch(() => {});
     await prisma.tenant.delete({ where: { id: tenant.id } }).catch(() => {});
     await prisma.superAdmin.delete({ where: { id: superAdmin.id } }).catch(() => {});
+    if (leadId) await prisma.lead.delete({ where: { id: leadId } }).catch(() => {});
   }
 });

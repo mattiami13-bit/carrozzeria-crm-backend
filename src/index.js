@@ -44,6 +44,7 @@ import { requireFeature } from "./middleware/feature.js";
 import { latencyLogger } from "./middleware/latency.js";
 import { clientErrorsRouter } from "./routes/clientErrors.js";
 import { contattiRouter } from "./routes/contatti.js";
+import { demoRouter } from "./routes/demo.js";
 import { statoSalute } from "./lib/health.js";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -130,6 +131,7 @@ app.get("/", (req, res, next) => {
 
 app.use("/", express.static(path.join(__dirname, "..", "public", "home")));
 app.use("/contatti", express.static(path.join(__dirname, "..", "public", "contatti")));
+app.use("/demo", express.static(path.join(__dirname, "..", "public", "demo")));
 app.use("/portale", express.static(path.join(__dirname, "..", "public", "portale")));
 app.use("/verifica-email", express.static(path.join(__dirname, "..", "public", "verifica-email")));
 app.use("/reset-password", express.static(path.join(__dirname, "..", "public", "reset-password")));
@@ -157,6 +159,7 @@ app.use("/api/whatsapp/webhook", whatsappWebhookRouter);
 app.use("/api/portale", portaleRouter);
 app.use("/api/client-errors", clientErrorsRouter);
 app.use("/api/contatti", contattiRouter);
+app.use("/api/demo", demoRouter);
 
 // Punto 23 (subscription required): da qui in giù, un tenant con
 // abbonamento scaduto/non attivo riceve 402 invece di poter continuare

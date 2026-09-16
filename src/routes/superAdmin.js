@@ -6,6 +6,8 @@ import { prisma } from "../lib/prisma.js";
 import { requireSuperAdmin } from "../middleware/superAdmin.js";
 import { loginLimiter } from "../middleware/rateLimit.js";
 
+const STATI_LEAD = ["NUOVO", "CONTATTATO", "DEMO", "TRIAL", "CLIENTE", "PERSO"];
+
 // Punto 31: rotte di livello piattaforma, separate e parallele a
 // /api/auth — mai montate dietro requireAuth/tenantScope (vedi
 // middleware/superAdmin.js). Deliberatamente minime: la seed procedure
@@ -64,6 +66,35 @@ superAdminRouter.get("/tenants", async (req, res) => {
 // prima rotta che le rende visibili — l'elaborazione vera e propria
 // (eseguire la cancellazione) resta un intervento manuale e deliberato,
 // non automatizzato da questa rotta.
+// Punto 35 (richiesta demo, "Super Admin → LEAD"): pipeline vendita su
+// entrambe le origini (punto 34 "contatti" e punto 35 "demo"), stesso
+// modello Lead — vedi routes/contatti.js e routes/demo.js. Filtro
+// opzionale per stato (?stato=NUOVO), utile quando la lista cresce.
+superAdminRouter.get("/leads", async (req, res) => {
+  const { stato } = req.query;
+  if (stato !== undefined && !STATI_LEAD.includes(stato)) {
+    return res.status(400).json({ error: "Stato non valido" });
+  }
+  const leads = await prisma.lead.findMany({
+    where: stato ? { stato } : undefined,
+    orderBy: { createdAt: "desc" },
+  });
+  res.json(leads);
+});
+
+const cambiaStatoSchema = z.object({ stato: z.enum(STATI_LEAD) });
+
+superAdminRouter.patch("/leads/:id/stato", async (req, res) => {
+  const parsed = cambiaStatoSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: "Stato non valido" });
+
+  const lead = await prisma.lead.findUnique({ where: { id: req.params.id } });
+  if (!lead) return res.status(404).json({ error: "Lead non trovato" });
+
+  const aggiornato = await prisma.lead.update({ where: { id: req.params.id }, data: { stato: parsed.data.stato } });
+  res.json(aggiornato);
+});
+
 superAdminRouter.get("/gdpr-richieste", async (req, res) => {
   const richieste = await prisma.gdprRichiesta.findMany({
     where: { stato: "IN_ATTESA" },
