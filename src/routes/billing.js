@@ -5,7 +5,7 @@ import { requireAuth, requireRole, tenantScope } from "../middleware/auth.js";
 import { stripe, stripeConfigurato } from "../lib/stripe.js";
 import { creaNotificaRuoli } from "../lib/notificheInApp.js";
 import {
-  PIANI, SETUP_FEE_CENTS, UTENTE_EXTRA_MENSILE_CENTS, AI_CREDITI_PACK, EARLY_ADOPTER,
+  PIANI, SETUP_FEE_CENTS, UTENTE_EXTRA_MENSILE_CENTS, STRIPE_PRICE_ENV_UTENTE_EXTRA, AI_CREDITI_PACK, EARLY_ADOPTER,
   stripePriceId, pianoDaPriceId, statoDaStripe,
 } from "../lib/billing/piani.js";
 
@@ -213,6 +213,61 @@ billingRouter.post("/crediti-ai", requireRole("ADMIN"), async (req, res) => {
     res.json({ url: session.url });
   } catch (err) {
     console.error("[billing] Errore creazione checkout crediti AI:", err.message);
+    res.status(502).json({ error: "Errore nella comunicazione con Stripe. Riprova tra qualche istante." });
+  }
+});
+
+const utentiExtraSchema = z.object({ quantita: z.number().int().min(1).max(50) });
+
+// POST /api/billing/utenti-extra — aggiunge N posti utente oltre a quelli
+// inclusi nel piano, come riga aggiuntiva sull'abbonamento Stripe già
+// attivo (non una nuova Checkout Session: il cliente ha già un metodo di
+// pagamento su file, Stripe applica la proration e la addebita
+// automaticamente sulla prossima fattura). Richiede un abbonamento attivo:
+// non ha senso comprare posti extra senza un piano.
+billingRouter.post("/utenti-extra", requireRole("ADMIN"), async (req, res) => {
+  const parsed = utentiExtraSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: parsed.error.flatten() });
+  const { quantita } = parsed.data;
+
+  if (!stripeConfigurato()) {
+    return res.status(501).json({ error: "Pagamenti non ancora configurati." });
+  }
+  const tenant = await prisma.tenant.findUnique({ where: { id: req.auth.tenantId } });
+  if (!tenant) return res.status(404).json({ error: "Organizzazione non trovata" });
+  if (!tenant.stripeSubscriptionId) {
+    return res.status(400).json({ error: "Attiva prima un piano: gli utenti extra si aggiungono a un abbonamento esistente." });
+  }
+
+  const priceId = process.env[STRIPE_PRICE_ENV_UTENTE_EXTRA];
+  if (!priceId) {
+    console.error("[billing] Price ID Stripe non configurato per gli utenti extra.");
+    return res.status(501).json({ error: "Gli utenti extra non sono al momento disponibili per l'acquisto. Contatta l'assistenza." });
+  }
+
+  try {
+    const subscription = await stripe.subscriptions.retrieve(tenant.stripeSubscriptionId);
+    const itemEsistente = subscription.items.data.find((i) => i.price.id === priceId);
+    if (itemEsistente) {
+      await stripe.subscriptionItems.update(itemEsistente.id, { quantity: itemEsistente.quantity + quantita });
+    } else {
+      await stripe.subscriptionItems.create({ subscription: tenant.stripeSubscriptionId, price: priceId, quantity: quantita });
+    }
+    registraUsoApiEsterna(tenant.id, "stripe_utenti_extra");
+
+    const aggiornato = await prisma.tenant.update({
+      where: { id: tenant.id },
+      data: { utentiExtra: { increment: quantita } },
+    });
+
+    creaNotificaRuoli({
+      tenantId: tenant.id, ruoli: ["ADMIN"], categoria: "PAGAMENTI",
+      titolo: "Utenti extra aggiunti", messaggio: `${quantita} posti utente extra aggiunti al tuo piano.`,
+    }).catch((err) => console.error("[billing] Errore notifica utenti extra:", err.message));
+
+    res.json({ utentiExtra: aggiornato.utentiExtra });
+  } catch (err) {
+    console.error("[billing] Errore aggiunta utenti extra su Stripe:", err.message);
     res.status(502).json({ error: "Errore nella comunicazione con Stripe. Riprova tra qualche istante." });
   }
 });

@@ -92,6 +92,7 @@ export const TRIAL_PIANO = "PRO";
 
 export const SETUP_FEE_CENTS = 19900;
 export const UTENTE_EXTRA_MENSILE_CENTS = 1500;
+export const STRIPE_PRICE_ENV_UTENTE_EXTRA = "STRIPE_PRICE_UTENTE_EXTRA";
 export const AI_CREDITI_PACK = { crediti: 500, prezzoCents: 2900, stripePriceEnv: "STRIPE_PRICE_AI_CREDITI_PACK" };
 
 export const EARLY_ADOPTER = {

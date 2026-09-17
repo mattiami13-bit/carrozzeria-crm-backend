@@ -107,6 +107,50 @@ test("Billing: piani pubblici, stato, e webhook Stripe (firma, idempotenza, effe
       assert.equal(res.status, 501);
     });
 
+    // Punto 51 (definition of done, "add-on utenti"): la route esisteva
+    // solo a metà — tenant.utentiExtra veniva letto in tre punti per
+    // calcolare il limite posti, ma non c'era MAI stato un modo di
+    // scriverlo: nessun pulsante, nessuna route lo incrementava. Aggiunta
+    // qui, verificata come le altre chiamate Stripe di questa suite: senza
+    // una vera subscription/chiave non possiamo verificare l'esito
+    // positivo finale, ma possiamo verificare che ogni fallimento sia
+    // esplicito e che nulla venga scritto silenziosamente.
+    await t.test("POST /api/billing/utenti-extra richiede ADMIN", async () => {
+      const res = await call("/api/billing/utenti-extra", tokenTecnico, {
+        method: "POST", body: JSON.stringify({ quantita: 1 }),
+      });
+      assert.equal(res.status, 403);
+    });
+
+    await t.test("POST /api/billing/utenti-extra senza abbonamento attivo: 400, nessuna scrittura", async () => {
+      const res = await call("/api/billing/utenti-extra", tokenAdmin, {
+        method: "POST", body: JSON.stringify({ quantita: 2 }),
+      });
+      assert.equal(res.status, 400);
+      const t2 = await prisma.tenant.findUnique({ where: { id: tenant.id } });
+      assert.equal(t2.utentiExtra, 0);
+    });
+
+    await t.test("POST /api/billing/utenti-extra con abbonamento ma senza Price ID configurato: 501, nessuna scrittura", async () => {
+      await prisma.tenant.update({ where: { id: tenant.id }, data: { stripeSubscriptionId: `sub_fake_${suffix}` } });
+      const res = await call("/api/billing/utenti-extra", tokenAdmin, {
+        method: "POST", body: JSON.stringify({ quantita: 2 }),
+      });
+      // In locale STRIPE_PRICE_UTENTE_EXTRA non è configurata: mai
+      // fingere un acquisto riuscito.
+      assert.equal(res.status, 501);
+      const t2 = await prisma.tenant.findUnique({ where: { id: tenant.id } });
+      assert.equal(t2.utentiExtra, 0, "senza il Price ID configurato non deve mai essere scritto utentiExtra");
+      await prisma.tenant.update({ where: { id: tenant.id }, data: { stripeSubscriptionId: null } });
+    });
+
+    await t.test("POST /api/billing/utenti-extra: quantità non valida è rifiutata (400)", async () => {
+      const res = await call("/api/billing/utenti-extra", tokenAdmin, {
+        method: "POST", body: JSON.stringify({ quantita: 0 }),
+      });
+      assert.equal(res.status, 400);
+    });
+
     await t.test("webhook: firma non valida viene rifiutata (400), nessun dato modificato", async () => {
       const { payload } = firmaEvento({ id: "evt_fake", type: "checkout.session.completed", data: { object: {} } });
       const res = await call("/api/billing/webhook", null, {

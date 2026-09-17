@@ -1228,13 +1228,28 @@ function PianoFatturazioneModal({ api, onClose }) {
   const [loading, setLoading] = useState(true);
   const [azionando, setAzionando] = useState(null);
   const [errore, setErrore] = useState(null);
+  const [quantitaExtra, setQuantitaExtra] = useState(1);
 
-  useEffect(() => {
-    Promise.all([api("/api/billing/stato"), api("/api/billing/piani")])
+  const carica = useCallback(() => {
+    return Promise.all([api("/api/billing/stato"), api("/api/billing/piani")])
       .then(([s, p]) => { setStato(s); setPiani(p); })
-      .catch((e) => setErrore(e.message))
-      .finally(() => setLoading(false));
+      .catch((e) => setErrore(e.message));
   }, [api]);
+
+  useEffect(() => { carica().finally(() => setLoading(false)); }, [carica]);
+
+  const acquistaUtentiExtra = async () => {
+    setAzionando("utenti-extra");
+    setErrore(null);
+    try {
+      await api("/api/billing/utenti-extra", { method: "POST", body: JSON.stringify({ quantita: quantitaExtra }) });
+      await carica();
+    } catch (e) {
+      setErrore(e.message.includes("non configurat") || e.message.includes("non disponibili") ? "Gli utenti extra non sono ancora disponibili per l'acquisto." : e.message.includes("Attiva prima un piano") ? "Attiva prima un piano: gli utenti extra si aggiungono a un abbonamento esistente." : e.message);
+    } finally {
+      setAzionando(null);
+    }
+  };
 
   const cambiaPiano = async (pianoKey) => {
     setAzionando(pianoKey);
@@ -1334,6 +1349,23 @@ function PianoFatturazioneModal({ api, onClose }) {
               </div>
             )}
             <p style={{ fontSize: 11, color: "#5A5E66", marginTop: 14 }}>Prezzi IVA esclusa. Il pagamento avviene su una pagina sicura ospitata da Stripe: il gestionale non gestisce mai direttamente i dati della carta.</p>
+
+            {stato?.hasStripeCustomer && piani && (
+              <div style={{ marginTop: 18, paddingTop: 16, borderTop: "1px solid #2A2E34" }}>
+                <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 6 }}>Utenti extra</div>
+                <p style={{ fontSize: 11.5, color: "#8D9099", marginBottom: 10 }}>
+                  {eurocentsToLabel(piani.utenteExtraMensileCents)}/mese +IVA per ogni utente oltre a quelli inclusi nel piano, addebitato sul tuo abbonamento.
+                </p>
+                <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                  <input type="number" min="1" max="50" value={quantitaExtra} onChange={(e) => setQuantitaExtra(Math.max(1, Number(e.target.value) || 1))} style={{
+                    width: 64, padding: "8px 10px", borderRadius: 8, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC", fontSize: 13,
+                  }} />
+                  <button onClick={acquistaUtentiExtra} disabled={azionando === "utenti-extra"} style={{
+                    padding: "8px 14px", borderRadius: 8, border: "none", background: "#2F80ED", color: "#fff", fontSize: 12.5, fontWeight: 600,
+                  }}>{azionando === "utenti-extra" ? "Attendere…" : "Aggiungi utenti extra"}</button>
+                </div>
+              </div>
+            )}
           </>
         )}
       </div>
