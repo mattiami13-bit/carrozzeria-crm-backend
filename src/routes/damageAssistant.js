@@ -72,7 +72,8 @@ damageAssistantRouter.post("/analizza", async (req, res) => {
   }
 
   if (!process.env.ANTHROPIC_API_KEY) {
-    return res.status(500).json({ error: "ANTHROPIC_API_KEY non configurata su Railway." });
+    console.error("ANTHROPIC_API_KEY mancante: funzione AI richiesta ma non configurata.");
+    return res.status(500).json({ error: "Funzione AI non disponibile al momento. Riprova più tardi o contatta l'assistenza." });
   }
 
   const tenant = await prisma.tenant.findUnique({ where: { id: tenantId } });
@@ -136,7 +137,7 @@ Questa è solo una prima valutazione automatica di supporto: l'operatore la rive
     const data = await apiRes.json();
     if (!apiRes.ok) {
       console.error("Errore Anthropic API (damage-assistant):", data);
-      return res.status(502).json({ error: "Errore nella chiamata al servizio IA. Controlla la chiave ANTHROPIC_API_KEY su Railway." });
+      return res.status(502).json({ error: "Errore nella chiamata al servizio IA. Riprova più tardi o contatta l'assistenza." });
     }
     registraCostoAi({ tenantId, funzione: "DAMAGE_ASSISTANT", model: "claude-sonnet-5", usage: data.usage }).catch(() => {});
     const textBlock = (data.content || []).find((b) => b.type === "text");

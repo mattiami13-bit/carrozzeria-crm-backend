@@ -666,6 +666,7 @@ function Dashboard({ token, user, onLogout }) {
   const [privacyDatiAperto, setPrivacyDatiAperto] = useState(false);
   const [pianoFatturazioneAperto, setPianoFatturazioneAperto] = useState(false);
   const [aiutoSupportoAperto, setAiutoSupportoAperto] = useState(false);
+  const [utentiAperto, setUtentiAperto] = useState(false);
   const api = useApi(token);
   const ruolo = decodificaRuolo(token);
 
@@ -736,6 +737,12 @@ function Dashboard({ token, user, onLogout }) {
             background: "transparent", color: "#8D9099", fontSize: 13,
           }}>Piano e fatturazione</button>
         )}
+        {ruolo === "ADMIN" && (
+          <button onClick={() => setUtentiAperto(true)} style={{
+            width: "100%", textAlign: "left", padding: "9px 12px", borderRadius: 8, border: "none",
+            background: "transparent", color: "#8D9099", fontSize: 13,
+          }}>Utenti</button>
+        )}
         <button onClick={onLogout} style={{
           width: "100%", textAlign: "left", padding: "9px 12px", borderRadius: 8, border: "none",
           background: "transparent", color: "#B4472E", fontSize: 13,
@@ -747,6 +754,7 @@ function Dashboard({ token, user, onLogout }) {
         {cambiaPasswordAperto && <CambiaPasswordModal api={api} onClose={() => setCambiaPasswordAperto(false)} />}
         {privacyDatiAperto && <PrivacyDatiModal api={api} onClose={() => setPrivacyDatiAperto(false)} />}
         {pianoFatturazioneAperto && <PianoFatturazioneModal api={api} onClose={() => setPianoFatturazioneAperto(false)} />}
+        {utentiAperto && <UtentiModal api={api} onClose={() => setUtentiAperto(false)} />}
         {aiutoSupportoAperto && <AiutoSupportoModal api={api} onClose={() => setAiutoSupportoAperto(false)} />}
         {tab === "executive" && ruolo === "ADMIN" && <><MorningBriefing api={api} onOpen={apriPraticaVeicolo} /><ExecutiveDashboard api={api} onOpen={apriPraticaVeicolo} /></>}
         {tab === "dashboard" && <><DashboardView api={api} ruolo={ruolo} /><PartsDashboard api={api} onOpen={apriPraticaVeicolo} compact /></>}
@@ -906,6 +914,92 @@ function CambiaPasswordModal({ api, onClose }) {
             }}>{loading ? "Attendere…" : "Aggiorna password"}</button>
           </>
         )}
+      </div>
+    </div>
+  );
+}
+
+const RUOLO_LABEL = { ADMIN: "Amministratore", ACCETTATORE: "Accettatore", TECNICO: "Tecnico", AMMINISTRAZIONE: "Amministrazione" };
+
+function UtentiModal({ api, onClose }) {
+  const [utenti, setUtenti] = useState(null);
+  const [errore, setErrore] = useState(null);
+  const [form, setForm] = useState({ nome: "", cognome: "", email: "", password: "", ruolo: "TECNICO" });
+  const [creando, setCreando] = useState(false);
+  const [erroreForm, setErroreForm] = useState(null);
+  const set = (campo) => (e) => setForm((f) => ({ ...f, [campo]: e.target.value }));
+
+  const carica = useCallback(() => {
+    api("/api/users").then(setUtenti).catch((e) => setErrore(e.message));
+  }, [api]);
+  useEffect(() => { carica(); }, [carica]);
+
+  const submit = async (e) => {
+    e.preventDefault();
+    setErroreForm(null);
+    if (form.password.length < 8) return setErroreForm("La password deve avere almeno 8 caratteri.");
+    setCreando(true);
+    try {
+      await api("/api/users", { method: "POST", body: JSON.stringify(form) });
+      setForm({ nome: "", cognome: "", email: "", password: "", ruolo: "TECNICO" });
+      carica();
+    } catch (e2) {
+      setErroreForm(e2.message.includes("Email già registrata") ? "Questa email è già registrata." : e2.message);
+    } finally {
+      setCreando(false);
+    }
+  };
+
+  return (
+    <div onClick={onClose} style={{
+      position: "fixed", inset: 0, background: "rgba(27,26,23,0.5)", display: "flex",
+      alignItems: "center", justifyContent: "center", zIndex: 55,
+    }}>
+      <div onClick={(e) => e.stopPropagation()} style={{
+        background: "#15171B", borderRadius: 16, width: 420, maxHeight: "85vh", overflowY: "auto", padding: 24, border: "1px solid #2A2E34",
+      }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+          <h2 style={{ fontSize: 16, fontWeight: 700, margin: 0 }}>Utenti</h2>
+          <button onClick={onClose} style={{
+            border: "none", background: "#0A0B0D", width: 26, height: 26, borderRadius: 7, fontSize: 13, color: "#8D9099",
+          }}>✕</button>
+        </div>
+
+        {errore && <div style={{ color: "#B4472E", fontSize: 13, marginBottom: 8 }}>{errore}</div>}
+        {utenti && (
+          <div style={{ marginBottom: 18 }}>
+            {utenti.map((u) => (
+              <div key={u.id} style={{
+                display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 10px",
+                borderBottom: "1px solid #2A2E34", fontSize: 13,
+              }}>
+                <span>{u.nome} {u.cognome}</span>
+                <span style={{ color: "#8D9099", fontSize: 12 }}>{RUOLO_LABEL[u.ruolo] || u.ruolo}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <h3 style={{ fontSize: 13, fontWeight: 700, marginBottom: 10 }}>Aggiungi utente</h3>
+        <form onSubmit={submit}>
+          <Field label="Nome" value={form.nome} onChange={set("nome")} />
+          <Field label="Cognome" value={form.cognome} onChange={set("cognome")} />
+          <Field label="Email" type="email" value={form.email} onChange={set("email")} />
+          <Field label="Password (min. 8 caratteri, comunicala al collega)" type="password" value={form.password} onChange={set("password")} />
+          <div style={{ marginBottom: 12 }}>
+            <label style={{ display: "block", fontSize: 11, color: "#8D9099", marginBottom: 4 }}>Ruolo</label>
+            <select value={form.ruolo} onChange={set("ruolo")} style={{
+              width: "100%", padding: "9px 10px", borderRadius: 8, border: "1px solid #2A2E34", fontSize: 14,
+            }}>
+              {Object.entries(RUOLO_LABEL).map(([v, l]) => <option key={v} value={v}>{l}</option>)}
+            </select>
+          </div>
+          {erroreForm && <div style={{ color: "#B4472E", fontSize: 13, marginBottom: 8 }}>{erroreForm}</div>}
+          <button disabled={creando} style={{
+            width: "100%", marginTop: 4, padding: "11px 0", borderRadius: 10, border: "none",
+            background: "#2F80ED", color: "#15171B", fontWeight: 600, fontSize: 14,
+          }}>{creando ? "Attendere…" : "Crea utente"}</button>
+        </form>
       </div>
     </div>
   );

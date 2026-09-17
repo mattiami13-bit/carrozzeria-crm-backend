@@ -138,7 +138,7 @@ export async function inviaComunicazioneWhatsapp(vehicle, evento, baseUrl, invia
         data: {
           tenantId: vehicle.tenantId, vehicleId: vehicle.id, clientId: client.id,
           evento, testo, telefono: numero, stato: "FALLITO",
-          errore: "Integrazione WhatsApp (Twilio) non configurata su Railway.",
+          errore: "Integrazione WhatsApp (Twilio) non configurata.",
           inviatoDaId,
         },
       });

@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, requireRole, tenantScope } from "../middleware/auth.js";
+import { PIANI, TRIAL_PIANO } from "../lib/billing/piani.js";
 
 export const usersRouter = Router();
 usersRouter.use(requireAuth);
@@ -44,6 +45,21 @@ usersRouter.post("/", requireRole("ADMIN"), async (req, res) => {
   const existing = await prisma.user.findUnique({ where: { email } });
   if (existing) {
     return res.status(409).json({ error: "Email già registrata" });
+  }
+
+  // Stesso limite già applicato al cambio piano (billing.js): il numero di
+  // utenti attivi non può superare quelli inclusi nel piano più gli extra
+  // acquistati, altrimenti si aggirerebbe il limite creando utenti a piacere.
+  const tenant = await prisma.tenant.findUnique({ where: { id: req.auth.tenantId } });
+  const pianoAttuale = PIANI[tenant.piano === "TRIAL" ? TRIAL_PIANO : tenant.piano];
+  const utentiUsati = await prisma.user.count({ where: { tenantId: tenant.id, attivo: true } });
+  const utentiInclusi = pianoAttuale.utentiInclusi + tenant.utentiExtra;
+  if (utentiUsati >= utentiInclusi) {
+    return res.status(409).json({
+      error: `Il piano ${pianoAttuale.nome} include ${utentiInclusi} utenti, tutti già attivi. Passa a un piano superiore o acquista utenti extra per aggiungerne altri.`,
+      utentiUsati,
+      utentiInclusi,
+    });
   }
 
   const passwordHash = await bcrypt.hash(password, 12);

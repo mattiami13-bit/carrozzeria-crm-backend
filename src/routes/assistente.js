@@ -235,7 +235,8 @@ assistenteRouter.post("/chiedi", async (req, res) => {
   if (!parsed.success) return res.status(400).json({ error: "Domanda mancante o troppo lunga." });
 
   if (!process.env.ANTHROPIC_API_KEY) {
-    return res.status(500).json({ error: "ANTHROPIC_API_KEY non configurata su Railway." });
+    console.error("ANTHROPIC_API_KEY mancante: funzione AI richiesta ma non configurata.");
+    return res.status(500).json({ error: "Funzione AI non disponibile al momento. Riprova più tardi o contatta l'assistenza." });
   }
 
   const tenant = await prisma.tenant.findUnique({ where: { id: tenantId } });
@@ -275,7 +276,7 @@ assistenteRouter.post("/chiedi", async (req, res) => {
       const data = await apiRes.json();
       if (!apiRes.ok) {
         console.error("Errore Anthropic API (assistente):", data);
-        return res.status(502).json({ error: "Errore nella chiamata al servizio IA. Controlla la chiave ANTHROPIC_API_KEY su Railway." });
+        return res.status(502).json({ error: "Errore nella chiamata al servizio IA. Riprova più tardi o contatta l'assistenza." });
       }
       registraCostoAi({ tenantId, funzione: "ASSISTENTE", model: "claude-sonnet-5", usage: data.usage }).catch(() => {});
 

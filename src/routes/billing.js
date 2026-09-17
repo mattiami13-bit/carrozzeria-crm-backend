@@ -132,8 +132,9 @@ billingRouter.post("/checkout", requireRole("ADMIN"), async (req, res) => {
   }
 
   if (!priceId) {
+    console.error(`[billing] Price ID Stripe non configurato per ${piano} ${periodicita}.`);
     return res.status(501).json({
-      error: `Prezzo non configurato per ${piano} ${periodicita}. Manca la variabile d'ambiente su Railway con il Price ID Stripe corrispondente.`,
+      error: "Questo piano non è al momento disponibile per l'attivazione. Contatta l'assistenza.",
     });
   }
 
@@ -193,7 +194,8 @@ billingRouter.post("/crediti-ai", requireRole("ADMIN"), async (req, res) => {
 
   const priceId = process.env[AI_CREDITI_PACK.stripePriceEnv];
   if (!priceId) {
-    return res.status(501).json({ error: "Prezzo del pacchetto crediti AI non configurato. Manca la variabile d'ambiente su Railway." });
+    console.error("[billing] Price ID Stripe non configurato per il pacchetto crediti AI.");
+    return res.status(501).json({ error: "Il pacchetto crediti AI non è al momento disponibile per l'acquisto. Contatta l'assistenza." });
   }
 
   const baseUrl = `${req.protocol}://${req.get("host")}`;

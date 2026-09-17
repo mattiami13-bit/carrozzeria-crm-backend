@@ -86,6 +86,26 @@ test("RBAC: rotte riservate all'ADMIN, e invito utente assegna il ruolo corretto
       const data = await res.json();
       assert.equal(data.ruolo, "TECNICO");
     });
+
+    // Punto 49: il pulsante "Crea utente" nel gestionale non aveva mai
+    // avuto una controparte UI prima di questo audit; aggiungendola si è
+    // scoperto che il limite utenti del piano (già applicato al cambio
+    // piano in billing.js) non era mai stato applicato alla creazione
+    // diretta di un utente, permettendo di superare a piacere i posti
+    // inclusi nel piano. Verifica che ora sia bloccato.
+    await t.test("creare un utente oltre il limite del piano (STARTER, 3 inclusi) è rifiutato con 409", async () => {
+      await prisma.tenant.update({ where: { id: tenant.id }, data: { piano: "STARTER" } });
+      // Il tenant di test ha già admin + tecnico + i 2 creati sopra = 4 utenti attivi, già oltre i 3 dello Starter.
+      const res = await call("/api/users", tokenAdmin, {
+        method: "POST",
+        body: JSON.stringify({ nome: "Oltre", cognome: "Limite", email: `rbac.oltrelimite.${suffix}@example.invalid`, password: "Test1234!Nuovo" }),
+      });
+      assert.equal(res.status, 409);
+      const data = await res.json();
+      assert.match(data.error, /include 3 utenti/);
+      const creato = await prisma.user.findUnique({ where: { email: `rbac.oltrelimite.${suffix}@example.invalid` } });
+      assert.equal(creato, null, "l'utente non deve essere stato creato");
+    });
   } finally {
     if (tenant) {
       await prisma.user.deleteMany({ where: { tenantId: tenant.id } });
