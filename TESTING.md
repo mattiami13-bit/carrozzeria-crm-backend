@@ -1,11 +1,15 @@
 # Test automatici
 
-Stato al 16/09/2026 (punto 29 del prompt SaaS). Nessun mock del
-database o delle API interne: ogni test crea dati veri, chiama l'app
-HTTP vera (gli stessi router montati da `src/index.js`), e ripulisce a
-fine test. Le uniche cose simulate sono la firma dei webhook Stripe
-(con l'header helper ufficiale dell'SDK, non una firma inventata) e,
-dove serve, price ID Stripe fittizi impostati esplicitamente dal test.
+Scritto originariamente al punto 29 del prompt SaaS, aggiornato al
+17/09/2026 (punto 45, "documentazione tecnica" — la tabella sotto era
+rimasta ferma al punto 29 mentre il codice continuava ad avanzare:
+esattamente il tipo di scarto che questo stesso punto chiede di
+correggere). 43 file di test ad oggi. Nessun mock del database o delle
+API interne: ogni test crea dati veri, chiama l'app HTTP vera (gli
+stessi router montati da `src/index.js`), e ripulisce a fine test. Le
+uniche cose simulate sono la firma dei webhook Stripe (con l'header
+helper ufficiale dell'SDK, non una firma inventata) e, dove serve,
+price ID Stripe fittizi impostati esplicitamente dal test.
 
 `npm run test:<area>` per ogni file — vedi `package.json` per l'elenco.
 
@@ -26,7 +30,7 @@ dove serve, price ID Stripe fittizi impostati esplicitamente dal test.
 | Downgrade | ✅ (nuovo, base) | `billing-plan-changes.test.js` |
 | Cancellazione | ✅ | `billing.test.js` (`customer.subscription.deleted`) |
 | Feature entitlement | ✅ (nuovo) | `feature-entitlement.test.js` |
-| Super-admin | ❌ non applicabile | nessun pannello super-admin esiste ancora (vedi sotto) |
+| Super-admin | ✅ (punto 31) | `super-admin.test.js` — login, i due confini di sicurezza (token tenant/super-admin mai intercambiabili), leads, FAQ, changelog, feature flag, usage, costo AI (vedi [SUPER-ADMIN.md](SUPER-ADMIN.md)) |
 | Upload protetto | ✅ (nuovo) | `photos-upload.test.js` |
 
 ## Il test fondamentale (tenant isolation)
