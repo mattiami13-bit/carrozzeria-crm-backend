@@ -405,3 +405,15 @@ export const UsageEventTipo = {
 } as const
 
 export type UsageEventTipo = (typeof UsageEventTipo)[keyof typeof UsageEventTipo]
+
+
+export const AiFunzione = {
+  ASSISTENTE: 'ASSISTENTE',
+  COPILOT: 'COPILOT',
+  DAMAGE_ASSISTANT: 'DAMAGE_ASSISTANT',
+  INSURANCE_GAP: 'INSURANCE_GAP',
+  STIMA_DANNI_LEGACY: 'STIMA_DANNI_LEGACY',
+  FOTO_CATEGORIA: 'FOTO_CATEGORIA'
+} as const
+
+export type AiFunzione = (typeof AiFunzione)[keyof typeof AiFunzione]

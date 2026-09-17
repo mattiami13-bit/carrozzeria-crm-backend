@@ -371,3 +371,8 @@ export type FeatureFlagTenantOverride = Prisma.FeatureFlagTenantOverrideModel
  * 
  */
 export type UsageEvent = Prisma.UsageEventModel
+/**
+ * Model AiCostLog
+ * 
+ */
+export type AiCostLog = Prisma.AiCostLogModel

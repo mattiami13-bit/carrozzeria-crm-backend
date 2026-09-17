@@ -6,6 +6,7 @@ import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
 import { validDocument } from "../lib/parts-tracking.js";
 import { limiteAnalisiIA, contaAnalisiIAQuestoMese, segnalaUsoAnalisiIA } from "../lib/aiUsage.js";
+import { registraCostoAi } from "../lib/aiCost.js";
 
 // Insurance Gap Analysis: confronto tra il preventivo interno e il
 // documento (perizia/preventivo) ricevuto dall'assicurazione. Modulo
@@ -210,6 +211,7 @@ Regole obbligatorie:
       console.error("Errore Anthropic API (insurance-gap):", data);
       return res.status(502).json({ error: "Errore nella chiamata al servizio IA. Controlla la chiave ANTHROPIC_API_KEY su Railway." });
     }
+    registraCostoAi({ tenantId, funzione: "INSURANCE_GAP", model: "claude-sonnet-5", usage: data.usage }).catch(() => {});
     const textBlock = (data.content || []).find((b) => b.type === "text");
     if (!textBlock) return res.status(502).json({ error: "Risposta IA senza testo utilizzabile." });
     rawText = textBlock.text;

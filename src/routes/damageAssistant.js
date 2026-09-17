@@ -5,6 +5,7 @@ import { requireAuth, tenantScope } from "../middleware/auth.js";
 import { creaNotificaRuoli } from "../lib/notificheInApp.js";
 import { readPhotoImage } from "../lib/photo-timeline-service.js";
 import { limiteAnalisiIA, contaAnalisiIAQuestoMese, segnalaUsoAnalisiIA } from "../lib/aiUsage.js";
+import { registraCostoAi } from "../lib/aiCost.js";
 
 // AI Damage Assistant: modulo nuovo e separato dalla vecchia "Stima danni
 // IA" (Vehicle.stimaIA, vedi vehicles.js POST /:id/analizza-danni), che
@@ -137,6 +138,7 @@ Questa è solo una prima valutazione automatica di supporto: l'operatore la rive
       console.error("Errore Anthropic API (damage-assistant):", data);
       return res.status(502).json({ error: "Errore nella chiamata al servizio IA. Controlla la chiave ANTHROPIC_API_KEY su Railway." });
     }
+    registraCostoAi({ tenantId, funzione: "DAMAGE_ASSISTANT", model: "claude-sonnet-5", usage: data.usage }).catch(() => {});
     const textBlock = (data.content || []).find((b) => b.type === "text");
     if (!textBlock) return res.status(502).json({ error: "Risposta IA senza testo utilizzabile." });
     rawText = textBlock.text;

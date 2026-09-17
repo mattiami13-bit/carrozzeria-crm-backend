@@ -8,6 +8,7 @@ import { enqueueNotification } from "../lib/notifiche.js";
 import { inviaComunicazioneWhatsapp } from "../lib/whatsapp.js";
 import { ultimaIspezioneApprovata } from "./qc.js";
 import { limiteAnalisiIA, contaAnalisiIAQuestoMese, segnalaUsoAnalisiIA } from "../lib/aiUsage.js";
+import { registraCostoAi } from "../lib/aiCost.js";
 
 export const vehiclesRouter = Router();
 vehiclesRouter.use(requireAuth);
@@ -309,6 +310,7 @@ Sii prudente: è una stima preliminare da foto, non una perizia definitiva. Se l
       console.error("Errore Anthropic API:", data);
       return res.status(502).json({ error: "Errore nella chiamata al servizio IA. Controlla la chiave ANTHROPIC_API_KEY su Railway." });
     }
+    registraCostoAi({ tenantId, funzione: "STIMA_DANNI_LEGACY", model: "claude-sonnet-5", usage: data.usage }).catch(() => {});
     const textBlock = (data.content || []).find((b) => b.type === "text");
     if (!textBlock) return res.status(502).json({ error: "Risposta IA senza testo utilizzabile." });
 

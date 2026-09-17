@@ -110,6 +110,7 @@ model Tenant {
   tickets            Ticket[]
   featureFlagOverride FeatureFlagTenantOverride[]
   usageEvents        UsageEvent[]
+  aiCostLogs         AiCostLog[]
 
 
   @@map("tenants")
@@ -2046,4 +2047,39 @@ model UsageEvent {
 
   @@index([tenantId, tipo, createdAt])
   @@map("usage_events")
+}
+
+// Punto 41 (cost control AI): un log dedicato, separato da AiAssistantLog
+// e AiAnalysisLog (che esistono solo per l'enforcement del limite mensile,
+// nessun token/costo). Qui una riga per OGNI chiamata reale all'API
+// Anthropic (non per "domanda utente": il loop di tool-use di Assistente
+// e Copilot può fare più chiamate per una singola domanda, ognuna
+// fatturata a parte da Anthropic, quindi tracciata a parte anche qui).
+enum AiFunzione {
+  ASSISTENTE
+  COPILOT
+  DAMAGE_ASSISTANT
+  INSURANCE_GAP
+  STIMA_DANNI_LEGACY
+  FOTO_CATEGORIA
+}
+
+model AiCostLog {
+  id              String     @id @default(cuid())
+  tenantId        String
+  tenant          Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  funzione        AiFunzione
+  provider        String     @default("anthropic")
+  model           String
+  tokenInput      Int?
+  tokenOutput     Int?
+  // Prezzo per milione di token cambia nel tempo: mai ricalcolato a
+  // posteriori da un listino corrente, così il totale di un mese passato
+  // resta quello vero anche se i prezzi Anthropic cambiano più avanti.
+  costoStimatoUsd Decimal    @db.Decimal(10, 6)
+  createdAt       DateTime   @default(now())
+
+  @@index([tenantId, createdAt])
+  @@index([funzione, createdAt])
+  @@map("ai_cost_logs")
 }

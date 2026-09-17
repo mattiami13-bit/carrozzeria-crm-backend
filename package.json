@@ -40,6 +40,7 @@
     "test:changelog": "node --test tests/changelog.test.js",
     "test:feature-flags": "node --test tests/feature-flags.test.js",
     "test:usage": "node --test tests/usage.test.js",
+    "test:ai-cost": "node --test tests/ai-cost.test.js",
     "seed:feature-flags": "node scripts/seed-feature-flags.mjs",
     "seed:demo": "node scripts/seed-demo-tenant.mjs",
     "seed:demo:reset": "node scripts/seed-demo-tenant.mjs --reset",

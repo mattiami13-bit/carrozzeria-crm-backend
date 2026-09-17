@@ -6,6 +6,7 @@ import { prisma } from "../lib/prisma.js";
 import { requireSuperAdmin } from "../middleware/superAdmin.js";
 import { loginLimiter } from "../middleware/rateLimit.js";
 import { riepilogoUsoTuttiTenant } from "../lib/usageSummary.js";
+import { dashboardCostoAi } from "../lib/aiCostDashboard.js";
 
 const STATI_LEAD = ["NUOVO", "CONTATTATO", "DEMO", "TRIAL", "CLIENTE", "PERSO"];
 const STATI_TICKET = ["APERTO", "IN_LAVORAZIONE", "RISOLTO", "CHIUSO"];
@@ -214,6 +215,12 @@ superAdminRouter.patch("/tickets/:id/stato", async (req, res) => {
 // (punto enforced altrove) messi in evidenza — vedi lib/usageSummary.js.
 superAdminRouter.get("/usage", async (req, res) => {
   res.json(await riepilogoUsoTuttiTenant());
+});
+
+// Punto 41 (cost control AI): "Dashboard: COSTO AI OGGI, MESE, PER
+// TENANT, PER FUNZIONE, PER PIANO" — vedi lib/aiCostDashboard.js.
+superAdminRouter.get("/ai-cost", async (req, res) => {
+  res.json(await dashboardCostoAi());
 });
 
 superAdminRouter.get("/gdpr-richieste", async (req, res) => {

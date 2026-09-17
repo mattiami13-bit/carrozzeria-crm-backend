@@ -462,7 +462,8 @@ export const ModelName = {
   ChangelogEntry: 'ChangelogEntry',
   FeatureFlag: 'FeatureFlag',
   FeatureFlagTenantOverride: 'FeatureFlagTenantOverride',
-  UsageEvent: 'UsageEvent'
+  UsageEvent: 'UsageEvent',
+  AiCostLog: 'AiCostLog'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -478,7 +479,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerCarPhoto" | "loanerBooking" | "loanerBookingPhoto" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage" | "qcChecklistItem" | "qcInspection" | "qcCheckResult" | "qcNonConformita" | "qcEvento" | "briefingSettings" | "briefingReport" | "briefingResolution" | "notification" | "gdprRichiesta" | "stripeWebhookEvent" | "superAdmin" | "lead" | "faqItem" | "ticket" | "changelogEntry" | "featureFlag" | "featureFlagTenantOverride" | "usageEvent"
+    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerCarPhoto" | "loanerBooking" | "loanerBookingPhoto" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage" | "qcChecklistItem" | "qcInspection" | "qcCheckResult" | "qcNonConformita" | "qcEvento" | "briefingSettings" | "briefingReport" | "briefingResolution" | "notification" | "gdprRichiesta" | "stripeWebhookEvent" | "superAdmin" | "lead" | "faqItem" | "ticket" | "changelogEntry" | "featureFlag" | "featureFlagTenantOverride" | "usageEvent" | "aiCostLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -5366,6 +5367,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AiCostLog: {
+      payload: Prisma.$AiCostLogPayload<ExtArgs>
+      fields: Prisma.AiCostLogFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AiCostLogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiCostLogPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AiCostLogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiCostLogPayload>
+        }
+        findFirst: {
+          args: Prisma.AiCostLogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiCostLogPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AiCostLogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiCostLogPayload>
+        }
+        findMany: {
+          args: Prisma.AiCostLogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiCostLogPayload>[]
+        }
+        create: {
+          args: Prisma.AiCostLogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiCostLogPayload>
+        }
+        createMany: {
+          args: Prisma.AiCostLogCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AiCostLogCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiCostLogPayload>[]
+        }
+        delete: {
+          args: Prisma.AiCostLogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiCostLogPayload>
+        }
+        update: {
+          args: Prisma.AiCostLogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiCostLogPayload>
+        }
+        deleteMany: {
+          args: Prisma.AiCostLogDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AiCostLogUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AiCostLogUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiCostLogPayload>[]
+        }
+        upsert: {
+          args: Prisma.AiCostLogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiCostLogPayload>
+        }
+        aggregate: {
+          args: Prisma.AiCostLogAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAiCostLog>
+        }
+        groupBy: {
+          args: Prisma.AiCostLogGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AiCostLogGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AiCostLogCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AiCostLogCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -6437,6 +6512,21 @@ export const UsageEventScalarFieldEnum = {
 export type UsageEventScalarFieldEnum = (typeof UsageEventScalarFieldEnum)[keyof typeof UsageEventScalarFieldEnum]
 
 
+export const AiCostLogScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  funzione: 'funzione',
+  provider: 'provider',
+  model: 'model',
+  tokenInput: 'tokenInput',
+  tokenOutput: 'tokenOutput',
+  costoStimatoUsd: 'costoStimatoUsd',
+  createdAt: 'createdAt'
+} as const
+
+export type AiCostLogScalarFieldEnum = (typeof AiCostLogScalarFieldEnum)[keyof typeof AiCostLogScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -7115,6 +7205,20 @@ export type ListEnumUsageEventTipoFieldRefInput<$PrismaModel> = FieldRefInputTyp
 
 
 /**
+ * Reference to a field of type 'AiFunzione'
+ */
+export type EnumAiFunzioneFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiFunzione'>
+    
+
+
+/**
+ * Reference to a field of type 'AiFunzione[]'
+ */
+export type ListEnumAiFunzioneFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiFunzione[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -7344,6 +7448,7 @@ export type GlobalOmitConfig = {
   featureFlag?: Prisma.FeatureFlagOmit
   featureFlagTenantOverride?: Prisma.FeatureFlagTenantOverrideOmit
   usageEvent?: Prisma.UsageEventOmit
+  aiCostLog?: Prisma.AiCostLogOmit
 }
 
 /* Types for Logging */

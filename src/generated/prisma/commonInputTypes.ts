@@ -1072,6 +1072,23 @@ export type EnumUsageEventTipoWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumUsageEventTipoFilter<$PrismaModel>
 }
 
+export type EnumAiFunzioneFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiFunzione | Prisma.EnumAiFunzioneFieldRefInput<$PrismaModel>
+  in?: $Enums.AiFunzione[] | Prisma.ListEnumAiFunzioneFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AiFunzione[] | Prisma.ListEnumAiFunzioneFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAiFunzioneFilter<$PrismaModel> | $Enums.AiFunzione
+}
+
+export type EnumAiFunzioneWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiFunzione | Prisma.EnumAiFunzioneFieldRefInput<$PrismaModel>
+  in?: $Enums.AiFunzione[] | Prisma.ListEnumAiFunzioneFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AiFunzione[] | Prisma.ListEnumAiFunzioneFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAiFunzioneWithAggregatesFilter<$PrismaModel> | $Enums.AiFunzione
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAiFunzioneFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAiFunzioneFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -2087,6 +2104,23 @@ export type NestedEnumUsageEventTipoWithAggregatesFilter<$PrismaModel = never> =
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumUsageEventTipoFilter<$PrismaModel>
   _max?: Prisma.NestedEnumUsageEventTipoFilter<$PrismaModel>
+}
+
+export type NestedEnumAiFunzioneFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiFunzione | Prisma.EnumAiFunzioneFieldRefInput<$PrismaModel>
+  in?: $Enums.AiFunzione[] | Prisma.ListEnumAiFunzioneFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AiFunzione[] | Prisma.ListEnumAiFunzioneFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAiFunzioneFilter<$PrismaModel> | $Enums.AiFunzione
+}
+
+export type NestedEnumAiFunzioneWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiFunzione | Prisma.EnumAiFunzioneFieldRefInput<$PrismaModel>
+  in?: $Enums.AiFunzione[] | Prisma.ListEnumAiFunzioneFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AiFunzione[] | Prisma.ListEnumAiFunzioneFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAiFunzioneWithAggregatesFilter<$PrismaModel> | $Enums.AiFunzione
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAiFunzioneFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAiFunzioneFilter<$PrismaModel>
 }
 
 

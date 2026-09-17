@@ -3,6 +3,7 @@ import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
 import { limiteAssistente, contaDomandeAssistenteQuestoMese, segnalaUsoAssistente } from "../lib/aiUsage.js";
+import { registraCostoAi } from "../lib/aiCost.js";
 
 export const assistenteRouter = Router();
 assistenteRouter.use(requireAuth);
@@ -276,6 +277,7 @@ assistenteRouter.post("/chiedi", async (req, res) => {
         console.error("Errore Anthropic API (assistente):", data);
         return res.status(502).json({ error: "Errore nella chiamata al servizio IA. Controlla la chiave ANTHROPIC_API_KEY su Railway." });
       }
+      registraCostoAi({ tenantId, funzione: "ASSISTENTE", model: "claude-sonnet-5", usage: data.usage }).catch(() => {});
 
       messages.push({ role: "assistant", content: data.content });
 
