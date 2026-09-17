@@ -215,7 +215,7 @@ function strumentiPerRuolo(ruolo) {
   return STRUMENTI_ANTHROPIC.filter((s) => !STRUMENTI_FINANZIARI.has(s.name));
 }
 
-const SYSTEM_PROMPT_BASE = `Sei l'assistente dati di Ombra CRM, un gestionale per carrozzerie. Rispondi in italiano, in modo diretto e conciso.
+const SYSTEM_PROMPT_BASE = `Sei l'assistente dati di Rifless, un gestionale per carrozzerie. Rispondi in italiano, in modo diretto e conciso.
 Usa SEMPRE gli strumenti disponibili per recuperare i dati reali prima di rispondere: non inventare mai numeri, nomi o stati.
 Se una domanda richiede più strumenti (es. confrontare due cose), chiamali entrambi prima di rispondere.
 Se ti viene chiesto di compiere un'azione (cambiare uno stato, creare o modificare un record, inviare messaggi), spiega gentilmente che al momento puoi solo rispondere a domande sui dati, non eseguire modifiche.

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Carrozzeria CRM</title>
+<title>Rifless</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
@@ -283,7 +283,7 @@ function AuthScreen({ onAuth, connError, setConnError }) {
 
         {connError && (
           <div style={{ background: "#FBEAE5", color: "#B4472E", fontSize: 13, padding: 10, borderRadius: 8, marginBottom: 16 }}>
-            Non riesco a contattare il server su <code>carrozzeria-crm-backend-production.up.railway.app</code>. Controlla la connessione a internet o riprova tra qualche istante.
+            Non riesco a contattare il server. Controlla la connessione a internet o riprova tra qualche istante.
           </div>
         )}
 
@@ -1477,7 +1477,7 @@ function BiRiservato() {
 function BiUnavailable() {
   return (
     <div style={{ padding: 20, fontSize: 12, color: "#8D9099" }}>
-      Grafico non ancora disponibile — verifica di aver aggiunto la route al backend e di aver ridispiegato su Railway.
+      Non siamo riusciti a caricare questo grafico. Riprova tra qualche istante.
     </div>
   );
 }
@@ -3028,10 +3028,10 @@ function VehicleDetailModal({ vehicleId, api, token, onClose: closeRequested, on
                 <div>
                   <div style={{ fontSize: 12, color: "#4A4842", marginBottom: 8 }}>Link da inviare al cliente (accesso sicuro senza password, valido 180 giorni):</div>
                   <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                    <input readOnly value={`https://carrozzeria-crm-backend-production.up.railway.app/portale/?t=${linkPortale}`} style={{
+                    <input readOnly value={`${API}/portale/?t=${linkPortale}`} style={{
                       flex: 1, fontSize: 12, padding: "8px 10px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B",
                     }} onClick={(e) => e.target.select()} />
-                    <button onClick={() => navigator.clipboard.writeText(`https://carrozzeria-crm-backend-production.up.railway.app/portale/?t=${linkPortale}`)} style={{
+                    <button onClick={() => navigator.clipboard.writeText(`${API}/portale/?t=${linkPortale}`)} style={{
                       padding: "8px 12px", borderRadius: 8, border: "1px solid #2A2E34", background: "#15171B", fontSize: 12, fontWeight: 600,
                     }}>Copia</button>
                     <button onClick={async () => { if (!confirm("Revocare il link? Il cliente non potrà più accedere alla pratica con questo link.")) return; await api(`/api/portale/revoca/${vehicleId}`, { method: "POST" }); setLinkPortale(null); }} style={{

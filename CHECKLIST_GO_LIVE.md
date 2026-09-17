@@ -21,7 +21,8 @@ lanciare, non una checklist da ripetere a ogni deploy.
 | 9 | Environment variables | ✅ | Tutte documentate in `.env.example` con provenienza e scopo; nessun segreto o dominio hardcoded nel codice. |
 | 10 | Privacy | ❌ | Pagina esiste ma è ancora un segnaposto legale (9 sezioni marcate "da definire con il legale") — non scritta da me di proposito: è un testo che richiede una revisione legale reale, non generabile onestamente. |
 | 11 | Termini | ❌ | Stesso stato della Privacy: segnaposto legale, stesso motivo. |
-| 12 | Cookie | ✅ | Pagina informativa pubblicata. Nessun cookie di tracciamento in uso oggi (l'app non ne pianta nessuno: auth solo Bearer JWT). |
+| 12 | Cookie | ❌ | **Corretto al punto 48**: era spuntata per errore. La pagina esiste ma è ancora un segnaposto legale (4 sezioni marcate "da definire con il legale"), stesso stato/motivo di Privacy e Termini. |
+| 12b | DPA (data processing agreement) | ❌ | Trovato al punto 48, non era in questa checklist. Pagina esistente ma segnaposto legale (7 sezioni "da definire con il legale"), stesso motivo delle altre pagine legali. |
 | 13 | Tenant isolation | ✅ | Verificato dal test dedicato (`tenant-isolation.test.js`): due tenant reali, nessun modo di raggiungere i dati dell'altro, incluso un tentativo IDOR diretto. |
 | 14 | RBAC | ✅ | `rbac.test.js` — ruoli e permessi verificati. |
 | 15 | Rate limiting | ✅ | Login, registrazione, azioni email, form pubblici (contatti/demo) — tutti limitati per IP. |
