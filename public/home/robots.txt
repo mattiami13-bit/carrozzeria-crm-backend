@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /portale
+Disallow: /verifica-email
+Disallow: /reset-password
+Disallow: /billing/
+
+Sitemap: https://www.rifless.it/sitemap.xml

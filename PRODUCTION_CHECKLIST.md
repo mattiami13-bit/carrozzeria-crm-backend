@@ -2,11 +2,11 @@
 
 Stato verificato il 17/09/2026 (punto 45). Questa è la checklist
 **ricorrente**, da seguire prima di ogni singolo deploy — non va
-confusa con la checklist "go-live" del punto 46 del prompt SaaS (non
-ancora affrontato: sarà un documento a sé, una tantum, per decidere se
-il prodotto è pronto a essere venduto pubblicamente per la prima
-volta). Questa qui è più piccola apposta: è quella seguita, in
-pratica, prima di ogni singolo push di questa sessione.
+confusa con [CHECKLIST_GO_LIVE.md](CHECKLIST_GO_LIVE.md) (punto 46),
+che è una fotografia **una tantum** per decidere se il prodotto è
+pronto a essere venduto pubblicamente per la prima volta. Questa qui è
+più piccola apposta: è quella seguita, in pratica, prima di ogni
+singolo push di questa sessione.
 
 ## Prima di scrivere la migrazione (se lo schema cambia)
 

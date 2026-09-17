@@ -216,6 +216,7 @@ una seconda barriera indipendente. Dettaglio architetturale completo in
 [TENANCY.md](TENANCY.md) ·
 [PRODUCTION.md](PRODUCTION.md) ·
 [PRODUCTION_CHECKLIST.md](PRODUCTION_CHECKLIST.md) ·
+[CHECKLIST_GO_LIVE.md](CHECKLIST_GO_LIVE.md) ·
 [MIGRATIONS.md](MIGRATIONS.md) ·
 [TESTING.md](TESTING.md) ·
 [BACKUP-DISASTER-RECOVERY.md](BACKUP-DISASTER-RECOVERY.md) ·
