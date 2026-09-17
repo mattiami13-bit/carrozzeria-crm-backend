@@ -44,6 +44,7 @@
     "test:usage": "node --test tests/usage.test.js",
     "test:ai-cost": "node --test tests/ai-cost.test.js",
     "test:data-export": "node --test tests/data-export.test.js",
+    "test:e2e": "node --test tests/e2e-full-journey.test.js",
     "seed:feature-flags": "node scripts/seed-feature-flags.mjs",
     "setup:data-exports-bucket": "node scripts/setup-data-exports-bucket.mjs",
     "seed:demo": "node scripts/seed-demo-tenant.mjs",
