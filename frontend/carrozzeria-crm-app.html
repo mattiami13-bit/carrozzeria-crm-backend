@@ -582,7 +582,7 @@ function NotificationBell({ api, onApri }) {
 
       {aperto && (
         <div style={{
-          position: "absolute", top: 38, right: 0, width: 340, maxHeight: 440, overflowY: "auto",
+          position: "absolute", top: 38, right: 0, width: 340, maxWidth: "calc(100vw - 24px)", maxHeight: 440, overflowY: "auto",
           background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, boxShadow: "0 12px 32px rgba(0,0,0,0.4)",
           zIndex: 70,
         }}>
