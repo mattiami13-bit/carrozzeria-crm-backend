@@ -36,6 +36,15 @@ model Tenant {
   partitaIva     String?   @unique
   piano          Plan      @default(TRIAL)
   trialEndsAt    DateTime?
+  // Punto 42 (eliminazione account, "PENDING_DELETION con periodo
+  // configurabile"): eliminazioneRichiestaAt non nullo = tenant in
+  // stato PENDING_DELETION. Non esiste una cancellazione automatica a
+  // questa scadenza: la scadenza serve solo a rendere sicura una
+  // cancellazione MANUALE del super-admin dopo il periodo di grazia,
+  // stesso principio già stabilito per GdprRichiesta (mai distruttivo
+  // in automatico, sempre un controllo umano deliberato).
+  eliminazioneRichiestaAt DateTime?
+  eliminazionePrevistaPer DateTime?
   // Punto 28 (dati demo): un tenant creato dallo script di seed demo, mai
   // da una registrazione reale. Serve a: escluderlo dal blocco abbonamento
   // scaduto (una demo non deve mai interrompersi), ed è la barriera che lo
@@ -1824,6 +1833,10 @@ enum GdprRichiestaStato {
   IN_ATTESA
   COMPLETATA
   RIFIUTATA
+  // Punto 42: l'utente ha annullato la propria richiesta di
+  // cancellazione account durante il periodo di grazia. Diverso da
+  // RIFIUTATA (quello significa "la piattaforma l'ha respinta").
+  ANNULLATA
 }
 
 // Registro delle richieste GDPR (cancellazione, export): non esegue mai

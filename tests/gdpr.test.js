@@ -86,22 +86,74 @@ test("GDPR: export, richiesta cancellazione account, anonimizzazione cliente", a
       assert.equal(data.cliente.nome, "Mario");
     });
 
-    await t.test("richiesta di cancellazione account non elimina nulla, solo registra la richiesta", async () => {
-      const resTecnico = await call("/api/gdpr/richiesta-cancellazione-account", tokenTecnico, { method: "POST", body: JSON.stringify({}) });
+    // Punto 42 (eliminazione account): conferma + riautenticazione (password) +
+    // conferma testuale (ragione sociale esatta) + PENDING_DELETION con periodo
+    // di grazia, mai una cancellazione immediata — e sempre annullabile.
+    await t.test("richiesta di cancellazione account richiede ADMIN, password corretta e conferma testuale esatta", async () => {
+      const resTecnico = await call("/api/gdpr/richiesta-cancellazione-account", tokenTecnico, { method: "POST", body: JSON.stringify({ password: "Test1234!Gdpr", confermaTestuale: tenant.ragioneSociale }) });
       assert.equal(resTecnico.status, 403, "solo ADMIN può richiedere la cancellazione dell'account");
 
-      const resAdmin = await call("/api/gdpr/richiesta-cancellazione-account", tokenAdmin, { method: "POST", body: JSON.stringify({ note: "test" }) });
+      const senzaDati = await call("/api/gdpr/richiesta-cancellazione-account", tokenAdmin, { method: "POST", body: JSON.stringify({}) });
+      assert.equal(senzaDati.status, 400, "password e conferma testuale sono obbligatorie");
+
+      const passwordSbagliata = await call("/api/gdpr/richiesta-cancellazione-account", tokenAdmin, { method: "POST", body: JSON.stringify({ password: "password-sbagliata", confermaTestuale: tenant.ragioneSociale }) });
+      assert.equal(passwordSbagliata.status, 401);
+
+      const confermaSbagliata = await call("/api/gdpr/richiesta-cancellazione-account", tokenAdmin, { method: "POST", body: JSON.stringify({ password: "Test1234!Gdpr", confermaTestuale: "Nome Sbagliato Srl" }) });
+      assert.equal(confermaSbagliata.status, 400);
+      assert.match((await confermaSbagliata.json()).error, new RegExp(tenant.ragioneSociale.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+
+      // Nessuna di queste chiamate fallite deve aver toccato lo stato del tenant.
+      const tenantPrimaDiConferma = await prisma.tenant.findUnique({ where: { id: tenant.id } });
+      assert.equal(tenantPrimaDiConferma.eliminazioneRichiestaAt, null);
+
+      const resAdmin = await call("/api/gdpr/richiesta-cancellazione-account", tokenAdmin, { method: "POST", body: JSON.stringify({ password: "Test1234!Gdpr", confermaTestuale: tenant.ragioneSociale }) });
       assert.equal(resAdmin.status, 201);
       const data = await resAdmin.json();
       assert.equal(data.richiesta.stato, "IN_ATTESA");
+      assert.ok(data.eliminazionePrevistaPer);
 
-      // Nessun dato deve essere stato toccato: il tenant e l'utente esistono ancora.
-      const tenantAncoraEsistente = await prisma.tenant.findUnique({ where: { id: tenant.id } });
-      assert.ok(tenantAncoraEsistente, "il tenant non deve essere stato cancellato automaticamente");
+      // Nessun dato operativo deve essere stato toccato: il tenant e l'utente esistono ancora.
+      const tenantDopo = await prisma.tenant.findUnique({ where: { id: tenant.id } });
+      assert.ok(tenantDopo, "il tenant non deve essere stato cancellato automaticamente");
+      assert.ok(tenantDopo.eliminazioneRichiestaAt, "il tenant deve essere in stato PENDING_DELETION");
+      assert.ok(tenantDopo.eliminazionePrevistaPer);
+      const giorniDiGrazia = Math.round((tenantDopo.eliminazionePrevistaPer - tenantDopo.eliminazioneRichiestaAt) / (24 * 60 * 60 * 1000));
+      assert.equal(giorniDiGrazia, Number(process.env.ACCOUNT_DELETION_GRACE_DAYS) || 30);
 
       const resRichieste = await call("/api/gdpr/richieste", tokenAdmin);
       const richieste = await resRichieste.json();
       assert.ok(richieste.some((r) => r.tipo === "CANCELLAZIONE_ACCOUNT" && r.stato === "IN_ATTESA"));
+
+      const stato = await (await call("/api/gdpr/stato-eliminazione", tokenAdmin)).json();
+      assert.equal(stato.inEliminazione, true);
+      assert.equal(stato.ragioneSociale, tenant.ragioneSociale);
+    });
+
+    await t.test("una seconda richiesta mentre già in PENDING_DELETION è rifiutata (409)", async () => {
+      const res = await call("/api/gdpr/richiesta-cancellazione-account", tokenAdmin, { method: "POST", body: JSON.stringify({ password: "Test1234!Gdpr", confermaTestuale: tenant.ragioneSociale }) });
+      assert.equal(res.status, 409);
+    });
+
+    await t.test("annullare la cancellazione riporta il tenant attivo, senza richiedere password", async () => {
+      const resTecnico = await call("/api/gdpr/annulla-cancellazione-account", tokenTecnico, { method: "POST", body: JSON.stringify({}) });
+      assert.equal(resTecnico.status, 403);
+
+      const resAdmin = await call("/api/gdpr/annulla-cancellazione-account", tokenAdmin, { method: "POST", body: JSON.stringify({}) });
+      assert.equal(resAdmin.status, 200);
+
+      const tenantDopo = await prisma.tenant.findUnique({ where: { id: tenant.id } });
+      assert.equal(tenantDopo.eliminazioneRichiestaAt, null);
+      assert.equal(tenantDopo.eliminazionePrevistaPer, null);
+
+      const richieste = await prisma.gdprRichiesta.findMany({ where: { tenantId: tenant.id, tipo: "CANCELLAZIONE_ACCOUNT" } });
+      assert.ok(richieste.some((r) => r.stato === "ANNULLATA"));
+
+      const stato = await (await call("/api/gdpr/stato-eliminazione", tokenAdmin)).json();
+      assert.equal(stato.inEliminazione, false);
+
+      const secondoAnnullo = await call("/api/gdpr/annulla-cancellazione-account", tokenAdmin, { method: "POST", body: JSON.stringify({}) });
+      assert.equal(secondoAnnullo.status, 400, "non c'è più nulla da annullare");
     });
 
     await t.test("richiesta di cancellazione cliente anonimizza i dati identificativi ma non elimina il record", async () => {

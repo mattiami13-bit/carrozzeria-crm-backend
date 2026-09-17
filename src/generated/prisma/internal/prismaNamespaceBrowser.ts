@@ -142,6 +142,8 @@ export const TenantScalarFieldEnum = {
   partitaIva: 'partitaIva',
   piano: 'piano',
   trialEndsAt: 'trialEndsAt',
+  eliminazioneRichiestaAt: 'eliminazioneRichiestaAt',
+  eliminazionePrevistaPer: 'eliminazionePrevistaPer',
   isDemo: 'isDemo',
   limiteAnalisiIAMensile: 'limiteAnalisiIAMensile',
   limiteAssistenteIAMensile: 'limiteAssistenteIAMensile',

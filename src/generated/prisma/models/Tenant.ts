@@ -46,6 +46,8 @@ export type TenantMinAggregateOutputType = {
   partitaIva: string | null
   piano: $Enums.Plan | null
   trialEndsAt: Date | null
+  eliminazioneRichiestaAt: Date | null
+  eliminazionePrevistaPer: Date | null
   isDemo: boolean | null
   limiteAnalisiIAMensile: number | null
   limiteAssistenteIAMensile: number | null
@@ -68,6 +70,8 @@ export type TenantMaxAggregateOutputType = {
   partitaIva: string | null
   piano: $Enums.Plan | null
   trialEndsAt: Date | null
+  eliminazioneRichiestaAt: Date | null
+  eliminazionePrevistaPer: Date | null
   isDemo: boolean | null
   limiteAnalisiIAMensile: number | null
   limiteAssistenteIAMensile: number | null
@@ -90,6 +94,8 @@ export type TenantCountAggregateOutputType = {
   partitaIva: number
   piano: number
   trialEndsAt: number
+  eliminazioneRichiestaAt: number
+  eliminazionePrevistaPer: number
   isDemo: number
   limiteAnalisiIAMensile: number
   limiteAssistenteIAMensile: number
@@ -128,6 +134,8 @@ export type TenantMinAggregateInputType = {
   partitaIva?: true
   piano?: true
   trialEndsAt?: true
+  eliminazioneRichiestaAt?: true
+  eliminazionePrevistaPer?: true
   isDemo?: true
   limiteAnalisiIAMensile?: true
   limiteAssistenteIAMensile?: true
@@ -150,6 +158,8 @@ export type TenantMaxAggregateInputType = {
   partitaIva?: true
   piano?: true
   trialEndsAt?: true
+  eliminazioneRichiestaAt?: true
+  eliminazionePrevistaPer?: true
   isDemo?: true
   limiteAnalisiIAMensile?: true
   limiteAssistenteIAMensile?: true
@@ -172,6 +182,8 @@ export type TenantCountAggregateInputType = {
   partitaIva?: true
   piano?: true
   trialEndsAt?: true
+  eliminazioneRichiestaAt?: true
+  eliminazionePrevistaPer?: true
   isDemo?: true
   limiteAnalisiIAMensile?: true
   limiteAssistenteIAMensile?: true
@@ -281,6 +293,8 @@ export type TenantGroupByOutputType = {
   partitaIva: string | null
   piano: $Enums.Plan
   trialEndsAt: Date | null
+  eliminazioneRichiestaAt: Date | null
+  eliminazionePrevistaPer: Date | null
   isDemo: boolean
   limiteAnalisiIAMensile: number | null
   limiteAssistenteIAMensile: number | null
@@ -326,6 +340,8 @@ export type TenantWhereInput = {
   partitaIva?: Prisma.StringNullableFilter<"Tenant"> | string | null
   piano?: Prisma.EnumPlanFilter<"Tenant"> | $Enums.Plan
   trialEndsAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
+  eliminazionePrevistaPer?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   isDemo?: Prisma.BoolFilter<"Tenant"> | boolean
   limiteAnalisiIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
   limiteAssistenteIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
@@ -397,6 +413,8 @@ export type TenantOrderByWithRelationInput = {
   partitaIva?: Prisma.SortOrderInput | Prisma.SortOrder
   piano?: Prisma.SortOrder
   trialEndsAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  eliminazioneRichiestaAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  eliminazionePrevistaPer?: Prisma.SortOrderInput | Prisma.SortOrder
   isDemo?: Prisma.SortOrder
   limiteAnalisiIAMensile?: Prisma.SortOrderInput | Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -473,6 +491,8 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   ragioneSociale?: Prisma.StringFilter<"Tenant"> | string
   piano?: Prisma.EnumPlanFilter<"Tenant"> | $Enums.Plan
   trialEndsAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
+  eliminazionePrevistaPer?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   isDemo?: Prisma.BoolFilter<"Tenant"> | boolean
   limiteAnalisiIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
   limiteAssistenteIAMensile?: Prisma.IntNullableFilter<"Tenant"> | number | null
@@ -542,6 +562,8 @@ export type TenantOrderByWithAggregationInput = {
   partitaIva?: Prisma.SortOrderInput | Prisma.SortOrder
   piano?: Prisma.SortOrder
   trialEndsAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  eliminazioneRichiestaAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  eliminazionePrevistaPer?: Prisma.SortOrderInput | Prisma.SortOrder
   isDemo?: Prisma.SortOrder
   limiteAnalisiIAMensile?: Prisma.SortOrderInput | Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -572,6 +594,8 @@ export type TenantScalarWhereWithAggregatesInput = {
   partitaIva?: Prisma.StringNullableWithAggregatesFilter<"Tenant"> | string | null
   piano?: Prisma.EnumPlanWithAggregatesFilter<"Tenant"> | $Enums.Plan
   trialEndsAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Tenant"> | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Tenant"> | Date | string | null
+  eliminazionePrevistaPer?: Prisma.DateTimeNullableWithAggregatesFilter<"Tenant"> | Date | string | null
   isDemo?: Prisma.BoolWithAggregatesFilter<"Tenant"> | boolean
   limiteAnalisiIAMensile?: Prisma.IntNullableWithAggregatesFilter<"Tenant"> | number | null
   limiteAssistenteIAMensile?: Prisma.IntNullableWithAggregatesFilter<"Tenant"> | number | null
@@ -594,6 +618,8 @@ export type TenantCreateInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -665,6 +691,8 @@ export type TenantUncheckedCreateInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -736,6 +764,8 @@ export type TenantUpdateInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -807,6 +837,8 @@ export type TenantUncheckedUpdateInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -878,6 +910,8 @@ export type TenantCreateManyInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -900,6 +934,8 @@ export type TenantUpdateManyMutationInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -922,6 +958,8 @@ export type TenantUncheckedUpdateManyInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -944,6 +982,8 @@ export type TenantCountOrderByAggregateInput = {
   partitaIva?: Prisma.SortOrder
   piano?: Prisma.SortOrder
   trialEndsAt?: Prisma.SortOrder
+  eliminazioneRichiestaAt?: Prisma.SortOrder
+  eliminazionePrevistaPer?: Prisma.SortOrder
   isDemo?: Prisma.SortOrder
   limiteAnalisiIAMensile?: Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrder
@@ -973,6 +1013,8 @@ export type TenantMaxOrderByAggregateInput = {
   partitaIva?: Prisma.SortOrder
   piano?: Prisma.SortOrder
   trialEndsAt?: Prisma.SortOrder
+  eliminazioneRichiestaAt?: Prisma.SortOrder
+  eliminazionePrevistaPer?: Prisma.SortOrder
   isDemo?: Prisma.SortOrder
   limiteAnalisiIAMensile?: Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrder
@@ -995,6 +1037,8 @@ export type TenantMinOrderByAggregateInput = {
   partitaIva?: Prisma.SortOrder
   piano?: Prisma.SortOrder
   trialEndsAt?: Prisma.SortOrder
+  eliminazioneRichiestaAt?: Prisma.SortOrder
+  eliminazionePrevistaPer?: Prisma.SortOrder
   isDemo?: Prisma.SortOrder
   limiteAnalisiIAMensile?: Prisma.SortOrder
   limiteAssistenteIAMensile?: Prisma.SortOrder
@@ -1770,6 +1814,8 @@ export type TenantCreateWithoutUsersInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -1840,6 +1886,8 @@ export type TenantUncheckedCreateWithoutUsersInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -1926,6 +1974,8 @@ export type TenantUpdateWithoutUsersInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1996,6 +2046,8 @@ export type TenantUncheckedUpdateWithoutUsersInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2066,6 +2118,8 @@ export type TenantCreateWithoutClientsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -2136,6 +2190,8 @@ export type TenantUncheckedCreateWithoutClientsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -2222,6 +2278,8 @@ export type TenantUpdateWithoutClientsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2292,6 +2350,8 @@ export type TenantUncheckedUpdateWithoutClientsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2362,6 +2422,8 @@ export type TenantCreateWithoutVehiclesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -2432,6 +2494,8 @@ export type TenantUncheckedCreateWithoutVehiclesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -2518,6 +2582,8 @@ export type TenantUpdateWithoutVehiclesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2588,6 +2654,8 @@ export type TenantUncheckedUpdateWithoutVehiclesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2658,6 +2726,8 @@ export type TenantCreateWithoutQuotesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -2728,6 +2798,8 @@ export type TenantUncheckedCreateWithoutQuotesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -2814,6 +2886,8 @@ export type TenantUpdateWithoutQuotesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2884,6 +2958,8 @@ export type TenantUncheckedUpdateWithoutQuotesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2954,6 +3030,8 @@ export type TenantCreateWithoutDamageAnalysesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -3024,6 +3102,8 @@ export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -3110,6 +3190,8 @@ export type TenantUpdateWithoutDamageAnalysesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -3180,6 +3262,8 @@ export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -3250,6 +3334,8 @@ export type TenantCreateWithoutDamageItemsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -3320,6 +3406,8 @@ export type TenantUncheckedCreateWithoutDamageItemsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -3406,6 +3494,8 @@ export type TenantUpdateWithoutDamageItemsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -3476,6 +3566,8 @@ export type TenantUncheckedUpdateWithoutDamageItemsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -3546,6 +3638,8 @@ export type TenantCreateWithoutInsuranceGapAnalysesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -3616,6 +3710,8 @@ export type TenantUncheckedCreateWithoutInsuranceGapAnalysesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -3702,6 +3798,8 @@ export type TenantUpdateWithoutInsuranceGapAnalysesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -3772,6 +3870,8 @@ export type TenantUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -3842,6 +3942,8 @@ export type TenantCreateWithoutInsuranceGapItemsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -3912,6 +4014,8 @@ export type TenantUncheckedCreateWithoutInsuranceGapItemsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -3998,6 +4102,8 @@ export type TenantUpdateWithoutInsuranceGapItemsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -4068,6 +4174,8 @@ export type TenantUncheckedUpdateWithoutInsuranceGapItemsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -4138,6 +4246,8 @@ export type TenantCreateWithoutInsuranceGapSuggestionsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -4208,6 +4318,8 @@ export type TenantUncheckedCreateWithoutInsuranceGapSuggestionsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -4294,6 +4406,8 @@ export type TenantUpdateWithoutInsuranceGapSuggestionsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -4364,6 +4478,8 @@ export type TenantUncheckedUpdateWithoutInsuranceGapSuggestionsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -4434,6 +4550,8 @@ export type TenantCreateWithoutPartsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -4504,6 +4622,8 @@ export type TenantUncheckedCreateWithoutPartsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -4590,6 +4710,8 @@ export type TenantUpdateWithoutPartsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -4660,6 +4782,8 @@ export type TenantUncheckedUpdateWithoutPartsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -4730,6 +4854,8 @@ export type TenantCreateWithoutSupplierOrdersInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -4800,6 +4926,8 @@ export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -4886,6 +5014,8 @@ export type TenantUpdateWithoutSupplierOrdersInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -4956,6 +5086,8 @@ export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -5026,6 +5158,8 @@ export type TenantCreateWithoutLoanerCarsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -5096,6 +5230,8 @@ export type TenantUncheckedCreateWithoutLoanerCarsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -5182,6 +5318,8 @@ export type TenantUpdateWithoutLoanerCarsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -5252,6 +5390,8 @@ export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -5322,6 +5462,8 @@ export type TenantCreateWithoutLoanerCarPhotosInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -5392,6 +5534,8 @@ export type TenantUncheckedCreateWithoutLoanerCarPhotosInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -5478,6 +5622,8 @@ export type TenantUpdateWithoutLoanerCarPhotosInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -5548,6 +5694,8 @@ export type TenantUncheckedUpdateWithoutLoanerCarPhotosInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -5618,6 +5766,8 @@ export type TenantCreateWithoutLoanerBookingsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -5688,6 +5838,8 @@ export type TenantUncheckedCreateWithoutLoanerBookingsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -5774,6 +5926,8 @@ export type TenantUpdateWithoutLoanerBookingsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -5844,6 +5998,8 @@ export type TenantUncheckedUpdateWithoutLoanerBookingsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -5914,6 +6070,8 @@ export type TenantCreateWithoutLoanerBookingPhotosInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -5984,6 +6142,8 @@ export type TenantUncheckedCreateWithoutLoanerBookingPhotosInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -6070,6 +6230,8 @@ export type TenantUpdateWithoutLoanerBookingPhotosInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -6140,6 +6302,8 @@ export type TenantUncheckedUpdateWithoutLoanerBookingPhotosInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -6210,6 +6374,8 @@ export type TenantCreateWithoutAppointmentsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -6280,6 +6446,8 @@ export type TenantUncheckedCreateWithoutAppointmentsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -6366,6 +6534,8 @@ export type TenantUpdateWithoutAppointmentsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -6436,6 +6606,8 @@ export type TenantUncheckedUpdateWithoutAppointmentsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -6506,6 +6678,8 @@ export type TenantCreateWithoutSinistriInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -6576,6 +6750,8 @@ export type TenantUncheckedCreateWithoutSinistriInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -6662,6 +6838,8 @@ export type TenantUpdateWithoutSinistriInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -6732,6 +6910,8 @@ export type TenantUncheckedUpdateWithoutSinistriInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -6802,6 +6982,8 @@ export type TenantCreateWithoutPortalAccessesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -6872,6 +7054,8 @@ export type TenantUncheckedCreateWithoutPortalAccessesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -6958,6 +7142,8 @@ export type TenantUpdateWithoutPortalAccessesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -7028,6 +7214,8 @@ export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -7098,6 +7286,8 @@ export type TenantCreateWithoutPortalActionsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -7168,6 +7358,8 @@ export type TenantUncheckedCreateWithoutPortalActionsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -7254,6 +7446,8 @@ export type TenantUpdateWithoutPortalActionsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -7324,6 +7518,8 @@ export type TenantUncheckedUpdateWithoutPortalActionsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -7394,6 +7590,8 @@ export type TenantCreateWithoutWorkOrdersInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -7464,6 +7662,8 @@ export type TenantUncheckedCreateWithoutWorkOrdersInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -7550,6 +7750,8 @@ export type TenantUpdateWithoutWorkOrdersInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -7620,6 +7822,8 @@ export type TenantUncheckedUpdateWithoutWorkOrdersInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -7690,6 +7894,8 @@ export type TenantCreateWithoutWorkOrderTimeEntriesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -7760,6 +7966,8 @@ export type TenantUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -7846,6 +8054,8 @@ export type TenantUpdateWithoutWorkOrderTimeEntriesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -7916,6 +8126,8 @@ export type TenantUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -7986,6 +8198,8 @@ export type TenantCreateWithoutWorkOrderEventiInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -8056,6 +8270,8 @@ export type TenantUncheckedCreateWithoutWorkOrderEventiInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -8142,6 +8358,8 @@ export type TenantUpdateWithoutWorkOrderEventiInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -8212,6 +8430,8 @@ export type TenantUncheckedUpdateWithoutWorkOrderEventiInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -8282,6 +8502,8 @@ export type TenantCreateWithoutPortalDocumentsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -8352,6 +8574,8 @@ export type TenantUncheckedCreateWithoutPortalDocumentsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -8438,6 +8662,8 @@ export type TenantUpdateWithoutPortalDocumentsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -8508,6 +8734,8 @@ export type TenantUncheckedUpdateWithoutPortalDocumentsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -8578,6 +8806,8 @@ export type TenantCreateWithoutAiAnalysesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -8648,6 +8878,8 @@ export type TenantUncheckedCreateWithoutAiAnalysesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -8734,6 +8966,8 @@ export type TenantUpdateWithoutAiAnalysesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -8804,6 +9038,8 @@ export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -8874,6 +9110,8 @@ export type TenantCreateWithoutAssistantLogsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -8944,6 +9182,8 @@ export type TenantUncheckedCreateWithoutAssistantLogsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -9030,6 +9270,8 @@ export type TenantUpdateWithoutAssistantLogsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -9100,6 +9342,8 @@ export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -9170,6 +9414,8 @@ export type TenantCreateWithoutProfitRecordsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -9240,6 +9486,8 @@ export type TenantUncheckedCreateWithoutProfitRecordsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -9326,6 +9574,8 @@ export type TenantUpdateWithoutProfitRecordsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -9396,6 +9646,8 @@ export type TenantUncheckedUpdateWithoutProfitRecordsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -9466,6 +9718,8 @@ export type TenantCreateWithoutProfitSettingsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -9536,6 +9790,8 @@ export type TenantUncheckedCreateWithoutProfitSettingsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -9622,6 +9878,8 @@ export type TenantUpdateWithoutProfitSettingsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -9692,6 +9950,8 @@ export type TenantUncheckedUpdateWithoutProfitSettingsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -9762,6 +10022,8 @@ export type TenantCreateWithoutDelaySettingsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -9832,6 +10094,8 @@ export type TenantUncheckedCreateWithoutDelaySettingsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -9918,6 +10182,8 @@ export type TenantUpdateWithoutDelaySettingsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -9988,6 +10254,8 @@ export type TenantUncheckedUpdateWithoutDelaySettingsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -10058,6 +10326,8 @@ export type TenantCreateWithoutDelayPlansInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -10128,6 +10398,8 @@ export type TenantUncheckedCreateWithoutDelayPlansInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -10214,6 +10486,8 @@ export type TenantUpdateWithoutDelayPlansInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -10284,6 +10558,8 @@ export type TenantUncheckedUpdateWithoutDelayPlansInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -10354,6 +10630,8 @@ export type TenantCreateWithoutDelayForecastsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -10424,6 +10702,8 @@ export type TenantUncheckedCreateWithoutDelayForecastsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -10510,6 +10790,8 @@ export type TenantUpdateWithoutDelayForecastsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -10580,6 +10862,8 @@ export type TenantUncheckedUpdateWithoutDelayForecastsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -10650,6 +10934,8 @@ export type TenantCreateWithoutDelayDecisionsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -10720,6 +11006,8 @@ export type TenantUncheckedCreateWithoutDelayDecisionsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -10806,6 +11094,8 @@ export type TenantUpdateWithoutDelayDecisionsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -10876,6 +11166,8 @@ export type TenantUncheckedUpdateWithoutDelayDecisionsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -10946,6 +11238,8 @@ export type TenantCreateWithoutTrackedPartsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -11016,6 +11310,8 @@ export type TenantUncheckedCreateWithoutTrackedPartsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -11102,6 +11398,8 @@ export type TenantUpdateWithoutTrackedPartsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -11172,6 +11470,8 @@ export type TenantUncheckedUpdateWithoutTrackedPartsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -11242,6 +11542,8 @@ export type TenantCreateWithoutPartBlocksInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -11312,6 +11614,8 @@ export type TenantUncheckedCreateWithoutPartBlocksInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -11398,6 +11702,8 @@ export type TenantUpdateWithoutPartBlocksInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -11468,6 +11774,8 @@ export type TenantUncheckedUpdateWithoutPartBlocksInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -11538,6 +11846,8 @@ export type TenantCreateWithoutPartDocumentsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -11608,6 +11918,8 @@ export type TenantUncheckedCreateWithoutPartDocumentsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -11694,6 +12006,8 @@ export type TenantUpdateWithoutPartDocumentsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -11764,6 +12078,8 @@ export type TenantUncheckedUpdateWithoutPartDocumentsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -11834,6 +12150,8 @@ export type TenantCreateWithoutWhatsappTemplatesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -11904,6 +12222,8 @@ export type TenantUncheckedCreateWithoutWhatsappTemplatesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -11990,6 +12310,8 @@ export type TenantUpdateWithoutWhatsappTemplatesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -12060,6 +12382,8 @@ export type TenantUncheckedUpdateWithoutWhatsappTemplatesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -12130,6 +12454,8 @@ export type TenantCreateWithoutWhatsappMessagesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -12200,6 +12526,8 @@ export type TenantUncheckedCreateWithoutWhatsappMessagesInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -12286,6 +12614,8 @@ export type TenantUpdateWithoutWhatsappMessagesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -12356,6 +12686,8 @@ export type TenantUncheckedUpdateWithoutWhatsappMessagesInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -12426,6 +12758,8 @@ export type TenantCreateWithoutQcChecklistItemsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -12496,6 +12830,8 @@ export type TenantUncheckedCreateWithoutQcChecklistItemsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -12582,6 +12918,8 @@ export type TenantUpdateWithoutQcChecklistItemsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -12652,6 +12990,8 @@ export type TenantUncheckedUpdateWithoutQcChecklistItemsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -12722,6 +13062,8 @@ export type TenantCreateWithoutQcInspectionsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -12792,6 +13134,8 @@ export type TenantUncheckedCreateWithoutQcInspectionsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -12878,6 +13222,8 @@ export type TenantUpdateWithoutQcInspectionsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -12948,6 +13294,8 @@ export type TenantUncheckedUpdateWithoutQcInspectionsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -13018,6 +13366,8 @@ export type TenantCreateWithoutQcCheckResultsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -13088,6 +13438,8 @@ export type TenantUncheckedCreateWithoutQcCheckResultsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -13174,6 +13526,8 @@ export type TenantUpdateWithoutQcCheckResultsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -13244,6 +13598,8 @@ export type TenantUncheckedUpdateWithoutQcCheckResultsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -13314,6 +13670,8 @@ export type TenantCreateWithoutQcNonConformitaInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -13384,6 +13742,8 @@ export type TenantUncheckedCreateWithoutQcNonConformitaInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -13470,6 +13830,8 @@ export type TenantUpdateWithoutQcNonConformitaInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -13540,6 +13902,8 @@ export type TenantUncheckedUpdateWithoutQcNonConformitaInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -13610,6 +13974,8 @@ export type TenantCreateWithoutQcEventiInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -13680,6 +14046,8 @@ export type TenantUncheckedCreateWithoutQcEventiInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -13766,6 +14134,8 @@ export type TenantUpdateWithoutQcEventiInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -13836,6 +14206,8 @@ export type TenantUncheckedUpdateWithoutQcEventiInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -13906,6 +14278,8 @@ export type TenantCreateWithoutBriefingSettingsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -13976,6 +14350,8 @@ export type TenantUncheckedCreateWithoutBriefingSettingsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -14062,6 +14438,8 @@ export type TenantUpdateWithoutBriefingSettingsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -14132,6 +14510,8 @@ export type TenantUncheckedUpdateWithoutBriefingSettingsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -14202,6 +14582,8 @@ export type TenantCreateWithoutBriefingsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -14272,6 +14654,8 @@ export type TenantUncheckedCreateWithoutBriefingsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -14358,6 +14742,8 @@ export type TenantUpdateWithoutBriefingsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -14428,6 +14814,8 @@ export type TenantUncheckedUpdateWithoutBriefingsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -14498,6 +14886,8 @@ export type TenantCreateWithoutNotificationsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -14568,6 +14958,8 @@ export type TenantUncheckedCreateWithoutNotificationsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -14654,6 +15046,8 @@ export type TenantUpdateWithoutNotificationsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -14724,6 +15118,8 @@ export type TenantUncheckedUpdateWithoutNotificationsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -14794,6 +15190,8 @@ export type TenantCreateWithoutGdprRichiesteInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -14864,6 +15262,8 @@ export type TenantUncheckedCreateWithoutGdprRichiesteInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -14950,6 +15350,8 @@ export type TenantUpdateWithoutGdprRichiesteInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -15020,6 +15422,8 @@ export type TenantUncheckedUpdateWithoutGdprRichiesteInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -15090,6 +15494,8 @@ export type TenantCreateWithoutTicketsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -15160,6 +15566,8 @@ export type TenantUncheckedCreateWithoutTicketsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -15246,6 +15654,8 @@ export type TenantUpdateWithoutTicketsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -15316,6 +15726,8 @@ export type TenantUncheckedUpdateWithoutTicketsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -15386,6 +15798,8 @@ export type TenantCreateWithoutFeatureFlagOverrideInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -15456,6 +15870,8 @@ export type TenantUncheckedCreateWithoutFeatureFlagOverrideInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -15542,6 +15958,8 @@ export type TenantUpdateWithoutFeatureFlagOverrideInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -15612,6 +16030,8 @@ export type TenantUncheckedUpdateWithoutFeatureFlagOverrideInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -15682,6 +16102,8 @@ export type TenantCreateWithoutUsageEventsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -15752,6 +16174,8 @@ export type TenantUncheckedCreateWithoutUsageEventsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -15838,6 +16262,8 @@ export type TenantUpdateWithoutUsageEventsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -15908,6 +16334,8 @@ export type TenantUncheckedUpdateWithoutUsageEventsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -15978,6 +16406,8 @@ export type TenantCreateWithoutAiCostLogsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -16048,6 +16478,8 @@ export type TenantUncheckedCreateWithoutAiCostLogsInput = {
   partitaIva?: string | null
   piano?: $Enums.Plan
   trialEndsAt?: Date | string | null
+  eliminazioneRichiestaAt?: Date | string | null
+  eliminazionePrevistaPer?: Date | string | null
   isDemo?: boolean
   limiteAnalisiIAMensile?: number | null
   limiteAssistenteIAMensile?: number | null
@@ -16134,6 +16566,8 @@ export type TenantUpdateWithoutAiCostLogsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -16204,6 +16638,8 @@ export type TenantUncheckedUpdateWithoutAiCostLogsInput = {
   partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
   trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazioneRichiestaAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  eliminazionePrevistaPer?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -16710,6 +17146,8 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   partitaIva?: boolean
   piano?: boolean
   trialEndsAt?: boolean
+  eliminazioneRichiestaAt?: boolean
+  eliminazionePrevistaPer?: boolean
   isDemo?: boolean
   limiteAnalisiIAMensile?: boolean
   limiteAssistenteIAMensile?: boolean
@@ -16782,6 +17220,8 @@ export type TenantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   partitaIva?: boolean
   piano?: boolean
   trialEndsAt?: boolean
+  eliminazioneRichiestaAt?: boolean
+  eliminazionePrevistaPer?: boolean
   isDemo?: boolean
   limiteAnalisiIAMensile?: boolean
   limiteAssistenteIAMensile?: boolean
@@ -16804,6 +17244,8 @@ export type TenantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   partitaIva?: boolean
   piano?: boolean
   trialEndsAt?: boolean
+  eliminazioneRichiestaAt?: boolean
+  eliminazionePrevistaPer?: boolean
   isDemo?: boolean
   limiteAnalisiIAMensile?: boolean
   limiteAssistenteIAMensile?: boolean
@@ -16826,6 +17268,8 @@ export type TenantSelectScalar = {
   partitaIva?: boolean
   piano?: boolean
   trialEndsAt?: boolean
+  eliminazioneRichiestaAt?: boolean
+  eliminazionePrevistaPer?: boolean
   isDemo?: boolean
   limiteAnalisiIAMensile?: boolean
   limiteAssistenteIAMensile?: boolean
@@ -16842,7 +17286,7 @@ export type TenantSelectScalar = {
   createdAt?: boolean
 }
 
-export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ragioneSociale" | "partitaIva" | "piano" | "trialEndsAt" | "isDemo" | "limiteAnalisiIAMensile" | "limiteAssistenteIAMensile" | "stripeCustomerId" | "stripeSubscriptionId" | "subscriptionStatus" | "fatturazionePeriodicita" | "currentPeriodEnd" | "cancelAtPeriodEnd" | "utentiExtra" | "creditiAIAcquistati" | "earlyAdopter" | "consentiLavorazioniSimultanee" | "createdAt", ExtArgs["result"]["tenant"]>
+export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ragioneSociale" | "partitaIva" | "piano" | "trialEndsAt" | "eliminazioneRichiestaAt" | "eliminazionePrevistaPer" | "isDemo" | "limiteAnalisiIAMensile" | "limiteAssistenteIAMensile" | "stripeCustomerId" | "stripeSubscriptionId" | "subscriptionStatus" | "fatturazionePeriodicita" | "currentPeriodEnd" | "cancelAtPeriodEnd" | "utentiExtra" | "creditiAIAcquistati" | "earlyAdopter" | "consentiLavorazioniSimultanee" | "createdAt", ExtArgs["result"]["tenant"]>
 export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   briefingSettings?: boolean | Prisma.Tenant$briefingSettingsArgs<ExtArgs>
   briefings?: boolean | Prisma.Tenant$briefingsArgs<ExtArgs>
@@ -16957,6 +17401,8 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     partitaIva: string | null
     piano: $Enums.Plan
     trialEndsAt: Date | null
+    eliminazioneRichiestaAt: Date | null
+    eliminazionePrevistaPer: Date | null
     isDemo: boolean
     limiteAnalisiIAMensile: number | null
     limiteAssistenteIAMensile: number | null
@@ -17448,6 +17894,8 @@ export interface TenantFieldRefs {
   readonly partitaIva: Prisma.FieldRef<"Tenant", 'String'>
   readonly piano: Prisma.FieldRef<"Tenant", 'Plan'>
   readonly trialEndsAt: Prisma.FieldRef<"Tenant", 'DateTime'>
+  readonly eliminazioneRichiestaAt: Prisma.FieldRef<"Tenant", 'DateTime'>
+  readonly eliminazionePrevistaPer: Prisma.FieldRef<"Tenant", 'DateTime'>
   readonly isDemo: Prisma.FieldRef<"Tenant", 'Boolean'>
   readonly limiteAnalisiIAMensile: Prisma.FieldRef<"Tenant", 'Int'>
   readonly limiteAssistenteIAMensile: Prisma.FieldRef<"Tenant", 'Int'>

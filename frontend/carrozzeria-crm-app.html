@@ -743,6 +743,7 @@ function Dashboard({ token, user, onLogout }) {
       </aside>
       <main style={{ flex: 1, padding: "28px 32px", overflowY: "auto" }}>
         {user && user.emailVerificata === false && <VerificaEmailBanner api={api} />}
+        {ruolo === "ADMIN" && <EliminazioneAccountBanner api={api} onGestisci={() => setPrivacyDatiAperto(true)} />}
         {cambiaPasswordAperto && <CambiaPasswordModal api={api} onClose={() => setCambiaPasswordAperto(false)} />}
         {privacyDatiAperto && <PrivacyDatiModal api={api} onClose={() => setPrivacyDatiAperto(false)} />}
         {pianoFatturazioneAperto && <PianoFatturazioneModal api={api} onClose={() => setPianoFatturazioneAperto(false)} />}
@@ -827,6 +828,30 @@ function VerificaEmailBanner({ api }) {
   );
 }
 
+// Punto 42 (eliminazione account): visibile a chiunque acceda al
+// gestionale mentre il tenant è in PENDING_DELETION, non solo a chi ha
+// aperto "Privacy e dati" — nessuno deve scoprirlo per caso il giorno
+// dell'eliminazione.
+function EliminazioneAccountBanner({ api, onGestisci }) {
+  const [stato, setStato] = useState(null);
+  useEffect(() => { api("/api/gdpr/stato-eliminazione").then(setStato).catch(() => {}); }, [api]);
+  if (!stato?.inEliminazione) return null;
+  return (
+    <div style={{
+      display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap",
+      background: "#2A1A1A", border: "1px solid #4A2A2A", color: "#E5806B", fontSize: 13, padding: "10px 14px",
+      borderRadius: 10, marginBottom: 18,
+    }}>
+      <span>
+        🗑️ Questa organizzazione verrà eliminata il {new Date(stato.eliminazionePrevistaPer).toLocaleDateString("it-IT")}.
+      </span>
+      <button onClick={onGestisci} style={{
+        padding: "5px 10px", borderRadius: 6, border: "1px solid #E5806B", background: "transparent", color: "#E5806B", fontSize: 12, flexShrink: 0,
+      }}>Gestisci</button>
+    </div>
+  );
+}
+
 function CambiaPasswordModal({ api, onClose }) {
   const [passwordAttuale, setPasswordAttuale] = useState("");
   const [nuovaPassword, setNuovaPassword] = useState("");
@@ -890,8 +915,16 @@ function PrivacyDatiModal({ api, onClose }) {
   const [esportando, setEsportando] = useState(false);
   const [errore, setErrore] = useState(null);
   const [richiestaCancellazione, setRichiestaCancellazione] = useState(false);
-  const [cancellazioneInviata, setCancellazioneInviata] = useState(false);
   const [inviandoCancellazione, setInviandoCancellazione] = useState(false);
+  const [annullando, setAnnullando] = useState(false);
+  const [statoEliminazione, setStatoEliminazione] = useState(null);
+  const [password, setPassword] = useState("");
+  const [confermaTestuale, setConfermaTestuale] = useState("");
+
+  const caricaStato = useCallback(() => {
+    api("/api/gdpr/stato-eliminazione").then(setStatoEliminazione).catch(() => {});
+  }, [api]);
+  useEffect(() => { caricaStato(); }, [caricaStato]);
 
   const esporta = async () => {
     setEsportando(true);
@@ -915,13 +948,28 @@ function PrivacyDatiModal({ api, onClose }) {
     setInviandoCancellazione(true);
     setErrore(null);
     try {
-      await api("/api/gdpr/richiesta-cancellazione-account", { method: "POST", body: JSON.stringify({}) });
-      setCancellazioneInviata(true);
+      await api("/api/gdpr/richiesta-cancellazione-account", { method: "POST", body: JSON.stringify({ password, confermaTestuale }) });
       setRichiestaCancellazione(false);
+      setPassword("");
+      setConfermaTestuale("");
+      caricaStato();
     } catch (e) {
       setErrore(e.message);
     } finally {
       setInviandoCancellazione(false);
+    }
+  };
+
+  const annullaCancellazione = async () => {
+    setAnnullando(true);
+    setErrore(null);
+    try {
+      await api("/api/gdpr/annulla-cancellazione-account", { method: "POST", body: JSON.stringify({}) });
+      caricaStato();
+    } catch (e) {
+      setErrore(e.message);
+    } finally {
+      setAnnullando(false);
     }
   };
 
@@ -953,31 +1001,51 @@ function PrivacyDatiModal({ api, onClose }) {
         </div>
 
         <div style={{ borderTop: "1px solid #2A2E34", paddingTop: 18 }}>
-          <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 4, color: "#B4472E" }}>Richiedi cancellazione account</div>
-          <p style={{ fontSize: 12, color: "#8D9099", margin: "0 0 10px", lineHeight: 1.5 }}>
-            Registra una richiesta di cancellazione dell'intera organizzazione. Non elimina nulla immediatamente: viene elaborata manualmente.
-          </p>
+          <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 4, color: "#B4472E" }}>Elimina organizzazione</div>
 
-          {cancellazioneInviata ? (
-            <div style={{ background: "#16261E", color: "#6FBF8E", fontSize: 12.5, padding: 10, borderRadius: 8, border: "1px solid #2A4A3A" }}>
-              Richiesta registrata. Nessun dato è stato ancora eliminato.
+          {statoEliminazione?.inEliminazione ? (
+            <div>
+              <div style={{ background: "#2A1A1A", color: "#E5806B", fontSize: 12.5, padding: 10, borderRadius: 8, border: "1px solid #4A2A2A", marginBottom: 10, lineHeight: 1.5 }}>
+                La tua organizzazione verrà eliminata il{" "}
+                <strong>{new Date(statoEliminazione.eliminazionePrevistaPer).toLocaleDateString("it-IT")}</strong>.
+                Puoi ancora usare il gestionale normalmente e annullare in qualsiasi momento prima di allora.
+              </div>
+              <button onClick={annullaCancellazione} disabled={annullando} style={{
+                padding: "9px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "transparent", color: "#F3F1EC", fontSize: 13,
+              }}>{annullando ? "Annullamento…" : "Annulla cancellazione"}</button>
             </div>
           ) : richiestaCancellazione ? (
             <div>
-              <p style={{ fontSize: 12.5, color: "#F3F1EC", marginBottom: 10 }}>Confermi di voler registrare la richiesta di cancellazione?</p>
+              <p style={{ fontSize: 12.5, color: "#F3F1EC", marginBottom: 10, lineHeight: 1.5 }}>
+                Per confermare, inserisci la tua password e scrivi esattamente <strong>{statoEliminazione?.ragioneSociale}</strong> qui sotto.
+                L'organizzazione entrerà in un periodo di grazia (annullabile) prima dell'eliminazione effettiva.
+              </p>
+              <label style={{ display: "block", fontSize: 11, color: "#8D9099", marginBottom: 4 }}>Password</label>
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} style={{
+                width: "100%", padding: "9px 10px", borderRadius: 8, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC", fontSize: 13, marginBottom: 10, boxSizing: "border-box",
+              }} />
+              <label style={{ display: "block", fontSize: 11, color: "#8D9099", marginBottom: 4 }}>Scrivi "{statoEliminazione?.ragioneSociale}"</label>
+              <input type="text" value={confermaTestuale} onChange={(e) => setConfermaTestuale(e.target.value)} style={{
+                width: "100%", padding: "9px 10px", borderRadius: 8, border: "1px solid #2A2E34", background: "#0A0B0D", color: "#F3F1EC", fontSize: 13, marginBottom: 10, boxSizing: "border-box",
+              }} />
               <div style={{ display: "flex", gap: 8 }}>
-                <button onClick={confermaCancellazione} disabled={inviandoCancellazione} style={{
-                  padding: "8px 14px", borderRadius: 8, border: "none", background: "#B4472E", color: "#fff", fontSize: 12.5, fontWeight: 600,
-                }}>{inviandoCancellazione ? "Invio…" : "Sì, conferma richiesta"}</button>
-                <button onClick={() => setRichiestaCancellazione(false)} style={{
+                <button onClick={confermaCancellazione} disabled={inviandoCancellazione || !password || !confermaTestuale} style={{
+                  padding: "8px 14px", borderRadius: 8, border: "none", background: "#B4472E", color: "#fff", fontSize: 12.5, fontWeight: 600, opacity: (!password || !confermaTestuale) ? 0.5 : 1,
+                }}>{inviandoCancellazione ? "Invio…" : "Conferma eliminazione"}</button>
+                <button onClick={() => { setRichiestaCancellazione(false); setPassword(""); setConfermaTestuale(""); }} style={{
                   padding: "8px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "transparent", color: "#8D9099", fontSize: 12.5,
                 }}>Annulla</button>
               </div>
             </div>
           ) : (
+            <>
+            <p style={{ fontSize: 12, color: "#8D9099", margin: "0 0 10px", lineHeight: 1.5 }}>
+              Avvia la cancellazione dell'intera organizzazione. Non elimina nulla immediatamente: richiede password, conferma testuale, ed entra in un periodo di grazia annullabile.
+            </p>
             <button onClick={() => setRichiestaCancellazione(true)} style={{
               padding: "9px 14px", borderRadius: 8, border: "1px solid #4A2A2A", background: "transparent", color: "#B4472E", fontSize: 13,
             }}>Richiedi cancellazione account</button>
+            </>
           )}
         </div>
       </div>

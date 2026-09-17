@@ -12,8 +12,35 @@ gestisce Rifless stesso (oggi: solo il proprietario del prodotto).
 - `GET /api/super-admin/tenants` — elenco di tutte le carrozzerie con
   piano, stato abbonamento, se demo, e conteggi (utenti/clienti/veicoli).
   Nessun dato operativo (nessun cliente, veicolo, preventivo reale).
-- `GET /api/super-admin/gdpr-richieste` — richieste di cancellazione
-  account in attesa, su tutti i tenant.
+- `GET /api/super-admin/gdpr-richieste` — richieste GDPR (export,
+  cancellazione account/cliente) in attesa, su tutti i tenant.
+- Da qui in poi la lista è cresciuta punto dopo punto (lead commerciali,
+  FAQ, changelog, feature flag, ticket di supporto, usage tracking,
+  costo AI) — l'elenco completo e sempre aggiornato è
+  `src/routes/superAdmin.js` stesso, non ripetuto qui per non
+  disallinearsi nel tempo.
+
+## Eliminazione account (punto 42)
+
+Un ADMIN richiede la cancellazione della propria organizzazione da
+Impostazioni → Privacy e dati → Elimina organizzazione: password +
+conferma testuale (la ragione sociale esatta) portano il tenant in
+stato PENDING_DELETION (`Tenant.eliminazioneRichiestaAt` non nullo),
+con una data di scadenza del periodo di grazia
+(`Tenant.eliminazionePrevistaPer`, `ACCOUNT_DELETION_GRACE_DAYS` giorni
+dopo, default 30) — visibile anche a te tramite
+`GET /api/super-admin/gdpr-richieste` (la nota della richiesta riporta
+la data). Il tenant resta pienamente utilizzabile e la richiesta è
+annullabile dall'organizzazione in qualsiasi momento prima di allora.
+
+**Non esiste nessuna cancellazione automatica alla scadenza**, per
+scelta deliberata: stesso principio già in vigore per la coda
+`GdprRichiesta`, mai un'azione distruttiva su un intero tenant (tutti i
+suoi dati operativi) senza un controllo umano. Dopo la scadenza del
+periodo di grazia, se la richiesta è ancora `IN_ATTESA`, puoi eseguire
+tu stesso l'eliminazione reale (oggi: manualmente, accedendo al
+database — un'azione a sé, non ancora una rotta dedicata) sapendo che
+il periodo promesso all'organizzazione è trascorso.
 
 ## Cosa NON esiste ancora
 

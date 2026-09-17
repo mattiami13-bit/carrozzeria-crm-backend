@@ -344,7 +344,8 @@ export type GdprRichiestaTipo = (typeof GdprRichiestaTipo)[keyof typeof GdprRich
 export const GdprRichiestaStato = {
   IN_ATTESA: 'IN_ATTESA',
   COMPLETATA: 'COMPLETATA',
-  RIFIUTATA: 'RIFIUTATA'
+  RIFIUTATA: 'RIFIUTATA',
+  ANNULLATA: 'ANNULLATA'
 } as const
 
 export type GdprRichiestaStato = (typeof GdprRichiestaStato)[keyof typeof GdprRichiestaStato]
