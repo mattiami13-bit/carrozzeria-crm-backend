@@ -10,6 +10,8 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
+    "prisma:check-distruttive": "node scripts/check-migrazioni-distruttive.mjs",
+    "prisma:migrate-deploy-sicuro": "node scripts/check-migrazioni-distruttive.mjs && prisma migrate deploy",
     "test:profit": "node --test tests/profit.test.js tests/profit-api.test.js && node tests/check-frontend.cjs",
     "test:delay": "node --test tests/delay.test.js tests/delay-api.test.js && node tests/check-frontend.cjs",
     "test:parts": "node --test tests/parts.test.js tests/parts-api.test.js && node tests/check-frontend.cjs",
