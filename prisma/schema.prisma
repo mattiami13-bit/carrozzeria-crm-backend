@@ -120,6 +120,7 @@ model Tenant {
   featureFlagOverride FeatureFlagTenantOverride[]
   usageEvents        UsageEvent[]
   aiCostLogs         AiCostLog[]
+  dataExportRequests DataExportRequest[]
 
 
   @@map("tenants")
@@ -204,6 +205,7 @@ model User {
   notifications              Notification[]
   gdprRichieste              GdprRichiesta[]
   tickets                    Ticket[]
+  dataExportRequests         DataExportRequest[]
 
   @@index([tenantId])
   @@map("users")
@@ -2095,4 +2097,34 @@ model AiCostLog {
   @@index([tenantId, createdAt])
   @@index([funzione, createdAt])
   @@map("ai_cost_logs")
+}
+
+// Punto 43 (export dati, "OWNER: ESPORTA DATI CARROZZERIA"): a
+// differenza di GET /api/gdpr/export (punto 18, sincrono, risponde con
+// il JSON inline nella richiesta stessa), questo è il percorso
+// "asincrono e sicuro" richiesto esplicitamente dal prompt — la
+// richiesta torna subito, il file si costruisce in background, un
+// link temporaneo e protetto (URL Supabase Storage firmato, mai
+// permanente) diventa disponibile solo a export pronto, con notifica.
+enum DataExportStato {
+  IN_CORSO
+  PRONTO
+  FALLITO
+}
+
+model DataExportRequest {
+  id            String           @id @default(cuid())
+  tenantId      String
+  tenant        Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  richiedenteId String
+  richiedente   User             @relation(fields: [richiedenteId], references: [id])
+  stato         DataExportStato  @default(IN_CORSO)
+  storagePath   String?
+  erroreMessaggio String?
+  scadenza      DateTime?
+  createdAt     DateTime         @default(now())
+  completatoAt  DateTime?
+
+  @@index([tenantId, createdAt])
+  @@map("data_export_requests")
 }

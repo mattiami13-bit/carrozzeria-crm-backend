@@ -418,3 +418,12 @@ export const AiFunzione = {
 } as const
 
 export type AiFunzione = (typeof AiFunzione)[keyof typeof AiFunzione]
+
+
+export const DataExportStato = {
+  IN_CORSO: 'IN_CORSO',
+  PRONTO: 'PRONTO',
+  FALLITO: 'FALLITO'
+} as const
+
+export type DataExportStato = (typeof DataExportStato)[keyof typeof DataExportStato]

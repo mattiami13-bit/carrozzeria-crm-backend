@@ -135,6 +135,23 @@ export async function inviaNotificaTicket({ ragioneSociale, categoria, priorita,
   return inviaConRetry({ to: DESTINATARIO_LEAD, subject: titolo, html, text: righe.join("\n"), tenantId });
 }
 
+// Punto 43 (export dati asincrono): notifica quando l'export è pronto.
+// Mai un link di download diretto nella mail — porta al gestionale
+// (dove il download richiede login), coerente col resto dell'app: nessun
+// dato dei clienti dietro un link cliccabile senza autenticazione.
+const APP_URL_PER_EMAIL = process.env.PUBLIC_APP_URL || "https://app.rifless.it";
+
+export async function inviaEmailExportPronto({ email, nome, tenantId }) {
+  const html = layoutEmail({
+    titolo: "Il tuo export dati è pronto",
+    corpoHtml: `<p>Ciao ${nome}, l'export dei dati della tua carrozzeria è pronto. Accedi al gestionale e apri "Privacy e dati" per scaricarlo — il link di download è valido per un tempo limitato una volta generato.</p>`,
+    ctaLabel: "Apri il gestionale",
+    ctaUrl: APP_URL_PER_EMAIL,
+  });
+  const text = `Ciao ${nome}, l'export dei dati della tua carrozzeria è pronto. Accedi al gestionale (${APP_URL_PER_EMAIL}) e apri "Privacy e dati" per scaricarlo.`;
+  return inviaConRetry({ to: email, subject: "Il tuo export dati Rifless è pronto", html, text, tenantId });
+}
+
 export async function inviaEmailResetPassword({ email, nome, resetUrl, tenantId }) {
   const html = layoutEmail({
     titolo: "Reimposta la password",

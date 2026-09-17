@@ -117,7 +117,8 @@ export const ModelName = {
   FeatureFlag: 'FeatureFlag',
   FeatureFlagTenantOverride: 'FeatureFlagTenantOverride',
   UsageEvent: 'UsageEvent',
-  AiCostLog: 'AiCostLog'
+  AiCostLog: 'AiCostLog',
+  DataExportRequest: 'DataExportRequest'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1183,6 +1184,21 @@ export const AiCostLogScalarFieldEnum = {
 } as const
 
 export type AiCostLogScalarFieldEnum = (typeof AiCostLogScalarFieldEnum)[keyof typeof AiCostLogScalarFieldEnum]
+
+
+export const DataExportRequestScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  richiedenteId: 'richiedenteId',
+  stato: 'stato',
+  storagePath: 'storagePath',
+  erroreMessaggio: 'erroreMessaggio',
+  scadenza: 'scadenza',
+  createdAt: 'createdAt',
+  completatoAt: 'completatoAt'
+} as const
+
+export type DataExportRequestScalarFieldEnum = (typeof DataExportRequestScalarFieldEnum)[keyof typeof DataExportRequestScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -463,7 +463,8 @@ export const ModelName = {
   FeatureFlag: 'FeatureFlag',
   FeatureFlagTenantOverride: 'FeatureFlagTenantOverride',
   UsageEvent: 'UsageEvent',
-  AiCostLog: 'AiCostLog'
+  AiCostLog: 'AiCostLog',
+  DataExportRequest: 'DataExportRequest'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -479,7 +480,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerCarPhoto" | "loanerBooking" | "loanerBookingPhoto" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage" | "qcChecklistItem" | "qcInspection" | "qcCheckResult" | "qcNonConformita" | "qcEvento" | "briefingSettings" | "briefingReport" | "briefingResolution" | "notification" | "gdprRichiesta" | "stripeWebhookEvent" | "superAdmin" | "lead" | "faqItem" | "ticket" | "changelogEntry" | "featureFlag" | "featureFlagTenantOverride" | "usageEvent" | "aiCostLog"
+    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerCarPhoto" | "loanerBooking" | "loanerBookingPhoto" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage" | "qcChecklistItem" | "qcInspection" | "qcCheckResult" | "qcNonConformita" | "qcEvento" | "briefingSettings" | "briefingReport" | "briefingResolution" | "notification" | "gdprRichiesta" | "stripeWebhookEvent" | "superAdmin" | "lead" | "faqItem" | "ticket" | "changelogEntry" | "featureFlag" | "featureFlagTenantOverride" | "usageEvent" | "aiCostLog" | "dataExportRequest"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -5441,6 +5442,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    DataExportRequest: {
+      payload: Prisma.$DataExportRequestPayload<ExtArgs>
+      fields: Prisma.DataExportRequestFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DataExportRequestFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DataExportRequestPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DataExportRequestFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DataExportRequestPayload>
+        }
+        findFirst: {
+          args: Prisma.DataExportRequestFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DataExportRequestPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DataExportRequestFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DataExportRequestPayload>
+        }
+        findMany: {
+          args: Prisma.DataExportRequestFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DataExportRequestPayload>[]
+        }
+        create: {
+          args: Prisma.DataExportRequestCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DataExportRequestPayload>
+        }
+        createMany: {
+          args: Prisma.DataExportRequestCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DataExportRequestCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DataExportRequestPayload>[]
+        }
+        delete: {
+          args: Prisma.DataExportRequestDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DataExportRequestPayload>
+        }
+        update: {
+          args: Prisma.DataExportRequestUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DataExportRequestPayload>
+        }
+        deleteMany: {
+          args: Prisma.DataExportRequestDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DataExportRequestUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DataExportRequestUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DataExportRequestPayload>[]
+        }
+        upsert: {
+          args: Prisma.DataExportRequestUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DataExportRequestPayload>
+        }
+        aggregate: {
+          args: Prisma.DataExportRequestAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDataExportRequest>
+        }
+        groupBy: {
+          args: Prisma.DataExportRequestGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DataExportRequestGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DataExportRequestCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DataExportRequestCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -6529,6 +6604,21 @@ export const AiCostLogScalarFieldEnum = {
 export type AiCostLogScalarFieldEnum = (typeof AiCostLogScalarFieldEnum)[keyof typeof AiCostLogScalarFieldEnum]
 
 
+export const DataExportRequestScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  richiedenteId: 'richiedenteId',
+  stato: 'stato',
+  storagePath: 'storagePath',
+  erroreMessaggio: 'erroreMessaggio',
+  scadenza: 'scadenza',
+  createdAt: 'createdAt',
+  completatoAt: 'completatoAt'
+} as const
+
+export type DataExportRequestScalarFieldEnum = (typeof DataExportRequestScalarFieldEnum)[keyof typeof DataExportRequestScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -7221,6 +7311,20 @@ export type ListEnumAiFunzioneFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
+ * Reference to a field of type 'DataExportStato'
+ */
+export type EnumDataExportStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DataExportStato'>
+    
+
+
+/**
+ * Reference to a field of type 'DataExportStato[]'
+ */
+export type ListEnumDataExportStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DataExportStato[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -7451,6 +7555,7 @@ export type GlobalOmitConfig = {
   featureFlagTenantOverride?: Prisma.FeatureFlagTenantOverrideOmit
   usageEvent?: Prisma.UsageEventOmit
   aiCostLog?: Prisma.AiCostLogOmit
+  dataExportRequest?: Prisma.DataExportRequestOmit
 }
 
 /* Types for Logging */

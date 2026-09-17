@@ -4,6 +4,7 @@ import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, requireRole, tenantScope } from "../middleware/auth.js";
 import { creaNotificaRuoli } from "../lib/notificheInApp.js";
+import { costruisciExportTenant, avviaExportAsincrono, generaLinkScaricamento } from "../lib/dataExport.js";
 
 export const gdprRouter = Router();
 
@@ -20,37 +21,7 @@ gdprRouter.use(requireAuth);
 // (foto/documenti) è incluso inline: solo i loro metadati, per non far
 // esplodere le dimensioni dell'export e non duplicare storage sensibile.
 gdprRouter.get("/export", requireRole("ADMIN"), async (req, res) => {
-  const scope = tenantScope(req);
-
-  const [tenant, users, clients, vehicles, quotes, sinistri, appointments, loanerCars] = await Promise.all([
-    prisma.tenant.findUnique({ where: { id: req.auth.tenantId } }),
-    prisma.user.findMany({
-      where: scope,
-      select: { id: true, nome: true, cognome: true, email: true, ruolo: true, attivo: true, createdAt: true },
-    }),
-    prisma.client.findMany({
-      where: scope,
-      include: { documents: { select: { id: true, nome: true, createdAt: true } } },
-    }),
-    prisma.vehicle.findMany({ where: scope, select: { id: true, clientId: true, marca: true, modello: true, targa: true, vin: true, colore: true, dataIngresso: true, stage: true } }),
-    prisma.quote.findMany({ where: scope, select: { id: true, clientId: true, vehicleId: true, stato: true, imponibile: true, aliquotaIva: true, totale: true, createdAt: true } }),
-    prisma.sinistro.findMany({ where: scope, select: { id: true, clientId: true, vehicleId: true, numeroPratica: true, compagniaAssicurativa: true, stato: true, createdAt: true } }),
-    prisma.appointment.findMany({ where: scope, select: { id: true, clientId: true, vehicleId: true, titolo: true, inizio: true, fine: true, tipo: true } }),
-    prisma.loanerCar.findMany({ where: scope, select: { id: true, targa: true, marca: true, modello: true } }),
-  ]);
-
-  const export_ = {
-    generatoIl: new Date().toISOString(),
-    tenant: tenant ? { id: tenant.id, ragioneSociale: tenant.ragioneSociale, partitaIva: tenant.partitaIva, createdAt: tenant.createdAt } : null,
-    utenti: users,
-    clienti: clients,
-    veicoli: vehicles,
-    preventivi: quotes,
-    sinistri,
-    appuntamenti: appointments,
-    autoSostitutive: loanerCars,
-    nota: "Export dei dati operativi principali. Foto e documenti binari non sono inclusi inline (solo i loro metadati): sono disponibili tramite le rispettive route autenticate del gestionale.",
-  };
+  const export_ = await costruisciExportTenant(req.auth.tenantId);
 
   const richiesta = await prisma.gdprRichiesta.create({
     data: { tenantId: req.auth.tenantId, tipo: "EXPORT_DATI", stato: "COMPLETATA", richiedenteId: req.auth.userId, risoltoAt: new Date() },
@@ -59,6 +30,42 @@ gdprRouter.get("/export", requireRole("ADMIN"), async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   res.setHeader("Content-Disposition", `attachment; filename="export-dati-${req.auth.tenantId}-${richiesta.id.slice(-6)}.json"`);
   res.json(export_);
+});
+
+// Punto 43 (export dati, "OWNER: ESPORTA DATI CARROZZERIA"): versione
+// asincrona e sicura di GET /export sopra — la richiesta torna subito
+// (IN_CORSO), il file si costruisce in background e diventa
+// scaricabile solo tramite un link temporaneo firmato una volta pronto,
+// con notifica (in-app + email). Vedi lib/dataExport.js.
+gdprRouter.post("/export-asincrono", requireRole("ADMIN"), async (req, res) => {
+  const richiesta = await avviaExportAsincrono({ tenantId: req.auth.tenantId, richiedenteId: req.auth.userId });
+  res.status(202).json({ id: richiesta.id, stato: richiesta.stato, createdAt: richiesta.createdAt });
+});
+
+gdprRouter.get("/export-asincrono", requireRole("ADMIN"), async (req, res) => {
+  const richieste = await prisma.dataExportRequest.findMany({
+    where: tenantScope(req),
+    orderBy: { createdAt: "desc" },
+    take: 20,
+    select: { id: true, stato: true, erroreMessaggio: true, scadenza: true, createdAt: true, completatoAt: true },
+  });
+  res.json(richieste);
+});
+
+// GET /api/gdpr/export-asincrono/:id/download — genera il link
+// temporaneo al momento, non lo salva né lo restituisce in anticipo:
+// chi non è ADMIN di QUESTO tenant non può nemmeno arrivare a questa
+// verifica (tenantScope), e un export di un altro tenant risulta 404,
+// mai un dettaglio su "esiste ma non è tuo".
+gdprRouter.get("/export-asincrono/:id/download", requireRole("ADMIN"), async (req, res) => {
+  const richiesta = await prisma.dataExportRequest.findFirst({ where: { id: req.params.id, ...tenantScope(req) } });
+  if (!richiesta) return res.status(404).json({ error: "Export non trovato" });
+  if (richiesta.stato === "IN_CORSO") return res.status(409).json({ error: "L'export è ancora in preparazione." });
+  if (richiesta.stato === "FALLITO") return res.status(410).json({ error: "La preparazione di questo export non è riuscita. Avviane uno nuovo." });
+
+  const url = await generaLinkScaricamento(richiesta);
+  if (!url) return res.status(410).json({ error: "Questo export è scaduto. Avviane uno nuovo." });
+  res.json({ url });
 });
 
 // GET /api/gdpr/stato-eliminazione — per mostrare (o no) il banner

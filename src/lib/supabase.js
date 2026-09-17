@@ -16,3 +16,9 @@ export const PHOTOS_BUCKET = "vehicle-photos";
 // cancellazione/corruzione accidentale del bucket principale non
 // comporta la perdita delle foto. Vedi src/lib/photo-backup-service.js.
 export const PHOTOS_BACKUP_BUCKET = "vehicle-photos-backup";
+
+// Punto 43 (export dati asincrono): bucket privato dedicato, separato
+// dalle foto — contiene file JSON con dati operativi dei clienti
+// (nome, contatti, ecc.), non va mai mescolato con lo storage foto né
+// reso pubblico. Vedi src/lib/dataExport.js.
+export const DATA_EXPORTS_BUCKET = "data-exports";

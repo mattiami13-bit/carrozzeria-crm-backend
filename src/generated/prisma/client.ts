@@ -376,3 +376,8 @@ export type UsageEvent = Prisma.UsageEventModel
  * 
  */
 export type AiCostLog = Prisma.AiCostLogModel
+/**
+ * Model DataExportRequest
+ * 
+ */
+export type DataExportRequest = Prisma.DataExportRequestModel

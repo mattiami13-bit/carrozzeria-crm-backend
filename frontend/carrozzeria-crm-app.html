@@ -911,6 +911,8 @@ function CambiaPasswordModal({ api, onClose }) {
   );
 }
 
+const EXPORT_STATO_LABEL = { IN_CORSO: "In preparazione…", PRONTO: "Pronto", FALLITO: "Non riuscito" };
+
 function PrivacyDatiModal({ api, onClose }) {
   const [esportando, setEsportando] = useState(false);
   const [errore, setErrore] = useState(null);
@@ -920,11 +922,23 @@ function PrivacyDatiModal({ api, onClose }) {
   const [statoEliminazione, setStatoEliminazione] = useState(null);
   const [password, setPassword] = useState("");
   const [confermaTestuale, setConfermaTestuale] = useState("");
+  const [richiesteExport, setRichiesteExport] = useState(null);
+  const [avviandoExport, setAvviandoExport] = useState(false);
+  const [scaricandoId, setScaricandoId] = useState(null);
 
   const caricaStato = useCallback(() => {
     api("/api/gdpr/stato-eliminazione").then(setStatoEliminazione).catch(() => {});
   }, [api]);
-  useEffect(() => { caricaStato(); }, [caricaStato]);
+  const caricaExport = useCallback(() => {
+    api("/api/gdpr/export-asincrono").then(setRichiesteExport).catch(() => {});
+  }, [api]);
+  useEffect(() => { caricaStato(); caricaExport(); }, [caricaStato, caricaExport]);
+  // Un export "in preparazione" si aggiorna da solo, senza dover riaprire il pannello.
+  useEffect(() => {
+    if (!richiesteExport?.some((r) => r.stato === "IN_CORSO")) return;
+    const t = setInterval(caricaExport, 2000);
+    return () => clearInterval(t);
+  }, [richiesteExport, caricaExport]);
 
   const esporta = async () => {
     setEsportando(true);
@@ -941,6 +955,33 @@ function PrivacyDatiModal({ api, onClose }) {
       setErrore(e.message);
     } finally {
       setEsportando(false);
+    }
+  };
+
+  const avviaExportAsincrono = async () => {
+    setAvviandoExport(true);
+    setErrore(null);
+    try {
+      await api("/api/gdpr/export-asincrono", { method: "POST", body: JSON.stringify({}) });
+      caricaExport();
+    } catch (e) {
+      setErrore(e.message);
+    } finally {
+      setAvviandoExport(false);
+    }
+  };
+
+  const scaricaExport = async (id) => {
+    setScaricandoId(id);
+    setErrore(null);
+    try {
+      const { url } = await api(`/api/gdpr/export-asincrono/${id}/download`);
+      window.open(url, "_blank");
+    } catch (e) {
+      setErrore(e.message);
+      caricaExport();
+    } finally {
+      setScaricandoId(null);
     }
   };
 
@@ -993,11 +1034,38 @@ function PrivacyDatiModal({ api, onClose }) {
         <div style={{ marginBottom: 20 }}>
           <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 4 }}>Esporta tutti i dati</div>
           <p style={{ fontSize: 12, color: "#8D9099", margin: "0 0 10px", lineHeight: 1.5 }}>
-            Scarica un file con i dati operativi principali della carrozzeria (clienti, veicoli, preventivi, sinistri, appuntamenti).
+            Scarica subito un file con i dati operativi principali della carrozzeria (clienti, veicoli, preventivi, sinistri, appuntamenti).
           </p>
           <button onClick={esporta} disabled={esportando} style={{
             padding: "9px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "transparent", color: "#F3F1EC", fontSize: 13,
-          }}>{esportando ? "Esportazione…" : "Esporta tutti i dati"}</button>
+          }}>{esportando ? "Esportazione…" : "Scarica subito"}</button>
+        </div>
+
+        <div style={{ borderTop: "1px solid #2A2E34", paddingTop: 18, marginBottom: 20 }}>
+          <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 4 }}>Esporta con notifica</div>
+          <p style={{ fontSize: 12, color: "#8D9099", margin: "0 0 10px", lineHeight: 1.5 }}>
+            Prepara lo stesso export in background: ti avvisiamo (nel gestionale e via email) quando è pronto, con un link di download temporaneo.
+          </p>
+          <button onClick={avviaExportAsincrono} disabled={avviandoExport} style={{
+            padding: "9px 14px", borderRadius: 8, border: "1px solid #2A2E34", background: "transparent", color: "#F3F1EC", fontSize: 13, marginBottom: richiesteExport?.length ? 12 : 0,
+          }}>{avviandoExport ? "Avvio…" : "Prepara export"}</button>
+
+          {richiesteExport?.length > 0 && (
+            <div>
+              {richiesteExport.map((r) => (
+                <div key={r.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "7px 0", borderTop: "1px solid #2A2E34", fontSize: 12 }}>
+                  <span style={{ color: "#8D9099" }}>{new Date(r.createdAt).toLocaleString("it-IT")}</span>
+                  {r.stato === "PRONTO" ? (
+                    <button onClick={() => scaricaExport(r.id)} disabled={scaricandoId === r.id} style={{
+                      padding: "4px 10px", borderRadius: 6, border: "1px solid #2F80ED", background: "transparent", color: "#2F80ED", fontSize: 11.5,
+                    }}>{scaricandoId === r.id ? "Apro…" : "Scarica"}</button>
+                  ) : (
+                    <span style={{ color: r.stato === "FALLITO" ? "#E5806B" : "#8D9099" }}>{EXPORT_STATO_LABEL[r.stato] || r.stato}</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <div style={{ borderTop: "1px solid #2A2E34", paddingTop: 18 }}>
