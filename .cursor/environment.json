@@ -1,0 +1,12 @@
+{
+  "name": "Carrozzeria CRM",
+  "install": "bash .cursor/install.sh",
+  "start": "bash .cursor/start.sh",
+  "terminals": [
+    {
+      "name": "api-server",
+      "command": "NODE_OPTIONS=--experimental-strip-types CRM_PREVIEW=1 npm run dev"
+    }
+  ],
+  "ports": [{ "name": "api", "port": 4310 }]
+}
