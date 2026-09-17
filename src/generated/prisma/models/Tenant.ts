@@ -387,6 +387,7 @@ export type TenantWhereInput = {
   gdprRichieste?: Prisma.GdprRichiestaListRelationFilter
   tickets?: Prisma.TicketListRelationFilter
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideListRelationFilter
+  usageEvents?: Prisma.UsageEventListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -456,6 +457,7 @@ export type TenantOrderByWithRelationInput = {
   gdprRichieste?: Prisma.GdprRichiestaOrderByRelationAggregateInput
   tickets?: Prisma.TicketOrderByRelationAggregateInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideOrderByRelationAggregateInput
+  usageEvents?: Prisma.UsageEventOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -528,6 +530,7 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   gdprRichieste?: Prisma.GdprRichiestaListRelationFilter
   tickets?: Prisma.TicketListRelationFilter
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideListRelationFilter
+  usageEvents?: Prisma.UsageEventListRelationFilter
 }, "id" | "partitaIva" | "stripeCustomerId" | "stripeSubscriptionId">
 
 export type TenantOrderByWithAggregationInput = {
@@ -649,6 +652,7 @@ export type TenantCreateInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -718,6 +722,7 @@ export type TenantUncheckedCreateInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -787,6 +792,7 @@ export type TenantUpdateInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -856,6 +862,7 @@ export type TenantUncheckedUpdateInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -1007,6 +1014,11 @@ export type TenantSumOrderByAggregateInput = {
 export type TenantScalarRelationFilter = {
   is?: Prisma.TenantWhereInput
   isNot?: Prisma.TenantWhereInput
+}
+
+export type TenantNullableScalarRelationFilter = {
+  is?: Prisma.TenantWhereInput | null
+  isNot?: Prisma.TenantWhereInput | null
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -1715,6 +1727,22 @@ export type TenantUpdateOneRequiredWithoutFeatureFlagOverrideNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutFeatureFlagOverrideInput, Prisma.TenantUpdateWithoutFeatureFlagOverrideInput>, Prisma.TenantUncheckedUpdateWithoutFeatureFlagOverrideInput>
 }
 
+export type TenantCreateNestedOneWithoutUsageEventsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutUsageEventsInput, Prisma.TenantUncheckedCreateWithoutUsageEventsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutUsageEventsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneWithoutUsageEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutUsageEventsInput, Prisma.TenantUncheckedCreateWithoutUsageEventsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutUsageEventsInput
+  upsert?: Prisma.TenantUpsertWithoutUsageEventsInput
+  disconnect?: Prisma.TenantWhereInput | boolean
+  delete?: Prisma.TenantWhereInput | boolean
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutUsageEventsInput, Prisma.TenantUpdateWithoutUsageEventsInput>, Prisma.TenantUncheckedUpdateWithoutUsageEventsInput>
+}
+
 export type TenantCreateWithoutUsersInput = {
   id?: string
   ragioneSociale: string
@@ -1781,6 +1809,7 @@ export type TenantCreateWithoutUsersInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutUsersInput = {
@@ -1849,6 +1878,7 @@ export type TenantUncheckedCreateWithoutUsersInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutUsersInput = {
@@ -1933,6 +1963,7 @@ export type TenantUpdateWithoutUsersInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutUsersInput = {
@@ -2001,6 +2032,7 @@ export type TenantUncheckedUpdateWithoutUsersInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutClientsInput = {
@@ -2069,6 +2101,7 @@ export type TenantCreateWithoutClientsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutClientsInput = {
@@ -2137,6 +2170,7 @@ export type TenantUncheckedCreateWithoutClientsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutClientsInput = {
@@ -2221,6 +2255,7 @@ export type TenantUpdateWithoutClientsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutClientsInput = {
@@ -2289,6 +2324,7 @@ export type TenantUncheckedUpdateWithoutClientsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutVehiclesInput = {
@@ -2357,6 +2393,7 @@ export type TenantCreateWithoutVehiclesInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutVehiclesInput = {
@@ -2425,6 +2462,7 @@ export type TenantUncheckedCreateWithoutVehiclesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutVehiclesInput = {
@@ -2509,6 +2547,7 @@ export type TenantUpdateWithoutVehiclesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutVehiclesInput = {
@@ -2577,6 +2616,7 @@ export type TenantUncheckedUpdateWithoutVehiclesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQuotesInput = {
@@ -2645,6 +2685,7 @@ export type TenantCreateWithoutQuotesInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQuotesInput = {
@@ -2713,6 +2754,7 @@ export type TenantUncheckedCreateWithoutQuotesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQuotesInput = {
@@ -2797,6 +2839,7 @@ export type TenantUpdateWithoutQuotesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQuotesInput = {
@@ -2865,6 +2908,7 @@ export type TenantUncheckedUpdateWithoutQuotesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDamageAnalysesInput = {
@@ -2933,6 +2977,7 @@ export type TenantCreateWithoutDamageAnalysesInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
@@ -3001,6 +3046,7 @@ export type TenantUncheckedCreateWithoutDamageAnalysesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDamageAnalysesInput = {
@@ -3085,6 +3131,7 @@ export type TenantUpdateWithoutDamageAnalysesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
@@ -3153,6 +3200,7 @@ export type TenantUncheckedUpdateWithoutDamageAnalysesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDamageItemsInput = {
@@ -3221,6 +3269,7 @@ export type TenantCreateWithoutDamageItemsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDamageItemsInput = {
@@ -3289,6 +3338,7 @@ export type TenantUncheckedCreateWithoutDamageItemsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDamageItemsInput = {
@@ -3373,6 +3423,7 @@ export type TenantUpdateWithoutDamageItemsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDamageItemsInput = {
@@ -3441,6 +3492,7 @@ export type TenantUncheckedUpdateWithoutDamageItemsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInsuranceGapAnalysesInput = {
@@ -3509,6 +3561,7 @@ export type TenantCreateWithoutInsuranceGapAnalysesInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInsuranceGapAnalysesInput = {
@@ -3577,6 +3630,7 @@ export type TenantUncheckedCreateWithoutInsuranceGapAnalysesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInsuranceGapAnalysesInput = {
@@ -3661,6 +3715,7 @@ export type TenantUpdateWithoutInsuranceGapAnalysesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
@@ -3729,6 +3784,7 @@ export type TenantUncheckedUpdateWithoutInsuranceGapAnalysesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInsuranceGapItemsInput = {
@@ -3797,6 +3853,7 @@ export type TenantCreateWithoutInsuranceGapItemsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInsuranceGapItemsInput = {
@@ -3865,6 +3922,7 @@ export type TenantUncheckedCreateWithoutInsuranceGapItemsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInsuranceGapItemsInput = {
@@ -3949,6 +4007,7 @@ export type TenantUpdateWithoutInsuranceGapItemsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInsuranceGapItemsInput = {
@@ -4017,6 +4076,7 @@ export type TenantUncheckedUpdateWithoutInsuranceGapItemsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInsuranceGapSuggestionsInput = {
@@ -4085,6 +4145,7 @@ export type TenantCreateWithoutInsuranceGapSuggestionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInsuranceGapSuggestionsInput = {
@@ -4153,6 +4214,7 @@ export type TenantUncheckedCreateWithoutInsuranceGapSuggestionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInsuranceGapSuggestionsInput = {
@@ -4237,6 +4299,7 @@ export type TenantUpdateWithoutInsuranceGapSuggestionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInsuranceGapSuggestionsInput = {
@@ -4305,6 +4368,7 @@ export type TenantUncheckedUpdateWithoutInsuranceGapSuggestionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartsInput = {
@@ -4373,6 +4437,7 @@ export type TenantCreateWithoutPartsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartsInput = {
@@ -4441,6 +4506,7 @@ export type TenantUncheckedCreateWithoutPartsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartsInput = {
@@ -4525,6 +4591,7 @@ export type TenantUpdateWithoutPartsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartsInput = {
@@ -4593,6 +4660,7 @@ export type TenantUncheckedUpdateWithoutPartsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSupplierOrdersInput = {
@@ -4661,6 +4729,7 @@ export type TenantCreateWithoutSupplierOrdersInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
@@ -4729,6 +4798,7 @@ export type TenantUncheckedCreateWithoutSupplierOrdersInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSupplierOrdersInput = {
@@ -4813,6 +4883,7 @@ export type TenantUpdateWithoutSupplierOrdersInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
@@ -4881,6 +4952,7 @@ export type TenantUncheckedUpdateWithoutSupplierOrdersInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutLoanerCarsInput = {
@@ -4949,6 +5021,7 @@ export type TenantCreateWithoutLoanerCarsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutLoanerCarsInput = {
@@ -5017,6 +5090,7 @@ export type TenantUncheckedCreateWithoutLoanerCarsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutLoanerCarsInput = {
@@ -5101,6 +5175,7 @@ export type TenantUpdateWithoutLoanerCarsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
@@ -5169,6 +5244,7 @@ export type TenantUncheckedUpdateWithoutLoanerCarsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutLoanerCarPhotosInput = {
@@ -5237,6 +5313,7 @@ export type TenantCreateWithoutLoanerCarPhotosInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutLoanerCarPhotosInput = {
@@ -5305,6 +5382,7 @@ export type TenantUncheckedCreateWithoutLoanerCarPhotosInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutLoanerCarPhotosInput = {
@@ -5389,6 +5467,7 @@ export type TenantUpdateWithoutLoanerCarPhotosInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutLoanerCarPhotosInput = {
@@ -5457,6 +5536,7 @@ export type TenantUncheckedUpdateWithoutLoanerCarPhotosInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutLoanerBookingsInput = {
@@ -5525,6 +5605,7 @@ export type TenantCreateWithoutLoanerBookingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutLoanerBookingsInput = {
@@ -5593,6 +5674,7 @@ export type TenantUncheckedCreateWithoutLoanerBookingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutLoanerBookingsInput = {
@@ -5677,6 +5759,7 @@ export type TenantUpdateWithoutLoanerBookingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutLoanerBookingsInput = {
@@ -5745,6 +5828,7 @@ export type TenantUncheckedUpdateWithoutLoanerBookingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutLoanerBookingPhotosInput = {
@@ -5813,6 +5897,7 @@ export type TenantCreateWithoutLoanerBookingPhotosInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutLoanerBookingPhotosInput = {
@@ -5881,6 +5966,7 @@ export type TenantUncheckedCreateWithoutLoanerBookingPhotosInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutLoanerBookingPhotosInput = {
@@ -5965,6 +6051,7 @@ export type TenantUpdateWithoutLoanerBookingPhotosInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutLoanerBookingPhotosInput = {
@@ -6033,6 +6120,7 @@ export type TenantUncheckedUpdateWithoutLoanerBookingPhotosInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAppointmentsInput = {
@@ -6101,6 +6189,7 @@ export type TenantCreateWithoutAppointmentsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAppointmentsInput = {
@@ -6169,6 +6258,7 @@ export type TenantUncheckedCreateWithoutAppointmentsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAppointmentsInput = {
@@ -6253,6 +6343,7 @@ export type TenantUpdateWithoutAppointmentsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAppointmentsInput = {
@@ -6321,6 +6412,7 @@ export type TenantUncheckedUpdateWithoutAppointmentsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSinistriInput = {
@@ -6389,6 +6481,7 @@ export type TenantCreateWithoutSinistriInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSinistriInput = {
@@ -6457,6 +6550,7 @@ export type TenantUncheckedCreateWithoutSinistriInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSinistriInput = {
@@ -6541,6 +6635,7 @@ export type TenantUpdateWithoutSinistriInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSinistriInput = {
@@ -6609,6 +6704,7 @@ export type TenantUncheckedUpdateWithoutSinistriInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPortalAccessesInput = {
@@ -6677,6 +6773,7 @@ export type TenantCreateWithoutPortalAccessesInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPortalAccessesInput = {
@@ -6745,6 +6842,7 @@ export type TenantUncheckedCreateWithoutPortalAccessesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPortalAccessesInput = {
@@ -6829,6 +6927,7 @@ export type TenantUpdateWithoutPortalAccessesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
@@ -6897,6 +6996,7 @@ export type TenantUncheckedUpdateWithoutPortalAccessesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPortalActionsInput = {
@@ -6965,6 +7065,7 @@ export type TenantCreateWithoutPortalActionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPortalActionsInput = {
@@ -7033,6 +7134,7 @@ export type TenantUncheckedCreateWithoutPortalActionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPortalActionsInput = {
@@ -7117,6 +7219,7 @@ export type TenantUpdateWithoutPortalActionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPortalActionsInput = {
@@ -7185,6 +7288,7 @@ export type TenantUncheckedUpdateWithoutPortalActionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWorkOrdersInput = {
@@ -7253,6 +7357,7 @@ export type TenantCreateWithoutWorkOrdersInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWorkOrdersInput = {
@@ -7321,6 +7426,7 @@ export type TenantUncheckedCreateWithoutWorkOrdersInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWorkOrdersInput = {
@@ -7405,6 +7511,7 @@ export type TenantUpdateWithoutWorkOrdersInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWorkOrdersInput = {
@@ -7473,6 +7580,7 @@ export type TenantUncheckedUpdateWithoutWorkOrdersInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWorkOrderTimeEntriesInput = {
@@ -7541,6 +7649,7 @@ export type TenantCreateWithoutWorkOrderTimeEntriesInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
@@ -7609,6 +7718,7 @@ export type TenantUncheckedCreateWithoutWorkOrderTimeEntriesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWorkOrderTimeEntriesInput = {
@@ -7693,6 +7803,7 @@ export type TenantUpdateWithoutWorkOrderTimeEntriesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
@@ -7761,6 +7872,7 @@ export type TenantUncheckedUpdateWithoutWorkOrderTimeEntriesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWorkOrderEventiInput = {
@@ -7829,6 +7941,7 @@ export type TenantCreateWithoutWorkOrderEventiInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWorkOrderEventiInput = {
@@ -7897,6 +8010,7 @@ export type TenantUncheckedCreateWithoutWorkOrderEventiInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWorkOrderEventiInput = {
@@ -7981,6 +8095,7 @@ export type TenantUpdateWithoutWorkOrderEventiInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWorkOrderEventiInput = {
@@ -8049,6 +8164,7 @@ export type TenantUncheckedUpdateWithoutWorkOrderEventiInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPortalDocumentsInput = {
@@ -8117,6 +8233,7 @@ export type TenantCreateWithoutPortalDocumentsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPortalDocumentsInput = {
@@ -8185,6 +8302,7 @@ export type TenantUncheckedCreateWithoutPortalDocumentsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPortalDocumentsInput = {
@@ -8269,6 +8387,7 @@ export type TenantUpdateWithoutPortalDocumentsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPortalDocumentsInput = {
@@ -8337,6 +8456,7 @@ export type TenantUncheckedUpdateWithoutPortalDocumentsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAiAnalysesInput = {
@@ -8405,6 +8525,7 @@ export type TenantCreateWithoutAiAnalysesInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAiAnalysesInput = {
@@ -8473,6 +8594,7 @@ export type TenantUncheckedCreateWithoutAiAnalysesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAiAnalysesInput = {
@@ -8557,6 +8679,7 @@ export type TenantUpdateWithoutAiAnalysesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
@@ -8625,6 +8748,7 @@ export type TenantUncheckedUpdateWithoutAiAnalysesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAssistantLogsInput = {
@@ -8693,6 +8817,7 @@ export type TenantCreateWithoutAssistantLogsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAssistantLogsInput = {
@@ -8761,6 +8886,7 @@ export type TenantUncheckedCreateWithoutAssistantLogsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAssistantLogsInput = {
@@ -8845,6 +8971,7 @@ export type TenantUpdateWithoutAssistantLogsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
@@ -8913,6 +9040,7 @@ export type TenantUncheckedUpdateWithoutAssistantLogsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutProfitRecordsInput = {
@@ -8981,6 +9109,7 @@ export type TenantCreateWithoutProfitRecordsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutProfitRecordsInput = {
@@ -9049,6 +9178,7 @@ export type TenantUncheckedCreateWithoutProfitRecordsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutProfitRecordsInput = {
@@ -9133,6 +9263,7 @@ export type TenantUpdateWithoutProfitRecordsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutProfitRecordsInput = {
@@ -9201,6 +9332,7 @@ export type TenantUncheckedUpdateWithoutProfitRecordsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutProfitSettingsInput = {
@@ -9269,6 +9401,7 @@ export type TenantCreateWithoutProfitSettingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutProfitSettingsInput = {
@@ -9337,6 +9470,7 @@ export type TenantUncheckedCreateWithoutProfitSettingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutProfitSettingsInput = {
@@ -9421,6 +9555,7 @@ export type TenantUpdateWithoutProfitSettingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutProfitSettingsInput = {
@@ -9489,6 +9624,7 @@ export type TenantUncheckedUpdateWithoutProfitSettingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelaySettingsInput = {
@@ -9557,6 +9693,7 @@ export type TenantCreateWithoutDelaySettingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelaySettingsInput = {
@@ -9625,6 +9762,7 @@ export type TenantUncheckedCreateWithoutDelaySettingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelaySettingsInput = {
@@ -9709,6 +9847,7 @@ export type TenantUpdateWithoutDelaySettingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelaySettingsInput = {
@@ -9777,6 +9916,7 @@ export type TenantUncheckedUpdateWithoutDelaySettingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelayPlansInput = {
@@ -9845,6 +9985,7 @@ export type TenantCreateWithoutDelayPlansInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelayPlansInput = {
@@ -9913,6 +10054,7 @@ export type TenantUncheckedCreateWithoutDelayPlansInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelayPlansInput = {
@@ -9997,6 +10139,7 @@ export type TenantUpdateWithoutDelayPlansInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelayPlansInput = {
@@ -10065,6 +10208,7 @@ export type TenantUncheckedUpdateWithoutDelayPlansInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelayForecastsInput = {
@@ -10133,6 +10277,7 @@ export type TenantCreateWithoutDelayForecastsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelayForecastsInput = {
@@ -10201,6 +10346,7 @@ export type TenantUncheckedCreateWithoutDelayForecastsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelayForecastsInput = {
@@ -10285,6 +10431,7 @@ export type TenantUpdateWithoutDelayForecastsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelayForecastsInput = {
@@ -10353,6 +10500,7 @@ export type TenantUncheckedUpdateWithoutDelayForecastsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDelayDecisionsInput = {
@@ -10421,6 +10569,7 @@ export type TenantCreateWithoutDelayDecisionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDelayDecisionsInput = {
@@ -10489,6 +10638,7 @@ export type TenantUncheckedCreateWithoutDelayDecisionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDelayDecisionsInput = {
@@ -10573,6 +10723,7 @@ export type TenantUpdateWithoutDelayDecisionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDelayDecisionsInput = {
@@ -10641,6 +10792,7 @@ export type TenantUncheckedUpdateWithoutDelayDecisionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutTrackedPartsInput = {
@@ -10709,6 +10861,7 @@ export type TenantCreateWithoutTrackedPartsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutTrackedPartsInput = {
@@ -10777,6 +10930,7 @@ export type TenantUncheckedCreateWithoutTrackedPartsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutTrackedPartsInput = {
@@ -10861,6 +11015,7 @@ export type TenantUpdateWithoutTrackedPartsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutTrackedPartsInput = {
@@ -10929,6 +11084,7 @@ export type TenantUncheckedUpdateWithoutTrackedPartsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartBlocksInput = {
@@ -10997,6 +11153,7 @@ export type TenantCreateWithoutPartBlocksInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartBlocksInput = {
@@ -11065,6 +11222,7 @@ export type TenantUncheckedCreateWithoutPartBlocksInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartBlocksInput = {
@@ -11149,6 +11307,7 @@ export type TenantUpdateWithoutPartBlocksInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartBlocksInput = {
@@ -11217,6 +11376,7 @@ export type TenantUncheckedUpdateWithoutPartBlocksInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutPartDocumentsInput = {
@@ -11285,6 +11445,7 @@ export type TenantCreateWithoutPartDocumentsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutPartDocumentsInput = {
@@ -11353,6 +11514,7 @@ export type TenantUncheckedCreateWithoutPartDocumentsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutPartDocumentsInput = {
@@ -11437,6 +11599,7 @@ export type TenantUpdateWithoutPartDocumentsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutPartDocumentsInput = {
@@ -11505,6 +11668,7 @@ export type TenantUncheckedUpdateWithoutPartDocumentsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWhatsappTemplatesInput = {
@@ -11573,6 +11737,7 @@ export type TenantCreateWithoutWhatsappTemplatesInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWhatsappTemplatesInput = {
@@ -11641,6 +11806,7 @@ export type TenantUncheckedCreateWithoutWhatsappTemplatesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWhatsappTemplatesInput = {
@@ -11725,6 +11891,7 @@ export type TenantUpdateWithoutWhatsappTemplatesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWhatsappTemplatesInput = {
@@ -11793,6 +11960,7 @@ export type TenantUncheckedUpdateWithoutWhatsappTemplatesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWhatsappMessagesInput = {
@@ -11861,6 +12029,7 @@ export type TenantCreateWithoutWhatsappMessagesInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWhatsappMessagesInput = {
@@ -11929,6 +12098,7 @@ export type TenantUncheckedCreateWithoutWhatsappMessagesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWhatsappMessagesInput = {
@@ -12013,6 +12183,7 @@ export type TenantUpdateWithoutWhatsappMessagesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWhatsappMessagesInput = {
@@ -12081,6 +12252,7 @@ export type TenantUncheckedUpdateWithoutWhatsappMessagesInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQcChecklistItemsInput = {
@@ -12149,6 +12321,7 @@ export type TenantCreateWithoutQcChecklistItemsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQcChecklistItemsInput = {
@@ -12217,6 +12390,7 @@ export type TenantUncheckedCreateWithoutQcChecklistItemsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQcChecklistItemsInput = {
@@ -12301,6 +12475,7 @@ export type TenantUpdateWithoutQcChecklistItemsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQcChecklistItemsInput = {
@@ -12369,6 +12544,7 @@ export type TenantUncheckedUpdateWithoutQcChecklistItemsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQcInspectionsInput = {
@@ -12437,6 +12613,7 @@ export type TenantCreateWithoutQcInspectionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQcInspectionsInput = {
@@ -12505,6 +12682,7 @@ export type TenantUncheckedCreateWithoutQcInspectionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQcInspectionsInput = {
@@ -12589,6 +12767,7 @@ export type TenantUpdateWithoutQcInspectionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQcInspectionsInput = {
@@ -12657,6 +12836,7 @@ export type TenantUncheckedUpdateWithoutQcInspectionsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQcCheckResultsInput = {
@@ -12725,6 +12905,7 @@ export type TenantCreateWithoutQcCheckResultsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQcCheckResultsInput = {
@@ -12793,6 +12974,7 @@ export type TenantUncheckedCreateWithoutQcCheckResultsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQcCheckResultsInput = {
@@ -12877,6 +13059,7 @@ export type TenantUpdateWithoutQcCheckResultsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQcCheckResultsInput = {
@@ -12945,6 +13128,7 @@ export type TenantUncheckedUpdateWithoutQcCheckResultsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQcNonConformitaInput = {
@@ -13013,6 +13197,7 @@ export type TenantCreateWithoutQcNonConformitaInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQcNonConformitaInput = {
@@ -13081,6 +13266,7 @@ export type TenantUncheckedCreateWithoutQcNonConformitaInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQcNonConformitaInput = {
@@ -13165,6 +13351,7 @@ export type TenantUpdateWithoutQcNonConformitaInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQcNonConformitaInput = {
@@ -13233,6 +13420,7 @@ export type TenantUncheckedUpdateWithoutQcNonConformitaInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutQcEventiInput = {
@@ -13301,6 +13489,7 @@ export type TenantCreateWithoutQcEventiInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutQcEventiInput = {
@@ -13369,6 +13558,7 @@ export type TenantUncheckedCreateWithoutQcEventiInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutQcEventiInput = {
@@ -13453,6 +13643,7 @@ export type TenantUpdateWithoutQcEventiInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutQcEventiInput = {
@@ -13521,6 +13712,7 @@ export type TenantUncheckedUpdateWithoutQcEventiInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBriefingSettingsInput = {
@@ -13589,6 +13781,7 @@ export type TenantCreateWithoutBriefingSettingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBriefingSettingsInput = {
@@ -13657,6 +13850,7 @@ export type TenantUncheckedCreateWithoutBriefingSettingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBriefingSettingsInput = {
@@ -13741,6 +13935,7 @@ export type TenantUpdateWithoutBriefingSettingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBriefingSettingsInput = {
@@ -13809,6 +14004,7 @@ export type TenantUncheckedUpdateWithoutBriefingSettingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBriefingsInput = {
@@ -13877,6 +14073,7 @@ export type TenantCreateWithoutBriefingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBriefingsInput = {
@@ -13945,6 +14142,7 @@ export type TenantUncheckedCreateWithoutBriefingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBriefingsInput = {
@@ -14029,6 +14227,7 @@ export type TenantUpdateWithoutBriefingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBriefingsInput = {
@@ -14097,6 +14296,7 @@ export type TenantUncheckedUpdateWithoutBriefingsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutNotificationsInput = {
@@ -14165,6 +14365,7 @@ export type TenantCreateWithoutNotificationsInput = {
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutNotificationsInput = {
@@ -14233,6 +14434,7 @@ export type TenantUncheckedCreateWithoutNotificationsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutNotificationsInput = {
@@ -14317,6 +14519,7 @@ export type TenantUpdateWithoutNotificationsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutNotificationsInput = {
@@ -14385,6 +14588,7 @@ export type TenantUncheckedUpdateWithoutNotificationsInput = {
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutGdprRichiesteInput = {
@@ -14453,6 +14657,7 @@ export type TenantCreateWithoutGdprRichiesteInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutGdprRichiesteInput = {
@@ -14521,6 +14726,7 @@ export type TenantUncheckedCreateWithoutGdprRichiesteInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutGdprRichiesteInput = {
@@ -14605,6 +14811,7 @@ export type TenantUpdateWithoutGdprRichiesteInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutGdprRichiesteInput = {
@@ -14673,6 +14880,7 @@ export type TenantUncheckedUpdateWithoutGdprRichiesteInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutTicketsInput = {
@@ -14741,6 +14949,7 @@ export type TenantCreateWithoutTicketsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutTicketsInput = {
@@ -14809,6 +15018,7 @@ export type TenantUncheckedCreateWithoutTicketsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutTicketsInput = {
@@ -14893,6 +15103,7 @@ export type TenantUpdateWithoutTicketsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutTicketsInput = {
@@ -14961,6 +15172,7 @@ export type TenantUncheckedUpdateWithoutTicketsInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutFeatureFlagOverrideInput = {
@@ -15029,6 +15241,7 @@ export type TenantCreateWithoutFeatureFlagOverrideInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutFeatureFlagOverrideInput = {
@@ -15097,6 +15310,7 @@ export type TenantUncheckedCreateWithoutFeatureFlagOverrideInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
+  usageEvents?: Prisma.UsageEventUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutFeatureFlagOverrideInput = {
@@ -15181,6 +15395,7 @@ export type TenantUpdateWithoutFeatureFlagOverrideInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutFeatureFlagOverrideInput = {
@@ -15249,6 +15464,299 @@ export type TenantUncheckedUpdateWithoutFeatureFlagOverrideInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
+  usageEvents?: Prisma.UsageEventUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutUsageEventsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  isDemo?: boolean
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  briefingSettings?: Prisma.BriefingSettingsCreateNestedOneWithoutTenantInput
+  briefings?: Prisma.BriefingReportCreateNestedManyWithoutTenantInput
+  delaySettings?: Prisma.DelaySettingsCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoCreateNestedManyWithoutTenantInput
+  loanerCarPhotos?: Prisma.LoanerCarPhotoCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingCreateNestedManyWithoutTenantInput
+  loanerBookingPhotos?: Prisma.LoanerBookingPhotoCreateNestedManyWithoutTenantInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
+  gdprRichieste?: Prisma.GdprRichiestaCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketCreateNestedManyWithoutTenantInput
+  featureFlagOverride?: Prisma.FeatureFlagTenantOverrideCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutUsageEventsInput = {
+  id?: string
+  ragioneSociale: string
+  partitaIva?: string | null
+  piano?: $Enums.Plan
+  trialEndsAt?: Date | string | null
+  isDemo?: boolean
+  limiteAnalisiIAMensile?: number | null
+  limiteAssistenteIAMensile?: number | null
+  stripeCustomerId?: string | null
+  stripeSubscriptionId?: string | null
+  subscriptionStatus?: $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Date | string | null
+  cancelAtPeriodEnd?: boolean
+  utentiExtra?: number
+  creditiAIAcquistati?: number
+  earlyAdopter?: boolean
+  consentiLavorazioniSimultanee?: boolean
+  createdAt?: Date | string
+  briefingSettings?: Prisma.BriefingSettingsUncheckedCreateNestedOneWithoutTenantInput
+  briefings?: Prisma.BriefingReportUncheckedCreateNestedManyWithoutTenantInput
+  delaySettings?: Prisma.DelaySettingsUncheckedCreateNestedOneWithoutTenantInput
+  delayPlans?: Prisma.DelayPlanUncheckedCreateNestedManyWithoutTenantInput
+  delayForecasts?: Prisma.DelayForecastUncheckedCreateNestedManyWithoutTenantInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedCreateNestedManyWithoutTenantInput
+  trackedParts?: Prisma.TrackedPartUncheckedCreateNestedManyWithoutTenantInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedCreateNestedManyWithoutTenantInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedCreateNestedManyWithoutTenantInput
+  profitRecords?: Prisma.ProfitRecordUncheckedCreateNestedManyWithoutTenantInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedCreateNestedOneWithoutTenantInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
+  vehicles?: Prisma.VehicleUncheckedCreateNestedManyWithoutTenantInput
+  quotes?: Prisma.QuoteUncheckedCreateNestedManyWithoutTenantInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutTenantInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutTenantInput
+  loanerCars?: Prisma.LoanerCarUncheckedCreateNestedManyWithoutTenantInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedCreateNestedManyWithoutTenantInput
+  sinistri?: Prisma.SinistroUncheckedCreateNestedManyWithoutTenantInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedCreateNestedManyWithoutTenantInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedCreateNestedManyWithoutTenantInput
+  portalAccesses?: Prisma.PortalAccessUncheckedCreateNestedManyWithoutTenantInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  damageItems?: Prisma.DamageItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedCreateNestedManyWithoutTenantInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedCreateNestedManyWithoutTenantInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedCreateNestedManyWithoutTenantInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedCreateNestedManyWithoutTenantInput
+  portalActions?: Prisma.PortalActionUncheckedCreateNestedManyWithoutTenantInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedCreateNestedManyWithoutTenantInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedCreateNestedManyWithoutTenantInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedCreateNestedManyWithoutTenantInput
+  qcInspections?: Prisma.QcInspectionUncheckedCreateNestedManyWithoutTenantInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedCreateNestedManyWithoutTenantInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedCreateNestedManyWithoutTenantInput
+  qcEventi?: Prisma.QcEventoUncheckedCreateNestedManyWithoutTenantInput
+  loanerCarPhotos?: Prisma.LoanerCarPhotoUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedCreateNestedManyWithoutTenantInput
+  loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedCreateNestedManyWithoutTenantInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedCreateNestedManyWithoutTenantInput
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutTenantInput
+  featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutUsageEventsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutUsageEventsInput, Prisma.TenantUncheckedCreateWithoutUsageEventsInput>
+}
+
+export type TenantUpsertWithoutUsageEventsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutUsageEventsInput, Prisma.TenantUncheckedUpdateWithoutUsageEventsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutUsageEventsInput, Prisma.TenantUncheckedCreateWithoutUsageEventsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutUsageEventsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutUsageEventsInput, Prisma.TenantUncheckedUpdateWithoutUsageEventsInput>
+}
+
+export type TenantUpdateWithoutUsageEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  briefingSettings?: Prisma.BriefingSettingsUpdateOneWithoutTenantNestedInput
+  briefings?: Prisma.BriefingReportUpdateManyWithoutTenantNestedInput
+  delaySettings?: Prisma.DelaySettingsUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUpdateManyWithoutTenantNestedInput
+  loanerCarPhotos?: Prisma.LoanerCarPhotoUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUpdateManyWithoutTenantNestedInput
+  loanerBookingPhotos?: Prisma.LoanerBookingPhotoUpdateManyWithoutTenantNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUpdateManyWithoutTenantNestedInput
+  featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutUsageEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ragioneSociale?: Prisma.StringFieldUpdateOperationsInput | string
+  partitaIva?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  piano?: Prisma.EnumPlanFieldUpdateOperationsInput | $Enums.Plan
+  trialEndsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isDemo?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  limiteAnalisiIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  limiteAssistenteIAMensile?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
+  fatturazionePeriodicita?: Prisma.EnumFatturazionePeriodicitaFieldUpdateOperationsInput | $Enums.FatturazionePeriodicita
+  currentPeriodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelAtPeriodEnd?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utentiExtra?: Prisma.IntFieldUpdateOperationsInput | number
+  creditiAIAcquistati?: Prisma.IntFieldUpdateOperationsInput | number
+  earlyAdopter?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  consentiLavorazioniSimultanee?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  briefingSettings?: Prisma.BriefingSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  briefings?: Prisma.BriefingReportUncheckedUpdateManyWithoutTenantNestedInput
+  delaySettings?: Prisma.DelaySettingsUncheckedUpdateOneWithoutTenantNestedInput
+  delayPlans?: Prisma.DelayPlanUncheckedUpdateManyWithoutTenantNestedInput
+  delayForecasts?: Prisma.DelayForecastUncheckedUpdateManyWithoutTenantNestedInput
+  delayDecisions?: Prisma.DelayDecisionUncheckedUpdateManyWithoutTenantNestedInput
+  trackedParts?: Prisma.TrackedPartUncheckedUpdateManyWithoutTenantNestedInput
+  partBlocks?: Prisma.VehiclePartBlockUncheckedUpdateManyWithoutTenantNestedInput
+  partDocuments?: Prisma.TrackedPartDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  profitRecords?: Prisma.ProfitRecordUncheckedUpdateManyWithoutTenantNestedInput
+  profitSettings?: Prisma.ProfitSettingsUncheckedUpdateOneWithoutTenantNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
+  vehicles?: Prisma.VehicleUncheckedUpdateManyWithoutTenantNestedInput
+  quotes?: Prisma.QuoteUncheckedUpdateManyWithoutTenantNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutTenantNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCars?: Prisma.LoanerCarUncheckedUpdateManyWithoutTenantNestedInput
+  supplierOrders?: Prisma.SupplierOrderUncheckedUpdateManyWithoutTenantNestedInput
+  sinistri?: Prisma.SinistroUncheckedUpdateManyWithoutTenantNestedInput
+  aiAnalyses?: Prisma.AiAnalysisLogUncheckedUpdateManyWithoutTenantNestedInput
+  assistantLogs?: Prisma.AiAssistantLogUncheckedUpdateManyWithoutTenantNestedInput
+  portalAccesses?: Prisma.PortalAccessUncheckedUpdateManyWithoutTenantNestedInput
+  damageAnalyses?: Prisma.DamageAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  damageItems?: Prisma.DamageItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapAnalyses?: Prisma.InsuranceGapAnalysisUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapItems?: Prisma.InsuranceGapItemUncheckedUpdateManyWithoutTenantNestedInput
+  insuranceGapSuggestions?: Prisma.InsuranceGapSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappTemplates?: Prisma.WhatsappTemplateUncheckedUpdateManyWithoutTenantNestedInput
+  whatsappMessages?: Prisma.WhatsappMessageUncheckedUpdateManyWithoutTenantNestedInput
+  portalActions?: Prisma.PortalActionUncheckedUpdateManyWithoutTenantNestedInput
+  portalDocuments?: Prisma.PortalDocumentUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderTimeEntries?: Prisma.WorkOrderTimeEntryUncheckedUpdateManyWithoutTenantNestedInput
+  workOrderEventi?: Prisma.WorkOrderEventoUncheckedUpdateManyWithoutTenantNestedInput
+  qcChecklistItems?: Prisma.QcChecklistItemUncheckedUpdateManyWithoutTenantNestedInput
+  qcInspections?: Prisma.QcInspectionUncheckedUpdateManyWithoutTenantNestedInput
+  qcCheckResults?: Prisma.QcCheckResultUncheckedUpdateManyWithoutTenantNestedInput
+  qcNonConformita?: Prisma.QcNonConformitaUncheckedUpdateManyWithoutTenantNestedInput
+  qcEventi?: Prisma.QcEventoUncheckedUpdateManyWithoutTenantNestedInput
+  loanerCarPhotos?: Prisma.LoanerCarPhotoUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookings?: Prisma.LoanerBookingUncheckedUpdateManyWithoutTenantNestedInput
+  loanerBookingPhotos?: Prisma.LoanerBookingPhotoUncheckedUpdateManyWithoutTenantNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
+  gdprRichieste?: Prisma.GdprRichiestaUncheckedUpdateManyWithoutTenantNestedInput
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutTenantNestedInput
+  featureFlagOverride?: Prisma.FeatureFlagTenantOverrideUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 
@@ -15301,6 +15809,7 @@ export type TenantCountOutputType = {
   gdprRichieste: number
   tickets: number
   featureFlagOverride: number
+  usageEvents: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -15348,6 +15857,7 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   gdprRichieste?: boolean | TenantCountOutputTypeCountGdprRichiesteArgs
   tickets?: boolean | TenantCountOutputTypeCountTicketsArgs
   featureFlagOverride?: boolean | TenantCountOutputTypeCountFeatureFlagOverrideArgs
+  usageEvents?: boolean | TenantCountOutputTypeCountUsageEventsArgs
 }
 
 /**
@@ -15668,6 +16178,13 @@ export type TenantCountOutputTypeCountFeatureFlagOverrideArgs<ExtArgs extends ru
   where?: Prisma.FeatureFlagTenantOverrideWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountUsageEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UsageEventWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -15736,6 +16253,7 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   gdprRichieste?: boolean | Prisma.Tenant$gdprRichiesteArgs<ExtArgs>
   tickets?: boolean | Prisma.Tenant$ticketsArgs<ExtArgs>
   featureFlagOverride?: boolean | Prisma.Tenant$featureFlagOverrideArgs<ExtArgs>
+  usageEvents?: boolean | Prisma.Tenant$usageEventsArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -15854,6 +16372,7 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   gdprRichieste?: boolean | Prisma.Tenant$gdprRichiesteArgs<ExtArgs>
   tickets?: boolean | Prisma.Tenant$ticketsArgs<ExtArgs>
   featureFlagOverride?: boolean | Prisma.Tenant$featureFlagOverrideArgs<ExtArgs>
+  usageEvents?: boolean | Prisma.Tenant$usageEventsArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -15909,6 +16428,7 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     gdprRichieste: Prisma.$GdprRichiestaPayload<ExtArgs>[]
     tickets: Prisma.$TicketPayload<ExtArgs>[]
     featureFlagOverride: Prisma.$FeatureFlagTenantOverridePayload<ExtArgs>[]
+    usageEvents: Prisma.$UsageEventPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -16371,6 +16891,7 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   gdprRichieste<T extends Prisma.Tenant$gdprRichiesteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$gdprRichiesteArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GdprRichiestaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tickets<T extends Prisma.Tenant$ticketsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   featureFlagOverride<T extends Prisma.Tenant$featureFlagOverrideArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$featureFlagOverrideArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FeatureFlagTenantOverridePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  usageEvents<T extends Prisma.Tenant$usageEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$usageEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UsageEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -17922,6 +18443,30 @@ export type Tenant$featureFlagOverrideArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.FeatureFlagTenantOverrideScalarFieldEnum | Prisma.FeatureFlagTenantOverrideScalarFieldEnum[]
+}
+
+/**
+ * Tenant.usageEvents
+ */
+export type Tenant$usageEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UsageEvent
+   */
+  select?: Prisma.UsageEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UsageEvent
+   */
+  omit?: Prisma.UsageEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsageEventInclude<ExtArgs> | null
+  where?: Prisma.UsageEventWhereInput
+  orderBy?: Prisma.UsageEventOrderByWithRelationInput | Prisma.UsageEventOrderByWithRelationInput[]
+  cursor?: Prisma.UsageEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UsageEventScalarFieldEnum | Prisma.UsageEventScalarFieldEnum[]
 }
 
 /**

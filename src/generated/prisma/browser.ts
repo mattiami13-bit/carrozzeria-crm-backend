@@ -342,3 +342,8 @@ export type FeatureFlag = Prisma.FeatureFlagModel
  * 
  */
 export type FeatureFlagTenantOverride = Prisma.FeatureFlagTenantOverrideModel
+/**
+ * Model UsageEvent
+ * 
+ */
+export type UsageEvent = Prisma.UsageEventModel

@@ -4,6 +4,7 @@ import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
 import { creaNotificaRuoli } from "../lib/notificheInApp.js";
 import { readPhotoImage } from "../lib/photo-timeline-service.js";
+import { limiteAnalisiIA, contaAnalisiIAQuestoMese, segnalaUsoAnalisiIA } from "../lib/aiUsage.js";
 
 // AI Damage Assistant: modulo nuovo e separato dalla vecchia "Stima danni
 // IA" (Vehicle.stimaIA, vedi vehicles.js POST /:id/analizza-danni), che
@@ -22,20 +23,8 @@ const TIPO_VOCE_VALUES = ["MANODOPERA", "RICAMBIO", "VERNICE", "ALTRO"];
 
 // Stessa quota/piano della vecchia "Stima danni IA": è la stessa risorsa
 // (analisi foto via IA), quindi condivide il contatore AiAnalysisLog e il
-// campo Tenant.limiteAnalisiIAMensile invece di introdurne uno nuovo.
-const LIMITE_ANALISI_IA_DEFAULT = {
-  TRIAL: 5,
-  STARTER: 20,
-  PRO: 100,
-  PREMIUM_AI: 500,
-};
-
-async function contaAnalisiIAQuestoMese(tenantId) {
-  const inizioMese = new Date();
-  inizioMese.setDate(1);
-  inizioMese.setHours(0, 0, 0, 0);
-  return prisma.aiAnalysisLog.count({ where: { tenantId, createdAt: { gte: inizioMese } } });
-}
+// campo Tenant.limiteAnalisiIAMensile invece di introdurne uno nuovo —
+// vedi lib/aiUsage.js (punto 40) per la fonte unica di questi limiti.
 
 const voceSchema = z.object({
   tipo: z.enum(TIPO_VOCE_VALUES),
@@ -86,7 +75,7 @@ damageAssistantRouter.post("/analizza", async (req, res) => {
   }
 
   const tenant = await prisma.tenant.findUnique({ where: { id: tenantId } });
-  const limite = tenant.limiteAnalisiIAMensile ?? LIMITE_ANALISI_IA_DEFAULT[tenant.piano] ?? 0;
+  const limite = limiteAnalisiIA(tenant);
   const usate = await contaAnalisiIAQuestoMese(tenantId);
   if (usate >= limite) {
     return res.status(429).json({
@@ -212,6 +201,8 @@ Questa è solo una prima valutazione automatica di supporto: l'operatore la rive
 
     return tx.damageAnalysis.findUnique({ where: { id: created.id }, include: { items: { orderBy: { createdAt: "asc" } } } });
   });
+
+  segnalaUsoAnalisiIA(tenant, usate + 1).catch(() => {});
 
   creaNotificaRuoli({
     tenantId,

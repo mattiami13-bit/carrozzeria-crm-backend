@@ -1,13 +1,8 @@
 import { Resend } from "resend";
-import twilio from "twilio";
 import { getPortalLink } from "./portaleHelper.js";
+import { prisma } from "./prisma.js";
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
-
-const twilioClient =
-  process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN
-    ? twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
-    : null;
 
 // Messaggi personalizzati per ogni stato che vogliamo comunicare al cliente.
 // Tutti gli stage del ciclo di lavorazione sono presenti in questa mappa:
@@ -54,8 +49,20 @@ const OGGETTO_EMAIL = {
 };
 
 /**
- * Invia una notifica email + WhatsApp al cliente quando il veicolo
- * cambia stato, solo per gli stati presenti in MESSAGGI_STAGE.
+ * Invia una notifica email al cliente quando il veicolo cambia stato,
+ * solo per gli stati presenti in MESSAGGI_STAGE.
+ *
+ * Punto 40 (usage tracking): trovato e corretto un invio WhatsApp
+ * duplicato qui — questa funzione mandava un secondo messaggio WhatsApp
+ * (via un client Twilio proprio, senza tracciamento né controllo
+ * dell'entitlement di piano) per lo STESSO cambio di stato per cui
+ * routes/vehicles.js e routes/quotes.js chiamano già
+ * inviaComunicazioneWhatsapp (lib/whatsapp.js), che è la versione
+ * corretta: usa i template WhatsappTemplate reali, rispetta le
+ * preferenze di notifica del cliente, e scrive una riga WhatsappMessage
+ * tracciata. Ogni cliente riceveva quindi due WhatsApp per ogni cambio
+ * di stato, e il secondo costava una chiamata Twilio reale mai visibile
+ * da nessuna parte. Ora questa funzione gestisce solo l'email.
  *
  * @param {object} vehicle - il veicolo aggiornato, con relazione client inclusa
  * @param {string} newStage - il nuovo stato (es. "PRONTA_CONSEGNA")
@@ -79,39 +86,23 @@ export async function enqueueNotification(vehicle, newStage, baseUrl) {
     targa: vehicle.targa,
     link,
   });
-  // --- EMAIL ---
   if (client.email && resend) {
     try {
-  const { data, error } = await resend.emails.send({
-    from: "Rifless <notifiche@rifless.it>",
-    to: client.email,
-    subject: OGGETTO_EMAIL[newStage] || "Aggiornamento veicolo",
-    text: testo,
-  });
-  if (error) {
-    console.error(`[notifiche] Errore invio email a ${client.email}:`, JSON.stringify(error));
-  } else {
-    console.log(`[notifiche] Email inviata a ${client.email} (stage ${newStage}), id: ${data?.id}`);
-  }
-} catch (err) {
-  console.error(`[notifiche] Errore invio email a ${client.email}:`, err.message);
-}
-  }
-
-  // --- WHATSAPP ---
-  if (client.telefono && twilioClient && process.env.TWILIO_WHATSAPP_NUMBER) {
-    try {
-      // Normalizza il numero: deve essere in formato internazionale (es. +393331234567)
-      const numero = client.telefono.startsWith("+") ? client.telefono : `+39${client.telefono.replace(/\D/g, "")}`;
-  await twilioClient.messages.create({
-  from: process.env.TWILIO_WHATSAPP_NUMBER,
-  to: `whatsapp:${numero}`,
-  contentSid: "HXd35dced652dac1e2a55e7838bed5aff0",
-  contentVariables: JSON.stringify({ "1": testo }),
-});
-      console.log(`[notifiche] WhatsApp inviato a ${numero} (stage ${newStage})`);
+      const { data, error } = await resend.emails.send({
+        from: "Rifless <notifiche@rifless.it>",
+        to: client.email,
+        subject: OGGETTO_EMAIL[newStage] || "Aggiornamento veicolo",
+        text: testo,
+      });
+      if (error) {
+        console.error(`[notifiche] Errore invio email a ${client.email}:`, JSON.stringify(error));
+      } else {
+        console.log(`[notifiche] Email inviata a ${client.email} (stage ${newStage}), id: ${data?.id}`);
+        await prisma.usageEvent.create({ data: { tenantId: vehicle.tenantId, tipo: "EMAIL", dettaglio: `stage:${newStage}` } })
+          .catch((err) => console.error("[usage] Log email fallito:", err.message));
+      }
     } catch (err) {
-      console.error(`[notifiche] Errore invio WhatsApp a ${client.telefono}:`, err.message);
+      console.error(`[notifiche] Errore invio email a ${client.email}:`, err.message);
     }
   }
 }
@@ -141,6 +132,8 @@ export async function inviaLinkPortale(vehicle, link) {
       console.error(`[notifiche] Errore invio link portale a ${client.email}:`, JSON.stringify(error));
     } else {
       console.log(`[notifiche] Link portale inviato a ${client.email}, id: ${data?.id}`);
+      await prisma.usageEvent.create({ data: { tenantId: vehicle.tenantId, tipo: "EMAIL", dettaglio: "link-portale" } })
+        .catch((err) => console.error("[usage] Log email fallito:", err.message));
     }
   } catch (err) {
     console.error(`[notifiche] Errore invio link portale a ${client.email}:`, err.message);

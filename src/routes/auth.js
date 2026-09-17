@@ -79,7 +79,7 @@ authRouter.post("/register", registerLimiter, async (req, res) => {
   // non deve mai impedire la creazione dell'account.
   const baseUrl = `${req.protocol}://${req.get("host")}`;
   const verificaUrl = `${baseUrl}/verifica-email/?token=${emailVerificaToken}`;
-  inviaEmailBenvenuto({ email, nome: nomeAdmin, ragioneSociale, verificaUrl }).catch((err) =>
+  inviaEmailBenvenuto({ email, nome: nomeAdmin, ragioneSociale, verificaUrl, tenantId: tenant.id }).catch((err) =>
     console.error("[auth] Errore invio email di benvenuto:", err.message)
   );
 
@@ -161,7 +161,7 @@ async function rigeneraEInviaVerifica(user, req) {
 
   const baseUrl = `${req.protocol}://${req.get("host")}`;
   const verificaUrl = `${baseUrl}/verifica-email/?token=${emailVerificaToken}`;
-  return inviaEmailVerifica({ email: user.email, nome: user.nome, verificaUrl });
+  return inviaEmailVerifica({ email: user.email, nome: user.nome, verificaUrl, tenantId: user.tenantId });
 }
 
 // Permette di richiedere una nuova email di verifica se la precedente è
@@ -217,7 +217,7 @@ authRouter.post("/password-dimenticata", emailActionLimiter, async (req, res) =>
 
     const baseUrl = `${req.protocol}://${req.get("host")}`;
     const resetUrl = `${baseUrl}/reset-password/?token=${resetPasswordToken}`;
-    inviaEmailResetPassword({ email: user.email, nome: user.nome, resetUrl }).catch((err) =>
+    inviaEmailResetPassword({ email: user.email, nome: user.nome, resetUrl, tenantId: user.tenantId }).catch((err) =>
       console.error("[auth] Errore invio email reset password:", err.message)
     );
   }

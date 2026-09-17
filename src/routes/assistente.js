@@ -2,26 +2,10 @@ import { Router } from "express";
 import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
+import { limiteAssistente, contaDomandeAssistenteQuestoMese, segnalaUsoAssistente } from "../lib/aiUsage.js";
 
 export const assistenteRouter = Router();
 assistenteRouter.use(requireAuth);
-
-// -----------------------------
-// Limiti mensili (separati da quelli delle analisi foto danni, Fase 7)
-// -----------------------------
-const LIMITE_ASSISTENTE_DEFAULT = {
-  TRIAL: 20,
-  STARTER: 100,
-  PRO: 500,
-  PREMIUM_AI: 2000,
-};
-
-async function contaDomandeQuestoMese(tenantId) {
-  const inizioMese = new Date();
-  inizioMese.setDate(1);
-  inizioMese.setHours(0, 0, 0, 0);
-  return prisma.aiAssistantLog.count({ where: { tenantId, createdAt: { gte: inizioMese } } });
-}
 
 // -----------------------------
 // "Strumenti" che il modello può usare per leggere i dati reali del
@@ -254,8 +238,8 @@ assistenteRouter.post("/chiedi", async (req, res) => {
   }
 
   const tenant = await prisma.tenant.findUnique({ where: { id: tenantId } });
-  const limite = tenant.limiteAssistenteIAMensile ?? LIMITE_ASSISTENTE_DEFAULT[tenant.piano] ?? 0;
-  const usate = await contaDomandeQuestoMese(tenantId);
+  const limite = limiteAssistente(tenant);
+  const usate = await contaDomandeAssistenteQuestoMese(tenantId);
   if (usate >= limite) {
     return res.status(429).json({
       error: `Hai raggiunto il limite di ${limite} domande incluse nel tuo piano questo mese (${usate} usate). Contattaci per un upgrade del piano.`,
@@ -298,6 +282,7 @@ assistenteRouter.post("/chiedi", async (req, res) => {
       if (data.stop_reason !== "tool_use") {
         const testo = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n").trim();
         await prisma.aiAssistantLog.create({ data: { tenantId, domanda: parsed.data.domanda.slice(0, 300) } });
+        segnalaUsoAssistente(tenant, usate + 1).catch(() => {});
         return res.json({ risposta: testo || "Non sono riuscito a formulare una risposta, riprova." });
       }
 
@@ -329,7 +314,7 @@ assistenteRouter.post("/chiedi", async (req, res) => {
 assistenteRouter.get("/utilizzo", async (req, res) => {
   const { tenantId } = tenantScope(req);
   const tenant = await prisma.tenant.findUnique({ where: { id: tenantId } });
-  const limite = tenant.limiteAssistenteIAMensile ?? LIMITE_ASSISTENTE_DEFAULT[tenant.piano] ?? 0;
-  const usate = await contaDomandeQuestoMese(tenantId);
+  const limite = limiteAssistente(tenant);
+  const usate = await contaDomandeAssistenteQuestoMese(tenantId);
   res.json({ usate, limite, piano: tenant.piano });
 });

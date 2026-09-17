@@ -40,6 +40,7 @@ supportRouter.post("/ticket", async (req, res) => {
     priorita: ticket.priorita,
     messaggio: ticket.messaggio,
     utente: `${ticket.user.nome} ${ticket.user.cognome}`,
+    tenantId: ticket.tenantId,
   }).catch((err) => {
     console.error(`[support] Notifica email fallita per ticket ${ticket.id}:`, err.message);
   });

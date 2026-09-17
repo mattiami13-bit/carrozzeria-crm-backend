@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { prisma } from "./prisma.js";
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 const MITTENTE = "Rifless <notifiche@rifless.it>";
@@ -33,7 +34,16 @@ function layoutEmail({ titolo, corpoHtml, ctaLabel, ctaUrl }) {
 </html>`;
 }
 
-async function inviaConRetry({ to, subject, html, text }, tentativi = 2) {
+// Punto 40 (usage tracking): un UsageEvent per ogni email davvero
+// tentata (non quando RESEND_API_KEY manca e non si tenta nulla — quel
+// caso è solo sviluppo/test locale, non uso reale). tenantId è
+// opzionale: alcune email (lead commerciali) non riguardano un tenant.
+async function registraUsoEmail(tenantId, subject) {
+  await prisma.usageEvent.create({ data: { tenantId: tenantId ?? undefined, tipo: "EMAIL", dettaglio: subject } })
+    .catch((err) => console.error("[usage] Log email fallito:", err.message));
+}
+
+async function inviaConRetry({ to, subject, html, text, tenantId }, tentativi = 2) {
   if (!resend) {
     console.warn(`[email] RESEND_API_KEY assente, email non inviata a ${to} (${subject})`);
     return { ok: false, motivo: "provider non configurato" };
@@ -44,6 +54,7 @@ async function inviaConRetry({ to, subject, html, text }, tentativi = 2) {
       const { data, error } = await resend.emails.send({ from: MITTENTE, to, subject, html, text });
       if (error) throw new Error(JSON.stringify(error));
       console.log(`[email] Inviata a ${to} (${subject}), id: ${data?.id}, tentativo ${tentativo}`);
+      await registraUsoEmail(tenantId, subject);
       return { ok: true, id: data?.id };
     } catch (err) {
       ultimoErrore = err;
@@ -51,10 +62,11 @@ async function inviaConRetry({ to, subject, html, text }, tentativi = 2) {
       if (tentativo < tentativi) await new Promise((r) => setTimeout(r, 500 * tentativo));
     }
   }
+  await registraUsoEmail(tenantId, subject);
   return { ok: false, motivo: ultimoErrore?.message };
 }
 
-export async function inviaEmailBenvenuto({ email, nome, ragioneSociale, verificaUrl }) {
+export async function inviaEmailBenvenuto({ email, nome, ragioneSociale, verificaUrl, tenantId }) {
   const html = layoutEmail({
     titolo: `Benvenuto su Rifless, ${nome}`,
     corpoHtml: `<p>L'account per <strong>${ragioneSociale}</strong> è stato creato. Prima di iniziare, conferma il tuo indirizzo email cliccando il pulsante qui sotto.</p>`,
@@ -62,10 +74,10 @@ export async function inviaEmailBenvenuto({ email, nome, ragioneSociale, verific
     ctaUrl: verificaUrl,
   });
   const text = `Benvenuto su Rifless, ${nome}. L'account per ${ragioneSociale} è stato creato. Verifica la tua email: ${verificaUrl}`;
-  return inviaConRetry({ to: email, subject: "Benvenuto su Rifless — verifica la tua email", html, text });
+  return inviaConRetry({ to: email, subject: "Benvenuto su Rifless — verifica la tua email", html, text, tenantId });
 }
 
-export async function inviaEmailVerifica({ email, nome, verificaUrl }) {
+export async function inviaEmailVerifica({ email, nome, verificaUrl, tenantId }) {
   const html = layoutEmail({
     titolo: "Verifica la tua email",
     corpoHtml: `<p>Ciao ${nome}, conferma il tuo indirizzo email per completare l'attivazione dell'account Rifless.</p>`,
@@ -73,7 +85,7 @@ export async function inviaEmailVerifica({ email, nome, verificaUrl }) {
     ctaUrl: verificaUrl,
   });
   const text = `Ciao ${nome}, verifica la tua email: ${verificaUrl}`;
-  return inviaConRetry({ to: email, subject: "Verifica la tua email Rifless", html, text });
+  return inviaConRetry({ to: email, subject: "Verifica la tua email Rifless", html, text, tenantId });
 }
 
 // Destinatario interno per lead commerciali (contatti, richieste demo):
@@ -108,7 +120,7 @@ const CATEGORIA_LABEL = { SUPPORTO: "Richiesta di supporto", BUG: "Segnalazione 
 // Punto 37 (supporto cliente): notifica interna best-effort per ogni
 // nuovo ticket, stesso destinatario dei lead commerciali — non è un
 // pubblico diverso, è sempre chi gestisce la piattaforma.
-export async function inviaNotificaTicket({ ragioneSociale, categoria, priorita, messaggio, utente }) {
+export async function inviaNotificaTicket({ ragioneSociale, categoria, priorita, messaggio, utente, tenantId }) {
   const titolo = `${CATEGORIA_LABEL[categoria] || "Nuovo ticket"} — ${ragioneSociale}`;
   const righe = [
     `Carrozzeria: ${ragioneSociale}`,
@@ -120,10 +132,10 @@ export async function inviaNotificaTicket({ ragioneSociale, categoria, priorita,
     titolo,
     corpoHtml: `<p>${righe.map((r) => r.replace(/</g, "&lt;")).join("<br>")}</p>`,
   });
-  return inviaConRetry({ to: DESTINATARIO_LEAD, subject: titolo, html, text: righe.join("\n") });
+  return inviaConRetry({ to: DESTINATARIO_LEAD, subject: titolo, html, text: righe.join("\n"), tenantId });
 }
 
-export async function inviaEmailResetPassword({ email, nome, resetUrl }) {
+export async function inviaEmailResetPassword({ email, nome, resetUrl, tenantId }) {
   const html = layoutEmail({
     titolo: "Reimposta la password",
     corpoHtml: `<p>Ciao ${nome}, abbiamo ricevuto una richiesta di reset della password del tuo account Rifless. Il link è valido per 1 ora. Se non sei stato tu, ignora questa email: la password attuale resta invariata.</p>`,
@@ -131,5 +143,5 @@ export async function inviaEmailResetPassword({ email, nome, resetUrl }) {
     ctaUrl: resetUrl,
   });
   const text = `Ciao ${nome}, reimposta la password (valido 1 ora): ${resetUrl}`;
-  return inviaConRetry({ to: email, subject: "Reimposta la password Rifless", html, text });
+  return inviaConRetry({ to: email, subject: "Reimposta la password Rifless", html, text, tenantId });
 }

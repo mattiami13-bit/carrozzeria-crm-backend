@@ -461,7 +461,8 @@ export const ModelName = {
   Ticket: 'Ticket',
   ChangelogEntry: 'ChangelogEntry',
   FeatureFlag: 'FeatureFlag',
-  FeatureFlagTenantOverride: 'FeatureFlagTenantOverride'
+  FeatureFlagTenantOverride: 'FeatureFlagTenantOverride',
+  UsageEvent: 'UsageEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -477,7 +478,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerCarPhoto" | "loanerBooking" | "loanerBookingPhoto" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage" | "qcChecklistItem" | "qcInspection" | "qcCheckResult" | "qcNonConformita" | "qcEvento" | "briefingSettings" | "briefingReport" | "briefingResolution" | "notification" | "gdprRichiesta" | "stripeWebhookEvent" | "superAdmin" | "lead" | "faqItem" | "ticket" | "changelogEntry" | "featureFlag" | "featureFlagTenantOverride"
+    modelProps: "tenant" | "user" | "client" | "vehicle" | "stageHistory" | "photo" | "quote" | "quoteItem" | "damageAnalysis" | "damageItem" | "insuranceGapAnalysis" | "insuranceGapItem" | "insuranceGapSuggestion" | "part" | "partMovement" | "supplierOrder" | "supplierOrderItem" | "loanerCar" | "loanerCarPhoto" | "loanerBooking" | "loanerBookingPhoto" | "appointment" | "document" | "timeEntry" | "sinistro" | "portalAccess" | "portalAction" | "workOrder" | "workOrderTimeEntry" | "workOrderEvento" | "portalDocument" | "aiAnalysisLog" | "aiAssistantLog" | "auditLog" | "profitRecord" | "profitSettings" | "delaySettings" | "delayPlan" | "delayForecast" | "delayDecision" | "trackedPart" | "trackedPartEvent" | "vehiclePartBlock" | "trackedPartDocument" | "photoTimelineEdit" | "whatsappTemplate" | "whatsappMessage" | "qcChecklistItem" | "qcInspection" | "qcCheckResult" | "qcNonConformita" | "qcEvento" | "briefingSettings" | "briefingReport" | "briefingResolution" | "notification" | "gdprRichiesta" | "stripeWebhookEvent" | "superAdmin" | "lead" | "faqItem" | "ticket" | "changelogEntry" | "featureFlag" | "featureFlagTenantOverride" | "usageEvent"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -5291,6 +5292,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    UsageEvent: {
+      payload: Prisma.$UsageEventPayload<ExtArgs>
+      fields: Prisma.UsageEventFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UsageEventFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsageEventPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UsageEventFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsageEventPayload>
+        }
+        findFirst: {
+          args: Prisma.UsageEventFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsageEventPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UsageEventFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsageEventPayload>
+        }
+        findMany: {
+          args: Prisma.UsageEventFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsageEventPayload>[]
+        }
+        create: {
+          args: Prisma.UsageEventCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsageEventPayload>
+        }
+        createMany: {
+          args: Prisma.UsageEventCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UsageEventCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsageEventPayload>[]
+        }
+        delete: {
+          args: Prisma.UsageEventDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsageEventPayload>
+        }
+        update: {
+          args: Prisma.UsageEventUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsageEventPayload>
+        }
+        deleteMany: {
+          args: Prisma.UsageEventDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UsageEventUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UsageEventUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsageEventPayload>[]
+        }
+        upsert: {
+          args: Prisma.UsageEventUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsageEventPayload>
+        }
+        aggregate: {
+          args: Prisma.UsageEventAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUsageEvent>
+        }
+        groupBy: {
+          args: Prisma.UsageEventGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UsageEventGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UsageEventCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UsageEventCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -6351,6 +6426,17 @@ export const FeatureFlagTenantOverrideScalarFieldEnum = {
 export type FeatureFlagTenantOverrideScalarFieldEnum = (typeof FeatureFlagTenantOverrideScalarFieldEnum)[keyof typeof FeatureFlagTenantOverrideScalarFieldEnum]
 
 
+export const UsageEventScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  tipo: 'tipo',
+  dettaglio: 'dettaglio',
+  createdAt: 'createdAt'
+} as const
+
+export type UsageEventScalarFieldEnum = (typeof UsageEventScalarFieldEnum)[keyof typeof UsageEventScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -7015,6 +7101,20 @@ export type ListEnumTicketStatoFieldRefInput<$PrismaModel> = FieldRefInputType<$
 
 
 /**
+ * Reference to a field of type 'UsageEventTipo'
+ */
+export type EnumUsageEventTipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UsageEventTipo'>
+    
+
+
+/**
+ * Reference to a field of type 'UsageEventTipo[]'
+ */
+export type ListEnumUsageEventTipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UsageEventTipo[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -7243,6 +7343,7 @@ export type GlobalOmitConfig = {
   changelogEntry?: Prisma.ChangelogEntryOmit
   featureFlag?: Prisma.FeatureFlagOmit
   featureFlagTenantOverride?: Prisma.FeatureFlagTenantOverrideOmit
+  usageEvent?: Prisma.UsageEventOmit
 }
 
 /* Types for Logging */

@@ -260,10 +260,21 @@ test("Billing checklist (punto 30)", async (t) => {
     // limite manuale sul tenant (limiteAnalisiIAMensile) prevalga sempre
     // sul default del piano — il meccanismo che rende possibile "accordi
     // personalizzati" senza toccare codice.
+    //
+    // Punto 40 (usage tracking): i 5 file leggevano ciascuno una copia
+    // locale identica di questi limiti — centralizzati in lib/aiUsage.js
+    // per evitare lo stesso rischio di disallineamento già visto al
+    // punto 29 (PROFESSIONAL/ENTERPRISE). Il test ora verifica che ogni
+    // rotta importi da lì, e che aiUsage.js stesso legga davvero i due
+    // campi sul tenant.
     await t.test("Ogni rotta AI a consumo controlla un limite mensile prima di procedere", () => {
+      const aiUsageSrc = fs.readFileSync(new URL(`../src/lib/aiUsage.js`, import.meta.url), "utf-8");
+      assert.match(aiUsageSrc, /limiteAnalisiIAMensile/, "lib/aiUsage.js: deve leggere il limite manuale per le analisi IA");
+      assert.match(aiUsageSrc, /limiteAssistenteIAMensile/, "lib/aiUsage.js: deve leggere il limite manuale per l'assistente/copilot");
+
       for (const file of ["vehicles.js", "damageAssistant.js", "insuranceGap.js", "assistente.js", "copilot.js"]) {
         const src = fs.readFileSync(new URL(`../src/routes/${file}`, import.meta.url), "utf-8");
-        assert.match(src, /limiteAnalisiIAMensile|limiteAssistenteIAMensile/, `${file}: deve leggere un limite mensile (dal tenant o dal default del piano)`);
+        assert.match(src, /from ["']\.\.\/lib\/aiUsage\.js["']/, `${file}: deve importare i limiti dalla fonte unica lib/aiUsage.js, non duplicarli`);
         assert.match(src, /429/, `${file}: deve rispondere 429 quando il limite è superato, non un errore generico`);
       }
     });

@@ -9,6 +9,13 @@ import {
   stripePriceId, pianoDaPriceId, statoDaStripe,
 } from "../lib/billing/piani.js";
 
+// Punto 40 (usage tracking, "API esterne"): fire-and-forget, non deve
+// mai far fallire una chiamata Stripe già andata a buon fine.
+function registraUsoApiEsterna(tenantId, dettaglio) {
+  prisma.usageEvent.create({ data: { tenantId, tipo: "API_ESTERNA", dettaglio } })
+    .catch((err) => console.error("[usage] Log API esterna fallito:", err.message));
+}
+
 export const billingRouter = Router();
 
 // Dalle API Stripe più recenti (2025+), il fine periodo non è più sulla
@@ -161,6 +168,7 @@ billingRouter.post("/checkout", requireRole("ADMIN"), async (req, res) => {
       // su 9 prodotti per una funzione che non usiamo ancora.
       managed_payments: { enabled: false },
     });
+    registraUsoApiEsterna(tenant.id, "stripe_checkout");
     res.json({ url: session.url });
   } catch (err) {
     console.error("[billing] Errore creazione checkout session:", err.message);
@@ -199,6 +207,7 @@ billingRouter.post("/crediti-ai", requireRole("ADMIN"), async (req, res) => {
       metadata: { tenantId: tenant.id, tipo: "crediti_ai", crediti: String(AI_CREDITI_PACK.crediti) },
       managed_payments: { enabled: false },
     });
+    registraUsoApiEsterna(tenant.id, "stripe_checkout_crediti_ai");
     res.json({ url: session.url });
   } catch (err) {
     console.error("[billing] Errore creazione checkout crediti AI:", err.message);
@@ -224,6 +233,7 @@ billingRouter.post("/portal", requireRole("ADMIN"), async (req, res) => {
       customer: tenant.stripeCustomerId,
       return_url: `${baseUrl}/billing/successo`,
     });
+    registraUsoApiEsterna(tenant.id, "stripe_portal");
     res.json({ url: session.url });
   } catch (err) {
     console.error("[billing] Errore creazione portal session:", err.message);

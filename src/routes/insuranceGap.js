@@ -5,6 +5,7 @@ import PDFDocument from "pdfkit";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
 import { validDocument } from "../lib/parts-tracking.js";
+import { limiteAnalisiIA, contaAnalisiIAQuestoMese, segnalaUsoAnalisiIA } from "../lib/aiUsage.js";
 
 // Insurance Gap Analysis: confronto tra il preventivo interno e il
 // documento (perizia/preventivo) ricevuto dall'assicurazione. Modulo
@@ -48,14 +49,8 @@ insuranceGapItemsRouter.use(requireFinancial);
 insuranceGapSuggestionsRouter.use(requireFinancial);
 
 // Stessa quota/piano delle altre analisi IA (foto danni, Copilot): stessa
-// risorsa concettuale, un solo contatore mensile per tenant.
-const LIMITE_ANALISI_IA_DEFAULT = { TRIAL: 5, STARTER: 20, PRO: 100, PREMIUM_AI: 500 };
-async function contaAnalisiIAQuestoMese(tenantId) {
-  const inizioMese = new Date();
-  inizioMese.setDate(1);
-  inizioMese.setHours(0, 0, 0, 0);
-  return prisma.aiAnalysisLog.count({ where: { tenantId, createdAt: { gte: inizioMese } } });
-}
+// risorsa concettuale, un solo contatore mensile per tenant — vedi
+// lib/aiUsage.js (punto 40) per la fonte unica di questi limiti.
 
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 5 * 1024 * 1024, files: 1 } });
 
@@ -143,7 +138,7 @@ insuranceGapRouter.post("/analizza", upload.single("file"), wrap(async (req, res
   }
 
   const tenant = await prisma.tenant.findUnique({ where: { id: tenantId } });
-  const limite = tenant.limiteAnalisiIAMensile ?? LIMITE_ANALISI_IA_DEFAULT[tenant.piano] ?? 0;
+  const limite = limiteAnalisiIA(tenant);
   const usate = await contaAnalisiIAQuestoMese(tenantId);
   if (usate >= limite) {
     return res.status(429).json({
@@ -286,6 +281,8 @@ Regole obbligatorie:
 
     return tx.insuranceGapAnalysis.findUnique({ where: { id: created.id }, select: analysisSelect() });
   });
+
+  segnalaUsoAnalisiIA(tenant, usate + 1).catch(() => {});
 
   res.status(201).json(analisi);
 }));

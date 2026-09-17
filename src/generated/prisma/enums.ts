@@ -397,3 +397,11 @@ export const TicketStato = {
 } as const
 
 export type TicketStato = (typeof TicketStato)[keyof typeof TicketStato]
+
+
+export const UsageEventTipo = {
+  EMAIL: 'EMAIL',
+  API_ESTERNA: 'API_ESTERNA'
+} as const
+
+export type UsageEventTipo = (typeof UsageEventTipo)[keyof typeof UsageEventTipo]

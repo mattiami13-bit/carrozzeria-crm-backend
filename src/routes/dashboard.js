@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope, requireRole } from "../middleware/auth.js";
+import { limiteAnalisiIA, contaAnalisiIAQuestoMese } from "../lib/aiUsage.js";
 
 export const dashboardRouter = Router();
 dashboardRouter.use(requireAuth);
@@ -147,16 +148,8 @@ dashboardRouter.get("/utilizzo-ia", async (req, res) => {
   const { tenantId } = tenantScope(req);
 
   const tenant = await prisma.tenant.findUnique({ where: { id: tenantId } });
-
-  const LIMITE_ANALISI_IA_DEFAULT = { TRIAL: 5, STARTER: 20, PRO: 100, PREMIUM_AI: 500 };
-  const limite = tenant.limiteAnalisiIAMensile ?? LIMITE_ANALISI_IA_DEFAULT[tenant.piano] ?? 0;
-
-  const inizioMese = new Date();
-  inizioMese.setDate(1);
-  inizioMese.setHours(0, 0, 0, 0);
-  const usate = await prisma.aiAnalysisLog.count({
-    where: { tenantId, createdAt: { gte: inizioMese } },
-  });
+  const limite = limiteAnalisiIA(tenant);
+  const usate = await contaAnalisiIAQuestoMese(tenantId);
 
   res.json({ usate, limite, piano: tenant.piano });
 });

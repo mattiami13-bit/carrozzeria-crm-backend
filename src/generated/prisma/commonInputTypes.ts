@@ -1055,6 +1055,23 @@ export type EnumTicketStatoWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumTicketStatoFilter<$PrismaModel>
 }
 
+export type EnumUsageEventTipoFilter<$PrismaModel = never> = {
+  equals?: $Enums.UsageEventTipo | Prisma.EnumUsageEventTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.UsageEventTipo[] | Prisma.ListEnumUsageEventTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.UsageEventTipo[] | Prisma.ListEnumUsageEventTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumUsageEventTipoFilter<$PrismaModel> | $Enums.UsageEventTipo
+}
+
+export type EnumUsageEventTipoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.UsageEventTipo | Prisma.EnumUsageEventTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.UsageEventTipo[] | Prisma.ListEnumUsageEventTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.UsageEventTipo[] | Prisma.ListEnumUsageEventTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumUsageEventTipoWithAggregatesFilter<$PrismaModel> | $Enums.UsageEventTipo
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumUsageEventTipoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumUsageEventTipoFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -2053,6 +2070,23 @@ export type NestedEnumTicketStatoWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumTicketStatoFilter<$PrismaModel>
   _max?: Prisma.NestedEnumTicketStatoFilter<$PrismaModel>
+}
+
+export type NestedEnumUsageEventTipoFilter<$PrismaModel = never> = {
+  equals?: $Enums.UsageEventTipo | Prisma.EnumUsageEventTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.UsageEventTipo[] | Prisma.ListEnumUsageEventTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.UsageEventTipo[] | Prisma.ListEnumUsageEventTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumUsageEventTipoFilter<$PrismaModel> | $Enums.UsageEventTipo
+}
+
+export type NestedEnumUsageEventTipoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.UsageEventTipo | Prisma.EnumUsageEventTipoFieldRefInput<$PrismaModel>
+  in?: $Enums.UsageEventTipo[] | Prisma.ListEnumUsageEventTipoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.UsageEventTipo[] | Prisma.ListEnumUsageEventTipoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumUsageEventTipoWithAggregatesFilter<$PrismaModel> | $Enums.UsageEventTipo
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumUsageEventTipoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumUsageEventTipoFilter<$PrismaModel>
 }
 
 

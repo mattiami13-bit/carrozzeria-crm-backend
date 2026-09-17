@@ -5,6 +5,7 @@ import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
 import { requireSuperAdmin } from "../middleware/superAdmin.js";
 import { loginLimiter } from "../middleware/rateLimit.js";
+import { riepilogoUsoTuttiTenant } from "../lib/usageSummary.js";
 
 const STATI_LEAD = ["NUOVO", "CONTATTATO", "DEMO", "TRIAL", "CLIENTE", "PERSO"];
 const STATI_TICKET = ["APERTO", "IN_LAVORAZIONE", "RISOLTO", "CHIUSO"];
@@ -206,6 +207,13 @@ superAdminRouter.patch("/tickets/:id/stato", async (req, res) => {
 
   const aggiornato = await prisma.ticket.update({ where: { id: req.params.id }, data: { stato: parsed.data.stato } });
   res.json(aggiornato);
+});
+
+// Punto 40 (usage tracking): un riepilogo per tenant di AI, WhatsApp,
+// email, documenti/foto e API esterne, con i limiti/alert AI già reali
+// (punto enforced altrove) messi in evidenza — vedi lib/usageSummary.js.
+superAdminRouter.get("/usage", async (req, res) => {
+  res.json(await riepilogoUsoTuttiTenant());
 });
 
 superAdminRouter.get("/gdpr-richieste", async (req, res) => {

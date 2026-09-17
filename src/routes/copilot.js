@@ -5,6 +5,7 @@ import { Router } from "express";
 import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, tenantScope } from "../middleware/auth.js";
+import { limiteAssistente, contaDomandeAssistenteQuestoMese, segnalaUsoAssistente } from "../lib/aiUsage.js";
 
 // AI Copilot: assistente conversazionale sui dati del CRM, separato dal
 // vecchio "Assistente Ombra" (routes/assistente.js, widget 💬), che resta
@@ -28,15 +29,9 @@ copilotRouter.use((req,res,next)=>{
 // Stessa quota/piano del vecchio Assistente: stessa risorsa concettuale
 // ("fai una domanda in linguaggio naturale sui tuoi dati"), quindi condivide
 // il contatore AiAssistantLog e Tenant.limiteAssistenteIAMensile invece di
-// introdurne uno nuovo e frammentare la quota tra due assistenti simili.
-const LIMITE_ASSISTENTE_DEFAULT = { TRIAL: 20, STARTER: 100, PRO: 500, PREMIUM_AI: 2000 };
-
-async function contaDomandeQuestoMese(tenantId) {
-  const inizioMese = new Date();
-  inizioMese.setDate(1);
-  inizioMese.setHours(0, 0, 0, 0);
-  return prisma.aiAssistantLog.count({ where: { tenantId, createdAt: { gte: inizioMese } } });
-}
+// introdurne uno nuovo e frammentare la quota tra due assistenti simili —
+// vedi lib/aiUsage.js (punto 40) per la fonte unica di questi limiti,
+// prima duplicata identica anche qui e in routes/assistente.js.
 
 const RUOLI_CON_ACCESSO_FINANZIARIO = new Set(["ADMIN", "AMMINISTRAZIONE"]);
 const STRUMENTI_FINANZIARI = new Set(["margine_veicolo", "preventivi_marginalita_bassa", "fatturato_mensile"]);
@@ -363,8 +358,8 @@ copilotRouter.post("/chiedi", async (req, res) => {
   }
 
   const tenant = await prisma.tenant.findUnique({ where: { id: tenantId } });
-  const limite = tenant.limiteAssistenteIAMensile ?? LIMITE_ASSISTENTE_DEFAULT[tenant.piano] ?? 0;
-  const usate = await contaDomandeQuestoMese(tenantId);
+  const limite = limiteAssistente(tenant);
+  const usate = await contaDomandeAssistenteQuestoMese(tenantId);
   if (usate >= limite) {
     return res.status(429).json({
       error: `Hai raggiunto il limite di ${limite} domande incluse nel tuo piano questo mese (${usate} usate). Contattaci per un upgrade del piano.`,
@@ -409,6 +404,7 @@ copilotRouter.post("/chiedi", async (req, res) => {
       if (data.stop_reason !== "tool_use") {
         const testo = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n").trim();
         await prisma.aiAssistantLog.create({ data: { tenantId, domanda: parsed.data.domanda.slice(0, 300) } });
+        segnalaUsoAssistente(tenant, usate + 1).catch(() => {});
         return res.json({
           risposta: testo || "Non sono riuscito a formulare una risposta, riprova.",
           riferimenti: Array.from(riferimentiMap.values()).slice(0, 8),
@@ -442,7 +438,7 @@ copilotRouter.post("/chiedi", async (req, res) => {
 copilotRouter.get("/utilizzo", async (req, res) => {
   const { tenantId } = tenantScope(req);
   const tenant = await prisma.tenant.findUnique({ where: { id: tenantId } });
-  const limite = tenant.limiteAssistenteIAMensile ?? LIMITE_ASSISTENTE_DEFAULT[tenant.piano] ?? 0;
-  const usate = await contaDomandeQuestoMese(tenantId);
+  const limite = limiteAssistente(tenant);
+  const usate = await contaDomandeAssistenteQuestoMese(tenantId);
   res.json({ usate, limite, piano: tenant.piano });
 });

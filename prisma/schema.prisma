@@ -109,6 +109,7 @@ model Tenant {
   gdprRichieste      GdprRichiesta[]
   tickets            Ticket[]
   featureFlagOverride FeatureFlagTenantOverride[]
+  usageEvents        UsageEvent[]
 
 
   @@map("tenants")
@@ -2020,4 +2021,29 @@ model FeatureFlagTenantOverride {
 
   @@unique([featureFlagId, tenantId])
   @@map("feature_flag_tenant_overrides")
+}
+
+// Punto 40 (usage tracking): copre le due categorie che non avevano
+// ancora nessuna traccia in database (email, chiamate a API esterne
+// come Stripe) — AI, WhatsApp e documenti/foto si leggono direttamente
+// dalle loro tabelle già esistenti (AiAssistantLog, AiAnalysisLog,
+// WhatsappMessage, Document, Photo), non serve duplicarli qui.
+// tenantId nullable: alcune email (es. notifica di un nuovo contatto
+// commerciale al proprietario della piattaforma) non riguardano un
+// tenant cliente.
+enum UsageEventTipo {
+  EMAIL
+  API_ESTERNA
+}
+
+model UsageEvent {
+  id        String         @id @default(cuid())
+  tenantId  String?
+  tenant    Tenant?        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  tipo      UsageEventTipo
+  dettaglio String?
+  createdAt DateTime       @default(now())
+
+  @@index([tenantId, tipo, createdAt])
+  @@map("usage_events")
 }

@@ -7,6 +7,7 @@ import { requireAuth, tenantScope } from "../middleware/auth.js";
 import { enqueueNotification } from "../lib/notifiche.js";
 import { inviaComunicazioneWhatsapp } from "../lib/whatsapp.js";
 import { ultimaIspezioneApprovata } from "./qc.js";
+import { limiteAnalisiIA, contaAnalisiIAQuestoMese, segnalaUsoAnalisiIA } from "../lib/aiUsage.js";
 
 export const vehiclesRouter = Router();
 vehiclesRouter.use(requireAuth);
@@ -219,22 +220,8 @@ vehiclesRouter.patch("/:id", async (req, res) => {
 
 // Analisi danni IA: limiti mensili inclusi per piano di abbonamento.
 // Se un tenant ha "limiteAnalisiIAMensile" impostato manualmente, quello
-// vince sempre sul default del piano (utile per accordi personalizzati).
-const LIMITE_ANALISI_IA_DEFAULT = {
-  TRIAL: 5,
-  STARTER: 20,
-  PRO: 100,
-  PREMIUM_AI: 500,
-};
-
-async function contaAnalisiIAQuestoMese(tenantId) {
-  const inizioMese = new Date();
-  inizioMese.setDate(1);
-  inizioMese.setHours(0, 0, 0, 0);
-  return prisma.aiAnalysisLog.count({
-    where: { tenantId, createdAt: { gte: inizioMese } },
-  });
-}
+// vince sempre sul default del piano (utile per accordi personalizzati) —
+// vedi lib/aiUsage.js (punto 40) per la fonte unica di questi limiti.
 
 // POST /api/vehicles/:id/analizza-danni
 // Analizza le foto "PRIMA" del veicolo con Claude (Anthropic) per generare
@@ -264,7 +251,7 @@ vehiclesRouter.post("/:id/analizza-danni", async (req, res) => {
 
   // Controllo quota mensile del piano.
   const tenant = await prisma.tenant.findUnique({ where: { id: tenantId } });
-  const limite = tenant.limiteAnalisiIAMensile ?? LIMITE_ANALISI_IA_DEFAULT[tenant.piano] ?? 0;
+  const limite = limiteAnalisiIA(tenant);
   const usate = await contaAnalisiIAQuestoMese(tenantId);
   if (usate >= limite) {
     return res.status(429).json({
@@ -342,6 +329,8 @@ Sii prudente: è una stima preliminare da foto, non una perizia definitiva. Se l
       data: { tenantId, vehicleId: vehicle.id },
     }),
   ]);
+
+  segnalaUsoAnalisiIA(tenant, usate + 1).catch(() => {});
 
   updated.photos = await signPhotos(updated.photos, tenantId);
   res.json(updated);
