@@ -507,7 +507,23 @@ function NotificationBell({ api, onApri }) {
   const [notifiche, setNotifiche] = useState([]);
   const [categoria, setCategoria] = useState(null);
   const [caricando, setCaricando] = useState(false);
+  const [panelLeft, setPanelLeft] = useState(0);
   const ref = useRef(null);
+
+  // Il pannello si apre normalmente ancorato al bordo destro della
+  // campanella, ma la campanella non è sempre vicina al bordo destro
+  // reale dello schermo (es. sidebar admin, o header tecnico con altri
+  // pulsanti dopo). Calcoliamo qui una posizione che resti sempre
+  // dentro i bordi della finestra, invece di un right:0 fisso che può
+  // uscire dallo schermo da un lato o dall'altro a seconda del layout.
+  useEffect(() => {
+    if (!aperto || !ref.current) return;
+    const panelWidth = Math.min(340, window.innerWidth - 24);
+    const rect = ref.current.getBoundingClientRect();
+    let left = rect.right - panelWidth;
+    left = Math.max(12, Math.min(left, window.innerWidth - panelWidth - 12));
+    setPanelLeft(left - rect.left);
+  }, [aperto]);
 
   const caricaCount = useCallback(async () => {
     try {
@@ -582,7 +598,7 @@ function NotificationBell({ api, onApri }) {
 
       {aperto && (
         <div style={{
-          position: "absolute", top: 38, right: 0, width: 340, maxWidth: "calc(100vw - 24px)", maxHeight: 440, overflowY: "auto",
+          position: "absolute", top: 38, left: panelLeft, width: 340, maxWidth: "calc(100vw - 24px)", maxHeight: 440, overflowY: "auto",
           background: "#15171B", border: "1px solid #2A2E34", borderRadius: 12, boxShadow: "0 12px 32px rgba(0,0,0,0.4)",
           zIndex: 70,
         }}>
