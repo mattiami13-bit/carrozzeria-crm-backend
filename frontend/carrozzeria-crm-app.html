@@ -3405,18 +3405,134 @@ const QUOTE_ITEM_TIPI = [
   { key: "ALTRO", label: "Altro" },
 ];
 
+// Zone cliccabili del diagramma auto (vista dall'alto). Le zone piccole
+// (fanali, specchietti) sono elencate separatamente e disegnate per
+// ultime così restano sopra le zone grandi che le contengono.
+const CAR_DIAGRAM_ZONES = [
+  { id: "paraurti_ant", label: "Paraurti anteriore", x: 60, y: 14, w: 180, h: 24 },
+  { id: "cofano", label: "Cofano", x: 60, y: 38, w: 180, h: 70 },
+  { id: "parabrezza", label: "Parabrezza", x: 70, y: 108, w: 160, h: 22 },
+  { id: "tetto", label: "Tetto", x: 60, y: 130, w: 180, h: 120 },
+  { id: "lunotto", label: "Lunotto", x: 70, y: 250, w: 160, h: 22 },
+  { id: "baule", label: "Baule", x: 60, y: 272, w: 180, h: 68 },
+  { id: "paraurti_post", label: "Paraurti posteriore", x: 60, y: 340, w: 180, h: 24 },
+  { id: "parafango_ant_sx", label: "Parafango anteriore sx", x: 10, y: 38, w: 50, h: 70 },
+  { id: "parafango_ant_dx", label: "Parafango anteriore dx", x: 240, y: 38, w: 50, h: 70 },
+  { id: "portiera_ant_sx", label: "Portiera anteriore sx", x: 10, y: 130, w: 50, h: 58 },
+  { id: "portiera_ant_dx", label: "Portiera anteriore dx", x: 240, y: 130, w: 50, h: 58 },
+  { id: "portiera_post_sx", label: "Portiera posteriore sx", x: 10, y: 188, w: 50, h: 62 },
+  { id: "portiera_post_dx", label: "Portiera posteriore dx", x: 240, y: 188, w: 50, h: 62 },
+  { id: "parafango_post_sx", label: "Parafango posteriore sx", x: 10, y: 272, w: 50, h: 68 },
+  { id: "parafango_post_dx", label: "Parafango posteriore dx", x: 240, y: 272, w: 50, h: 68 },
+];
+const CAR_DIAGRAM_ZONES_OVERLAY = [
+  { id: "fanale_ant_sx", label: "Fanale anteriore sx", x: 60, y: 14, w: 30, h: 24 },
+  { id: "fanale_ant_dx", label: "Fanale anteriore dx", x: 210, y: 14, w: 30, h: 24 },
+  { id: "fanale_post_sx", label: "Fanale posteriore sx", x: 60, y: 340, w: 30, h: 24 },
+  { id: "fanale_post_dx", label: "Fanale posteriore dx", x: 210, y: 340, w: 30, h: 24 },
+  { id: "specchietto_sx", label: "Specchietto sx", x: 1, y: 132, w: 10, h: 18 },
+  { id: "specchietto_dx", label: "Specchietto dx", x: 289, y: 132, w: 10, h: 18 },
+];
+const CAR_DIAGRAM_RUOTE = [
+  { cx: 10, cy: 160 }, { cx: 290, cy: 160 }, { cx: 10, cy: 300 }, { cx: 290, cy: 300 },
+];
+
+// Preventivo grafico: click su una zona dell'auto -> popover con i
+// dettagli della voce -> "Aggiungi" la inserisce nelle voci del
+// preventivo (stesso shape {tipo, descrizione, quantita, prezzoUnitario}
+// usato dal form testuale). Nessuna persistenza della zona: è solo un
+// aiuto visivo per compilare più in fretta le voci esistenti.
+function CarDiagramPicker({ onAdd }) {
+  const [zonaScelta, setZonaScelta] = useState(null);
+  const [tipo, setTipo] = useState("RICAMBIO");
+  const [descrizione, setDescrizione] = useState("");
+  const [quantita, setQuantita] = useState(1);
+  const [prezzoUnitario, setPrezzoUnitario] = useState("");
+  const [hoverId, setHoverId] = useState(null);
+
+  const scegliZona = (zona) => {
+    setZonaScelta(zona);
+    setTipo("RICAMBIO");
+    setDescrizione(zona.label);
+    setQuantita(1);
+    setPrezzoUnitario("");
+  };
+
+  const conferma = () => {
+    onAdd({ tipo, descrizione, quantita: Number(quantita) || 1, prezzoUnitario: Number(prezzoUnitario) || 0 });
+    setZonaScelta(null);
+  };
+
+  const renderZona = (zona) => (
+    <rect key={zona.id} x={zona.x} y={zona.y} width={zona.w} height={zona.h} rx={3}
+      onClick={() => scegliZona(zona)}
+      onMouseEnter={() => setHoverId(zona.id)}
+      onMouseLeave={() => setHoverId((h) => (h === zona.id ? null : h))}
+      style={{ cursor: "pointer", transition: "fill 0.1s" }}
+      fill={zonaScelta?.id === zona.id ? "#2F80ED" : hoverId === zona.id ? "#2A3A52" : "#1B1E23"}
+      stroke="#2A2E34" strokeWidth={1.5}>
+      <title>{zona.label}</title>
+    </rect>
+  );
+
+  return (
+    <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "flex-start", marginBottom: 14, padding: 12, background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 10 }}>
+      <svg viewBox="0 0 300 380" width={220} height={279} style={{ flexShrink: 0 }}>
+        {CAR_DIAGRAM_RUOTE.map((r, i) => (
+          <ellipse key={i} cx={r.cx} cy={r.cy} rx={8} ry={22} fill="#0A0B0D" stroke="#2A2E34" strokeWidth={1.5} pointerEvents="none" />
+        ))}
+        <rect x={5} y={5} width={290} height={370} rx={34} fill="none" stroke="#2A2E34" strokeWidth={1.5} pointerEvents="none" />
+        {CAR_DIAGRAM_ZONES.map(renderZona)}
+        {CAR_DIAGRAM_ZONES_OVERLAY.map(renderZona)}
+      </svg>
+      <div style={{ flex: 1, minWidth: 220 }}>
+        {!zonaScelta && (
+          <div style={{ fontSize: 12.5, color: "#8D9099", lineHeight: 1.5 }}>
+            Clicca su una parte dell'auto per aggiungerla come voce del preventivo.
+          </div>
+        )}
+        {zonaScelta && (
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: "#F3F1EC", marginBottom: 8 }}>{zonaScelta.label}</div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 8 }}>
+              <select value={tipo} onChange={(e) => setTipo(e.target.value)} style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13, gridColumn: "1 / -1" }}>
+                {QUOTE_ITEM_TIPI.map((t) => <option key={t.key} value={t.key}>{t.label}</option>)}
+              </select>
+              <input aria-label="Descrizione" value={descrizione} onChange={(e) => setDescrizione(e.target.value)}
+                style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13, gridColumn: "1 / -1" }} />
+              <input type="number" placeholder="Qtà" value={quantita} onChange={(e) => setQuantita(e.target.value)}
+                style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13 }} />
+              <input type="number" placeholder="Prezzo €" value={prezzoUnitario} onChange={(e) => setPrezzoUnitario(e.target.value)}
+                style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13 }} />
+            </div>
+            <div style={{ display: "flex", gap: 8 }}>
+              <button onClick={conferma} style={{ padding: "6px 12px", borderRadius: 7, border: "none", background: "#2F80ED", color: "#fff", fontSize: 12.5, fontWeight: 600 }}>+ Aggiungi voce</button>
+              <button onClick={() => setZonaScelta(null)} style={{ padding: "6px 12px", borderRadius: 7, border: "1px solid #2A2E34", background: "transparent", color: "#8D9099", fontSize: 12.5 }}>Annulla</button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function NewQuoteForm({ clients, vehicles, api, onDone, onCancel }) {
   const [clientId, setClientId] = useState(clients[0]?.id || "");
   const [vehicleId, setVehicleId] = useState(vehicles[0]?.id || "");
   const [aliquotaIva, setAliquotaIva] = useState(22);
   const [items, setItems] = useState([{ tipo: "MANODOPERA", descrizione: "", quantita: 1, prezzoUnitario: 0 }]);
   const [error, setError] = useState(null);
+  const [mostraDiagramma, setMostraDiagramma] = useState(false);
 
   const setItem = (idx, field, value) => {
     setItems(items.map((it, i) => (i === idx ? { ...it, [field]: value } : it)));
   };
   const addItem = () => setItems([...items, { tipo: "MANODOPERA", descrizione: "", quantita: 1, prezzoUnitario: 0 }]);
   const removeItem = (idx) => setItems(items.filter((_, i) => i !== idx));
+  const addItemFromDiagram = (voce) => {
+    const primaVoceVuota = items.length === 1 && !items[0].descrizione && Number(items[0].prezzoUnitario) === 0;
+    setItems(primaVoceVuota ? [voce] : [...items, voce]);
+  };
 
   const imponibile = items.reduce((sum, it) => sum + Number(it.quantita || 0) * Number(it.prezzoUnitario || 0), 0);
   const totale = imponibile * (1 + Number(aliquotaIva || 0) / 100);
@@ -3458,7 +3574,14 @@ function NewQuoteForm({ clients, vehicles, api, onDone, onCancel }) {
           placeholder="IVA %" style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }} />
       </div>
 
-      <div style={{ fontSize: 12, fontWeight: 700, color: "#4A4842", marginBottom: 8 }}>Voci</div>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+        <div style={{ fontSize: 12, fontWeight: 700, color: "#4A4842" }}>Voci</div>
+        <button onClick={() => setMostraDiagramma((v) => !v)} style={{
+          border: "1px solid #2A2E34", background: mostraDiagramma ? "#2F80ED" : "transparent",
+          color: mostraDiagramma ? "#fff" : "#8D9099", borderRadius: 7, padding: "5px 10px", fontSize: 12,
+        }}>🚗 {mostraDiagramma ? "Nascondi disegno auto" : "Scegli dal disegno dell'auto"}</button>
+      </div>
+      {mostraDiagramma && <CarDiagramPicker onAdd={addItemFromDiagram} />}
       {items.map((it, idx) => (
         <div key={idx} style={{ display: "grid", gridTemplateColumns: "130px 1fr 80px 100px 28px", gap: 8, marginBottom: 8 }}>
           <select value={it.tipo} onChange={(e) => setItem(idx, "tipo", e.target.value)} style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13 }}>
