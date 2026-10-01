@@ -15,6 +15,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <style>
   * { box-sizing: border-box; }
   body { margin: 0; font-family: Inter, -apple-system, ui-sans-serif, system-ui, sans-serif; background: #0A0B0D; color: #F3F1EC; }
@@ -3437,58 +3439,252 @@ const CAR_DIAGRAM_RUOTE = [
   { cx: 10, cy: 160 }, { cx: 290, cy: 160 }, { cx: 10, cy: 300 }, { cx: 290, cy: 300 },
 ];
 
-// Preventivo grafico: click su una zona dell'auto -> popover con i
-// dettagli della voce -> "Aggiungi" la inserisce nelle voci del
+// --- Conversione in 3D ----------------------------------------------
+// Il layout 2D sopra (x/y in pianta) resta l'unica fonte dei dati di
+// ogni zona; qui lo si trasforma in posizioni/dimensioni 3D (x=lato,
+// z=lungo l'auto, y=altezza) così le etichette non sono duplicate.
+const CAR_3D_SCALE = 0.035;
+const car3dX = (vx) => (vx - 150) * CAR_3D_SCALE;
+const car3dZ = (vy) => (vy - 190) * CAR_3D_SCALE;
+
+// Fascia di altezza (base/cima, in unità 3D) per tipo di zona: definisce
+// dove sta da terra ogni pannello della carrozzeria.
+function altezzaZona3D(id) {
+  if (id === "tetto") return [1.6, 1.85];
+  if (id === "parabrezza" || id === "lunotto") return [1.25, 1.6];
+  if (id === "cofano" || id === "baule") return [0.75, 1.25];
+  if (id === "paraurti_ant" || id === "paraurti_post") return [0.2, 0.75];
+  if (id.startsWith("fanale")) return [0.3, 0.6];
+  if (id.startsWith("specchietto")) return [1.0, 1.25];
+  return [0.25, 1.3]; // portiere e parafanghi: pannelli alti laterali
+}
+
+const CAR_PARTS_3D = [...CAR_DIAGRAM_ZONES, ...CAR_DIAGRAM_ZONES_OVERLAY].map((z) => {
+  const [base, cima] = altezzaZona3D(z.id);
+  const isGlass = z.id === "parabrezza" || z.id === "lunotto";
+  return {
+    id: z.id, label: z.label, isGlass,
+    cx: car3dX(z.x + z.w / 2), cz: car3dZ(z.y + z.h / 2), cy: (base + cima) / 2,
+    sx: z.w * CAR_3D_SCALE, sz: z.h * CAR_3D_SCALE, sy: cima - base,
+  };
+});
+const CAR_WHEELS_3D = CAR_DIAGRAM_RUOTE.map((r) => ({ x: car3dX(r.cx), z: car3dZ(r.cy) }));
+
+// Zone meccaniche (vano motore / sottoscocca) — non hanno un equivalente
+// nella vista esterna, posizioni scelte a mano per restare plausibili
+// (motore e radiatore davanti, marmitta lungo il sottoscocca, freni e
+// sospensioni agli assi anteriore/posteriore).
+const MECH_PARTS_3D = [
+  { id: "motore", label: "Motore", shape: "box", color: 0x3a3f47,
+    posizioni: [{ cx: 0, cy: 0.9, cz: -4.4 }], sx: 2.6, sy: 1.0, sz: 2.0 },
+  { id: "cambio", label: "Cambio", shape: "box", color: 0x44494f,
+    posizioni: [{ cx: 0, cy: 0.65, cz: -2.8 }], sx: 1.5, sy: 0.6, sz: 1.2 },
+  { id: "radiatore", label: "Radiatore", shape: "box", color: 0x2a4d6e,
+    posizioni: [{ cx: 0, cy: 0.95, cz: -5.7 }], sx: 2.2, sy: 1.1, sz: 0.3 },
+  { id: "batteria", label: "Batteria", shape: "box", color: 0x274427,
+    posizioni: [{ cx: 1.6, cy: 1.05, cz: -4.6 }], sx: 0.6, sy: 0.4, sz: 0.5 },
+  { id: "marmitta", label: "Marmitta / scarico", shape: "cylinderZ", color: 0x5a5d61,
+    posizioni: [{ cx: 1.1, cy: 0.18, cz: 0.8 }], sy: 0.28, sz: 7.6 },
+  { id: "freni_ant", label: "Freni anteriori", shape: "disc", color: 0xb23a3a, radius: 0.42, depth: 0.28,
+    posizioni: CAR_WHEELS_3D.filter((w) => w.z < 0).map((w) => ({ cx: w.x, cy: 0.42, cz: w.z })) },
+  { id: "freni_post", label: "Freni posteriori", shape: "disc", color: 0xb23a3a, radius: 0.42, depth: 0.28,
+    posizioni: CAR_WHEELS_3D.filter((w) => w.z >= 0).map((w) => ({ cx: w.x, cy: 0.42, cz: w.z })) },
+  { id: "sospensioni_ant", label: "Sospensioni anteriori", shape: "cylinderZ", color: 0x8a6d2f, sy: 0.16, sz: 1.0,
+    posizioni: CAR_WHEELS_3D.filter((w) => w.z < 0).map((w) => ({ cx: w.x, cy: 0.9, cz: w.z })) },
+  { id: "sospensioni_post", label: "Sospensioni posteriori", shape: "cylinderZ", color: 0x8a6d2f, sy: 0.16, sz: 1.0,
+    posizioni: CAR_WHEELS_3D.filter((w) => w.z >= 0).map((w) => ({ cx: w.x, cy: 0.9, cz: w.z })) },
+];
+
+// Preventivo grafico 3D: un'auto "a blocchi" costruita proceduralmente
+// con Three.js (nessun modello/asset esterno). Si ruota trascinando col
+// mouse (OrbitControls); un click (senza trascinamento) lancia un
+// raycast per capire quale parte è stata selezionata e apre lo stesso
+// popover di conferma della v1 -> "Aggiungi" inserisce la voce nel
 // preventivo (stesso shape {tipo, descrizione, quantita, prezzoUnitario}
-// usato dal form testuale). Nessuna persistenza della zona: è solo un
-// aiuto visivo per compilare più in fretta le voci esistenti.
+// del form testuale). Nessuna persistenza della zona: è solo un aiuto
+// visivo per compilare più in fretta le voci esistenti.
 function CarDiagramPicker({ onAdd }) {
+  const canvasRef = useRef(null);
+  const sceneRef = useRef({});
+  const [vistaMeccanica, setVistaMeccanica] = useState(false);
   const [zonaScelta, setZonaScelta] = useState(null);
   const [tipo, setTipo] = useState("RICAMBIO");
   const [descrizione, setDescrizione] = useState("");
   const [quantita, setQuantita] = useState(1);
   const [prezzoUnitario, setPrezzoUnitario] = useState("");
-  const [hoverId, setHoverId] = useState(null);
 
-  const scegliZona = (zona) => {
-    setZonaScelta(zona);
-    setTipo("RICAMBIO");
-    setDescrizione(zona.label);
-    setQuantita(1);
-    setPrezzoUnitario("");
-  };
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const THREE = window.THREE;
+    if (!canvas || !THREE) return;
+    const width = 300, height = 300;
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0a0b0d);
+    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+    camera.position.set(7, 5.5, 8.5);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.65));
+    const luceDir = new THREE.DirectionalLight(0xffffff, 0.8);
+    luceDir.position.set(5, 10, 5);
+    scene.add(luceDir);
+    const luceDir2 = new THREE.DirectionalLight(0xffffff, 0.3);
+    luceDir2.position.set(-6, 4, -4);
+    scene.add(luceDir2);
+
+    const pavimento = new THREE.Mesh(
+      new THREE.CircleGeometry(8, 32),
+      new THREE.MeshBasicMaterial({ color: 0x15171b })
+    );
+    pavimento.rotation.x = -Math.PI / 2;
+    scene.add(pavimento);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enablePan = false;
+    controls.minDistance = 5;
+    controls.maxDistance = 15;
+    controls.maxPolarAngle = Math.PI / 2.05;
+    controls.target.set(0, 0.7, 0);
+    controls.update();
+
+    const bodyGroup = new THREE.Group();
+    const mechGroup = new THREE.Group();
+    mechGroup.visible = false;
+    scene.add(bodyGroup, mechGroup);
+
+    const partMeshes = [];
+    const coloreBase = 0x2a3a52, coloreVetro = 0x24435e;
+
+    CAR_PARTS_3D.forEach((p) => {
+      const geo = new THREE.BoxGeometry(p.sx, p.sy, p.sz);
+      const colore = p.isGlass ? coloreVetro : coloreBase;
+      const mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: colore, roughness: 0.6, metalness: 0.15 }));
+      mesh.position.set(p.cx, p.cy, p.cz);
+      mesh.userData = { id: p.id, label: p.label, coloreBase: colore };
+      bodyGroup.add(mesh);
+      partMeshes.push(mesh);
+    });
+
+    const wheelGeo = new THREE.CylinderGeometry(0.45, 0.45, 0.3, 20);
+    const wheelMat = new THREE.MeshStandardMaterial({ color: 0x111214, roughness: 0.9 });
+    CAR_WHEELS_3D.forEach((w) => {
+      const mesh = new THREE.Mesh(wheelGeo, wheelMat);
+      mesh.rotation.z = Math.PI / 2;
+      mesh.position.set(w.x, 0.45, w.z);
+      bodyGroup.add(mesh);
+    });
+
+    MECH_PARTS_3D.forEach((p) => {
+      p.posizioni.forEach((pos) => {
+        let mesh;
+        const mat = new THREE.MeshStandardMaterial({ color: p.color, roughness: 0.5, metalness: 0.4 });
+        if (p.shape === "cylinderZ") {
+          mesh = new THREE.Mesh(new THREE.CylinderGeometry(p.sy / 2, p.sy / 2, p.sz, 12), mat);
+          mesh.rotation.x = Math.PI / 2;
+        } else if (p.shape === "disc") {
+          mesh = new THREE.Mesh(new THREE.CylinderGeometry(p.radius, p.radius, p.depth, 16), mat);
+          mesh.rotation.z = Math.PI / 2;
+        } else {
+          mesh = new THREE.Mesh(new THREE.BoxGeometry(p.sx, p.sy, p.sz), mat);
+        }
+        mesh.position.set(pos.cx, pos.cy, pos.cz);
+        mesh.userData = { id: p.id, label: p.label, coloreBase: p.color };
+        mechGroup.add(mesh);
+        partMeshes.push(mesh);
+      });
+    });
+
+    sceneRef.current = { scene, camera, renderer, controls, partMeshes, bodyGroup, mechGroup };
+
+    let frameId;
+    const animate = () => {
+      frameId = requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    let pointerDownAt = null;
+
+    const onPointerDown = (e) => { pointerDownAt = { x: e.clientX, y: e.clientY }; };
+    const onPointerUp = (e) => {
+      if (!pointerDownAt) return;
+      const spostamento = Math.hypot(e.clientX - pointerDownAt.x, e.clientY - pointerDownAt.y);
+      pointerDownAt = null;
+      if (spostamento > 5) return; // trascinamento = rotazione, non un click sulla parte
+      const rect = canvas.getBoundingClientRect();
+      pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const visibili = sceneRef.current.partMeshes.filter((m) => m.parent && m.parent.visible);
+      const hit = raycaster.intersectObjects(visibili)[0];
+      if (!hit) return;
+      const d = hit.object.userData;
+      setZonaScelta({ id: d.id, label: d.label });
+      setTipo("RICAMBIO");
+      setDescrizione(d.label);
+      setQuantita(1);
+      setPrezzoUnitario("");
+    };
+    canvas.addEventListener("pointerdown", onPointerDown);
+    canvas.addEventListener("pointerup", onPointerUp);
+
+    return () => {
+      cancelAnimationFrame(frameId);
+      canvas.removeEventListener("pointerdown", onPointerDown);
+      canvas.removeEventListener("pointerup", onPointerUp);
+      controls.dispose();
+      partMeshes.forEach((m) => { m.geometry.dispose(); m.material.dispose(); });
+      wheelGeo.dispose(); wheelMat.dispose();
+      renderer.dispose();
+    };
+  }, []);
+
+  useEffect(() => {
+    const { bodyGroup, mechGroup } = sceneRef.current;
+    if (!bodyGroup) return;
+    bodyGroup.visible = !vistaMeccanica;
+    mechGroup.visible = vistaMeccanica;
+  }, [vistaMeccanica]);
+
+  useEffect(() => {
+    const meshes = sceneRef.current.partMeshes;
+    if (!meshes) return;
+    meshes.forEach((m) => {
+      m.material.color.set(zonaScelta?.id === m.userData.id ? 0x2f80ed : m.userData.coloreBase);
+    });
+  }, [zonaScelta]);
 
   const conferma = () => {
     onAdd({ tipo, descrizione, quantita: Number(quantita) || 1, prezzoUnitario: Number(prezzoUnitario) || 0 });
     setZonaScelta(null);
   };
 
-  const renderZona = (zona) => (
-    <rect key={zona.id} x={zona.x} y={zona.y} width={zona.w} height={zona.h} rx={3}
-      onClick={() => scegliZona(zona)}
-      onMouseEnter={() => setHoverId(zona.id)}
-      onMouseLeave={() => setHoverId((h) => (h === zona.id ? null : h))}
-      style={{ cursor: "pointer", transition: "fill 0.1s" }}
-      fill={zonaScelta?.id === zona.id ? "#2F80ED" : hoverId === zona.id ? "#2A3A52" : "#1B1E23"}
-      stroke="#2A2E34" strokeWidth={1.5}>
-      <title>{zona.label}</title>
-    </rect>
-  );
-
   return (
     <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "flex-start", marginBottom: 14, padding: 12, background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 10 }}>
-      <svg viewBox="0 0 300 380" width={220} height={279} style={{ flexShrink: 0 }}>
-        {CAR_DIAGRAM_RUOTE.map((r, i) => (
-          <ellipse key={i} cx={r.cx} cy={r.cy} rx={8} ry={22} fill="#0A0B0D" stroke="#2A2E34" strokeWidth={1.5} pointerEvents="none" />
-        ))}
-        <rect x={5} y={5} width={290} height={370} rx={34} fill="none" stroke="#2A2E34" strokeWidth={1.5} pointerEvents="none" />
-        {CAR_DIAGRAM_ZONES.map(renderZona)}
-        {CAR_DIAGRAM_ZONES_OVERLAY.map(renderZona)}
-      </svg>
+      <div style={{ flexShrink: 0 }}>
+        <canvas ref={canvasRef} width={300} height={300} style={{ borderRadius: 8, touchAction: "none", cursor: "grab" }} />
+        <div style={{ display: "flex", gap: 6, marginTop: 8 }}>
+          <button onClick={() => setVistaMeccanica(false)} style={{
+            flex: 1, padding: "5px 8px", borderRadius: 7, fontSize: 11.5, border: "1px solid #2A2E34",
+            background: vistaMeccanica ? "transparent" : "#2F80ED", color: vistaMeccanica ? "#8D9099" : "#fff",
+          }}>Carrozzeria</button>
+          <button onClick={() => setVistaMeccanica(true)} style={{
+            flex: 1, padding: "5px 8px", borderRadius: 7, fontSize: 11.5, border: "1px solid #2A2E34",
+            background: vistaMeccanica ? "#2F80ED" : "transparent", color: vistaMeccanica ? "#fff" : "#8D9099",
+          }}>Vano motore</button>
+        </div>
+      </div>
       <div style={{ flex: 1, minWidth: 220 }}>
         {!zonaScelta && (
           <div style={{ fontSize: 12.5, color: "#8D9099", lineHeight: 1.5 }}>
-            Clicca su una parte dell'auto per aggiungerla come voce del preventivo.
+            Trascina per ruotare, clicca una parte dell'auto per aggiungerla come voce del preventivo.
           </div>
         )}
         {zonaScelta && (
