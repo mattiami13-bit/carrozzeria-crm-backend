@@ -3712,13 +3712,113 @@ function CarDiagramPicker({ onAdd }) {
   );
 }
 
+// Elenco categorie + voci rapide per categoria, sullo stesso layout a
+// sidebar usato da InfoCar (categorie a sinistra, voci della categoria
+// scelta a destra). Non sono disegni tecnici esplosi — quelli sono
+// materiale proprietario di un fornitore a pagamento (Editoriale
+// Domus/Audatex, TecDoc, ecc.), qui mancante — ma la stessa
+// organizzazione del lavoro: scegli la categoria, scegli la voce
+// ricorrente, conferma prezzo e quantità.
+const CATEGORIE_RICAMBI = [
+  { id: "lamierati_est", label: "Lamierati esterni", voci: ["Cofano", "Baule/portellone", "Tetto", "Portiera anteriore", "Portiera posteriore", "Parafango anteriore", "Parafango posteriore"] },
+  { id: "lamierati_int", label: "Lamierati interni", voci: ["Traversa anteriore", "Longherone", "Pianale", "Montante centrale"] },
+  { id: "fanaleria", label: "Fanaleria", voci: ["Fanale anteriore sx", "Fanale anteriore dx", "Fanale posteriore sx", "Fanale posteriore dx", "Faro fendinebbia", "Freccia laterale"] },
+  { id: "selleria", label: "Selleria", voci: ["Sedile anteriore", "Sedile posteriore", "Rivestimento sedile", "Poggiatesta"] },
+  { id: "motore_cambio", label: "Motore e cambio con supporti", voci: ["Supporto motore", "Supporto cambio", "Coppa olio", "Testata", "Guarnizione testata"] },
+  { id: "paraurti_ant", label: "Paraurti anteriore", voci: ["Paraurti anteriore completo", "Staffa paraurti", "Griglia anteriore", "Sensori di parcheggio", "Spoiler anteriore"] },
+  { id: "paraurti_post", label: "Paraurti posteriore", voci: ["Paraurti posteriore completo", "Staffa paraurti", "Catadiottro", "Sensori di parcheggio"] },
+  { id: "sterzo", label: "Sterzo", voci: ["Scatola guida", "Piantone sterzo", "Testina sterzo", "Cuffia sterzo"] },
+  { id: "sospensioni", label: "Sospensioni", voci: ["Ammortizzatore anteriore", "Ammortizzatore posteriore", "Molla", "Braccio oscillante", "Boccola sospensione"] },
+  { id: "cristalli", label: "Cristalli", voci: ["Parabrezza", "Lunotto", "Vetro portiera anteriore", "Vetro portiera posteriore", "Specchietto retrovisore"] },
+  { id: "alimentazione_scarico", label: "Alimentazione e scarico", voci: ["Marmitta", "Catalizzatore", "Serbatoio carburante", "Pompa carburante"] },
+  { id: "cambio_trasmissione", label: "Cambio e trasmissione", voci: ["Frizione", "Semiasse", "Giunto omocinetico", "Volano"] },
+  { id: "impianto_frenante", label: "Impianto frenante", voci: ["Pastiglie freno anteriori", "Pastiglie freno posteriori", "Disco freno", "Pinza freno", "Tubo freno"] },
+  { id: "rivestimenti_int", label: "Rivestimenti interni e parti interne", voci: ["Pannello porta", "Cruscotto", "Rivestimento montante", "Tappetino"] },
+  { id: "sicurezza", label: "Dispositivi di sicurezza", voci: ["Airbag guidatore", "Airbag passeggero", "Cintura di sicurezza", "Centralina airbag"] },
+  { id: "climatizzazione", label: "Climatizzazione", voci: ["Compressore clima", "Condensatore", "Radiatore riscaldamento", "Ricarica gas clima"] },
+];
+
+function CategoryPartPicker({ onAdd }) {
+  const [categoriaId, setCategoriaId] = useState(CATEGORIE_RICAMBI[0].id);
+  const [voceScelta, setVoceScelta] = useState(null);
+  const [tipo, setTipo] = useState("RICAMBIO");
+  const [descrizione, setDescrizione] = useState("");
+  const [quantita, setQuantita] = useState(1);
+  const [prezzoUnitario, setPrezzoUnitario] = useState("");
+
+  const categoria = CATEGORIE_RICAMBI.find((c) => c.id === categoriaId);
+
+  const scegliVoce = (voce) => {
+    setVoceScelta(voce);
+    setTipo("RICAMBIO");
+    setDescrizione(voce);
+    setQuantita(1);
+    setPrezzoUnitario("");
+  };
+
+  const conferma = () => {
+    onAdd({ tipo, descrizione, quantita: Number(quantita) || 1, prezzoUnitario: Number(prezzoUnitario) || 0 });
+    setVoceScelta(null);
+  };
+
+  return (
+    <div style={{ display: "flex", gap: 0, marginBottom: 14, background: "#0A0B0D", border: "1px solid #2A2E34", borderRadius: 10, overflow: "hidden" }}>
+      <div style={{ width: 180, flexShrink: 0, maxHeight: 320, overflowY: "auto", borderRight: "1px solid #2A2E34" }}>
+        {CATEGORIE_RICAMBI.map((c) => (
+          <button key={c.id} onClick={() => { setCategoriaId(c.id); setVoceScelta(null); }} style={{
+            display: "block", width: "100%", textAlign: "left", padding: "9px 12px", fontSize: 12,
+            border: "none", borderBottom: "1px solid #1B1E23", cursor: "pointer",
+            background: categoriaId === c.id ? "#2F80ED" : "transparent",
+            color: categoriaId === c.id ? "#fff" : "#8D9099",
+          }}>{c.label}</button>
+        ))}
+      </div>
+      <div style={{ flex: 1, minWidth: 220, padding: 12 }}>
+        {!voceScelta && (
+          <div>
+            <div style={{ fontSize: 12.5, color: "#8D9099", marginBottom: 10 }}>{categoria.label} — scegli una voce da aggiungere al preventivo:</div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+              {categoria.voci.map((v) => (
+                <button key={v} onClick={() => scegliVoce(v)} style={{
+                  padding: "6px 10px", borderRadius: 7, border: "1px solid #2A2E34", background: "#15171B",
+                  color: "#F3F1EC", fontSize: 12.5, cursor: "pointer",
+                }}>{v}</button>
+              ))}
+            </div>
+          </div>
+        )}
+        {voceScelta && (
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: "#F3F1EC", marginBottom: 8 }}>{voceScelta}</div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 8 }}>
+              <select value={tipo} onChange={(e) => setTipo(e.target.value)} style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13, gridColumn: "1 / -1" }}>
+                {QUOTE_ITEM_TIPI.map((t) => <option key={t.key} value={t.key}>{t.label}</option>)}
+              </select>
+              <input aria-label="Descrizione" value={descrizione} onChange={(e) => setDescrizione(e.target.value)}
+                style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13, gridColumn: "1 / -1" }} />
+              <input type="number" placeholder="Qtà" value={quantita} onChange={(e) => setQuantita(e.target.value)}
+                style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13 }} />
+              <input type="number" placeholder="Prezzo €" value={prezzoUnitario} onChange={(e) => setPrezzoUnitario(e.target.value)}
+                style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13 }} />
+            </div>
+            <div style={{ display: "flex", gap: 8 }}>
+              <button onClick={conferma} style={{ padding: "6px 12px", borderRadius: 7, border: "none", background: "#2F80ED", color: "#fff", fontSize: 12.5, fontWeight: 600 }}>+ Aggiungi voce</button>
+              <button onClick={() => setVoceScelta(null)} style={{ padding: "6px 12px", borderRadius: 7, border: "1px solid #2A2E34", background: "transparent", color: "#8D9099", fontSize: 12.5 }}>Annulla</button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function NewQuoteForm({ clients, vehicles, api, onDone, onCancel }) {
   const [clientId, setClientId] = useState(clients[0]?.id || "");
   const [vehicleId, setVehicleId] = useState(vehicles[0]?.id || "");
   const [aliquotaIva, setAliquotaIva] = useState(22);
   const [items, setItems] = useState([{ tipo: "MANODOPERA", descrizione: "", quantita: 1, prezzoUnitario: 0 }]);
   const [error, setError] = useState(null);
-  const [mostraDiagramma, setMostraDiagramma] = useState(false);
+  const [modalitaScelta, setModalitaScelta] = useState(null); // null | "3d" | "categorie"
 
   const setItem = (idx, field, value) => {
     setItems(items.map((it, i) => (i === idx ? { ...it, [field]: value } : it)));
@@ -3770,14 +3870,21 @@ function NewQuoteForm({ clients, vehicles, api, onDone, onCancel }) {
           placeholder="IVA %" style={{ padding: 8, borderRadius: 8, border: "1px solid #2A2E34", minWidth: 0, boxSizing: "border-box" }} />
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8, flexWrap: "wrap", gap: 8 }}>
         <div style={{ fontSize: 12, fontWeight: 700, color: "#4A4842" }}>Voci</div>
-        <button onClick={() => setMostraDiagramma((v) => !v)} style={{
-          border: "1px solid #2A2E34", background: mostraDiagramma ? "#2F80ED" : "transparent",
-          color: mostraDiagramma ? "#fff" : "#8D9099", borderRadius: 7, padding: "5px 10px", fontSize: 12,
-        }}>🚗 {mostraDiagramma ? "Nascondi disegno auto" : "Scegli dal disegno dell'auto"}</button>
+        <div style={{ display: "flex", gap: 6 }}>
+          <button onClick={() => setModalitaScelta((m) => (m === "3d" ? null : "3d"))} style={{
+            border: "1px solid #2A2E34", background: modalitaScelta === "3d" ? "#2F80ED" : "transparent",
+            color: modalitaScelta === "3d" ? "#fff" : "#8D9099", borderRadius: 7, padding: "5px 10px", fontSize: 12,
+          }}>🚗 {modalitaScelta === "3d" ? "Nascondi disegno 3D" : "Disegno 3D auto"}</button>
+          <button onClick={() => setModalitaScelta((m) => (m === "categorie" ? null : "categorie"))} style={{
+            border: "1px solid #2A2E34", background: modalitaScelta === "categorie" ? "#2F80ED" : "transparent",
+            color: modalitaScelta === "categorie" ? "#fff" : "#8D9099", borderRadius: 7, padding: "5px 10px", fontSize: 12,
+          }}>📋 {modalitaScelta === "categorie" ? "Nascondi categorie" : "Scegli per categoria"}</button>
+        </div>
       </div>
-      {mostraDiagramma && <CarDiagramPicker onAdd={addItemFromDiagram} />}
+      {modalitaScelta === "3d" && <CarDiagramPicker onAdd={addItemFromDiagram} />}
+      {modalitaScelta === "categorie" && <CategoryPartPicker onAdd={addItemFromDiagram} />}
       {items.map((it, idx) => (
         <div key={idx} style={{ display: "grid", gridTemplateColumns: "130px 1fr 80px 100px 28px", gap: 8, marginBottom: 8 }}>
           <select value={it.tipo} onChange={(e) => setItem(idx, "tipo", e.target.value)} style={{ padding: 7, borderRadius: 7, border: "1px solid #2A2E34", fontSize: 13 }}>
